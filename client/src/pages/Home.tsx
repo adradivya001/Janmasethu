@@ -16,7 +16,7 @@ const Home = () => {
   return (
     <div className="container mx-auto px-4 py-8">
       {/* Hero Section */}
-      <section className="text-center py-16 relative">
+      <section className="text-center py-16 relative hero-pattern rounded-3xl"
         {/* Trust Badge */}
         <div className="inline-flex items-center space-x-2 bg-white rounded-full px-4 py-2 card-shadow mb-8">
           <CheckCircle className="w-4 h-4 text-green-500" />
