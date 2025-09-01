@@ -30,26 +30,24 @@ const Header = () => {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <Link href="/" className="flex items-center space-x-3" data-testid="link-home-logo">
+            <Link href="/" className="flex items-center" data-testid="link-home-logo">
               <img 
                 src="/logo.png" 
                 alt="Janma Sethu Logo" 
-                className="w-12 h-12 object-contain"
+                className="w-16 h-16 object-contain"
               />
-              <div>
-                <h1 className="text-xl font-bold text-foreground font-serif">Janma Sethu</h1>
-                <p className="text-xs text-muted-foreground">{t('brand_tag')}</p>
-              </div>
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center space-x-8" role="navigation" aria-label="Main navigation">
+            <nav className="hidden lg:flex items-center space-x-6" role="navigation" aria-label="Main navigation">
               {navItems.map(({ key, href }) => (
                 <Link 
                   key={href}
                   href={href} 
-                  className={`font-medium transition-colors ${
-                    location === href ? 'text-primary' : 'text-foreground hover:text-primary'
+                  className={`font-semibold text-sm tracking-wide transition-all duration-200 px-3 py-2 rounded-md ${
+                    location === href 
+                      ? 'text-primary bg-primary/10' 
+                      : 'text-foreground hover:text-primary hover:bg-primary/5'
                   }`}
                   data-testid={`link-nav-${key.replace('nav_', '')}`}
                 >
