@@ -51,9 +51,9 @@ const Home = () => {
 
         {/* Hero Background Image */}
         <div className="absolute inset-0 -z-10 opacity-10">
-          <img
-            src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080"
-            alt="Family moment with newborn"
+          <img 
+            src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080" 
+            alt="Family moment with newborn" 
             className="w-full h-full object-cover rounded-3xl"
           />
         </div>
@@ -249,9 +249,9 @@ const Home = () => {
               <p className="text-muted-foreground mb-6" data-testid="text-ttc-desc">
                 {t('orient_desc_ttc')}
               </p>
-              <img
-                src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300"
-                alt="Couple walking together in park"
+              <img 
+                src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300" 
+                alt="Couple walking together in park" 
                 className="rounded-xl w-full h-32 object-cover"
               />
             </Card>
@@ -269,9 +269,9 @@ const Home = () => {
               <p className="text-muted-foreground mb-6" data-testid="text-pregnancy-desc">
                 {t('orient_desc_preg')}
               </p>
-              <img
-                src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300"
-                alt="Pregnant woman in peaceful outdoor setting"
+              <img 
+                src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300" 
+                alt="Pregnant woman in peaceful outdoor setting" 
                 className="rounded-xl w-full h-32 object-cover"
               />
             </Card>
@@ -289,9 +289,9 @@ const Home = () => {
               <p className="text-muted-foreground mb-6" data-testid="text-parent-desc">
                 {t('orient_desc_parent')}
               </p>
-              <img
-                src="https://images.unsplash.com/photo-1566004100631-35d015d6a491?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300"
-                alt="Happy new parent holding newborn baby"
+              <img 
+                src="https://images.unsplash.com/photo-1566004100631-35d015d6a491?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300" 
+                alt="Happy new parent holding newborn baby" 
                 className="rounded-xl w-full h-32 object-cover"
               />
             </Card>
@@ -370,9 +370,9 @@ const Home = () => {
           {featuredArticles.map((article, index) => (
             <Link key={article.slug} href={`/knowledge/${article.slug}`} className="group">
               <Card className="rounded-3xl p-6 card-shadow hover:shadow-xl transition-all duration-300" data-testid={`card-featured-article-${index}`}>
-                <img
-                  src={getArticleImage(index)}
-                  alt={article.title.en}
+                <img 
+                  src={getArticleImage(index)} 
+                  alt={article.title.en} 
                   className="rounded-xl w-full h-32 object-cover mb-4"
                 />
                 <h3 className="text-lg font-bold text-foreground font-serif mb-2" data-testid={`text-article-title-${index}`}>
@@ -396,7 +396,7 @@ const Home = () => {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {getTreatmentCards(t).map((treatment, index) => (
+          {getTreatmentCards().map((treatment, index) => (
             <Link key={treatment.slug} href={`/treatments/${treatment.slug}`} className="group">
               <Card className="rounded-3xl p-8 card-shadow hover:shadow-xl transition-all duration-300" data-testid={`card-treatment-${index}`}>
                 <div className={`w-16 h-16 ${treatment.bgColor} rounded-2xl flex items-center justify-center mb-6`}>
@@ -410,7 +410,8 @@ const Home = () => {
                 </p>
               </Card>
             </Link>
-          ))}</div>
+          ))}
+        </div>
       </section>
 
       {/* Success Stories Preview */}
@@ -425,9 +426,9 @@ const Home = () => {
           {featuredStories.map((story, index) => (
             <Link key={story.slug} href={`/success-stories/${story.slug}`} className="group">
               <Card className="rounded-3xl p-6 card-shadow hover:shadow-xl transition-all duration-300" data-testid={`card-success-story-${index}`}>
-                <img
-                  src={getStoryImage(index)}
-                  alt={story.title}
+                <img 
+                  src={getStoryImage(index)} 
+                  alt={story.title} 
                   className="rounded-xl w-full h-32 object-cover mb-4"
                 />
                 <h3 className="text-lg font-bold text-foreground font-serif mb-2" data-testid={`text-story-title-${index}`}>
@@ -500,7 +501,7 @@ const Home = () => {
 
                 <div className="flex justify-start">
                   <div className="bg-white border border-gray-200 text-gray-700 px-4 py-2 rounded-2xl max-w-xs shadow-md" data-testid="message-sample-bot">
-                    I understand your anxiety. It's completely normal to feel this way before scans.
+                    I understand your anxiety. It's completely normal to feel this way before scans. 
                     <div className="mt-2 text-xs text-gray-500">
                       <span className="animate-pulse">💭 Try some deep breathing exercises...</span>
                     </div>
@@ -562,43 +563,43 @@ const getStoryImage = (index: number) => {
   return images[index] || images[0];
 };
 
-const getTreatmentCards = (t: any) => [
+const getTreatmentCards = () => [
   {
     slug: 'iui',
-    name: t('treatment_iui_name'),
-    description: t('treatment_iui_desc'),
+    name: 'IUI',
+    description: 'Intrauterine insemination process, success rates, and what to expect',
     icon: 'fas fa-syringe',
     iconColor: 'text-blue-600',
     bgColor: 'bg-blue-100'
   },
   {
     slug: 'ivf',
-    name: t('treatment_ivf_name'),
-    description: t('treatment_ivf_desc'),
+    name: 'IVF',
+    description: 'In vitro fertilization steps, timeline, and preparation guide',
     icon: 'fas fa-microscope',
     iconColor: 'text-purple-600',
     bgColor: 'bg-purple-100'
   },
   {
     slug: 'icsi',
-    name: t('treatment_icsi_name'),
-    description: t('treatment_icsi_desc'),
+    name: 'ICSI',
+    description: 'Intracytoplasmic sperm injection for male factor infertility',
     icon: 'fas fa-dna',
     iconColor: 'text-green-600',
     bgColor: 'bg-green-100'
   },
   {
     slug: 'donor-options',
-    name: t('treatment_donor_options_name'),
-    description: t('treatment_donor_options_desc'),
+    name: 'Donor Options',
+    description: 'Egg, sperm, and embryo donation processes and considerations',
     icon: 'fas fa-hand-holding-heart',
     iconColor: 'text-pink-600',
     bgColor: 'bg-pink-100'
   },
   {
     slug: 'fertility-preservation',
-    name: t('treatment_fertility_preservation_name'),
-    description: t('treatment_fertility_preservation_desc'),
+    name: 'Fertility Preservation',
+    description: 'Egg and sperm freezing for future family planning',
     icon: 'fas fa-snowflake',
     iconColor: 'text-orange-600',
     bgColor: 'bg-orange-100'
