@@ -73,7 +73,7 @@
   }
 
   .gradient-button {
-    background: linear-gradient(90deg, #8B5CF6, #EC4899, #F97316);
+    background: linear-gradient(135deg, #9333EA 0%, #EC4899 50%, #F97316 100%);
   }
 
   .gradient-button-secondary {
@@ -187,5 +187,81 @@
   @keyframes blink-caret {
     from, to { border-color: transparent; }
     50% { border-color: #8B5CF6; }
+  }
+
+  /* Custom animations and effects */
+  .gradient-button {
+    background: linear-gradient(135deg, #9333EA 0%, #EC4899 50%, #F97316 100%);
+  }
+
+  /* Cinematic Line Animation */
+  .animated-line {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .morphing-line {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: drawLine 4s ease-in-out infinite;
+  }
+
+  .morph-symbol {
+    animation: symbolMorph 12s ease-in-out infinite;
+  }
+
+  .morph-symbol.couple {
+    animation-delay: 0s;
+  }
+
+  .morph-symbol.pregnancy {
+    animation-delay: 4s;
+  }
+
+  .morph-symbol.cradle {
+    animation-delay: 8s;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes drawLine {
+    0% {
+      stroke-dashoffset: 1000;
+      filter: drop-shadow(0 0 5px rgba(147, 51, 234, 0.3));
+    }
+    25% {
+      stroke-dashoffset: 500;
+      filter: drop-shadow(0 0 10px rgba(236, 72, 153, 0.5));
+    }
+    50% {
+      stroke-dashoffset: 0;
+      filter: drop-shadow(0 0 15px rgba(249, 115, 22, 0.7));
+    }
+    75% {
+      stroke-dashoffset: 0;
+      filter: drop-shadow(0 0 10px rgba(236, 72, 153, 0.5));
+    }
+    100% {
+      stroke-dashoffset: 0;
+      filter: drop-shadow(0 0 5px rgba(147, 51, 234, 0.3));
+    }
+  }
+
+  @keyframes symbolMorph {
+    0%, 25% {
+      opacity: 0;
+      transform: scale(0.5);
+    }
+    30%, 70% {
+      opacity: 1;
+      transform: scale(1);
+      filter: drop-shadow(0 0 8px rgba(147, 51, 234, 0.6));
+    }
+    75%, 100% {
+      opacity: 0;
+      transform: scale(0.5);
+    }
   }
 }

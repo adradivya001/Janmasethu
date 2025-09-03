@@ -35,16 +35,60 @@ const Home = () => {
           {t('hero_sub')}
         </p>
 
-        {/* CTA Buttons - Updated to match blueprint */}
+        {/* Animated Line Morphing Effect */}
+        <div className="relative mb-8">
+          <svg 
+            className="w-full h-24 mx-auto animated-line" 
+            viewBox="0 0 400 100" 
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#9333EA" />
+                <stop offset="50%" stopColor="#EC4899" />
+                <stop offset="100%" stopColor="#F97316" />
+              </linearGradient>
+              <filter id="glow">
+                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                <feMerge>
+                  <feMergeNode in="coloredBlur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+            </defs>
+            
+            {/* Main morphing line */}
+            <path 
+              className="morphing-line" 
+              d="M20,50 Q100,30 200,50 Q300,70 380,50" 
+              stroke="url(#lineGradient)" 
+              strokeWidth="3" 
+              fill="none"
+              filter="url(#glow)"
+            />
+            
+            {/* Couple symbol */}
+            <circle className="morph-symbol couple" cx="60" cy="50" r="8" fill="url(#lineGradient)" opacity="0" />
+            <circle className="morph-symbol couple" cx="80" cy="50" r="6" fill="url(#lineGradient)" opacity="0" />
+            
+            {/* Pregnancy symbol */}
+            <ellipse className="morph-symbol pregnancy" cx="200" cy="50" rx="12" ry="15" fill="url(#lineGradient)" opacity="0" />
+            
+            {/* Cradle symbol */}
+            <path className="morph-symbol cradle" d="M320,45 Q340,35 360,45 Q340,65 320,55 Z" fill="url(#lineGradient)" opacity="0" />
+          </svg>
+        </div>
+
+        {/* CTA Buttons - Updated to match blueprint exactly */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <Link href="/sakhi/try">
             <Button className="gradient-button text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-lg transition-all duration-300" data-testid="button-cta-primary">
-              {t('cta_primary')}
+              Meet Sakhi
             </Button>
           </Link>
           <Link href="/knowledge">
             <Button variant="outline" className="bg-white text-foreground px-8 py-4 rounded-full font-semibold text-lg border-border hover:shadow-lg transition-all duration-300" data-testid="button-cta-secondary">
-              {t('cta_secondary')}
+              For Clinics
             </Button>
           </Link>
         </div>
