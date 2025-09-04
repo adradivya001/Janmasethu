@@ -1,7 +1,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'wouter';
-import { ArrowLeft, Send, MessageCircle, Heart, Shield, Clock, Users, Play, Volume2, VolumeX, Globe, ChevronDown, User, Bot } from 'lucide-react';
+import { Send, MessageCircle, Heart, Shield, Clock, Users, Play, Volume2, VolumeX, Globe, User, Bot, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -302,40 +302,33 @@ const SakhiTry = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
-      {/* Header */}
-      <div className="bg-white border-b border-gray-200 px-4 py-3">
-        <div className="flex items-center justify-between max-w-7xl mx-auto">
-          <div className="flex items-center space-x-4">
-            <Link href="/sakhi">
-              <Button variant="ghost" size="sm" className="rounded-full">
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Back to Sakhi
-              </Button>
-            </Link>
-            <div className="hidden md:block">
-              <h1 className="text-xl font-bold text-gray-900">Sakhi - Your Compassionate Companion</h1>
-              <p className="text-sm text-gray-600">Private, multilingual support for your fertility journey</p>
-            </div>
-          </div>
-          
-          {/* Language Selector */}
-          <div className="flex items-center space-x-2">
-            <Globe className="w-4 h-4 text-gray-500" />
-            <select 
-              value={selectedLanguage} 
-              onChange={(e) => setSelectedLanguage(e.target.value)}
-              className="border border-gray-300 rounded-lg px-3 py-1 text-sm focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-            >
-              <option value="en">EN</option>
-              <option value="hi">हि</option>
-              <option value="te">తె</option>
-            </select>
-          </div>
+      {/* Close Button */}
+      <div className="absolute top-4 right-4 z-50">
+        <Link href="/sakhi">
+          <Button variant="ghost" size="sm" className="rounded-full bg-white/80 backdrop-blur-sm hover:bg-white">
+            <X className="w-4 h-4" />
+          </Button>
+        </Link>
+      </div>
+
+      {/* Language Selector */}
+      <div className="absolute top-4 left-4 z-50">
+        <div className="flex items-center space-x-2 bg-white/80 backdrop-blur-sm rounded-lg px-3 py-2">
+          <Globe className="w-4 h-4 text-gray-500" />
+          <select 
+            value={selectedLanguage} 
+            onChange={(e) => setSelectedLanguage(e.target.value)}
+            className="border-none bg-transparent text-sm focus:ring-0 focus:outline-none"
+          >
+            <option value="en">EN</option>
+            <option value="hi">हि</option>
+            <option value="te">తె</option>
+          </select>
         </div>
       </div>
 
       {/* Main Content */}
-      <div className="h-[calc(100vh-80px)]">
+      <div className="h-screen">
         {/* Desktop Layout */}
         <div className="hidden lg:block h-full">
           <ResizablePanelGroup direction="horizontal">
