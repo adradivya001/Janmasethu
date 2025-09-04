@@ -23,28 +23,35 @@ import SakhiTry from "@/pages/SakhiTry";
 
 function Router() {
   return (
-    <Layout>
-      <Switch>
-        <Route path="/" component={Home} />
-        <Route path="/knowledge" component={Knowledge} />
-        <Route path="/knowledge/:slug" component={Article} />
-        <Route path="/treatments" component={Treatments} />
-        <Route path="/treatments/:slug" component={Treatment} />
-        <Route path="/life-stages" component={LifeStages} />
-        <Route path="/life-stages/:slug" component={LifeStage} />
-        <Route path="/success-stories" component={SuccessStories} />
-        <Route path="/success-stories/:slug" component={Story} />
-        <Route path="/blog" component={Blog} />
-        <Route path="/blog/:slug" component={BlogPost} />
-        <Route path="/experts" component={Experts} />
-        <Route path="/experts/:id" component={Expert} />
-        <Route path="/tools" component={Tools} />
-        <Route path="/sakhi" component={Sakhi} />
-        <Route path="/sakhi/try" component={SakhiTry} />
-        {/* Catch-all route to redirect to home instead of 404 */}
-        <Route path="/:rest*" component={Home} />
-      </Switch>
-    </Layout>
+    <Switch>
+      {/* Standalone route without Layout */}
+      <Route path="/sakhi/try" component={SakhiTry} />
+      
+      {/* All other routes with Layout */}
+      <Route>
+        <Layout>
+          <Switch>
+            <Route path="/" component={Home} />
+            <Route path="/knowledge" component={Knowledge} />
+            <Route path="/knowledge/:slug" component={Article} />
+            <Route path="/treatments" component={Treatments} />
+            <Route path="/treatments/:slug" component={Treatment} />
+            <Route path="/life-stages" component={LifeStages} />
+            <Route path="/life-stages/:slug" component={LifeStage} />
+            <Route path="/success-stories" component={SuccessStories} />
+            <Route path="/success-stories/:slug" component={Story} />
+            <Route path="/blog" component={Blog} />
+            <Route path="/blog/:slug" component={BlogPost} />
+            <Route path="/experts" component={Experts} />
+            <Route path="/experts/:id" component={Expert} />
+            <Route path="/tools" component={Tools} />
+            <Route path="/sakhi" component={Sakhi} />
+            {/* Catch-all route to redirect to home instead of 404 */}
+            <Route path="/:rest*" component={Home} />
+          </Switch>
+        </Layout>
+      </Route>
+    </Switch>
   );
 }
 
