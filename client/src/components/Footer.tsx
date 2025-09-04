@@ -14,7 +14,7 @@ const Footer = () => {
               <img 
                 src="/JanmaSethu Logo.png" 
                 alt="Janma Sethu Logo" 
-                className="w-8 h-8 sm:w-10 sm:h-10 object-contain"
+                className="w-12 h-12 sm:w-14 sm:h-14 object-contain"
               />
               <h3 className="text-xl font-bold text-foreground font-serif">Janma Sethu</h3>
             </div>
