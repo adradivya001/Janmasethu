@@ -106,41 +106,20 @@
     }
   }
 
-  /* Skip to content link */
   .skip-link {
     position: absolute;
     top: -40px;
     left: 6px;
-    background: white;
-    color: black;
+    background: #8B5CF6;
+    color: white;
     padding: 8px;
     text-decoration: none;
     border-radius: 4px;
-    z-index: 100;
-    border: 1px solid #ccc;
+    z-index: 1000;
   }
 
   .skip-link:focus {
     top: 6px;
-  }
-
-  /* Logo hover effects */
-  .logo-hover {
-    transition: transform 0.2s ease-in-out;
-    display: flex;
-    align-items: center;
-  }
-
-  .logo-hover:hover {
-    transform: scale(1.05);
-  }
-
-  .logo-hover img {
-    filter: brightness(1.1) contrast(1.1);
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 12px;
-    padding: 4px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
 
   /* Journey Timeline Animations */
