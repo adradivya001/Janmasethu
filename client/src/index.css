@@ -56,6 +56,25 @@
   * {
     @apply border-border;
   }
+  * {
+    @apply border-border;
+  }
+
+  /* Sakhi Widget Specific Styles */
+  .sakhi-widget {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  .sakhi-widget .font-noto-sans-telugu {
+    font-family: 'Noto Sans Telugu', system-ui, sans-serif;
+    line-height: 1.6;
+  }
+
+  /* Ensure proper Telugu text rendering */
+  .sakhi-widget .font-noto-sans-telugu * {
+    word-wrap: break-word;
+    hyphens: auto;
+  }
 
   body {
     @apply font-sans antialiased text-foreground;

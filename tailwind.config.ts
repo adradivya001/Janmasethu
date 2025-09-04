@@ -63,9 +63,9 @@ export default {
         },
       },
       fontFamily: {
-        sans: ["var(--font-sans)"],
-        serif: ["var(--font-serif)"],
-        mono: ["var(--font-mono)"],
+        sans: ["Inter", "system-ui", "sans-serif"],
+        serif: ["Georgia", "ui-serif", "serif"],
+        "noto-sans-telugu": ["Noto Sans Telugu", "system-ui", "sans-serif"],
       },
       keyframes: {
         "accordion-down": {

@@ -1,0 +1,51 @@
+
+{
+  "header_title": "Sakhi — Your Parenthood Companion",
+  "chat_placeholder": "Type your message...",
+  "disclaimer": "General guidance only. Not a diagnosis. Please consult your doctor.",
+  "chat_messages": [
+    {
+      "type": "user",
+      "message": "I'm feeling anxious about tomorrow's scan"
+    },
+    {
+      "type": "sakhi",
+      "message": "I understand your anxiety. It's completely normal to feel this way before scans. Try some deep breathing exercises and remember that you're taking positive steps for your journey."
+    },
+    {
+      "type": "user",
+      "message": "What questions should I ask my doctor?"
+    },
+    {
+      "type": "sakhi",
+      "message": "Great question! I've prepared a personalized checklist for you. It includes questions about success rates, timeline, and what to expect. You can see it in the preview panel."
+    }
+  ],
+  "preview_cards": [
+    {
+      "type": "checklist",
+      "title": "Pre-Consult Questions",
+      "content": [
+        "What are my specific success rates based on age and condition?",
+        "What is the expected timeline for my treatment plan?",
+        "What lifestyle changes should I make during treatment?"
+      ]
+    },
+    {
+      "type": "video",
+      "title": "IVF Explained in 90 Seconds",
+      "content": "A simple, visual explanation of the IVF process designed for Indian families"
+    },
+    {
+      "type": "info",
+      "title": "IVF Success Rates by Age",
+      "content": [
+        "Under 30: 65-70% per cycle",
+        "30-35: 55-60% per cycle", 
+        "35-40: 35-45% per cycle",
+        "Over 40: 15-25% per cycle"
+      ],
+      "source": "Source: ICMR Guidelines for ART Clinics in India, 2023"
+    }
+  ]
+}
