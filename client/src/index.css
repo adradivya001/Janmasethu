@@ -249,6 +249,130 @@
     }
   }
 
+  /* Animated Chat Interface Styles */
+  .animated-chat-container {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .chat-message-user, .chat-message-bot {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideInMessage 0.6s ease-out forwards;
+  }
+
+  .chat-message-user {
+    animation-name: slideInFromRight;
+  }
+
+  .chat-message-bot {
+    animation-name: slideInFromLeft;
+  }
+
+  .typing-indicator {
+    opacity: 0;
+    animation: fadeInTyping 0.5s ease-out forwards, fadeOutTyping 0.5s ease-out forwards;
+    animation-delay: inherit, calc(var(--animation-delay, 9.5s) + 2s);
+  }
+
+  .animated-input {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: slideInMessage 0.5s ease-out forwards;
+  }
+
+  .pulse-button {
+    animation: gentlePulse 2s ease-in-out infinite;
+  }
+
+  .fade-in {
+    opacity: 0;
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+
+  @keyframes slideInFromRight {
+    from {
+      opacity: 0;
+      transform: translateX(30px) translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0) translateY(0);
+    }
+  }
+
+  @keyframes slideInFromLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-30px) translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0) translateY(0);
+    }
+  }
+
+  @keyframes slideInMessage {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInTyping {
+    from {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes fadeOutTyping {
+    from {
+      opacity: 1;
+      transform: scale(1);
+    }
+    to {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+  }
+
+  @keyframes gentlePulse {
+    0%, 100% {
+      transform: scale(1);
+      box-shadow: 0 0 0 0 rgba(147, 51, 234, 0.4);
+    }
+    50% {
+      transform: scale(1.05);
+      box-shadow: 0 0 0 10px rgba(147, 51, 234, 0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Restart animation on scroll into view */
+  .animated-chat-container:hover .chat-message-user,
+  .animated-chat-container:hover .chat-message-bot,
+  .animated-chat-container:hover .typing-indicator {
+    animation-iteration-count: infinite;
+    animation-duration: 12s;
+  }
+
   @keyframes symbolMorph {
     0%, 25% {
       opacity: 0;

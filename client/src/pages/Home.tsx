@@ -527,37 +527,58 @@ const Home = () => {
               </Link>
             </div>
 
-            {/* Chat Interface Preview */}
+            {/* Animated Chat Interface Preview */}
             <Card className="rounded-3xl p-6 card-shadow">
               <div className="border-b border-border pb-4 mb-4">
                 <h4 className="font-bold text-foreground" data-testid="text-chat-preview-title">
                   Chat with Sakhi
                 </h4>
                 <p className="text-sm text-muted-foreground" data-testid="text-chat-preview-hint">
-                  <span className="w-2 h-2 bg-green-500 rounded-full inline-block mr-2"></span>
+                  <span className="w-2 h-2 bg-green-500 rounded-full inline-block mr-2 animate-pulse"></span>
                   Sakhi is online and ready to help
                 </p>
               </div>
 
-              <div className="space-y-4 mb-4 h-60 overflow-y-auto">
-                {/* Sample Chat Messages */}
-                <div className="flex justify-end">
-                  <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-2xl max-w-xs shadow-md" data-testid="message-sample-user">
+              <div className="space-y-4 mb-4 h-60 overflow-y-auto animated-chat-container">
+                {/* Animated Chat Messages */}
+                <div className="flex justify-end chat-message-user" style={{animationDelay: '0.5s'}}>
+                  <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-2xl max-w-xs shadow-md transform transition-all duration-500" data-testid="message-sample-user">
                     I'm feeling anxious about tomorrow's scan
                   </div>
                 </div>
 
-                <div className="flex justify-start">
-                  <div className="bg-white border border-gray-200 text-gray-700 px-4 py-2 rounded-2xl max-w-xs shadow-md" data-testid="message-sample-bot">
-                    I understand your anxiety. It's completely normal to feel this way before scans. 
-                    <div className="mt-2 text-xs text-gray-500">
-                      <span className="animate-pulse">💭 Try some deep breathing exercises...</span>
-                    </div>
+                <div className="flex justify-start chat-message-bot" style={{animationDelay: '2s'}}>
+                  <div className="bg-white border border-gray-200 text-gray-700 px-4 py-2 rounded-2xl max-w-xs shadow-md transform transition-all duration-500" data-testid="message-sample-bot-1">
+                    I understand your anxiety. It's completely normal to feel this way before scans.
                   </div>
                 </div>
 
-                {/* Typing indicator */}
-                <div className="flex justify-start">
+                <div className="flex justify-start chat-message-bot" style={{animationDelay: '3.5s'}}>
+                  <div className="bg-white border border-gray-200 text-gray-700 px-4 py-2 rounded-2xl max-w-xs shadow-md transform transition-all duration-500" data-testid="message-sample-bot-2">
+                    💭 Try some deep breathing exercises: inhale for 4 counts, hold for 4, exhale for 6.
+                  </div>
+                </div>
+
+                <div className="flex justify-end chat-message-user" style={{animationDelay: '5s'}}>
+                  <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-2xl max-w-xs shadow-md transform transition-all duration-500" data-testid="message-sample-user-2">
+                    What should I expect during the scan?
+                  </div>
+                </div>
+
+                <div className="flex justify-start chat-message-bot" style={{animationDelay: '6.5s'}}>
+                  <div className="bg-white border border-gray-200 text-gray-700 px-4 py-2 rounded-2xl max-w-xs shadow-md transform transition-all duration-500" data-testid="message-sample-bot-3">
+                    🔍 The ultrasound will be gentle and non-invasive. Your doctor will check the baby's growth, heartbeat, and position.
+                  </div>
+                </div>
+
+                <div className="flex justify-start chat-message-bot" style={{animationDelay: '8s'}}>
+                  <div className="bg-white border border-gray-200 text-gray-700 px-4 py-2 rounded-2xl max-w-xs shadow-md transform transition-all duration-500" data-testid="message-sample-bot-4">
+                    ❤️ Remember, you're not alone in this journey. Would you like to know some questions you can ask your doctor?
+                  </div>
+                </div>
+
+                {/* Typing indicator - shows periodically */}
+                <div className="flex justify-start typing-indicator" style={{animationDelay: '9.5s'}}>
                   <div className="bg-gray-100 px-4 py-2 rounded-2xl">
                     <div className="flex space-x-1">
                       <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
@@ -568,19 +589,19 @@ const Home = () => {
                 </div>
               </div>
 
-              <div className="flex space-x-2">
+              <div className="flex space-x-2 animated-input" style={{animationDelay: '1s'}}>
                 <Input
                   type="text"
                   placeholder="Type your message..."
-                  className="flex-1 rounded-full focus:ring-ring"
+                  className="flex-1 rounded-full focus:ring-ring transition-all duration-300"
                   data-testid="input-chat-preview"
                 />
-                <Button className="gradient-button text-white rounded-full hover:shadow-lg transition-all duration-300" data-testid="button-send-preview">
+                <Button className="gradient-button text-white rounded-full hover:shadow-lg transition-all duration-300 pulse-button" data-testid="button-send-preview">
                   <Send className="w-4 h-4" />
                 </Button>
               </div>
 
-              <p className="text-xs text-muted-foreground mt-2" data-testid="text-chat-preview-privacy">
+              <p className="text-xs text-muted-foreground mt-2 fade-in" style={{animationDelay: '0.8s'}} data-testid="text-chat-preview-privacy">
                 {t('chat_privacy')}
               </p>
             </Card>
