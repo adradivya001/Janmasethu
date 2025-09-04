@@ -99,10 +99,10 @@ const Home = () => {
             <img 
               src="/babyFeet.jpg" 
               alt="Baby feet - nurturing parenthood journey" 
-              className="w-full h-full object-cover rounded-3xl opacity-20"
+              className="w-full h-full object-cover rounded-3xl opacity-60"
             />
-            {/* Gradient overlay to match theme colors */}
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-50/80 via-pink-50/60 to-orange-50/80 rounded-3xl"></div>
+            {/* Light gradient overlay to maintain text readability */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white/90 via-purple-50/70 to-pink-50/70 rounded-3xl"></div>
           </div>
         </div>
       </section>
