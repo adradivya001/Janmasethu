@@ -94,12 +94,16 @@ const Home = () => {
         </div>
 
         {/* Hero Background Image */}
-        <div className="absolute inset-0 -z-10 opacity-10">
-          <img 
-            src="/babyFeet.jpg" 
-            alt="Baby feet - nurturing parenthood journey" 
-            className="w-full h-full object-cover rounded-3xl"
-          />
+        <div className="absolute inset-0 -z-10">
+          <div className="relative w-full h-full">
+            <img 
+              src="/babyFeet.jpg" 
+              alt="Baby feet - nurturing parenthood journey" 
+              className="w-full h-full object-cover rounded-3xl opacity-20"
+            />
+            {/* Gradient overlay to match theme colors */}
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-50/80 via-pink-50/60 to-orange-50/80 rounded-3xl"></div>
+          </div>
         </div>
       </section>
 
