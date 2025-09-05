@@ -10,132 +10,7 @@ import { stories } from '@/data/stories';
 const Home = () => {
   const { t } = useLanguage();
 
-  // Featured Articles - keeping content in English
-  const featuredArticles = [
-    {
-      id: 'k1',
-      title: 'Basic Fertility Tests: What to Expect',
-      description: 'Essential tests for understanding your fertility health and planning next steps.',
-      category: 'Knowledge',
-      readTime: '4 min',
-      image: '/babyFeet.jpg'
-    },
-    {
-      id: 'k2', 
-      title: 'Understanding IVF Success Rates by Age',
-      description: 'Age-wise success rates and factors that influence IVF outcomes in Indian context.',
-      category: 'Knowledge',
-      readTime: '6 min',
-      image: '/babyFeet.jpg'
-    },
-    {
-      id: 'k3',
-      title: 'First Trimester Guide: Weeks 1-12',
-      description: 'Week-by-week pregnancy guide with Indian healthcare context, tests, documents, steps.',
-      category: 'Knowledge',
-      readTime: '5 min',
-      image: '/babyFeet.jpg'
-    },
-    {
-      id: 'k4',
-      title: 'Pregnancy Safe Foods: Eat/Limit/Avoid',
-      description: 'Simple table format guide for safe eating during pregnancy.',
-      category: 'Nutrition',
-      readTime: '3 min',
-      image: '/babyFeet.jpg'
-    }
-  ];
-
-  // Treatments - keeping content in English
-  const treatments = [
-    {
-      title: 'IUI',
-      description: 'Intrauterine insemination procedure, success rates and what to expect',
-      duration: '1-2 cycles',
-      successRate: '15-20%'
-    },
-    {
-      title: 'IVF', 
-      description: 'In vitro fertilization steps, timeline and preparation guide',
-      duration: '4-6 weeks',
-      successRate: '30-40%'
-    },
-    {
-      title: 'ICSI',
-      description: 'Sperm injection into egg for male factor infertility',
-      duration: '4-6 weeks', 
-      successRate: '35-45%'
-    },
-    {
-      title: 'Donor Options',
-      description: 'Egg, sperm, and embryo donation processes and considerations',
-      duration: 'Variable',
-      successRate: 'Varies'
-    },
-    {
-      title: 'Fertility Preservation',
-      description: 'Egg and sperm freezing for future family planning',
-      duration: 'Variable',
-      successRate: 'N/A'
-    }
-  ];
-
-  // Success Stories - keeping content in English
-  const successStories = [
-    {
-      id: 1,
-      title: 'Our IVF Journey: From Despair to Joy',
-      excerpt: 'After 3 years of trying and 2 IVF cycles, we finally held our miracle baby. Here\'s our story of hope, perseverance, and the support that made all the difference.',
-      author: 'Priya & Raj',
-      location: 'Mumbai',
-      category: 'IVF Success'
-    },
-    {
-      id: 2, 
-      title: 'IUI Success on the Third Try',
-      excerpt: 'We were told our chances were low, but we didn\'t give up. Our third IUI attempt blessed us with twins. Sometimes persistence pays off in the most beautiful way.',
-      author: 'Anitha & Kumar',
-      location: 'Hyderabad',
-      category: 'IUI Success'
-    },
-    {
-      id: 3,
-      title: 'Unexpected Natural Pregnancy at 38',
-      excerpt: 'After focusing on lifestyle changes and stress management, we conceived naturally when we least expected it. Age is just a number when hope is alive.',
-      author: 'Meera & Arjun',
-      location: 'Delhi',
-      category: 'Natural Conception'
-    }
-  ];
-
-  // Blog Posts - keeping content in English
-  const blogPosts = [
-    {
-      id: 1,
-      title: 'Managing Anxiety During Fertility Treatment',
-      excerpt: 'Practical strategies for coping with the emotional ups and downs of fertility treatments, from a clinical psychologist who specializes in reproductive health.',
-      author: 'Dr. Kavitha Rao',
-      date: '2024-03-15',
-      category: 'Mental Health'
-    },
-    {
-      id: 2,
-      title: 'Fertility Foods: Indian Diet for Reproductive Health', 
-      excerpt: 'Evidence-based nutrition advice incorporating traditional Indian foods that support fertility and reproductive health for both partners.',
-      author: 'Nutritionist Ravi Sharma',
-      date: '2024-03-10',
-      category: 'Nutrition'
-    },
-    {
-      id: 3,
-      title: 'Choosing the Right Fertility Clinic',
-      excerpt: 'Key factors to consider when selecting a fertility clinic in India, including success rates, technology, and patient care standards.',
-      author: 'Dr. Sunita Patel',
-      date: '2024-03-05', 
-      category: 'Treatment'
-    }
-  ];
-
+  const featuredArticles = articles.slice(0, 4);
   const featuredStories = stories.slice(0, 3);
 
   return (
@@ -181,7 +56,7 @@ const Home = () => {
                 </feMerge>
               </filter>
             </defs>
-
+            
             {/* Main morphing line */}
             <path 
               className="morphing-line" 
@@ -191,14 +66,14 @@ const Home = () => {
               fill="none"
               filter="url(#glow)"
             />
-
+            
             {/* Couple symbol */}
             <circle className="morph-symbol couple" cx="60" cy="50" r="8" fill="url(#lineGradient)" opacity="0" />
             <circle className="morph-symbol couple" cx="80" cy="50" r="6" fill="url(#lineGradient)" opacity="0" />
-
+            
             {/* Pregnancy symbol */}
             <ellipse className="morph-symbol pregnancy" cx="200" cy="50" rx="12" ry="15" fill="url(#lineGradient)" opacity="0" />
-
+            
             {/* Cradle symbol */}
             <path className="morph-symbol cradle" d="M320,45 Q340,35 360,45 Q340,65 320,55 Z" fill="url(#lineGradient)" opacity="0" />
           </svg>
@@ -541,18 +416,18 @@ const Home = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {featuredArticles.map((article, index) => (
-            <Link key={article.id} href={`/knowledge/${article.id}`} className="group">
+            <Link key={article.slug} href={`/knowledge/${article.slug}`} className="group">
               <Card className="rounded-3xl p-6 card-shadow hover:shadow-xl transition-all duration-300" data-testid={`card-featured-article-${index}`}>
                 <img 
                   src={getArticleImage(index)} 
-                  alt={article.title} 
+                  alt={article.title.en} 
                   className="rounded-xl w-full h-32 object-cover mb-4"
                 />
                 <h3 className="text-lg font-bold text-foreground font-serif mb-2" data-testid={`text-article-title-${index}`}>
-                  {article.title}
+                  {article.title.en}
                 </h3>
                 <p className="text-sm text-muted-foreground" data-testid={`text-article-summary-${index}`}>
-                  {article.description}
+                  {article.summary.en}
                 </p>
               </Card>
             </Link>
@@ -576,7 +451,7 @@ const Home = () => {
                   <i className={`${treatment.icon} ${treatment.iconColor} text-2xl`}></i>
                 </div>
                 <h3 className="text-2xl font-bold text-foreground font-serif mb-4" data-testid={`text-treatment-name-${index}`}>
-                  {treatment.title}
+                  {treatment.name}
                 </h3>
                 <p className="text-muted-foreground" data-testid={`text-treatment-desc-${index}`}>
                   {treatment.description}
@@ -597,7 +472,7 @@ const Home = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {featuredStories.map((story, index) => (
-            <Link key={story.id} href={`/success-stories/${story.id}`} className="group">
+            <Link key={story.slug} href={`/success-stories/${story.slug}`} className="group">
               <Card className="rounded-3xl p-6 card-shadow hover:shadow-xl transition-all duration-300" data-testid={`card-success-story-${index}`}>
                 <img 
                   src={getStoryImage(index)} 
@@ -608,11 +483,11 @@ const Home = () => {
                   {story.title}
                 </h3>
                 <p className="text-sm text-muted-foreground mb-3" data-testid={`text-story-summary-${index}`}>
-                  {story.excerpt}
+                  {story.summary}
                 </p>
                 <div className="flex items-center text-xs text-muted-foreground">
                   <i className="fas fa-map-marker-alt mr-1"></i>
-                  <span data-testid={`text-story-city-${index}`}>{story.location}</span>
+                  <span data-testid={`text-story-city-${index}`}>{story.city}</span>
                 </div>
               </Card>
             </Link>
@@ -740,7 +615,7 @@ const getTreatmentCards = () => [
   {
     slug: 'iui',
     name: 'IUI',
-    description: 'Intrauterine insemination process, success rates and what to expect',
+    description: 'Intrauterine insemination process, success rates, and what to expect',
     icon: 'fas fa-syringe',
     iconColor: 'text-blue-600',
     bgColor: 'bg-blue-100'
