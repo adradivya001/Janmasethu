@@ -304,10 +304,10 @@ const SakhiTry = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
       {/* Close Button */}
-      <div className="absolute top-4 right-4 z-50">
+      <div className="absolute top-2 right-2 lg:top-4 lg:right-4 z-50">
         <Link href="/sakhi">
-          <Button variant="ghost" size="sm" className="rounded-full bg-white/80 backdrop-blur-sm hover:bg-white">
-            <X className="w-4 h-4" />
+          <Button variant="ghost" size="sm" className="rounded-full bg-white/80 backdrop-blur-sm hover:bg-white w-8 h-8 lg:w-10 lg:h-10 p-0">
+            <X className="w-3 h-3 lg:w-4 lg:h-4" />
           </Button>
         </Link>
       </div>
@@ -368,25 +368,25 @@ const ChatPanel = ({ messages, inputText, setInputText, sendMessage, currentProm
       {/* Chat Header */}
       <div className="p-3 lg:p-4 border-b border-gray-200 bg-gradient-to-r from-purple-500 to-pink-500 text-white relative">
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-3">
-            <div className="w-8 h-8 lg:w-10 lg:h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
-              <Heart className="w-4 h-4 lg:w-5 lg:h-5" />
+          <div className="flex items-center space-x-2 lg:space-x-3 flex-1 min-w-0">
+            <div className="w-7 h-7 lg:w-10 lg:h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center flex-shrink-0">
+              <Heart className="w-3 h-3 lg:w-5 lg:h-5" />
             </div>
-            <div>
-              <h2 className="font-semibold text-sm lg:text-base">Chat with Sakhi</h2>
-              <p className="text-xs opacity-90">
+            <div className="min-w-0 flex-1">
+              <h2 className="font-semibold text-xs lg:text-base truncate">Chat with Sakhi</h2>
+              <p className="text-xs opacity-90 truncate">
                 <span className="w-2 h-2 bg-green-400 rounded-full inline-block mr-1"></span>
                 Online and ready to help
               </p>
             </div>
           </div>
           {/* Language Selector */}
-          <div className="flex items-center space-x-2 bg-white/20 backdrop-blur-sm rounded-lg px-2 lg:px-3 py-1 lg:py-2 border border-white/30">
+          <div className="flex items-center space-x-1 bg-white/20 backdrop-blur-sm rounded-lg px-1.5 lg:px-3 py-1 lg:py-2 border border-white/30 flex-shrink-0 ml-2">
             <Globe className="w-3 h-3 lg:w-4 lg:h-4 text-white" />
             <select 
               value={selectedLanguage} 
               onChange={(e) => setSelectedLanguage(e.target.value)}
-              className="border-none bg-transparent text-xs lg:text-sm text-white focus:ring-0 focus:outline-none cursor-pointer"
+              className="border-none bg-transparent text-xs lg:text-sm text-white focus:ring-0 focus:outline-none cursor-pointer min-w-0"
             >
               <option value="en" className="text-gray-900 bg-white">EN</option>
               <option value="hi" className="text-gray-900 bg-white">हि</option>
