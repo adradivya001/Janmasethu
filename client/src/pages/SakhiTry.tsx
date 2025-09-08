@@ -15,7 +15,6 @@ interface Message {
   isUser: boolean;
   timestamp: Date;
   language: string;
-  previewContent?: PreviewContent | null; // Added for preview content
 }
 
 interface PreviewContent {
@@ -275,7 +274,7 @@ const SakhiTry = () => {
       const responses = {
         en: "I understand your feelings, and they're completely valid. Let me share some strategies that might help you through this.",
         hi: "मैं आपकी भावनाओं को समझती हूं, और वे पूर्णतः वैध हैं। मैं कुछ रणनीतियां साझा करती हूं जो इस दौरान आपकी मदद कर सकती हैं।",
-        te: "నేను మీ భావనలను అర్థం చేసుకుంటున్నాను, మరియు అవి పూర్ణంగా చెల్లుబాటు అయ్యేవి. ఈ సమయంలో మీకు సహాయపడే కొన్ని వ్యూహాలను పంచుకుంటాను."
+        te: "నేను మీ భावనలను అర్థం చేసుకుంటున్నాను, మరియు అవి పూర్ణంగా చెల్లుబాటు అయ్యేవి. ఈ సమయంలో మీకు సహాయపడే కొన్ని వ్యూహాలను పంచుకుంటాను."
       };
 
       const botMessage: Message = {
@@ -283,8 +282,7 @@ const SakhiTry = () => {
         text: responses[detectedLanguage as keyof typeof responses] || responses.en,
         isUser: false,
         timestamp: new Date(),
-        language: detectedLanguage,
-        previewContent: preview // Add preview content to bot message
+        language: detectedLanguage
       };
 
       setMessages(prev => [...prev, botMessage]);
@@ -441,22 +439,6 @@ const ChatPanel = ({ messages, inputText, setInputText, sendMessage, currentProm
                   </p>
                 </div>
               </div>
-              {/* Render preview content for bot messages in mobile view */}
-              {!message.isUser && message.previewContent && (
-                <div className="mt-2 p-3 bg-purple-50 border border-purple-200 rounded-lg shadow-sm">
-                  <h4 className="font-semibold text-purple-800 mb-2">{message.previewContent.title}</h4>
-                  <p className="text-xs text-purple-700 mb-3">{message.previewContent.description}</p>
-                  <div className="space-y-2">
-                    <p className="text-xs font-medium text-purple-800">Tips:</p>
-                    {message.previewContent.tips.slice(0, 2).map((tip, idx) => (
-                      <p key={idx} className="text-xs text-purple-700 flex items-center">
-                        <span className="w-1 h-1 bg-purple-500 rounded-full mr-2 inline-block"></span>
-                        {tip}
-                      </p>
-                    ))}
-                  </div>
-                </div>
-              )}
             </div>
           </div>
         ))}
