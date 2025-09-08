@@ -170,7 +170,7 @@ const Home = () => {
 
         {/* Journey Timeline */}
         <div className="relative overflow-x-auto pb-8">
-          <div className="flex items-center justify-between min-w-[800px] px-8">
+          <div className="journey-timeline-mobile flex items-center justify-between min-w-[800px] px-8">
             {/* Stage 1: Thinking of Parenthood */}
             <div className="flex flex-col items-center group cursor-pointer hover:scale-105 transition-all duration-300" data-testid="journey-stage-thinking">
               <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-green-200 transition-colors shadow-lg">
@@ -188,7 +188,7 @@ const Home = () => {
             </div>
 
             {/* Connection Line 1 */}
-            <div className="flex-1 h-1 bg-gradient-to-r from-green-200 to-pink-200 mx-4 rounded-full"></div>
+            <div className="flex-1 h-1 bg-gradient-to-r from-green-200 to-pink-200 mx-4 rounded-full min-w-[40px]"></div>
 
             {/* Stage 2: Trying Naturally */}
             <div className="flex flex-col items-center group cursor-pointer hover:scale-105 transition-all duration-300" data-testid="journey-stage-trying">
@@ -207,7 +207,7 @@ const Home = () => {
             </div>
 
             {/* Connection Line 2 */}
-            <div className="flex-1 h-1 bg-gradient-to-r from-pink-200 to-blue-200 mx-4 rounded-full"></div>
+            <div className="flex-1 h-1 bg-gradient-to-r from-pink-200 to-blue-200 mx-4 rounded-full min-w-[40px]"></div>
 
             {/* Stage 3: Exploring Options */}
             <div className="flex flex-col items-center group cursor-pointer hover:scale-105 transition-all duration-300" data-testid="journey-stage-exploring">
@@ -226,7 +226,7 @@ const Home = () => {
             </div>
 
             {/* Connection Line 3 */}
-            <div className="flex-1 h-1 bg-gradient-to-r from-blue-200 to-purple-200 mx-4 rounded-full"></div>
+            <div className="flex-1 h-1 bg-gradient-to-r from-blue-200 to-purple-200 mx-4 rounded-full min-w-[40px]"></div>
 
             {/* Stage 4: Pregnancy */}
             <div className="flex flex-col items-center group cursor-pointer hover:scale-105 transition-all duration-300" data-testid="journey-stage-pregnancy">
@@ -245,7 +245,7 @@ const Home = () => {
             </div>
 
             {/* Connection Line 4 */}
-            <div className="flex-1 h-1 bg-gradient-to-r from-purple-200 to-orange-200 mx-4 rounded-full"></div>
+            <div className="flex-1 h-1 bg-gradient-to-r from-purple-200 to-orange-200 mx-4 rounded-full min-w-[40px]"></div>
 
             {/* Stage 5: Post-Delivery */}
             <div className="flex flex-col items-center group cursor-pointer hover:scale-105 transition-all duration-300" data-testid="journey-stage-postdelivery">

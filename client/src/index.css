@@ -175,6 +175,21 @@
     box-shadow: 0 0 20px rgba(139, 92, 246, 0.6);
   }
 
+  /* Mobile responsive journey timeline lines */
+  @media (max-width: 768px) {
+    .journey-timeline-mobile .flex-1 {
+      height: 2px !important;
+      min-height: 2px !important;
+      display: block !important;
+      visibility: visible !important;
+    }
+    
+    .journey-timeline-mobile .bg-gradient-to-r {
+      background: linear-gradient(to right, var(--tw-gradient-stops)) !important;
+      opacity: 1 !important;
+    }
+  }
+
   /* Typing animation */
   @keyframes typing {
     from { width: 0; }
