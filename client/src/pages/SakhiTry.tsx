@@ -303,11 +303,11 @@ const SakhiTry = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
-      {/* Close Button */}
-      <div className="absolute top-2 right-2 lg:top-4 lg:right-4 z-50">
+      {/* Close Button - Desktop Only */}
+      <div className="hidden lg:block absolute top-4 right-4 z-50">
         <Link href="/sakhi">
-          <Button variant="ghost" size="sm" className="rounded-full bg-white/80 backdrop-blur-sm hover:bg-white w-8 h-8 lg:w-10 lg:h-10 p-0">
-            <X className="w-3 h-3 lg:w-4 lg:h-4" />
+          <Button variant="ghost" size="sm" className="rounded-full bg-white/80 backdrop-blur-sm hover:bg-white w-10 h-10 p-0">
+            <X className="w-4 h-4" />
           </Button>
         </Link>
       </div>
@@ -380,18 +380,29 @@ const ChatPanel = ({ messages, inputText, setInputText, sendMessage, currentProm
               </p>
             </div>
           </div>
-          {/* Language Selector */}
-          <div className="flex items-center space-x-1 bg-white/20 backdrop-blur-sm rounded-lg px-1.5 lg:px-3 py-1 lg:py-2 border border-white/30 flex-shrink-0 ml-2">
-            <Globe className="w-3 h-3 lg:w-4 lg:h-4 text-white" />
-            <select 
-              value={selectedLanguage} 
-              onChange={(e) => setSelectedLanguage(e.target.value)}
-              className="border-none bg-transparent text-xs lg:text-sm text-white focus:ring-0 focus:outline-none cursor-pointer min-w-0"
-            >
-              <option value="en" className="text-gray-900 bg-white">EN</option>
-              <option value="hi" className="text-gray-900 bg-white">हि</option>
-              <option value="te" className="text-gray-900 bg-white">తె</option>
-            </select>
+          {/* Header Controls - Language and Close Button */}
+          <div className="flex items-center space-x-2 flex-shrink-0">
+            {/* Language Selector */}
+            <div className="flex items-center space-x-1 bg-white/20 backdrop-blur-sm rounded-lg px-2 lg:px-3 py-1 lg:py-2 border border-white/30">
+              <Globe className="w-3 h-3 lg:w-4 lg:h-4 text-white" />
+              <select 
+                value={selectedLanguage} 
+                onChange={(e) => setSelectedLanguage(e.target.value)}
+                className="border-none bg-transparent text-xs lg:text-sm text-white focus:ring-0 focus:outline-none cursor-pointer min-w-0"
+              >
+                <option value="en" className="text-gray-900 bg-white">EN</option>
+                <option value="hi" className="text-gray-900 bg-white">हि</option>
+                <option value="te" className="text-gray-900 bg-white">తె</option>
+              </select>
+            </div>
+            {/* Close Button - Mobile Only */}
+            <div className="lg:hidden">
+              <Link href="/sakhi">
+                <Button variant="ghost" size="sm" className="rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 w-8 h-8 p-0 border border-white/30">
+                  <X className="w-3 h-3" />
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
