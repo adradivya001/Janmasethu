@@ -15,6 +15,7 @@ interface Message {
   isUser: boolean;
   timestamp: Date;
   language: string;
+  previewContent?: PreviewContent; // Added to store preview content
 }
 
 interface PreviewContent {
@@ -274,7 +275,7 @@ const SakhiTry = () => {
       const responses = {
         en: "I understand your feelings, and they're completely valid. Let me share some strategies that might help you through this.",
         hi: "मैं आपकी भावनाओं को समझती हूं, और वे पूर्णतः वैध हैं। मैं कुछ रणनीतियां साझा करती हूं जो इस दौरान आपकी मदद कर सकती हैं।",
-        te: "నేను మీ భावనలను అర్థం చేసుకుంటున్నాను, మరియు అవి పూర్ణంగా చెల్లుబాటు అయ్యేవి. ఈ సమయంలో మీకు సహాయపడే కొన్ని వ్యూహాలను పంచుకుంటాను."
+        te: "నేను మీ భాवనలను అర్థం చేసుకుంటున్నాను, మరియు అవి పూర్ణంగా చెల్లుబాటు అయ్యేవి. ఈ సమయంలో మీకు సహాయపడే కొన్ని వ్యూహాలను పంచుకుంటాను."
       };
 
       const botMessage: Message = {
@@ -282,7 +283,8 @@ const SakhiTry = () => {
         text: responses[detectedLanguage as keyof typeof responses] || responses.en,
         isUser: false,
         timestamp: new Date(),
-        language: detectedLanguage
+        language: detectedLanguage,
+        previewContent: preview // Add preview content to bot message
       };
 
       setMessages(prev => [...prev, botMessage]);
@@ -439,6 +441,80 @@ const ChatPanel = ({ messages, inputText, setInputText, sendMessage, currentProm
                   </p>
                 </div>
               </div>
+              {/* Render preview content for bot messages in mobile view */}
+              {!message.isUser && message.previewContent && (
+                <div className="mt-3 space-y-3">
+                  {/* Title and Description */}
+                  <div className="p-3 bg-gradient-to-r from-purple-50 to-pink-50 border border-purple-200 rounded-xl shadow-sm">
+                    <h4 className="font-semibold text-purple-800 mb-2 flex items-center">
+                      <Heart className="w-4 h-4 mr-2 text-pink-500" />
+                      {message.previewContent.title}
+                    </h4>
+                    <p className="text-sm text-purple-700 leading-relaxed">{message.previewContent.description}</p>
+                  </div>
+
+                  {/* Practical Tips */}
+                  <div className="p-3 bg-green-50 border border-green-200 rounded-xl shadow-sm">
+                    <h5 className="font-semibold text-green-800 mb-2 flex items-center">
+                      <Shield className="w-4 h-4 mr-2 text-green-600" />
+                      Practical Tips
+                    </h5>
+                    <div className="space-y-2">
+                      {message.previewContent.tips.slice(0, 3).map((tip, idx) => (
+                        <div key={idx} className="flex items-start space-x-2">
+                          <div className="w-1.5 h-1.5 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                          <p className="text-sm text-green-700 leading-relaxed">{tip}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Key Points */}
+                  <div className="p-3 bg-blue-50 border border-blue-200 rounded-xl shadow-sm">
+                    <h5 className="font-semibold text-blue-800 mb-2 flex items-center">
+                      <MessageCircle className="w-4 h-4 mr-2 text-blue-600" />
+                      Key Points to Remember
+                    </h5>
+                    <div className="space-y-2">
+                      {message.previewContent.keyPoints.slice(0, 2).map((point, idx) => (
+                        <div key={idx} className="flex items-start space-x-2">
+                          <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                          <p className="text-sm text-blue-700 leading-relaxed">{point}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Resources */}
+                  <div className="p-3 bg-orange-50 border border-orange-200 rounded-xl shadow-sm">
+                    <h5 className="font-semibold text-orange-800 mb-2 flex items-center">
+                      <Users className="w-4 h-4 mr-2 text-orange-600" />
+                      Helpful Resources
+                    </h5>
+                    <div className="space-y-2">
+                      {message.previewContent.resources.slice(0, 2).map((resource, idx) => (
+                        <div key={idx} className="p-2 bg-white border border-orange-200 rounded-lg">
+                          <p className="font-medium text-orange-800 text-sm">{resource.title}</p>
+                          <p className="text-xs text-orange-700 mt-1">{resource.description}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Emergency Notice */}
+                  <div className="p-3 bg-red-50 border border-red-200 rounded-xl shadow-sm">
+                    <div className="flex items-start space-x-2">
+                      <Shield className="w-4 h-4 text-red-600 mt-1 flex-shrink-0" />
+                      <div>
+                        <p className="font-semibold text-red-800 text-sm">Important Notice</p>
+                        <p className="text-xs text-red-700 mt-1 leading-relaxed">
+                          If you're experiencing severe distress or emergency symptoms, please contact a healthcare professional immediately.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         ))}
