@@ -1,29 +1,78 @@
-import { useState } from 'react';
+
+import { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'wouter';
-import { Search, Menu, X } from 'lucide-react';
+import { Search, Menu, ChevronDown } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageProvider';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import LanguageSwitcher from './LanguageSwitcher';
 import MobileMenu from './MobileMenu';
+import { navItems, type NavItem } from '../config/navItems';
 
 const Header = () => {
-  const { t } = useLanguage();
+  const { language } = useLanguage();
   const [location] = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [moreDropdownOpen, setMoreDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
-  const navItems = [
-    { key: 'nav_home', href: '/' },
-    { key: 'nav_knowledge', href: '/knowledge' },
-    { key: 'nav_treatments', href: '/treatments' },
-    { key: 'nav_life', href: '/life-stages' },
-    { key: 'nav_success', href: '/success-stories' },
-    { key: 'nav_blog', href: '/blog' },
-    { key: 'nav_experts', href: '/experts' },
-    { key: 'nav_tools', href: '/tools' },
-    { key: 'nav_sakhi', href: '/sakhi' },
-    { key: 'nav_investors', href: '/investors' },
-  ];
+  // Sort nav items by priority and split into primary (first 4) and more items
+  const sortedNavItems = [...navItems].sort((a, b) => a.priority - b.priority);
+  const primaryNavItems = sortedNavItems.slice(0, 4);
+  const moreNavItems = sortedNavItems.slice(4);
+
+  // More label localization
+  const moreLabel = {
+    en: "More",
+    hi: "और",
+    te: "మరిన్ని"
+  };
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current && 
+        !dropdownRef.current.contains(event.target as Node) &&
+        buttonRef.current &&
+        !buttonRef.current.contains(event.target as Node)
+      ) {
+        setMoreDropdownOpen(false);
+      }
+    };
+
+    if (moreDropdownOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => document.removeEventListener('mousedown', handleClickOutside);
+    }
+  }, [moreDropdownOpen]);
+
+  // Handle keyboard navigation
+  const handleDropdownKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === 'Escape') {
+      setMoreDropdownOpen(false);
+      buttonRef.current?.focus();
+    }
+  };
+
+  const handleMoreButtonClick = () => {
+    setMoreDropdownOpen(!moreDropdownOpen);
+  };
+
+  const handleMoreButtonKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      setMoreDropdownOpen(!moreDropdownOpen);
+    }
+  };
+
+  // Convert new config to old format for mobile menu compatibility
+  const mobileNavItems = sortedNavItems.map(item => ({
+    key: `nav_${item.id}`,
+    href: item.href,
+    label: item.label[language]
+  }));
 
   return (
     <>
@@ -41,20 +90,67 @@ const Header = () => {
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center space-x-6" role="navigation" aria-label="Main navigation">
-              {navItems.map(({ key, href }) => (
+              {/* Primary Navigation Items */}
+              {primaryNavItems.map((item) => (
                 <Link 
-                  key={href}
-                  href={href} 
+                  key={item.href}
+                  href={item.href} 
                   className={`font-semibold text-sm tracking-wide transition-all duration-200 px-3 py-2 rounded-md ${
-                    location === href 
+                    location === item.href 
                       ? 'text-primary bg-primary/10' 
                       : 'text-foreground hover:text-primary hover:bg-primary/5'
                   }`}
-                  data-testid={`link-nav-${key.replace('nav_', '')}`}
+                  data-testid={`link-nav-${item.id}`}
                 >
-                  {t(key)}
+                  {item.label[language]}
                 </Link>
               ))}
+
+              {/* More Dropdown */}
+              {moreNavItems.length > 0 && (
+                <div className="relative" ref={dropdownRef}>
+                  <button
+                    ref={buttonRef}
+                    onClick={handleMoreButtonClick}
+                    onKeyDown={handleMoreButtonKeyDown}
+                    className="font-semibold text-sm tracking-wide transition-all duration-200 px-3 py-2 rounded-md text-foreground hover:text-primary hover:bg-primary/5 flex items-center space-x-1"
+                    aria-haspopup="menu"
+                    aria-expanded={moreDropdownOpen}
+                    data-testid="button-nav-more"
+                  >
+                    <span>{moreLabel[language]}</span>
+                    <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${moreDropdownOpen ? 'rotate-180' : ''}`} />
+                  </button>
+
+                  {/* Dropdown Menu */}
+                  {moreDropdownOpen && (
+                    <div
+                      className="absolute top-full left-0 mt-1 bg-white rounded-lg shadow-lg border border-border py-2 min-w-48 z-50"
+                      role="menu"
+                      onKeyDown={handleDropdownKeyDown}
+                      data-testid="dropdown-nav-more"
+                    >
+                      {moreNavItems.map((item, index) => (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          className={`block px-4 py-2 text-sm font-medium transition-colors duration-200 ${
+                            location === item.href
+                              ? 'text-primary bg-primary/10'
+                              : 'text-foreground hover:text-primary hover:bg-primary/5'
+                          }`}
+                          role="menuitem"
+                          onClick={() => setMoreDropdownOpen(false)}
+                          data-testid={`link-nav-more-${item.id}`}
+                          tabIndex={index === 0 ? 0 : -1}
+                        >
+                          {item.label[language]}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
             </nav>
 
             {/* Search & Language & Mobile Menu */}
@@ -95,7 +191,7 @@ const Header = () => {
       <MobileMenu 
         isOpen={mobileMenuOpen} 
         onClose={() => setMobileMenuOpen(false)} 
-        navItems={navItems}
+        navItems={mobileNavItems}
       />
     </>
   );
