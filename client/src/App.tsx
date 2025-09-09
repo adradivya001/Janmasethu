@@ -1,27 +1,27 @@
 import { Switch, Route } from "wouter";
-import { LanguageProvider } from "@/i18n/LanguageProvider";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import Layout from "@/components/Layout";
+import { LanguageProvider } from "./i18n/LanguageProvider";
+import { TooltipProvider } from "./components/ui/tooltip";
+import Layout from "./components/Layout";
 
 // Pages
-import Home from "@/pages/Home";
-import Knowledge from "@/pages/Knowledge";
-import Article from "@/pages/Article";
-import Treatments from "@/pages/Treatments";
-import Treatment from "@/pages/Treatment";
-import LifeStages from "@/pages/LifeStages";
-import LifeStage from "@/pages/LifeStage";
-import SuccessStories from "@/pages/SuccessStories";
-import Story from "@/pages/Story";
-import Blog from "@/pages/Blog";
-import BlogPost from "@/pages/BlogPost";
-import Experts from "@/pages/Experts";
-import Expert from "@/pages/Expert";
-import Tools from "@/pages/Tools";
-import Sakhi from '@/pages/Sakhi';
-import SakhiTry from '@/pages/SakhiTry';
-import Investors from '@/pages/Investors';
-import NotFound from '@/pages/not-found';
+import Home from "./pages/Home";
+import Knowledge from "./pages/Knowledge";
+import Article from "./pages/Article";
+import Treatments from "./pages/Treatments";
+import Treatment from "./pages/Treatment";
+import LifeStages from "./pages/LifeStages";
+import LifeStage from "./pages/LifeStage";
+import SuccessStories from "./pages/SuccessStories";
+import Story from "./pages/Story";
+import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
+import Experts from "./pages/Experts";
+import Expert from "./pages/Expert";
+import Tools from "./pages/Tools";
+import Sakhi from "./pages/Sakhi";
+import SakhiTry from "./pages/SakhiTry";
+import Investors from "./pages/Investors";
+import NotFound from "./pages/not-found";
 
 function Router() {
   return (

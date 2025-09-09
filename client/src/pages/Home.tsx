@@ -1,5 +1,25 @@
 import { Link } from 'wouter';
-import { CheckCircle, Heart, Baby, Cat, Stethoscope, Users, Apple, ArrowRight, Send } from 'lucide-react';
+import { 
+  ArrowRight, 
+  Heart, 
+  Users, 
+  BookOpen, 
+  Calendar, 
+  MessageCircle, 
+  Send, 
+  Star,
+  Shield,
+  Clock,
+  User,
+  Stethoscope,
+  Building2,
+  PlayCircle,
+  CheckCircle,
+  Award,
+  Target,
+  TrendingUp,
+  IndianRupee
+} from "lucide-react";
 import { useLanguage } from '@/i18n/LanguageProvider';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -56,7 +76,7 @@ const Home = () => {
                 </feMerge>
               </filter>
             </defs>
-            
+
             {/* Main morphing line */}
             <path 
               className="morphing-line" 
@@ -66,14 +86,14 @@ const Home = () => {
               fill="none"
               filter="url(#glow)"
             />
-            
+
             {/* Couple symbol */}
             <circle className="morph-symbol couple" cx="60" cy="50" r="8" fill="url(#lineGradient)" opacity="0" />
             <circle className="morph-symbol couple" cx="80" cy="50" r="6" fill="url(#lineGradient)" opacity="0" />
-            
+
             {/* Pregnancy symbol */}
             <ellipse className="morph-symbol pregnancy" cx="200" cy="50" rx="12" ry="15" fill="url(#lineGradient)" opacity="0" />
-            
+
             {/* Cradle symbol */}
             <path className="morph-symbol cradle" d="M320,45 Q340,35 360,45 Q340,65 320,55 Z" fill="url(#lineGradient)" opacity="0" />
           </svg>
@@ -605,7 +625,7 @@ const getArticleImage = (index: number) => {
 
 const getStoryImage = (index: number) => {
   const images = [
-    "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300",
+    "https://images.unsplash.com/photo-1544367567-0f2fcb0099b0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300",
     "https://images.unsplash.com/photo-1566004100631-35d015d6a491?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300",
     "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300"
   ];
