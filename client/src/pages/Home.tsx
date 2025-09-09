@@ -56,7 +56,7 @@ const Home = () => {
                 </feMerge>
               </filter>
             </defs>
-
+            
             {/* Main morphing line */}
             <path 
               className="morphing-line" 
@@ -66,14 +66,14 @@ const Home = () => {
               fill="none"
               filter="url(#glow)"
             />
-
+            
             {/* Couple symbol */}
             <circle className="morph-symbol couple" cx="60" cy="50" r="8" fill="url(#lineGradient)" opacity="0" />
             <circle className="morph-symbol couple" cx="80" cy="50" r="6" fill="url(#lineGradient)" opacity="0" />
-
+            
             {/* Pregnancy symbol */}
             <ellipse className="morph-symbol pregnancy" cx="200" cy="50" rx="12" ry="15" fill="url(#lineGradient)" opacity="0" />
-
+            
             {/* Cradle symbol */}
             <path className="morph-symbol cradle" d="M320,45 Q340,35 360,45 Q340,65 320,55 Z" fill="url(#lineGradient)" opacity="0" />
           </svg>
