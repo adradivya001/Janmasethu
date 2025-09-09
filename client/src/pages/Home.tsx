@@ -298,12 +298,10 @@ const Home = () => {
                 <Heart className="text-white text-2xl" />
               </div>
               <h3 className="text-2xl font-bold text-foreground font-serif mb-4" data-testid="text-ttc-title">
-                <span className="group-hover:hidden">Trying to conceive (TTC)</span>
-                <span className="hidden group-hover:block">{t('orient_ttc')}</span>
+                {t('orient_ttc')}
               </h3>
               <p className="text-muted-foreground mb-6" data-testid="text-ttc-desc">
-                <span className="group-hover:hidden">Basics, tests, timelines, costs</span>
-                <span className="hidden group-hover:block">{t('orient_desc_ttc')}</span>
+                {t('orient_desc_ttc')}
               </p>
               <img 
                 src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300" 
@@ -320,12 +318,10 @@ const Home = () => {
                 <Baby className="text-white text-2xl" />
               </div>
               <h3 className="text-2xl font-bold text-foreground font-serif mb-4" data-testid="text-pregnancy-title">
-                <span className="group-hover:hidden">Pregnancy</span>
-                <span className="hidden group-hover:block">{t('orient_preg')}</span>
+                {t('orient_preg')}
               </h3>
               <p className="text-muted-foreground mb-6" data-testid="text-pregnancy-desc">
-                <span className="group-hover:hidden">Trimester hubs, week‑by‑week</span>
-                <span className="hidden group-hover:block">{t('orient_desc_preg')}</span>
+                {t('orient_desc_preg')}
               </p>
               <img 
                 src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300" 
@@ -342,12 +338,10 @@ const Home = () => {
                 <Cat className="text-white text-2xl" />
               </div>
               <h3 className="text-2xl font-bold text-foreground font-serif mb-4" data-testid="text-parent-title">
-                <span className="group-hover:hidden">New parent</span>
-                <span className="hidden group-hover:block">{t('orient_parent')}</span>
+                {t('orient_parent')}
               </h3>
               <p className="text-muted-foreground mb-6" data-testid="text-parent-desc">
-                <span className="group-hover:hidden">Feeding, sleep, paperwork</span>
-                <span className="hidden group-hover:block">{t('orient_desc_parent')}</span>
+                {t('orient_desc_parent')}
               </p>
               <img 
                 src="https://images.unsplash.com/photo-1566004100631-35d015d6a491?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300" 
@@ -375,8 +369,7 @@ const Home = () => {
                 <Stethoscope className="text-blue-600 text-xl" />
               </div>
               <h3 className="text-xl font-bold text-foreground font-serif mb-2" data-testid="text-lens-medical">
-                <span className="group-hover:hidden">Medical</span>
-                <span className="hidden group-hover:block">{t('lens_medical')}</span>
+                {t('lens_medical')}
               </h3>
             </Card>
           </Link>
@@ -388,8 +381,7 @@ const Home = () => {
                 <Users className="text-pink-600 text-xl" />
               </div>
               <h3 className="text-xl font-bold text-foreground font-serif mb-2" data-testid="text-lens-social">
-                <span className="group-hover:hidden">Social & Emotional</span>
-                <span className="hidden group-hover:block">{t('lens_social')}</span>
+                {t('lens_social')}
               </h3>
             </Card>
           </Link>
@@ -401,8 +393,7 @@ const Home = () => {
                 <IndianRupee className="text-green-600 text-xl" />
               </div>
               <h3 className="text-xl font-bold text-foreground font-serif mb-2" data-testid="text-lens-financial">
-                <span className="group-hover:hidden">Financial</span>
-                <span className="hidden group-hover:block">{t('lens_financial')}</span>
+                {t('lens_financial')}
               </h3>
             </Card>
           </Link>
@@ -414,8 +405,7 @@ const Home = () => {
                 <Apple className="text-orange-600 text-xl" />
               </div>
               <h3 className="text-xl font-bold text-foreground font-serif mb-2" data-testid="text-lens-nutrition">
-                <span className="group-hover:hidden">Nutrition</span>
-                <span className="hidden group-hover:block">{t('lens_nutrition')}</span>
+                {t('lens_nutrition')}
               </h3>
             </Card>
           </Link>
