@@ -1,0 +1,123 @@
+
+Update the **Who We Serve** section on my landing page so it has only **two cards**: **Patients** and **Clinics**. When a user taps on a card:
+
+* The card gently bulges (scale up).
+* The background blurs.
+* A **modal** opens with:
+
+  * Title
+  * One “About” line
+  * 3–4 bullet points (with tick marks ✅).
+
+Also implement a **multilingual toggle** (EN = English, HI = Hindi, TE = Telugu) that switches all content dynamically for both cards. Default language is **TE**. Save the user’s selection in `localStorage`.
+
+---
+
+### Requirements
+
+1. **Card layout**
+
+   * Patients card: 👩‍🦰 icon, title, subtitle.
+   * Clinics card: 🏥 icon, title, subtitle.
+   * Grid responsive (2 side-by-side on desktop, 1 per row on mobile).
+
+2. **Card interaction**
+
+   * On click/Enter → bulge effect (`scale(1.04)`), background blur, open modal.
+   * Modal shows localized Title + About text + bullet list.
+   * Close modal with ✕ button, ESC key, or clicking outside.
+
+3. **Multilingual**
+
+   * Add a toggle (EN | HI | TE) in the section header.
+   * Switching updates all text instantly (cards + modal).
+   * Persist choice in `localStorage.lang`.
+
+4. **Content (JSON-based)**
+   Create a JSON file (e.g. `public/locales/whoWeServe.json`) with this structure:
+
+```json
+{
+  "patients": {
+    "en": {
+      "title": "Patients",
+      "about": "Guidance that helps you ask better questions and prepare with confidence.",
+      "bullets": [
+        "Clinician-reviewed knowledge in your language",
+        "Step-by-step checklists and reminders",
+        "Anonymous, judgment-free guidance",
+        "Try Sakhi chat anytime"
+      ]
+    },
+    "hi": {
+      "title": "मरीज़",
+      "about": "ऐसा मार्गदर्शन जो आपको बेहतर प्रश्न पूछने और आत्मविश्वास से तैयारी करने में मदद करता है।",
+      "bullets": [
+        "चिकित्सक द्वारा समीक्षा किया गया ज्ञान, आपकी भाषा में",
+        "स्टेप-बाय-स्टेप चेकलिस्ट और रिमाइंडर",
+        "गोपनीय और बिना किसी निर्णय का मार्गदर्शन",
+        "कभी भी सखी चैट आज़माएँ"
+      ]
+    },
+    "te": {
+      "title": "రోగులు",
+      "about": "మెరుగైన ప్రశ్నలు అడగడానికి, ధైర్యంగా సిద్ధం కావడానికి మార్గదర్శకం.",
+      "bullets": [
+        "వైద్యుల సమీక్ష చేసిన సమాచారం — మీ భాషలో",
+        "దశలవారీ చెక్లిస్టులు & రిమైండర్లు",
+        "గోప్యంగా, విమర్శలేని మార్గదర్శనం",
+        "ఎప్పుడైనా సఖి చాట్ ప్రయత్నించండి"
+      ]
+    }
+  },
+  "clinics": {
+    "en": {
+      "title": "Clinics",
+      "about": "Prepared patients lead to smoother consults and better outcomes.",
+      "bullets": [
+        "Patients arrive informed & prepared",
+        "Lower cancellations, smoother consults",
+        "Widgets: FAQs, reminders, checklists",
+        "Insights: show-rate & preparedness score"
+      ]
+    },
+    "hi": {
+      "title": "क्लीनिक",
+      "about": "तैयार मरीज़ सहज परामर्श और बेहतर परिणाम लाते हैं।",
+      "bullets": [
+        "मरीज़ जानकारी के साथ और तैयार होकर आते हैं",
+        "कम रद्दीकरण, सहज परामर्श",
+        "विजेट्स: FAQs, रिमाइंडर, चेकलिस्ट",
+        "इनसाइट्स: शो-रेट और तैयारी स्कोर"
+      ]
+    },
+    "te": {
+      "title": "క్లినిక్స్",
+      "about": "సిద్ధమైన రోగులు సులభమైన కన్సల్టేషన్స్‌కి దారి తీస్తారు.",
+      "bullets": [
+        "అవగాహనతో, సిద్ధంగా వచ్చే రోగులు",
+        "తక్కువ రద్దులు, సులభమైన కన్సల్టేషన్స్",
+        "విడ్జెట్లు: FAQs, రిమైండర్లు, చెక్లిస్టులు",
+        "డేటా: షో రేట్ & సిద్ధత స్కోరు"
+      ]
+    }
+  }
+}
+```
+
+5. **Engineering tasks**
+
+   * Create a `WhoWeServe.tsx` (React) or `<section id="who-we-serve">` (HTML).
+   * Load `whoWeServe.json` based on `lang`.
+   * Add toggle buttons (EN | HI | TE). Highlight active one.
+   * Use CSS for blur background, modal fade-in/out, and card bulge.
+
+6. **Acceptance criteria**
+
+   * Cards visible with localized title + subtitle.
+   * Tapping card = bulge + blurred background + modal with localized text.
+   * Toggle (EN | HI | TE) switches all texts instantly.
+   * Language preference persists via `localStorage`.
+   * Mobile responsive.
+
+
