@@ -67,6 +67,24 @@
     background: linear-gradient(135deg, #F5F7FF 0%, #FFECEF 100%);
     min-height: 100vh;
   }
+
+  /* Multilingual text rendering improvements */
+  h1, h2, h3, h4, h5, h6 {
+    text-rendering: optimizeLegibility;
+    -webkit-font-feature-settings: "kern" 1;
+    font-feature-settings: "kern" 1;
+  }
+
+  /* Ensure proper line height for all text elements to prevent clipping */
+  .leading-tight {
+    line-height: 1.3 !important;
+  }
+
+  /* Add padding to prevent character clipping in complex scripts */
+  h1, h2, h3 {
+    padding-top: 0.125rem;
+    padding-bottom: 0.125rem;
+  }
 }
 
 @layer components {
@@ -75,6 +93,13 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    /* Ensure proper spacing for multilingual text */
+    line-height: 1.3;
+    padding: 0.25rem 0;
+    /* Prevent text clipping for complex scripts */
+    text-rendering: optimizeLegibility;
+    -webkit-font-feature-settings: "kern" 1;
+    font-feature-settings: "kern" 1;
   }
 
   .gradient-button {
