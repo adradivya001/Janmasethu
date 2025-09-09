@@ -48,7 +48,7 @@ const MobileMenu = ({ isOpen, onClose, navItems }: MobileMenuProps) => {
               >
                 {label}
               </Link>
-            ))}</nav>
+            ))}
           </nav>
         </div>
       </div>
