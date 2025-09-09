@@ -1,6 +1,6 @@
 import { Link } from 'wouter';
 import { ArrowRight } from 'lucide-react';
-import { useLanguage } from '@/i18n/LanguageProvider';
+import { useLanguage } from '../i18n/LanguageProvider';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { treatments } from '@/data/treatments';

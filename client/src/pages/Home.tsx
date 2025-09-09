@@ -18,14 +18,17 @@ import {
   Award,
   Target,
   TrendingUp,
-  IndianRupee
+  IndianRupee,
+  Baby,
+  Cat,
+  Apple
 } from "lucide-react";
-import { useLanguage } from '@/i18n/LanguageProvider';
-import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { articles } from '@/data/articles';
-import { stories } from '@/data/stories';
+import { useLanguage } from '../i18n/LanguageProvider';
+import { Card, CardContent } from '../components/ui/card';
+import { Button } from '../components/ui/button';
+import { Input } from '../components/ui/input';
+import { articles } from '../data/articles';
+import { stories } from '../data/stories';
 
 const Home = () => {
   const { t } = useLanguage();

@@ -1,6 +1,6 @@
 import { Link } from 'wouter';
 import { Calculator, Calendar, Heart, Baby, Clock, CheckCircle } from 'lucide-react';
-import { useLanguage } from '@/i18n/LanguageProvider';
+import { useLanguage } from '../i18n/LanguageProvider';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 

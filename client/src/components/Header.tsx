@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'wouter';
 import { Search, Menu, X } from 'lucide-react';
-import { useLanguage } from '@/i18n/LanguageProvider';
+import { useLanguage } from '../i18n/LanguageProvider';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import LanguageSwitcher from './LanguageSwitcher';

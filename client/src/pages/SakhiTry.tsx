@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from '@/components/ui/resizable';
 import { Badge } from '@/components/ui/badge';
-import { useLanguage } from '@/i18n/LanguageProvider';
+import { useLanguage } from '../i18n/LanguageProvider';
 import { detectScript } from '@/utils/language';
 
 interface Message {

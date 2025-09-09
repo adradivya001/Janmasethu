@@ -1,6 +1,6 @@
 import { Link } from 'wouter';
 import { X } from 'lucide-react';
-import { useLanguage } from '@/i18n/LanguageProvider';
+import { useLanguage } from '../i18n/LanguageProvider';
 import { Button } from '@/components/ui/button';
 
 interface MobileMenuProps {

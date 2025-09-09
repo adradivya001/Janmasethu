@@ -1,6 +1,6 @@
 import { useParams, Link } from 'wouter';
 import { ArrowLeft, Heart, Baby, Cat, Users, Clock } from 'lucide-react';
-import { useLanguage } from '@/i18n/LanguageProvider';
+import { useLanguage } from '../i18n/LanguageProvider';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';

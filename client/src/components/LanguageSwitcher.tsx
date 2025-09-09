@@ -1,5 +1,5 @@
 
-import { useLanguage } from '@/i18n/LanguageProvider';
+import { useLanguage } from '../i18n/LanguageProvider';
 import { Button } from '@/components/ui/button';
 import type { Lang } from '@/i18n/dictionary';
 

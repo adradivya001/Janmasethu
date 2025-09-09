@@ -1,5 +1,5 @@
 
-import { useLanguage } from '@/i18n/LanguageProvider';
+import { useLanguage } from '../i18n/LanguageProvider';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Building2, TrendingUp, Shield, Download, Mail } from 'lucide-react';

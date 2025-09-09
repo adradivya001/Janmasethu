@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react';
 import { Link } from 'wouter';
 import { Search, Filter } from 'lucide-react';
-import { useLanguage } from '@/i18n/LanguageProvider';
+import { useLanguage } from '../i18n/LanguageProvider';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';

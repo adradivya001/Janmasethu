@@ -1,6 +1,6 @@
 import { Link } from 'wouter';
 import { Heart, ArrowRight, Shield, Clock, Users, MessageCircle, CheckCircle } from 'lucide-react';
-import { useLanguage } from '@/i18n/LanguageProvider';
+import { useLanguage } from '../i18n/LanguageProvider';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import ChatInterface from '@/components/ChatInterface';

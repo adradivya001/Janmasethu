@@ -1,5 +1,5 @@
 import { Link } from 'wouter';
-import { useLanguage } from '@/i18n/LanguageProvider';
+import { useLanguage } from '../i18n/LanguageProvider';
 
 const Footer = () => {
   const { t } = useLanguage();
