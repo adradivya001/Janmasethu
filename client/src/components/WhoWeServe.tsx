@@ -32,7 +32,7 @@ const WhoWeServe = () => {
   const [selectedCard, setSelectedCard] = useState<CardType | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Load data and language preference
+  // Load data and sync with global language preference
   useEffect(() => {
     const loadData = async () => {
       try {
@@ -44,8 +44,8 @@ const WhoWeServe = () => {
       }
     };
 
-    // Load saved language preference
-    const savedLang = localStorage.getItem('lang') as Language;
+    // Sync with global language preference
+    const savedLang = localStorage.getItem('js_lang') as Language;
     if (savedLang && ['en', 'hi', 'te'].includes(savedLang)) {
       setCurrentLang(savedLang);
     }
@@ -53,11 +53,18 @@ const WhoWeServe = () => {
     loadData();
   }, []);
 
-  // Handle language change
-  const handleLanguageChange = (lang: Language) => {
-    setCurrentLang(lang);
-    localStorage.setItem('lang', lang);
-  };
+  // Listen for global language changes
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const savedLang = localStorage.getItem('js_lang') as Language;
+      if (savedLang && ['en', 'hi', 'te'].includes(savedLang)) {
+        setCurrentLang(savedLang);
+      }
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
+  }, []);
 
   // Handle card click
   const handleCardClick = (cardType: CardType) => {
@@ -110,30 +117,11 @@ const WhoWeServe = () => {
     <>
       <section className="py-16">
         <div className="text-center mb-12">
-          <div className="flex flex-col items-center space-y-4">
-            <h2 className="text-4xl font-bold text-foreground font-serif mb-4">
-              {currentLang === 'en' && 'Who We Serve'}
-              {currentLang === 'hi' && 'हम किसकी सेवा करते हैं'}
-              {currentLang === 'te' && 'మేము ఎవరికి సేవ చేస్తాము'}
-            </h2>
-            
-            {/* Language Toggle */}
-            <div className="flex space-x-1 bg-gray-100 rounded-full p-1">
-              {(['en', 'hi', 'te'] as Language[]).map((lang) => (
-                <button
-                  key={lang}
-                  onClick={() => handleLanguageChange(lang)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-                    currentLang === lang
-                      ? 'bg-white text-purple-600 shadow-sm'
-                      : 'text-gray-600 hover:text-gray-800'
-                  }`}
-                >
-                  {lang.toUpperCase()}
-                </button>
-              ))}
-            </div>
-          </div>
+          <h2 className="text-4xl font-bold text-foreground font-serif mb-4">
+            {currentLang === 'en' && 'Who We Serve'}
+            {currentLang === 'hi' && 'हम किसकी सेवा करते हैं'}
+            {currentLang === 'te' && 'మేము ఎవరికి సేవ చేస్తాము'}
+          </h2>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
