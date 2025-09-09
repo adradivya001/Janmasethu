@@ -1,0 +1,120 @@
+
+export type NavItem = {
+  id: string;
+  label: {
+    en: string;
+    hi: string;
+    te: string;
+  };
+  href: string;
+  priority: number;
+};
+
+export const navItems: NavItem[] = [
+  {
+    id: "home",
+    label: {
+      en: "Home",
+      hi: "होम",
+      te: "హోమ్"
+    },
+    href: "/",
+    priority: 1
+  },
+  {
+    id: "knowledge",
+    label: {
+      en: "Knowledge Hub",
+      hi: "नॉलेज हब",
+      te: "నాలెడ్జ్ హబ్"
+    },
+    href: "/knowledge",
+    priority: 2
+  },
+  {
+    id: "treatments",
+    label: {
+      en: "Treatments",
+      hi: "ट्रीटमेंट्स",
+      te: "చికిత్సలు"
+    },
+    href: "/treatments",
+    priority: 3
+  },
+  {
+    id: "sakhi",
+    label: {
+      en: "Sakhi",
+      hi: "सखी",
+      te: "సఖి"
+    },
+    href: "/sakhi",
+    priority: 4
+  },
+  {
+    id: "life",
+    label: {
+      en: "Life Stages",
+      hi: "लाइफ स्टेजेस",
+      te: "జీవిత దశలు"
+    },
+    href: "/life-stages",
+    priority: 5
+  },
+  {
+    id: "stories",
+    label: {
+      en: "Success Stories",
+      hi: "कहानियाँ",
+      te: "విజయ కథలు"
+    },
+    href: "/success-stories",
+    priority: 6
+  },
+  {
+    id: "blog",
+    label: {
+      en: "Blog",
+      hi: "ब्लॉग",
+      te: "బ్లాగ్"
+    },
+    href: "/blog",
+    priority: 7
+  },
+  {
+    id: "experts",
+    label: {
+      en: "Experts",
+      hi: "एक्सपर्ट्स",
+      te: "నిపుణులు"
+    },
+    href: "/experts",
+    priority: 8
+  },
+  {
+    id: "tools",
+    label: {
+      en: "Tools",
+      hi: "टूल्स",
+      te: "సాధనాలు"
+    },
+    href: "/tools",
+    priority: 9
+  },
+  {
+    id: "investors",
+    label: {
+      en: "Investors",
+      hi: "इन्वेस्टर्स",
+      te: "ఇన్వెస్టర్లు"
+    },
+    href: "/investors",
+    priority: 10
+  }
+];
+
+export const moreLabels = {
+  en: "More",
+  hi: "और",
+  te: "మరిన్ని"
+};
