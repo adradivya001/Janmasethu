@@ -3,26 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Enhanced animations and effects */
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-}
-
-@keyframes gradient-shift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
-
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-.gradient-shift {
-  background-size: 200% 200%;
-  animation: gradient-shift 3s ease infinite;
-}
-
 /* Mobile safe area utilities */
 .safe-area-padding-bottom {
   padding-bottom: max(0.75rem, env(safe-area-inset-bottom));

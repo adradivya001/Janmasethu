@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 interface MobileMenuProps {
   isOpen: boolean;
   onClose: () => void;
-  navItems: Array<{ key: string; href: string; label: string }>;
+  navItems: Array<{ key: string; href: string }>;
 }
 
 const MobileMenu = ({ isOpen, onClose, navItems }: MobileMenuProps) => {
@@ -38,7 +38,7 @@ const MobileMenu = ({ isOpen, onClose, navItems }: MobileMenuProps) => {
           </Button>
           
           <nav className="space-y-4" role="navigation" aria-label="Mobile navigation">
-            {navItems.map(({ key, href, label }) => (
+            {navItems.map(({ key, href }) => (
               <Link 
                 key={href}
                 href={href} 
@@ -46,7 +46,7 @@ const MobileMenu = ({ isOpen, onClose, navItems }: MobileMenuProps) => {
                 onClick={onClose}
                 data-testid={`link-mobile-${key.replace('nav_', '')}`}
               >
-                {label}
+                {t(key)}
               </Link>
             ))}
           </nav>
