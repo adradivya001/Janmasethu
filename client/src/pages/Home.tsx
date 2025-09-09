@@ -41,18 +41,20 @@ const Home = () => {
     <div className="container mx-auto px-4 py-8">
       {/* Hero Section */}
       <section className="text-center py-16 relative">
-        {/* Trust Badge */}
-        <div className="inline-flex items-center space-x-2 bg-white rounded-full px-4 py-2 card-shadow mb-8">
-          <CheckCircle className="w-4 h-4 text-green-500" />
-          <span
-            className="text-sm font-medium text-foreground"
-            data-testid="text-trust-badge"
-          >
-            {t("trust_pill")}
-          </span>
+        {/* Trust Badge - Centered at top */}
+        <div className="flex justify-center mb-8">
+          <div className="inline-flex items-center space-x-2 bg-white rounded-full px-4 py-2 card-shadow">
+            <CheckCircle className="w-4 h-4 text-green-500" />
+            <span
+              className="text-sm font-medium text-foreground"
+              data-testid="text-trust-badge"
+            >
+              {t("trust_pill")}
+            </span>
+          </div>
         </div>
 
-        {/* Hero Title */}
+        {/* Hero Title - On its own line below */}
         <h1
           className="text-4xl md:text-5xl lg:text-6xl font-bold gradient-text font-serif mb-6 leading-relaxed"
           data-testid="text-hero-title"
