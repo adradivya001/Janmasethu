@@ -1,0 +1,105 @@
+
+
+Refactor the site header navigation so that only **4 main sections** are always visible; all other sections move into a **“More”** dropdown positioned **before the search bar**, maintaining the same horizontal alignment. Keep the language toggle at the far right as it is.
+
+### Requirements
+
+1. **Config-driven nav (priority based)**
+
+* Create a config (TS/JS or JSON) with **all sections**, each having:
+
+  ```ts
+  type NavItem = { id:string; label:{en:string; hi:string; te:string}; href:string; priority:number };
+  ```
+* Example initial data (use my current routes):
+
+  ```json
+  [
+    {"id":"home","label":{"en":"Home","hi":"होम","te":"హోమ్"},"href":"/","priority":1},
+    {"id":"knowledge","label":{"en":"Knowledge Hub","hi":"नॉलेज हब","te":"నాలెడ్జ్ హబ్"},"href":"/knowledge","priority":2},
+    {"id":"treatments","label":{"en":"Treatments","hi":"ट्रीटमेंट्स","te":"చికిత్సలు"},"href":"/treatments","priority":3},
+    {"id":"sakhi","label":{"en":"Sakhi","hi":"सखी","te":"సఖి"},"href":"/sakhi","priority":4},
+    {"id":"life","label":{"en":"Life Stages","hi":"लाइफ स्टेजेस","te":"జీవిత దశలు"},"href":"/life","priority":5},
+    {"id":"stories","label":{"en":"Success Stories","hi":"कहानियाँ","te":"విజయ కథలు"},"href":"/stories","priority":6},
+    {"id":"blog","label":{"en":"Blog","hi":"ब्लॉग","te":"బ్లాగ్"},"href":"/blog","priority":7},
+    {"id":"experts","label":{"en":"Experts","hi":"एक्सपर्ट्स","te":"నిపుణులు"},"href":"/experts","priority":8},
+    {"id":"tools","label":{"en":"Tools","hi":"टूल्स","te":"సాధనాలు"},"href":"/tools","priority":9},
+    {"id":"investors","label":{"en":"Investors","hi":"इन्वेस्टर्स","te":"ఇన్వెస్టర్లు"},"href":"/investors","priority":10}
+  ]
+  ```
+* Logic: **sort by `priority`**, take **first 4** as **primary**, push the rest into **More**.
+
+2. **Layout & placement**
+
+* Order in header: **Logo | \[Primary (4)] | More ▼ | Search | Language toggle**.
+* The **More** trigger is a **button** (not an anchor) with caret icon.
+* Keep spacing consistent with current header; same typography/tokens.
+
+3. **Dropdown behavior (desktop)**
+
+* Clicking or pressing **Enter/Space** on “More” opens a **dropdown menu** listing the remaining items.
+* Menu appears **under the More button**, aligned to it; auto-positions within viewport if near the right edge.
+* Each item is a standard anchor `<a href="…">` using the localized label.
+* Close menu on: ESC, click outside, or tabbing out.
+
+4. **Mobile behavior**
+
+* In the existing mobile menu/drawer, show **all items** as a single list (no More on mobile).
+  (If there’s already a hamburger—reuse it; otherwise implement a simple drawer.)
+
+5. **i18n support (EN/HI/TE)**
+
+* Read current language from existing global state or `localStorage.lang` (`'en' | 'hi' | 'te'`).
+* Render labels using `item.label[currentLang]` with fallback to English.
+* The “More” label itself must be localized:
+
+  * EN: **More**
+  * HI: **और**
+  * TE: **మరిన్ని**
+
+6. **Accessibility**
+
+* Use proper ARIA for the menu:
+
+  * `button` with `aria-haspopup="menu"` and `aria-expanded`.
+  * Menu container with `role="menu"`, items with `role="menuitem"`.
+  * Focus management: focus first item when opened; return focus to the More button when closed.
+  * Keyboard: Up/Down to move, Enter to activate, ESC to close.
+
+7. **Styling**
+
+* Match current header style (translucent/rounded).
+* Dropdown: white card, 12–16px padding, 8–10px item spacing, subtle shadow, 12px radius.
+* Hover/active state: light gradient or subtle background.
+* Maintain same **baseline and vertical rhythm** as existing nav.
+
+8. **Files/changes**
+
+* If React:
+
+  * Add `src/config/navItems.ts` (or `.json`) with the items above.
+  * Update `Header/Nav.tsx` (or equivalent) to:
+
+    * Split into `PrimaryNav`, `MoreMenu`, `Search`, `LangToggle`.
+    * Implement priority logic + i18n labels.
+* If plain HTML:
+
+  * Build the nav list from the config with a small JS that injects primary items + More dropdown.
+  * Keep existing markup for search and language toggle; insert the More node **before** the search bar.
+
+9. **Acceptance criteria**
+
+* Exactly **4 items** visible next to logo on desktop; **More** appears **before** the search bar.
+* All remaining sections show inside **More**; links work.
+* Language change updates labels for primary, More, and items inside the dropdown.
+* Keyboard and screen-reader navigation work as specified.
+* Mobile menu shows **all items** without More.
+* No layout shift or overflow on narrow desktops (≥1024px).
+
+**After implementation, please reply with:**
+
+* Which files you created/edited.
+* How to change which 4 items are primary (confirm it’s just the `priority` values).
+* The function or component name that renders the More dropdown.
+
+
