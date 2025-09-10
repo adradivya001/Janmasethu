@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Baby, Stethoscope, X, Check } from "lucide-react";
+import { Baby, Stethoscope, X, Check, Heart } from "lucide-react";
 import { Card, CardContent } from "./ui/card";
 import { Button } from "./ui/button";
 
@@ -191,17 +191,19 @@ const WhoWeServe = () => {
 
             {/* Modal Header */}
             <div className="mb-6">
-              <div className="w-12 h-12 bg-gradient-to-br from-purple-100 to-pink-100 rounded-xl flex items-center justify-center mb-4">
-                {selectedCard === "patients" ? (
-                  <Baby className="text-purple-600 text-xl" />
-                ) : (
-                  <Stethoscope className="text-blue-600 text-xl" />
-                )}
+              <div className="flex items-center space-x-4 mb-4">
+                <div className={`w-16 h-16 ${selectedCard === "patients" ? "bg-gradient-to-br from-purple-100 to-pink-100" : "bg-gradient-to-br from-blue-100 to-cyan-100"} rounded-xl flex items-center justify-center`}>
+                  {selectedCard === "patients" ? (
+                    <Heart className="text-purple-600 text-2xl" />
+                  ) : (
+                    <Stethoscope className="text-blue-600 text-2xl" />
+                  )}
+                </div>
+                <h3 className="text-2xl font-bold text-foreground font-serif">
+                  {selectedContent.title}
+                </h3>
               </div>
-              <h3 className="text-2xl font-bold text-foreground font-serif mb-2">
-                {selectedContent.title}
-              </h3>
-              <p className="text-muted-foreground">{selectedContent.about}</p>
+              <p className="text-muted-foreground text-base leading-relaxed">{selectedContent.about}</p>
             </div>
 
             {/* Bullet Points */}
