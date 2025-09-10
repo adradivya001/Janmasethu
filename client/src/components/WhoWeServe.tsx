@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Baby, Stethoscope, X, Check } from "lucide-react";
 import { Card, CardContent } from "./ui/card";
 import { Button } from "./ui/button";
+import { useLanguage } from "../i18n/LanguageProvider";
 
 interface ContentData {
   title: string;
@@ -26,12 +27,12 @@ type Language = "en" | "hi" | "te";
 type CardType = "patients" | "clinics";
 
 const WhoWeServe = () => {
+  const { lang } = useLanguage();
   const [data, setData] = useState<WhoWeServeData | null>(null);
-  const [currentLang, setCurrentLang] = useState<Language>("te");
   const [selectedCard, setSelectedCard] = useState<CardType | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Load data and sync with global language preference
+  // Load data
   useEffect(() => {
     const loadData = async () => {
       try {
@@ -43,26 +44,7 @@ const WhoWeServe = () => {
       }
     };
 
-    // Sync with global language preference
-    const savedLang = localStorage.getItem("js_lang") as Language;
-    if (savedLang && ["en", "hi", "te"].includes(savedLang)) {
-      setCurrentLang(savedLang);
-    }
-
     loadData();
-  }, []);
-
-  // Listen for global language changes
-  useEffect(() => {
-    const handleStorageChange = () => {
-      const savedLang = localStorage.getItem("js_lang") as Language;
-      if (savedLang && ["en", "hi", "te"].includes(savedLang)) {
-        setCurrentLang(savedLang);
-      }
-    };
-
-    window.addEventListener("storage", handleStorageChange);
-    return () => window.removeEventListener("storage", handleStorageChange);
   }, []);
 
   // Handle card click
@@ -107,7 +89,7 @@ const WhoWeServe = () => {
   }
 
   const getCardContent = (cardType: CardType) => {
-    return data[cardType][currentLang];
+    return data[cardType][lang as Language];
   };
 
   const selectedContent = selectedCard ? getCardContent(selectedCard) : null;
@@ -117,9 +99,9 @@ const WhoWeServe = () => {
       <section className="py-16">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-foreground font-serif mb-4">
-            {currentLang === "en" && "Who We Serve"}
-            {currentLang === "hi" && "हम किसकी सेवा करते हैं"}
-            {currentLang === "te" && "మేము ఎవరికి సేవ చేస్తాము"}
+            {lang === "en" && "Who We Serve"}
+            {lang === "hi" && "हम किसकी सेवा करते हैं"}
+            {lang === "te" && "మేము ఎవరికి సేవ చేస్తాము"}
           </h2>
         </div>
 
@@ -226,9 +208,9 @@ const WhoWeServe = () => {
                 className="w-full gradient-button text-white rounded-full font-semibold"
                 onClick={closeModal}
               >
-                {currentLang === "en" && "Got it"}
-                {currentLang === "hi" && "समझ गया"}
-                {currentLang === "te" && "అర్థమైంది"}
+                {lang === "en" && "Got it"}
+                {lang === "hi" && "समझ गया"}
+                {lang === "te" && "అర్థమైంది"}
               </Button>
             </div>
           </div>
