@@ -22,6 +22,11 @@ import {
   Baby,
   Cat,
   Apple,
+  Syringe,
+  Microscope,
+  Dna,
+  HeartHandshake,
+  Snowflake,
 } from "lucide-react";
 import { useLanguage } from "../i18n/LanguageProvider";
 import { Card, CardContent } from "../components/ui/card";
@@ -709,11 +714,11 @@ const Home = () => {
                 data-testid={`card-treatment-${index}`}
               >
                 <div
-                  className={`w-16 h-16 ${treatment.bgColor} rounded-2xl flex items-center justify-center mb-6`}
+                  className={`w-16 h-16 ${treatment.bgColor} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}
                 >
-                  <i
-                    className={`${treatment.icon} ${treatment.iconColor} text-2xl`}
-                  ></i>
+                  <treatment.icon
+                    className={`${treatment.iconColor} w-8 h-8`}
+                  />
                 </div>
                 <h3
                   className="text-2xl font-bold text-foreground font-serif mb-4"
@@ -813,7 +818,7 @@ const getTreatmentCards = () => [
     name: "IUI",
     description:
       "Intrauterine insemination process, success rates, and what to expect",
-    icon: "fas fa-syringe",
+    icon: Syringe,
     iconColor: "text-blue-600",
     bgColor: "bg-blue-100",
   },
@@ -822,7 +827,7 @@ const getTreatmentCards = () => [
     name: "IVF",
     description:
       "In vitro fertilization steps, timeline, and preparation guide",
-    icon: "fas fa-microscope",
+    icon: Microscope,
     iconColor: "text-purple-600",
     bgColor: "bg-purple-100",
   },
@@ -830,7 +835,7 @@ const getTreatmentCards = () => [
     slug: "icsi",
     name: "ICSI",
     description: "Intracytoplasmic sperm injection for male factor infertility",
-    icon: "fas fa-dna",
+    icon: Dna,
     iconColor: "text-green-600",
     bgColor: "bg-green-100",
   },
@@ -838,7 +843,7 @@ const getTreatmentCards = () => [
     slug: "donor-options",
     name: "Donor Options",
     description: "Egg, sperm, and embryo donation processes and considerations",
-    icon: "fas fa-hand-holding-heart",
+    icon: HeartHandshake,
     iconColor: "text-pink-600",
     bgColor: "bg-pink-100",
   },
@@ -846,9 +851,9 @@ const getTreatmentCards = () => [
     slug: "fertility-preservation",
     name: "Fertility Preservation",
     description: "Egg and sperm freezing for future family planning",
-    icon: "fas fa-snowflake",
-    iconColor: "text-orange-600",
-    bgColor: "bg-orange-100",
+    icon: Snowflake,
+    iconColor: "text-cyan-600",
+    bgColor: "bg-cyan-100",
   },
 ];
 
