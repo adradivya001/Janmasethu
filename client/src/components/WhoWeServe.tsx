@@ -1,5 +1,6 @@
+
 import React, { useState, useEffect } from 'react';
-import { X, Check } from 'lucide-react';
+import { Heart, Stethoscope, X, Check } from 'lucide-react';
 import { Card, CardContent } from './ui/card';
 import { Button } from './ui/button';
 
@@ -125,7 +126,7 @@ const WhoWeServe = () => {
 
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {/* Patients Card */}
-          <Card
+          <Card 
             className="rounded-3xl p-8 card-shadow hover:shadow-2xl transition-all duration-500 group backdrop-blur-sm bg-white/80 cursor-pointer transform hover:scale-104"
             onClick={() => handleCardClick('patients')}
             onKeyDown={(e) => e.key === 'Enter' && handleCardClick('patients')}
@@ -134,11 +135,7 @@ const WhoWeServe = () => {
             aria-label={`Open ${getCardContent('patients').title} details`}
           >
             <div className="w-16 h-16 bg-gradient-to-br from-purple-100 to-pink-100 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-              <img
-                src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&h=80&q=80"
-                alt="Expecting parents"
-                className="w-full h-full object-cover rounded-2xl"
-              />
+              <Heart className="text-purple-600 text-2xl" />
             </div>
             <h3 className="text-2xl font-bold text-foreground font-serif mb-4">
               {getCardContent('patients').title}
@@ -149,7 +146,7 @@ const WhoWeServe = () => {
           </Card>
 
           {/* Clinics Card */}
-          <Card
+          <Card 
             className="rounded-3xl p-8 card-shadow hover:shadow-2xl transition-all duration-500 group backdrop-blur-sm bg-white/80 cursor-pointer transform hover:scale-104"
             onClick={() => handleCardClick('clinics')}
             onKeyDown={(e) => e.key === 'Enter' && handleCardClick('clinics')}
@@ -158,11 +155,7 @@ const WhoWeServe = () => {
             aria-label={`Open ${getCardContent('clinics').title} details`}
           >
             <div className="w-16 h-16 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-              <img
-                src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&h=80&q=80"
-                alt="Medical professionals"
-                className="w-full h-full object-cover rounded-2xl"
-              />
+              <Stethoscope className="text-blue-600 text-2xl" />
             </div>
             <h3 className="text-2xl font-bold text-foreground font-serif mb-4">
               {getCardContent('clinics').title}
@@ -176,15 +169,15 @@ const WhoWeServe = () => {
 
       {/* Modal */}
       {isModalOpen && selectedContent && (
-        <div
+        <div 
           className="fixed inset-0 z-50 flex items-center justify-center p-4"
           onClick={closeModal}
         >
           {/* Backdrop with blur */}
           <div className="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
-
+          
           {/* Modal Content */}
-          <div
+          <div 
             className="relative bg-white rounded-3xl p-8 max-w-md w-full mx-4 transform transition-all duration-300 scale-100"
             onClick={(e) => e.stopPropagation()}
           >
@@ -201,17 +194,9 @@ const WhoWeServe = () => {
             <div className="mb-6">
               <div className="w-12 h-12 bg-gradient-to-br from-purple-100 to-pink-100 rounded-xl flex items-center justify-center mb-4">
                 {selectedCard === 'patients' ? (
-                  <img
-                    src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&h=80&q=80"
-                    alt="Expecting parents"
-                    className="w-full h-full object-cover rounded-xl"
-                  />
+                  <Heart className="text-purple-600 text-xl" />
                 ) : (
-                  <img
-                    src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&h=80&q=80"
-                    alt="Medical professionals"
-                    className="w-full h-full object-cover rounded-xl"
-                  />
+                  <Stethoscope className="text-blue-600 text-xl" />
                 )}
               </div>
               <h3 className="text-2xl font-bold text-foreground font-serif mb-2">
@@ -238,7 +223,7 @@ const WhoWeServe = () => {
 
             {/* Action Button */}
             <div className="mt-8">
-              <Button
+              <Button 
                 className="w-full gradient-button text-white rounded-full font-semibold"
                 onClick={closeModal}
               >
