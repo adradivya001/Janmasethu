@@ -22,8 +22,6 @@ import {
   Baby,
   Cat,
   Apple,
-  Activity,
-  Search,
 } from "lucide-react";
 import { useLanguage } from "../i18n/LanguageProvider";
 import { Card, CardContent } from "../components/ui/card";
@@ -552,7 +550,7 @@ const Home = () => {
                 </span>
               </p>
               <img
-                src="https://images.unsplash.com/photo-1544787215259-38e31be8751f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300"
+                src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300"
                 alt="Pregnant woman in peaceful outdoor setting"
                 className="rounded-xl w-full h-32 object-cover"
               />
@@ -840,7 +838,7 @@ const getArticleImage = (index: number) => {
 
 const getStoryImage = (index: number) => {
   const images = [
-    "https://images.unsplash.com/photo-15443675670f2fc00990b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300",
+    "https://images.unsplash.com/photo-1544367567-0f2fcb0099b0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300",
     "https://images.unsplash.com/photo-1566004100631-35d015d6a491?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300",
     "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300",
   ];

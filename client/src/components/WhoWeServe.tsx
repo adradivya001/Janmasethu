@@ -1,49 +1,37 @@
+import React, { useState, useEffect } from "react";
+import { Baby, Stethoscope, X, Check } from "lucide-react";
+import { Card, CardContent } from "./ui/card";
+import { Button } from "./ui/button";
 
-import { useState, useEffect } from "react";
-import { UserIcon, Building2Icon, Baby, Heart, Users, Stethoscope } from "lucide-react";
-import { useLanguage } from "../i18n/LanguageProvider";
+interface ContentData {
+  title: string;
+  about: string;
+  bullets: string[];
+}
 
 interface WhoWeServeData {
-  [key: string]: {
-    title: string;
-    description: string;
-    cards: {
-      parents: {
-        title: string;
-        description: string;
-        details: {
-          title: string;
-          description: string;
-          features: string[];
-          cta: string;
-        };
-      };
-      clinics: {
-        title: string;
-        description: string;
-        details: {
-          title: string;
-          description: string;
-          features: string[];
-          cta: string;
-        };
-      };
-    };
+  patients: {
+    en: ContentData;
+    hi: ContentData;
+    te: ContentData;
+  };
+  clinics: {
+    en: ContentData;
+    hi: ContentData;
+    te: ContentData;
   };
 }
 
 type Language = "en" | "hi" | "te";
-type CardType = "parents" | "clinics";
+type CardType = "patients" | "clinics";
 
 const WhoWeServe = () => {
   const [data, setData] = useState<WhoWeServeData | null>(null);
+  const [currentLang, setCurrentLang] = useState<Language>("te");
   const [selectedCard, setSelectedCard] = useState<CardType | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  
-  // Use the global language context
-  const { lang, t } = useLanguage();
 
-  // Load data
+  // Load data and sync with global language preference
   useEffect(() => {
     const loadData = async () => {
       try {
@@ -55,7 +43,26 @@ const WhoWeServe = () => {
       }
     };
 
+    // Sync with global language preference
+    const savedLang = localStorage.getItem("js_lang") as Language;
+    if (savedLang && ["en", "hi", "te"].includes(savedLang)) {
+      setCurrentLang(savedLang);
+    }
+
     loadData();
+  }, []);
+
+  // Listen for global language changes
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const savedLang = localStorage.getItem("js_lang") as Language;
+      if (savedLang && ["en", "hi", "te"].includes(savedLang)) {
+        setCurrentLang(savedLang);
+      }
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+    return () => window.removeEventListener("storage", handleStorageChange);
   }, []);
 
   // Handle card click
@@ -64,169 +71,165 @@ const WhoWeServe = () => {
     setIsModalOpen(true);
   };
 
-  // Close modal
+  // Handle modal close
   const closeModal = () => {
     setIsModalOpen(false);
     setSelectedCard(null);
   };
 
+  // Handle ESC key
+  useEffect(() => {
+    const handleEscKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape" && isModalOpen) {
+        closeModal();
+      }
+    };
+
+    document.addEventListener("keydown", handleEscKey);
+    return () => document.removeEventListener("keydown", handleEscKey);
+  }, [isModalOpen]);
+
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isModalOpen]);
+
   if (!data) {
-    return (
-      <section className="py-20 bg-gradient-to-b from-white to-purple-50/30">
-        <div className="container mx-auto px-4">
-          <div className="text-center">Loading...</div>
-        </div>
-      </section>
-    );
+    return <div>Loading...</div>;
   }
 
-  const currentData = data[lang];
-  if (!currentData) {
-    return null;
-  }
-
-  const getCardIcon = (cardType: CardType) => {
-    switch (cardType) {
-      case "parents":
-        return <Baby className="w-8 h-8 text-purple-600" />;
-      case "clinics":
-        return <Stethoscope className="w-8 h-8 text-blue-600" />;
-      default:
-        return <Heart className="w-8 h-8 text-pink-600" />;
-    }
+  const getCardContent = (cardType: CardType) => {
+    return data[cardType][currentLang];
   };
 
-  const getCardBgColor = (cardType: CardType) => {
-    switch (cardType) {
-      case "parents":
-        return "bg-gradient-to-br from-purple-50 to-purple-100/50";
-      case "clinics":
-        return "bg-gradient-to-br from-blue-50 to-blue-100/50";
-      default:
-        return "bg-gradient-to-br from-pink-50 to-pink-100/50";
-    }
-  };
-
-  const getIconBgColor = (cardType: CardType) => {
-    switch (cardType) {
-      case "parents":
-        return "bg-purple-100";
-      case "clinics":
-        return "bg-blue-100";
-      default:
-        return "bg-pink-100";
-    }
-  };
+  const selectedContent = selectedCard ? getCardContent(selectedCard) : null;
 
   return (
     <>
-      <section className="py-20 bg-gradient-to-b from-white to-purple-50/30">
-        <div className="container mx-auto px-4">
-          {/* Section Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              {currentData.title}
-            </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              {currentData.description}
+      <section className="py-16">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold text-foreground font-serif mb-4">
+            {currentLang === "en" && "Who We Serve"}
+            {currentLang === "hi" && "हम किसकी सेवा करते हैं"}
+            {currentLang === "te" && "మేము ఎవరికి సేవ చేస్తాము"}
+          </h2>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          {/* Patients Card */}
+          <Card
+            className="rounded-3xl p-8 card-shadow hover:shadow-2xl transition-all duration-500 group backdrop-blur-sm bg-white/80 cursor-pointer transform hover:scale-104"
+            onClick={() => handleCardClick("patients")}
+            onKeyDown={(e) => e.key === "Enter" && handleCardClick("patients")}
+            tabIndex={0}
+            role="button"
+            aria-label={`Open ${getCardContent("patients").title} details`}
+          >
+            <div className="w-16 h-16 bg-gradient-to-br from-purple-100 to-pink-100 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+              <Baby className="text-purple-600 text-2xl" />
+            </div>
+            <h3 className="text-2xl font-bold text-foreground font-serif mb-4">
+              {getCardContent("patients").title}
+            </h3>
+            <p className="text-muted-foreground">
+              {getCardContent("patients").about}
             </p>
-          </div>
+          </Card>
 
-          {/* Cards Grid */}
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {Object.entries(currentData.cards).map(([key, card]) => {
-              const cardType = key as CardType;
-              return (
-                <div
-                  key={cardType}
-                  onClick={() => handleCardClick(cardType)}
-                  className={`${getCardBgColor(cardType)} rounded-2xl p-8 cursor-pointer 
-                    transition-all duration-300 hover:scale-105 hover:shadow-xl 
-                    border border-white/50 backdrop-blur-sm group`}
-                >
-                  {/* Icon */}
-                  <div className={`${getIconBgColor(cardType)} w-16 h-16 rounded-2xl 
-                    flex items-center justify-center mb-6 group-hover:scale-110 
-                    transition-transform duration-300`}>
-                    {getCardIcon(cardType)}
-                  </div>
-
-                  {/* Content */}
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                    {card.title}
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    {card.description}
-                  </p>
-
-                  {/* Hover Arrow */}
-                  <div className="mt-6 text-gray-400 group-hover:text-gray-600 
-                    transition-colors duration-300">
-                    <span className="text-sm font-medium">
-                      {lang === 'hi' ? 'और जानें' : lang === 'te' ? 'మరింత తెలుసుకోండి' : 'Learn more'} →
-                    </span>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+          {/* Clinics Card */}
+          <Card
+            className="rounded-3xl p-8 card-shadow hover:shadow-2xl transition-all duration-500 group backdrop-blur-sm bg-white/80 cursor-pointer transform hover:scale-104"
+            onClick={() => handleCardClick("clinics")}
+            onKeyDown={(e) => e.key === "Enter" && handleCardClick("clinics")}
+            tabIndex={0}
+            role="button"
+            aria-label={`Open ${getCardContent("clinics").title} details`}
+          >
+            <div className="w-16 h-16 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+              <Stethoscope className="text-blue-600 text-2xl" />
+            </div>
+            <h3 className="text-2xl font-bold text-foreground font-serif mb-4">
+              {getCardContent("clinics").title}
+            </h3>
+            <p className="text-muted-foreground">
+              {getCardContent("clinics").about}
+            </p>
+          </Card>
         </div>
       </section>
 
       {/* Modal */}
-      {isModalOpen && selectedCard && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+      {isModalOpen && selectedContent && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          onClick={closeModal}
+        >
+          {/* Backdrop with blur */}
+          <div className="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+
+          {/* Modal Content */}
+          <div
+            className="relative bg-white rounded-3xl p-8 max-w-md w-full mx-4 transform transition-all duration-300 scale-100"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close Button */}
+            <button
+              onClick={closeModal}
+              className="absolute top-4 right-4 p-2 text-gray-400 hover:text-gray-600 transition-colors"
+              aria-label="Close modal"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
             {/* Modal Header */}
-            <div className="sticky top-0 bg-white border-b border-gray-100 p-6 rounded-t-3xl">
-              <div className="flex justify-between items-center">
-                <div className="flex items-center space-x-4">
-                  <div className={`${getIconBgColor(selectedCard)} w-12 h-12 rounded-xl 
-                    flex items-center justify-center`}>
-                    {getCardIcon(selectedCard)}
-                  </div>
-                  <h3 className="text-2xl font-bold text-gray-900">
-                    {currentData.cards[selectedCard].details.title}
-                  </h3>
+            <div className="mb-6">
+              <div className="flex items-center space-x-4 mb-4">
+                <div className={`w-16 h-16 ${selectedCard === "patients" ? "bg-gradient-to-br from-purple-100 to-pink-100" : "bg-gradient-to-br from-blue-100 to-cyan-100"} rounded-xl flex items-center justify-center`}>
+                  {selectedCard === "patients" ? (
+                    <Baby className="text-purple-600 text-2xl" />
+                  ) : (
+                    <Stethoscope className="text-blue-600 text-2xl" />
+                  )}
                 </div>
-                <button
-                  onClick={closeModal}
-                  className="text-gray-400 hover:text-gray-600 transition-colors duration-200"
-                >
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
+                <h3 className="text-2xl font-bold text-foreground font-serif">
+                  {selectedContent.title}
+                </h3>
               </div>
+              <p className="text-muted-foreground text-base leading-relaxed">{selectedContent.about}</p>
             </div>
 
-            {/* Modal Content */}
-            <div className="p-6">
-              <p className="text-gray-600 text-lg leading-relaxed mb-8">
-                {currentData.cards[selectedCard].details.description}
-              </p>
-
-              {/* Features */}
-              <div className="space-y-4 mb-8">
-                {currentData.cards[selectedCard].details.features.map((feature, index) => (
-                  <div key={index} className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-gradient-to-r from-purple-500 to-pink-500 
-                      rounded-full mt-2 flex-shrink-0"></div>
-                    <p className="text-gray-700 leading-relaxed">{feature}</p>
+            {/* Bullet Points */}
+            <div className="space-y-3">
+              {selectedContent.bullets.map((bullet, index) => (
+                <div key={index} className="flex items-start space-x-3">
+                  <div className="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center mt-0.5 flex-shrink-0">
+                    <Check className="w-3 h-3 text-green-600" />
                   </div>
-                ))}
-              </div>
+                  <span className="text-muted-foreground text-sm leading-relaxed">
+                    {bullet}
+                  </span>
+                </div>
+              ))}
+            </div>
 
-              {/* CTA Button */}
-              <button
+            {/* Action Button */}
+            <div className="mt-8">
+              <Button
+                className="w-full gradient-button text-white rounded-full font-semibold"
                 onClick={closeModal}
-                className="w-full bg-gradient-to-r from-purple-600 to-pink-600 
-                  hover:from-purple-700 hover:to-pink-700 text-white font-semibold 
-                  py-4 px-6 rounded-xl transition-all duration-300 
-                  transform hover:scale-105 shadow-lg hover:shadow-xl"
               >
-                {currentData.cards[selectedCard].details.cta}
-              </button>
+                {currentLang === "en" && "Got it"}
+                {currentLang === "hi" && "समझ गया"}
+                {currentLang === "te" && "అర్థమైంది"}
+              </Button>
             </div>
           </div>
         </div>
