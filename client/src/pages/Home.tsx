@@ -22,6 +22,10 @@ import {
   Baby,
   Cat,
   Apple,
+  Lightbulb,
+  Activity,
+  Search,
+  Smile,
 } from "lucide-react";
 import { useLanguage } from "../i18n/LanguageProvider";
 import { Card, CardContent } from "../components/ui/card";
@@ -36,6 +40,39 @@ const Home = () => {
 
   const featuredArticles = articles.slice(0, 4);
   const featuredStories = stories.slice(0, 3);
+
+  const parenthoodJourneyStages = [
+    {
+      icon: <Lightbulb className="text-green-600 text-2xl" />,
+      title: t("journey_stage_1_title"),
+      desc: t("journey_stage_1_desc"),
+      bgColor: "bg-green-100",
+    },
+    {
+      icon: <Heart className="text-red-600 text-2xl" />,
+      title: t("journey_stage_2_title"),
+      desc: t("journey_stage_2_desc"),
+      bgColor: "bg-red-100",
+    },
+    {
+      icon: <Search className="text-blue-600 text-2xl" />,
+      title: t("journey_stage_3_title"),
+      desc: t("journey_stage_3_desc"),
+      bgColor: "bg-blue-100",
+    },
+    {
+      icon: <Activity className="text-purple-600 text-2xl" />,
+      title: t("journey_stage_4_title"),
+      desc: t("journey_stage_4_desc"),
+      bgColor: "bg-purple-100",
+    },
+    {
+      icon: <Baby className="text-orange-600 text-2xl" />,
+      title: t("journey_stage_5_title"),
+      desc: t("journey_stage_5_desc"),
+      bgColor: "bg-orange-100",
+    },
+  ];
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -202,122 +239,35 @@ const Home = () => {
         {/* Journey Timeline */}
         <div className="relative overflow-x-auto pb-8">
           <div className="journey-timeline-mobile flex items-center justify-between min-w-[800px] px-8">
-            {/* Stage 1: Thinking of Parenthood */}
-            <div
-              className="flex flex-col items-center group cursor-pointer hover:scale-105 transition-all duration-300"
-              data-testid="journey-stage-thinking"
-            >
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-green-200 transition-colors shadow-lg">
-                <span className="text-2xl">🌱</span>
+            {parenthoodJourneyStages.map((stage, index) => (
+              <div key={index}>
+                <div
+                  className="flex flex-col items-center group cursor-pointer hover:scale-105 transition-all duration-300"
+                  data-testid={`journey-stage-${index + 1}`}
+                >
+                  <div
+                    className={`w-16 h-16 ${stage.bgColor} rounded-2xl flex items-center justify-center mx-auto mb-4`}
+                  >
+                    {stage.icon}
+                  </div>
+                  <h3 className="text-sm font-bold text-foreground text-center mb-2">
+                    {stage.title}
+                  </h3>
+                  <p className="text-xs text-muted-foreground text-center max-w-[120px]">
+                    {stage.desc}
+                  </p>
+                  <div className="hidden group-hover:block absolute top-20 bg-white rounded-lg shadow-lg p-2 z-10 mt-4">
+                    <p className="text-xs text-center whitespace-nowrap">
+                      {t("journey_stage_tooltip")}
+                    </p>
+                  </div>
+                </div>
+                {/* Connection Line */}
+                {index < parenthoodJourneyStages.length - 1 && (
+                  <div className="flex-1 h-1 bg-gradient-to-r from-green-200 to-pink-200 mx-4 rounded-full min-w-[40px]"></div>
+                )}
               </div>
-              <h3 className="text-sm font-bold text-foreground text-center mb-2">
-                {t("journey_stage_1_title")}
-              </h3>
-              <p className="text-xs text-muted-foreground text-center max-w-[120px]">
-                {t("journey_stage_1_desc")}
-              </p>
-              <div className="hidden group-hover:block absolute top-20 bg-white rounded-lg shadow-lg p-2 z-10 mt-4">
-                <p className="text-xs text-center whitespace-nowrap">
-                  {t("journey_stage_tooltip")}
-                </p>
-              </div>
-            </div>
-
-            {/* Connection Line 1 */}
-            <div className="flex-1 h-1 bg-gradient-to-r from-green-200 to-pink-200 mx-4 rounded-full min-w-[40px]"></div>
-
-            {/* Stage 2: Trying Naturally */}
-            <div
-              className="flex flex-col items-center group cursor-pointer hover:scale-105 transition-all duration-300"
-              data-testid="journey-stage-trying"
-            >
-              <div className="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-pink-200 transition-colors shadow-lg">
-                <span className="text-2xl">💖</span>
-              </div>
-              <h3 className="text-sm font-bold text-foreground text-center mb-2">
-                {t("journey_stage_2_title")}
-              </h3>
-              <p className="text-xs text-muted-foreground text-center max-w-[120px]">
-                {t("journey_stage_2_desc")}
-              </p>
-              <div className="hidden group-hover:block absolute top-20 bg-white rounded-lg shadow-lg p-2 z-10 mt-4">
-                <p className="text-xs text-center whitespace-nowrap">
-                  {t("journey_stage_tooltip")}
-                </p>
-              </div>
-            </div>
-
-            {/* Connection Line 2 */}
-            <div className="flex-1 h-1 bg-gradient-to-r from-pink-200 to-blue-200 mx-4 rounded-full min-w-[40px]"></div>
-
-            {/* Stage 3: Exploring Options */}
-            <div
-              className="flex flex-col items-center group cursor-pointer hover:scale-105 transition-all duration-300"
-              data-testid="journey-stage-exploring"
-            >
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-blue-200 transition-colors shadow-lg">
-                <span className="text-2xl">🔬</span>
-              </div>
-              <h3 className="text-sm font-bold text-foreground text-center mb-2">
-                {t("journey_stage_3_title")}
-              </h3>
-              <p className="text-xs text-muted-foreground text-center max-w-[120px]">
-                {t("journey_stage_3_desc")}
-              </p>
-              <div className="hidden group-hover:block absolute top-20 bg-white rounded-lg shadow-lg p-2 z-10 mt-4">
-                <p className="text-xs text-center whitespace-nowrap">
-                  {t("journey_stage_tooltip")}
-                </p>
-              </div>
-            </div>
-
-            {/* Connection Line 3 */}
-            <div className="flex-1 h-1 bg-gradient-to-r from-blue-200 to-purple-200 mx-4 rounded-full min-w-[40px]"></div>
-
-            {/* Stage 4: Pregnancy */}
-            <div
-              className="flex flex-col items-center group cursor-pointer hover:scale-105 transition-all duration-300"
-              data-testid="journey-stage-pregnancy"
-            >
-              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-purple-200 transition-colors shadow-lg">
-                <span className="text-2xl">🤰</span>
-              </div>
-              <h3 className="text-sm font-bold text-foreground text-center mb-2">
-                {t("journey_stage_4_title")}
-              </h3>
-              <p className="text-xs text-muted-foreground text-center max-w-[120px]">
-                {t("journey_stage_4_desc")}
-              </p>
-              <div className="hidden group-hover:block absolute top-20 bg-white rounded-lg shadow-lg p-2 z-10 mt-4">
-                <p className="text-xs text-center whitespace-nowrap">
-                  {t("journey_stage_tooltip")}
-                </p>
-              </div>
-            </div>
-
-            {/* Connection Line 4 */}
-            <div className="flex-1 h-1 bg-gradient-to-r from-purple-200 to-orange-200 mx-4 rounded-full min-w-[40px]"></div>
-
-            {/* Stage 5: Post-Delivery */}
-            <div
-              className="flex flex-col items-center group cursor-pointer hover:scale-105 transition-all duration-300"
-              data-testid="journey-stage-postdelivery"
-            >
-              <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-orange-200 transition-colors shadow-lg">
-                <span className="text-2xl">👶</span>
-              </div>
-              <h3 className="text-sm font-bold text-foreground text-center mb-2">
-                {t("journey_stage_5_title")}
-              </h3>
-              <p className="text-xs text-muted-foreground text-center max-w-[120px]">
-                {t("journey_stage_5_desc")}
-              </p>
-              <div className="hidden group-hover:block absolute top-20 bg-white rounded-lg shadow-lg p-2 z-10 mt-4">
-                <p className="text-xs text-center whitespace-nowrap">
-                  {t("journey_stage_tooltip")}
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
 
@@ -466,7 +416,7 @@ const Home = () => {
 
               <p
                 className="text-xs text-muted-foreground mt-2"
-                data-testid="text-chat-preview-privacy"
+                data-testid="text-chat-privacy"
               >
                 {t("chat_privacy")}
               </p>
@@ -561,7 +511,7 @@ const Home = () => {
           <Link href="/life-stages/newborn" className="group">
             <Card className="rounded-3xl p-8 card-shadow hover:shadow-xl transition-all duration-300">
               <div className="w-16 h-16 gradient-button rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <Cat className="text-white text-2xl" />
+                <Smile className="text-white text-2xl" />
               </div>
               <h3
                 className="text-2xl font-bold text-foreground font-serif mb-4"
