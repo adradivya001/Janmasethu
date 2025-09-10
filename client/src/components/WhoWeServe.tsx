@@ -1,8 +1,7 @@
-
-import React, { useState, useEffect } from 'react';
-import { Heart, Stethoscope, X, Check } from 'lucide-react';
-import { Card, CardContent } from './ui/card';
-import { Button } from './ui/button';
+import React, { useState, useEffect } from "react";
+import { Baby, Stethoscope, X, Check } from "lucide-react";
+import { Card, CardContent } from "./ui/card";
+import { Button } from "./ui/button";
 
 interface ContentData {
   title: string;
@@ -23,12 +22,12 @@ interface WhoWeServeData {
   };
 }
 
-type Language = 'en' | 'hi' | 'te';
-type CardType = 'patients' | 'clinics';
+type Language = "en" | "hi" | "te";
+type CardType = "patients" | "clinics";
 
 const WhoWeServe = () => {
   const [data, setData] = useState<WhoWeServeData | null>(null);
-  const [currentLang, setCurrentLang] = useState<Language>('te');
+  const [currentLang, setCurrentLang] = useState<Language>("te");
   const [selectedCard, setSelectedCard] = useState<CardType | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -36,17 +35,17 @@ const WhoWeServe = () => {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const response = await fetch('/locales/whoWeServe.json');
+        const response = await fetch("/locales/whoWeServe.json");
         const jsonData = await response.json();
         setData(jsonData);
       } catch (error) {
-        console.error('Failed to load Who We Serve data:', error);
+        console.error("Failed to load Who We Serve data:", error);
       }
     };
 
     // Sync with global language preference
-    const savedLang = localStorage.getItem('js_lang') as Language;
-    if (savedLang && ['en', 'hi', 'te'].includes(savedLang)) {
+    const savedLang = localStorage.getItem("js_lang") as Language;
+    if (savedLang && ["en", "hi", "te"].includes(savedLang)) {
       setCurrentLang(savedLang);
     }
 
@@ -56,14 +55,14 @@ const WhoWeServe = () => {
   // Listen for global language changes
   useEffect(() => {
     const handleStorageChange = () => {
-      const savedLang = localStorage.getItem('js_lang') as Language;
-      if (savedLang && ['en', 'hi', 'te'].includes(savedLang)) {
+      const savedLang = localStorage.getItem("js_lang") as Language;
+      if (savedLang && ["en", "hi", "te"].includes(savedLang)) {
         setCurrentLang(savedLang);
       }
     };
 
-    window.addEventListener('storage', handleStorageChange);
-    return () => window.removeEventListener('storage', handleStorageChange);
+    window.addEventListener("storage", handleStorageChange);
+    return () => window.removeEventListener("storage", handleStorageChange);
   }, []);
 
   // Handle card click
@@ -81,25 +80,25 @@ const WhoWeServe = () => {
   // Handle ESC key
   useEffect(() => {
     const handleEscKey = (event: KeyboardEvent) => {
-      if (event.key === 'Escape' && isModalOpen) {
+      if (event.key === "Escape" && isModalOpen) {
         closeModal();
       }
     };
 
-    document.addEventListener('keydown', handleEscKey);
-    return () => document.removeEventListener('keydown', handleEscKey);
+    document.addEventListener("keydown", handleEscKey);
+    return () => document.removeEventListener("keydown", handleEscKey);
   }, [isModalOpen]);
 
   // Prevent body scroll when modal is open
   useEffect(() => {
     if (isModalOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     }
 
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     };
   }, [isModalOpen]);
 
@@ -118,50 +117,50 @@ const WhoWeServe = () => {
       <section className="py-16">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-foreground font-serif mb-4">
-            {currentLang === 'en' && 'Who We Serve'}
-            {currentLang === 'hi' && 'हम किसकी सेवा करते हैं'}
-            {currentLang === 'te' && 'మేము ఎవరికి సేవ చేస్తాము'}
+            {currentLang === "en" && "Who We Serve"}
+            {currentLang === "hi" && "हम किसकी सेवा करते हैं"}
+            {currentLang === "te" && "మేము ఎవరికి సేవ చేస్తాము"}
           </h2>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {/* Patients Card */}
-          <Card 
+          <Card
             className="rounded-3xl p-8 card-shadow hover:shadow-2xl transition-all duration-500 group backdrop-blur-sm bg-white/80 cursor-pointer transform hover:scale-104"
-            onClick={() => handleCardClick('patients')}
-            onKeyDown={(e) => e.key === 'Enter' && handleCardClick('patients')}
+            onClick={() => handleCardClick("patients")}
+            onKeyDown={(e) => e.key === "Enter" && handleCardClick("patients")}
             tabIndex={0}
             role="button"
-            aria-label={`Open ${getCardContent('patients').title} details`}
+            aria-label={`Open ${getCardContent("patients").title} details`}
           >
             <div className="w-16 h-16 bg-gradient-to-br from-purple-100 to-pink-100 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-              <Heart className="text-purple-600 text-2xl" />
+              <Baby className="text-purple-600 text-2xl" />
             </div>
             <h3 className="text-2xl font-bold text-foreground font-serif mb-4">
-              {getCardContent('patients').title}
+              {getCardContent("patients").title}
             </h3>
             <p className="text-muted-foreground">
-              {getCardContent('patients').about}
+              {getCardContent("patients").about}
             </p>
           </Card>
 
           {/* Clinics Card */}
-          <Card 
+          <Card
             className="rounded-3xl p-8 card-shadow hover:shadow-2xl transition-all duration-500 group backdrop-blur-sm bg-white/80 cursor-pointer transform hover:scale-104"
-            onClick={() => handleCardClick('clinics')}
-            onKeyDown={(e) => e.key === 'Enter' && handleCardClick('clinics')}
+            onClick={() => handleCardClick("clinics")}
+            onKeyDown={(e) => e.key === "Enter" && handleCardClick("clinics")}
             tabIndex={0}
             role="button"
-            aria-label={`Open ${getCardContent('clinics').title} details`}
+            aria-label={`Open ${getCardContent("clinics").title} details`}
           >
             <div className="w-16 h-16 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
               <Stethoscope className="text-blue-600 text-2xl" />
             </div>
             <h3 className="text-2xl font-bold text-foreground font-serif mb-4">
-              {getCardContent('clinics').title}
+              {getCardContent("clinics").title}
             </h3>
             <p className="text-muted-foreground">
-              {getCardContent('clinics').about}
+              {getCardContent("clinics").about}
             </p>
           </Card>
         </div>
@@ -169,15 +168,15 @@ const WhoWeServe = () => {
 
       {/* Modal */}
       {isModalOpen && selectedContent && (
-        <div 
+        <div
           className="fixed inset-0 z-50 flex items-center justify-center p-4"
           onClick={closeModal}
         >
           {/* Backdrop with blur */}
           <div className="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
-          
+
           {/* Modal Content */}
-          <div 
+          <div
             className="relative bg-white rounded-3xl p-8 max-w-md w-full mx-4 transform transition-all duration-300 scale-100"
             onClick={(e) => e.stopPropagation()}
           >
@@ -193,8 +192,8 @@ const WhoWeServe = () => {
             {/* Modal Header */}
             <div className="mb-6">
               <div className="w-12 h-12 bg-gradient-to-br from-purple-100 to-pink-100 rounded-xl flex items-center justify-center mb-4">
-                {selectedCard === 'patients' ? (
-                  <Heart className="text-purple-600 text-xl" />
+                {selectedCard === "patients" ? (
+                  <Baby className="text-purple-600 text-xl" />
                 ) : (
                   <Stethoscope className="text-blue-600 text-xl" />
                 )}
@@ -202,9 +201,7 @@ const WhoWeServe = () => {
               <h3 className="text-2xl font-bold text-foreground font-serif mb-2">
                 {selectedContent.title}
               </h3>
-              <p className="text-muted-foreground">
-                {selectedContent.about}
-              </p>
+              <p className="text-muted-foreground">{selectedContent.about}</p>
             </div>
 
             {/* Bullet Points */}
@@ -223,19 +220,18 @@ const WhoWeServe = () => {
 
             {/* Action Button */}
             <div className="mt-8">
-              <Button 
+              <Button
                 className="w-full gradient-button text-white rounded-full font-semibold"
                 onClick={closeModal}
               >
-                {currentLang === 'en' && 'Got it'}
-                {currentLang === 'hi' && 'समझ गया'}
-                {currentLang === 'te' && 'అర్థమైంది'}
+                {currentLang === "en" && "Got it"}
+                {currentLang === "hi" && "समझ गया"}
+                {currentLang === "te" && "అర్థమైంది"}
               </Button>
             </div>
           </div>
         </div>
       )}
-
     </>
   );
 };
