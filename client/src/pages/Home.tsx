@@ -212,8 +212,8 @@ const Home = () => {
               className="flex flex-col items-center group cursor-pointer hover:scale-105 transition-all duration-300"
               data-testid="journey-stage-thinking"
             >
-              <div className="w-16 h-16 bg-gradient-to-br from-green-100 to-green-200 rounded-full flex items-center justify-center mb-4 group-hover:from-green-200 group-hover:to-green-300 transition-all duration-300 shadow-lg border-2 border-green-200">
-                <Heart className="w-8 h-8 text-green-600" />
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-green-200 transition-colors shadow-lg">
+                <span className="text-2xl">🌱</span>
               </div>
               <h3 className="text-sm font-bold text-foreground text-center mb-2">
                 {t("journey_stage_1_title")}
@@ -236,8 +236,8 @@ const Home = () => {
               className="flex flex-col items-center group cursor-pointer hover:scale-105 transition-all duration-300"
               data-testid="journey-stage-trying"
             >
-              <div className="w-16 h-16 bg-gradient-to-br from-pink-100 to-pink-200 rounded-full flex items-center justify-center mb-4 group-hover:from-pink-200 group-hover:to-pink-300 transition-all duration-300 shadow-lg border-2 border-pink-200">
-                <Users className="w-8 h-8 text-pink-600" />
+              <div className="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-pink-200 transition-colors shadow-lg">
+                <span className="text-2xl">💖</span>
               </div>
               <h3 className="text-sm font-bold text-foreground text-center mb-2">
                 {t("journey_stage_2_title")}
@@ -260,8 +260,8 @@ const Home = () => {
               className="flex flex-col items-center group cursor-pointer hover:scale-105 transition-all duration-300"
               data-testid="journey-stage-exploring"
             >
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full flex items-center justify-center mb-4 group-hover:from-blue-200 group-hover:to-blue-300 transition-all duration-300 shadow-lg border-2 border-blue-200">
-                <Microscope className="w-8 h-8 text-blue-600" />
+              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-blue-200 transition-colors shadow-lg">
+                <span className="text-2xl">🔬</span>
               </div>
               <h3 className="text-sm font-bold text-foreground text-center mb-2">
                 {t("journey_stage_3_title")}
@@ -284,8 +284,8 @@ const Home = () => {
               className="flex flex-col items-center group cursor-pointer hover:scale-105 transition-all duration-300"
               data-testid="journey-stage-pregnancy"
             >
-              <div className="w-16 h-16 bg-gradient-to-br from-purple-100 to-purple-200 rounded-full flex items-center justify-center mb-4 group-hover:from-purple-200 group-hover:to-purple-300 transition-all duration-300 shadow-lg border-2 border-purple-200">
-                <Shield className="w-8 h-8 text-purple-600" />
+              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-purple-200 transition-colors shadow-lg">
+                <span className="text-2xl">🤰</span>
               </div>
               <h3 className="text-sm font-bold text-foreground text-center mb-2">
                 {t("journey_stage_4_title")}
@@ -308,8 +308,8 @@ const Home = () => {
               className="flex flex-col items-center group cursor-pointer hover:scale-105 transition-all duration-300"
               data-testid="journey-stage-postdelivery"
             >
-              <div className="w-16 h-16 bg-gradient-to-br from-orange-100 to-orange-200 rounded-full flex items-center justify-center mb-4 group-hover:from-orange-200 group-hover:to-orange-300 transition-all duration-300 shadow-lg border-2 border-orange-200">
-                <Baby className="w-8 h-8 text-orange-600" />
+              <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-orange-200 transition-colors shadow-lg">
+                <span className="text-2xl">👶</span>
               </div>
               <h3 className="text-sm font-bold text-foreground text-center mb-2">
                 {t("journey_stage_5_title")}
