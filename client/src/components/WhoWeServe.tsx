@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { Baby, Building2, X, Check } from 'lucide-react';
+import { Heart, Stethoscope, X, Check } from 'lucide-react';
 import { Card, CardContent } from './ui/card';
 import { Button } from './ui/button';
 
@@ -135,7 +135,7 @@ const WhoWeServe = () => {
             aria-label={`Open ${getCardContent('patients').title} details`}
           >
             <div className="w-16 h-16 bg-gradient-to-br from-purple-100 to-pink-100 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-              <Baby className="text-purple-600 text-2xl" />
+              <Heart className="text-purple-600 text-2xl" />
             </div>
             <h3 className="text-2xl font-bold text-foreground font-serif mb-4">
               {getCardContent('patients').title}
@@ -155,7 +155,7 @@ const WhoWeServe = () => {
             aria-label={`Open ${getCardContent('clinics').title} details`}
           >
             <div className="w-16 h-16 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-              <Building2 className="text-blue-600 text-2xl" />
+              <Stethoscope className="text-blue-600 text-2xl" />
             </div>
             <h3 className="text-2xl font-bold text-foreground font-serif mb-4">
               {getCardContent('clinics').title}
@@ -194,9 +194,9 @@ const WhoWeServe = () => {
             <div className="mb-6">
               <div className="w-12 h-12 bg-gradient-to-br from-purple-100 to-pink-100 rounded-xl flex items-center justify-center mb-4">
                 {selectedCard === 'patients' ? (
-                  <Baby className="text-purple-600 text-xl" />
+                  <Heart className="text-purple-600 text-xl" />
                 ) : (
-                  <Building2 className="text-blue-600 text-xl" />
+                  <Stethoscope className="text-blue-600 text-xl" />
                 )}
               </div>
               <h3 className="text-2xl font-bold text-foreground font-serif mb-2">
