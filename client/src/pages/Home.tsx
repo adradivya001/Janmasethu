@@ -662,10 +662,10 @@ const Home = () => {
             <Link
               key={article.slug}
               href={`/knowledge/${article.slug}`}
-              className="group"
+              className="group h-full"
             >
               <Card
-                className="rounded-3xl p-6 card-shadow hover:shadow-xl transition-all duration-300"
+                className="rounded-3xl p-6 card-shadow hover:shadow-xl transition-all duration-300 h-full flex flex-col"
                 data-testid={`card-featured-article-${index}`}
               >
                 <img
@@ -680,7 +680,7 @@ const Home = () => {
                   {article.title.en}
                 </h3>
                 <p
-                  className="text-sm text-muted-foreground"
+                  className="text-sm text-muted-foreground flex-grow"
                   data-testid={`text-article-summary-${index}`}
                 >
                   {article.summary.en}

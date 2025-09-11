@@ -61,7 +61,7 @@ const SuccessStories = () => {
               className="rounded-3xl p-6 card-shadow hover:shadow-xl transition-all duration-300 h-full"
               data-testid={`card-success-story-${index}`}
             >
-              <CardContent className="p-0">
+              <CardContent className="p-0 flex flex-col h-full">
                 <img
                   src={getStoryImage(index)}
                   alt={story.title}
@@ -94,13 +94,13 @@ const SuccessStories = () => {
                   {story.title}
                 </h3>
                 <p
-                  className="text-sm text-muted-foreground mb-4"
+                  className="text-sm text-muted-foreground mb-4 flex-grow"
                   data-testid={`text-story-summary-${index}`}
                 >
                   {story.summary}
                 </p>
 
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between mt-auto">
                   <div className="flex items-center text-xs text-muted-foreground">
                     <MapPin className="w-3 h-3 mr-1" />
                     <span data-testid={`text-story-city-${index}`}>
