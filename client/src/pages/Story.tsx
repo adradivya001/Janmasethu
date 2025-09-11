@@ -9,7 +9,7 @@ import { stories } from '@/data/stories';
 const Story = () => {
   const { slug } = useParams();
   const { t } = useLanguage();
-  
+
   const story = stories.find(s => s.slug === slug);
 
   if (!story) {
@@ -30,6 +30,8 @@ const Story = () => {
       </div>
     );
   }
+
+  const { lang } = useLanguage();
 
   const getStoryImage = () => {
     const images = [
@@ -70,17 +72,17 @@ const Story = () => {
           </div>
 
           <h1 className="text-3xl md:text-4xl font-bold text-foreground font-serif mb-6" data-testid="text-story-title">
-            {story.title}
+            {story.title[lang]}
           </h1>
 
           <p className="text-lg text-muted-foreground mb-6" data-testid="text-story-summary">
-            {story.summary}
+            {story.summary[lang]}
           </p>
 
           <div className="flex items-center space-x-4 text-sm text-muted-foreground">
             <div className="flex items-center space-x-2">
               <MapPin className="w-4 h-4" />
-              <span data-testid="text-story-city">{story.city}</span>
+              <span data-testid="text-story-city">{story.city[lang]}</span>
             </div>
             <div className="flex items-center space-x-2">
               <Calendar className="w-4 h-4" />
@@ -92,9 +94,9 @@ const Story = () => {
 
       {/* Hero Image */}
       <div className="mb-8">
-        <img 
-          src={getStoryImage()} 
-          alt={story.title} 
+        <img
+          src={getStoryImage()}
+          alt={story.title[lang]}
           className="w-full h-64 md:h-80 object-cover rounded-3xl"
         />
       </div>
@@ -111,7 +113,7 @@ const Story = () => {
                       Chapter {index + 1}
                     </h2>
                     <p className="text-muted-foreground leading-relaxed">
-                      {section}
+                      {section[lang]}
                     </p>
                   </div>
                 ))}
@@ -131,7 +133,7 @@ const Story = () => {
               <div className="space-y-3">
                 <div>
                   <span className="font-medium text-foreground">Location:</span>
-                  <p className="text-muted-foreground" data-testid="text-story-detail-city">{story.city}</p>
+                  <p className="text-muted-foreground" data-testid="text-story-detail-city">{story.city[lang]}</p>
                 </div>
                 <div>
                   <span className="font-medium text-foreground">Stage:</span>
@@ -165,10 +167,10 @@ const Story = () => {
                     <Link key={relatedStory.slug} href={`/success-stories/${relatedStory.slug}`}>
                       <div className="p-3 rounded-xl hover:bg-muted transition-colors" data-testid={`related-story-${index}`}>
                         <h4 className="text-sm font-semibold text-foreground mb-1">
-                          {relatedStory.title}
+                          {relatedStory.title[lang]}
                         </h4>
                         <p className="text-xs text-muted-foreground">
-                          {relatedStory.city} • {relatedStory.language}
+                          {relatedStory.city[lang]} • {relatedStory.language}
                         </p>
                       </div>
                     </Link>

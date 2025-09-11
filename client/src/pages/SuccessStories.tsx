@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { stories } from "@/data/stories";
 
 const SuccessStories = () => {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   const getStoryImage = (index: number) => {
     const images = [
@@ -34,9 +34,7 @@ const SuccessStories = () => {
           {t("success_preview_title")}
         </h1>
         <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-          Real stories from families across India who found their path to
-          parenthood. These journeys offer hope, practical insights, and
-          emotional support.
+          {t("success_preview_description")}
         </p>
 
         {/* Hero Background */}
@@ -64,7 +62,7 @@ const SuccessStories = () => {
               <CardContent className="p-0 flex flex-col h-full">
                 <img
                   src={getStoryImage(index)}
-                  alt={story.title}
+                  alt={story.title[lang]}
                   className="rounded-xl w-full h-32 object-cover mb-4"
                 />
 
@@ -74,7 +72,7 @@ const SuccessStories = () => {
                     className="text-xs"
                     data-testid={`badge-story-stage-${index}`}
                   >
-                    {story.stage}
+                    {story.stage[lang]}
                   </Badge>
                   {story.treatment && (
                     <Badge
@@ -82,7 +80,7 @@ const SuccessStories = () => {
                       className="text-xs"
                       data-testid={`badge-story-treatment-${index}`}
                     >
-                      {story.treatment}
+                      {story.treatment[lang]}
                     </Badge>
                   )}
                 </div>
@@ -91,25 +89,25 @@ const SuccessStories = () => {
                   className="text-lg font-bold text-foreground font-serif mb-2"
                   data-testid={`text-story-title-${index}`}
                 >
-                  {story.title}
+                  {story.title[lang]}
                 </h3>
                 <p
                   className="text-sm text-muted-foreground mb-4 flex-grow"
                   data-testid={`text-story-summary-${index}`}
                 >
-                  {story.summary}
+                  {story.summary[lang]}
                 </p>
 
                 <div className="flex items-center justify-between mt-auto">
                   <div className="flex items-center text-xs text-muted-foreground">
                     <MapPin className="w-3 h-3 mr-1" />
                     <span data-testid={`text-story-city-${index}`}>
-                      {story.city}
+                      {story.city[lang]}
                     </span>
                   </div>
                   <div className="flex items-center text-xs text-muted-foreground">
                     <span data-testid={`text-story-language-${index}`}>
-                      {story.language}
+                      {story.language[lang]}
                     </span>
                   </div>
                 </div>
@@ -124,18 +122,17 @@ const SuccessStories = () => {
         <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-3xl p-8 md:p-12 text-center">
           <Heart className="w-16 h-16 text-pink-500 mx-auto mb-6" />
           <h2 className="text-3xl font-bold text-foreground font-serif mb-4">
-            Share Your Story
+            {t("share_story_title")}
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
-            Your journey could inspire and help others. If you'd like to share
-            your experience, we'd love to hear from you.
+            {t("share_story_description")}
           </p>
           <Link href="/contact">
             <Button
               className="gradient-button-secondary text-white px-8 py-4 rounded-full font-semibold"
               data-testid="button-share-story"
             >
-              Share Your Story
+              {t("share_story_button")}
             </Button>
           </Link>
         </div>

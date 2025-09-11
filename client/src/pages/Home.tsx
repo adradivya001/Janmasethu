@@ -37,7 +37,7 @@ import { stories } from "../data/stories";
 import WhoWeServe from "../components/WhoWeServe";
 
 const Home = () => {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   const featuredArticles = articles.slice(0, 4);
   const featuredStories = stories.slice(0, 3);
@@ -831,18 +831,18 @@ const Home = () => {
                     className="text-lg font-bold text-foreground font-serif mb-2"
                     data-testid={`text-story-title-${index}`}
                   >
-                    {story.title}
+                    {story.title[lang]}
                   </h3>
                   <p
                     className="text-sm text-muted-foreground mb-3 flex-grow"
                     data-testid={`text-story-summary-${index}`}
                   >
-                    {story.summary}
+                    {story.summary[lang]}
                   </p>
                   <div className="flex items-center text-xs text-muted-foreground mt-auto">
                     <i className="fas fa-map-marker-alt mr-1"></i>
                     <span data-testid={`text-story-city-${index}`}>
-                      {story.city}
+                      {story.city[lang]}
                     </span>
                   </div>
                 </CardContent>
