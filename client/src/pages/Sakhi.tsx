@@ -1,9 +1,17 @@
-import { Link } from 'wouter';
-import { Heart, ArrowRight, Shield, Clock, Users, MessageCircle, CheckCircle } from 'lucide-react';
-import { useLanguage } from '../i18n/LanguageProvider';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import ChatInterface from '@/components/ChatInterface';
+import { Link } from "wouter";
+import {
+  Heart,
+  ArrowRight,
+  Shield,
+  Clock,
+  Users,
+  MessageCircle,
+  CheckCircle,
+} from "lucide-react";
+import { useLanguage } from "../i18n/LanguageProvider";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import ChatInterface from "@/components/ChatInterface";
 
 const Sakhi = () => {
   const { t } = useLanguage();
@@ -11,34 +19,35 @@ const Sakhi = () => {
   const sakhiFeatures = [
     {
       icon: Heart,
-      title: 'Emotional Support',
-      description: 'Compassionate responses for anxiety, fear, and overwhelming moments',
-      color: 'text-pink-600'
+      title: "Emotional Support",
+      description:
+        "Compassionate responses for anxiety, fear, and overwhelming moments",
+      color: "text-pink-600",
     },
     {
       icon: Clock,
-      title: '24/7 Availability',
-      description: 'Support whenever you need it, day or night',
-      color: 'text-blue-600'
+      title: "24/7 Availability",
+      description: "Support whenever you need it, day or night",
+      color: "text-blue-600",
     },
     {
       icon: Shield,
-      title: 'Private & Secure',
-      description: 'All conversations stay on your device - completely private',
-      color: 'text-green-600'
+      title: "Private & Secure",
+      description: "All conversations stay on your device - completely private",
+      color: "text-green-600",
     },
     {
       icon: Users,
-      title: 'Partner Support',
-      description: 'Guidance for both partners navigating the journey together',
-      color: 'text-purple-600'
+      title: "Partner Support",
+      description: "Guidance for both partners navigating the journey together",
+      color: "text-purple-600",
     },
     {
       icon: MessageCircle,
-      title: 'Multi-language',
-      description: 'Responds in English, Hindi, or Telugu based on your input',
-      color: 'text-orange-600'
-    }
+      title: "Multi-language",
+      description: "Responds in English, Hindi, or Telugu based on your input",
+      color: "text-orange-600",
+    },
   ];
 
   return (
@@ -46,23 +55,36 @@ const Sakhi = () => {
       {/* Hero Section */}
       <section className="text-center py-16 relative">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground font-serif mb-6 leading-tight" data-testid="text-sakhi-hero-title">
-            <span dangerouslySetInnerHTML={{ __html: t('sakhi_hero') }} />
+          <h1
+            className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground font-serif mb-6 leading-tight"
+            data-testid="text-sakhi-hero-title"
+          >
+            <span dangerouslySetInnerHTML={{ __html: t("sakhi_hero") }} />
           </h1>
 
-          <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto" data-testid="text-sakhi-hero-subtitle">
-            {t('sakhi_sub')}
+          <p
+            className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto"
+            data-testid="text-sakhi-hero-subtitle"
+          >
+            {t("sakhi_sub")}
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link href="/sakhi/try">
-              <Button className="gradient-button text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-lg transition-all duration-300 inline-flex items-center" data-testid="button-try-sakhi-hero">
-                {t('sakhi_try')}
+              <Button
+                className="gradient-button text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-lg transition-all duration-300 inline-flex items-center"
+                data-testid="button-try-sakhi-hero"
+              >
+                {t("sakhi_try")}
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
             </Link>
             <Link href="/knowledge">
-              <Button variant="outline" className="bg-white text-foreground px-8 py-4 rounded-full font-semibold text-lg border-border hover:shadow-lg transition-all duration-300" data-testid="button-browse-knowledge">
+              <Button
+                variant="outline"
+                className="bg-white text-foreground px-8 py-4 rounded-full font-semibold text-lg border-border hover:shadow-lg transition-all duration-300"
+                data-testid="button-browse-knowledge"
+              >
                 Browse Knowledge Hub
               </Button>
             </Link>
@@ -70,9 +92,9 @@ const Sakhi = () => {
 
           {/* Background Image */}
           <div className="absolute inset-0 -z-10 opacity-10">
-            <img 
-              src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080" 
-              alt="Peaceful meditation and wellness" 
+            <img
+              src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080"
+              alt="Peaceful meditation and wellness"
               className="w-full h-full object-cover rounded-3xl"
             />
           </div>
@@ -82,11 +104,15 @@ const Sakhi = () => {
       {/* How Sakhi Helps */}
       <section className="py-16">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-foreground font-serif mb-4" data-testid="text-sakhi-how-title">
-            {t('sakhi_how_title')}
+          <h2
+            className="text-4xl font-bold text-foreground font-serif mb-4"
+            data-testid="text-sakhi-how-title"
+          >
+            {t("sakhi_how_title")}
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Sakhi understands the emotional challenges of fertility journeys and provides culturally-aware support
+            Sakhi understands the emotional challenges of fertility journeys and
+            provides culturally-aware support
           </p>
         </div>
 
@@ -94,13 +120,23 @@ const Sakhi = () => {
           {sakhiFeatures.map((feature, index) => {
             const Icon = feature.icon;
             return (
-              <Card key={index} className="rounded-3xl p-6 card-shadow hover:shadow-xl transition-all duration-300 text-center" data-testid={`card-sakhi-feature-${index}`}>
+              <Card
+                key={index}
+                className="rounded-3xl p-6 card-shadow hover:shadow-xl transition-all duration-300 text-center"
+                data-testid={`card-sakhi-feature-${index}`}
+              >
                 <CardContent className="p-0">
                   <Icon className={`w-12 h-12 ${feature.color} mx-auto mb-4`} />
-                  <h3 className="text-lg font-bold text-foreground font-serif mb-2" data-testid={`text-feature-title-${index}`}>
+                  <h3
+                    className="text-lg font-bold text-foreground font-serif mb-2"
+                    data-testid={`text-feature-title-${index}`}
+                  >
                     {feature.title}
                   </h3>
-                  <p className="text-sm text-muted-foreground" data-testid={`text-feature-description-${index}`}>
+                  <p
+                    className="text-sm text-muted-foreground"
+                    data-testid={`text-feature-description-${index}`}
+                  >
                     {feature.description}
                   </p>
                 </CardContent>
@@ -116,12 +152,18 @@ const Sakhi = () => {
               Specific Ways Sakhi Supports You
             </h3>
             <div className="grid md:grid-cols-2 gap-6">
-              {t('sakhi_how_list').split('|').map((item: string, index: number) => (
-                <div key={index} className="flex items-start space-x-3" data-testid={`item-sakhi-help-${index}`}>
-                  <Heart className="text-pink-500 w-5 h-5 mt-1 flex-shrink-0" />
-                  <span className="text-muted-foreground">{item.trim()}</span>
-                </div>
-              ))}
+              {t("sakhi_how_list")
+                .split(";")
+                .map((item: string, index: number) => (
+                  <div
+                    key={index}
+                    className="flex items-start space-x-3"
+                    data-testid={`item-sakhi-help-${index}`}
+                  >
+                    <Heart className="text-pink-500 w-5 h-5 mt-1 flex-shrink-0" />
+                    <span className="text-muted-foreground">{item.trim()}</span>
+                  </div>
+                ))}
             </div>
           </CardContent>
         </Card>
@@ -130,46 +172,80 @@ const Sakhi = () => {
       {/* Interactive Demo Section */}
       <section className="py-16">
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground font-serif mb-6" data-testid="text-sakhi-try-title">
+          <h2
+            className="text-4xl md:text-5xl font-bold text-foreground font-serif mb-6"
+            data-testid="text-sakhi-try-title"
+          >
             Try Sakhi - Interactive Demo
           </h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto" data-testid="text-sakhi-try-subtitle">
-            Experience compassionate, culturally-aware support for your fertility journey. 
-            Type in any language and Sakhi will respond accordingly.
+          <p
+            className="text-lg text-muted-foreground max-w-3xl mx-auto"
+            data-testid="text-sakhi-try-subtitle"
+          >
+            Experience compassionate, culturally-aware support for your
+            fertility journey. Type in any language and Sakhi will respond
+            accordingly.
           </p>
         </div>
 
         {/* Privacy Features */}
         <div className="grid md:grid-cols-3 gap-6 mb-12">
-          <Card className="rounded-3xl p-4 card-shadow text-center" data-testid="card-privacy-feature-0">
+          <Card
+            className="rounded-3xl p-4 card-shadow text-center"
+            data-testid="card-privacy-feature-0"
+          >
             <CardContent className="p-0">
               <Shield className="w-8 h-8 text-green-600 mx-auto mb-3" />
-              <h3 className="font-bold text-foreground mb-1" data-testid="text-privacy-title-0">
+              <h3
+                className="font-bold text-foreground mb-1"
+                data-testid="text-privacy-title-0"
+              >
                 Private & Local
               </h3>
-              <p className="text-sm text-muted-foreground" data-testid="text-privacy-description-0">
+              <p
+                className="text-sm text-muted-foreground"
+                data-testid="text-privacy-description-0"
+              >
                 All conversations stay on your device
               </p>
             </CardContent>
           </Card>
-          <Card className="rounded-3xl p-4 card-shadow text-center" data-testid="card-privacy-feature-1">
+          <Card
+            className="rounded-3xl p-4 card-shadow text-center"
+            data-testid="card-privacy-feature-1"
+          >
             <CardContent className="p-0">
               <MessageCircle className="w-8 h-8 text-blue-600 mx-auto mb-3" />
-              <h3 className="font-bold text-foreground mb-1" data-testid="text-privacy-title-1">
+              <h3
+                className="font-bold text-foreground mb-1"
+                data-testid="text-privacy-title-1"
+              >
                 Multi-language
               </h3>
-              <p className="text-sm text-muted-foreground" data-testid="text-privacy-description-1">
+              <p
+                className="text-sm text-muted-foreground"
+                data-testid="text-privacy-description-1"
+              >
                 Responds in English, Hindi, or Telugu
               </p>
             </CardContent>
           </Card>
-          <Card className="rounded-3xl p-4 card-shadow text-center" data-testid="card-privacy-feature-2">
+          <Card
+            className="rounded-3xl p-4 card-shadow text-center"
+            data-testid="card-privacy-feature-2"
+          >
             <CardContent className="p-0">
               <Clock className="w-8 h-8 text-purple-600 mx-auto mb-3" />
-              <h3 className="font-bold text-foreground mb-1" data-testid="text-privacy-title-2">
+              <h3
+                className="font-bold text-foreground mb-1"
+                data-testid="text-privacy-title-2"
+              >
                 24/7 Available
               </h3>
-              <p className="text-sm text-muted-foreground" data-testid="text-privacy-description-2">
+              <p
+                className="text-sm text-muted-foreground"
+                data-testid="text-privacy-description-2"
+              >
                 Support whenever you need it
               </p>
             </CardContent>
@@ -193,37 +269,73 @@ const Sakhi = () => {
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  <div className="p-3 rounded-xl border border-border hover:bg-muted transition-colors" data-testid="scenario-0">
-                    <h4 className="font-semibold text-foreground text-sm mb-1" data-testid="text-scenario-title-0">
+                  <div
+                    className="p-3 rounded-xl border border-border hover:bg-muted transition-colors"
+                    data-testid="scenario-0"
+                  >
+                    <h4
+                      className="font-semibold text-foreground text-sm mb-1"
+                      data-testid="text-scenario-title-0"
+                    >
                       Pre-scan Anxiety
                     </h4>
-                    <p className="text-xs text-muted-foreground mb-2" data-testid="text-scenario-description-0">
+                    <p
+                      className="text-xs text-muted-foreground mb-2"
+                      data-testid="text-scenario-description-0"
+                    >
                       Get support before medical appointments
                     </p>
-                    <p className="text-xs text-primary font-medium italic" data-testid="text-scenario-prompt-0">
-                      "{t('chat_p1')}"
+                    <p
+                      className="text-xs text-primary font-medium italic"
+                      data-testid="text-scenario-prompt-0"
+                    >
+                      "{t("chat_p1")}"
                     </p>
                   </div>
-                  <div className="p-3 rounded-xl border border-border hover:bg-muted transition-colors" data-testid="scenario-1">
-                    <h4 className="font-semibold text-foreground text-sm mb-1" data-testid="text-scenario-title-1">
+                  <div
+                    className="p-3 rounded-xl border border-border hover:bg-muted transition-colors"
+                    data-testid="scenario-1"
+                  >
+                    <h4
+                      className="font-semibold text-foreground text-sm mb-1"
+                      data-testid="text-scenario-title-1"
+                    >
                       Two-week Wait
                     </h4>
-                    <p className="text-xs text-muted-foreground mb-2" data-testid="text-scenario-description-1">
+                    <p
+                      className="text-xs text-muted-foreground mb-2"
+                      data-testid="text-scenario-description-1"
+                    >
                       Manage anticipation and worry during waiting periods
                     </p>
-                    <p className="text-xs text-primary font-medium italic" data-testid="text-scenario-prompt-1">
-                      "{t('chat_p2')}"
+                    <p
+                      className="text-xs text-primary font-medium italic"
+                      data-testid="text-scenario-prompt-1"
+                    >
+                      "{t("chat_p2")}"
                     </p>
                   </div>
-                  <div className="p-3 rounded-xl border border-border hover:bg-muted transition-colors" data-testid="scenario-2">
-                    <h4 className="font-semibold text-foreground text-sm mb-1" data-testid="text-scenario-title-2">
+                  <div
+                    className="p-3 rounded-xl border border-border hover:bg-muted transition-colors"
+                    data-testid="scenario-2"
+                  >
+                    <h4
+                      className="font-semibold text-foreground text-sm mb-1"
+                      data-testid="text-scenario-title-2"
+                    >
                       Partner Support
                     </h4>
-                    <p className="text-xs text-muted-foreground mb-2" data-testid="text-scenario-description-2">
+                    <p
+                      className="text-xs text-muted-foreground mb-2"
+                      data-testid="text-scenario-description-2"
+                    >
                       Help for partners dealing with diagnosis emotions
                     </p>
-                    <p className="text-xs text-primary font-medium italic" data-testid="text-scenario-prompt-2">
-                      "{t('chat_p3')}"
+                    <p
+                      className="text-xs text-primary font-medium italic"
+                      data-testid="text-scenario-prompt-2"
+                    >
+                      "{t("chat_p3")}"
                     </p>
                   </div>
                 </div>
@@ -232,7 +344,9 @@ const Sakhi = () => {
 
             <Card className="rounded-3xl p-6 card-shadow">
               <CardHeader>
-                <CardTitle className="text-lg font-bold text-foreground font-serif">How It Works</CardTitle>
+                <CardTitle className="text-lg font-bold text-foreground font-serif">
+                  How It Works
+                </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
@@ -240,19 +354,25 @@ const Sakhi = () => {
                     <div className="w-6 h-6 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0">
                       1
                     </div>
-                    <p className="text-sm text-muted-foreground">Type your message in English, Hindi, or Telugu</p>
+                    <p className="text-sm text-muted-foreground">
+                      Type your message in English, Hindi, or Telugu
+                    </p>
                   </div>
                   <div className="flex items-start space-x-3">
                     <div className="w-6 h-6 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0">
                       2
                     </div>
-                    <p className="text-sm text-muted-foreground">Sakhi detects your language automatically</p>
+                    <p className="text-sm text-muted-foreground">
+                      Sakhi detects your language automatically
+                    </p>
                   </div>
                   <div className="flex items-start space-x-3">
                     <div className="w-6 h-6 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0">
                       3
                     </div>
-                    <p className="text-sm text-muted-foreground">Receive compassionate, culturally-aware support</p>
+                    <p className="text-sm text-muted-foreground">
+                      Receive compassionate, culturally-aware support
+                    </p>
                   </div>
                 </div>
               </CardContent>
@@ -261,9 +381,14 @@ const Sakhi = () => {
             <Card className="rounded-3xl p-6 card-shadow bg-gradient-to-br from-blue-50 to-purple-50">
               <CardContent className="p-0 text-center">
                 <Shield className="w-10 h-10 text-blue-600 mx-auto mb-3" />
-                <h3 className="font-bold text-foreground mb-2">Privacy First</h3>
-                <p className="text-xs text-muted-foreground mb-4" data-testid="text-privacy-notice">
-                  {t('chat_privacy')}
+                <h3 className="font-bold text-foreground mb-2">
+                  Privacy First
+                </h3>
+                <p
+                  className="text-xs text-muted-foreground mb-4"
+                  data-testid="text-privacy-notice"
+                >
+                  {t("chat_privacy")}
                 </p>
                 <p className="text-xs text-muted-foreground">
                   No account needed, no data collected, completely anonymous.
@@ -282,14 +407,18 @@ const Sakhi = () => {
             </h3>
             <div className="max-w-3xl mx-auto text-muted-foreground space-y-3">
               <p>
-                Sakhi provides emotional support and coping strategies, but cannot replace professional medical or mental health care.
+                Sakhi provides emotional support and coping strategies, but
+                cannot replace professional medical or mental health care.
               </p>
               <p className="font-medium text-foreground">
-                Please contact a healthcare professional or emergency services immediately if you experience:
+                Please contact a healthcare professional or emergency services
+                immediately if you experience:
               </p>
               <ul className="text-left max-w-xl mx-auto space-y-1">
                 <li>• Thoughts of self-harm or suicide</li>
-                <li>• Severe depression or anxiety that interferes with daily life</li>
+                <li>
+                  • Severe depression or anxiety that interferes with daily life
+                </li>
                 <li>• Panic attacks or overwhelming distress</li>
                 <li>• Any medical symptoms or concerns</li>
               </ul>
@@ -303,16 +432,24 @@ const Sakhi = () => {
             Continue Your Journey
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
-            Explore our comprehensive knowledge hub for evidence-based information on fertility, pregnancy, and parenting.
+            Explore our comprehensive knowledge hub for evidence-based
+            information on fertility, pregnancy, and parenting.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/knowledge">
-              <Button className="gradient-button text-white px-8 py-4 rounded-full font-semibold" data-testid="button-explore-knowledge">
+              <Button
+                className="gradient-button text-white px-8 py-4 rounded-full font-semibold"
+                data-testid="button-explore-knowledge"
+              >
                 Explore Knowledge Hub
               </Button>
             </Link>
             <Link href="/treatments">
-              <Button variant="outline" className="px-8 py-4 rounded-full font-semibold" data-testid="button-learn-treatments">
+              <Button
+                variant="outline"
+                className="px-8 py-4 rounded-full font-semibold"
+                data-testid="button-learn-treatments"
+              >
                 Learn About Treatments
               </Button>
             </Link>
@@ -329,8 +466,11 @@ const Sakhi = () => {
               Important Notice
             </h3>
             <p className="text-muted-foreground max-w-3xl mx-auto">
-              Sakhi provides emotional support and general guidance but is not a replacement for professional medical or mental health care. 
-              If you're experiencing thoughts of self-harm or severe distress, please contact a healthcare professional or emergency services immediately.
+              Sakhi provides emotional support and general guidance but is not a
+              replacement for professional medical or mental health care. If
+              you're experiencing thoughts of self-harm or severe distress,
+              please contact a healthcare professional or emergency services
+              immediately.
             </p>
           </CardContent>
         </Card>
