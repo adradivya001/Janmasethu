@@ -366,7 +366,7 @@ const Home = () => {
               </h3>
               <ul className="space-y-3 mb-8">
                 {t("sakhi_how_list")
-                  .split(",")
+                  .split("|")
                   .map((item: string, index: number) => (
                     <li
                       key={index}
