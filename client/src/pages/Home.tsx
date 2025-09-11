@@ -668,23 +668,25 @@ const Home = () => {
                 className="rounded-3xl p-6 card-shadow hover:shadow-xl transition-all duration-300 h-full flex flex-col"
                 data-testid={`card-featured-article-${index}`}
               >
-                <img
-                  src={getArticleImage(index)}
-                  alt={article.title.en}
-                  className="rounded-xl w-full h-32 object-cover mb-4"
-                />
-                <h3
-                  className="text-lg font-bold text-foreground font-serif mb-2"
-                  data-testid={`text-article-title-${index}`}
-                >
-                  {article.title.en}
-                </h3>
-                <p
-                  className="text-sm text-muted-foreground flex-grow"
-                  data-testid={`text-article-summary-${index}`}
-                >
-                  {article.summary.en}
-                </p>
+                <CardContent className="p-0 flex flex-col h-full">
+                  <img
+                    src={getArticleImage(index)}
+                    alt={article.title.en}
+                    className="rounded-xl w-full h-32 object-cover mb-4"
+                  />
+                  <h3
+                    className="text-lg font-bold text-foreground font-serif mb-2"
+                    data-testid={`text-article-title-${index}`}
+                  >
+                    {article.title.en}
+                  </h3>
+                  <p
+                    className="text-sm text-muted-foreground flex-grow"
+                    data-testid={`text-article-summary-${index}`}
+                  >
+                    {article.summary.en}
+                  </p>
+                </CardContent>
               </Card>
             </Link>
           ))}
@@ -754,35 +756,37 @@ const Home = () => {
             <Link
               key={story.slug}
               href={`/success-stories/${story.slug}`}
-              className="group"
+              className="group h-full"
             >
               <Card
-                className="rounded-3xl p-6 card-shadow hover:shadow-xl transition-all duration-300"
+                className="rounded-3xl p-6 card-shadow hover:shadow-xl transition-all duration-300 h-full flex flex-col"
                 data-testid={`card-success-story-${index}`}
               >
-                <img
-                  src={getStoryImage(index)}
-                  alt={story.title}
-                  className="rounded-xl w-full h-32 object-cover mb-4"
-                />
-                <h3
-                  className="text-lg font-bold text-foreground font-serif mb-2"
-                  data-testid={`text-story-title-${index}`}
-                >
-                  {story.title}
-                </h3>
-                <p
-                  className="text-sm text-muted-foreground mb-3"
-                  data-testid={`text-story-summary-${index}`}
-                >
-                  {story.summary}
-                </p>
-                <div className="flex items-center text-xs text-muted-foreground">
-                  <i className="fas fa-map-marker-alt mr-1"></i>
-                  <span data-testid={`text-story-city-${index}`}>
-                    {story.city}
-                  </span>
-                </div>
+                <CardContent className="p-0 flex flex-col h-full">
+                  <img
+                    src={getStoryImage(index)}
+                    alt={story.title}
+                    className="rounded-xl w-full h-32 object-cover mb-4"
+                  />
+                  <h3
+                    className="text-lg font-bold text-foreground font-serif mb-2"
+                    data-testid={`text-story-title-${index}`}
+                  >
+                    {story.title}
+                  </h3>
+                  <p
+                    className="text-sm text-muted-foreground mb-3 flex-grow"
+                    data-testid={`text-story-summary-${index}`}
+                  >
+                    {story.summary}
+                  </p>
+                  <div className="flex items-center text-xs text-muted-foreground mt-auto">
+                    <i className="fas fa-map-marker-alt mr-1"></i>
+                    <span data-testid={`text-story-city-${index}`}>
+                      {story.city}
+                    </span>
+                  </div>
+                </CardContent>
               </Card>
             </Link>
           ))}
