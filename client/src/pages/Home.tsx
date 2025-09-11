@@ -805,7 +805,7 @@ const getArticleImage = (index: number) => {
 
 const getStoryImage = (index: number) => {
   const images = [
-    "https://images.unsplash.com/photo-1544367567-0f2fcb0099b0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300",
+    "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300",
     "https://images.unsplash.com/photo-1566004100631-35d015d6a491?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300",
     "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300",
   ];
