@@ -78,7 +78,7 @@ export const dict = {
 
     // Section titles
     featured_title: "Editor's Picks",
-    treatments_overview_title: "Understanding your fertility treatment options with clear, evidence-based information",
+    treatments_overview_title: "Treatments at a glance",
     success_preview_title: "Success Stories",
     blog_preview_title: "From the Blog",
     rights_title: "Rights & Schemes (India)",
@@ -239,7 +239,7 @@ export const dict = {
     lens_financial: "वित्तीय",
     lens_nutrition: "पोषण",
     featured_title: "संपादक की पसंद",
-    treatments_overview_title: "स्पष्ट, साक्ष्य-आधारित जानकारी के साथ अपने प्रजनन उपचार विकल्पों को समझना",
+    treatments_overview_title: "उपचार एक नज़र में",
     success_preview_title: "सफलता की कहानियाँ",
     blog_preview_title: "ब्लॉग से",
     rights_title: "अधिकार व योजनाएँ (भारत)",
@@ -404,7 +404,7 @@ export const dict = {
     lens_financial: "ఆర్థిక సంబంధిత",
     lens_nutrition: "పోషణ సంబంధిత",
     featured_title: "ఎడిటర్ ఎంపికలు",
-    treatments_overview_title: "స్పష్టమైన, సాక్ష్యాధార సమాచారంతో మీ ప్రజనన చికిత్స ఎంపికలను అర్థం చేసుకోవడం",
+    treatments_overview_title: "ట్రీట్‌మెంట్‌లు — ఒక చూపులో",
     success_preview_title: "సక్సెస్ స్టోరీస్",
     blog_preview_title: "బ్లాగ్ నుండి",
     rights_title: "హక్కులు & పథకాలు (ఇండియా)",

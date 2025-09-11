@@ -27,7 +27,7 @@ const Treatments = () => {
           Comprehensive guides to fertility treatments, procedures, and options available in India. 
           Each guide includes steps, costs, risks, and questions to ask your doctor.
         </p>
-
+        
         {/* Hero Background Image */}
         <div className="mt-12 relative">
           <img 
@@ -42,7 +42,7 @@ const Treatments = () => {
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
         {treatments.map((treatment, index) => {
           const iconData = treatmentIcons[treatment.slug as keyof typeof treatmentIcons] || treatmentIcons['iui'];
-
+          
           return (
             <Link key={treatment.slug} href={`/treatments/${treatment.slug}`} className="group">
               <Card className="rounded-3xl p-8 card-shadow hover:shadow-xl transition-all duration-300 h-full" data-testid={`card-treatment-${index}`}>
@@ -50,13 +50,13 @@ const Treatments = () => {
                   <div className={`w-16 h-16 ${iconData.color.split(' ')[0]} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
                     <i className={`${iconData.icon} ${iconData.color.split(' ')[1]} text-2xl`}></i>
                   </div>
-
+                  
                   <h3 className="text-2xl font-bold text-foreground font-serif mb-4" data-testid={`text-treatment-name-${index}`}>
-                    {t(`treatment_${treatment.slug}_title`)}
+                    {treatment.name}
                   </h3>
-
+                  
                   <p className="text-muted-foreground mb-6" data-testid={`text-treatment-overview-${index}`}>
-                    {t(`treatment_${treatment.slug}_desc`)}
+                    {treatment.overview}
                   </p>
 
                   <div className="space-y-3">
@@ -90,7 +90,7 @@ const Treatments = () => {
               Navigating treatment options can be overwhelming. Sakhi is here to provide emotional support and guidance.
             </p>
           </div>
-
+          
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/sakhi">
               <Button className="gradient-button-secondary text-white px-8 py-4 rounded-full font-semibold" data-testid="button-talk-sakhi">
