@@ -159,7 +159,7 @@ const Home = () => {
               className="gradient-button text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-lg transition-all duration-300"
               data-testid="button-cta-primary"
             >
-              Meet Sakhi
+              {t("cta_primary")}
             </Button>
           </Link>
           <Link href="/knowledge">
@@ -168,7 +168,7 @@ const Home = () => {
               className="bg-white text-foreground px-8 py-4 rounded-full font-semibold text-lg border-border hover:shadow-lg transition-all duration-300"
               data-testid="button-cta-secondary"
             >
-              For Clinics
+              {t("cta_secondary")}
             </Button>
           </Link>
         </div>
