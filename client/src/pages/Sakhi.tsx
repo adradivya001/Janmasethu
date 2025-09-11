@@ -116,7 +116,7 @@ const Sakhi = () => {
               Specific Ways Sakhi Supports You
             </h3>
             <div className="grid md:grid-cols-2 gap-6">
-              {t('sakhi_how_list').split(',').map((item: string, index: number) => (
+              {t('sakhi_how_list').split('|').map((item: string, index: number) => (
                 <div key={index} className="flex items-start space-x-3" data-testid={`item-sakhi-help-${index}`}>
                   <Heart className="text-pink-500 w-5 h-5 mt-1 flex-shrink-0" />
                   <span className="text-muted-foreground">{item.trim()}</span>

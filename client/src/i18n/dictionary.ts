@@ -154,7 +154,7 @@ export const dict = {
       "24/7 emotional support, coping strategies, and culture‑aware guidance — private and judgment‑free.",
     sakhi_how_title: "How Sakhi Helps",
     sakhi_how_list:
-      "Reduces anxiety before scans or injections,Calms two‑week‑wait spirals with small routines,Supports partners (guilt helplessness communication),Sleep nudges,Planning prompts,Knows when to suggest professional help",
+      "Reduces anxiety before scans or injections|Calms two‑week‑wait spirals with small routines|Supports partners (guilt, helplessness, communication)|Sleep nudges|Planning prompts|Knows when to suggest professional help",
     sakhi_try: "Try Sakhi",
     sakhi_demo_title: "Try a scenario",
 
@@ -302,7 +302,7 @@ export const dict = {
     sakhi_sub: "24/7 भावनात्मक सहयोग — निजी",
     sakhi_how_title: "सखी कैसे मदद करती है",
     sakhi_how_list:
-      "स्कैन/इंजेक्शन से पहले शांति,टू‑वीक‑वेट में छोटे रूटीन,साथी का सहयोग,नींद व योजना,कब पेशेवर मदद लें",
+      "स्कैन/इंजेक्शन से पहले शांति|टू‑वीक‑वेट में छोटे रूटीन|साथी का सहयोग|नींद व योजना|कब पेशेवर मदद लें",
     sakhi_try: "सखी आज़माएँ",
     sakhi_demo_title: "एक परिदृश्य आज़माएँ",
     chat_title: "सखी — बातचीत (डेमो)",
@@ -471,7 +471,7 @@ export const dict = {
       "24/7 భావోద్వేగ సహాయం, స్ట్రెస్ తగ్గించే మార్గాలు, మీ సంస్కృతి కి తగ్గ గైడెన్స్ — ప్రైవేట్‌గా, ఎలాంటి విమర్శలు లేకుండా.",
     sakhi_how_title: "సఖి ఎలా సహాయం చేస్తుంది?",
     sakhi_how_list:
-      " స్కాన్‌లు లేదా ఇంజెక్షన్‌ల ముందు వచ్చే టెన్షన్ తగ్గిస్తుంది,రెండు వారాల వేచివుండే స్ట్రెస్‌ని చిన్న చిన్న రూటీన్స్‌తో తగ్గిస్తుంది,పార్ట్నర్‌లకు సపోర్ట్ ఇస్తుంది (గిల్టీ ఫీలింగ్, హెల్ప్‌లెస్ ఫీలింగ్, కమ్యూనికేషన్ వంటివి),నిద్రకు చిన్న చిన్న సూచనలు ఇస్తుంది, ఆశలు ప్లాన్ చేసుకోవడంలో సలహా ఇస్తుంది,ఎప్పుడు ప్రొఫెషనల్ హెల్ప్ అవసరమో చెప్పిస్తుంది",
+      "స్కాన్‌లు లేదా ఇంజెక్షన్‌ల ముందు వచ్చే టెన్షన్ తగ్గిస్తుంది, రెండు వారాల వేచివుండే స్ట్రెస్‌ని చిన్న చిన్న రూటీన్స్‌తో తగ్గిస్తుంది|పార్ట్నర్‌లకు సపోర్ట్ ఇస్తుంది (గిల్టీ ఫీలింగ్, హెల్ప్‌లెస్ ఫీలింగ్, కమ్యూనికేషన్ వంటివి)|నిద్రకు చిన్న చిన్న సూచనలు ఇస్తుంది|ఆశలు ప్లాన్ చేసుకోవడంలో సలహా ఇస్తుంది|ఎప్పుడు ప్రొఫెషనల్ హెల్ప్ అవసరమో చెప్పిస్తుంది",
     sakhi_try: "సఖిని ప్రయత్నించండి",
     sakhi_demo_title: "ఒక సందర్భం ప్రయత్నించండి",
     chat_title: "సఖి — సంభాషణ (డెమో)",
