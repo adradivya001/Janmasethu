@@ -204,6 +204,10 @@ export const dict = {
     learn_more: "Learn More", 
     get_started: "Get Started",
     explore_more: "Explore More",
+    support_title: "Need Additional Support?",
+    support_subtitle: "Get personalized guidance and emotional support throughout your journey",
+    talk_sakhi_button: "Talk to Sakhi",
+    find_experts_button: "Find Experts",
   },
   hi: {
     brand_tag: "आपकी प्रजनन यात्रा यहीं से शुरू होती है",
@@ -379,6 +383,10 @@ export const dict = {
     learn_more: "और जानें",
     get_started: "शुरू करें",
     explore_more: "और अन्वेषण करें",
+    support_title: "अतिरिक्त सहायता की आवश्यकता है?",
+    support_subtitle: "अपनी यात्रा के दौरान व्यक्तिगत मार्गदर्शन और भावनात्मक समर्थन प्राप्त करें",
+    talk_sakhi_button: "सखी से बात करें",
+    find_experts_button: "विशेषज्ञ खोजें",
   },
   te: {
     brand_tag: "మీ ప్రజనన ప్రయాణం ఇక్కడ ప్రారంభమవుతుంది",
@@ -561,5 +569,9 @@ export const dict = {
     learn_more: "మరింత తెలుసుకోండి",
     get_started: "ప్రారంభించండి",
     explore_more: "మరింత అన్వేషించండి",
+    support_title: "అదనపు మద్దతు అవసరమా?",
+    support_subtitle: "మీ ప్రయాణంలో వ్యక్తిగతీకరించిన మార్గదర్శకత్వం మరియు భావోద్వేగ మద్దతు పొందండి",
+    talk_sakhi_button: "సఖితో మాట్లాడండి",
+    find_experts_button: "నిపుణులను కనుగొనండి",
   },
 } as const;
