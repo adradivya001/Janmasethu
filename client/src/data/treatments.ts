@@ -1,3 +1,4 @@
+
 export type Treatment = { 
   id: string;
   slug: string; 
@@ -83,39 +84,5 @@ export const treatments: Treatment[] = [
     sources: ['ACOG','ASRM'], 
     reviewedBy: 'Dr. Raghav Iyer',
     benefits: ['Cancer patients', 'Delayed childbearing', 'Medical conditions', 'Career planning']
-  }
-];ame: 'ICSI', 
-    overview: 'Single sperm injected into each mature egg.', 
-    who: ['Severe male‑factor','Prior fertilisation failure'], 
-    steps: ['Egg retrieval','Micromanipulation','Embryo culture','Transfer'], 
-    risks: ['Similar to IVF','Not all embryos are normal'], 
-    costNote: 'Adds a lab fee beyond IVF.', 
-    askDoctor: ['Why ICSI vs IVF?','Lab expertise/outcomes?'], 
-    sources: ['ESHRE'], 
-    reviewedBy: 'Meera N., MSc Embryology' 
-  },
-  { 
-    slug: 'donor-options', 
-    name: 'Donor options', 
-    overview: 'Donor eggs/sperm/embryos with consent & screening.', 
-    who: ['Low ovarian reserve','Genetic conditions','Single/queer parents'], 
-    steps: ['Counselling & consent','Matching & screening','Legal forms','Procedure as per plan'], 
-    risks: ['Emotional/legal considerations','Disclosure planning'], 
-    costNote: 'Includes screening, legal, treatment fees.', 
-    askDoctor: ['Legal framework & consent','Donor screening','Anonymity policies'], 
-    sources: ['ICMR ART Rules (summary)'], 
-    reviewedBy: 'Adv. Shreya S., LLB' 
-  },
-  { 
-    slug: 'fertility-preservation', 
-    name: 'Fertility preservation', 
-    overview: 'Freezing eggs/sperm/embryos for later use.', 
-    who: ['Cancer therapy','Delayed parenthood','Risk of POI'], 
-    steps: ['Counselling','Testing','Collection/Freezing','Storage'], 
-    risks: ['Procedure risks','Uncertain future outcomes'], 
-    costNote: 'Procedure + meds + annual storage.', 
-    askDoctor: ['How many eggs to freeze?','Storage limits/costs?'], 
-    sources: ['ASRM','NCCN (patient)'], 
-    reviewedBy: 'Dr. Raghav Iyer' 
   }
 ];
