@@ -48,7 +48,9 @@ const Knowledge = () => {
           {t('nav_knowledge')}
         </h1>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          Evidence-based guides for your parenting journey, organized by life stage and perspective
+          {lang === 'hi' ? 'जीवन चरण और दृष्टिकोण के अनुसार व्यवस्थित, आपकी पेरेंटिंग यात्रा के लिए साक्ष्य-आधारित गाइड' : 
+           lang === 'te' ? 'జీవిత దశ మరియు దృక్పథం ఆధారంగా నిర్వహించబడిన, మీ పేరెంటింగ్ ప్రయాణానికి సాక్ష్యాధార గైడ్లు' :
+           'Evidence-based guides for your parenting journey, organized by life stage and perspective'}
         </p>
       </div>
 

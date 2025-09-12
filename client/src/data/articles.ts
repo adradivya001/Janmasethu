@@ -16,8 +16,16 @@ export type Article = {
 export const articles: Article[] = [
   { 
     slug: 'ivf-10-min', 
-    title: {en: "IVF in 10 Minutes: Steps, Choices, and Costs"}, 
-    summary: {en: "Overview from testing to transfer, with typical ranges."}, 
+    title: {
+      en: "IVF in 10 Minutes: Steps, Choices, and Costs",
+      hi: "10 मिनट में IVF: चरण, विकल्प और लागत",
+      te: "10 నిమిషాల్లో IVF"
+    }, 
+    summary: {
+      en: "Overview from testing to transfer, with typical ranges.",
+      hi: "टेस्ट से ट्रांसफर तक का सरल सार।",
+      te: "టెస్టింగ్ నుంచి ట్రాన్స్‌ఫర్ వరకు"
+    }, 
     stage: ['ttc'], 
     lens: ['medical','financial'], 
     readMins: 6, 
@@ -27,8 +35,16 @@ export const articles: Article[] = [
   },
   { 
     slug: 'first-trimester-scan', 
-    title: {en: "First‑Trimester Scan: What It Checks"}, 
-    summary: {en: "What the 12‑week scan looks for and what to expect."}, 
+    title: {
+      en: "First‑Trimester Scan: What It Checks",
+      hi: "पहली तिमाही का स्कैन: क्या जाँचा जाता है",
+      te: "ఫస్ట్ ట్రైమెస్టర్ స్కాన్"
+    }, 
+    summary: {
+      en: "What the 12‑week scan looks for and what to expect.",
+      hi: "12‑सप्ताह स्कैन के लक्ष्य।",
+      te: "ఏమి చెక్ చేస్తారు"
+    }, 
     stage: ['pregnancy'], 
     lens: ['medical'], 
     readMins: 5, 
@@ -38,8 +54,16 @@ export const articles: Article[] = [
   },
   { 
     slug: 'pmmvy-jsy-apply', 
-    title: {en: "PMMVY & JSY: How to Apply"}, 
-    summary: {en: "Eligibility, documents, and step‑by‑step process."}, 
+    title: {
+      en: "PMMVY & JSY: How to Apply",
+      hi: "PMMVY व JSY: आवेदन कैसे करें",
+      te: "PMMVY & JSY: అప్లై"
+    }, 
+    summary: {
+      en: "Eligibility, documents, and step‑by‑step process.",
+      hi: "पात्रता, दस्तावेज़, चरण।",
+      te: "అర్హతలు, పత్రాలు, దశలు"
+    }, 
     stage: ['pregnancy','postpartum'], 
     lens: ['financial'], 
     readMins: 7, 
@@ -49,8 +73,16 @@ export const articles: Article[] = [
   },
   { 
     slug: 'pregnancy-foods', 
-    title: {en: "Safe Foods in Pregnancy: Eat / Limit / Avoid"}, 
-    summary: {en: "Simple India‑aware table for home and outside."}, 
+    title: {
+      en: "Safe Foods in Pregnancy: Eat / Limit / Avoid",
+      hi: "गर्भावस्था में सुरक्षित भोजन: खाएँ/कम करें/परहेज़",
+      te: "గర్భధారణలో సురక్షిత ఆహారం"
+    }, 
+    summary: {
+      en: "Simple India‑aware table for home and outside.",
+      hi: "सरल तालिका",
+      te: "Eat/Limit/Avoid పట్టిక"
+    }, 
     stage: ['pregnancy'], 
     lens: ['nutrition'], 
     readMins: 5, 
@@ -60,8 +92,16 @@ export const articles: Article[] = [
   },
   { 
     slug: 'second-trimester-checklist', 
-    title: {en: 'Second‑trimester checklist'}, 
-    summary: {en: 'Appointments, scans, planning.'}, 
+    title: {
+      en: 'Second‑trimester checklist',
+      hi: 'दूसरी तिमाही चेकलिस्ट',
+      te: 'రెండవ ట్రైమెస్టర్ చెక్‌లిస్ట్'
+    }, 
+    summary: {
+      en: 'Appointments, scans, planning.',
+      hi: 'अपॉइंटमेंट, स्कैन, योजना।',
+      te: 'అపాయింట్‌మెంట్లు, స్కాన్లు, ప్లానింగ్'
+    }, 
     stage: ['pregnancy'], 
     lens: ['medical','social'], 
     readMins: 5, 
@@ -71,8 +111,16 @@ export const articles: Article[] = [
   },
   { 
     slug: 'post-birth-warning-signs', 
-    title: {en: 'Post‑birth warning signs'}, 
-    summary: {en: 'When to seek urgent help.'}, 
+    title: {
+      en: 'Post‑birth warning signs',
+      hi: 'प्रसवोत्तर चेतावनी संकेत',
+      te: 'ప్రసవానంతర హెచ్చరిక సంకేతాలు'
+    }, 
+    summary: {
+      en: 'When to seek urgent help.',
+      hi: 'कब तत्काल सहायता लें।',
+      te: 'ఎప్పుడు తక్షణ సహాయం తీసుకోవాలి'
+    }, 
     stage: ['postpartum'], 
     lens: ['medical'], 
     readMins: 4, 
@@ -82,8 +130,16 @@ export const articles: Article[] = [
   },
   { 
     slug: 'partner-playbook', 
-    title: {en: 'Partner playbook'}, 
-    summary: {en: 'Practical support ideas.'}, 
+    title: {
+      en: 'Partner playbook',
+      hi: 'साथी मार्गदर्शिका',
+      te: 'భాగస్వామి గైడ్‌బుక్'
+    }, 
+    summary: {
+      en: 'Practical support ideas.',
+      hi: 'व्यावहारिक सहायता विचार।',
+      te: 'ప్రాక్టికల్ సపోర్ట్ ఐడియాలు'
+    }, 
     stage: ['ttc','pregnancy','postpartum'], 
     lens: ['social'], 
     readMins: 4, 
@@ -93,8 +149,16 @@ export const articles: Article[] = [
   },
   { 
     slug: 'iycf-6-months', 
-    title: {en: 'IYCF after 6 months'}, 
-    summary: {en: 'Textures, iron‑rich foods, allergies.'}, 
+    title: {
+      en: 'IYCF after 6 months',
+      hi: '6 महीने के बाद IYCF',
+      te: '6 నెలల తర్వాత IYCF'
+    }, 
+    summary: {
+      en: 'Textures, iron‑rich foods, allergies.',
+      hi: 'बनावट, आयरन युक्त खाद्य पदार्थ, एलर्जी।',
+      te: 'టెక్చర్లు, ఐరన్ రిచ్ ఫుడ్స్, అలర్జీలు'
+    }, 
     stage: ['early-years'], 
     lens: ['nutrition'], 
     readMins: 6, 
@@ -104,8 +168,16 @@ export const articles: Article[] = [
   },
   { 
     slug: 'when-to-see-specialist', 
-    title: {en: 'When to see a fertility specialist'}, 
-    summary: {en: 'Timing & red‑flags.'}, 
+    title: {
+      en: 'When to see a fertility specialist',
+      hi: 'प्रजनन विशेषज्ञ से कब मिलें',
+      te: 'ఫెర్టిలిటీ స్పెషలిస్ట్‌ను ఎప్పుడు చూడాలి'
+    }, 
+    summary: {
+      en: 'Timing & red‑flags.',
+      hi: 'समय और चेतावनी संकेत।',
+      te: 'టైమింగ్ & రెడ్ ఫ్లాగ్స్'
+    }, 
     stage: ['ttc'], 
     lens: ['medical'], 
     readMins: 4, 
@@ -115,8 +187,16 @@ export const articles: Article[] = [
   },
   { 
     slug: 'embryo-grading-basics', 
-    title: {en: 'Embryo grading — lay guide'}, 
-    summary: {en: 'What grades mean simply.'}, 
+    title: {
+      en: 'Embryo grading — lay guide',
+      hi: 'भ्रूण ग्रेडिंग — सरल गाइड',
+      te: 'ఎంబ్రియో గ్రేడింగ్ — లే గైడ్'
+    }, 
+    summary: {
+      en: 'What grades mean simply.',
+      hi: 'ग्रेड का सरल अर्थ।',
+      te: 'గ్రేడ్లు సరళంగా అర్థం'
+    }, 
     stage: ['ttc'], 
     lens: ['medical'], 
     readMins: 5, 
@@ -126,8 +206,16 @@ export const articles: Article[] = [
   },
   { 
     slug: 'ppd-signs-support', 
-    title: {en: 'PPD signs & support'}, 
-    summary: {en: 'Recognise and act early.'}, 
+    title: {
+      en: 'PPD signs & support',
+      hi: 'PPD संकेत और सहायता',
+      te: 'PPD సంకేతాలు & సపోర్ట్'
+    }, 
+    summary: {
+      en: 'Recognise and act early.',
+      hi: 'जल्दी पहचानें और कार्य करें।',
+      te: 'ముందుగానే గుర్తించి చర్య తీసుకోండి'
+    }, 
     stage: ['postpartum'], 
     lens: ['social'], 
     readMins: 5, 
@@ -137,8 +225,16 @@ export const articles: Article[] = [
   },
   { 
     slug: 'preeclampsia-basics', 
-    title: {en: 'Preeclampsia basics'}, 
-    summary: {en: 'BP, symptoms, action.'}, 
+    title: {
+      en: 'Preeclampsia basics',
+      hi: 'प्रीक्लैम्पसिया बेसिक्स',
+      te: 'ప్రీఎక్లాంప్సియా బేసిక్స్'
+    }, 
+    summary: {
+      en: 'BP, symptoms, action.',
+      hi: 'BP, लक्षण, कार्रवाई।',
+      te: 'BP, లక్షణాలు, చర్య'
+    }, 
     stage: ['pregnancy'], 
     lens: ['medical'], 
     readMins: 5, 
@@ -148,8 +244,16 @@ export const articles: Article[] = [
   },
   { 
     slug: 'newborn-vaccines', 
-    title: {en: 'Newborn vaccines timeline'}, 
-    summary: {en: 'At birth to 6 weeks.'}, 
+    title: {
+      en: 'Newborn vaccines timeline',
+      hi: 'नवजात टीकाकरण समयरेखा',
+      te: 'నవజాత వ్యాక్సిన్ టైమ్‌లైన్'
+    }, 
+    summary: {
+      en: 'At birth to 6 weeks.',
+      hi: 'जन्म से 6 सप्ताह तक।',
+      te: 'జన్మ నుంచి 6 వారాల వరకు'
+    }, 
     stage: ['newborn'], 
     lens: ['medical'], 
     readMins: 4, 
@@ -159,8 +263,16 @@ export const articles: Article[] = [
   },
   { 
     slug: 'cost-planning-101', 
-    title: {en: 'Cost planning 101'}, 
-    summary: {en: 'Budget & questions.'}, 
+    title: {
+      en: 'Cost planning 101',
+      hi: 'लागत योजना 101',
+      te: 'కాస్ట్ ప్లానింగ్ 101'
+    }, 
+    summary: {
+      en: 'Budget & questions.',
+      hi: 'बजट और प्रश्न।',
+      te: 'బడ్జెట్ & ప్రశ్నలు'
+    }, 
     stage: ['ttc'], 
     lens: ['financial'], 
     readMins: 5, 
@@ -170,8 +282,16 @@ export const articles: Article[] = [
   },
   { 
     slug: 'cerclage-basics', 
-    title: {en: 'Cervical cerclage — what/why'}, 
-    summary: {en: 'Who might benefit.'}, 
+    title: {
+      en: 'Cervical cerclage — what/why',
+      hi: 'सर्वाइकल सर्क्लेज — क्या/क्यों',
+      te: 'సర్వైకల్ సర్క్లేజ్ — ఏమిటి/ఎందుకు'
+    }, 
+    summary: {
+      en: 'Who might benefit.',
+      hi: 'किसे फायदा हो सकता है।',
+      te: 'ఎవరికి ప్రయోజనం ఉంటుంది'
+    }, 
     stage: ['pregnancy'], 
     lens: ['medical'], 
     readMins: 5, 
@@ -181,8 +301,16 @@ export const articles: Article[] = [
   },
   { 
     slug: 'vbac-questions', 
-    title: {en: 'VBAC: questions to ask'}, 
-    summary: {en: 'Balancing benefits/risks.'}, 
+    title: {
+      en: 'VBAC: questions to ask',
+      hi: 'VBAC: पूछने योग्य प्रश्न',
+      te: 'VBAC: అడగవలసిన प్రశ్నలు'
+    }, 
+    summary: {
+      en: 'Balancing benefits/risks.',
+      hi: 'लाभ/जोखिम संतुलन।',
+      te: 'ప్రయోజనాలు/రిస్క్‌లను బ్యాలెన్స్ చేయడం'
+    }, 
     stage: ['pregnancy'], 
     lens: ['medical','social'], 
     readMins: 5, 
