@@ -1,5 +1,5 @@
 import { useParams, Link } from 'wouter';
-import { ArrowLeft, Clock, User, AlertTriangle, DollarSign, HelpCircle } from 'lucide-react';
+import { ArrowLeft, Clock, User, AlertTriangle, DollarSign, HelpCircle, CheckCircle } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageProvider';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -8,8 +8,8 @@ import { treatments } from '@/data/treatments';
 
 const Treatment = () => {
   const { slug } = useParams();
-  const { t } = useLanguage();
-  
+  const { t, lang } = useLanguage();
+
   const treatment = treatments.find(t => t.slug === slug);
 
   if (!treatment) {
@@ -17,12 +17,12 @@ const Treatment = () => {
       <div className="container mx-auto px-4 py-8">
         <Card className="max-w-2xl mx-auto rounded-3xl p-8 card-shadow">
           <CardContent>
-            <h1 className="text-2xl font-bold text-foreground font-serif mb-4">Treatment Not Found</h1>
-            <p className="text-muted-foreground mb-6">The treatment information you're looking for doesn't exist.</p>
+            <h1 className="text-2xl font-bold text-foreground font-serif mb-4">{t('Treatment Not Found')}</h1>
+            <p className="text-muted-foreground mb-6">{t('The treatment information you\'re looking for doesn\'t exist.')}</p>
             <Link href="/treatments">
               <Button className="gradient-button text-white rounded-full">
                 <ArrowLeft className="w-4 h-4 mr-2" />
-                Back to Treatments
+                {t('Back to Treatments')}
               </Button>
             </Link>
           </CardContent>
@@ -38,7 +38,7 @@ const Treatment = () => {
         <Link href="/treatments">
           <Button variant="ghost" className="rounded-full" data-testid="button-back-treatments">
             <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Treatments
+            {t('Back to Treatments')}
           </Button>
         </Link>
       </div>
@@ -57,7 +57,7 @@ const Treatment = () => {
           <div className="flex items-center space-x-6 text-sm text-muted-foreground">
             <div className="flex items-center space-x-2">
               <User className="w-4 h-4" />
-              <span data-testid="text-treatment-reviewer">Reviewed by {treatment.reviewedBy}</span>
+              <span data-testid="text-treatment-reviewer">{t('Reviewed by {{reviewer}}', { reviewer: treatment.reviewedBy })}</span>
             </div>
           </div>
         </CardContent>
@@ -68,7 +68,7 @@ const Treatment = () => {
         {/* Who Might Benefit */}
         <Card className="rounded-3xl p-6 card-shadow">
           <CardHeader>
-            <CardTitle className="text-xl font-bold text-foreground font-serif">Who Might Benefit</CardTitle>
+            <CardTitle className="text-xl font-bold text-foreground font-serif">{t('Who Might Benefit')}</CardTitle>
           </CardHeader>
           <CardContent>
             <ul className="space-y-3">
@@ -85,7 +85,7 @@ const Treatment = () => {
         {/* Process Steps */}
         <Card className="rounded-3xl p-6 card-shadow">
           <CardHeader>
-            <CardTitle className="text-xl font-bold text-foreground font-serif">Process Steps</CardTitle>
+            <CardTitle className="text-xl font-bold text-foreground font-serif">{t('Process Steps')}</CardTitle>
           </CardHeader>
           <CardContent>
             <ol className="space-y-3">
@@ -109,7 +109,7 @@ const Treatment = () => {
           <CardHeader>
             <CardTitle className="text-xl font-bold text-foreground font-serif flex items-center">
               <AlertTriangle className="w-5 h-5 mr-2 text-orange-500" />
-              Risks & Considerations
+              {t('Risks & Considerations')}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -129,7 +129,7 @@ const Treatment = () => {
           <CardHeader>
             <CardTitle className="text-xl font-bold text-foreground font-serif flex items-center">
               <DollarSign className="w-5 h-5 mr-2 text-green-500" />
-              Cost Considerations
+              {t('Cost Considerations')}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -145,7 +145,7 @@ const Treatment = () => {
         <CardHeader>
           <CardTitle className="text-xl font-bold text-foreground font-serif flex items-center">
             <HelpCircle className="w-5 h-5 mr-2 text-blue-500" />
-            Questions to Ask Your Doctor
+            {t('Questions to Ask Your Doctor')}
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -163,7 +163,7 @@ const Treatment = () => {
       {/* Sources */}
       <Card className="rounded-3xl p-6 card-shadow">
         <CardHeader>
-          <CardTitle className="text-lg font-bold text-foreground font-serif">Sources</CardTitle>
+          <CardTitle className="text-lg font-bold text-foreground font-serif">{t('Sources')}</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex flex-wrap gap-2">
