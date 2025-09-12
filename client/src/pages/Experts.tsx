@@ -58,11 +58,11 @@ const Experts = () => {
                     {expert.name}
                   </h3>
                   <p className="text-sm text-muted-foreground mb-2" data-testid={`text-expert-role-${index}`}>
-                    {expert.role}
+                    {typeof expert.role === 'string' ? expert.role : expert.role[lang as keyof typeof expert.role]}
                   </p>
                   <div className="flex items-center space-x-2 text-xs text-muted-foreground">
                     <GraduationCap className="w-3 h-3" />
-                    <span data-testid={`text-expert-credentials-${index}`}>{expert.credentials}</span>
+                    <span data-testid={`text-expert-credentials-${index}`}>{typeof expert.credentials === 'string' ? expert.credentials : expert.credentials[lang as keyof typeof expert.credentials]}</span>
                   </div>
                 </div>
 
