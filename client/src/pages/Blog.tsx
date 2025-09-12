@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { posts } from '@/data/blog';
 
 const Blog = () => {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   const getBlogImage = (index: number) => {
     const images = [
@@ -60,20 +60,22 @@ const Blog = () => {
                     </div>
                     
                     <h3 className="text-2xl md:text-3xl font-bold text-foreground font-serif mb-4" data-testid="text-featured-post-title">
-                      {posts[0].title}
+                      {typeof posts[0].title === 'string' ? posts[0].title : posts[0].title[lang]}
                     </h3>
                     <p className="text-lg text-muted-foreground mb-6" data-testid="text-featured-post-summary">
-                      {posts[0].summary}
+                      {typeof posts[0].summary === 'string' ? posts[0].summary : posts[0].summary[lang]}
                     </p>
                     
                     <div className="flex items-center space-x-4 text-sm text-muted-foreground">
                       <div className="flex items-center space-x-2">
                         <User className="w-4 h-4" />
-                        <span data-testid="text-featured-post-author">{posts[0].author}</span>
+                        <span data-testid="text-featured-post-author">
+                          {typeof posts[0].author === 'string' ? posts[0].author : posts[0].author[lang]}
+                        </span>
                       </div>
                       <div className="flex items-center space-x-2">
                         <Calendar className="w-4 h-4" />
-                        <span>{t('blog_edited_by')} {posts[0].editedBy}</span>
+                        <span>{t('blog_edited_by')} {typeof posts[0].editedBy === 'string' ? posts[0].editedBy : posts[0].editedBy[lang]}</span>
                       </div>
                     </div>
                   </div>
@@ -81,7 +83,7 @@ const Blog = () => {
                   <div>
                     <img 
                       src={getBlogImage(0)} 
-                      alt={posts[0].title} 
+                      alt={typeof posts[0].title === 'string' ? posts[0].title : posts[0].title[lang]} 
                       className="rounded-xl w-full h-48 object-cover"
                     />
                   </div>
@@ -104,7 +106,7 @@ const Blog = () => {
               <CardContent className="p-0">
                 <img 
                   src={getBlogImage(index)} 
-                  alt={post.title} 
+                  alt={typeof post.title === 'string' ? post.title : post.title[lang]} 
                   className="rounded-xl w-full h-32 object-cover mb-4"
                 />
                 
@@ -117,15 +119,19 @@ const Blog = () => {
                 </div>
                 
                 <h3 className="text-lg font-bold text-foreground font-serif mb-2" data-testid={`text-post-title-${index}`}>
-                  {post.title}
+                  {typeof post.title === 'string' ? post.title : post.title[lang]}
                 </h3>
                 <p className="text-sm text-muted-foreground mb-4" data-testid={`text-post-summary-${index}`}>
-                  {post.summary}
+                  {typeof post.summary === 'string' ? post.summary : post.summary[lang]}
                 </p>
                 
                 <div className="flex items-center justify-between text-xs text-muted-foreground">
-                  <span data-testid={`text-post-author-${index}`}>{post.author}</span>
-                  <span data-testid={`text-post-editor-${index}`}>{t('blog_edited_by')} {post.editedBy}</span>
+                  <span data-testid={`text-post-author-${index}`}>
+                    {typeof post.author === 'string' ? post.author : post.author[lang]}
+                  </span>
+                  <span data-testid={`text-post-editor-${index}`}>
+                    {t('blog_edited_by')} {typeof post.editedBy === 'string' ? post.editedBy : post.editedBy[lang]}
+                  </span>
                 </div>
               </CardContent>
             </Card>
