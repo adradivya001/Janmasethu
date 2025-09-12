@@ -17,7 +17,7 @@ const Treatments = () => {
   const pageSubtitle = {
     en: "Comprehensive guides to fertility treatments, procedures, and options available in India. Each guide includes steps, costs, risks, and questions to ask your doctor.",
     hi: "भारत में उपलब्ध प्रजनन उपचार, प्रक्रियाओं और विकल्पों के लिए व्यापक गाइड। प्रत्येक गाइड में चरण, लागत, जोखिम और अपने डॉक्टर से पूछने के लिए प्रश्न शामिल हैं।",
-    te: "భారతదేశంలో అందుబాటులో ఉన్న ప్రజనన చికిత్సలు, ప్రక్రియలు మరియు ఎంపికలకు సమగ్ర గైడ్‌లు. ప్రతి గైడ్‌లో దశలు, ఖర్చులు, ప్రమాదాలు మరియు మీ వైద్యుడిని అడగవలసిన ప్రశ్నలు ఉంటాయి."
+    te: "భారతదేశంలో అందుబాటులో ఉన్న ప్రజనన చికిత్సలు, ప్రక్రియలు మరియు ఎంపికలకు సమగ్ర గైడ్‌లు। ప్రతి గైడ్‌లో దశలు, ఖర్చులు, ప్రమాదాలు మరియు మీ వైద్యుడిని అడగవలసిన ప్రశ్నలు ఉంటాయి."
   };
 
 
@@ -79,11 +79,31 @@ const Treatments = () => {
                          'Who might benefit:'}
                       </h3>
                       <ul className="space-y-2">
-                        {treatment.whoMightBenefit[lang].map((benefit, index) => (
+                        {treatment.benefits.map((benefit, index) => (
                           <li key={index} className="flex items-start space-x-2">
                             <CheckCircle className="w-4 h-4 mt-1 text-primary flex-shrink-0" />
                             <span className="text-muted-foreground">
-                              {benefit}
+                              {lang === 'hi' && benefit === 'Unexplained infertility' ? 'अस्पष्ट बांझपन' :
+                               lang === 'hi' && benefit === 'Mild male-factor' ? 'हल्का पुरुष कारक' :
+                               lang === 'hi' && benefit === 'Cervical issues' ? 'गर्भाशय ग्रीवा समस्याएं' :
+                               lang === 'hi' && benefit === 'Tubal factor' ? 'नलिका कारक' :
+                               lang === 'hi' && benefit === 'Severe male-factor' ? 'गंभीर पुरुष कारक' :
+                               lang === 'hi' && benefit === 'Prior fertilisation failure' ? 'पूर्व निषेचन विफलता' :
+                               lang === 'hi' && benefit === 'Single women' ? 'अकेली महिलाएं' :
+                               lang === 'hi' && benefit === 'Same-sex couples' ? 'समलिंगी जोड़े' :
+                               lang === 'hi' && benefit === 'Cancer patients' ? 'कैंसर रोगी' :
+                               lang === 'hi' && benefit === 'Delayed childbearing' ? 'देर से संतान' :
+                               lang === 'te' && benefit === 'Unexplained infertility' ? 'వివరించలేని వంధ్యత' :
+                               lang === 'te' && benefit === 'Mild male-factor' ? 'తేలిక పురుష కారణం' :
+                               lang === 'te' && benefit === 'Cervical issues' ? 'గర్భాశయ మెడ సమస్యలు' :
+                               lang === 'te' && benefit === 'Tubal factor' ? 'ట్యూబల్ కారణం' :
+                               lang === 'te' && benefit === 'Severe male-factor' ? 'తీవ్రమైన పురుష కారణం' :
+                               lang === 'te' && benefit === 'Prior fertilisation failure' ? 'మునుపటి ఫెర్టిలైజేషన్ విఫలత' :
+                               lang === 'te' && benefit === 'Single women' ? 'ఒంటరి మహిళలు' :
+                               lang === 'te' && benefit === 'Same-sex couples' ? 'స్వలింగ జంటలు' :
+                               lang === 'te' && benefit === 'Cancer patients' ? 'కాన్సర్ రోగులు' :
+                               lang === 'te' && benefit === 'Delayed childbearing' ? 'ఆలస్యంగా పిల్లలు' :
+                               benefit}
                             </span>
                           </li>
                         ))}
@@ -94,7 +114,9 @@ const Treatments = () => {
                       <div className="flex items-center space-x-2 text-sm text-muted-foreground">
                         <User className="w-4 h-4" />
                         <span>
-                          {treatment.reviewedBy[lang]}
+                          {lang === 'hi' ? 'द्वारा समीक्षित' :
+                           lang === 'te' ? 'సమీక్షించినవారు' :
+                           'Reviewed by'} {treatment.reviewedBy}
                         </span>
                       </div>
                       <Button className="gradient-button text-white rounded-full">

@@ -1,5 +1,5 @@
 import { useParams, Link } from 'wouter';
-import { ArrowLeft, Clock, User, AlertTriangle, DollarSign, HelpCircle, CheckCircle, Users, Activity, TrendingUp } from 'lucide-react';
+import { ArrowLeft, Clock, User, AlertTriangle, DollarSign, HelpCircle, CheckCircle } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageProvider';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -47,17 +47,17 @@ const Treatment = () => {
       <Card className="rounded-3xl p-8 md:p-12 card-shadow mb-8">
         <CardContent className="p-0">
           <h1 className="text-3xl md:text-4xl font-bold text-foreground font-serif mb-6" data-testid="text-treatment-name">
-            {treatment.name[lang]}
+            {treatment.name}
           </h1>
 
           <p className="text-lg text-muted-foreground mb-6" data-testid="text-treatment-overview">
-            {treatment.overview[lang]}
+            {treatment.overview}
           </p>
 
           <div className="flex items-center space-x-6 text-sm text-muted-foreground">
             <div className="flex items-center space-x-2">
               <User className="w-4 h-4" />
-              <span data-testid="text-treatment-reviewer">{t('Reviewed by {{reviewer}}', { reviewer: treatment.reviewedBy[lang] })}</span>
+              <span data-testid="text-treatment-reviewer">{t('Reviewed by {{reviewer}}', { reviewer: treatment.reviewedBy })}</span>
             </div>
           </div>
         </CardContent>
@@ -75,7 +75,7 @@ const Treatment = () => {
               {treatment.who.map((item, index) => (
                 <li key={index} className="flex items-start space-x-3" data-testid={`item-who-benefits-${index}`}>
                   <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                  <span className="text-muted-foreground">{item[lang]}</span>
+                  <span className="text-muted-foreground">{item}</span>
                 </li>
               ))}
             </ul>
@@ -94,7 +94,7 @@ const Treatment = () => {
                   <div className="w-6 h-6 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">
                     {index + 1}
                   </div>
-                  <span className="text-muted-foreground">{step[lang]}</span>
+                  <span className="text-muted-foreground">{step}</span>
                 </li>
               ))}
             </ol>
@@ -117,7 +117,7 @@ const Treatment = () => {
               {treatment.risks.map((risk, index) => (
                 <li key={index} className="flex items-start space-x-3" data-testid={`item-risk-${index}`}>
                   <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <span className="text-muted-foreground">{risk[lang]}</span>
+                  <span className="text-muted-foreground">{risk}</span>
                 </li>
               ))}
             </ul>
@@ -134,7 +134,7 @@ const Treatment = () => {
           </CardHeader>
           <CardContent>
             <p className="text-muted-foreground" data-testid="text-cost-note">
-              {treatment.costNote[lang]}
+              {treatment.costNote}
             </p>
           </CardContent>
         </Card>
@@ -153,7 +153,7 @@ const Treatment = () => {
             {treatment.askDoctor.map((question, index) => (
               <li key={index} className="flex items-start space-x-3" data-testid={`item-doctor-question-${index}`}>
                 <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                <span className="text-muted-foreground">{question[lang]}</span>
+                <span className="text-muted-foreground">{question}</span>
               </li>
             ))}
           </ul>
