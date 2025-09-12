@@ -71,7 +71,7 @@ const Expert = () => {
               />
               <div className="flex items-center justify-center space-x-2 text-sm text-muted-foreground">
                 <MapPin className="w-4 h-4" />
-                <span data-testid="text-expert-city">{typeof expert.city === 'string' ? expert.city : expert.city[lang as keyof typeof expert.city]}</span>
+                <span data-testid="text-expert-city">{typeof expert.location === 'string' ? expert.location : expert.location[lang as keyof typeof expert.location]}</span>
               </div>
             </div>
 
@@ -84,7 +84,7 @@ const Expert = () => {
                 className="text-lg text-muted-foreground mb-2"
                 data-testid="text-expert-specialty"
               >
-                {typeof expert.specialty === 'string' ? expert.specialty : expert.specialty[lang as keyof typeof expert.specialty]}
+                {typeof expert.role === 'string' ? expert.role : expert.role[lang as keyof typeof expert.role]}
               </p>
               <p className="text-sm text-muted-foreground mb-4">
                 {expert.credentials}
@@ -168,11 +168,11 @@ const Expert = () => {
               <div className="space-y-3">
                 <div>
                   <span className="font-medium text-foreground">Specialization:</span>
-                  <p className="text-muted-foreground" data-testid="text-expert-specialization">{typeof expert.specialty === 'string' ? expert.specialty : expert.specialty[lang as keyof typeof expert.specialty]}</p>
+                  <p className="text-muted-foreground" data-testid="text-expert-specialization">{typeof expert.role === 'string' ? expert.role : expert.role[lang as keyof typeof expert.role]}</p>
                 </div>
                 <div>
                   <span className="font-medium text-foreground">Credentials:</span>
-                  <p className="text-muted-foreground" data-testid="text-expert-credentials-detail">{expert.credentials}</p>
+                  <p className="text-muted-foreground" data-testid="text-expert-credentials-detail">{typeof expert.credentials === 'string' ? expert.credentials : expert.credentials[lang as keyof typeof expert.credentials]}</p>
                 </div>
                 <div>
                   <span className="font-medium text-foreground">Location:</span>
@@ -199,7 +199,7 @@ const Expert = () => {
                           {otherExpert.name}
                         </h4>
                         <p className="text-xs text-muted-foreground">
-                          {otherExpert.role} • {otherExpert.city}
+                          {typeof otherExpert.role === 'string' ? otherExpert.role : otherExpert.role[lang as keyof typeof otherExpert.role]} • {typeof otherExpert.location === 'string' ? otherExpert.location : otherExpert.location[lang as keyof typeof otherExpert.location]}
                         </p>
                       </div>
                     </Link>
