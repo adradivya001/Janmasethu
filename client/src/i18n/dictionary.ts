@@ -349,6 +349,215 @@ export const dict = {
     sakhi_learn_treatments: "उपचारों के बारे में जानें",
     sakhi_important_notice: "महत्वपूर्ण नोटिस",
     sakhi_important_desc: "सखी भावनात्मक स",
+
+    // Tools page
+    tools_subtitle: "आपकी प्रजनन और पालन-पोषण यात्रा में मदद के लिए व्यावहारिक उपकरण और कैलकुलेटर। सभी उपकरण भारतीय स्वास्थ्य संदर्भों को ध्यान में रखकर डिज़ाइन किए गए हैं।",
+    tools_ovulation_calc: "ओव्यूलेशन कैलकुलेटर",
+    tools_ovulation_desc: "अपनी उर्वर खिड़की और ओव्यूलेशन तिथियों को ट्रैक करें",
+    tools_pregnancy_calc: "गर्भावस्था की ड्यू डेट कैलकुलेटर",
+    tools_pregnancy_desc: "अपनी अनुमानित ड्यू डेट की गणना करें और मील के पत्थरों को ट्रैक करें",
+    tools_cost_estimator: "उपचार लागत अनुमानकर्ता",
+    tools_cost_desc: "भारत में विभिन्न प्रजनन उपचारों की लागत का अनुमान लगाएं",
+    tools_fertility_tracker: "प्रजनन यात्रा ट्रैकर",
+    tools_fertility_desc: "अपॉइंटमेंट्स, दवाइयाँ और प्रगति ट्रैक करें",
+    tools_symptom_guide: "गर्भावस्था लक्षण गाइड",
+    tools_symptom_desc: "सामान्य गर्भावस्था के लक्षणों को समझें और कब डॉक्टर को कॉल करना है",
+    tools_appointment_prep: "अपॉइंटमेंट तैयारी उपकरण",
+    tools_appointment_desc: "अपनी स्थिति के आधार पर डॉक्टर से पूछने के लिए प्रश्न जेनरेट करें",
+    tools_available: "उपलब्ध",
+    tools_coming_soon: "जल्द आ रहा है",
+    tools_use_tool: "उपकरण उपयोग करें",
+    tools_available_tools: "उपलब्ध उपकरण",
+    tools_available_subtitle: "अपनी यात्रा का समर्थन करने के लिए अभी से इन उपकरणों का उपयोग शुरू करें",
+    tools_calculate_now: "अब गणना करें",
+    tools_estimate_costs: "लागत का अनुमान लगाएं",
+    tools_ovulation_detail: "अपनी उर्वर खिड़की खोजने के लिए अपनी साइकल की लंबाई और अंतिम पीरियड की तारीख दर्ज करें",
+    tools_pregnancy_detail: "अपनी अनुमानित ड्यू डेट और गर्भावस्था के मील के पत्थरों की गणना करें",
+    tools_cost_detail: "अपने शहर में प्रजनन उपचारों की रफ लागत का अनुमान प्राप्त करें",
+    tools_need_support: "अधिक सहारे की जरूरत?",
+    tools_support_desc: "जबकि उपकरण सहायक गणना प्रदान करते हैं, भावनात्मक सहारा उतना ही महत्वपूर्ण है। सखी आपके लिए 24/7 यहाँ है।",
+    tools_talk_sakhi: "सखी से बात करें",
+
+    // Alt text for images
+    alt_planning_fertility: "प्रजनन यात्रा की योजना और ट्रैकिंग",
+    alt_reading_parenting: "पेरेंटिंग के बारे में पढ़ना और सीखना",
+    alt_medical_consultation: "चिकित्सा परामर्श",
+
+    // Blog page
+    blog_subtitle: "हमारी संपादकीय टीम और विशेषज्ञ योगदानकर्ताओं से अंतर्दृष्टि, सुझाव और व्यावहारिक सलाह। प्रजनन, गर्भावस्था और पालन-पोषण में नवीनतम से अपडेट रहें।",
+    blog_featured_post: "फीचर्ड पोस्ट",
+    blog_all_posts: "सभी पोस्ट",
+    blog_stay_updated: "अपडेट रहें",
+    blog_updates_desc: "नवीनतम लेख, गाइड और अंतर्दृष्टि अपने इनबॉक्स में प्राप्त करें। कोई स्पैम नहीं, केवल आपकी पालन-पोषण यात्रा के लिए उपयोगी सामग्री।",
+    blog_get_updates: "अपडेट प्राप्त करें",
+    blog_edited_by: "संपादित किया गया",
+
+    // Experts page
+    experts_subtitle: "Meet the medical professionals, specialists, and advisors who review our content to ensure accuracy and relevance for Indian families.",
+    experts_reviews: "Reviews:",
+    experts_quality_trust: "Quality You Can Trust",
+    experts_trust_desc: "All our content is reviewed by qualified professionals to ensure accuracy and relevance. However, this information is for educational purposes only and should not replace professional medical advice.",
+    experts_browse_knowledge: "Browse Knowledge Hub",
+    experts_contact_us: "Contact Us",
+
+    // Hero
+    hero_title: "Nurture Every <span>Journey to Parenthood</span>",
+    hero_sub:
+      "Simple, source‑backed guides across fertility, pregnancy, birth and early parenting — made for India.",
+    trust_pill: "Trusted by families across India",
+    cta_primary: "Meet Sakhi",
+    cta_secondary: "For Clinics",
+
+    // What & Why - Updated to match blueprint
+    who_title: "Who We Serve",
+    who_body:
+      "An India‑first knowledge bridge for the path to parenthood. Clear, jargon‑free explainers through four lenses — Medical, Social & Emotional, Financial and Nutrition. Sakhi offers 24/7 emotional support for difficult moments.",
+    why_title: "Why Janma Sethu?",
+    why_points:
+      "India‑aware (schemes, rights, local foods),Plain language, 5‑minute reads,Browse by Life Stage and by Lens,Actionable checklists & 'ask your doctor' prompts,Source‑backed (WHO/NHS/ICMR) with last‑updated,Caring by design (Sakhi for emotions),Privacy & respect",
+
+    // New About Cards
+    about_patients_title: "Patients",
+    about_patients_desc:
+      "Simplified fertility guidance, India-aware and judgment-free.",
+    about_clinics_title: "Clinics",
+    about_clinics_desc:
+      "Evidence-based resources to support your patient conversations.",
+    // Removed Investors card data as per instructions
+
+    // Journey Strip
+    journey_title: "Your Complete Parenthood Journey",
+    journey_subtitle:
+      "Sakhi guides you through every stage with compassionate, evidence-based support",
+    journey_cta: "See how Sakhi supports you",
+
+    // Journey stages
+    journey_stage_1_title: "Thinking of Parenthood",
+    journey_stage_1_desc: "Nutrition, emotional readiness, financial planning",
+    journey_stage_2_title: "Trying Naturally",
+    journey_stage_2_desc: "Cycle tracking, lifestyle tips",
+    journey_stage_3_title: "Exploring Options",
+    journey_stage_3_desc: "Preparedness checklists, questions for your doctor",
+    journey_stage_4_title: "Pregnancy",
+    journey_stage_4_desc: "Trimester guidance, myths vs facts",
+    journey_stage_5_title: "Post-Delivery",
+    journey_stage_5_desc: "Recovery, newborn care, mental health",
+    journey_stage_tooltip: "Click to learn more about this stage",
+    orient_title: "Start here",
+    orient_ttc: "Trying to conceive (TTC)",
+    orient_preg: "Pregnancy",
+    orient_parent: "New parent",
+    orient_desc_ttc: "Basics, tests, timelines, costs",
+    orient_desc_preg: "Trimester hubs, week‑by‑week",
+    orient_desc_parent: "Feeding, sleep, paperwork",
+    lens_title: "Explore by Lens",
+    lens_medical: "Medical",
+    lens_social: "Social & Emotional",
+    lens_financial: "Financial",
+    lens_nutrition: "Nutrition",
+    featured_title: "Editor's Picks",
+    treatments_overview_title: "Treatments at a glance",
+    success_preview_title: "Success Stories",
+    blog_preview_title: "From the Blog",
+    rights_title: "Rights & Schemes (India)",
+    nutrition_title: "Nutrition Essentials",
+    nutrition_eat: "Eat",
+    nutrition_limit: "Limit",
+    nutrition_avoid: "Avoid",
+    footer_sources: "Sources & review policy",
+    footer_disclaimer: "Information only — not medical advice.",
+    footer_privacy: "Privacy",
+    footer_contact: "Contact",
+    k1_title: "IVF in 10 Minutes: Steps, Choices, and Costs",
+    k1_desc: "Overview from testing to transfer, with typical ranges.",
+    k2_title: "First‑Trimester Scan: What It Checks",
+    k2_desc: "What the 12‑week scan looks for and what to expect.",
+    k3_title: "PMMVY & JSY: How to Apply",
+    k3_desc: "Eligibility, documents, and step‑by‑step process.",
+    k4_title: "Safe Foods in Pregnancy: Eat / Limit / Avoid",
+    k4_desc: "Simple India‑aware table for home and outside.",
+
+    // Additional article translations
+    article_overview_desc: "Overview from testing to transfer, with typical ranges.",
+    article_scan_desc: "What the 12‑week scan looks for and what to expect.",
+    article_scheme_desc: "Eligibility, documents, and step‑by‑step process.",
+    article_food_desc: "Simple India‑aware table for home and outside.",
+    // Treatments - Hindi
+    treatment_iui_title: "IUI",
+    treatment_iui_desc:
+      "Intrauterine insemination process, success rates, and what to expect",
+    treatment_ivf_title: "IVF",
+    treatment_ivf_desc:
+      "In vitro fertilization steps, timeline, and preparation guide",
+    treatment_icsi_title: "ICSI",
+    treatment_icsi_desc:
+      "Intracytoplasmic sperm injection for male factor infertility",
+    treatment_donor_title: "Donor Options",
+    treatment_donor_desc:
+      "Egg, sperm, and embryo donation processes and considerations",
+    treatment_preservation_title: "Fertility Preservation",
+    treatment_preservation_desc:
+      "Egg and sperm freezing for future family planning",
+
+
+    // Chat Interface - Hindi
+    chat_with_sakhi: "Sakhi se baat karein",
+    sakhi_online_ready: "Sakhi online hai aur madad ke liye taiyar hai",
+    chat_feeling_anxious: "Main kal ke scan ko lekar chintit hoon",
+    chat_understand_anxiety:
+      "Main aapki chinta samajhti hoon. Scan se pehle aisa mahsus karna poori tarah samanya hai.",
+    chat_breathing_exercise: "Kuch gehri saans lene ke vyayam karein...",
+    chat_type_message: "Apna sandesh type karein...",
+    chat_send_message: "Sandesh bhejein",
+
+    sakhi_hero: "Parenthood ki yatra ke liye sahayak Saathi",
+    sakhi_sub: "24/7 Bhavnatmak sahayta — Niji",
+    sakhi_how_title: "Sakhi kaise madad karti hai",
+    sakhi_how_list:
+      "Scan/injection se pehle shanti|Two-week-wait mein chhote routine|Sathi ka sahayta (apradh bhavna asahiyta samvad)|Nind aur yojna|Kab peshevar madad lein",
+    sakhi_try: "Sakhi aazmayein",
+    chat_title: "Sakhi — Batchit (Demo)",
+    chat_hint: "English/हिंदी/తెలుగు — Jis lipi mein likhenge, usi mein uttar.",
+    chat_quick: "Tvarit sanket",
+    chat_p1: "Kal ke scan ko lekar ghabrahat hai",
+    chat_p2: "Result ke bare mein soch ruk nahi raha",
+    chat_p3: "Diagnosis ke baad sathi ko glani hai",
+    chat_end: "Samapt",
+    chat_clear: "Saaf karein",
+    chat_privacy: "Niji aur sthaniya.",
+    chat_reply_en:
+      "I'm glad you shared this. It's normal to feel anxious. Try 4‑4‑6 breathing (in 4, hold 4, out 6) three times. Then pick one small step you control. If you notice chest pain, dizziness, or thoughts of self‑harm, please contact professional or emergency care.",
+    chat_reply_hi:
+      "आपने साझा किया, धन्यवाद। घबराहट सामान्य है। 4‑4‑6 साँस (4 अंदर, 4 रोकें, 6 बाहर) तीन बार करें। फिर अपने नियंत्रण में एक छोटा कदम चुनें। यदि सीने में दर्द/चक्कर/आत्म‑हानि के विचार हों तो तुरंत मदद लें।",
+    chat_reply_te:
+      "మీరు పంచుకున్నందుకు ధన్యవాదాలు. ఆందోళన సహజం. 4‑4‑6 శ్వాస (4 లోపల, 4 ఆపి, 6 బయట) మూడు సార్లు చేయండి. తర్వాత మీరు నియంత్రించగల చిన్న మెట్టు ఎంచుకోండి. ఛాతి నొప్పి/తల తిరుగుడు/స్వీయహానీ ఆలోచనలు ఉంటే సహాయం పొందండి.",
+
+    // Investors page
+    investors_title: "निवेशक",
+    investors_intro:
+      "अधिक सेवा वाले समुदायों के लिए स्केलेबल स्वास्थ्य अवसंरचना। साक्ष्य-आधारित ज्ञान और भावनात्मक सहायता प्रणालियों के माध्यम से विश्वास निर्माण।",
+    investors_platform_title: "प्लेटफॉर्म",
+    investors_platform_desc:
+      "पितृत्व यात्रा में तैयारी स्तर; पुन: उपयोग योग्य घटक और सामग्री स्कीमा।",
+    investors_model_title: "मॉडल",
+    investors_model_desc:
+      "परिणाम-संरेखित पायलट; सब्सक्रिप्शन + उपयोग मूल्य निर्धारण (भविष्य); कोई भुगतान लीडजेन नहीं।",
+    investors_defensibility_title: "रक्षा क्षमता",
+    investors_defensibility_desc:
+      "चिकित्सक-समीक्षित ज्ञान, स्थानीयकृत सामग्री, निरंतर मूल्यांकन के लिए उपयोग संकेत।",
+    investors_cta_onepager: "1-पेजर डाउनलोड करें",
+    investors_cta_contact: "संपर्क करें",
+
+    search_placeholder: "लेख, उपचार खोजें...",
+    coming_soon: "जल्द आ रहा है",
+    read_more: "और पढ़ें",
+    learn_more: "और जानें",
+    get_started: "शुरू करें",
+    explore_more: "और अन्वेषण करें",
+    support_title: "अतिरिक्त सहायता की आवश्यकता है?",
+    support_subtitle: "अपनी यात्रा के दौरान व्यक्तिगत मार्गदर्शन और भावनात्मक समर्थन प्राप्त करें",
+    talk_sakhi_button: "सखी से बात करें",
+    find_experts_button: "विशेषज्ञ खोजें",
   },
   te: {
     // Navigation
@@ -386,230 +595,7 @@ export const dict = {
     support: "మద్దతు",
     reviews: "సమీక్షలు",
 
-    sakhi_important_desc: "సఖి భావోద్వేగ సहारा और सामान्य मार्गदर्शन प्रदान करती है लेकिन पेशेवर चिकित्सा या मानसिक स्वास्थ्य देखभाल की जगह नहीं है। यदि आप आत्म-नुकसान के विचारों या गंभीर संकट का अनुभव कर रहे हैं, तो कृपया तुरंत स्वास्थ्य देखभाल पेशेवर या आपातकालीन सेवाओं से संपर्क करें।",
-
-    // Tools page
-    tools_subtitle: "आपकी प्रजनन और पालन-पोषण यात्रा में मदद के लिए व्यावहारिक उपकरण और कैलकुलेटर। सभी उपकरण भारतीय स्वास्थ्य संदर्भों को ध्यान में रखकर डिज़ाइन किए गए हैं।",
-    tools_ovulation_calc: "ओव्यूलेशन कैलकुलेटर",
-    tools_ovulation_desc: "अपनी उर्वर खिड़की और ओव्यूलेशन तिथियों को ट्रैक करें",
-    tools_pregnancy_calc: "गर्भावस्था की ड्यू डेट कैलकुलेटर",
-    tools_pregnancy_desc: "अपनी अनुमानित ड्यू डेट की गणना करें और मील के पत्थरों को ट्रैक करें",
-    tools_cost_estimator: "उपचार लागत अनुमानकर्ता",
-    tools_cost_desc: "भारत में विभिन्न प्रजनन उपचारों की लागत का अनुमान लगाएं",
-    tools_fertility_tracker: "प्रजनन यात्रा ट्रैकर",
-    tools_fertility_desc: "अपॉइंटमेंट्स, दवाइयाँ और प्रगति ट्रैक करें",
-    tools_symptom_guide: "गर्भावस्था लक्षण गाइड",
-    tools_symptom_desc: "सामान्य गर्भावस्था के लक्षणों को समझें और कब डॉक्टर को कॉल करना है",
-    tools_appointment_prep: "अपॉइंटमेंट तैयारी उपकरण",
-    tools_appointment_desc: "अपनी स्थिति के आधार पर डॉक्टर से पूछने के लिए प्रश्न जेनरेट करें",
-    tools_available: "उपलब्ध",
-    tools_coming_soon: "जल्द आ रहा है",
-    tools_use_tool: "उपकरण उपयोग करें",
-    tools_available_tools: "उपलब्ध उपकरण",
-    tools_available_subtitle: "अपनी यात्रा का समर्थन करने के लिए अभी से इन उपकरणों का उपयोग शुरू करें",
-    tools_calculate_now: "अब गणना करें",
-    tools_estimate_costs: "लागत का अनुमान लगाएं",
-    tools_ovulation_detail: "अपनी उर्वर खिड़की खोजने के लिए अपनी साइकल की लंबाई और अंतिम पीरियड की तारीख दर्ज करें",
-    tools_pregnancy_detail: "अपनी अनुमानित ड्यू डेट और गर्भावस्था के मील के पत्थरों की गणना करें",
-    tools_cost_detail: "अपने शहर में प्रजनन उपचारों की रफ लागत का अनुमान प्राप्त करें",
-    tools_need_support: "अधिक सहारे की जरूरत?",
-    tools_support_desc: "जबकि उपकरण सहायक गणना प्रदान करते हैं, भावनात्मक सहारा उतना ही महत्वपूर्ण है। सखी आपके लिए 24/7 यहाँ है।",
-    tools_talk_sakhi: "सखी से बात करें",
-
-    // Alt text for images
-    alt_planning_fertility: "प्रजनन यात्रा की योजना और ट्रैकिंग",
-    alt_reading_parenting: "पेरेंटिंग के बारे में पढ़ना और सीखना",
-    alt_medical_consultation: "स्वास्थ्य पेशेवरों के साथ चिकित्सा परामर्श",
-
-    // Blog page
-    blog_subtitle: "हमारी संपादकीय टीम और विशेषज्ञ योगदानकर्ताओं से अंतर्दृष्टि, सुझाव और व्यावहारिक सलाह। प्रजनन, गर्भावस्था और पालन-पोषण में नवीनतम से अपडेट रहें।",
-    blog_featured_post: "फीचर्ड पोस्ट",
-    blog_all_posts: "सभी पोस्ट",
-    blog_stay_updated: "अपडेट रहें",
-    blog_updates_desc: "नवीनतम लेख, गाइड और अंतर्दृष्टि अपने इनबॉक्स में प्राप्त करें। कोई स्पैम नहीं, केवल आपकी पालन-पोषण यात्रा के लिए उपयोगी सामग्री।",
-    blog_get_updates: "अपडेट प्राप्त करें",
-    blog_edited_by: "संपादित किया गया",
-
-    // Expert specializations and details
-    ob_gyn: "स्त्री रोग विशेषज्ञ",
-    medical_reviewer: "चिकित्सा समीक्षक",
-    ob_gyn_medical_reviewer: "स्त्री रोग विशेषज्ञ — चिकित्सा समीक्षक",
-    reproductive_medicine: "प्रजनन चिकित्सा",
-    perinatal_psychology: "प्रसवकालीन मनोविज्ञान",
-    mbbs_ms: "एमबीबीएस, एमएस",
-    mbbs_dnb: "एमबीबीएस, डीएनबी", 
-    phd_clinical_psychology: "पीएचडी क्लिनिकल साइकोलॉजी",
-    delhi: "दिल्ली",
-    bengaluru: "बेंगलुरु",
-    mumbai: "मुंबई",
-    respectful_maternity_care: "सम्मानजनक मातृत्व देखभाल और रोगी शिक्षा।",
-    evidence_based_fertility: "साक्ष्य-आधारित प्रजनन उपचार।",
-    fertility_aware_mental_health: "प्रजनन-जागरूक मानसिक स्वास्थ्य देखभाल।",
-    pregnancy_care: "गर्भावस्था देखभाल",
-    safety: "सुरक्षा",
-    ivf: "आईवीएफ",
-    iui: "आईयूआई", 
-    preservation: "संरक्षण",
-    mental_health: "मानसिक स्वास्थ्य",
-    support: "सहायता",
-    reviews: "समीक्षा",
-
-    // Experts page
-    experts_subtitle: "उन चिकित्सा पेशेवरों, विशेषज्ञों और सलाहकारों से मिलें जो हमारी सामग्री की समीक्षा करते हैं ताकि भारतीय परिवारों के लिए सटीकता और प्रासंगिकता सुनिश्चित की जा सके।",
-    experts_reviews: "समीक्षाएं:",
-    experts_quality_trust: "भरोसेमंद गुणवत्ता",
-    experts_trust_desc: "हमारी सभी सामग्री योग्य पेशेवरों द्वारा समीक्षित होती है ताकि सटीकता और प्रासंगिकता सुनिश्चित की जा सके। हालांकि, यह जानकारी केवल शैक्षिक उद्देश्यों के लिए है और पेशेवर चिकित्सा सलाह की जगह नहीं लेनी चाहिए।",
-    experts_browse_knowledge: "नॉलेज हब ब्राउज़ करें",
-    experts_contact_us: "हमसे संपर्क करें",
-    hero_title: "<span>मातृत्व</span> का सेतु।<br />यात्रा के हर कदम के लिए।",
-    hero_sub: "भारत के लिए सरल, स्रोत‑आधारित मार्गदर्शिकाएँ।",
-    trust_pill: "भारत भर के परिवारों का भरोसा",
-    cta_primary: "साखी से मिलें",
-    cta_secondary: "क्लिनिक के लिए",
-    who_title: "हमारी सेवा किसके लिए",
-    who_body:
-      "भारत‑केंद्रित ज्ञान सेतु — चिकित्सा, सामाजिक‑भावनात्मक, वित्तीय और पोषण चार दृष्टिकोणों से। सखी 24/7 भावनात्मक सहारा देती है।",
-    why_title: "क्यों चुनें जनमा सेतु?",
-    why_points:
-      "भारत‑समझ,सरल भाषा,जीवन‑चरण व दृष्टिकोण दोनों से खोज,कार्यान्वयन योग्य,विश्वसनीय स्रोत,देखभाल‑केंद्रित,गोपनीयता",
-
-    // New About Cards
-    about_patients_title: "मरीज़",
-    about_patients_desc: "सरल प्रजनन मार्गदर्शन, भारत‑जागरूक और निर्णय‑मुक्त।",
-    about_clinics_title: "क्लिनिक",
-    about_clinics_desc: "साक्ष्य‑आधारित संसाधन रोगी बातचीत के लिए।",
-    // Removed Investors card data as per instructions
-
-    // Journey Strip
-    journey_title: "आपकी संपूर्ण मातृत्व यात्रा",
-    journey_subtitle: "हर चरण में सखी करुणामय, साक्ष्य‑आधारित सहयोग देती है",
-    journey_cta: "देखें कि सखी कैसे सहायता करती है",
-
-    // Journey stages
-    journey_stage_1_title: "मातृत्व की सोच",
-    journey_stage_1_desc: "पोषण, भावनात्मक तैयारी, वित्तीय योजना",
-    journey_stage_2_title: "प्राकृतिक कोशिश",
-    journey_stage_2_desc: "साइकल ट्रैकिंग, जीवनशैली सुझाव",
-    journey_stage_3_title: "विकल्पों की खोज",
-    journey_stage_3_desc: "IUI/IVF तैयारी, डॉक्टर से पूछने योग्य प्रश्न",
-    journey_stage_4_title: "गर्भावस्था",
-    journey_stage_4_desc: "तिमाही मार्गदर्शन, मिथक बनाम तथ्य",
-    journey_stage_5_title: "प्रसवोत्तर",
-    journey_stage_5_desc: "रिकवरी, नवजात देखभाल, मानसिक स्वास्थ्य",
-    journey_stage_tooltip: "इस चरण के बारे में और जानने के लिए क्लिक करें",
-    orient_title: "यहाँ से शुरू करें",
-    orient_ttc: "गर्भधारण की योजना (TTC)",
-    orient_preg: "गर्भावस्था",
-    orient_parent: "नए माता‑पिता",
-    orient_desc_ttc: "बेसिक्स, जाँच, समय, लागत",
-    orient_desc_preg: "ट्राइमेस्टर हब",
-    orient_desc_parent: "खुराक, नींद, कागज़ात",
-    lens_title: "दृष्टिकोण से देखें",
-    lens_medical: "चिकित्सकीय",
-    lens_social: "सामाजिक‑भावनात्मक",
-    lens_financial: "वित्तीय",
-    lens_nutrition: "पोषण",
-    featured_title: "संपादक की पसंद",
-    treatments_overview_title: "उपचार एक नज़र में",
-    success_preview_title: "सफलता की कहानियाँ",
-    blog_preview_title: "ब्लॉग से",
-    rights_title: "अधिकार व योजनाएँ (भारत)",
-    nutrition_title: "पोषण आवश्यकताएँ",
-    nutrition_eat: "खाएँ",
-    nutrition_limit: "कम करें",
-    nutrition_avoid: "परहेज़",
-    footer_sources: "स्रोत व समीक्षा नीति",
-    footer_disclaimer: "चिकित्सकीय सलाह नहीं",
-    footer_privacy: "गोपनीयता",
-    footer_contact: "संपर्क",
-    k1_title: "10 मिनट में IVF: चरण, विकल्प और लागत",
-    k1_desc: "टेस्ट से ट्रांसफर तक का सरल सार।",
-    k2_title: "पहली तिमाही का स्कैन: क्या जाँचा जाता है",
-    k2_desc: "12‑सप्ताह स्कैन के लक्ष्य।",
-    k3_title: "PMMVY व JSY: आवेदन कैसे करें",
-    k3_desc: "पात्रता, दस्तावेज़, चरण।",
-    k4_title: "गर्भावस्था में सुरक्षित भोजन: खाएँ/कम करें/परहेज़",
-    k4_desc: "सरल तालिका",
-
-    // Additional article translations
-    article_overview_desc: "टेस्ट से ट्रांसफर तक का सरल सार।",
-    article_scan_desc: "12‑सप्ताह स्कैन के लक्ष्य।",
-    article_scheme_desc: "पात्रता, दस्तावेज़, चरण।",
-    article_food_desc: "सरल तालिका",
-    // Treatments - Hindi
-    treatment_iui_title: "IUI",
-    treatment_iui_desc:
-      "अंतर्गर्भाशयी गर्भाधान प्रक्रिया, सफलता दर और क्या अपेक्षा करें",
-    treatment_ivf_title: "IVF",
-    treatment_ivf_desc: "इन विट्रो फर्टिलाइजेशन चरण, समयसीमा और तैयारी गाइड",
-    treatment_icsi_title: "ICSI",
-    treatment_icsi_desc: "पुरुष कारक बांझपन के लिए अंडे में शुक्राणु इंजेक्शन",
-    treatment_donor_title: "दाता विकल्प",
-    treatment_donor_desc: "अंडा, शुक्राणु और भ्रूण दान प्रक्रियाएं और विचार",
-    treatment_preservation_title: "प्रजनन संरक्षण",
-    treatment_preservation_desc:
-      "भविष्य की पारिवारिक योजना के लिए अंडा और शुक्राणु संरक्षण",
-
-
-    // Chat Interface - Hindi
-    chat_with_sakhi: "सखी से बात करें",
-    sakhi_online_ready: "सखी ऑनलाइन है और मदद के लिए तैयार है",
-    chat_feeling_anxious: "मैं कल के स्कैन को लेकर चिंतित हूं",
-    chat_understand_anxiety:
-      "मैं आपकी चिंता समझती हूं। स्कैन से पहले ऐसा महसूस करना पूरी तरह सामान्य है।",
-    chat_breathing_exercise: "कुछ गहरी सांस लेने के व्यायाम करें...",
-    chat_type_message: "अपना संदेश टाइप करें...",
-    chat_send_message: "संदेश भेजें",
-
-    sakhi_hero: "प्रजनन यात्रा के लिए सहृदय साथी",
-    sakhi_sub: "24/7 भावनात्मक सहयोग — निजी",
-    sakhi_how_title: "सखी कैसे मदद करती है",
-    sakhi_how_list:
-      "स्कैन/इंजेक्शन से पहले शांति|टू‑वीक‑वेट में छोटे रूटीन|साथी का सहयोग (अपराधबोध असहायता संवाद)|नींद व योजना|कब पेशेवर मदद लें",
-    sakhi_try: "सखी आज़माएँ",
-    sakhi_demo_title: "एक परिदृश्य आज़माएँ",
-    chat_title: "सखी — बातचीत (डेमो)",
-    chat_hint: "English/हिंदी/తెలుగు — जिस लिपि में लिखेंगे, उसी में उत्तर।",
-    chat_quick: "त्वरित संकेत",
-    chat_p1: "कल के स्कैन को लेकर घबराहट है",
-    chat_p2: "रिज़ल्ट के बारे में सोच रुक नहीं रहा",
-    chat_p3: "डायग्नोसिस के बाद साथी को ग्लानि है",
-    chat_end: "समाप्त",
-    chat_clear: "साफ़ करें",
-    chat_privacy: "निजी व स्थानीय।",
-    chat_reply_en:
-      "I'm glad you shared this. It's normal to feel anxious. Try 4‑4‑6 breathing (in 4, hold 4, out 6) three times. Then pick one small step you control. If you notice chest pain, dizziness, or thoughts of self‑harm, please contact professional or emergency care.",
-    chat_reply_hi:
-      "आपने साझा किया, धन्यवाद। घबराहट सामान्य है। 4‑4‑6 साँस (4 अंदर, 4 रोकें, 6 बाहर) तीन बार करें। फिर अपने नियंत्रण में एक छोटा कदम चुनें। यदि सीने में दर्द/चक्कर/आत्म‑हानि के विचार हों तो तुरंत मदद लें।",
-    chat_reply_te:
-      "మీరు పంచుకున్నందుకు ధన్యవాదాలు. ఆందోళన సహజం. 4‑4‑6 శ్వాస (4 లోపల, 4 ఆపి, 6 బయట) మూడు సార్లు చేయండి. తర్వాత మీరు నియంత్రించగల చిన్న మెట్టు ఎంచుకోండి. ఛాతి నొప్పి/తల తిరుగుడు/స్వీయహానీ ఆలోచనలు ఉంటే సహాయం పొందండి.",
-
-    // Investors page
-    investors_title: "निवेशक",
-    investors_intro:
-      "अधिक सेवा वाले समुदायों के लिए स्केलेबल स्वास्थ्य अवसंरचना। साक्ष्य-आधारित ज्ञान और भावनात्मक सहायता प्रणालियों के माध्यम से विश्वास निर्माण।",
-    investors_platform_title: "प्लेटफॉर्म",
-    investors_platform_desc:
-      "पितृत्व यात्रा में तैयारी स्तर; पुन: उपयोग योग्य घटक और सामग्री स्कीमा।",
-    investors_model_title: "मॉडल",
-    investors_model_desc:
-      "परिणाम-संरेखित पायलट; सब्सक्रिप्शन + उपयोग मूल्य निर्धारण (भविष्य); कोई भुगतान लीडजेन नहीं।",
-    investors_defensibility_title: "रक्षा क्षमता",
-    investors_defensibility_desc:
-      "चिकित्सक-समीक्षित ज्ञान, स्थानीयकृत सामग्री, निरंतर मूल्यांकन के लिए उपयोग संकेत।",
-    investors_cta_onepager: "1-पेजर डाउनलोड करें",
-    investors_cta_contact: "संपर्क करें",
-
-    search_placeholder: "लेख, उपचार खोजें...",
-    coming_soon: "जल्द आ रहा है",
-    read_more: "और पढ़ें",
-    learn_more: "और जानें",
-    get_started: "शुरू करें",
-    explore_more: "और अन्वेषण करें",
-    support_title: "अतिरिक्त सहायता की आवश्यकता है?",
-    support_subtitle: "अपनी यात्रा के दौरान व्यक्तिगत मार्गदर्शन और भावनात्मक समर्थन प्राप्त करें",
-    talk_sakhi_button: "सखी से बात करें",
-    find_experts_button: "विशेषज्ञ खोजें",
+    sakhi_important_desc: "సఖి భావోద్వేగ సहारा और सामान्य मार्गदर्शन प्रदान करती है, पेशेवर चिकित्सा सलाह नहीं।"
   },
   te: {
     brand_tag: "మీ ప్రజనన ప్రయాణం ఇక్కడ ప్రారంభమవుతుంది",
@@ -671,7 +657,7 @@ export const dict = {
     sakhi_explore_knowledge: "నాలెడ్జ్ హబ్ ఎక్స్‌ప్లోర్ చేయండి",
     sakhi_learn_treatments: "చికిత్సల గురించి తెలుసుకోండి",
     sakhi_important_notice: "ముఖ్యమైన నోటీస్",
-    sakhi_important_desc: "సఖి భావోద్వేగ మద్దతు మరియు సాధారణ మార్గదర్శకత్వాన్ని అందిస్తుంది కానీ వృత్తిపరమైన వైద్య లేదా మానసిక ఆరోగ్య సంరక్షణకు ప్రత్యామ్నాయం కాదు. మీరు స్వీయ-హాని ఆలోచనలు లేదా తీవ్ర బాధను అనుభవిస్తున్నట్లయితే, దయచేసి తక్షణం ఆరోగ్య సంరక్షణ నిపుణుడిని లేదా అత్యవసర సేవలను సంప్రదించండి.",
+    sakhi_important_desc: "సఖి భావోద్వేగ సహారా और सामान्य मार्गदर्शन प्रदान करती है, पेशेवर चिकित्सा सलाह नहीं।",
 
     // Tools page
     tools_subtitle: "మీ ప్రజనన మరియు పేరెంటింగ్ ప్రయాణంలో సహాయం చేయడానికి ఆచరణాత్మక సాధనాలు మరియు లెక్కలు. అన్ని సాధనాలు భారతీయ ఆరోగ్య సందర్భాలను దృష్టిలో ఉంచుకుని రూపొందించబడ్డాయి.",
@@ -704,7 +690,7 @@ export const dict = {
     // Alt text for images
     alt_planning_fertility: "ప్రజనన ప్రయాణ ప్రణాళిక మరియు ట్రాకింగ్",
     alt_reading_parenting: "పేరెంటింగ్ గురించి చదవడం మరియు నేర్చుకోవడం",
-    alt_medical_consultation: "ఆరోగ్య నిపుణులతో వైద్య సంప్రదింపు",
+    alt_medical_consultation: "వైద్య సంప్రదింపులు",
 
     // Blog page
     blog_subtitle: "మా సంపాదకీయ బృందం మరియు నిపుణుల సహాయకుల నుండి అంతర్దృష్టులు, చిట్కాలు మరియు ఆచరణాత్మక సలహాలు. ప్రజనన, గర్భధారణ మరియు పేరెంటింగ్‌లో తాజా విషయాలతో అప్‌డేట్‌గా ఉండండి.",
@@ -718,10 +704,10 @@ export const dict = {
     // Experts page
     experts_subtitle: "మీ కంటెంట్‌ని భారతీయ కుటుంబాలకు ఖచ్చితత్వం మరియు సంబంధితత్వాన్ని నిర్ధారించడానికి సమీక్షించే వైద్య నిపుణులు, నిపుణులు మరియు సలహాదారులను కలవండి.",
     experts_reviews: "సమీక్షలు:",
-    experts_quality_trust: "మీరు నమ్మగలిగే నాణ్యత",
-    experts_trust_desc: "మా అన్ని కంటెంట్ అర్హత కలిగిన నిపుణులచే సమీక్షించబడుతుంది తద్వారా ఖచ్చితత్వం మరియు సంబంధితత్వం నిర్ధారించబడుతుంది. అయితే, ఈ సమాచారం విద్యా ప్రయోజనాల కోసం మాత్రమే మరియు వృత్తిపరమైన వైద్య సలహాను భర్తీ చేయకూడదు.",
-    experts_browse_knowledge: "నాలెడ్జ్ హబ్ బ్రౌజ్ చేయండి",
-    experts_contact_us: "మాతో సంప్రదించండి",
+    experts_quality_trust: "నమ్మదగిన నాణ్యత",
+    experts_trust_desc: "మా అన్ని కంటెంట్‌ను అర్హత కలిగిన నిపుణులు సమీక్షించి ఖచ్చితత్వం మరియు సంబంధాన్ని నిర్ధారిస్తారు. అయితే, ఈ సమాచారం కేవలం విద్యా ప్రయోజనాల కోసం మాత్రమే మరియు వృత్తిపరమైన వైద్య సలహాను భర్తీ చేయదు.",
+    experts_browse_knowledge: "జ్ఞాన కేంద్రాన్ని చూడండి",
+    experts_contact_us: "మమ్మల్ని సంప్రదించండి",
     hero_title:
       "<span>తల్లిదండ్రత్వానికి</span> వంతెన।<br />ప్రయాణంలోని ప్రతి అడుగుకు।",
     hero_sub: "భారతీయ సందర్భానికి సరళమైన, ఆధారాలతో కూడిన గైడ్లు.",

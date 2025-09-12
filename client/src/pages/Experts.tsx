@@ -1,3 +1,4 @@
+
 import { Link } from 'wouter';
 import { MapPin, GraduationCap, CheckCircle } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageProvider';
@@ -51,45 +52,36 @@ const Experts = () => {
                 <div className="text-center mb-4">
                   <img
                     src={getExpertImage(index)}
-                    alt={expert.name}
+                    alt={t(expert.name)}
                     className="w-20 h-20 rounded-full object-cover mx-auto mb-4"
                   />
                   <h3 className="text-xl font-bold text-foreground font-serif mb-2" data-testid={`text-expert-name-${index}`}>
-                    {expert.name}
+                    {t(expert.name)}
                   </h3>
                   <p className="text-sm text-muted-foreground mb-2" data-testid={`text-expert-role-${index}`}>
-                    {expert.role}
+                    {t(expert.role)}
                   </p>
-                  <div className="flex items-center justify-center space-x-2 text-xs text-muted-foreground">
+                  <div className="flex items-center justify-center space-x-2 text-xs text-muted-foreground mb-4">
                     <GraduationCap className="w-3 h-3" />
-                    <span data-testid={`text-expert-credentials-${index}`}>{expert.credentials}</span>
+                    <span data-testid={`text-expert-credentials-${index}`}>{t(expert.credentials)}</span>
                   </div>
                 </div>
 
                 <div className="space-y-4">
                   <div className="flex items-center justify-center space-x-2 text-sm text-muted-foreground">
                     <MapPin className="w-4 h-4" />
-                    <span data-testid={`text-expert-city-${index}`}>{expert.city}</span>
+                    <span data-testid={`text-expert-city-${index}`}>{t(expert.city)}</span>
                   </div>
 
-                  <p className="text-sm text-muted-foreground mb-1">
-                    {t(expert.specialization)}
-                  </p>
-                  <p className="text-xs text-muted-foreground mb-2">
-                    {t(expert.credentials)}
-                  </p>
-                  <div className="flex items-center text-xs text-muted-foreground mb-3">
-                    <MapPin className="w-3 h-3 mr-1" />
-                    {t(expert.location)}
-                  </div>
-                  <p className="text-sm text-foreground mb-4">
+                  <p className="text-sm text-foreground mb-4 text-center">
                     {t(expert.bio)}
                   </p>
+                  
                   <div className="space-y-2">
-                    <p className="text-xs font-medium text-muted-foreground">{t("reviews")}:</p>
-                    <div className="flex flex-wrap gap-1">
-                      {expert.reviewCategories.map((category, index) => (
-                        <Badge key={index} variant="secondary" className="text-xs">
+                    <p className="text-xs font-medium text-muted-foreground text-center">{t("reviews")}:</p>
+                    <div className="flex flex-wrap gap-1 justify-center">
+                      {expert.reviewCategories.map((category, categoryIndex) => (
+                        <Badge key={categoryIndex} variant="secondary" className="text-xs">
                           {t(category)}
                         </Badge>
                       ))}
@@ -106,21 +98,20 @@ const Experts = () => {
       <section className="py-16">
         <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-3xl p-8 md:p-12 text-center">
           <h2 className="text-3xl font-bold text-foreground font-serif mb-4">
-            Quality You Can Trust
+            {t('quality_trust_title')}
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
-            All our content is reviewed by qualified professionals to ensure accuracy and relevance.
-            However, this information is for educational purposes only and should not replace professional medical advice.
+            {t('quality_trust_desc')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/knowledge">
               <Button className="gradient-button text-white px-8 py-4 rounded-full font-semibold" data-testid="button-browse-knowledge">
-                Browse Knowledge Hub
+                {t('browse_knowledge_hub')}
               </Button>
             </Link>
             <Link href="/contact">
               <Button variant="outline" className="bg-white px-8 py-4 rounded-full font-semibold" data-testid="button-contact-experts">
-                Contact Us
+                {t('contact_us')}
               </Button>
             </Link>
           </div>
