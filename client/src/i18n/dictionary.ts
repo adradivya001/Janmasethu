@@ -20,7 +20,7 @@ export const dict = {
 
     // Sakhi page
     sakhi_hero: "Meet <span>Sakhi</span> - Your Compassionate Companion",
-    sakhi_sub: "Sakhi understands the emotional challenges of fertility journeys and provides culturally-aware support",
+    sakhi_sub: "24/7 emotional support, ways to reduce stress, guidance that fits your culture- privately, without any judgment.",
     sakhi_try: "Try Sakhi Now",
     sakhi_how_title: "How Sakhi Works",
     sakhi_how_list: "Understanding your emotional state during difficult moments|Providing coping strategies for anxiety and stress|Offering culturally appropriate guidance|Helping process complex emotions|Supporting during waiting periods|Assisting with partner communication|Providing perspective during overwhelming times",
