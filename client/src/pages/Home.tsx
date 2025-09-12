@@ -391,9 +391,8 @@ const Home = () => {
               <h2
                 className="text-4xl font-bold text-foreground font-serif mb-6"
                 data-testid="text-sakhi-hero"
-              >
-                {t("sakhi_hero")}
-              </h2>
+                dangerouslySetInnerHTML={{ __html: t("sakhi_hero") }}
+              ></h2>
               <p
                 className="text-lg text-muted-foreground mb-8"
                 data-testid="text-sakhi-sub"
@@ -410,6 +409,7 @@ const Home = () => {
               <ul className="space-y-3 mb-8">
                 {t("sakhi_how_list")
                   .split("|")
+                  .filter((item: string) => item.trim().length > 0)
                   .map((item: string, index: number) => (
                     <li
                       key={index}
