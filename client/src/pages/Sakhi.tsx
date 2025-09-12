@@ -59,7 +59,7 @@ const Sakhi = () => {
             className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground font-serif mb-6 leading-tight"
             data-testid="text-sakhi-hero-title"
             dangerouslySetInnerHTML={{ __html: t("sakhi_hero") }}
-          /></h1>
+          ></h1>
 
           <p
             className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto"
