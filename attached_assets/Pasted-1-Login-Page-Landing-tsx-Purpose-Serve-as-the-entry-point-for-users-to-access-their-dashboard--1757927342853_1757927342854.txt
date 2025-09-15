@@ -1,0 +1,62 @@
+1. Login Page (Landing.tsx):
+Purpose: Serve as the entry point for users to access their dashboard.
+Components:
+Header with the clinic's name and logo.
+Input fields for username and password.
+A Login button that redirects to the dashboard upon clicking.
+Optional messaging for setup fees and free trial.
+User Interaction: On successful login, users are redirected to the dashboard.
+2. Dashboard Page (Dashboard.tsx):
+Purpose: Display key metrics and various functionalities based on user roles.
+Components:
+Navigation Sidebar (Navigation.tsx):
+Menu items for accessing different sections like Lead Management, Appointments, etc.
+Statistics Widgets to show overview metrics (total leads, appointments, etc.).
+Graphs/Charts:
+Visualization of lead funnel data and performance metrics.
+Tasks Section for managing daily tasks and upcoming appointments.
+User Interaction: Users can click on various metrics or charts for detailed views or perform actions like creating new leads.
+3. Lead Management Page (LeadManagement.tsx):
+Purpose: Allow users to view and manage leads.
+Components:
+List of leads with essential information (name, status, contact details).
+A search bar for filtering leads.
+Action buttons for adding, editing, and deleting leads.
+User Interaction: Users can perform CRUD operations on lead data.
+4. Appointments Page (Appointments.tsx):
+Purpose: Manage clinic appointment scheduling and tracking.
+Components:
+Calendar view to see scheduled appointments.
+List of upcoming appointments with options to confirm or cancel.
+Button to add new appointments.
+User Interaction: Users can click on appointments for details or actions.
+5. AI Recommendations Page (TreatmentRecommendations.tsx):
+Purpose: Provide AI-generated treatment recommendations for patients.
+Components:
+Display a list of recommendations based on patient data.
+Information sections for each recommendation with relevant details.
+User Interaction: Users can view recommendations and take necessary actions based on them.
+6. Patients Page (Patients.tsx):
+Purpose: Manage and view patient records.
+Components:
+Searchable list of patients with vital details.
+Profile view for each patient with medical history.
+User Interaction: Users can select a patient to view detailed information and edit records.
+7. Reports Page (Reports.tsx):
+Purpose: Generate and view reports related to clinic performance and patient data.
+Components:
+Selection options for different types of reports (monthly stats, treatment outcomes).
+Downloadable report format options (PDF, Excel).
+User Interaction: Users can generate and download reports.
+8. Settings Page (Settings.tsx):
+Purpose: Manage clinic and user account settings.
+Components:
+Editable fields for clinic information (name, address, contact info).
+User management section to add or modify user roles.
+API keys management.
+User Interaction: Users can save changes to settings and manage permissions.
+Implementation Notes:
+Each page/component should follow a consistent design language.
+Ensure responsiveness and accessibility for all users.
+Mock data or static representations should be used during development to ensure functionality is tested properly.
+Deployment of all static pages should be done on Replit using their static deployment features for easy access and management.

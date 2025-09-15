@@ -1,0 +1,51 @@
+Objective:
+To develop a static clinic login page and a static, functional dashboard for the Samnada clinic, providing an intuitive and efficient user experience.
+
+User Authentication and Login Page:
+
+Create a dedicated static login page, which provides inputs for username and password.
+Include a "Login" button that redirects to the dashboard upon successful authentication.
+Dashboard Structure:
+
+The dashboard will be a separate static page consisting of modular components that display relevant data.
+Ensure all dashboard components (widgets, graphs, statistics) are static yet interactive when applicable.
+Navigation Implementation:
+
+Utilize a navigation sidebar that lists all functionality accessible to the user based on their role:
+Dashboard
+Lead Management
+Appointments
+AI Recommendations
+Patients
+Emotional Support
+Reports
+Settings
+Make sure the navigation is easily accessible and responsive.
+Static Dashboard Components:
+
+Key Metrics Display:
+Create sections for displaying new leads, appointments, conversion rates, etc.
+Visualization Components:
+Integrate charts and graphs to showcase lead conversion funnels and other analytics using static data for development.
+Task Management:
+Include components to manage tasks and appointments, allowing users to interact with static mock data.
+Firm Design Elements:
+
+Apply a calming color scheme, primarily soft purples and whites throughout the site.
+Use accessible and readable typography to enhance user engagement on both the login and dashboard pages.
+User Experience Considerations:
+
+Ensure smooth transitions between the login page and the dashboard upon successful login.
+Provide feedback on key actions (e.g., loading states, success/failure messages) on the dashboard.
+Static Data Handling:
+
+For the development phase, create mock data within the components to mimic real data interactions.
+Utilize methods from the existing codebase to handle data fetching and operations statically for testing.
+Deployment Considerations:
+
+Prepare the application for static deployment using Replit's capabilities.
+Ensure all static files are built into the designated directory and configured properly for deployment.
+Testing and Validation:
+
+Conduct thorough testing of all static components to verify they function correctly without live API connections.
+Validate user roles, ensuring that dashboard elements display appropriately per each user's permissions.

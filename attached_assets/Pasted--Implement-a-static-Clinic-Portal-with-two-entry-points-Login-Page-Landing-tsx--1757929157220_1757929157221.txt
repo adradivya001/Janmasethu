@@ -1,0 +1,206 @@
+
+Implement a static **Clinic Portal** with two entry points:
+
+* **Login Page** (`Landing.tsx`)
+* **Clinic Dashboard** (`Dashboard.tsx`) with modular sub-pages (Lead Management, Appointments, Patients, Reports, Settings, etc.).
+
+Everything should use **static mock data** and be deployable on Replit as a static site. The design system must feel **world-class**: calm, professional, trustworthy.
+
+---
+
+## 🎨 Design Language (global)
+
+* **Color theme**: calming **soft purples (#7C3AED), lavenders (#C4B5FD), and whites (#FFFFFF)** with subtle gray text (#374151).
+* **Typography**: `Inter` or `Nunito Sans` (16px base, 24px line-height).
+* **UI style**: glassmorphism cards (subtle blur, 12px radius, drop-shadow).
+* **Animations**: micro-interactions only — button hover lift, smooth sidebar expand, chart fade-ins.
+* **Responsiveness**: grid-based layouts that adapt to mobile/tablet.
+
+---
+
+## 🔑 Pages & Components
+
+### 1. **Login Page (` Clinic Landing.tsx`)** 
+
+Purpose: Entry point.
+Components:
+
+* Header with clinic logo + name **Samnada Clinic**.
+* Centered card with:
+
+  * Username & Password inputs (with icons).
+  * “Login” button (purple gradient).
+  * Optional message row: “No setup fees · 14-day free trial.”
+* On login click → redirect to `/dashboard`.
+
+UX polish:
+
+* Subtle gradient background.
+* Input focus glow.
+* Disabled login until both fields filled.
+
+---
+
+### 2. **Dashboard Layout (`Dashboard.tsx`)**
+
+Core shell with:
+
+* **Sidebar (`Navigation.tsx`)** (sticky left):
+
+  * Logo + collapse toggle.
+  * Menu items (icons + text):
+
+    * Dashboard
+    * Lead Management
+    * Appointments
+    * AI Recommendations
+    * Patients
+    * Emotional Support
+    * Reports
+    * Settings
+  * Hover = tooltip; active = purple highlight.
+
+* **Top bar**:
+
+  * Greeting (e.g. “Welcome back, Dr. Rao”).
+  * Search box.
+  * Profile avatar + dropdown (logout/settings).
+
+---
+
+### 3. **Dashboard Home Widgets**
+
+In `Dashboard.tsx` content area, grid layout with cards:
+
+* **Key Metrics**:
+
+  * New Leads (24)
+  * Appointments Today (12)
+  * Conversion Rate (32%)
+  * Active Patients (120)
+
+* **Charts** (use static data with Chart.js or Recharts):
+
+  * Lead Conversion Funnel.
+  * Appointments trend (weekly).
+
+* **Tasks List**:
+
+  * “Follow up with 3 new leads.”
+  * “Confirm tomorrow’s scans.”
+
+UX polish:
+
+* Cards animate in on load.
+* Hover = lift effect.
+* Charts fade-in.
+
+---
+
+### 4. **Lead Management (`LeadManagement.tsx`)**
+
+* Table/grid of leads:
+
+  * Columns: Name | Status | Contact | Actions.
+* Action bar: \[+ Add Lead] \[Search].
+* CRUD simulated with mock data.
+
+---
+
+### 5. **Appointments (`Appointments.tsx`)**
+
+* Left: Calendar view (month).
+* Right: List of upcoming appointments (patient name, date/time, status).
+* Button: “+ New Appointment”.
+
+---
+
+### 6. **AI Recommendations (`TreatmentRecommendations.tsx`)**
+
+* Static cards: “Patient X — Recommended cycle: IUI + supplements.”
+* Each with action buttons: \[Accept] \[Review].
+
+---
+
+### 7. **Patients (`Patients.tsx`)**
+
+* Search bar.
+* List view: Name, ID, Last Visit.
+* On click → profile modal with static history.
+
+---
+
+### 8. **Reports (`Reports.tsx`)**
+
+* Dropdown: Select report type (Monthly, Outcomes).
+* Static chart preview.
+* Buttons: \[Download PDF] \[Download Excel].
+
+---
+
+### 9. **Settings (`Settings.tsx`)**
+
+* Form fields: Clinic Name, Address, Contact Info.
+* User management: list of staff (role, email).
+* API Keys section with masked tokens.
+
+---
+
+## 📂 File Structure
+
+```
+/src
+ ├── pages/
+ │    ├── Landing.tsx
+ │    ├── Dashboard.tsx
+ │    ├── LeadManagement.tsx
+ │    ├── Appointments.tsx
+ │    ├── TreatmentRecommendations.tsx
+ │    ├── Patients.tsx
+ │    ├── Reports.tsx
+ │    └── Settings.tsx
+ ├── components/
+ │    ├── Navigation.tsx
+ │    ├── Header.tsx
+ │    ├── Card.tsx
+ │    ├── Chart.tsx
+ │    └── TaskList.tsx
+ ├── data/
+ │    ├── leads.json
+ │    ├── appointments.json
+ │    ├── patients.json
+ │    └── tasks.json
+ └── styles/
+      └── theme.css
+```
+
+---
+
+## 🛠️ Development Notes
+
+* **Static data**: import JSON files into components (`import leads from '../data/leads.json'`).
+* **Charts**: use Chart.js/Recharts with hardcoded sample values.
+* **Routing**: simple React Router (`/dashboard`, `/appointments`, etc.).
+* **Deployment**: Replit static build; all routes should fallback to `index.html`.
+
+---
+
+## ✅ Acceptance Criteria
+
+* Login → Dashboard navigation works (static, no API).
+* Sidebar functional & responsive.
+* Each page has mock data displayed.
+* Charts/graphs render with static values.
+* Consistent purple/white theme across all pages.
+* Smooth transitions (fade-in, hover).
+* Ready for static deployment on Replit.
+
+---
+
+⚡ After implementing, please confirm:
+
+1. Which files were created.
+2. How to update mock data JSON.
+3. That `/dashboard` and sub-pages load correctly via sidebar navigation.
+
+
