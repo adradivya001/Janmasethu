@@ -5,14 +5,12 @@ import {
   LayoutDashboard, 
   Users, 
   Calendar, 
-  Brain, 
   UserCheck, 
-  Heart, 
   BarChart3, 
-  Settings,
   ChevronLeft,
   ChevronRight,
-  LogOut
+  LogOut,
+  Heart
 } from "lucide-react";
 
 interface NavigationItem {
@@ -26,11 +24,8 @@ const navigationItems: NavigationItem[] = [
   { key: "dashboard", href: "/clinic/dashboard", icon: LayoutDashboard, label: "Dashboard" },
   { key: "leads", href: "/clinic/leads", icon: Users, label: "Lead Management" },
   { key: "appointments", href: "/clinic/appointments", icon: Calendar, label: "Appointments" },
-  { key: "ai", href: "/clinic/recommendations", icon: Brain, label: "AI Recommendations" },
   { key: "patients", href: "/clinic/patients", icon: UserCheck, label: "Patients" },
-  { key: "support", href: "/clinic/support", icon: Heart, label: "Emotional Support" },
   { key: "reports", href: "/clinic/reports", icon: BarChart3, label: "Reports" },
-  { key: "settings", href: "/clinic/settings", icon: Settings, label: "Settings" },
 ];
 
 interface ClinicNavigationProps {
