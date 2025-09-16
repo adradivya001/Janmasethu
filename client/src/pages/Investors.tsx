@@ -272,7 +272,7 @@ const Investors = () => {
               </a>
             </Button>
             
-            <Button asChild variant="outline" className="border-white text-white hover:bg-white hover:text-purple-600 px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 inline-flex items-center" data-testid="button-contact-investors">
+            <Button asChild variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-purple-600 bg-transparent backdrop-blur-sm px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 inline-flex items-center" data-testid="button-contact-investors">
               <a href="mailto:investors@janmasethu.com">
                 <Mail className="mr-2 w-5 h-5" />
                 Contact Us
