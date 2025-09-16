@@ -38,8 +38,8 @@ const Investors = () => {
         {/* Hero Background */}
         <div className="mt-16 relative">
           <img 
-            src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=400" 
-            alt="Healthcare innovation and investment in fertility care" 
+            src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=400" 
+            alt="Healthcare investment and business growth" 
             className="w-full h-80 object-cover rounded-3xl"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-pink-600/20 rounded-3xl"></div>
