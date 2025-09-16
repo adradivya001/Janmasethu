@@ -11,7 +11,7 @@ export const dict = {
     nav_success: "Success Stories",
     nav_blog: "Blog",
     nav_experts: "Experts",
-    nav_tools: "Tools",
+    
     nav_sakhi: "Sakhi",
     lang_label: "Language",
     nav_investors: "Investors",
@@ -68,33 +68,7 @@ export const dict = {
     sakhi_important_notice: "Important Notice",
     sakhi_important_desc: "Sakhi provides emotional support and general guidance but is not a replacement for professional medical or mental health care. If you're experiencing thoughts of self-harm or severe distress, please contact a healthcare professional or emergency services immediately.",
 
-    // Tools page
-    tools_subtitle: "Practical tools and calculators to help you navigate your fertility and parenting journey. All tools are designed with Indian healthcare contexts in mind.",
-    tools_ovulation_calc: "Ovulation Calculator",
-    tools_ovulation_desc: "Track your fertile window and ovulation dates",
-    tools_pregnancy_calc: "Pregnancy Due Date Calculator",
-    tools_pregnancy_desc: "Calculate your estimated due date and track milestones",
-    tools_cost_estimator: "Treatment Cost Estimator",
-    tools_cost_desc: "Estimate costs for various fertility treatments in India",
-    tools_fertility_tracker: "Fertility Journey Tracker",
-    tools_fertility_desc: "Track appointments, medications, and progress",
-    tools_symptom_guide: "Pregnancy Symptom Guide",
-    tools_symptom_desc: "Understand common pregnancy symptoms and when to call your doctor",
-    tools_appointment_prep: "Appointment Preparation Tool",
-    tools_appointment_desc: "Generate questions to ask your doctor based on your situation",
-    tools_available: "Available",
-    tools_coming_soon: "Coming Soon",
-    tools_use_tool: "Use Tool",
-    tools_available_tools: "Available Tools",
-    tools_available_subtitle: "Start using these tools right now to support your journey",
-    tools_calculate_now: "Calculate Now",
-    tools_estimate_costs: "Estimate Costs",
-    tools_ovulation_detail: "Enter your cycle length and last period date to find your fertile window",
-    tools_pregnancy_detail: "Calculate your estimated due date and pregnancy milestones",
-    tools_cost_detail: "Get rough cost estimates for fertility treatments in your city",
-    tools_need_support: "Need More Support?",
-    tools_support_desc: "While tools provide helpful calculations, emotional support is equally important. Sakhi is here for you 24/7.",
-    tools_talk_sakhi: "Talk to Sakhi",
+    
 
     // Alt text for images
     alt_planning_fertility: "Planning and tracking fertility journey",

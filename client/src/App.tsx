@@ -17,7 +17,6 @@ import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import Experts from "./pages/Experts";
 import Expert from "./pages/Expert";
-import Tools from "./pages/Tools";
 import Sakhi from "./pages/Sakhi";
 import SakhiTry from "./pages/SakhiTry";
 import Investors from "./pages/Investors";
@@ -60,7 +59,6 @@ function Router() {
             <Route path="/blog/:slug" component={BlogPost} />
             <Route path="/experts" component={Experts} />
             <Route path="/experts/:id" component={Expert} />
-            <Route path="/tools" component={Tools} />
             <Route path="/sakhi" component={Sakhi} />
             <Route path="/investors" component={Investors} />
             {/* Catch-all route to redirect to home instead of 404 */}

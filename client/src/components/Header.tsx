@@ -23,7 +23,6 @@ const Header = () => {
     { key: 'nav_success', href: '/success-stories', priority: 6 },
     { key: 'nav_blog', href: '/blog', priority: 7 },
     { key: 'nav_experts', href: '/experts', priority: 8 },
-    { key: 'nav_tools', href: '/tools', priority: 9 },
     { key: 'nav_investors', href: '/investors', priority: 10 },
   ];
 

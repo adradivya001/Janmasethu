@@ -22,7 +22,7 @@ const MobileMenu = ({ isOpen, onClose, navItems }: MobileMenuProps) => {
           data-testid="backdrop-mobile-menu"
         />
       )}
-      
+
       {/* Menu */}
       <div className={`mobile-menu fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-xl lg:hidden ${isOpen ? 'open' : ''}`}>
         <div className="p-6">
@@ -36,7 +36,7 @@ const MobileMenu = ({ isOpen, onClose, navItems }: MobileMenuProps) => {
           >
             <X className="text-xl" />
           </Button>
-          
+
           <nav className="space-y-4" role="navigation" aria-label="Mobile navigation">
             {navItems.map(({ key, href }) => (
               <Link 
