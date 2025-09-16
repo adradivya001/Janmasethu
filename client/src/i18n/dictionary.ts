@@ -11,7 +11,7 @@ export const dict = {
     nav_success: "Success Stories",
     nav_blog: "Blog",
     nav_experts: "Experts",
-    
+
     nav_sakhi: "Sakhi",
     lang_label: "Language",
     nav_investors: "Investors",
@@ -68,7 +68,7 @@ export const dict = {
     sakhi_important_notice: "Important Notice",
     sakhi_important_desc: "Sakhi provides emotional support and general guidance but is not a replacement for professional medical or mental health care. If you're experiencing thoughts of self-harm or severe distress, please contact a healthcare professional or emergency services immediately.",
 
-    
+
 
     // Alt text for images
     alt_planning_fertility: "Planning and tracking fertility journey",
@@ -240,12 +240,12 @@ export const dict = {
     investors_hero_title_highlight: "Parenthood Care",
     investors_hero_mission: "Bridging trust, preparedness, and AI in healthcare to transform the fertility journey for Indian families.",
     investors_hero_download_deck: "Download Investor Deck",
-    
+
     investors_problem_title: "The Problem",
     investors_problem_1: "Parents struggle with scattered, unverified knowledge about fertility treatments",
     investors_problem_2: "Clinics lose patients to cancellations and poor preparedness",
     investors_problem_3: "Existing health tech focuses on lead generation only, not trust-first approach",
-    
+
     investors_solution_title: "Our Solution",
     investors_solution_1: "Curated multilingual knowledge hub",
     investors_solution_1_desc: "with verified, culturally-aware content",
@@ -253,7 +253,7 @@ export const dict = {
     investors_solution_2_desc: "providing 24/7 emotional support",
     investors_solution_3: "Clinic portal",
     investors_solution_3_desc: "that reduces cancellations and improves show-rates",
-    
+
     investors_traction_title: "Early Traction & Momentum",
     investors_traction_subtitle: "Building trust and scale from day one",
     investors_traction_languages: "3 Languages",
@@ -262,7 +262,7 @@ export const dict = {
     investors_traction_faqs_desc: "Comprehensive checklists and verified content live on platform",
     investors_traction_pilot: "Pilot Partner",
     investors_traction_pilot_desc: "Outcome-based model with Samnada Clinic showing early results",
-    
+
     investors_model_title: "Scalable Business Model",
     investors_model_subtitle: "Outcome-driven approach that aligns our success with clinic success",
     investors_model_phase1_title: "Phase 1: Pilot",
@@ -280,7 +280,7 @@ export const dict = {
     investors_model_phase3_1: "IVF, IUI, endometriosis coverage",
     investors_model_phase3_2: "Pregnancy and early parenting",
     investors_model_phase3_3: "Enterprise licensing for hospital chains",
-    
+
     investors_why_title: "Why JanmaSethu?",
     investors_why_subtitle: "Building sustainable competitive advantages",
     investors_moat_title: "Our Moat",
@@ -296,13 +296,13 @@ export const dict = {
     investors_team_engineers: "Full-Stack Engineers",
     investors_team_ai: "AI/ML Specialists",
     investors_team_medical: "Medical Content Reviewers",
-    
+
     investors_cta_title: "Ready to Transform Healthcare Together?",
     investors_cta_subtitle: "Join us in building the future of parenthood care for millions of Indian families.",
     investors_cta_onepager: "Download 1-Pager",
     investors_cta_contact: "Contact Us",
     investors_cta_schedule: "Schedule a call",
-    
+
     investors_disclaimer: "This information is confidential and proprietary. All forward-looking statements are subject to risks and uncertainties.",
 
     // Search and other UI elements
@@ -555,12 +555,12 @@ export const dict = {
     investors_hero_title_highlight: "पेरेंटहुड केयर",
     investors_hero_mission: "भारतीय परिवारों के लिए प्रजनन यात्रा को बदलने हेतु स्वास्थ्य सेवा में विश्वास, तैयारी और AI को जोड़ना।",
     investors_hero_download_deck: "निवेशक डेक डाउनलोड करें",
-    
+
     investors_problem_title: "समस्या",
     investors_problem_1: "माता-पिता को प्रजनन उपचार के बारे में बिखरी, अप्रमाणित जानकारी से परेशानी",
     investors_problem_2: "क्लिनिक रद्दीकरण और खराब तैयारी के कारण मरीज़ खो देते हैं",
     investors_problem_3: "मौजूदा हेल्थ टेक केवल लीड जेनरेशन पर फोकस करता है, विश्वास-प्राथमिक दृष्टिकोण पर नहीं",
-    
+
     investors_solution_title: "हमारा समाधान",
     investors_solution_1: "क्यूरेटेड बहुभाषी ज्ञान केंद्र",
     investors_solution_1_desc: "सत्यापित, सांस्कृतिक रूप से जागरूक सामग्री के साथ",
@@ -568,7 +568,7 @@ export const dict = {
     investors_solution_2_desc: "24/7 भावनात्मक सहायता प्रदान करता है",
     investors_solution_3: "क्लिनिक पोर्टल",
     investors_solution_3_desc: "जो रद्दीकरण कम करता है और शो-रेट बेहतर बनाता है",
-    
+
     investors_traction_title: "प्रारंभिक कर्षण और गति",
     investors_traction_subtitle: "पहले दिन से विश्वास और पैमाना निर्माण",
     investors_traction_languages: "3 भाषाएं",
@@ -577,7 +577,7 @@ export const dict = {
     investors_traction_faqs_desc: "व्यापक चेकलिस्ट और सत्यापित सामग्री प्लेटफॉर्म पर उपलब्ध",
     investors_traction_pilot: "पायलट पार्टनर",
     investors_traction_pilot_desc: "सामनाडा क्लिनिक के साथ परिणाम-आधारित मॉडल जो प्रारंभिक परिणाम दिखा रहा है",
-    
+
     investors_model_title: "स्केलेबल बिजनेस मॉडल",
     investors_model_subtitle: "परिणाम-संचालित दृष्टिकोण जो हमारी सफलता को क्लिनिक सफलता के साथ जोड़ता है",
     investors_model_phase1_title: "चरण 1: पायलट",
@@ -595,7 +595,7 @@ export const dict = {
     investors_model_phase3_1: "IVF, IUI, एंडोमेट्रियोसिस कवरेज",
     investors_model_phase3_2: "गर्भावस्था और प्रारंभिक पेरेंटिंग",
     investors_model_phase3_3: "अस्पताल चेन के लिए एंटरप्राइज लाइसेंसिंग",
-    
+
     investors_why_title: "क्यों जन्म सेतु?",
     investors_why_subtitle: "टिकाऊ प्रतिस्पर्धी लाभ का निर्माण",
     investors_moat_title: "हमारी खाई",
@@ -611,13 +611,13 @@ export const dict = {
     investors_team_engineers: "फुल-स्टैक इंजीनियर",
     investors_team_ai: "AI/ML विशेषज्ञ",
     investors_team_medical: "चिकित्सा सामग्री समीक्षक",
-    
+
     investors_cta_title: "स्वास्थ्य सेवा को एक साथ बदलने के लिए तैयार हैं?",
     investors_cta_subtitle: "लाखों भारतीय परिवारों के लिए पेरेंटहुड केयर के भविष्य के निर्माण में हमारे साथ जुड़ें।",
     investors_cta_onepager: "1-पेजर डाउनलोड करें",
     investors_cta_contact: "संपर्क करें",
     investors_cta_schedule: "कॉल शेड्यूल करें",
-    
+
     investors_disclaimer: "यह जानकारी गोपनीय और मालिकाना है। सभी भविष्य की घोषणाएं जोखिम और अनिश्चितताओं के अधीन हैं।",
 
     search_placeholder: "लेख, उपचार खोजें...",
@@ -796,7 +796,10 @@ export const dict = {
     featured_title: "ఎడిటర్ ఎంపికలు",
     treatments_overview_title: "ట్రీట్‌మెంట్‌లు — ఒక చూపులో",
     success_preview_title: "సక్సెస్ స్టోరీస్",
-    success_preview_description: "తల్లిదండ్రత్వానికి తమ మార్గాన్ని కనుగొన్న భారతదేశం అంతటా ఉన్న కుటుంబాల నిజమైన కథలు. ప్రతి ప్రయాణం ప్రత్యేకమైనది, కానీ ఆశ మరియు దృఢత్వం సార్వత్రికం.",
+    success_preview_description: "తల్లిదండ్రత్వానికి తమ మార్గాన్ని కనుగొన్న భారతదేశం అంతటా ఉన్న కుటుంబాల నిజమైన కథలు। ప్రతి ప్రయాణం ప్రత్యేకమైనది, కానీ ఆశ మరియు దృఢత్వం సార్వత్రికం.",
+    share_story_title: "మీ కథను పంచుకోండి",
+    share_story_description: "మీ ప్రయాణం ఇలాంటి సవాళ్లను ఎదుర్కొంటున్న ఇతరులను ప్రేరేపిస్తుంది మరియు వారికి సహాయపడుతుంది। మీ అనుభవాన్ని పంచుకోండి మరియు భారతదేశంలోని కుటుంబాలకు ఆశను ఇవ్వండి.",
+    share_story_button: "మీ కథను పంచుకోండి",
     blog_preview_title: "బ్లాగ్ నుండి",
     rights_title: "హక్కులు & పథకాలు (ఇండియా)",
     nutrition_title: "పోషణ అవసరాలు",
@@ -875,12 +878,12 @@ export const dict = {
     investors_hero_title_highlight: "పేరెంట్‌హుడ్ కేర్",
     investors_hero_mission: "భారతీయ కుటుంబాలకు ఫెర్టిలిటీ జర్నీని మార్చడానికి ఆరోగ్య సేవలో నమ్మకం, సంసిద్ధత మరియు AI ని కలపడం.",
     investors_hero_download_deck: "ఇన్వెస్టర్ డెక్ డౌన్‌లోడ్ చేయండి",
-    
+
     investors_problem_title: "సమస్య",
     investors_problem_1: "తల్లిదండ్రులు ఫెర్టిలిటీ చికిత్సల గురించి చెల్లాచెదురుగా, ధృవీకరించని సమాచారంతో ఇబ్బంది పడుతున్నారు",
     investors_problem_2: "క్లినిక్‌లు రద్దీలు మరియు చెడు సంసిద్ధత కారణంగా రోగులను కోల్పోతున్నాయి",
     investors_problem_3: "ప్రస్తుత హెల్త్ టెక్ కేవలం లీడ్ జనరేషన్‌పై దృష్టి పెట్టుతుంది, నమ్మకం-మొదటి విధానంపై కాదు",
-    
+
     investors_solution_title: "మా పరిష్కారం",
     investors_solution_1: "క్యూరేటెడ్ బహుభాషా జ్ఞాన కేంద్రం",
     investors_solution_1_desc: "ధృవీకరించిన, సాంస్కృతికంగా అవగాహనతో కూడిన కంటెంట్‌తో",
@@ -888,7 +891,7 @@ export const dict = {
     investors_solution_2_desc: "24/7 భావోద్వేగ మద్దతు అందిస్తుంది",
     investors_solution_3: "క్లినిక్ పోర్టల్",
     investors_solution_3_desc: "రద్దీలను తగ్గిస్తుంది మరియు షో-రేట్‌లను మెరుగుపరుస్తుంది",
-    
+
     investors_traction_title: "ప్రాథమిక ట్రాక్షన్ & మొమెంటం",
     investors_traction_subtitle: "మొదటి రోజు నుండి నమ్మకం మరియు స్కేల్ నిర్మాణం",
     investors_traction_languages: "3 భాషలు",
@@ -897,7 +900,7 @@ export const dict = {
     investors_traction_faqs_desc: "సమగ్ర చెక్‌లిస్ట్‌లు మరియు ధృవీకరించిన కంటెంట్ ప్లాట్‌ఫామ్‌లో లైవ్",
     investors_traction_pilot: "పైలట్ పార్టనర్",
     investors_traction_pilot_desc: "సామనాడ క్లినిక్‌తో ఫలిత-ఆధారిత మోడల్ ప్రాథమిక ఫలితాలను చూపిస్తోంది",
-    
+
     investors_model_title: "స్కేలబుల్ బిజినెస్ మోడల్",
     investors_model_subtitle: "మా విజయాన్ని క్లినిక్ విజయంతో కలిపే ఫలిత-నడిచే విధానం",
     investors_model_phase1_title: "దశ 1: పైలట్",
@@ -915,7 +918,7 @@ export const dict = {
     investors_model_phase3_1: "IVF, IUI, ఎండోమెట్రియోసిస్ కవరేజ్",
     investors_model_phase3_2: "గర్భధారణ మరియు ప్రారంభిక పేరెంటింగ్",
     investors_model_phase3_3: "ఆసుపత్రి చైన్‌లకు ఎంటర్‌ప్రైజ్ లైసెన్సింగ్",
-    
+
     investors_why_title: "ఎందుకు జన్మ సేతు?",
     investors_why_subtitle: "స్థిరమైన పోటీ ప్రయోజనాలను నిర్మించడం",
     investors_moat_title: "మా కందకం",
@@ -931,13 +934,13 @@ export const dict = {
     investors_team_engineers: "ఫుల్-స్టాక్ ఇంజనీర్లు",
     investors_team_ai: "AI/ML స్పెషలిస్ట్స్",
     investors_team_medical: "మెడికల్ కంటెంట్ రివ్యూవర్స్",
-    
+
     investors_cta_title: "హెల్త్‌కేర్‌ను కలిసి మార్చడానికి సిద్ధంగా ఉన్నారా?",
     investors_cta_subtitle: "లక్షలాది భారతీయ కుటుంబాలకు పేరెంట్‌హుడ్ కేర్ భవిష్యత్తు నిర్మాణంలో మాతో చేరండి.",
     investors_cta_onepager: "1-పేజర్ డౌన్‌లోడ్ చేయండి",
     investors_cta_contact: "మాతో సంప్రదించండి",
     investors_cta_schedule: "కాల్ షెడ్యూల్ చేయండి",
-    
+
     investors_disclaimer: "ఈ సమాచారం గోప్యమైనది మరియు యాజమాన్యమైనది. అన్ని భవిష్యత్-చూపే ప్రకటనలు రిస్క్‌లు మరియు అనిశ్చితులకు లోబడి ఉంటాయి.",
 
     search_placeholder: "వ్యాసాలు, చికిత్సల కోసం శోధించండి...",

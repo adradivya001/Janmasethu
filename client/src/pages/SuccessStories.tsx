@@ -119,22 +119,47 @@ const SuccessStories = () => {
 
       {/* Support Section */}
       <section className="py-16">
-        <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-3xl p-8 md:p-12 text-center">
-          <Heart className="w-16 h-16 text-pink-500 mx-auto mb-6" />
-          <h2 className="text-3xl font-bold text-foreground font-serif mb-4">
-            {t("share_story_title")}
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
-            {t("share_story_description")}
-          </p>
-          <Link href="/contact">
-            <Button
-              className="gradient-button-secondary text-white px-8 py-4 rounded-full font-semibold"
-              data-testid="button-share-story"
-            >
-              {t("share_story_button")}
-            </Button>
-          </Link>
+        <div className="relative bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50 rounded-3xl p-8 md:p-12 text-center overflow-hidden">
+          {/* Background Pattern */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-10 left-10 w-20 h-20 bg-pink-300 rounded-full blur-xl"></div>
+            <div className="absolute bottom-10 right-10 w-32 h-32 bg-purple-300 rounded-full blur-xl"></div>
+            <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-orange-300 rounded-full blur-lg"></div>
+          </div>
+          
+          <div className="relative z-10">
+            <div className="bg-white/80 backdrop-blur-sm rounded-full w-24 h-24 flex items-center justify-center mx-auto mb-6">
+              <Heart className="w-12 h-12 text-pink-500" />
+            </div>
+            
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground font-serif mb-4">
+              {t("share_story_title")}
+            </h2>
+            
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed">
+              {t("share_story_description")}
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Link href="/contact">
+                <Button
+                  className="gradient-button-secondary text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300"
+                  data-testid="button-share-story"
+                >
+                  {t("share_story_button")}
+                </Button>
+              </Link>
+              
+              <div className="text-sm text-muted-foreground flex items-center gap-2">
+                <div className="flex -space-x-2">
+                  <div className="w-8 h-8 bg-gradient-to-br from-pink-400 to-purple-400 rounded-full border-2 border-white"></div>
+                  <div className="w-8 h-8 bg-gradient-to-br from-purple-400 to-blue-400 rounded-full border-2 border-white"></div>
+                  <div className="w-8 h-8 bg-gradient-to-br from-blue-400 to-green-400 rounded-full border-2 border-white"></div>
+                </div>
+                <span>Join {stories.length}+ families who shared</span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </div>
