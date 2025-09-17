@@ -543,13 +543,20 @@ const Home = () => {
         <div className="grid md:grid-cols-3 gap-8">
           {/* TTC Card */}
           <Link href="/life-stages/ttc" className="group h-full">
-            <Card className="rounded-3xl p-8 card-shadow hover:shadow-xl transition-all duration-300 h-full flex flex-col">
+            <Card className="rounded-3xl p-8 card-shadow hover:shadow-2xl transition-all duration-500 h-full flex flex-col cursor-pointer transform hover:scale-105 border-2 border-transparent hover:border-purple-200 relative overflow-hidden bg-gradient-to-br from-white to-purple-50/30">
               <CardContent className="p-0 flex flex-col h-full">
-                <div className="w-16 h-16 gradient-button rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                {/* Click indicator */}
+                <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
+                    <ArrowRight className="w-4 h-4 text-purple-600" />
+                  </div>
+                </div>
+                
+                <div className="w-16 h-16 gradient-button rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-md">
                   <Heart className="text-white text-2xl" />
                 </div>
                 <h3
-                  className="text-2xl font-bold text-foreground font-serif mb-4"
+                  className="text-2xl font-bold text-foreground font-serif mb-4 group-hover:text-purple-600 transition-colors"
                   data-testid="text-ttc-title"
                 >
                   {t("orient_ttc")}
@@ -563,21 +570,38 @@ const Home = () => {
                 <img
                   src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300"
                   alt="Couple walking together in park"
-                  className="rounded-xl w-full h-32 object-cover mt-auto"
+                  className="rounded-xl w-full h-32 object-cover mt-auto group-hover:shadow-lg transition-shadow"
                 />
+                
+                {/* Call to action */}
+                <div className="flex items-center justify-between mt-4">
+                  <span className="text-sm text-purple-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    {lang === "en" && "Explore this stage"}
+                    {lang === "hi" && "इस चरण का अन्वेषण करें"}
+                    {lang === "te" && "ఈ దశను అన్వేషించండి"}
+                  </span>
+                  <ArrowRight className="w-5 h-5 text-purple-600 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
+                </div>
               </CardContent>
             </Card>
           </Link>
 
           {/* Pregnancy Card */}
           <Link href="/life-stages/pregnancy" className="group h-full">
-            <Card className="rounded-3xl p-8 card-shadow hover:shadow-xl transition-all duration-300 h-full flex flex-col">
+            <Card className="rounded-3xl p-8 card-shadow hover:shadow-2xl transition-all duration-500 h-full flex flex-col cursor-pointer transform hover:scale-105 border-2 border-transparent hover:border-pink-200 relative overflow-hidden bg-gradient-to-br from-white to-pink-50/30">
               <CardContent className="p-0 flex flex-col h-full">
-                <div className="w-16 h-16 gradient-button rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                {/* Click indicator */}
+                <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="w-8 h-8 bg-pink-100 rounded-full flex items-center justify-center">
+                    <ArrowRight className="w-4 h-4 text-pink-600" />
+                  </div>
+                </div>
+                
+                <div className="w-16 h-16 gradient-button rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-md">
                   <Baby className="text-white text-2xl" />
                 </div>
                 <h3
-                  className="text-2xl font-bold text-foreground font-serif mb-4"
+                  className="text-2xl font-bold text-foreground font-serif mb-4 group-hover:text-pink-600 transition-colors"
                   data-testid="text-pregnancy-title"
                 >
                   {t("orient_preg")}
@@ -591,21 +615,38 @@ const Home = () => {
                 <img
                   src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300"
                   alt="Pregnant woman in peaceful outdoor setting"
-                  className="rounded-xl w-full h-32 object-cover mt-auto"
+                  className="rounded-xl w-full h-32 object-cover mt-auto group-hover:shadow-lg transition-shadow"
                 />
+                
+                {/* Call to action */}
+                <div className="flex items-center justify-between mt-4">
+                  <span className="text-sm text-pink-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    {lang === "en" && "Explore this stage"}
+                    {lang === "hi" && "इस चरण का अन्वेषण करें"}
+                    {lang === "te" && "ఈ దశను అన్వేషించండి"}
+                  </span>
+                  <ArrowRight className="w-5 h-5 text-pink-600 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
+                </div>
               </CardContent>
             </Card>
           </Link>
 
           {/* New Parent Card */}
           <Link href="/life-stages/newborn" className="group h-full">
-            <Card className="rounded-3xl p-8 card-shadow hover:shadow-xl transition-all duration-300 h-full flex flex-col">
+            <Card className="rounded-3xl p-8 card-shadow hover:shadow-2xl transition-all duration-500 h-full flex flex-col cursor-pointer transform hover:scale-105 border-2 border-transparent hover:border-orange-200 relative overflow-hidden bg-gradient-to-br from-white to-orange-50/30">
               <CardContent className="p-0 flex flex-col h-full">
-                <div className="w-16 h-16 gradient-button rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                {/* Click indicator */}
+                <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center">
+                    <ArrowRight className="w-4 h-4 text-orange-600" />
+                  </div>
+                </div>
+                
+                <div className="w-16 h-16 gradient-button rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-md">
                   <Cat className="text-white text-2xl" />
                 </div>
                 <h3
-                  className="text-2xl font-bold text-foreground font-serif mb-4"
+                  className="text-2xl font-bold text-foreground font-serif mb-4 group-hover:text-orange-600 transition-colors"
                   data-testid="text-parent-title"
                 >
                   {t("orient_parent")}
@@ -619,8 +660,18 @@ const Home = () => {
                 <img
                   src="https://images.unsplash.com/photo-1566004100631-35d015d6a491?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300"
                   alt="Happy new parent holding newborn baby"
-                  className="rounded-xl w-full h-32 object-cover mt-auto"
+                  className="rounded-xl w-full h-32 object-cover mt-auto group-hover:shadow-lg transition-shadow"
                 />
+                
+                {/* Call to action */}
+                <div className="flex items-center justify-between mt-4">
+                  <span className="text-sm text-orange-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    {lang === "en" && "Explore this stage"}
+                    {lang === "hi" && "इस चरण का अन्वेषण करें"}
+                    {lang === "te" && "ఈ దశను అన్వేషించండి"}
+                  </span>
+                  <ArrowRight className="w-5 h-5 text-orange-600 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
+                </div>
               </CardContent>
             </Card>
           </Link>
