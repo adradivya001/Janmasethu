@@ -1,3 +1,4 @@
+
 import { useParams, Link } from 'wouter';
 import { ArrowLeft, Calendar, User, Tag } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageProvider';
@@ -8,7 +9,7 @@ import { posts } from '@/data/blog';
 
 const BlogPost = () => {
   const { slug } = useParams();
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   
   const post = posts.find(p => p.slug === slug);
 
@@ -40,6 +41,18 @@ const BlogPost = () => {
     return images[Math.abs(post.slug.split('').reduce((a, b) => a + b.charCodeAt(0), 0)) % images.length];
   };
 
+  // Helper function to get localized content
+  const getLocalizedContent = (content: string | Record<string, string>) => {
+    if (typeof content === 'string') return content;
+    return content[lang] || content.en || '';
+  };
+
+  const postTitle = getLocalizedContent(post.title);
+  const postSummary = getLocalizedContent(post.summary);
+  const postAuthor = getLocalizedContent(post.author);
+  const postEditedBy = getLocalizedContent(post.editedBy);
+  const postContent = post.content ? getLocalizedContent(post.content) : '';
+
   return (
     <div className="container mx-auto px-4 py-8">
       {/* Back Navigation */}
@@ -64,21 +77,21 @@ const BlogPost = () => {
           </div>
 
           <h1 className="text-3xl md:text-4xl font-bold text-foreground font-serif mb-6" data-testid="text-post-title">
-            {post.title}
+            {postTitle}
           </h1>
 
           <p className="text-lg text-muted-foreground mb-6" data-testid="text-post-summary">
-            {post.summary}
+            {postSummary}
           </p>
 
           <div className="flex items-center space-x-6 text-sm text-muted-foreground">
             <div className="flex items-center space-x-2">
               <User className="w-4 h-4" />
-              <span data-testid="text-post-author">By {post.author}</span>
+              <span data-testid="text-post-author">By {postAuthor}</span>
             </div>
             <div className="flex items-center space-x-2">
               <Calendar className="w-4 h-4" />
-              <span data-testid="text-post-editor">Edited by {post.editedBy}</span>
+              <span data-testid="text-post-editor">Edited by {postEditedBy}</span>
             </div>
           </div>
         </CardContent>
@@ -88,7 +101,7 @@ const BlogPost = () => {
       <div className="mb-8">
         <img 
           src={getBlogImage()} 
-          alt={post.title} 
+          alt={postTitle} 
           className="w-full h-64 md:h-80 object-cover rounded-3xl"
         />
       </div>
@@ -98,20 +111,11 @@ const BlogPost = () => {
         <div className="lg:col-span-2">
           <Card className="rounded-3xl p-8 card-shadow">
             <CardContent className="p-0">
-              <div className="prose prose-lg max-w-none">
-                {post.body.map((section, index) => (
-                  <div key={index} className="mb-8" data-testid={`section-post-content-${index}`}>
-                    <h2 className="text-2xl font-bold text-foreground font-serif mb-4">
-                      {section}
-                    </h2>
-                    <p className="text-muted-foreground leading-relaxed">
-                      This section would contain detailed content about {section.toLowerCase()}. 
-                      In a real implementation, this would be populated with comprehensive 
-                      information and practical advice on this topic.
-                    </p>
-                  </div>
-                ))}
-              </div>
+              <div 
+                className="prose prose-lg max-w-none" 
+                data-testid="section-post-content"
+                dangerouslySetInnerHTML={{ __html: postContent }}
+              />
             </CardContent>
           </Card>
         </div>
@@ -123,12 +127,12 @@ const BlogPost = () => {
             <CardContent className="p-0">
               <h3 className="text-lg font-bold text-foreground font-serif mb-4">About the Author</h3>
               <div className="space-y-2">
-                <p className="font-medium text-foreground" data-testid="text-author-name">{post.author}</p>
+                <p className="font-medium text-foreground" data-testid="text-author-name">{postAuthor}</p>
                 <p className="text-sm text-muted-foreground">
                   Editorial team member focused on evidence-based content for fertility and parenting guidance.
                 </p>
                 <p className="text-xs text-muted-foreground" data-testid="text-post-edited-by">
-                  Edited by {post.editedBy}
+                  Edited by {postEditedBy}
                 </p>
               </div>
             </CardContent>
@@ -146,10 +150,10 @@ const BlogPost = () => {
                     <Link key={relatedPost.slug} href={`/blog/${relatedPost.slug}`}>
                       <div className="p-3 rounded-xl hover:bg-muted transition-colors" data-testid={`related-post-${index}`}>
                         <h4 className="text-sm font-semibold text-foreground mb-1">
-                          {relatedPost.title}
+                          {getLocalizedContent(relatedPost.title)}
                         </h4>
                         <p className="text-xs text-muted-foreground">
-                          By {relatedPost.author}
+                          By {getLocalizedContent(relatedPost.author)}
                         </p>
                       </div>
                     </Link>
