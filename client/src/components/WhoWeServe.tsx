@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Baby, Stethoscope, X, Check } from "lucide-react";
+import { Baby, Stethoscope, X, Check, ChevronRight, MousePointer2 } from "lucide-react";
 import { Card, CardContent } from "./ui/card";
 import { Button } from "./ui/button";
 import { useLanguage } from "../i18n/LanguageProvider";
@@ -108,42 +108,76 @@ const WhoWeServe = () => {
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {/* Patients Card */}
           <Card
-            className="rounded-3xl p-8 card-shadow hover:shadow-2xl transition-all duration-500 group backdrop-blur-sm bg-white/80 cursor-pointer transform hover:scale-104"
+            className="rounded-3xl p-8 card-shadow hover:shadow-2xl transition-all duration-500 group backdrop-blur-sm bg-gradient-to-br from-white to-purple-50/30 cursor-pointer transform hover:scale-105 border-2 border-transparent hover:border-purple-200 relative overflow-hidden"
             onClick={() => handleCardClick("patients")}
             onKeyDown={(e) => e.key === "Enter" && handleCardClick("patients")}
             tabIndex={0}
             role="button"
             aria-label={`Open ${getCardContent("patients").title} details`}
           >
-            <div className="w-16 h-16 bg-gradient-to-br from-purple-100 to-pink-100 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+            {/* Click indicator */}
+            <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
+                <MousePointer2 className="w-4 h-4 text-purple-600" />
+              </div>
+            </div>
+            
+            <div className="w-16 h-16 bg-gradient-to-br from-purple-100 to-pink-100 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-md">
               <Baby className="text-purple-600 text-2xl" />
             </div>
-            <h3 className="text-2xl font-bold text-foreground font-serif mb-4">
+            <h3 className="text-2xl font-bold text-foreground font-serif mb-4 group-hover:text-purple-600 transition-colors">
               {getCardContent("patients").title}
             </h3>
-            <p className="text-muted-foreground">
+            <p className="text-muted-foreground mb-4">
               {getCardContent("patients").about}
             </p>
+            
+            {/* Call to action */}
+            <div className="flex items-center justify-between mt-6">
+              <span className="text-sm text-purple-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                {lang === "en" && "Click to learn more"}
+                {lang === "hi" && "अधिक जानने के लिए क्लिक करें"}
+                {lang === "te" && "మరింత తెలుసుకోవడానికి క్లిక్ చేయండి"}
+              </span>
+              <ChevronRight className="w-5 h-5 text-purple-600 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
+            </div>
           </Card>
 
           {/* Clinics Card */}
           <Card
-            className="rounded-3xl p-8 card-shadow hover:shadow-2xl transition-all duration-500 group backdrop-blur-sm bg-white/80 cursor-pointer transform hover:scale-104"
+            className="rounded-3xl p-8 card-shadow hover:shadow-2xl transition-all duration-500 group backdrop-blur-sm bg-gradient-to-br from-white to-blue-50/30 cursor-pointer transform hover:scale-105 border-2 border-transparent hover:border-blue-200 relative overflow-hidden"
             onClick={() => handleCardClick("clinics")}
             onKeyDown={(e) => e.key === "Enter" && handleCardClick("clinics")}
             tabIndex={0}
             role="button"
             aria-label={`Open ${getCardContent("clinics").title} details`}
           >
-            <div className="w-16 h-16 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+            {/* Click indicator */}
+            <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                <MousePointer2 className="w-4 h-4 text-blue-600" />
+              </div>
+            </div>
+            
+            <div className="w-16 h-16 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-md">
               <Stethoscope className="text-blue-600 text-2xl" />
             </div>
-            <h3 className="text-2xl font-bold text-foreground font-serif mb-4">
+            <h3 className="text-2xl font-bold text-foreground font-serif mb-4 group-hover:text-blue-600 transition-colors">
               {getCardContent("clinics").title}
             </h3>
-            <p className="text-muted-foreground">
+            <p className="text-muted-foreground mb-4">
               {getCardContent("clinics").about}
             </p>
+            
+            {/* Call to action */}
+            <div className="flex items-center justify-between mt-6">
+              <span className="text-sm text-blue-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                {lang === "en" && "Click to learn more"}
+                {lang === "hi" && "अधिक जानने के लिए क्लिक करें"}
+                {lang === "te" && "మరింత తెలుసుకోవడానికి క్లిక్ చేయండి"}
+              </span>
+              <ChevronRight className="w-5 h-5 text-blue-600 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
+            </div>
           </Card>
         </div>
       </section>
