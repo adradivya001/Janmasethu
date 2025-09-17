@@ -199,19 +199,25 @@ const Home = () => {
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <Link href="/sakhi/try">
             <Button
-              className="gradient-button text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-lg transition-all duration-300"
+              className="gradient-button text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-lg transition-all duration-300 group overflow-hidden relative"
               data-testid="button-cta-primary"
             >
-              {t("cta_primary")}
+              <span className="relative z-10 transition-transform duration-300 group-hover:-translate-x-2">
+                {t("cta_primary")}
+              </span>
+              <ArrowRight className="absolute right-4 w-5 h-5 opacity-0 transform translate-x-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 z-10" />
             </Button>
           </Link>
           <Link href="/clinic">
             <Button
               variant="outline"
-              className="bg-white text-foreground px-8 py-4 rounded-full font-semibold text-lg border-border hover:shadow-lg transition-all duration-300"
+              className="bg-white text-foreground px-8 py-4 rounded-full font-semibold text-lg border-border hover:shadow-lg transition-all duration-300 group overflow-hidden relative"
               data-testid="button-cta-secondary"
             >
-              {t("cta_secondary")}
+              <span className="relative z-10 transition-transform duration-300 group-hover:-translate-x-2">
+                {t("cta_secondary")}
+              </span>
+              <ArrowRight className="absolute right-4 w-5 h-5 opacity-0 transform translate-x-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 z-10" />
             </Button>
           </Link>
         </div>
