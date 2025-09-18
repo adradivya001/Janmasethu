@@ -207,36 +207,58 @@
   .responsive-video-container {
     position: relative;
     width: 100%;
-    height: 50vh; /* Default mobile height */
+    height: 35vh; /* Reduced mobile height for better content visibility */
     overflow: hidden;
+    min-height: 250px; /* Minimum height to ensure video is visible */
   }
 
-  /* Tablet and larger mobile devices */
-  @media screen and (min-width: 480px) {
+  /* Small mobile devices */
+  @media screen and (max-width: 480px) {
     .responsive-video-container {
-      height: 55vh;
+      height: 30vh;
+      min-height: 200px;
+    }
+  }
+
+  /* Large mobile devices */
+  @media screen and (min-width: 480px) and (max-width: 767px) {
+    .responsive-video-container {
+      height: 35vh;
+      min-height: 250px;
     }
   }
 
   /* Tablet */
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 768px) and (max-width: 1023px) {
     .responsive-video-container {
-      height: 60vh;
+      height: 40vh;
+      min-height: 300px;
     }
   }
 
   /* Desktop */
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: 1024px) and (max-width: 1439px) {
     .responsive-video-container {
-      height: 70vh;
+      height: 45vh;
+      min-height: 350px;
     }
   }
 
   /* Large Desktop */
   @media screen and (min-width: 1440px) {
     .responsive-video-container {
-      height: 65vh; /* Slightly smaller on very large screens */
+      height: 50vh;
+      min-height: 400px;
+      max-height: 500px; /* Cap the maximum height */
     }
+  }
+
+  /* Enhanced video object fitting */
+  .responsive-video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
   }
 
   /* Remove any border radius from video elements */

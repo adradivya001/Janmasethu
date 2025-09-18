@@ -88,7 +88,7 @@ const Home = () => {
   return (
     <>
       {/* Responsive Video Section */}
-      <section className="w-full h-[50vh] md:h-[60vh] lg:h-[70vh] relative overflow-hidden">
+      <section className="w-full responsive-video-container relative overflow-hidden">
         <video
           className="absolute inset-0 w-full h-full object-cover"
           autoPlay
