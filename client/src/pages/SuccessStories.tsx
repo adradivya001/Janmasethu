@@ -53,23 +53,30 @@ const SuccessStories = () => {
           <Link
             key={story.slug}
             href={`/success-stories/${story.slug}`}
-            className="group"
+            className="group h-full"
           >
             <Card
-              className="rounded-3xl p-6 card-shadow hover:shadow-xl transition-all duration-300 h-full"
+              className="rounded-3xl p-6 card-shadow hover:shadow-2xl transition-all duration-500 h-full cursor-pointer transform hover:scale-105 border-2 border-transparent hover:border-pink-200 relative overflow-hidden bg-gradient-to-br from-white to-pink-50/30"
               data-testid={`card-success-story-${index}`}
             >
               <CardContent className="p-0 flex flex-col h-full">
+                {/* Click indicator */}
+                <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="w-8 h-8 bg-pink-100 rounded-full flex items-center justify-center">
+                    <Heart className="w-4 h-4 text-pink-600" />
+                  </div>
+                </div>
+
                 <img
                   src={getStoryImage(index)}
                   alt={story.title[lang]}
-                  className="rounded-xl w-full h-32 object-cover mb-4"
+                  className="rounded-xl w-full h-32 object-cover mb-4 group-hover:shadow-lg transition-shadow"
                 />
 
                 <div className="flex flex-wrap gap-2 mb-3">
                   <Badge
                     variant="secondary"
-                    className="text-xs"
+                    className="text-xs group-hover:shadow-sm transition-shadow"
                     data-testid={`badge-story-stage-${index}`}
                   >
                     {story.stage[lang]}
@@ -77,7 +84,7 @@ const SuccessStories = () => {
                   {story.treatment && (
                     <Badge
                       variant="outline"
-                      className="text-xs"
+                      className="text-xs group-hover:shadow-sm transition-shadow"
                       data-testid={`badge-story-treatment-${index}`}
                     >
                       {story.treatment[lang]}
@@ -86,13 +93,13 @@ const SuccessStories = () => {
                 </div>
 
                 <h3
-                  className="text-lg font-bold text-foreground font-serif mb-2"
+                  className="text-lg font-bold text-foreground font-serif mb-2 group-hover:text-pink-600 transition-colors"
                   data-testid={`text-story-title-${index}`}
                 >
                   {story.title[lang]}
                 </h3>
                 <p
-                  className="text-sm text-muted-foreground mb-4 flex-grow"
+                  className="text-sm text-muted-foreground mb-4 flex-grow group-hover:text-pink-700 transition-colors"
                   data-testid={`text-story-summary-${index}`}
                 >
                   {story.summary[lang]}
@@ -105,9 +112,12 @@ const SuccessStories = () => {
                       {story.city[lang]}
                     </span>
                   </div>
-                  <div className="flex items-center text-xs text-muted-foreground">
+                  <div className="flex items-center text-xs text-muted-foreground space-x-2">
                     <span data-testid={`text-story-language-${index}`}>
                       {story.language[lang]}
+                    </span>
+                    <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-pink-600 font-medium">
+                      • Read story
                     </span>
                   </div>
                 </div>
