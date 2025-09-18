@@ -3,6 +3,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
 import ClinicNavigation from "@/components/clinic/ClinicNavigation";
 import { 
   Search, 
@@ -21,12 +23,58 @@ import patients from "@/data/clinic/patients.json";
 export default function Patients() {
   const [collapsed, setCollapsed] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [patientsData, setPatientsData] = useState(patients);
+  const [newPatient, setNewPatient] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    age: "",
+    dateOfBirth: "",
+    status: "active",
+    treatmentType: "IVF",
+    cycle: "1",
+    doctor: "Dr. Rao",
+    medicalHistory: "",
+    emergencyContact: ""
+  });
 
-  const filteredPatients = patients.filter(patient => 
+  const filteredPatients = patientsData.filter(patient => 
     patient.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
     patient.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
     patient.id.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  const handleAddPatient = () => {
+    if (newPatient.name && newPatient.email && newPatient.phone) {
+      const patientToAdd = {
+        id: `P${String(patientsData.length + 1).padStart(3, '0')}`,
+        ...newPatient,
+        age: parseInt(newPatient.age) || 25,
+        lastVisit: new Date().toISOString().split('T')[0]
+      };
+      
+      setPatientsData([...patientsData, patientToAdd]);
+      setNewPatient({
+        name: "",
+        email: "",
+        phone: "",
+        age: "",
+        dateOfBirth: "",
+        status: "active",
+        treatmentType: "IVF",
+        cycle: "1",
+        doctor: "Dr. Rao",
+        medicalHistory: "",
+        emergencyContact: ""
+      });
+      setIsModalOpen(false);
+    }
+  };
+
+  const handleInputChange = (field: string, value: string) => {
+    setNewPatient(prev => ({ ...prev, [field]: value }));
+  };
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -50,10 +98,134 @@ export default function Patients() {
               <p className="text-gray-600">Manage patient records and information</p>
             </div>
             
-            <Button className="bg-purple-600 hover:bg-purple-700 text-white">
-              <Plus className="w-4 h-4 mr-2" />
-              Add New Patient
-            </Button>
+            <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+              <DialogTrigger asChild>
+                <Button className="bg-purple-600 hover:bg-purple-700 text-white">
+                  <Plus className="w-4 h-4 mr-2" />
+                  Add New Patient
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="max-w-md">
+                <DialogHeader>
+                  <DialogTitle>Add New Patient</DialogTitle>
+                </DialogHeader>
+                <div className="space-y-4">
+                  <div>
+                    <Label htmlFor="name">Full Name *</Label>
+                    <Input
+                      id="name"
+                      value={newPatient.name}
+                      onChange={(e) => handleInputChange("name", e.target.value)}
+                      placeholder="Enter full name"
+                      className="mt-1"
+                    />
+                  </div>
+                  
+                  <div>
+                    <Label htmlFor="email">Email *</Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      value={newPatient.email}
+                      onChange={(e) => handleInputChange("email", e.target.value)}
+                      placeholder="Enter email address"
+                      className="mt-1"
+                    />
+                  </div>
+                  
+                  <div>
+                    <Label htmlFor="phone">Phone *</Label>
+                    <Input
+                      id="phone"
+                      value={newPatient.phone}
+                      onChange={(e) => handleInputChange("phone", e.target.value)}
+                      placeholder="Enter phone number"
+                      className="mt-1"
+                    />
+                  </div>
+                  
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="age">Age</Label>
+                      <Input
+                        id="age"
+                        type="number"
+                        value={newPatient.age}
+                        onChange={(e) => handleInputChange("age", e.target.value)}
+                        placeholder="Age"
+                        className="mt-1"
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="dateOfBirth">Date of Birth</Label>
+                      <Input
+                        id="dateOfBirth"
+                        type="date"
+                        value={newPatient.dateOfBirth}
+                        onChange={(e) => handleInputChange("dateOfBirth", e.target.value)}
+                        className="mt-1"
+                      />
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <Label htmlFor="treatmentType">Treatment Type</Label>
+                    <select
+                      id="treatmentType"
+                      value={newPatient.treatmentType}
+                      onChange={(e) => handleInputChange("treatmentType", e.target.value)}
+                      className="w-full mt-1 p-2 border border-gray-300 rounded-md"
+                    >
+                      <option value="IVF">IVF</option>
+                      <option value="IUI">IUI</option>
+                      <option value="ICSI">ICSI</option>
+                      <option value="Consultation">Consultation</option>
+                    </select>
+                  </div>
+                  
+                  <div>
+                    <Label htmlFor="doctor">Assigned Doctor</Label>
+                    <select
+                      id="doctor"
+                      value={newPatient.doctor}
+                      onChange={(e) => handleInputChange("doctor", e.target.value)}
+                      className="w-full mt-1 p-2 border border-gray-300 rounded-md"
+                    >
+                      <option value="Dr. Rao">Dr. Rao</option>
+                      <option value="Dr. Mehta">Dr. Mehta</option>
+                      <option value="Dr. Singh">Dr. Singh</option>
+                    </select>
+                  </div>
+                  
+                  <div>
+                    <Label htmlFor="emergencyContact">Emergency Contact</Label>
+                    <Input
+                      id="emergencyContact"
+                      value={newPatient.emergencyContact}
+                      onChange={(e) => handleInputChange("emergencyContact", e.target.value)}
+                      placeholder="Emergency contact details"
+                      className="mt-1"
+                    />
+                  </div>
+                  
+                  <div className="flex justify-end space-x-2 pt-4">
+                    <Button 
+                      variant="outline" 
+                      onClick={() => setIsModalOpen(false)}
+                    >
+                      Cancel
+                    </Button>
+                    <Button 
+                      onClick={handleAddPatient}
+                      className="bg-purple-600 hover:bg-purple-700 text-white"
+                      disabled={!newPatient.name || !newPatient.email || !newPatient.phone}
+                    >
+                      Add Patient
+                    </Button>
+                  </div>
+                </div>
+              </DialogContent>
+            </Dialog>
           </div>
         </header>
 
