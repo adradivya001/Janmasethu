@@ -154,6 +154,90 @@
     padding-top: 0.25rem;
     padding-bottom: 0.25rem;
   }
+
+  /* Custom Scrollbar Styles - Completely invisible by default, visible on hover */
+  ::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 0px;
+    transition: all 0.3s ease;
+  }
+
+  /* Show scrollbar only when hovering over the page */
+  html:hover ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  html:hover ::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+  }
+
+  html:hover ::-webkit-scrollbar-thumb {
+    background: rgba(139, 92, 246, 0.4);
+    border-radius: 3px;
+  }
+
+  html:hover ::-webkit-scrollbar-thumb:hover {
+    background: rgba(139, 92, 246, 0.7);
+  }
+
+  /* Firefox scrollbar styles */
+  html {
+    scrollbar-width: none;
+    scrollbar-color: transparent transparent;
+  }
+
+  html:hover {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(139, 92, 246, 0.4) rgba(0, 0, 0, 0.1);
+  }
+
+  /* Full screen video styles with perfect responsiveness */
+  .full-screen-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    object-position: center;
+    z-index: 1;
+  }
+
+  /* Ensure video takes full viewport on all devices */
+  @media screen and (max-width: 768px) {
+    .full-screen-video {
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      object-position: center center;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .full-screen-video {
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      object-position: center center;
+    }
+  }
+
+  /* Remove any border radius from video elements */
+  video {
+    border-radius: 0 !important;
+  }
 }
 
 @layer components {

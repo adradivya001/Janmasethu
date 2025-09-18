@@ -86,7 +86,27 @@ const Home = () => {
   ];
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <>
+      {/* Full Screen Video Section - No container restrictions */}
+      <section className="w-full h-screen relative overflow-hidden">
+        <video
+          className="absolute inset-0 w-full h-full object-cover"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          onLoadStart={() => console.log('Video loading started...')}
+          onLoadedData={() => console.log('Video data loaded')}
+          onCanPlay={() => console.log('Video can play')}
+          onPlay={() => console.log('Video started playing')}
+        >
+          <source src="/janmasethu.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </section>
+
+      <div className="container mx-auto px-4 py-8">
       {/* Hero Section */}
       <section className="text-center py-16 relative">
         {/* Trust Badge - Centered at top */}
@@ -1026,7 +1046,8 @@ const Home = () => {
           ))}
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 };
 
