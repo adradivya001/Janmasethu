@@ -157,6 +157,108 @@
 }
 
 @layer components {
+  /* Professional Video Hero Styles - World Class UX */
+  .video-hero {
+    /* Ensure video covers full container */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    /* Performance optimizations */
+    will-change: transform;
+    transform: translateZ(0);
+    /* Smooth video playback */
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  /* Hero Title Animation */
+  .hero-title {
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    animation: heroTitleFadeIn 1.2s ease-out forwards;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  @keyframes heroTitleFadeIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Mobile Video Optimization */
+  @media (max-width: 768px) {
+    .video-hero {
+      /* Maintain aspect ratio on mobile */
+      height: 100vh;
+      min-height: 600px;
+      max-height: 100vh;
+    }
+
+    /* Mobile hero content adjustments */
+    .hero-title {
+      font-size: 2.5rem !important;
+      line-height: 1.2 !important;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .video-hero {
+      min-height: 500px;
+    }
+
+    .hero-title {
+      font-size: 2rem !important;
+    }
+  }
+
+  /* Tablet Optimization */
+  @media (min-width: 768px) and (max-width: 1024px) {
+    .video-hero {
+      height: 100vh;
+      min-height: 700px;
+    }
+  }
+
+  /* Desktop Optimization */
+  @media (min-width: 1024px) {
+    .video-hero {
+      height: 100vh;
+      min-height: 800px;
+    }
+  }
+
+  /* High DPI Display Support */
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+    .video-hero {
+      /* Optimize for retina displays */
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: optimize-contrast;
+    }
+  }
+
+  /* Video Performance Improvements */
+  @media (prefers-reduced-motion: no-preference) {
+    .video-hero {
+      /* Enable hardware acceleration */
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  /* Fallback for older browsers */
+  @supports not (object-fit: cover) {
+    .video-hero {
+      /* Fallback positioning for older browsers */
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      min-width: 100%;
+      min-height: 100%;
+    }
+  }
+
   .gradient-text {
     background: linear-gradient(90deg, #8B5CF6, #EC4899, #F97316);
     -webkit-background-clip: text;
