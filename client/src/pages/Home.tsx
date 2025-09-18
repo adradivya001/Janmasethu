@@ -89,7 +89,27 @@ const Home = () => {
     <div className="container mx-auto px-4 py-8">
       {/* Hero Section */}
       <section className="text-center py-16 relative">
-        {/* Trust Badge - Centered at top */}
+        {/* Hero Video */}
+        <div className="mb-8 px-4 md:px-0">
+          <div className="relative w-full max-w-4xl mx-auto rounded-3xl md:rounded-3xl sm:rounded-2xl overflow-hidden shadow-2xl hero-video-container">
+            <video
+              className="w-full h-auto max-h-[60vh] md:max-h-[70vh] object-cover"
+              autoPlay
+              muted
+              loop
+              playsInline
+              controls={false}
+              data-testid="hero-video"
+            >
+              <source src="/janmasethu (2).mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            {/* Video overlay for better text readability */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>
+          </div>
+        </div>
+
+        {/* Trust Badge - Centered below video */}
         <div className="flex justify-center mb-8">
           <div className="inline-flex items-center space-x-2 bg-white rounded-full px-4 py-2 card-shadow">
             <CheckCircle className="w-4 h-4 text-green-500" />

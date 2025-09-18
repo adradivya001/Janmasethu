@@ -416,3 +416,24 @@
 .backdrop-blur-sm {
   backdrop-filter: blur(4px);
 }
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Responsive Video Styles */
+@media (max-width: 768px) {
+  .hero-video-container {
+    margin: 0 -1rem;
+    border-radius: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-video-container {
+    margin: 0 -0.5rem;
+    border-radius: 0.75rem;
+  }
+}
