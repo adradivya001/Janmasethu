@@ -86,97 +86,38 @@ const Home = () => {
   ];
 
   return (
-    <>
-    {/* Video Hero Section */}
-    <section className="relative w-full min-h-[80vh] lg:min-h-[90vh] overflow-hidden">
-      {/* Video Background */}
-      <div className="absolute inset-0 z-0">
-        <video
-          className="w-full h-full object-cover"
-          autoPlay
-          muted
-          loop
-          playsInline
-          controls={false}
-          data-testid="hero-video"
-        >
-          <source src="/janmasethu (2).mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-        {/* Video Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-purple-900/30 to-pink-900/30"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-      </div>
-
-      {/* Content Overlay */}
-      <div className="relative z-10 container mx-auto px-4 h-full min-h-[80vh] lg:min-h-[90vh] flex flex-col justify-center items-center text-center">
-        {/* Trust Badge */}
-        <div className="mb-6 animate-fade-in">
-          <div className="inline-flex items-center space-x-2 bg-white/90 backdrop-blur-sm rounded-full px-4 py-2 shadow-lg">
+    <div className="container mx-auto px-4 py-8">
+      {/* Hero Section */}
+      <section className="text-center py-16 relative">
+        {/* Trust Badge - Centered at top */}
+        <div className="flex justify-center mb-8">
+          <div className="inline-flex items-center space-x-2 bg-white rounded-full px-4 py-2 card-shadow">
             <CheckCircle className="w-4 h-4 text-green-500" />
-            <span className="text-sm font-medium text-gray-800" data-testid="text-trust-badge">
+            <span
+              className="text-sm font-medium text-foreground"
+              data-testid="text-trust-badge"
+            >
               {t("trust_pill")}
             </span>
           </div>
         </div>
 
-        {/* Hero Title */}
+        {/* Hero Title - On its own line below */}
         <h1
-          className="text-4xl md:text-6xl lg:text-7xl font-bold text-white font-serif mb-6 leading-tight drop-shadow-2xl animate-fade-in-up"
+          className="text-4xl md:text-5xl lg:text-6xl font-bold gradient-text font-serif mb-6 leading-relaxed"
           data-testid="text-hero-title"
-          style={{ animationDelay: '0.2s' }}
         >
           <span dangerouslySetInnerHTML={{ __html: t("hero_title") }} />
         </h1>
 
         {/* Hero Subtitle */}
         <p
-          className="text-lg md:text-xl lg:text-2xl text-white/90 mb-8 max-w-4xl mx-auto leading-relaxed drop-shadow-lg animate-fade-in-up"
+          className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto"
           data-testid="text-hero-subtitle"
-          style={{ animationDelay: '0.4s' }}
         >
           {t("hero_sub")}
         </p>
 
-        {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
-          <Link href="/sakhi/try">
-            <Button
-              className="bg-white text-purple-600 hover:bg-gray-50 px-8 py-4 rounded-full font-semibold text-lg shadow-xl hover:shadow-2xl transition-all duration-300 group overflow-hidden relative"
-              data-testid="button-cta-primary"
-            >
-              <span className="relative z-10 transition-transform duration-300 group-hover:-translate-x-2">
-                {t("cta_primary")}
-              </span>
-              <ArrowRight className="absolute right-4 w-5 h-5 opacity-0 transform translate-x-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 z-10" />
-            </Button>
-          </Link>
-          <Link href="/clinic">
-            <Button
-              variant="outline"
-              className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-purple-600 px-8 py-4 rounded-full font-semibold text-lg backdrop-blur-sm transition-all duration-300 group overflow-hidden relative"
-              data-testid="button-cta-secondary"
-            >
-              <span className="relative z-10 transition-transform duration-300 group-hover:-translate-x-2">
-                {t("cta_secondary")}
-              </span>
-              <ArrowRight className="absolute right-4 w-5 h-5 opacity-0 transform translate-x-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 z-10" />
-            </Button>
-          </Link>
-        </div>
-
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-white/60 rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-white/60 rounded-full mt-2 animate-pulse"></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div className="container mx-auto px-4 py-8">
-      {/* Content Hero Section */}
-      <section className="text-center py-16 relative">
         {/* Animated Line Morphing Effect */}
         <div className="relative mb-8">
           <svg
@@ -252,6 +193,46 @@ const Home = () => {
               opacity="0"
             />
           </svg>
+        </div>
+
+        {/* CTA Buttons - Updated to match blueprint exactly */}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <Link href="/sakhi/try">
+            <Button
+              className="gradient-button text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-lg transition-all duration-300 group overflow-hidden relative"
+              data-testid="button-cta-primary"
+            >
+              <span className="relative z-10 transition-transform duration-300 group-hover:-translate-x-2">
+                {t("cta_primary")}
+              </span>
+              <ArrowRight className="absolute right-4 w-5 h-5 opacity-0 transform translate-x-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 z-10" />
+            </Button>
+          </Link>
+          <Link href="/clinic">
+            <Button
+              variant="outline"
+              className="bg-white text-foreground px-8 py-4 rounded-full font-semibold text-lg border-border hover:shadow-lg transition-all duration-300 group overflow-hidden relative"
+              data-testid="button-cta-secondary"
+            >
+              <span className="relative z-10 transition-transform duration-300 group-hover:-translate-x-2">
+                {t("cta_secondary")}
+              </span>
+              <ArrowRight className="absolute right-4 w-5 h-5 opacity-0 transform translate-x-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 z-10" />
+            </Button>
+          </Link>
+        </div>
+
+        {/* Hero Background Image */}
+        <div className="absolute inset-0 -z-10">
+          <div className="relative w-full h-full">
+            <img
+              src="/babyFeet.jpg"
+              alt="Baby feet - nurturing parenthood journey"
+              className="w-full h-full object-cover rounded-3xl opacity-60"
+            />
+            {/* Light gradient overlay to maintain text readability */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white/90 via-purple-50/70 to-pink-50/70 rounded-3xl"></div>
+          </div>
         </div>
       </section>
 
@@ -1046,7 +1027,6 @@ const Home = () => {
         </div>
       </section>
     </div>
-    </>
   );
 };
 
