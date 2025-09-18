@@ -843,27 +843,44 @@ const Home = () => {
               className="group h-full"
             >
               <Card
-                className="rounded-3xl p-6 card-shadow hover:shadow-xl transition-all duration-300 h-full flex flex-col"
+                className="rounded-3xl p-6 card-shadow hover:shadow-2xl transition-all duration-500 h-full flex flex-col cursor-pointer transform hover:scale-105 border-2 border-transparent hover:border-purple-200 relative overflow-hidden bg-gradient-to-br from-white to-purple-50/30"
                 data-testid={`card-featured-article-${index}`}
               >
                 <CardContent className="p-0 flex flex-col h-full">
+                  {/* Click indicator */}
+                  <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
+                      <ArrowRight className="w-4 h-4 text-purple-600" />
+                    </div>
+                  </div>
+                  
                   <img
                     src={getArticleImage(index)}
                     alt={article.title.en}
-                    className="rounded-xl w-full h-32 object-cover mb-4"
+                    className="rounded-xl w-full h-32 object-cover mb-4 group-hover:shadow-lg transition-shadow"
                   />
                   <h3
-                    className="text-lg font-bold text-foreground font-serif mb-2"
+                    className="text-lg font-bold text-foreground font-serif mb-2 group-hover:text-purple-600 transition-colors"
                     data-testid={`text-article-title-${index}`}
                   >
                     {article.title[lang as keyof typeof article.title] || article.title.en}
                   </h3>
                   <p
-                    className="text-sm text-muted-foreground flex-grow"
+                    className="text-sm text-muted-foreground flex-grow mb-4"
                     data-testid={`text-article-summary-${index}`}
                   >
                     {article.summary[lang as keyof typeof article.summary] || article.summary.en}
                   </p>
+                  
+                  {/* Call to action */}
+                  <div className="flex items-center justify-between mt-auto">
+                    <span className="text-xs text-purple-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      {lang === "en" && "Read article"}
+                      {lang === "hi" && "लेख पढ़ें"}
+                      {lang === "te" && "వ్యాసం చదవండి"}
+                    </span>
+                    <ArrowRight className="w-4 h-4 text-purple-600 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
+                  </div>
                 </CardContent>
               </Card>
             </Link>
