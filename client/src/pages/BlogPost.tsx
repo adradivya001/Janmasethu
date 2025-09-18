@@ -1,5 +1,6 @@
 
 import { useParams, Link } from 'wouter';
+import { useEffect } from 'react';
 import { ArrowLeft, Calendar, User, Tag } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageProvider';
 import { Card, CardContent } from '@/components/ui/card';
@@ -12,6 +13,11 @@ const BlogPost = () => {
   const { t, lang } = useLanguage();
   
   const post = posts.find(p => p.slug === slug);
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [slug]);
 
   if (!post) {
     return (

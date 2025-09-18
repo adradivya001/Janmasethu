@@ -31,6 +31,11 @@ interface PreviewContent {
 const SakhiTry = () => {
   const { t } = useLanguage();
   const [messages, setMessages] = useState<Message[]>([]);
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const [inputText, setInputText] = useState('');
   const [selectedLanguage, setSelectedLanguage] = useState('te');
   const [previewContent, setPreviewContent] = useState<PreviewContent | null>(null);

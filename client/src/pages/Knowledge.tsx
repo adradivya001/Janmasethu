@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { Link } from 'wouter';
 import { Search, Filter } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageProvider';
@@ -11,6 +11,11 @@ import { articles, type Lens, type Stage } from '@/data/articles';
 const Knowledge = () => {
   const { t, lang } = useLanguage();
   const [searchTerm, setSearchTerm] = useState('');
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const [selectedLens, setSelectedLens] = useState<Lens | null>(null);
   const [selectedStage, setSelectedStage] = useState<Stage | null>(null);
 

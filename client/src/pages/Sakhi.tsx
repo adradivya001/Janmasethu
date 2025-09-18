@@ -1,4 +1,5 @@
 import { Link } from "wouter";
+import { useEffect } from "react";
 import {
   Heart,
   ArrowRight,
@@ -15,6 +16,11 @@ import ChatInterface from "@/components/ChatInterface";
 
 const Sakhi = () => {
   const { t } = useLanguage();
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const sakhiFeatures = [
     {

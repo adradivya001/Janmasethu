@@ -1,4 +1,5 @@
 import { useParams, Link } from 'wouter';
+import { useEffect } from 'react';
 import { ArrowLeft, MapPin, GraduationCap, CheckCircle, ExternalLink } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageProvider';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -12,6 +13,11 @@ const Expert = () => {
   const { t } = useLanguage();
   
   const expert = experts.find(e => e.id === id);
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]);
 
   if (!expert) {
     return (

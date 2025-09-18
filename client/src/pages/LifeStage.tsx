@@ -1,4 +1,5 @@
 import { useParams, Link } from 'wouter';
+import { useEffect } from 'react';
 import { ArrowLeft, Heart, Baby, Cat, Users, Clock } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageProvider';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -9,6 +10,11 @@ import { articles, type Stage } from '@/data/articles';
 const LifeStage = () => {
   const { slug } = useParams();
   const { t, lang } = useLanguage();
+  
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [slug]);
   
   const stageData = {
     'ttc': {

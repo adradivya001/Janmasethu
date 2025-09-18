@@ -1,4 +1,5 @@
 import { Link } from 'wouter';
+import { useEffect } from 'react';
 import { Calendar, User, Tag } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageProvider';
 import { Card, CardContent } from '@/components/ui/card';
@@ -8,6 +9,11 @@ import { posts } from '@/data/blog';
 
 const Blog = () => {
   const { t, lang } = useLanguage();
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const getBlogImage = (index: number) => {
     const images = [
