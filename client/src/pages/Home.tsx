@@ -35,12 +35,31 @@ import { Input } from "../components/ui/input";
 import { articles } from "../data/articles";
 import { stories } from "../data/stories";
 import WhoWeServe from "../components/WhoWeServe";
+import { useEffect } from "react";
 
 const Home = () => {
   const { t, lang } = useLanguage();
 
   const featuredArticles = articles.slice(0, 4);
   const featuredStories = stories.slice(0, 3);
+
+  useEffect(() => {
+    // Debug video loading
+    const video = document.querySelector('[data-testid="hero-video"]') as HTMLVideoElement;
+    if (video) {
+      console.log('Video element found:', video);
+      console.log('Video src:', video.src);
+      console.log('Video readyState:', video.readyState);
+      
+      video.addEventListener('loadstart', () => console.log('Video: loadstart'));
+      video.addEventListener('loadeddata', () => console.log('Video: loadeddata'));
+      video.addEventListener('canplay', () => console.log('Video: canplay'));
+      video.addEventListener('error', (e) => console.error('Video error:', e));
+      
+      // Try to load the video manually
+      video.load();
+    }
+  }, []);
 
   const getTreatmentCards = () => [
     {
@@ -87,32 +106,41 @@ const Home = () => {
 
   return (
     <>
-      {/* Video Section - Below Header */}
-      <section className="relative w-full bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50">
-        <div className="container mx-auto px-4 py-8">
-          <div className="relative w-full max-w-6xl mx-auto">
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-black">
-              <video
-                className="w-full h-auto max-h-[50vh] md:max-h-[60vh] lg:max-h-[70vh] object-cover"
-                autoPlay
-                muted
-                loop
-                playsInline
-                controls={false}
-                data-testid="hero-video"
-              >
-                <source src="/janmasethu.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-              {/* Video overlay for better visual appeal */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none"></div>
-              
-              {/* Optional play button overlay for better UX */}
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
-                  <PlayCircle className="w-8 h-8 text-white" />
-                </div>
-              </div>
+      {/* Video Section - Fullscreen Below Header */}
+      <section className="relative w-full bg-black">
+        <div className="relative w-full">
+          <video
+            className="w-full h-[60vh] md:h-[70vh] lg:h-[80vh] object-cover"
+            autoPlay
+            muted
+            loop
+            playsInline
+            controls
+            preload="metadata"
+            data-testid="hero-video"
+            onError={(e) => {
+              console.error('Video failed to load:', e);
+              console.log('Trying alternative video path...');
+            }}
+            onLoadStart={() => console.log('Video loading started...')}
+            onCanPlay={() => console.log('Video can play')}
+          >
+            <source src="/janmasethu.mp4" type="video/mp4" />
+            <source src="/janmasethu%20(2).mp4" type="video/mp4" />
+            <source src="./janmasethu.mp4" type="video/mp4" />
+            <p className="text-white text-center p-8">
+              Your browser does not support the video tag or the video file could not be loaded.
+            </p>
+          </video>
+          
+          {/* Video overlay with gradient for text readability */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none"></div>
+          
+          {/* Loading indicator */}
+          <div className="absolute inset-0 flex items-center justify-center bg-black/50" id="video-loading">
+            <div className="text-white text-center">
+              <div className="w-12 h-12 border-4 border-white/20 border-t-white rounded-full animate-spin mb-4 mx-auto"></div>
+              <p>Loading video...</p>
             </div>
           </div>
         </div>

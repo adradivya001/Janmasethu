@@ -467,7 +467,7 @@
   }
 }
 
-/* Smooth video loading */
+/* Enhanced video loading and error handling */
 video {
   background-color: #000;
   transition: opacity 0.3s ease-in-out;
@@ -479,4 +479,47 @@ video:not([src]) {
 
 video[src] {
   opacity: 1;
+}
+
+/* Hide loading indicator when video is ready */
+video[data-testid="hero-video"]:not([src]) ~ #video-loading {
+  display: flex;
+}
+
+video[data-testid="hero-video"][src] ~ #video-loading {
+  display: none;
+}
+
+/* Video fullscreen styles */
+.video-fullscreen {
+  width: 100vw;
+  height: 60vh;
+  object-fit: cover;
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .video-fullscreen {
+    height: 70vh;
+  }
+}
+
+@media (min-width: 1024px) {
+  .video-fullscreen {
+    height: 80vh;
+  }
+}
+
+/* Video container debugging */
+video {
+  border: 2px solid red; /* Temporary - remove after testing */
+}
+
+/* Video error state */
+video::-webkit-media-controls {
+  display: flex !important;
+}
+
+video::-webkit-media-controls-panel {
+  display: flex !important;
 }
