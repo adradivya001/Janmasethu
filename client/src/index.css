@@ -203,34 +203,39 @@
     scrollbar-color: rgba(139, 92, 246, 0.4) rgba(0, 0, 0, 0.1);
   }
 
-  /* Full screen video styles with perfect responsiveness */
-  .full-screen-video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    object-fit: cover;
-    object-position: center;
-    z-index: 1;
+  /* Responsive video styles with optimized heights */
+  .responsive-video-container {
+    position: relative;
+    width: 100%;
+    height: 50vh; /* Default mobile height */
+    overflow: hidden;
   }
 
-  /* Ensure video takes full viewport on all devices */
-  @media screen and (max-width: 768px) {
-    .full-screen-video {
-      width: 100vw;
-      height: 100vh;
-      object-fit: cover;
-      object-position: center center;
+  /* Tablet and larger mobile devices */
+  @media screen and (min-width: 480px) {
+    .responsive-video-container {
+      height: 55vh;
     }
   }
 
-  @media screen and (max-width: 480px) {
-    .full-screen-video {
-      width: 100vw;
-      height: 100vh;
-      object-fit: cover;
-      object-position: center center;
+  /* Tablet */
+  @media screen and (min-width: 768px) {
+    .responsive-video-container {
+      height: 60vh;
+    }
+  }
+
+  /* Desktop */
+  @media screen and (min-width: 1024px) {
+    .responsive-video-container {
+      height: 70vh;
+    }
+  }
+
+  /* Large Desktop */
+  @media screen and (min-width: 1440px) {
+    .responsive-video-container {
+      height: 65vh; /* Slightly smaller on very large screens */
     }
   }
 

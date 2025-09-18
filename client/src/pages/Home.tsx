@@ -87,8 +87,8 @@ const Home = () => {
 
   return (
     <>
-      {/* Full Screen Video Section - No container restrictions */}
-      <section className="w-full h-screen relative overflow-hidden">
+      {/* Responsive Video Section */}
+      <section className="w-full h-[50vh] md:h-[60vh] lg:h-[70vh] relative overflow-hidden">
         <video
           className="absolute inset-0 w-full h-full object-cover"
           autoPlay
