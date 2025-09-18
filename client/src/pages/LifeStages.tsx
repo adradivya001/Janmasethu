@@ -76,34 +76,46 @@ const LifeStages = () => {
           const stageArticles = getStageArticles(stage.slug);
           
           return (
-            <Link key={stage.slug} href={`/life-stages/${stage.slug}`} className="group">
-              <Card className="rounded-3xl p-8 card-shadow hover:shadow-xl transition-all duration-300 h-full" data-testid={`card-lifestage-${index}`}>
+            <Link key={stage.slug} href={`/life-stages/${stage.slug}`} className="group h-full">
+              <Card className="rounded-3xl p-8 card-shadow hover:shadow-2xl transition-all duration-500 h-full cursor-pointer transform hover:scale-105 border-2 border-transparent hover:border-purple-200 relative overflow-hidden bg-gradient-to-br from-white to-purple-50/30" data-testid={`card-lifestage-${index}`}>
                 <CardContent className="p-0">
-                  <div className={`w-16 h-16 ${stage.color.split(' ')[0]} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
+                  {/* Click indicator */}
+                  <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
+                      <Icon className="w-4 h-4 text-purple-600" />
+                    </div>
+                  </div>
+
+                  <div className={`w-16 h-16 ${stage.color.split(' ')[0]} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-md`}>
                     <Icon className={`${stage.color.split(' ')[1]} text-2xl`} />
                   </div>
                   
-                  <h3 className="text-2xl font-bold text-foreground font-serif mb-4" data-testid={`text-stage-title-${index}`}>
+                  <h3 className="text-2xl font-bold text-foreground font-serif mb-4 group-hover:text-purple-600 transition-colors" data-testid={`text-stage-title-${index}`}>
                     {stage.title}
                   </h3>
                   
-                  <p className="text-muted-foreground mb-6" data-testid={`text-stage-description-${index}`}>
+                  <p className="text-muted-foreground mb-6 group-hover:text-purple-700 transition-colors" data-testid={`text-stage-description-${index}`}>
                     {stage.description}
                   </p>
 
                   <img 
                     src={stage.image} 
                     alt={stage.title} 
-                    className="rounded-xl w-full h-32 object-cover mb-4"
+                    className="rounded-xl w-full h-32 object-cover mb-4 group-hover:shadow-lg transition-shadow"
                   />
 
                   <div className="flex items-center justify-between">
-                    <Badge variant="secondary" data-testid={`badge-article-count-${index}`}>
+                    <Badge variant="secondary" className="group-hover:shadow-sm transition-shadow" data-testid={`badge-article-count-${index}`}>
                       {stageArticles.length} articles
                     </Badge>
-                    <div className="flex items-center text-sm text-muted-foreground">
-                      <Clock className="w-3 h-3 mr-1" />
-                      <span>{stageArticles.reduce((total, article) => total + article.readMins, 0)} min total</span>
+                    <div className="flex items-center text-sm text-muted-foreground space-x-2">
+                      <div className="flex items-center">
+                        <Clock className="w-3 h-3 mr-1" />
+                        <span>{stageArticles.reduce((total, article) => total + article.readMins, 0)} min total</span>
+                      </div>
+                      <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-purple-600 font-medium">
+                        • Explore
+                      </span>
                     </div>
                   </div>
                 </CardContent>
