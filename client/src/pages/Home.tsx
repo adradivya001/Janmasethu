@@ -692,68 +692,132 @@ const Home = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {/* Medical Lens */}
           <Link href="/knowledge?lens=medical" className="group h-full">
-            <Card className="rounded-3xl p-6 card-shadow hover:shadow-xl transition-all duration-300 text-center h-full flex flex-col">
+            <Card className="rounded-3xl p-6 card-shadow hover:shadow-2xl transition-all duration-500 text-center h-full flex flex-col cursor-pointer transform hover:scale-105 border-2 border-transparent hover:border-blue-200 relative overflow-hidden bg-gradient-to-br from-white to-blue-50/30">
               <CardContent className="p-0 flex flex-col h-full justify-center">
-                <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                  <Stethoscope className="text-blue-600 text-xl" />
+                {/* Click indicator */}
+                <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center">
+                    <ArrowRight className="w-3 h-3 text-blue-600" />
+                  </div>
+                </div>
+                
+                <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-md">
+                  <Stethoscope className="text-blue-600 text-2xl" />
                 </div>
                 <h3
-                  className="text-xl font-bold text-foreground font-serif mb-2"
+                  className="text-xl font-bold text-foreground font-serif mb-4 group-hover:text-blue-600 transition-colors"
                   data-testid="text-lens-medical"
                 >
                   {t("lens_medical")}
                 </h3>
+                
+                {/* Call to action */}
+                <div className="flex items-center justify-center mt-auto">
+                  <span className="text-sm text-blue-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    {lang === "en" && "Browse topics"}
+                    {lang === "hi" && "विषय ब्राउज़ करें"}
+                    {lang === "te" && "విषయాలను బ్రౌజ్ చేయండి"}
+                  </span>
+                </div>
               </CardContent>
             </Card>
           </Link>
 
           {/* Social & Emotional Lens */}
           <Link href="/knowledge?lens=social" className="group h-full">
-            <Card className="rounded-3xl p-6 card-shadow hover:shadow-xl transition-all duration-300 text-center h-full flex flex-col">
+            <Card className="rounded-3xl p-6 card-shadow hover:shadow-2xl transition-all duration-500 text-center h-full flex flex-col cursor-pointer transform hover:scale-105 border-2 border-transparent hover:border-pink-200 relative overflow-hidden bg-gradient-to-br from-white to-pink-50/30">
               <CardContent className="p-0 flex flex-col h-full justify-center">
-                <div className="w-12 h-12 bg-pink-100 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                  <Users className="text-pink-600 text-xl" />
+                {/* Click indicator */}
+                <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="w-6 h-6 bg-pink-100 rounded-full flex items-center justify-center">
+                    <ArrowRight className="w-3 h-3 text-pink-600" />
+                  </div>
+                </div>
+                
+                <div className="w-16 h-16 bg-pink-100 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-md">
+                  <Users className="text-pink-600 text-2xl" />
                 </div>
                 <h3
-                  className="text-xl font-bold text-foreground font-serif mb-2"
+                  className="text-xl font-bold text-foreground font-serif mb-4 group-hover:text-pink-600 transition-colors"
                   data-testid="text-lens-social"
                 >
                   {t("lens_social")}
                 </h3>
+                
+                {/* Call to action */}
+                <div className="flex items-center justify-center mt-auto">
+                  <span className="text-sm text-pink-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    {lang === "en" && "Browse topics"}
+                    {lang === "hi" && "विषय ब्राउज़ करें"}
+                    {lang === "te" && "విषయాలను బ్రౌజ్ చేయండి"}
+                  </span>
+                </div>
               </CardContent>
             </Card>
           </Link>
 
           {/* Financial Lens */}
           <Link href="/knowledge?lens=financial" className="group h-full">
-            <Card className="rounded-3xl p-6 card-shadow hover:shadow-xl transition-all duration-300 text-center h-full flex flex-col">
+            <Card className="rounded-3xl p-6 card-shadow hover:shadow-2xl transition-all duration-500 text-center h-full flex flex-col cursor-pointer transform hover:scale-105 border-2 border-transparent hover:border-green-200 relative overflow-hidden bg-gradient-to-br from-white to-green-50/30">
               <CardContent className="p-0 flex flex-col h-full justify-center">
-                <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                  <IndianRupee className="text-green-600 text-xl" />
+                {/* Click indicator */}
+                <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center">
+                    <ArrowRight className="w-3 h-3 text-green-600" />
+                  </div>
+                </div>
+                
+                <div className="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-md">
+                  <IndianRupee className="text-green-600 text-2xl" />
                 </div>
                 <h3
-                  className="text-xl font-bold text-foreground font-serif mb-2"
+                  className="text-xl font-bold text-foreground font-serif mb-4 group-hover:text-green-600 transition-colors"
                   data-testid="text-lens-financial"
                 >
                   {t("lens_financial")}
                 </h3>
+                
+                {/* Call to action */}
+                <div className="flex items-center justify-center mt-auto">
+                  <span className="text-sm text-green-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    {lang === "en" && "Browse topics"}
+                    {lang === "hi" && "विषय ब्राउज़ करें"}
+                    {lang === "te" && "విषయాలను బ్రౌజ్ చేయండి"}
+                  </span>
+                </div>
               </CardContent>
             </Card>
           </Link>
 
           {/* Nutrition Lens */}
           <Link href="/knowledge?lens=nutrition" className="group h-full">
-            <Card className="rounded-3xl p-6 card-shadow hover:shadow-xl transition-all duration-300 text-center h-full flex flex-col">
+            <Card className="rounded-3xl p-6 card-shadow hover:shadow-2xl transition-all duration-500 text-center h-full flex flex-col cursor-pointer transform hover:scale-105 border-2 border-transparent hover:border-orange-200 relative overflow-hidden bg-gradient-to-br from-white to-orange-50/30">
               <CardContent className="p-0 flex flex-col h-full justify-center">
-                <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                  <Apple className="text-orange-600 text-xl" />
+                {/* Click indicator */}
+                <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="w-6 h-6 bg-orange-100 rounded-full flex items-center justify-center">
+                    <ArrowRight className="w-3 h-3 text-orange-600" />
+                  </div>
+                </div>
+                
+                <div className="w-16 h-16 bg-orange-100 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-md">
+                  <Apple className="text-orange-600 text-2xl" />
                 </div>
                 <h3
-                  className="text-xl font-bold text-foreground font-serif mb-2"
+                  className="text-xl font-bold text-foreground font-serif mb-4 group-hover:text-orange-600 transition-colors"
                   data-testid="text-lens-nutrition"
                 >
                   {t("lens_nutrition")}
                 </h3>
+                
+                {/* Call to action */}
+                <div className="flex items-center justify-center mt-auto">
+                  <span className="text-sm text-orange-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    {lang === "en" && "Browse topics"}
+                    {lang === "hi" && "विषय ब्राउज़ करें"}
+                    {lang === "te" && "విషయాలను బ్రౌజ్ చేయండి"}
+                  </span>
+                </div>
               </CardContent>
             </Card>
           </Link>
