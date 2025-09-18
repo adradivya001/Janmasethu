@@ -87,6 +87,28 @@ const Home = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
+      {/* Video Section - Full Width Below Header */}
+      <section className="w-full -mx-4 mb-8">
+        <div className="relative w-full">
+          <video
+            className="w-full h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh] object-cover"
+            autoPlay
+            loop
+            muted
+            playsInline
+            onLoadStart={() => console.log('Video loading started...')}
+            onLoadedData={() => console.log('Video data loaded')}
+            onCanPlay={() => console.log('Video can play')}
+            onPlay={() => console.log('Video started playing')}
+          >
+            <source src="/janmasethu.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          {/* Optional overlay for text or branding */}
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/20 pointer-events-none"></div>
+        </div>
+      </section>
+
       {/* Hero Section */}
       <section className="text-center py-16 relative">
         {/* Trust Badge - Centered at top */}

@@ -295,6 +295,60 @@
     }
   }
 
+  /* Custom Scrollbar Styles - Hidden by default, visible on hover */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(139, 92, 246, 0.3);
+  }
+
+  /* Show scrollbar on body hover */
+  body:hover ::-webkit-scrollbar-thumb {
+    background: rgba(139, 92, 246, 0.2);
+  }
+
+  body:hover ::-webkit-scrollbar-thumb:hover {
+    background: rgba(139, 92, 246, 0.5);
+  }
+
+  /* Firefox scrollbar styles */
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+  }
+
+  html:hover {
+    scrollbar-color: rgba(139, 92, 246, 0.2) transparent;
+  }
+
+  /* Video responsive utilities */
+  .video-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .video-responsive {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+  }
+
   /* Typing animation */
   @keyframes typing {
     from { width: 0; }
