@@ -1,0 +1,146 @@
+{
+  "IVF": {
+    "title": "In Vitro Fertilization (IVF)",
+    "summary": {
+      "english": "In vitro fertilization (IVF) is the most advanced fertility treatment used today. It involves stimulating a woman’s ovaries to produce multiple eggs, retrieving those eggs through a minor procedure, fertilizing them with sperm in a laboratory, and transferring one or more healthy embryos into the uterus. IVF bypasses many natural barriers to conception and offers the highest success rates among fertility treatments, especially for couples who have been struggling for years.",
+      "hindi": "IVF (इन विट्रो फर्टिलाइजेशन) आज के समय की सबसे एडवांस्ड फर्टिलिटी ट्रीटमेंट है। इसमें महिला के अंडाशय को दवाइयों से स्टिम्युलेट करके कई अंडे तैयार किए जाते हैं। फिर एक छोटे से प्रोसीजर से अंडे निकाले जाते हैं और लैब में शुक्राणु के साथ मिलाकर भ्रूण बनाए जाते हैं। इनमें से एक या अधिक स्वस्थ भ्रूण को गर्भाशय में डाला जाता है। IVF प्राकृतिक रुकावटों को बायपास करता है और लंबे समय से परेशान कपल्स के लिए सबसे ज्यादा सफलता देता है।",
+      "telugu": "IVF (ఇన్ విట్రో ఫెర్టిలైజేషన్) నేటి రోజుల్లో అత్యంత అధునాతన ఫెర్టిలిటీ ట్రీట్మెంట్. ఇందులో మహిళ అండాశయాలను మందులతో ప్రేరేపించి అనేక అండాలు తయారు చేస్తారు. ఆ అండాలను చిన్న ప్రొసీజర్ ద్వారా తీసి, ల్యాబ్‌లో వీర్యకణాలతో కలిపి ఎంబ్రియోలు తయారు చేస్తారు. తరువాత ఒకటి లేదా ఎక్కువ ఆరోగ్యకరమైన ఎంబ్రియోలను గర్భాశయంలోకి ఉంచుతారు. IVF సహజ అడ్డంకులను దాటేసి, సంవత్సరాలుగా ఇబ్బంది పడుతున్న జంటలకు అత్యధిక విజయం ఇస్తుంది."
+    },
+    "reviewed_by": "{{reviewer}}",
+    "who_might_benefit": {
+      "english": [
+        "Women with blocked or damaged fallopian tubes: IVF bypasses the tubes entirely, allowing fertilization to occur in the lab.",
+        "Couples with unexplained infertility: When no clear reason is found after standard tests and less intensive treatments fail.",
+        "Male-factor infertility: IVF with or without ICSI can overcome problems like low sperm count, poor motility, or abnormal shape.",
+        "Endometriosis: Especially when associated with difficulty conceiving naturally or failed IUI.",
+        "Older women or women with reduced ovarian reserve: IVF can maximize the chances by retrieving multiple eggs in one cycle.",
+        "Couples needing genetic testing: Preimplantation genetic testing (PGT) during IVF helps avoid passing on serious genetic disorders.",
+        "Fertility preservation: Eggs or embryos can be frozen for future use before medical treatments such as chemotherapy."
+      ],
+      "hindi": [
+        "फैलोपियन ट्यूब ब्लॉक या डैमेज होने पर: IVF ट्यूब्स को बायपास करके लैब में फर्टिलाइजेशन करता है।",
+        "अनएक्सप्लेंड इंफर्टिलिटी: जब सभी टेस्ट नॉर्मल हों लेकिन बाकी ट्रीटमेंट से सफलता न मिले।",
+        "पुरुष फैक्टर इंफर्टिलिटी: IVF (ICSI के साथ या बिना) कम शुक्राणु, खराब मूवमेंट या गलत शेप जैसी समस्याओं को दूर कर सकता है।",
+        "एंडोमेट्रियोसिस: जब नैचुरली गर्भधारण मुश्किल हो या IUI फेल हो।",
+        "उम्रदराज महिलाएं या जिनके अंडाशय में अंडे कम हैं: IVF एक ही साइकिल में ज्यादा अंडे निकालकर चांस बढ़ाता है।",
+        "जिन्हें जेनेटिक टेस्टिंग की जरूरत है: IVF के दौरान PGT करके गंभीर जेनेटिक बीमारियां आगे जाने से रोकी जा सकती हैं।",
+        "फर्टिलिटी प्रिजर्वेशन: मेडिकल ट्रीटमेंट (जैसे कीमोथेरेपी) से पहले अंडे या भ्रूण फ्रीज़ किए जा सकते हैं।"
+      ],
+      "telugu": [
+        "ఫాలోపియన్ ట్యూబ్స్ బ్లాక్ లేదా డ్యామేజ్ అయిన మహిళలు: IVF ట్యూబ్స్‌ను పూర్తిగా బైపాస్ చేసి ల్యాబ్‌లో ఫెర్టిలైజేషన్ జరగనిస్తుంది.",
+        "అనఎక్స్‌ప్లెయిన్‌డ్ వంధ్యత్వం: అన్ని టెస్టులు నార్మల్‌గా ఉన్నా ఇతర ట్రీట్మెంట్స్ విఫలమైతే.",
+        "పురుష వంధ్యత్వం: IVF (ICSI తో లేదా లేకుండా) తక్కువ వీర్యకణాలు, బలహీన కదలిక లేదా ఆకారం సమస్యలను అధిగమించగలదు.",
+        "ఎండోమెట్రియోసిస్: సహజంగా గర్భం రావడం కష్టమైతే లేదా IUI విఫలమైతే.",
+        "వయసు పైబడిన మహిళలు లేదా తక్కువ అండాలు ఉన్నవారు: IVF ఒకే సైకిల్‌లో ఎక్కువ అండాలు తీసి అవకాశాలను పెంచుతుంది.",
+        "జెనెటిక్ టెస్టింగ్ అవసరమయ్యే జంటలు: IVF సమయంలో PGT చేసి తీవ్రమైన జెనెటిక్ రుగ్మతలు వచ్చే అవకాశాన్ని నివారించవచ్చు.",
+        "ఫెర్టిలిటీ ప్రిజర్వేషన్: మెడికల్ ట్రీట్మెంట్స్ (ఉదా: కీమోథెరపీ) ముందు అండాలు లేదా ఎంబ్రియోలను భవిష్యత్తు కోసం ఫ్రీజ్ చేయవచ్చు."
+      ]
+    },
+    "process_steps": {
+      "english": [
+        "Ovarian stimulation: The woman takes hormone injections daily for about 8–12 days to stimulate her ovaries to produce multiple eggs. Blood tests and ultrasounds are used to monitor growth.",
+        "Trigger shot: When the follicles are ready, a trigger injection is given to mature the eggs.",
+        "Egg retrieval: A short outpatient procedure under sedation collects the eggs using a fine needle guided by ultrasound.",
+        "Fertilization: Eggs are combined with sperm in the lab. In cases of severe male-factor infertility, a single sperm may be injected into the egg (ICSI).",
+        "Embryo culture: Fertilized eggs are monitored for 3–5 days while they grow into embryos.",
+        "Embryo transfer: One or more embryos are placed into the uterus using a thin catheter. This is a simple, painless procedure.",
+        "Two-week wait: After the transfer, the woman takes supportive medications and returns for a pregnancy test after 10–14 days."
+      ],
+      "hindi": [
+        "ओवेरियन स्टिम्युलेशन: महिला को 8–12 दिन तक रोजाना हार्मोन इंजेक्शन दिए जाते हैं ताकि कई अंडे बन सकें। ब्लड टेस्ट और अल्ट्रासाउंड से ग्रोथ देखी जाती है।",
+        "ट्रिगर शॉट: जब फॉलिकल तैयार हो जाते हैं तो अंडों को पकाने के लिए ट्रिगर इंजेक्शन दिया जाता है।",
+        "एग रिट्रीवल: छोटे प्रोसीजर में बेहोशी देकर पतली सुई से अल्ट्रासाउंड की मदद से अंडे निकाले जाते हैं।",
+        "फर्टिलाइजेशन: अंडों को लैब में शुक्राणु से मिलाया जाता है। गंभीर पुरुष समस्या में ICSI से एक-एक शुक्राणु सीधे अंडे में डाला जाता है।",
+        "एंब्रियो कल्चर: फर्टिलाइज हुए अंडों को 3–5 दिन तक मॉनिटर किया जाता है जब तक वे भ्रूण न बन जाएं।",
+        "एंब्रियो ट्रांसफर: एक या ज्यादा भ्रूण को पतली ट्यूब से गर्भाशय में रखा जाता है। यह आसान और दर्द रहित प्रक्रिया है।",
+        "दो हफ्ते का इंतजार: ट्रांसफर के बाद महिला सपोर्टिव दवाइयां लेती है और 10–14 दिन बाद प्रेग्नेंसी टेस्ट कराया जाता है।"
+      ],
+      "telugu": [
+        "ఒవేరియన్ స్టిమ్యులేషన్: మహిళకు 8–12 రోజుల పాటు రోజూ హార్మోన్ ఇంజెక్షన్లు ఇస్తారు, తద్వారా అనేక అండాలు ఉత్పత్తి అవుతాయి. రక్తపరీక్షలు మరియు అల్ట్రాసౌండ్‌తో వృద్ధిని పరిశీలిస్తారు.",
+        "ట్రిగ్గర్ షాట్: ఫాలికల్స్ సిద్ధమైనప్పుడు అండాలు పక్వం కావడానికి ట్రిగ్గర్ ఇంజెక్షన్ ఇస్తారు.",
+        "ఎగ్ రిట్రీవల్: తేలికపాటి ప్రొసీజర్‌లో అల్ట్రాసౌండ్ మార్గదర్శకత్వంలో సన్నని సూదితో అండాలను తీస్తారు (నిద్రామందు కింద).",
+        "ఫెర్టిలైజేషన్: అండాలను ల్యాబ్‌లో వీర్యకణాలతో కలిపి ఉంచుతారు. తీవ్రమైన పురుష సమస్యలో ఒక్కో వీర్యకణాన్ని నేరుగా అండంలోకి (ICSI) ఇంజెక్ట్ చేస్తారు.",
+        "ఎంబ్రియో కల్చర్: ఫెర్టిలైజ్ అయిన అండాలను 3–5 రోజులు పర్యవేక్షించి ఎంబ్రియోలుగా పెంచుతారు.",
+        "ఎంబ్రియో ట్రాన్స్‌ఫర్: ఒకటి లేదా ఎక్కువ ఎంబ్రియోలను సన్నని ట్యూబ్‌తో గర్భాశయంలో పెడతారు. ఇది తేలికపాటి, నొప్పి లేని ప్రొసీజర్.",
+        "రెండు వారాల వెయిట్: ట్రాన్స్‌ఫర్ తర్వాత మహిళకు సపోర్టివ్ మందులు ఇస్తారు. 10–14 రోజుల తర్వాత గర్భధారణ టెస్ట్ చేస్తారు."
+      ]
+    },
+    "risks_considerations": {
+      "english": [
+        "Medication side effects: Temporary bloating, mood swings, and abdominal discomfort.",
+        "Ovarian hyperstimulation syndrome (OHSS): A rare but serious reaction to stimulation drugs that can cause abdominal pain, swelling, or fluid retention.",
+        "Procedure risks: Egg retrieval carries minimal risks of infection, bleeding, or injury to surrounding organs (very rare).",
+        "Multiple pregnancy: If more than one embryo is transferred, the chance of twins or triplets increases, which carries higher pregnancy risks.",
+        "Emotional stress: IVF can be emotionally draining, especially if multiple cycles are required.",
+        "Variable success rates: Success depends heavily on maternal age, ovarian reserve, sperm quality, and clinic expertise."
+      ],
+      "hindi": [
+        "दवाओं के साइड इफेक्ट: अस्थायी पेट फूलना, मूड स्विंग और पेट में भारीपन।",
+        "ओवेरियन हाइपरस्टिम्युलेशन सिंड्रोम (OHSS): दवा पर दुर्लभ लेकिन गंभीर रिएक्शन, जिससे पेट दर्द, सूजन या पानी भरना हो सकता है।",
+        "प्रोसीजर रिस्क: अंडा निकालने की प्रक्रिया में हल्का संक्रमण, ब्लीडिंग या आस-पास के अंगों को चोट (बहुत ही दुर्लभ)।",
+        "मल्टीपल प्रेग्नेंसी: एक से ज्यादा भ्रूण डालने पर जुड़वा या तीन बच्चों का खतरा बढ़ जाता है।",
+        "मानसिक तनाव: IVF भावनात्मक रूप से थका देने वाला हो सकता है, खासकर जब कई साइकिल करनी पड़े।",
+        "सफलता दर अलग-अलग: यह महिला की उम्र, अंडाशय की क्षमता, शुक्राणु की क्वालिटी और क्लिनिक पर निर्भर करता है।"
+      ],
+      "telugu": [
+        "మందుల దుష్ప్రభావాలు: తాత్కాలిక పొట్ట ఉబ్బడం, మూడ్ స్వింగ్‌లు, పొట్టలో బరువు.",
+        "ఒవేరియన్ హైపర్‌స్టిమ్యులేషన్ సిండ్రోమ్ (OHSS): అరుదుగా కానీ తీవ్రమైన ప్రతిక్రియ, దీనివల్ల పొట్ట నొప్పి, ఉబ్బరం లేదా నీరు నిల్వ అవుతుంది.",
+        "ప్రొసీజర్ రిస్కులు: అండాలు తీసే సమయంలో స్వల్ప ఇన్ఫెక్షన్, రక్తస్రావం లేదా చుట్టుపక్కల అవయవాలకు గాయం (చాలా అరుదు).",
+        "బహుళ గర్భధారణ: ఒకటి కంటే ఎక్కువ ఎంబ్రియోలు పెట్టితే ట్విన్స్ లేదా ట్రిప్లెట్స్ వచ్చే అవకాశం ఎక్కువ.",
+        "భావోద్వేగ ఒత్తిడి: IVF మానసికంగా అలసట కలిగించవచ్చు, ముఖ్యంగా బహుళ సైకిల్స్ అవసరమైతే.",
+        "విజయ శాతం వేరుగా ఉంటుంది: ఇది మహిళ వయసు, అండాశయ సామర్థ్యం, వీర్యకణాల నాణ్యత మరియు క్లినిక్ నైపుణ్యంపై ఆధారపడి ఉంటుంది."
+      ]
+    },
+    "cost_considerations": {
+      "english": [
+        "IVF is the most expensive fertility treatment due to the combination of medications, lab procedures, and doctor’s expertise.",
+        "India: On average, ₹1.2 – ₹2.5 lakh per cycle (excluding medications). Medicines often add ₹60,000–₹1,00,000 extra.",
+        "Additional costs: Embryo freezing, genetic testing (PGT), or donor gametes significantly increase costs.",
+        "City/clinic variation: Prices can differ between metro cities and smaller towns. Some clinics offer packages, but hidden costs (like blood tests, anesthesia, or extra scans) should be clarified upfront."
+      ],
+      "hindi": [
+        "IVF सबसे महंगा फर्टिलिटी ट्रीटमेंट है क्योंकि इसमें दवाइयां, लैब प्रोसीजर और डॉक्टर की विशेषज्ञता शामिल होती है।",
+        "भारत: औसतन ₹1.2 – ₹2.5 लाख प्रति साइकिल (दवाओं को छोड़कर)। दवाइयों पर ₹60,000–₹1,00,000 अतिरिक्त खर्च हो सकता है।",
+        "अतिरिक्त खर्च: भ्रूण फ्रीज़िंग, जेनेटिक टेस्टिंग (PGT) या डोनर अंडाणु/शुक्राणु से लागत काफी बढ़ जाती है।",
+        "शहर/क्लिनिक अंतर: बड़े शहरों और छोटे कस्बों में कीमतें अलग होती हैं। कुछ क्लिनिक पैकेज देते हैं लेकिन ब्लड टेस्ट, एनेस्थीसिया या एक्स्ट्रा स्कैन जैसी छुपी लागत पहले से पूछनी चाहिए।"
+      ],
+      "telugu": [
+        "IVF అత్యంత ఖరీదైన ఫెర్టిలిటీ ట్రీట్మెంట్, ఎందుకంటే ఇందులో మందులు, ల్యాబ్ ప్రొసీజర్లు మరియు వైద్య నైపుణ్యం కలిపి ఉంటాయి.",
+        "భారతదేశం: ఒక్కో సైకిల్‌కు సగటు ₹1.2 – ₹2.5 లక్షలు (మందులు మినహాయించి). మందులు సాధారణంగా ₹60,000–₹1,00,000 అదనంగా ఖర్చవుతాయి.",
+        "అదనపు ఖర్చులు: ఎంబ్రియో ఫ్రీజింగ్, జెనెటిక్ టెస్టింగ్ (PGT), లేదా డోనర్ అండాలు/వీర్యకణాలు ఖర్చును గణనీయంగా పెంచుతాయి.",
+        "నగరం/క్లినిక్ మార్పు: మెట్రో నగరాలు మరియు చిన్న పట్టణాల్లో ధరలు మారుతాయి. కొన్ని క్లినిక్స్ ప్యాకేజీలు ఇస్తాయి కానీ రహస్య ఖర్చులు (ఉదా: రక్తపరీక్షలు, అనస్థీషియా, అదనపు స్కాన్లు) ముందే అడగాలి."
+      ]
+    },
+    "questions_to_ask": {
+      "english": [
+        "How many embryos do you recommend transferring in my case?",
+        "What are your clinic’s success rates for patients my age?",
+        "Which ovarian stimulation protocol will you use, and why?",
+        "Should I consider fresh or frozen embryo transfer?",
+        "What is the total estimated cost of the cycle, including medications, procedures, and optional add-ons?",
+        "How many cycles do you typically recommend before considering other options (like donor gametes or adoption)?"
+      ],
+      "hindi": [
+        "मेरे केस में आप कितने भ्रूण ट्रांसफर करने की सलाह देंगे?",
+        "मेरी उम्र की महिलाओं के लिए आपकी क्लिनिक की सफलता दर क्या है?",
+        "आप कौन सा ओवेरियन स्टिम्युलेशन प्रोटोकॉल इस्तेमाल करेंगे और क्यों?",
+        "क्या मुझे फ्रेश या फ्रोजन एंब्रियो ट्रांसफर करवाना चाहिए?",
+        "कुल अनुमानित खर्च कितना होगा (दवाएं, प्रोसीजर और अन्य विकल्प सहित)?",
+        "आप आमतौर पर कितनी साइकिल ट्राय करने की सलाह देते हैं, इससे पहले कि डोनर या अडॉप्शन पर विचार करें?"
+      ],
+      "telugu": [
+        "నా కేసులో మీరు ఎన్ని ఎంబ్రియోలను ట్రాన్స్‌ఫర్ చేయాలని సిఫారసు చేస్తారు?",
+        "నా వయస్సు గల మహిళలకు మీ క్లినిక్ విజయం శాతం ఎంత ఉంది?",
+        "మీరు ఏ ఒవేరియన్ స్టిమ్యులేషన్ ప్రోటోకాల్ వాడతారు? ఎందుకు?",
+        "నేను ఫ్రెష్ ఎంబ్రియో ట్రాన్స్‌ఫర్ చేయాలా లేక ఫ్రోజెన్ ట్రాన్స్‌ఫర్ చేయాలా?",
+        "మందులు, ప్రొసీజర్లు మరియు అదనపు ఎంపికలతో సహా ఒక్కో సైకిల్ అంచనా ఖర్చు ఎంత అవుతుంది?",
+        "డోనర్ లేదా దత్తత వంటి ఎంపికలను పరిగణనలోకి తీసుకునే ముందు మీరు సాధారణంగా ఎన్ని సైకిల్స్ సిఫారసు చేస్తారు?"
+      ]
+    },
+    "sources": [
+      "WHO Infertility Fact Sheet",
+      "ASRM (American Society for Reproductive Medicine) Guidelines",
+      "ICMR/Indian Fertility Society Recommendations"
+    ]
+  }
+}

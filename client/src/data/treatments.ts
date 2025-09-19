@@ -1,88 +1,132 @@
+export interface TreatmentSummary {
+  english?: string;
+  hindi?: string;
+  telugu?: string;
+}
 
-export type Treatment = { 
+export interface TreatmentContent {
+  english?: string[];
+  hindi?: string[];
+  telugu?: string[];
+}
+
+export interface TreatmentData {
+  title?: string;
+  summary?: TreatmentSummary;
+  Summary?: TreatmentSummary; // For ICSI format compatibility
+  reviewed_by?: string;
+  'Reviewed by'?: string; // For ICSI format compatibility
+  who_might_benefit?: TreatmentContent;
+  'Who Might Benefit'?: TreatmentContent; // For ICSI format compatibility
+  process_steps?: TreatmentContent;
+  'Process Steps'?: TreatmentContent; // For ICSI format compatibility
+  risks_considerations?: TreatmentContent;
+  'Risks & Considerations'?: TreatmentContent; // For ICSI format compatibility
+  cost_considerations?: TreatmentContent;
+  'Cost Considerations'?: TreatmentContent; // For ICSI format compatibility
+  questions_to_ask?: TreatmentContent;
+  'Questions to Ask Your Doctor'?: TreatmentContent; // For ICSI format compatibility
+  sources?: string[];
+  Sources?: string[]; // For ICSI format compatibility
+}
+
+export interface Treatment {
   id: string;
-  slug: string; 
-  name: string; 
-  overview: string; 
-  who: string[]; 
-  steps: string[]; 
-  risks: string[]; 
-  costNote: string; 
-  askDoctor: string[]; 
-  sources: string[]; 
-  reviewedBy: string;
-  benefits: string[];
+  slug: string;
+  title: string;
+  data: TreatmentData;
+}
+
+// Function to fetch treatment data from JSON files
+export const fetchTreatmentData = async (treatmentId: string): Promise<TreatmentData | null> => {
+  try {
+    const response = await fetch(`/treatments/${treatmentId}.json`);
+    if (!response.ok) return null;
+    
+    const jsonData = await response.json();
+    // Get the first key's value (since each JSON has one main key like "IVF", "IUI", etc.)
+    const data = Object.values(jsonData)[0] as TreatmentData;
+    return data;
+  } catch (error) {
+    console.error(`Error fetching ${treatmentId} data:`, error);
+    return null;
+  }
 };
 
-export const treatments: Treatment[] = [
-  { 
+// Helper function to get content by language
+export const getContentByLanguage = (content: TreatmentContent | undefined, language: 'en' | 'hi' | 'te'): string[] => {
+  if (!content) return [];
+  
+  const langMap = {
+    'en': content.english || [],
+    'hi': content.hindi || [],
+    'te': content.telugu || []
+  };
+  
+  return langMap[language] || langMap['en'] || [];
+};
+
+// Helper function to get summary by language
+export const getSummaryByLanguage = (summary: TreatmentSummary | undefined, language: 'en' | 'hi' | 'te'): string => {
+  if (!summary) return '';
+  
+  const langMap = {
+    'en': summary.english || '',
+    'hi': summary.hindi || '',
+    'te': summary.telugu || ''
+  };
+  
+  return langMap[language] || langMap['en'] || '';
+};
+
+// Helper function to normalize treatment data (handle different key formats)
+export const normalizeTreatmentData = (data: TreatmentData): TreatmentData => {
+  return {
+    title: data.title,
+    summary: data.summary || data.Summary,
+    reviewed_by: data.reviewed_by || data['Reviewed by'],
+    who_might_benefit: data.who_might_benefit || data['Who Might Benefit'],
+    process_steps: data.process_steps || data['Process Steps'],
+    risks_considerations: data.risks_considerations || data['Risks & Considerations'],
+    cost_considerations: data.cost_considerations || data['Cost Considerations'],
+    questions_to_ask: data.questions_to_ask || data['Questions to Ask Your Doctor'],
+    sources: data.sources || data.Sources
+  };
+};
+
+// Treatment metadata (basic info for listing)
+export const treatmentsList: Treatment[] = [
+  {
     id: 'iui',
-    slug: 'iui', 
-    name: 'IUI (Intrauterine Insemination)', 
-    overview: 'Washed sperm placed in uterus around ovulation.', 
-    who: ['Unexplained infertility','Mild male‑factor','Cervical issues'], 
-    steps: ['Track ovulation','Trigger (if advised)','Lab washing','Insemination (OPD)','Two‑week wait'], 
-    risks: ['Cramps/spotting','Small infection risk','Multiple pregnancy if many follicles'], 
-    costNote: 'Lower cost than IVF; meds/monitoring vary by city.', 
-    askDoctor: ['How many cycles before IVF?','Risk of multiples?','Trigger or natural?','When to convert/cancel?'], 
-    sources: ['WHO','NHS'], 
-    reviewedBy: 'Dr. Raghav Iyer',
-    benefits: ['Unexplained infertility', 'Mild male-factor', 'Cervical issues']
+    slug: 'iui',
+    title: 'Intrauterine Insemination (IUI)',
+    data: {} // Will be populated dynamically
   },
-  { 
+  {
     id: 'ivf',
-    slug: 'ivf', 
-    name: 'IVF (In‑Vitro Fertilisation)', 
-    overview: 'Eggs retrieved and fertilised in lab; embryo transferred to uterus.', 
-    who: ['Tubal factor','Severe male‑factor','Failed IUI','Certain genetic reasons'], 
-    steps: ['Stimulation injections 8–12 days','Monitoring & trigger','Egg retrieval','Fertilisation (IVF/ICSI)','Embryo culture','Transfer (fresh/frozen)','Beta‑hCG'], 
-    risks: ['OHSS (rare)','Multiple pregnancy (avoid via SET)','Procedure discomfort'], 
-    costNote: 'Plan for meds, lab, ICSI, freezing, storage.', 
-    askDoctor: ['Single embryo transfer?','PGT needed?','Fresh vs frozen?','Success factors for me?'], 
-    sources: ['ACOG','ESHRE','WHO'], 
-    reviewedBy: 'Dr. Raghav Iyer',
-    benefits: ['Tubal factor', 'Severe male-factor', 'Prior fertilisation failure']
+    slug: 'ivf',
+    title: 'In Vitro Fertilization (IVF)',
+    data: {} // Will be populated dynamically
   },
-  { 
+  {
     id: 'icsi',
-    slug: 'icsi', 
-    name: 'ICSI (Intracytoplasmic Sperm Injection)', 
-    overview: 'Single sperm injected directly into egg; used with IVF.', 
-    who: ['Severe male factor','Previous fertilisation failure','Low egg numbers'], 
-    steps: ['IVF stimulation','Egg retrieval','Sperm preparation','ICSI procedure','Embryo culture','Transfer'], 
-    risks: ['Same as IVF','Slight increase in birth defects (very rare)','Procedure complexity'], 
-    costNote: 'Additional cost over standard IVF.', 
-    askDoctor: ['Do we need ICSI?','Alternative options?','Success rates for our case?','Additional costs?'], 
-    sources: ['ACOG','ESHRE'], 
-    reviewedBy: 'Dr. Raghav Iyer',
-    benefits: ['Severe male-factor', 'Prior fertilisation failure', 'Low sperm count']
+    slug: 'icsi',
+    title: 'Intracytoplasmic Sperm Injection (ICSI)',
+    data: {} // Will be populated dynamically
   },
-  { 
+  {
     id: 'donor',
-    slug: 'donor-options', 
-    name: 'Donor Options', 
-    overview: 'Using donated eggs, sperm, or embryos for conception.', 
-    who: ['Genetic conditions','Premature ovarian failure','No sperm production','Repeated IVF failure'], 
-    steps: ['Counselling','Donor selection','Medical screening','Synchronisation (if needed)','Treatment cycle'], 
-    risks: ['Emotional challenges','Legal considerations','Higher multiple pregnancy rates'], 
-    costNote: 'Donor fees, screening, legal costs additional.', 
-    askDoctor: ['Known vs anonymous donors?','Legal requirements?','Success rates?','Counselling support?'], 
-    sources: ['ACOG','ASRM'], 
-    reviewedBy: 'Dr. Raghav Iyer',
-    benefits: ['Single women', 'Same-sex couples', 'Genetic conditions', 'Severe male-factor']
+    slug: 'donor-options',
+    title: 'Donor Options (Egg, Sperm, and Embryo Donation)',
+    data: {} // Will be populated dynamically
   },
-  { 
+  {
     id: 'preservation',
-    slug: 'fertility-preservation', 
-    name: 'Fertility Preservation', 
-    overview: 'Freezing eggs, sperm, or embryos for future use.', 
-    who: ['Cancer treatment','Delayed childbearing','Medical conditions','Military deployment'], 
-    steps: ['Consultation','Stimulation (for eggs)','Collection','Freezing','Storage'], 
-    risks: ['Procedure risks','Storage costs','No guarantee of success','Time sensitivity'], 
-    costNote: 'Upfront costs plus annual storage fees.', 
-    askDoctor: ['Best timing?','Success rates by age?','Storage duration?','Insurance coverage?'], 
-    sources: ['ACOG','ASRM'], 
-    reviewedBy: 'Dr. Raghav Iyer',
-    benefits: ['Cancer patients', 'Delayed childbearing', 'Medical conditions', 'Career planning']
+    slug: 'fertility-preservation',
+    title: 'Fertility Preservation (Egg, Sperm, and Embryo Freezing)',
+    data: {} // Will be populated dynamically
   }
 ];
+
+// For backward compatibility
+export const treatments = treatmentsList;

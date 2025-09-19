@@ -1,0 +1,175 @@
+{
+  "Fertility Preservation (Egg, Sperm, and Embryo Freezing)": {
+    "Summary": {
+      "English": "Fertility preservation allows individuals and couples to safeguard their ability to have biological children in the future. It involves freezing eggs, sperm, or embryos for later use. This option is important for people undergoing medical treatments (like chemotherapy), those with health conditions that may reduce fertility, or individuals who wish to delay parenthood for personal, career, or social reasons. With advancements in freezing technology (vitrification), success rates using preserved eggs, sperm, and embryos have greatly improved.",
+      "Hindi": "फर्टिलिटी प्रिज़र्वेशन का मतलब है कि व्यक्ति या कपल्स भविष्य में बायोलॉजिकल बच्चे के लिए अपनी क्षमता को सुरक्षित रखें। इसमें अंडे (एग्स), शुक्राणु (स्पर्म) या भ्रूण (एम्ब्रियो) को फ्रीज़ करके रखा जाता है ताकि बाद में इस्तेमाल किया जा सके। यह विकल्प उन लोगों के लिए ज़रूरी है जो मेडिकल ट्रीटमेंट (जैसे कीमोथेरेपी) ले रहे हैं, जिनकी हेल्थ कंडीशन फर्टिलिटी कम कर सकती है, या जो पर्सनल, करियर या सोशल कारणों से पैरेंटहुड डिले करना चाहते हैं। फ्रीज़िंग टेक्नोलॉजी (विट्रिफिकेशन) में प्रगति के कारण, प्रिज़र्व किए गए अंडे, स्पर्म और एम्ब्रियो से सफलता की दर बहुत बढ़ गई है।",
+      "Telugu": "ఫర్టిలిటీ ప్రిజర్వేషన్ అంటే వ్యక్తులు లేదా జంటలు భవిష్యత్తులో బయోలాజికల్ పిల్లలు కలిగే అవకాశాన్ని కాపాడుకోవడం. దీనిలో అండాలు (eggs), వీర్యకణాలు (sperm), లేదా భ్రూణాలు (embryos) ఫ్రీజ్ చేసి తరువాత ఉపయోగించడానికి నిల్వ చేస్తారు. ఇది ముఖ్యంగా వైద్య చికిత్సలు (ఉదా: కీమోథెరపీ), ఫర్టిలిటీ తగ్గించే ఆరోగ్య సమస్యలు ఉన్నవారు, లేదా వ్యక్తిగత, వృత్తి, సామాజిక కారణాల కోసం తల్లిదండ్రులవడాన్ని వాయిదా వేసుకోవాలనుకునే వారికి ఉపయోగకరం. ఫ్రీజింగ్ టెక్నాలజీ (విట్రిఫికేషన్) లో అభివృద్ధుల వలన నిల్వ చేసిన అండాలు, వీర్యకణాలు, భ్రూణాలతో విజయావకాశాలు గణనీయంగా పెరిగాయి."
+    },
+    "Reviewed by": "{{reviewer}}",
+    "Who Might Benefit": {
+      "English": [
+        "Cancer patients: People who are about to undergo chemotherapy or radiation, which can damage eggs and sperm.",
+        "Medical conditions: Individuals with conditions like severe endometriosis, autoimmune disorders, or those requiring surgeries that may affect reproductive organs.",
+        "Career or lifestyle reasons: People who want to delay parenthood until later in life but want to preserve their younger, healthier gametes.",
+        "Gender-affirming treatments: Transgender individuals undergoing hormone therapy or surgery may freeze eggs or sperm beforehand.",
+        "IVF patients with excess embryos: Couples can preserve embryos for future attempts, avoiding the need for repeated stimulation cycles."
+      ],
+      "Hindi": [
+        "कैंसर पेशेंट्स: जो कीमोथेरेपी या रेडिएशन लेने वाले हैं, जिससे एग्स और स्पर्म खराब हो सकते हैं।",
+        "मेडिकल कंडीशन्स: जैसे गंभीर एंडोमेट्रियोसिस, ऑटोइम्यून डिसऑर्डर, या ऐसी सर्जरी जिनसे प्रजनन अंग प्रभावित हों।",
+        "करियर या लाइफस्टाइल कारण: जो लोग पेरेंटहुड को आगे टालना चाहते हैं लेकिन अपने हेल्दी एग्स/स्पर्म को सुरक्षित रखना चाहते हैं।",
+        "जेंडर-अफर्मिंग ट्रीटमेंट्स: ट्रांसजेंडर लोग, जो हार्मोन थेरेपी या सर्जरी करा रहे हैं, पहले से अंडे या स्पर्म फ्रीज़ कर सकते हैं।",
+        "IVF पेशेंट्स जिनके पास अतिरिक्त एम्ब्रियो हैं: वे उन्हें भविष्य के लिए सुरक्षित रख सकते हैं और बार-बार स्टिमुलेशन से बच सकते हैं।"
+      ],
+      "Telugu": [
+        "క్యాన్సర్ పేషెంట్స్: కీమోథెరపీ లేదా రేడియేషన్ పొందబోతున్న వారు, ఇవి అండాలు మరియు వీర్యకణాలను దెబ్బతీయవచ్చు.",
+        "వైద్య సమస్యలు: తీవ్రమైన ఎండోమెట్రియోసిస్, ఆటోఇమ్యూన్ డిసార్డర్స్, లేదా ప్రজনన అవయవాలను ప్రభావితం చేసే శస్త్రచికిత్స అవసరం ఉన్నవారు.",
+        "కెరీర్ లేదా లైఫ్‌స్టైల్ కారణాలు: తల్లిదండ్రులవడాన్ని వాయిదా వేసుకోవాలనుకునే వారు కానీ తమ యువ, ఆరోగ్యకరమైన గామీట్స్‌ను కాపాడుకోవాలనుకునే వారు.",
+        "జెండర్-అఫర్మింగ్ చికిత్సలు: ట్రాన్స్‌జెండర్ వ్యక్తులు, హార్మోన్ థెరపీ లేదా శస్త్రచికిత్స చేయించుకునే ముందు అండాలు లేదా వీర్యకణాలను ఫ్రీజ్ చేయవచ్చు.",
+        "IVF పేషెంట్స్ అదనపు భ్రూణాలు ఉన్నవారు: వారు భవిష్యత్తులో ఉపయోగించడానికి నిల్వ చేసుకోవచ్చు, మళ్లీ మళ్లీ స్టిమ్యులేషన్ అవసరం లేకుండా."
+      ]
+    },
+    "Process Steps": {
+      "English": {
+        "Egg Freezing (Oocyte Cryopreservation)": [
+          "Ovarian stimulation: The woman takes hormonal injections for 8–12 days to produce multiple eggs.",
+          "Egg retrieval: Eggs are collected using a short outpatient procedure.",
+          "Freezing (vitrification): Mature eggs are frozen rapidly to minimize damage and stored in liquid nitrogen tanks."
+        ],
+        "Embryo Freezing": [
+          "Eggs are retrieved and fertilized with sperm in the lab.",
+          "Resulting embryos are monitored for quality.",
+          "Healthy embryos are frozen for future use."
+        ],
+        "Sperm Freezing": [
+          "A semen sample is collected through ejaculation or surgically retrieved if needed.",
+          "The sample is processed, and healthy sperm are frozen and stored."
+        ]
+      },
+      "Hindi": {
+        "एग फ्रीज़िंग (ओसाइट क्रायोप्रिज़र्वेशन)": [
+          "ओवेरियन स्टिमुलेशन: महिला 8–12 दिन तक हार्मोनल इंजेक्शन लेती है ताकि कई एग्स बन सकें।",
+          "एग रिट्रीवल: छोटे प्रोसीजर से एग्स निकाले जाते हैं।",
+          "फ्रीज़िंग (विट्रिफिकेशन): मैच्योर एग्स को तुरंत फ्रीज़ करके लिक्विड नाइट्रोजन में रखा जाता है।"
+        ],
+        "एम्ब्रियो फ्रीज़िंग": [
+          "एग्स को निकालकर लैब में स्पर्म से फर्टिलाइज किया जाता है।",
+          "बने हुए एम्ब्रियो की क्वालिटी मॉनिटर की जाती है।",
+          "हेल्दी एम्ब्रियो को भविष्य के लिए फ्रीज़ किया जाता है।"
+        ],
+        "स्पर्म फ्रीज़िंग": [
+          "वीर्य का सैंपल इजैक्युलेशन से या ज़रूरत पड़ने पर सर्जरी से लिया जाता है।",
+          "सैंपल प्रोसेस करके हेल्दी स्पर्म को फ्रीज़ करके स्टोर किया जाता है।"
+        ]
+      },
+      "Telugu": {
+        "అండం ఫ్రీజింగ్ (Oocyte Cryopreservation)": [
+          "ఓవేరియన్ స్టిమ్యులేషన్: మహిళ 8–12 రోజులు హార్మోన్ ఇంజెక్షన్లు తీసుకుని అనేక అండాలు ఉత్పత్తి చేస్తుంది.",
+          "అండం సేకరణ: చిన్న ప్రక్రియ ద్వారా అండాలను తీస్తారు.",
+          "ఫ్రీజింగ్ (విట్రిఫికేషన్): పరిపక్వ అండాలను వెంటనే ఫ్రీజ్ చేసి ద్రవ నైట్రోజన్ ట్యాంక్‌లలో నిల్వ చేస్తారు."
+        ],
+        "భ్రూణం ఫ్రీజింగ్": [
+          "అండాలను సేకరించి ప్రయోగశాలలో వీర్యకణాలతో కలుపుతారు.",
+          "తయారైన భ్రూణాలను నాణ్యత కోసం పరిశీలిస్తారు.",
+          "ఆరోగ్యకరమైన భ్రూణాలను భవిష్యత్తులో ఉపయోగించడానికి ఫ్రీజ్ చేస్తారు."
+        ],
+        "వీర్యకణం ఫ్రీజింగ్": [
+          "వీర్య నమూనాను స్ఖలనంతో లేదా అవసరమైతే శస్త్రచికిత్స ద్వారా సేకరిస్తారు.",
+          "నమూనాను ప్రాసెస్ చేసి ఆరోగ్యకరమైన వీర్యకణాలను ఫ్రీజ్ చేసి నిల్వ చేస్తారు."
+        ]
+      }
+    },
+    "Risks & Considerations": {
+      "English": [
+        "Egg retrieval risks: Temporary discomfort, bloating, or rare complications such as infection or bleeding.",
+        "No absolute guarantee: Preserved eggs and sperm do not guarantee a successful pregnancy later, as success depends on age and quality at the time of freezing.",
+        "Storage and consent: Clinics require written consent for how long material is stored and what happens if it’s unused.",
+        "Emotional aspects: Deciding when and whether to use preserved gametes or embryos can be emotionally complex.",
+        "Costs over time: Annual storage fees add up, especially if material is preserved for many years."
+      ],
+      "Hindi": [
+        "एग रिट्रीवल रिस्क: अस्थायी दर्द, पेट फूलना या कभी-कभी संक्रमण और ब्लीडिंग जैसी जटिलताएं।",
+        "गारंटी नहीं: फ्रीज़ किए गए एग्स और स्पर्म से प्रेगनेंसी की गारंटी नहीं होती, सफलता उम्र और क्वालिटी पर निर्भर है।",
+        "स्टोरेज और सहमति: क्लिनिक लिखित सहमति लेते हैं कि कितने समय तक मटीरियल रखा जाएगा और अगर इस्तेमाल न हुआ तो क्या होगा।",
+        "इमोशनल पहलू: कब और कैसे प्रिज़र्व किए गए एग्स/स्पर्म/एम्ब्रियो का इस्तेमाल करना है, यह भावनात्मक रूप से कठिन हो सकता है।",
+        "लंबे समय का खर्च: हर साल की स्टोरेज फीस जुड़ती जाती है, खासकर जब मटीरियल कई सालों तक रखा हो।"
+      ],
+      "Telugu": [
+        "అండం సేకరణలో రిస్క్: తాత్కాలిక నొప్పి, కడుపు ఉబ్బరం లేదా అరుదైన ఇన్ఫెక్షన్/రక్తస్రావం సమస్యలు.",
+        "పూర్తి హామీ లేదు: ఫ్రీజ్ చేసిన అండాలు, వీర్యకణాలు విజయవంతమైన గర్భధారణకు హామీ ఇవ్వవు, ఇది వయస్సు మరియు నాణ్యతపై ఆధారపడి ఉంటుంది.",
+        "నిల్వ మరియు అనుమతి: క్లినిక్‌లు ఎంత కాలం నిల్వ చేస్తారు, వాడకపోతే ఏమవుతుందో లిఖితపూర్వక అనుమతి అవసరం.",
+        "భావోద్వేగ అంశాలు: నిల్వ చేసిన అండాలు/వీర్యకణాలు/భ్రూణాలను ఎప్పుడు వాడాలో నిర్ణయించడం భావోద్వేగపూర్వకంగా కష్టం కావచ్చు.",
+        "దీర్ఘకాలిక ఖర్చులు: ప్రతి సంవత్సరం నిల్వ ఖర్చులు పెరుగుతాయి, ముఖ్యంగా పదేళ్ల పాటు నిల్వ చేస్తే."
+      ]
+    },
+    "Cost Considerations": {
+      "English": [
+        "Egg Freezing: ₹1.2 – ₹2.0 lakh for one cycle (includes stimulation, retrieval, and freezing). Medicines can add another ₹60,000–₹1,00,000.",
+        "Embryo Freezing: Similar to IVF cycle costs, around ₹1.5 – ₹2.5 lakh including fertilization and freezing.",
+        "Sperm Freezing: Much cheaper, usually ₹8,000 – ₹20,000 for initial freezing and around ₹2,000 – ₹5,000 per year for storage.",
+        "Annual storage fees: Typically ₹5,000 – ₹15,000 per year per sample (eggs, embryos, or sperm).",
+        "Future costs: Additional expenses apply when thawing and using the frozen material in IVF or ICSI."
+      ],
+      "Hindi": [
+        "एग फ्रीज़िंग: एक साइकल के लिए ₹1.2 – ₹2.0 लाख (स्टिमुलेशन, रिट्रीवल, फ्रीज़िंग सहित)। दवाइयां अतिरिक्त ₹60,000–₹1,00,000।",
+        "एम्ब्रियो फ्रीज़िंग: IVF जैसी लागत, लगभग ₹1.5 – ₹2.5 लाख (फर्टिलाइजेशन और फ्रीज़िंग सहित)।",
+        "स्पर्म फ्रीज़िंग: बहुत सस्ता, शुरुआती फ्रीज़िंग ₹8,000 – ₹20,000 और सालाना स्टोरेज ₹2,000 – ₹5,000।",
+        "वार्षिक स्टोरेज फीस: लगभग ₹5,000 – ₹15,000 प्रति साल प्रति सैंपल।",
+        "भविष्य की लागत: फ्रीज़ किए मटीरियल को IVF/ICSI में इस्तेमाल करते समय अतिरिक्त खर्च।"
+      ],
+      "Telugu": [
+        "అండం ఫ్రీజింగ్: ఒక చక్రానికి ₹1.2 – ₹2.0 లక్షలు (స్టిమ్యులేషన్, సేకరణ, ఫ్రీజింగ్ సహా). మందులు అదనంగా ₹60,000–₹1,00,000.",
+        "భ్రూణం ఫ్రీజింగ్: IVF లాగే ఖర్చు, సుమారు ₹1.5 – ₹2.5 లక్షలు (ఫర్టిలైజేషన్ మరియు ఫ్రీజింగ్ సహా).",
+        "వీర్యకణం ఫ్రీజింగ్: చాలా చవకైనది, ప్రారంభ ఫ్రీజింగ్ ₹8,000 – ₹20,000, నిల్వ ఖర్చు ప్రతి సంవత్సరం ₹2,000 – ₹5,000.",
+        "వార్షిక నిల్వ ఫీజులు: ప్రతి నమూనాకు ₹5,000 – ₹15,000.",
+        "భవిష్యత్తు ఖర్చులు: IVF/ICSI లో వాడే సమయంలో అదనపు ఖర్చులు వస్తాయి."
+      ]
+    },
+    "Questions to Ask Your Doctor": {
+      "English": [
+        "Based on my age, how many eggs or embryos should I aim to freeze for a reasonable chance of success later?",
+        "How soon can fertility preservation be completed before starting cancer treatment or surgery?",
+        "What are the annual storage fees, and how long can I keep my eggs/sperm/embryos frozen?",
+        "What are the clinic’s success rates with frozen-thawed eggs or embryos?",
+        "Are there any legal restrictions or consent rules I should be aware of in my state?",
+        "What is the total cost, including medications, freezing, storage, and eventual use in IVF/ICSI?"
+      ],
+      "Hindi": [
+        "मेरी उम्र के हिसाब से मुझे कितने एग्स/एम्ब्रियो फ्रीज़ करने चाहिए ताकि सफलता की संभावना ज्यादा हो?",
+        "कैंसर ट्रीटमेंट या सर्जरी शुरू करने से पहले फर्टिलिटी प्रिज़र्वेशन कितनी जल्दी हो सकता है?",
+        "वार्षिक स्टोरेज फीस कितनी है और मैं कितने समय तक एग्स/स्पर्म/एम्ब्रियो फ्रीज़ रख सकता हूँ?",
+        "फ्रीज़ किए और पिघलाए गए एग्स या एम्ब्रियो के साथ आपकी क्लिनिक की सक्सेस रेट क्या है?",
+        "क्या मेरे राज्य में कोई लीगल रेस्ट्रिक्शन या सहमति के नियम हैं?",
+        "कुल खर्च कितना होगा (दवाइयां, फ्रीज़िंग, स्टोरेज, IVF/ICSI में इस्तेमाल सहित)?"
+      ],
+      "Telugu": [
+        "నా వయస్సు ప్రకారం విజయావకాశం ఉండేందుకు ఎంత అండాలు లేదా భ్రూణాలు ఫ్రీజ్ చేయాలి?",
+        "క్యాన్సర్ చికిత్స లేదా శస్త్రచికిత్స ప్రారంభించే ముందు ఫర్టిలిటీ ప్రిజర్వేషన్ ఎంత త్వరగా చేయగలం?",
+        "ప్రతి సంవత్సరం నిల్వ ఖర్చు ఎంత? అండాలు/వీర్యకణాలు/భ్రూణాలను ఎంతకాలం ఫ్రీజ్ చేయవచ్చు?",
+        "ఫ్రీజ్ చేసి తిరిగి వాడిన అండాలు లేదా భ్రూణాలతో మీ క్లినిక్ విజయ శాతం ఎంత?",
+        "నా రాష్ట్రంలో ఏవైనా లీగల్ పరిమితులు లేదా అనుమతి నిబంధనలు ఉన్నాయా?",
+        "మొత్తం ఖర్చు ఎంత (మందులు, ఫ్రీజింగ్, నిల్వ, IVF/ICSI లో ఉపయోగించడం సహా)?"
+      ]
+    },
+    "Sources": {
+      "English": [
+        "ASCO (American Society of Clinical Oncology) – Fertility Preservation Guidelines",
+        "ASRM – Egg and Embryo Freezing Guidance",
+        "NHS – Fertility Preservation FAQs",
+        "ICMR Guidelines (India)"
+      ],
+      "Hindi": [
+        "ASCO (American Society of Clinical Oncology) – फर्टिलिटी प्रिज़र्वेशन गाइडलाइन्स",
+        "ASRM – एग और एम्ब्रियो फ्रीज़िंग गाइडेंस",
+        "NHS – फर्टिलिटी प्रिज़र्वेशन FAQs",
+        "ICMR गाइडलाइन्स (भारत)"
+      ],
+      "Telugu": [
+        "ASCO (American Society of Clinical Oncology) – ఫర్టిలిటీ ప్రిజర్వేషన్ మార్గదర్శకాలు",
+        "ASRM – అండాలు మరియు భ్రూణాల ఫ్రీజింగ్ గైడెన్స్",
+        "NHS – ఫర్టిలిటీ ప్రిజర్వేషన్ FAQs",
+        "ICMR మార్గదర్శకాలు (భారతదేశం)"
+      ]
+    }
+  }
+}

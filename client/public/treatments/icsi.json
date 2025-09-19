@@ -1,0 +1,148 @@
+{
+  "ICSI": {
+    "Summary": {
+      "English": "Intracytoplasmic sperm injection (ICSI) is an advanced laboratory procedure performed as part of an IVF cycle. Instead of allowing sperm to fertilize the egg naturally in a dish, an embryologist selects a single healthy-looking sperm and injects it directly into the egg using a fine needle. This technique helps overcome severe male infertility and ensures fertilization even when sperm quality or quantity is very poor. ICSI has revolutionized fertility care by making biological parenthood possible for couples who would otherwise have little chance of success.",
+      "Hindi": "इंट्रासाइटोप्लाज़्मिक स्पर्म इंजेक्शन (ICSI) एक उन्नत प्रयोगशाला प्रक्रिया है जो IVF चक्र का हिस्सा होती है। इसमें स्पर्म को अंडाणु को प्राकृतिक रूप से निषेचित करने देने के बजाय, एम्ब्रायोलॉजिस्ट एक स्वस्थ दिखने वाले स्पर्म का चयन करता है और उसे बारीक सुई के माध्यम से सीधे अंडाणु में इंजेक्ट करता है। यह तकनीक गंभीर पुरुष बांझपन को दूर करने में मदद करती है और तब भी निषेचन सुनिश्चित करती है जब स्पर्म की गुणवत्ता या संख्या बहुत कम हो। ICSI ने प्रजनन देखभाल में क्रांति ला दी है और उन दंपतियों के लिए जैविक पितृत्व को संभव बनाया है जिनके लिए पहले यह लगभग असंभव था।",
+      "Telugu": "ఇంట్రాసైటోప్లాస్మిక్ స్పెర్మ్ ఇంజెక్షన్ (ICSI) అనేది IVF సైకిల్‌లో భాగంగా నిర్వహించే అధునాతన ప్రయోగశాల ప్రక్రియ. స్పెర్మ్‌ను సహజంగా అండాన్ని ఫర్టిలైజ్ చేయడానికి అనుమతించడానికి బదులుగా, ఎంబ్రయాలజిస్ట్ ఒక ఆరోగ్యకరమైన స్పెర్మ్‌ను ఎంచుకొని, దాన్ని సూక్ష్మమైన సూదితో నేరుగా అండంలోకి ఇంజెక్ట్ చేస్తారు. ఈ పద్ధతి తీవ్రమైన పురుషుల వంధ్యత్వాన్ని అధిగమించడంలో సహాయపడుతుంది మరియు స్పెర్మ్ నాణ్యత లేదా పరిమాణం చాలా తక్కువగా ఉన్నప్పటికీ ఫర్టిలైజేషన్‌ను నిర్ధారిస్తుంది. ICSI వలన ప్రজনన వైద్యంలో విప్లవం వచ్చింది మరియు ముందు అవకాశం లేని దంపతులకు బయోలాజికల్ పేరెంట్‌హుడ్ సాధ్యమైంది."
+    },
+    "Reviewed by": "{{reviewer}}",
+    "Who Might Benefit": {
+      "English": [
+        "Severe male-factor infertility: Extremely low sperm count, poor motility, or abnormal sperm shape (morphology).",
+        "Previous failed fertilization in IVF: When eggs did not fertilize despite appearing healthy.",
+        "Use of surgically retrieved sperm: For men with blocked vas deferens, azoospermia, or after vasectomy reversal, sperm can be collected via TESA/PESA and used in ICSI.",
+        "Frozen sperm with limited availability: When only a small sample is available, ICSI maximizes fertilization chances.",
+        "Genetic testing planned: ICSI helps reduce contamination of embryos with extra sperm, making genetic screening (PGT) more reliable."
+      ],
+      "Hindi": [
+        "गंभीर पुरुष बांझपन: अत्यधिक कम स्पर्म काउंट, खराब गतिशीलता या असामान्य स्पर्म आकार (मॉरफोलॉजी)।",
+        "IVF में पूर्व असफल निषेचन: जब अंडाणु स्वस्थ दिखने के बावजूद निषेचित नहीं हुए।",
+        "शल्य चिकित्सा द्वारा निकाले गए स्पर्म का उपयोग: जिन पुरुषों में वास डिफरेंस ब्लॉक है, अज़ूस्पर्मिया है या नसबंदी उलटने के बाद, स्पर्म TESA/PESA द्वारा एकत्र किए जा सकते हैं और ICSI में उपयोग किए जा सकते हैं।",
+        "सीमित उपलब्धता वाला फ्रीज़ किया हुआ स्पर्म: जब केवल छोटा सैंपल उपलब्ध हो, ICSI निषेचन की संभावना को अधिकतम करता है।",
+        "अनुवांशिक परीक्षण की योजना: ICSI अतिरिक्त स्पर्म से भ्रूण के संदूषण को कम करने में मदद करता है, जिससे जेनेटिक स्क्रीनिंग (PGT) अधिक विश्वसनीय बनती है।"
+      ],
+      "Telugu": [
+        "తీవ్ర పురుషుల వంధ్యత్వం: చాలా తక్కువ స్పెర్మ్ కౌంట్, తక్కువ మోటిలిటీ లేదా అసాధారణ స్పెర్మ్ ఆకారం (మార్ఫాలజీ).",
+        "IVFలో గత ఫర్టిలైజేషన్ వైఫల్యం: అండాలు ఆరోగ్యంగా కనిపించినప్పటికీ ఫర్టిలైజ్ కాలేదు.",
+        "శస్త్రచికిత్స ద్వారా తీసిన స్పెర్మ్ వినియోగం: వాస్ డిఫెరెన్స్ బ్లాక్, అజోస్పెర్మియా లేదా వాసెక్టమీ రివర్సల్ తర్వాత పురుషుల నుండి స్పెర్మ్‌ను TESA/PESA ద్వారా సేకరించి ICSIలో ఉపయోగించవచ్చు.",
+        "పరిమిత లభ్యత ఉన్న ఫ్రోజెన్ స్పెర్మ్: చిన్న నమూనా మాత్రమే లభ్యమైతే, ICSI ఫర్టిలైజేషన్ అవకాశాలను గరిష్టం చేస్తుంది.",
+        "జన్యు పరీక్ష ప్రణాళిక: ICSI అదనపు స్పెర్మ్‌తో ఎంబ్రియో కలుషితాన్ని తగ్గించడంలో సహాయపడుతుంది, జన్యు స్క్రీనింగ్ (PGT) మరింత విశ్వసనీయంగా మారుతుంది."
+      ]
+    },
+    "Process Steps": {
+      "English": [
+        "Ovarian stimulation: As in IVF, the woman takes hormone injections for 8–12 days to produce multiple eggs.",
+        "Egg retrieval: Eggs are collected under sedation using ultrasound guidance.",
+        "Sperm collection: Partner provides semen sample, or sperm is surgically retrieved if necessary.",
+        "ICSI procedure: Using a high-powered microscope, a single sperm is selected and injected directly into the cytoplasm of each mature egg.",
+        "Embryo culture: Fertilized eggs (embryos) are grown in the lab for 3–5 days.",
+        "Embryo transfer: Healthy embryos are transferred into the uterus.",
+        "Two-week wait: Pregnancy test is done 10–14 days later."
+      ],
+      "Hindi": [
+        "ओवेरियन स्टिमुलेशन: IVF की तरह, महिला 8–12 दिनों तक हार्मोन इंजेक्शन लेती है ताकि कई अंडाणु उत्पन्न हो सकें।",
+        "एग रिट्रीवल: अंडाणु को अल्ट्रासाउंड गाइडेंस के तहत सिडेशन में एकत्र किया जाता है।",
+        "स्पर्म कलेक्शन: पार्टनर वीर्य का नमूना देता है, या आवश्यकता पड़ने पर शल्य चिकित्सा से स्पर्म निकाला जाता है।",
+        "ICSI प्रक्रिया: उच्च शक्ति वाले माइक्रोस्कोप का उपयोग करके एक स्पर्म चुना जाता है और प्रत्येक परिपक्व अंडाणु के साइटोप्लाज़्म में सीधे इंजेक्ट किया जाता है।",
+        "एंब्रियो कल्चर: निषेचित अंडाणु (भ्रूण) को प्रयोगशाला में 3–5 दिनों तक विकसित किया जाता है।",
+        "एंब्रियो ट्रांसफर: स्वस्थ भ्रूण को गर्भाशय में स्थानांतरित किया जाता है।",
+        "दो सप्ताह प्रतीक्षा: 10–14 दिन बाद गर्भावस्था परीक्षण किया जाता है।"
+      ],
+      "Telugu": [
+        "ఓవేరియన్ స్టిమ్యులేషన్: IVFలో లాగానే, మహిళ 8–12 రోజుల పాటు హార్మోన్ ఇంజెక్షన్లు తీసుకుంటుంది, అనేక అండాలను ఉత్పత్తి చేయడానికి.",
+        "ఎగ్ రిట్రీవల్: అండాలను సడేషన్‌లో, అల్ట్రాసౌండ్ గైడెన్స్ ఉపయోగించి సేకరిస్తారు.",
+        "స్పెర్మ్ సేకరణ: భాగస్వామి వీర్య నమూనా ఇస్తారు, లేదా అవసరమైతే శస్త్రచికిత్స ద్వారా స్పెర్మ్ తీసుకుంటారు.",
+        "ICSI ప్రక్రియ: అధిక శక్తి గల సూక్ష్మదర్శిని ఉపయోగించి, ఒక స్పెర్మ్‌ను ఎంచుకొని, ప్రతి పరిపక్వ అండం యొక్క సైటోప్లాసంలో నేరుగా ఇంజెక్ట్ చేస్తారు.",
+        "ఎంబ్రియో కల్చర్: ఫర్టిలైజ్ అయిన అండాలు (ఎంబ్రియోలు) ప్రయోగశాలలో 3–5 రోజులు పెంచబడతాయి.",
+        "ఎంబ్రియో ట్రాన్స్‌ఫర్: ఆరోగ్యకరమైన ఎంబ్రియోలను గర్భాశయంలోకి బదిలీ చేస్తారు.",
+        "రెండు వారాల వేచి: 10–14 రోజులకు గర్భ పరీక్ష చేస్తారు."
+      ]
+    },
+    "Risks & Considerations": {
+      "English": [
+        "Similar to IVF: Since ICSI is part of an IVF cycle, medication side effects, OHSS, and retrieval risks apply.",
+        "Sperm selection is limited to appearance: While embryologists choose the healthiest-looking sperm, ICSI cannot completely overcome genetic issues in sperm.",
+        "Birth defect risk: Large studies show ICSI is generally safe, but there may be a slightly higher risk of rare genetic or developmental issues compared to natural conception.",
+        "Cost: ICSI adds an additional charge on top of standard IVF fees.",
+        "Success depends on egg quality: ICSI helps with sperm problems, but poor egg quality (e.g., in older women) may still limit success."
+      ],
+      "Hindi": [
+        "IVF जैसा: चूंकि ICSI IVF चक्र का हिस्सा है, दवाओं के दुष्प्रभाव, OHSS और रिट्रीवल से जुड़े जोखिम लागू होते हैं।",
+        "स्पर्म चयन केवल दिखावट पर आधारित: एम्ब्रायोलॉजिस्ट सबसे स्वस्थ दिखने वाले स्पर्म का चयन करते हैं, लेकिन ICSI स्पर्म की आनुवंशिक समस्याओं को पूरी तरह दूर नहीं कर सकता।",
+        "जन्म दोष का जोखिम: बड़े अध्ययनों से पता चला है कि ICSI आमतौर पर सुरक्षित है, लेकिन प्राकृतिक गर्भधारण की तुलना में दुर्लभ आनुवंशिक या विकास संबंधी समस्याओं का थोड़ा अधिक जोखिम हो सकता है।",
+        "लागत: ICSI मानक IVF शुल्क के ऊपर अतिरिक्त खर्च जोड़ता है।",
+        "सफलता अंडाणु की गुणवत्ता पर निर्भर करती है: ICSI स्पर्म समस्याओं में मदद करता है, लेकिन खराब अंडाणु गुणवत्ता (जैसे वृद्ध महिलाओं में) फिर भी सफलता को सीमित कर सकती है।"
+      ],
+      "Telugu": [
+        "IVFతో సమానం: ICSI IVF సైకిల్‌లో భాగమైనందున, ఔషధ దుష్ప్రభావాలు, OHSS మరియు రిట్రీవల్ సంబంధిత ప్రమాదాలు వర్తిస్తాయి.",
+        "స్పెర్మ్ ఎంపిక కేవలం రూపుపై ఆధారపడి ఉంటుంది: ఎంబ్రయాలజిస్టులు ఆరోగ్యకరంగా కనిపించే స్పెర్మ్‌ను ఎంచుకుంటారు, కానీ ICSI స్పెర్మ్‌లోని జన్యు సమస్యలను పూర్తిగా అధిగమించలేడు.",
+        "జన్యు లోపాల ప్రమాదం: పెద్ద అధ్యయనాలు ICSI సాధారణంగా సురక్షితమని చూపించాయి, కానీ సహజ గర్భధారణతో పోలిస్తే అరుదైన జన్యు లేదా అభివృద్ధి సమస్యల ప్రమాదం కొంచెం ఎక్కువగా ఉండవచ్చు.",
+        "ఖర్చు: ICSI సాధారణ IVF ఫీజులపై అదనపు ఛార్జ్‌ను జతచేస్తుంది.",
+        "విజయం అండాల నాణ్యతపై ఆధారపడి ఉంటుంది: ICSI స్పెర్మ్ సమస్యలలో సహాయపడుతుంది, కానీ చెడు అండాల నాణ్యత (ఉదా: వృద్ధ మహిళల్లో) విజయాన్ని పరిమితం చేయవచ్చు."
+      ]
+    },
+    "Cost Considerations": {
+      "English": [
+        "ICSI is costlier than standard IVF because of the specialized lab work involved.",
+        "India: ₹1.5 – ₹2.8 lakh per cycle, including IVF (with ICSI adding ₹25,000–₹45,000).",
+        "Additional procedures: Surgical sperm retrieval, freezing, or genetic testing can increase costs further.",
+        "Comparison with IVF: Couples with severe male-factor infertility often save time and money in the long run by opting directly for IVF + ICSI rather than multiple failed cycles of standard IVF."
+      ],
+      "Hindi": [
+        "ICSI मानक IVF की तुलना में महंगा है क्योंकि इसमें विशेष प्रयोगशाला कार्य शामिल है।",
+        "भारत: प्रति चक्र ₹1.5 – ₹2.8 लाख, जिसमें IVF शामिल है (ICSI ₹25,000–₹45,000 अतिरिक्त जोड़ता है)।",
+        "अतिरिक्त प्रक्रियाएं: शल्य चिकित्सा से स्पर्म निकालना, फ्रीज़ करना या आनुवंशिक परीक्षण लागत को और बढ़ा सकते हैं।",
+        "IVF की तुलना: गंभीर पुरुष बांझपन वाले दंपति लंबे समय में समय और पैसे बचा सकते हैं यदि वे सीधे IVF + ICSI का विकल्प चुनते हैं, बजाय इसके कि कई असफल IVF चक्रों से गुजरें।"
+      ],
+      "Telugu": [
+        "ICSI సాధారణ IVF కంటే ఖరీదైనది ఎందుకంటే ఇందులో ప్రత్యేక ప్రయోగశాల పని ఉంటుంది.",
+        "భారతదేశం: ప్రతి సైకిల్‌కు ₹1.5 – ₹2.8 లక్షలు, IVFతో సహా (ICSI ₹25,000–₹45,000 అదనంగా జత చేస్తుంది).",
+        "అదనపు విధానాలు: శస్త్రచికిత్స ద్వారా స్పెర్మ్ రిట్రీవల్, ఫ్రీజింగ్ లేదా జన్యు పరీక్ష ఖర్చులను మరింత పెంచవచ్చు.",
+        "IVFతో పోలిస్తే: తీవ్రమైన పురుషుల వంధ్యత్వం ఉన్న దంపతులు, అనేక IVF వైఫల్య సైకిళ్లను ఎదుర్కొనడం కంటే నేరుగా IVF + ICSIను ఎంచుకోవడం ద్వారా దీర్ఘకాలంలో సమయం మరియు డబ్బు ఆదా చేయగలరు."
+      ]
+    },
+    "Questions to Ask Your Doctor": {
+      "English": [
+        "Do I definitely need ICSI, or can I try conventional IVF first?",
+        "What are your clinic’s fertilization and pregnancy success rates with ICSI?",
+        "If sperm is surgically retrieved, what is the process and cost?",
+        "Are there any risks to the baby with ICSI?",
+        "How much extra does ICSI add to the total IVF cycle cost?",
+        "Should I also consider genetic testing along with ICSI?"
+      ],
+      "Hindi": [
+        "क्या मुझे निश्चित रूप से ICSI की आवश्यकता है, या मैं पहले पारंपरिक IVF आज़मा सकता हूँ?",
+        "आपके क्लिनिक की ICSI के साथ निषेचन और गर्भावस्था सफलता दर क्या है?",
+        "यदि स्पर्म शल्य चिकित्सा से निकाला जाता है, तो प्रक्रिया और लागत क्या होगी?",
+        "क्या ICSI से बच्चे को कोई जोखिम है?",
+        "कुल IVF चक्र लागत में ICSI कितना अतिरिक्त जोड़ता है?",
+        "क्या मुझे ICSI के साथ-साथ जेनेटिक टेस्टिंग पर भी विचार करना चाहिए?"
+      ],
+      "Telugu": [
+        "నాకు ఖచ్చితంగా ICSI అవసరమా, లేదా నేను ముందుగా సాధారణ IVFను ప్రయత్నించవచ్చా?",
+        "మీ క్లినిక్‌లో ICSIతో ఫర్టిలైజేషన్ మరియు గర్భధారణ విజయ రేట్లు ఏమిటి?",
+        "స్పెర్మ్‌ను శస్త్రచికిత్స ద్వారా తీసుకుంటే, ప్రక్రియ మరియు ఖర్చు ఏమిటి?",
+        "ICSI వలన బిడ్డకు ఏవైనా ప్రమాదాలున్నాయా?",
+        "మొత్తం IVF సైకిల్ ఖర్చులో ICSI ఎంత అదనంగా జత చేస్తుంది?",
+        "ICSIతో పాటు నేను జన్యు పరీక్షను కూడా పరిగణించాలా?"
+      ]
+    },
+    "Sources": {
+      "English": [
+        "ASRM (American Society for Reproductive Medicine) – ICSI FAQs",
+        "ESHRE (European Society of Human Reproduction and Embryology) Guidelines",
+        "NHS Fertility Treatments"
+      ],
+      "Hindi": [
+        "ASRM (अमेरिकन सोसाइटी फॉर रिप्रोडक्टिव मेडिसिन) – ICSI FAQs",
+        "ESHRE (यूरोपियन सोसाइटी ऑफ ह्यूमन रिप्रोडक्शन एंड एम्ब्रायोलॉजी) गाइडलाइंस",
+        "NHS प्रजनन उपचार"
+      ],
+      "Telugu": [
+        "ASRM (అమెరికన్ సొసైటీ ఫర్ రిప్రొడక్టివ్ మెడిసిన్) – ICSI FAQs",
+        "ESHRE (యూరోపియన్ సొసైటీ ఆఫ్ హ్యూమన్ రిప్రొడక్షన్ అండ్ ఎంబ్రియాలజీ) మార్గదర్శకాలు",
+        "NHS ఫెర్టిలిటీ ట్రీట్‌మెంట్స్"
+      ]
+    }
+  }
+}

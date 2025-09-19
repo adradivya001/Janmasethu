@@ -1,0 +1,134 @@
+{
+  "IUI": {
+    "title": "Intrauterine Insemination (IUI)",
+    "summary": {
+      "english": "Intrauterine insemination (IUI) is a simpler and less invasive fertility treatment compared to IVF. It involves placing specially prepared (washed) sperm directly into the uterus around the time of ovulation, bringing sperm closer to the egg to increase the chances of fertilization. IUI is often the first treatment step for couples with mild infertility issues, unexplained infertility, or those using donor sperm.",
+      "hindi": "IUI (इन्ट्रा यूटेराइन इन्सेमिनेशन) IVF की तुलना में आसान और कम जटिल ट्रीटमेंट है। इसमें अच्छे से तैयार किया हुआ (धोया गया) शुक्राणु सीधे गर्भाशय में डाला जाता है, जब महिला का ओव्यूलेशन होता है। इससे शुक्राणु और अंडाणु का मिलना आसान होता है और गर्भधारण की संभावना बढ़ती है। आमतौर पर IUI उन कपल्स के लिए पहला कदम होता है, जिन्हें हल्की बांझपन की समस्या है, जिनका कारण समझ नहीं आ रहा है या फिर डोनर शुक्राणु का इस्तेमाल करना है।",
+      "telugu": "IUI (ఇన్‌ట్రా యూటరైన్ ఇన్సెమినేషన్) IVF తో పోలిస్తే సులభమైనది మరియు తక్కువ క్లిష్టమైన ఫెర్టిలిటీ ట్రీట్మెంట్. ఇందులో శుభ్రం చేసిన (వాష్ చేసిన) వీర్యకణాలను మహిళ అండోత్సర్గ సమయానికి నేరుగా గర్భాశయంలో ఉంచుతారు. దీంతో వీర్యకణం అండానికి దగ్గరగా చేరి గర్భధారణ అవకాసాలు పెరుగుతాయి. సాధారణంగా IUI అనేది తేలికపాటి వంధ్యత్వ సమస్యలు ఉన్న జంటలకు, కారణం తెలియని వంధ్యత్వం ఉన్న వారికి లేదా డోనర్ వీర్యకణం ఉపయోగించే వారికి మొదటి మెట్టుగా చేస్తారు."
+    },
+    "reviewed_by": "{{reviewer}}",
+    "who_might_benefit": {
+      "english": [
+        "Unexplained infertility: Couples where all tests are normal but pregnancy has not occurred naturally.",
+        "Mild male-factor infertility: When sperm count, motility, or shape is slightly below normal but still sufficient after washing.",
+        "Cervical factor infertility: Thick or hostile cervical mucus that may prevent sperm from entering the uterus naturally.",
+        "Sexual dysfunction or pain: When intercourse is difficult or not possible (e.g., erectile dysfunction, vaginismus).",
+        "Donor sperm: Single women or same-sex couples who want to conceive using donor sperm."
+      ],
+      "hindi": [
+        "अनएक्सप्लेंड इंफर्टिलिटी: जब सभी टेस्ट नॉर्मल आते हैं, लेकिन प्राकृतिक रूप से प्रेग्नेंसी नहीं होती।",
+        "हल्की पुरुष फैक्टर इंफर्टिलिटी: जब शुक्राणु की गिनती, मूवमेंट या आकार थोड़ा कम होता है लेकिन धोने के बाद पर्याप्त होता है।",
+        "सर्वाइकल फैक्टर इंफर्टिलिटी: जब गर्भाशय ग्रीवा का म्यूकस गाढ़ा या रुकावट वाला होता है और शुक्राणु को गर्भाशय में जाने नहीं देता।",
+        "सेक्शुअल डिसफंक्शन या दर्द: जब संबंध बनाना मुश्किल या असंभव होता है (जैसे नपुंसकता, वजिनिस्मस)।",
+        "डोनर स्पर्म: अकेली महिलाएं या समान-लैंगिक कपल्स जो डोनर शुक्राणु से प्रेग्नेंट होना चाहती हैं।"
+      ],
+      "telugu": [
+        "అనఎక్స్‌ప్లెయిన్‌డ్ వంధ్యత్వం: అన్ని టెస్టులు నార్మల్‌గా ఉన్నా సహజంగా గర్భం రావడం జరగని సందర్భం.",
+        "స్వల్ప పురుష వంధ్యత్వం: వీర్యకణాల సంఖ్య, కదలిక లేదా ఆకారం కొద్దిగా తక్కువగా ఉన్నా వాషింగ్ తర్వాత సరిపడా ఉండటం.",
+        "సర్వికల్ వంధ్యత్వం: సర్విక్స్‌లోని మ్యూకస్ గట్టిగా ఉండి, వీర్యకణాలు గర్భాశయంలోకి వెళ్లకుండా అడ్డుకోవడం.",
+        "లైంగిక సమస్యలు లేదా నొప్పి: సంభోగం చేయడం కష్టంగా లేదా అసాధ్యంగా ఉండటం (ఉదా: నపుంసకత్వం, వజైనిస్మస్).",
+        "డోనర్ వీర్యకణం: ఒంటరి మహిళలు లేదా సమలింగ జంటలు డోనర్ వీర్యకణం వాడి గర్భం దాల్చాలని కోరుకునే వారు."
+      ]
+    },
+    "process_steps": {
+      "english": [
+        "Cycle monitoring: The woman’s ovulation is tracked naturally or stimulated with medications to produce one or two eggs.",
+        "Trigger shot: If medications are used, a trigger injection ensures the timing of ovulation.",
+        "Sperm preparation: The partner’s (or donor’s) semen sample is washed in the lab to remove debris and weak sperm, leaving only healthy, motile sperm.",
+        "Insemination: Using a thin catheter, the sperm is placed directly into the uterus in a quick outpatient procedure (similar to a Pap smear, usually painless).",
+        "Two-week wait: The woman may take supportive medications (like progesterone). A pregnancy test is done after 14 days."
+      ],
+      "hindi": [
+        "साइकिल मॉनिटरिंग: महिला का ओव्यूलेशन नैचुरल तरीके से या दवाइयों की मदद से ट्रैक किया जाता है ताकि एक-दो अंडे बनें।",
+        "ट्रिगर शॉट: अगर दवाइयों का इस्तेमाल हो तो ट्रिगर इंजेक्शन से ओव्यूलेशन का टाइम सेट किया जाता है।",
+        "शुक्राणु की तैयारी: पति या डोनर के सैंपल को लैब में धोकर अशुद्धियां और कमजोर शुक्राणु हटा दिए जाते हैं, सिर्फ स्वस्थ और एक्टिव शुक्राणु बचते हैं।",
+        "इन्सेमिनेशन: पतली ट्यूब से शुक्राणु सीधे गर्भाशय में डाले जाते हैं। यह छोटा सा प्रोसीजर होता है, पप स्मीयर जैसा और आमतौर पर दर्द रहित।",
+        "दो हफ्ते का इंतजार: महिला को सपोर्टिव दवा (जैसे प्रोजेस्टेरोन) दी जा सकती है। 14 दिन बाद प्रेग्नेंसी टेस्ट होता है।"
+      ],
+      "telugu": [
+        "సైకిల్ మానిటరింగ్: మహిళ అండోత్సర్గం సహజంగానో లేదా మందులతో ప్రేరేపించి ఒకటి లేదా రెండు అండాలు ఉత్పత్తి అయ్యేలా చేస్తారు.",
+        "ట్రిగ్గర్ షాట్: మందులు వాడితే ఓవ్యూలేషన్ సమయాన్ని సరిగ్గా నియంత్రించడానికి ట్రిగ్గర్ ఇంజెక్షన్ ఇస్తారు.",
+        "వీర్యకణాల ప్రిపరేషన్: భాగస్వామి (లేదా డోనర్) వీర్యాన్ని ల్యాబ్‌లో శుభ్రపరచి, మలినాలు మరియు బలహీనమైనవి తొలగించి, ఆరోగ్యకరమైనవి మాత్రమే ఉంచుతారు.",
+        "ఇన్సెమినేషన్: సన్నని ట్యూబ్‌తో వీర్యకణాలను నేరుగా గర్భాశయంలో పెడతారు. ఇది తేలికపాటి ప్రొసీజర్, పాప్ స్మియర్‌లా ఉంటుంది, ఎక్కువగా నొప్పి ఉండదు.",
+        "రెండు వారాల వెయిట్: మహిళకు సపోర్టివ్ మందులు (ఉదా: ప్రోజెస్టెరోన్) ఇస్తారు. 14 రోజులకు గర్భధారణ టెస్ట్ చేస్తారు."
+      ]
+    },
+    "risks_considerations": {
+      "english": [
+        "Side effects of medication: If ovulation drugs are used, bloating, mood swings, or headaches may occur.",
+        "Multiple pregnancy: Risk of twins or triplets if multiple follicles develop with stimulation.",
+        "Infection: Very rare, but a small risk exists during the insemination procedure.",
+        "Lower success per cycle than IVF: Success rates vary between 10–20% per cycle depending on age and cause of infertility. Couples may need 3–4 cycles before considering IVF.",
+        "Emotional toll: The repeated two-week wait can be stressful, especially after multiple failed attempts."
+      ],
+      "hindi": [
+        "दवा के साइड इफेक्ट: अगर ओव्यूलेशन की दवा दी जाए तो पेट फूलना, मूड बदलना या सिर दर्द हो सकता है।",
+        "मल्टीपल प्रेग्नेंसी: अगर एक से ज्यादा अंडे बने तो जुड़वा या तीन बच्चों का खतरा रहता है।",
+        "इंफेक्शन: बहुत ही कम, लेकिन प्रोसीजर के दौरान हल्का रिस्क रहता है।",
+        "IVF से कम सफलता: हर साइकिल में सफलता 10–20% होती है, यह उम्र और कारण पर निर्भर करती है। 3–4 साइकिल के बाद IVF पर विचार करना पड़ सकता है।",
+        "भावनात्मक असर: बार-बार दो हफ्ते इंतजार करना बहुत तनावपूर्ण हो सकता है, खासकर जब कई बार असफल हो जाए।"
+      ],
+      "telugu": [
+        "మందుల దుష్ప్రభావాలు: అండోత్సర్గ మందులు వాడితే పొట్ట ఉబ్బడం, మూడ్ మార్పులు, తలనొప్పి రావచ్చు.",
+        "బహుళ గర్భధారణ: ఒకటి కంటే ఎక్కువ అండాలు పక్వం అయితే ట్విన్స్ లేదా ట్రిప్లెట్స్ వచ్చే ప్రమాదం ఉంటుంది.",
+        "ఇన్ఫెక్షన్: చాలా అరుదుగా, కానీ చిన్న ప్రమాదం ఉంటుంది.",
+        "IVFతో పోలిస్తే తక్కువ విజయం: ఒక్క సైకిల్‌లో విజయం 10–20% మాత్రమే ఉంటుంది, ఇది వయసు మరియు కారణంపై ఆధారపడి ఉంటుంది. IVF ప్రయత్నించడానికి ముందు 3–4 సైకిల్స్ అవసరం కావచ్చు.",
+        "భావోద్వేగ ఒత్తిడి: ప్రతి రెండు వారాలు ఎదురుచూడటం, ముఖ్యంగా విఫలమైన తర్వాత, మానసిక ఒత్తిడి కలిగించవచ్చు."
+      ]
+    },
+    "cost_considerations": {
+      "english": [
+        "IUI is more affordable than IVF and is often chosen as the first-line treatment.",
+        "India: ₹10,000 – ₹25,000 per cycle (includes semen preparation and insemination).",
+        "Medications: Add ₹5,000–₹15,000 depending on whether ovulation drugs are prescribed.",
+        "Total cost for multiple cycles: Since success is lower per cycle, many couples budget for at least 3 cycles before moving to IVF.",
+        "City/clinic variation: Prices differ widely; fertility chains may offer bundled packages (e.g., 3 IUIs at a discounted rate)."
+      ],
+      "hindi": [
+        "IUI, IVF से सस्ता है और अक्सर इसे पहला विकल्प माना जाता है।",
+        "भारत: ₹10,000 – ₹25,000 प्रति साइकिल (इसमें स्पर्म की तैयारी और इन्सेमिनेशन शामिल है)।",
+        "दवाइयां: अगर ओव्यूलेशन की दवा दी जाए तो ₹5,000–₹15,000 अतिरिक्त खर्च हो सकता है।",
+        "कुल खर्च: क्योंकि सफलता हर साइकिल में कम है, कई कपल्स IVF से पहले कम से कम 3 साइकिल का बजट रखते हैं।",
+        "शहर/क्लिनिक अंतर: दाम जगह-जगह अलग होते हैं, कुछ क्लिनिक पैकेज भी देते हैं (जैसे 3 IUI एक साथ कम रेट में)।"
+      ],
+      "telugu": [
+        "IUI IVF కంటే చవకైనది, అందువల్ల చాలా సార్లు మొదటి ట్రీట్మెంట్‌గా ఎంచుకుంటారు.",
+        "భారతదేశం: ₹10,000 – ₹25,000 ఒక్క సైకిల్‌కు (వీర్య ప్రిపరేషన్ మరియు ఇన్సెమినేషన్ కలిపి).",
+        "మందులు: అండోత్సర్గ మందులు వాడితే అదనంగా ₹5,000–₹15,000 ఖర్చవుతుంది.",
+        "మొత్తం ఖర్చు: ఒక్కో సైకిల్‌లో విజయం తక్కువగా ఉండటం వల్ల, చాలా జంటలు IVF ముందు కనీసం 3 సైకిల్స్‌కి బడ్జెట్ పెడతారు.",
+        "నగరం/క్లినిక్ మార్పు: ధరలు విపరీతంగా మారుతాయి; కొన్ని ఫెర్టిలిటీ చైన్లు ప్యాకేజీలు ఇస్తాయి (ఉదా: 3 IUIs డిస్కౌంట్ రేటులో)."
+      ]
+    },
+    "questions_to_ask": {
+      "english": [
+        "Should I try natural cycle IUI or stimulated cycle IUI?",
+        "How many cycles of IUI do you recommend before switching to IVF?",
+        "What are the risks of multiple pregnancy in my situation?",
+        "How do you monitor ovulation (ultrasound vs blood tests)?",
+        "What are the success rates for IUI in women of my age group at your clinic?",
+        "Are there hidden costs (medicines, scans, blood work) beyond the cycle fee?"
+      ],
+      "hindi": [
+        "क्या मुझे नेचुरल साइकिल IUI करनी चाहिए या दवा वाली (स्टिम्युलेटेड) IUI?",
+        "IVF से पहले आप कितनी IUI साइकिल ट्राय करने की सलाह देते हैं?",
+        "मेरे केस में जुड़वा या मल्टीपल प्रेग्नेंसी का कितना रिस्क है?",
+        "आप ओव्यूलेशन कैसे मॉनिटर करते हैं (अल्ट्रासाउंड या ब्लड टेस्ट)?",
+        "मेरी उम्र की महिलाओं के लिए आपकी क्लिनिक में IUI की सफलता दर क्या है?",
+        "साइकिल फीस के अलावा क्या और छिपे हुए खर्च (दवाइयां, स्कैन, ब्लड टेस्ट) भी हैं?"
+      ],
+      "telugu": [
+        "నేను నేచురల్ సైకిల్ IUI చేయాలా లేక మందులతో ప్రేరేపించిన IUI చేయాలా?",
+        "IVFకి వెళ్ళే ముందు మీరు ఎన్ని IUI సైకిల్స్ సిఫారసు చేస్తారు?",
+        "నా పరిస్థితిలో ట్విన్స్ లేదా బహుళ గర్భధారణ వచ్చే ప్రమాదం ఎంత ఉంది?",
+        "మీరు అండోత్సర్గాన్ని ఎలా మానిటర్ చేస్తారు (అల్ట్రాసౌండ్ లేదా రక్త పరీక్షలతో)?",
+        "నా వయస్సు గల మహిళలకు మీ క్లినిక్‌లో IUI విజయం శాతం ఎంత ఉంది?",
+        "సైకిల్ ఫీజు తప్ప, మరే దాగిన ఖర్చులు (మందులు, స్కాన్లు, రక్త పరీక్షలు) ఉన్నాయా?"
+      ]
+    },
+    "sources": [
+      "WHO – Fertility Care Guidelines",
+      "NHS – IUI Information",
+      "ASRM – Patient Education on IUI"
+    ]
+  }
+}

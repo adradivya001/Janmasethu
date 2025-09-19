@@ -1,0 +1,151 @@
+{
+  "Donor Options (Egg, Sperm, and Embryo Donation)": {
+    "Summary": {
+      "English": "Donor-assisted conception involves using donated eggs, sperm, or embryos to help couples or individuals achieve pregnancy when their own eggs or sperm are not suitable or available. Donor programs are highly regulated to ensure safety and ethical use. Donor options provide hope to people facing infertility due to poor egg/sperm quality, genetic diseases, or other medical conditions. They are also used by single parents and same-sex couples to start families.",
+      "Hindi": "डोनर-असिस्टेड कंसेप्शन का मतलब है कि दान किए गए अंडे (एग्स), शुक्राणु (स्पर्म) या भ्रूण (एम्ब्रियो) का इस्तेमाल करना, ताकि कपल्स या इंडिविजुअल्स प्रेगनेंसी हासिल कर सकें जब उनके अपने एग्स या स्पर्म सही नहीं होते या उपलब्ध नहीं होते। डोनर प्रोग्राम्स बहुत रेग्युलेटेड होते हैं ताकि सेफ्टी और एथिकल यूज़ सुनिश्चित हो सके। डोनर ऑप्शन्स उन लोगों के लिए उम्मीद देते हैं जो बांझपन (इनफर्टिलिटी) से जूझ रहे हैं खराब एग/स्पर्म क्वालिटी, जेनेटिक बीमारियों या दूसरी मेडिकल कंडीशन्स की वजह से। इन्हें सिंगल पेरेंट्स और सेम-सेक्स कपल्स भी फैमिली शुरू करने के लिए यूज़ करते हैं।",
+      "Telugu": "డోనర్ సహాయంతో గర్భధారణ అంటే, సొంత అండాలు (eggs) లేదా వీర్యకణాలు (sperm) పనికిరాని స్థితిలో ఉన్నప్పుడు లేదా లేనప్పుడు, ఇతరుల నుండి దానం చేసిన అండాలు, వీర్యకణాలు లేదా భ్రూణాలను (embryos) ఉపయోగించి జంటలు లేదా వ్యక్తులు గర్భధారణ సాధించడమే. డోనర్ ప్రోగ్రామ్స్ చాలా కఠినమైన నియమాలు పాటిస్తాయి, భద్రత మరియు నైతిక వినియోగం కోసం. ఈ డోనర్ ఆప్షన్స్ అండం/వీర్యకణాల నాణ్యత సమస్యలు, జన్యు వ్యాధులు లేదా ఇతర ఆరోగ్య సమస్యల వల్ల గర్భధారణకు ఇబ్బంది పడుతున్న వారికి ఆశనిస్తాయి. వీటిని సింగిల్ పేరెంట్స్ మరియు ఒకే లింగ జంటలు కూడా కుటుంబాన్ని మొదలు పెట్టడానికి వాడతారు."
+    },
+    "Reviewed by": "{{reviewer}}",
+    "Who Might Benefit": {
+      "English": [
+        "Women with low or absent ovarian reserve: For women who cannot produce eggs (e.g., premature ovarian insufficiency, menopause).",
+        "Severe male-factor infertility: When sperm counts are extremely low or absent, and other treatments (IVF/ICSI) are not viable.",
+        "Genetic disease carriers: Couples at risk of transmitting serious genetic disorders can avoid this risk using donor eggs, sperm, or embryos.",
+        "Repeated IVF failure: When eggs or sperm consistently fail to fertilize or result in poor-quality embryos.",
+        "Single parents and same-sex couples: Donor sperm and donor eggs help individuals and couples pursue biological parenthood."
+      ],
+      "Hindi": [
+        "महिलाएं जिनके अंडाशय में अंडों का स्टॉक कम या नहीं है: जैसे कि समय से पहले अंडाशय बंद होना या मेनोपॉज।",
+        "गंभीर पुरुष बांझपन: जब स्पर्म की संख्या बहुत कम हो या बिलकुल न हो और IVF/ICSI भी काम न करे।",
+        "जेनेटिक बीमारी वाले कपल्स: जिन्हें गंभीर जेनेटिक बीमारियाँ बच्चे तक पहुँचने का खतरा हो।",
+        "बार-बार IVF फेल होना: जब एग्स और स्पर्म मिलकर अच्छे एम्ब्रियो नहीं बना पाते।",
+        "सिंगल पेरेंट्स और सेम-सेक्स कपल्स: डोनर स्पर्म और एग्स उन्हें बायोलॉजिकल पैरेंट बनने में मदद करते हैं।"
+      ],
+      "Telugu": [
+        "అండాలు లేని లేదా తక్కువగా ఉన్న మహిళలు: ఉదా., ముందుగానే రుతుమతులు ఆగిపోవడం లేదా మెనోపాజ్.",
+        "తీవ్రమైన పురుష వంధ్యత్వం: వీర్యకణాలు చాలా తక్కువగా ఉండటం లేదా లేనప్పుడు, IVF/ICSI ఫలితం ఇవ్వని సందర్భంలో.",
+        "జన్యు వ్యాధులు ఉన్న జంటలు: పిల్లలకు ఆ వ్యాధులు రావకుండా దాత అండాలు/వీర్యకణాలు/భ్రూణాలు ఉపయోగిస్తారు.",
+        "మళ్ళీ మళ్ళీ IVF విఫలం అవ్వడం: అండం మరియు వీర్యకణం కలిసినా సరైన భ్రూణం తయారుకాకపోవడం.",
+        "సింగిల్ పేరెంట్స్ మరియు ఒకే లింగ జంటలు: డోనర్ అండాలు మరియు వీర్యకణాలు వారిని బయోలాజికల్ పేరెంట్స్‌గా మారుస్తాయి."
+      ]
+    },
+    "Process Steps": {
+      "English": [
+        "Counseling and consent: Couples or individuals meet with doctors and counselors to understand legal, medical, and emotional aspects of donor use. Written consent is mandatory.",
+        "Donor screening and selection: Donors are carefully screened for infections (HIV, hepatitis, syphilis), genetic conditions, and physical/psychological suitability.",
+        "Treatment planning:",
+        "o Donor sperm: Used for IUI or IVF.",
+        "o Donor egg: Eggs are retrieved from the donor, fertilized with the partner’s sperm, and embryos are transferred to the intended mother.",
+        "o Donor embryo: Frozen embryos donated by other couples are transferred directly to the recipient.",
+        "Procedure: Depending on donor type, treatment follows the same steps as IUI or IVF.",
+        "Pregnancy testing and follow-up: Similar to regular fertility treatment cycles."
+      ],
+      "Hindi": [
+        "काउंसलिंग और सहमति: कपल्स या व्यक्ति डॉक्टर और काउंसलर से मिलते हैं ताकि लीगल, मेडिकल और इमोशनल पहलू समझ सकें। लिखित सहमति ज़रूरी है।",
+        "डोनर की जांच और चयन: डोनर का अच्छे से टेस्ट किया जाता है जैसे HIV, हेपेटाइटिस, सिफलिस, जेनेटिक बीमारियाँ और उनकी शारीरिक/मानसिक सेहत।",
+        "ट्रीटमेंट प्लानिंग:",
+        "o डोनर स्पर्म: IUI या IVF के लिए इस्तेमाल होता है।",
+        "o डोनर एग: डोनर से अंडे निकाले जाते हैं, पति के स्पर्म से फर्टिलाइज किए जाते हैं और एम्ब्रियो माँ में डाले जाते हैं।",
+        "o डोनर एम्ब्रियो: किसी और कपल के फ्रीज़ किए गए एम्ब्रियो सीधे रिसीवर को ट्रांसफर किए जाते हैं।",
+        "प्रक्रिया: डोनर टाइप पर निर्भर करता है, लेकिन IUI/IVF जैसा ही रहता है।",
+        "प्रेगनेंसी टेस्ट और फॉलो-अप: सामान्य फर्टिलिटी ट्रीटमेंट जैसा ही।"
+      ],
+      "Telugu": [
+        "కౌన్సెలింగ్ మరియు అనుమతి: జంటలు లేదా వ్యక్తులు వైద్యులను మరియు కౌన్సెలర్లను కలుసుకుని లీగల్, మెడికల్, భావోద్వేగ అంశాలను అర్థం చేసుకుంటారు. లిఖితపూర్వక అనుమతి తప్పనిసరి.",
+        "డోనర్ పరీక్ష మరియు ఎంపిక: డోనర్‌ను HIV, హేపటైటిస్, సిఫిలిస్ వంటి ఇన్ఫెక్షన్లు, జన్యు వ్యాధులు, శారీరక/మానసిక అనుకూలత కోసం పరీక్షిస్తారు.",
+        "ట్రీట్మెంట్ ప్లానింగ్:",
+        "o డోనర్ వీర్యకణం: IUI లేదా IVF లో వాడతారు.",
+        "o డోనర్ అండం: డోనర్ నుండి అండాలు తీసి, భర్త వీర్యకణంతో ఫర్టిలైజ్ చేసి, భ్రూణాలను తల్లిలోకి ఉంచుతారు.",
+        "o డోనర్ భ్రూణం: ఇతర జంటలు దానం చేసిన ఫ్రీజ్ చేసిన భ్రూణాలను నేరుగా గ్రహీతలోకి ఉంచుతారు.",
+        "ప్రక్రియ: డోనర్ రకం ఆధారంగా, IUI/IVF వంటి దశలు పాటిస్తారు.",
+        "గర్భధారణ పరీక్ష మరియు ఫాలో-అప్: సాధారణ వంధ్యత్వ చికిత్సలతో సమానంగా ఉంటుంది."
+      ]
+    },
+    "Risks & Considerations": {
+      "English": [
+        "Medical risks: Donor egg cycles carry the same risks as IVF (stimulation and egg retrieval for the donor, embryo transfer for the recipient).",
+        "Emotional and ethical aspects: Some couples struggle with the idea of genetic non-connection to the child. Counseling is strongly advised.",
+        "Legal aspects: Rules around donor anonymity vary. In India, the ART Act (2021) mandates strict guidelines for donor programs.",
+        "Disclosure challenges: Parents must decide whether and how to share donor origin with the child in the future."
+      ],
+      "Hindi": [
+        "मेडिकल रिस्क: डोनर एग साइकल में IVF जैसी ही रिस्क होती हैं (डोनर के लिए स्टिमुलेशन और एग रिट्रीवल, रिसीवर के लिए एम्ब्रियो ट्रांसफर)।",
+        "इमोशनल और एथिकल पहलू: कुछ कपल्स बच्चे से जेनेटिक कनेक्शन न होने की बात को स्वीकारने में कठिनाई महसूस करते हैं। काउंसलिंग ज़रूरी है।",
+        "लीगल पहलू: डोनर की पहचान छुपाने के नियम अलग-अलग हो सकते हैं। भारत में ART Act (2021) के तहत सख्त नियम हैं।",
+        "डिस्क्लोज़र चैलेंज: पेरेंट्स को तय करना पड़ता है कि बच्चे को भविष्य में डोनर के बारे में बताना है या नहीं।"
+      ],
+      "Telugu": [
+        "మెడికల్ రిస్క్: డోనర్ అండం సైకిల్‌లో IVF లాగే రిస్క్ ఉంటుంది (డోనర్‌కు స్టిమ్యులేషన్ మరియు అండం తీసివేత, గ్రహీతకు భ్రూణం ఉంచడం).",
+        "భావోద్వేగ మరియు నైతిక అంశాలు: కొంతమంది జంటలు పిల్లతో జన్యు సంబంధం లేకపోవడాన్ని అంగీకరించడంలో ఇబ్బంది పడతారు. కౌన్సెలింగ్ తప్పనిసరి.",
+        "లీగల్ అంశాలు: డోనర్ అనామకత్వం నిబంధనలు మారుతాయి. భారతదేశంలో ART Act (2021) ప్రకారం కఠినమైన నిబంధనలు ఉన్నాయి.",
+        "ప్రకటన సవాళ్లు: తల్లిదండ్రులు భవిష్యత్తులో పిల్లకు డోనర్ గురించి చెప్పాలా వద్దా అని నిర్ణయించుకోవాలి."
+      ]
+    },
+    "Cost Considerations": {
+      "English": [
+        "Donor sperm: Cheapest option, usually ₹8,000 – ₹20,000 per vial, plus IUI/IVF costs.",
+        "Donor eggs: More expensive, as it involves compensating the donor and medical procedures. Total cost in India: ₹1.5 – ₹2.5 lakh per cycle (including IVF).",
+        "Donor embryos: Similar to frozen embryo transfer costs, typically ₹1 – ₹2 lakh depending on clinic and storage.",
+        "Additional costs: Legal/consent procedures, genetic testing, and long-term storage (if embryos are frozen)."
+      ],
+      "Hindi": [
+        "डोनर स्पर्म: सबसे सस्ता ऑप्शन, लगभग ₹8,000 – ₹20,000 प्रति वायल + IUI/IVF का खर्च।",
+        "डोनर एग्स: महंगे होते हैं क्योंकि डोनर को भुगतान और मेडिकल प्रोसीजर शामिल होते हैं। भारत में कुल खर्च: ₹1.5 – ₹2.5 लाख प्रति साइकल (IVF सहित)।",
+        "डोनर एम्ब्रियो: फ्रीज़्ड एम्ब्रियो ट्रांसफर जैसा खर्च, लगभग ₹1 – ₹2 लाख।",
+        "अतिरिक्त खर्च: लीगल/सहमति प्रोसीजर, जेनेटिक टेस्टिंग और लंबे समय तक स्टोरेज।"
+      ],
+      "Telugu": [
+        "డోనర్ వీర్యకణం: అతి చవకైనది, సుమారు ₹8,000 – ₹20,000 ప్రతి వైల్ + IUI/IVF ఖర్చులు.",
+        "డోనర్ అండాలు: ఖరీదైనవి, ఎందుకంటే డోనర్‌కు చెల్లింపులు మరియు వైద్య ప్రక్రియలు ఉంటాయి. భారతదేశంలో మొత్తం ఖర్చు: ప్రతి చక్రానికి ₹1.5 – ₹2.5 లక్షలు (IVF సహా).",
+        "డోనర్ భ్రూణం: ఫ్రీజ్ చేసిన భ్రూణం ట్రాన్స్‌ఫర్‌లా ఖర్చు, సుమారు ₹1 – ₹2 లక్షలు.",
+        "అదనపు ఖర్చులు: లీగల్/అనుమతి ప్రక్రియలు, జన్యు పరీక్షలు, మరియు దీర్ఘకాల నిల్వ (భ్రూణాలు ఫ్రీజ్ చేస్తే)."
+      ]
+    },
+    "Questions to Ask Your Doctor": {
+      "English": [
+        "What are the legal and consent requirements for donor use in my country/state?",
+        "How are donors selected, screened, and matched to recipients?",
+        "What are the clinic’s success rates with donor eggs/sperm/embryos?",
+        "What costs should I expect, including donor fees and procedures?",
+        "What emotional support (counseling) is available for couples using donor programs?",
+        "How does disclosure to the child work, and what guidance do you provide?"
+      ],
+      "Hindi": [
+        "मेरे देश/राज्य में डोनर इस्तेमाल करने के लीगल और सहमति के नियम क्या हैं?",
+        "डोनर्स का चयन और जांच कैसे होती है?",
+        "डोनर एग/स्पर्म/एम्ब्रियो के साथ आपकी क्लिनिक की सक्सेस रेट क्या है?",
+        "कुल खर्च कितना आएगा (डोनर फीस और प्रोसीजर सहित)?",
+        "डोनर प्रोग्राम्स इस्तेमाल करने वाले कपल्स के लिए इमोशनल सपोर्ट/काउंसलिंग उपलब्ध है?",
+        "बच्चे को डोनर के बारे में बताने की प्रक्रिया क्या है और आप क्या गाइडेंस देते हैं?"
+      ],
+      "Telugu": [
+        "నా దేశం/రాష్ట్రంలో డోనర్ వాడకానికి సంబంధించిన లీగల్ మరియు అనుమతి నిబంధనలు ఏమిటి?",
+        "డోనర్లను ఎలా ఎంపిక చేసి, పరీక్షించి, గ్రహీతలకు కలుపుతారు?",
+        "డోనర్ అండాలు/వీర్యకణాలు/భ్రూణాలతో మీ క్లినిక్ విజయశాతం ఎంత?",
+        "మొత్తం ఖర్చు ఎంత వస్తుంది (డోనర్ ఫీజులు మరియు ప్రక్రియలు సహా)?",
+        "డోనర్ ప్రోగ్రామ్స్ ఉపయోగించే జంటలకు భావోద్వేగ సహాయం (కౌన్సెలింగ్) అందిస్తారా?",
+        "పిల్లకు డోనర్ గురించి చెప్పే విధానం ఎలా ఉంటుంది, మీరు ఏ మార్గదర్శకత్వం ఇస్తారు?"
+      ]
+    },
+    "Sources": {
+      "English": [
+        "ICMR/ART Act (India) – Donor Guidelines",
+        "ASRM – Donor Egg and Sperm Guidance",
+        "HFEA (UK) – Donor Conception Information",
+        "NHS – Donor Conception FAQs"
+      ],
+      "Hindi": [
+        "ICMR/ART Act (India) – डोनर गाइडलाइन्स",
+        "ASRM – डोनर एग और स्पर्म गाइडेंस",
+        "HFEA (UK) – डोनर कंसेप्शन जानकारी",
+        "NHS – डोनर कंसेप्शन FAQs"
+      ],
+      "Telugu": [
+        "ICMR/ART Act (India) – డోనర్ మార్గదర్శకాలు",
+        "ASRM – డోనర్ అండాలు మరియు వీర్యకణాల గైడెన్స్",
+        "HFEA (UK) – డోనర్ గర్భధారణ సమాచారం",
+        "NHS – డోనర్ గర్భధారణ FAQs"
+      ]
+    }
+  }
+}
