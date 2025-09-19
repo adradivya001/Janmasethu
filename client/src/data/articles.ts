@@ -300,11 +300,11 @@ export const articles: Article[] = [
     reviewedBy: 'Dr. Ananya Sharma' 
   },
   { 
-    slug: 'vbac-questions', 
+    slug: 'vbac-questions-to-ask', 
     title: {
       en: 'VBAC: questions to ask',
       hi: 'VBAC: पूछने योग्य प्रश्न',
-      te: 'VBAC: అడగవలసిన प్రశ్నలు'
+      te: 'VBAC: అడగవలసిన ప్రశ్నలు'
     }, 
     summary: {
       en: 'Balancing benefits/risks.',
