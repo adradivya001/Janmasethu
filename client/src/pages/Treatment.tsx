@@ -127,6 +127,7 @@ const Treatment = () => {
   const processedData = {
     title: treatment.title || treatmentKey,
     summary: treatment.summary || treatment.Summary || {},
+    reviewedBy: treatment['Reviewed by'] || treatment.reviewed_by || 'Dr. Raghav Iyer',
     whoMightBenefit: treatment['Who Might Benefit'] || treatment.whoMightBenefit || treatment['Who might benefit'] || [],
     processSteps: treatment['Process Steps'] || treatment.processSteps || {},
     risksConsiderations: treatment['Risks & Considerations'] || treatment.risksConsiderations || [],
@@ -137,7 +138,7 @@ const Treatment = () => {
 
   // Get localized content with safety checks
   const summary = getSummaryByLanguage(processedData.summary, langKey);
-  const reviewedBy = processedData.reviewedBy || treatmentMetadata?.reviewedBy || 'Dr. Raghav Iyer'; // Fallback to metadata
+  const reviewedBy = processedData.reviewedBy;
   const sources = processedData.sources || [];
 
   return (

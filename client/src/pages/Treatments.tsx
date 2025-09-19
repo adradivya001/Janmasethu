@@ -92,9 +92,9 @@ const Treatments = () => {
             const treatmentData = treatmentsData[treatment.id];
             const langKey = lang === 'hi' ? 'hi' : lang === 'te' ? 'te' : 'en';
 
-            const summary = treatmentData ? getSummaryByLanguage(treatmentData.summary, langKey) : '';
-            const benefits = treatmentData ? getContentByLanguage(treatmentData.who_might_benefit, langKey) : [];
-            const reviewedBy = treatmentData?.reviewed_by || 'Dr. Raghav Iyer';
+            const summary = treatmentData ? getSummaryByLanguage(treatmentData.summary || treatmentData.Summary, langKey) : '';
+            const benefits = treatmentData ? getContentByLanguage(treatmentData.who_might_benefit || treatmentData['Who Might Benefit'], langKey) : [];
+            const reviewedBy = treatmentData?.reviewed_by || treatmentData?.['Reviewed by'] || 'Dr. Raghav Iyer';
 
             return (
               <Link key={treatment.slug} href={`/treatments/${treatment.slug}`} className="group h-full">

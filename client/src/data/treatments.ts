@@ -1,13 +1,19 @@
 export interface TreatmentSummary {
   english?: string;
+  English?: string;
   hindi?: string;
+  Hindi?: string;
   telugu?: string;
+  Telugu?: string;
 }
 
 export interface TreatmentContent {
   english?: string[];
+  English?: string[];
   hindi?: string[];
+  Hindi?: string[];
   telugu?: string[];
+  Telugu?: string[];
 }
 
 export interface TreatmentData {
@@ -58,9 +64,9 @@ export const getContentByLanguage = (content: TreatmentContent | undefined, lang
   if (!content) return [];
   
   const langMap = {
-    'en': content.english || [],
-    'hi': content.hindi || [],
-    'te': content.telugu || []
+    'en': content.english || content.English || [],
+    'hi': content.hindi || content.Hindi || [],
+    'te': content.telugu || content.Telugu || []
   };
   
   return langMap[language] || langMap['en'] || [];
@@ -71,9 +77,9 @@ export const getSummaryByLanguage = (summary: TreatmentSummary | undefined, lang
   if (!summary) return '';
   
   const langMap = {
-    'en': summary.english || '',
-    'hi': summary.hindi || '',
-    'te': summary.telugu || ''
+    'en': summary.english || summary.English || '',
+    'hi': summary.hindi || summary.Hindi || '',
+    'te': summary.telugu || summary.Telugu || ''
   };
   
   return langMap[language] || langMap['en'] || '';
