@@ -19,14 +19,14 @@ const Treatments = () => {
 
   const loadTreatmentData = async () => {
     const data: Record<string, TreatmentData> = {};
-    
+
     for (const treatment of treatmentsList) {
       const treatmentData = await fetchTreatmentData(treatment.id);
       if (treatmentData) {
         data[treatment.id] = normalizeTreatmentData(treatmentData);
       }
     }
-    
+
     setTreatmentsData(data);
     setLoading(false);
   };
@@ -40,7 +40,7 @@ const Treatments = () => {
   const pageSubtitle = {
     en: "Comprehensive guides to fertility treatments, procedures, and options available in India. Each guide includes steps, costs, risks, and questions to ask your doctor.",
     hi: "भारत में उपलब्ध प्रजनन उपचार, प्रक्रियाओं और विकल्पों के लिए व्यापक गाइड। प्रत्येक गाइड में चरण, लागत, जोखिम और अपने डॉक्टर से पूछने के लिए प्रश्न शामिल हैं।",
-    te: "భారతదేశంలో అందుబాటులో ఉన్న ప్రజనన చికిత్సలు, ప్రక్రియలు మరియు ఎంపికలకు సమగ్ర గైడ్‌లు। ప్రతి గైడ్‌లో దశలు, ఖర్చులు, ప్రమాదాలు మరియు మీ వైద్యుడిని అడగవలసిన ప్రశ్నలు ఉంటాయి."
+    te: "భారతదేశంలో అందుబాటులో ఉన్న ప్రజనన చికిత్సలు, ప్రక్రియలు మరియు ఎంపికలకు సమగ్ర గైడ్‌లు. ప్రతి గైడ్‌లో దశలు, ఖర్చులు, ప్రమాదాలు మరియు మీ వైద్యుడిని అడగవలసిన ప్రశ్నలు ఉంటాయి."
   };
 
 
@@ -86,74 +86,45 @@ const Treatments = () => {
           </div>
         </div>
       ) : (
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {treatmentsList.map((treatment, index) => {
             const iconData = treatmentIcons[treatment.slug as keyof typeof treatmentIcons] || treatmentIcons['iui'];
             const treatmentData = treatmentsData[treatment.id];
             const langKey = lang === 'hi' ? 'hi' : lang === 'te' ? 'te' : 'en';
-            
+
             const summary = treatmentData ? getSummaryByLanguage(treatmentData.summary, langKey) : '';
             const benefits = treatmentData ? getContentByLanguage(treatmentData.who_might_benefit, langKey) : [];
             const reviewedBy = treatmentData?.reviewed_by || 'Dr. Raghav Iyer';
 
             return (
-              <Link key={treatment.slug} href={`/treatments/${treatment.slug}`} className="group">
-                <Card className="rounded-3xl p-8 card-shadow hover:shadow-xl transition-all duration-300 h-full" data-testid={`card-treatment-${index}`}>
-                  <CardContent className="p-0">
-                    <div className={`w-16 h-16 ${iconData.color.split(' ')[0]} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
-                      <iconData.icon className={`${iconData.color.split(' ')[1]} w-8 h-8`} />
+              <Link key={treatment.slug} href={`/treatments/${treatment.slug}`} className="group h-full">
+                <Card className="rounded-2xl p-6 card-shadow hover:shadow-xl transition-all duration-300 h-full flex flex-col cursor-pointer transform hover:scale-102 border border-gray-100 hover:border-purple-200 relative overflow-hidden bg-white">
+                  <CardContent className="p-0 flex flex-col h-full">
+                    {/* Click indicator */}
+                    <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <div className="w-6 h-6 bg-purple-100 rounded-full flex items-center justify-center">
+                        <ArrowRight className="w-3 h-3 text-purple-600" />
+                      </div>
                     </div>
 
-                    <h3 className="text-2xl font-bold text-foreground font-serif mb-4" data-testid={`text-treatment-name-${index}`}>
+                    <div className={`w-12 h-12 ${iconData.color.split(' ')[0]} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-sm`}>
+                      <iconData.icon className={`${iconData.color.split(' ')[1]} w-6 h-6`} />
+                    </div>
+                    <h3 className="text-lg font-bold text-foreground font-serif mb-3 group-hover:text-purple-600 transition-colors leading-tight">
                       {treatmentData?.title || treatment.title}
                     </h3>
-
-                    <p className="text-muted-foreground mb-6" data-testid={`text-treatment-overview-${index}`}>
+                    <p className="text-sm text-muted-foreground flex-grow mb-4 leading-relaxed">
                       {summary || 'Treatment information loading...'}
                     </p>
 
-                    <div className="space-y-6">
-                      <div>
-                        <h4 className="text-lg font-semibold text-foreground mb-3">
-                          {lang === 'hi' ? 'किसे फायदा हो सकता है:' :
-                           lang === 'te' ? 'ఎవరికి ప్రయోజనం ఉంటుంది:' :
-                           'Who might benefit:'}
-                        </h4>
-                        <ul className="space-y-2">
-                          {benefits.slice(0, 4).map((benefit, benefitIndex) => (
-                            <li key={benefitIndex} className="flex items-start space-x-2">
-                              <CheckCircle className="w-4 h-4 mt-1 text-primary flex-shrink-0" />
-                              <span className="text-muted-foreground text-sm">
-                                {benefit}
-                              </span>
-                            </li>
-                          ))}
-                          {benefits.length > 4 && (
-                            <li className="text-sm text-muted-foreground/75 italic">
-                              {lang === 'hi' ? 'और भी...' :
-                               lang === 'te' ? 'మరియు మరిన్ని...' :
-                               'and more...'}
-                            </li>
-                          )}
-                        </ul>
-                      </div>
-
-                      <div className="flex items-center justify-between pt-4">
-                        <div className="flex items-center space-x-2 text-sm text-muted-foreground">
-                          <User className="w-4 h-4" />
-                          <span>
-                            {lang === 'hi' ? 'द्वारा समीक्षित' :
-                             lang === 'te' ? 'సమీక్షించినవారు' :
-                             'Reviewed by'} {reviewedBy}
-                          </span>
-                        </div>
-                        <Button className="gradient-button text-white rounded-full">
-                          {lang === 'hi' ? 'और जानें' :
-                           lang === 'te' ? 'మరింత తెలుసుకోండి' :
-                           'Learn More'}
-                          <ArrowRight className="w-4 h-4 ml-2" />
-                        </Button>
-                      </div>
+                    {/* Call to action */}
+                    <div className="flex items-center justify-between mt-auto pt-2">
+                      <span className="text-xs text-purple-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        {lang === 'hi' ? 'और जानें' :
+                         lang === 'te' ? 'మరింత తెలుసుకోండి' :
+                         'Learn More'}
+                      </span>
+                      <ArrowRight className="w-4 h-4 text-purple-600 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
                     </div>
                   </CardContent>
                 </Card>

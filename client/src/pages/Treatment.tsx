@@ -1,6 +1,6 @@
 import { useParams, Link } from 'wouter';
 import { useEffect, useState } from 'react';
-import { ArrowLeft, Clock, User, AlertTriangle, DollarSign, HelpCircle, CheckCircle } from 'lucide-react';
+import { ArrowLeft, Clock, User, AlertTriangle, DollarSign, HelpCircle, CheckCircle, Users, Zap } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageProvider';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -12,10 +12,10 @@ const Treatment = () => {
   const { t, lang } = useLanguage();
   const [treatmentData, setTreatmentData] = useState<TreatmentData | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState<string | boolean>(false); // Explicitly type error state
 
   // Find treatment metadata from slug
-  const treatment = treatmentsList.find(t => t.slug === slug);
+  const treatmentMetadata = treatmentsList.find(t => t.slug === slug);
   const langKey = lang === 'hi' ? 'hi' : lang === 'te' ? 'te' : 'en';
 
   // Load treatment data when component mounts or slug changes
@@ -25,25 +25,25 @@ const Treatment = () => {
   }, [slug]);
 
   const loadTreatmentData = async () => {
-    if (!treatment) {
-      setError(true);
+    if (!treatmentMetadata) {
+      setError('Treatment not found in metadata.');
       setLoading(false);
       return;
     }
 
     setLoading(true);
     setError(false);
-    
+
     try {
-      const data = await fetchTreatmentData(treatment.id);
+      const data = await fetchTreatmentData(treatmentMetadata.id);
       if (data) {
         setTreatmentData(normalizeTreatmentData(data));
       } else {
-        setError(true);
+        setError('No data returned from fetch.');
       }
     } catch (err) {
       console.error('Error loading treatment data:', err);
-      setError(true);
+      setError('Failed to load treatment data.');
     } finally {
       setLoading(false);
     }
@@ -68,18 +68,20 @@ const Treatment = () => {
   }
 
   // Error state
-  if (error || !treatment || !treatmentData) {
+  if (error || !treatmentMetadata || !treatmentData) {
     return (
       <div className="container mx-auto px-4 py-8">
         <Card className="max-w-2xl mx-auto rounded-3xl p-8 card-shadow">
           <CardContent>
             <h1 className="text-2xl font-bold text-foreground font-serif mb-4">
-              {lang === 'hi' ? 'उपचार नहीं मिला' :
+              {error ? error :
+               lang === 'hi' ? 'उपचार नहीं मिला' :
                lang === 'te' ? 'చికిత్స కనుగొనబడలేదు' :
                'Treatment Not Found'}
             </h1>
             <p className="text-muted-foreground mb-6">
-              {lang === 'hi' ? 'आपके द्वारा खोजी जा रही उपचार जानकारी उपलब्ध नहीं है।' :
+              {error ? 'Please try again later.' :
+               lang === 'hi' ? 'आपके द्वारा खोजी जा रही उपचार जानकारी उपलब्ध नहीं है।' :
                lang === 'te' ? 'మీరు వెతుకుతున్న చికిత్స సమాచారం అందుబాటులో లేదు।' :
                'The treatment information you\'re looking for doesn\'t exist.'}
             </p>
@@ -97,15 +99,46 @@ const Treatment = () => {
     );
   }
 
+  // Extract treatment data from the nested structure
+  const treatmentKey = Object.keys(treatmentData)[0];
+  const treatment = treatmentData[treatmentKey];
+
+  if (!treatment || typeof treatment !== 'object') {
+    setError('Invalid treatment data structure');
+    return (
+      <div className="container mx-auto px-4 py-8">
+        <Card className="max-w-2xl mx-auto rounded-3xl p-8 card-shadow">
+          <CardContent>
+            <h1 className="text-2xl font-bold text-foreground font-serif mb-4">Invalid Data</h1>
+            <p className="text-muted-foreground mb-6">The treatment data is not structured correctly.</p>
+            <Link href="/treatments">
+              <Button className="gradient-button text-white rounded-full">
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                Back to Treatments
+              </Button>
+            </Link>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
+  // Process the treatment data with proper fallbacks
+  const processedData = {
+    title: treatment.title || treatmentKey,
+    summary: treatment.summary || treatment.Summary || {},
+    whoMightBenefit: treatment['Who Might Benefit'] || treatment.whoMightBenefit || treatment['Who might benefit'] || [],
+    processSteps: treatment['Process Steps'] || treatment.processSteps || {},
+    risksConsiderations: treatment['Risks & Considerations'] || treatment.risksConsiderations || [],
+    costConsiderations: treatment['Cost Considerations'] || treatment.costConsiderations || [],
+    questionsToAsk: treatment['Questions to Ask Your Doctor'] || treatment.questionsToAsk || [],
+    sources: treatment['Sources'] || treatment.sources || []
+  };
+
   // Get localized content with safety checks
-  const summary = getSummaryByLanguage(treatmentData?.summary, langKey);
-  const whoBenefits = getContentByLanguage(treatmentData?.who_might_benefit, langKey) || [];
-  const processSteps = getContentByLanguage(treatmentData?.process_steps, langKey) || [];
-  const risks = getContentByLanguage(treatmentData?.risks_considerations, langKey) || [];
-  const costConsiderations = getContentByLanguage(treatmentData?.cost_considerations, langKey) || [];
-  const questionsToAsk = getContentByLanguage(treatmentData?.questions_to_ask, langKey) || [];
-  const reviewedBy = treatmentData?.reviewed_by || 'Dr. Raghav Iyer';
-  const sources = treatmentData?.sources || [];
+  const summary = getSummaryByLanguage(processedData.summary, langKey);
+  const reviewedBy = processedData.reviewedBy || treatmentMetadata?.reviewedBy || 'Dr. Raghav Iyer'; // Fallback to metadata
+  const sources = processedData.sources || [];
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -125,7 +158,7 @@ const Treatment = () => {
       <Card className="rounded-3xl p-8 md:p-12 card-shadow mb-8">
         <CardContent className="p-0">
           <h1 className="text-3xl md:text-4xl font-bold text-foreground font-serif mb-6" data-testid="text-treatment-name">
-            {treatmentData.title || treatment.title}
+            {processedData.title || treatmentMetadata.title}
           </h1>
 
           <p className="text-lg text-muted-foreground mb-6" data-testid="text-treatment-overview">
@@ -149,57 +182,88 @@ const Treatment = () => {
       <div className="grid lg:grid-cols-2 gap-8 mb-8">
         {/* Who Might Benefit */}
         <Card className="rounded-3xl p-6 card-shadow">
-          <CardHeader>
-            <CardTitle className="text-xl font-bold text-foreground font-serif">
-              {lang === 'hi' ? 'किसे फायदा हो सकता है' :
-               lang === 'te' ? 'ఎవరికి ప్రయోజనం ఉంటుంది' :
+          <CardHeader className="pb-4">
+            <CardTitle className="text-xl font-bold text-foreground font-serif flex items-center">
+              <Users className="w-6 h-6 mr-3 text-blue-600" />
+              {lang === 'hi' ? 'कौन लाभ उठा सकता है' :
+               lang === 'te' ? 'ఎవరికి ఉపయోగపడుతుంది' :
                'Who Might Benefit'}
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <ul className="space-y-3">
-              {whoBenefits && whoBenefits.length > 0 ? whoBenefits.map((item, index) => (
-                <li key={index} className="flex items-start space-x-3" data-testid={`item-who-benefits-${index}`}>
-                  <CheckCircle className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                  <span className="text-muted-foreground">{item}</span>
-                </li>
-              )) : (
-                <li className="text-muted-foreground italic">
-                  {lang === 'hi' ? 'जानकारी लोड हो रही है...' :
-                   lang === 'te' ? 'సమాచారం లోడ్ అవుతోంది...' :
-                   'Loading information...'}
-                </li>
-              )}
-            </ul>
+            <div className="space-y-3">
+              {(() => {
+                const benefitData = processedData.whoMightBenefit;
+
+                // Handle array format
+                if (Array.isArray(benefitData)) {
+                  return benefitData.map((item, index) => (
+                    <div key={index} className="flex items-start space-x-3">
+                      <CheckCircle className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" />
+                      <span className="text-muted-foreground">
+                        {typeof item === 'string' ? item : item[lang] || item.en || item}
+                      </span>
+                    </div>
+                  ));
+                }
+
+                // Handle object format with language keys
+                if (benefitData && typeof benefitData === 'object') {
+                  const langKey = lang === 'hi' ? 'Hindi' : lang === 'te' ? 'Telugu' : 'English';
+                  const items = benefitData[langKey] || benefitData[lang] || benefitData.en || benefitData.English || [];
+
+                  if (Array.isArray(items)) {
+                    return items.map((item, index) => (
+                      <div key={index} className="flex items-start space-x-3">
+                        <CheckCircle className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" />
+                        <span className="text-muted-foreground">{item}</span>
+                      </div>
+                    ));
+                  }
+                }
+
+                return <p className="text-muted-foreground">Information not available</p>;
+              })()}
+            </div>
           </CardContent>
         </Card>
 
         {/* Process Steps */}
         <Card className="rounded-3xl p-6 card-shadow">
-          <CardHeader>
-            <CardTitle className="text-xl font-bold text-foreground font-serif">
+          <CardHeader className="pb-4">
+            <CardTitle className="text-xl font-bold text-foreground font-serif flex items-center">
+              <Zap className="w-6 h-6 mr-3 text-purple-600" />
               {lang === 'hi' ? 'प्रक्रिया के चरण' :
                lang === 'te' ? 'ప్రక్రియ దశలు' :
                'Process Steps'}
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <ol className="space-y-4">
-              {processSteps && processSteps.length > 0 ? processSteps.map((step, index) => (
-                <li key={index} className="flex items-start space-x-3" data-testid={`item-process-step-${index}`}>
-                  <div className="w-8 h-8 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">
-                    {index + 1}
-                  </div>
-                  <span className="text-muted-foreground leading-relaxed">{step}</span>
-                </li>
-              )) : (
-                <li className="text-muted-foreground italic">
-                  {lang === 'hi' ? 'प्रक्रिया की जानकारी लोड हो रही है...' :
-                   lang === 'te' ? 'ప్రక్రియ సమాచారం లోడ్ అవుతోంది...' :
-                   'Loading process information...'}
-                </li>
-              )}
-            </ol>
+            <div className="space-y-4">
+              {(() => {
+                const stepsData = processedData.processSteps;
+
+                if (stepsData && typeof stepsData === 'object') {
+                  const langKey = lang === 'hi' ? 'Hindi' : lang === 'te' ? 'Telugu' : 'English';
+                  const steps = stepsData[langKey] || stepsData[lang] || stepsData.en || stepsData.English || {};
+
+                  if (Object.keys(steps).length > 0) {
+                    return Object.entries(steps).map(([step, details], index) => (
+                      <div key={index} className="border-l-4 border-purple-200 pl-4">
+                        <h4 className="font-bold text-foreground mb-2">{step}</h4>
+                        <div className="space-y-2">
+                          {Array.isArray(details) ? details.map((detail, detailIndex) => (
+                            <p key={detailIndex} className="text-sm text-muted-foreground">{detail}</p>
+                          )) : <p className="text-sm text-muted-foreground">{details}</p>}
+                        </div>
+                      </div>
+                    ));
+                  }
+                }
+
+                return <p className="text-muted-foreground">Process information not available</p>;
+              })()}
+            </div>
           </CardContent>
         </Card>
       </div>
@@ -208,92 +272,146 @@ const Treatment = () => {
       <div className="grid lg:grid-cols-2 gap-8 mb-8">
         {/* Risks & Considerations */}
         <Card className="rounded-3xl p-6 card-shadow">
-          <CardHeader>
+          <CardHeader className="pb-4">
             <CardTitle className="text-xl font-bold text-foreground font-serif flex items-center">
-              <AlertTriangle className="w-5 h-5 mr-2 text-orange-500" />
-              {lang === 'hi' ? 'जोखिम और विचार' :
-               lang === 'te' ? 'రిస్క్‌లు మరియు పరిగణనలు' :
+              <AlertTriangle className="w-6 h-6 mr-3 text-orange-600" />
+              {lang === 'hi' ? 'जोखिम और विचारणीय बातें' :
+               lang === 'te' ? 'రిస్క్‌లు & పరిగణనలు' :
                'Risks & Considerations'}
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <ul className="space-y-3">
-              {risks && risks.length > 0 ? risks.map((risk, index) => (
-                <li key={index} className="flex items-start space-x-3" data-testid={`item-risk-${index}`}>
-                  <AlertTriangle className="w-4 h-4 text-orange-500 mt-1 flex-shrink-0" />
-                  <span className="text-muted-foreground">{risk}</span>
-                </li>
-              )) : (
-                <li className="text-muted-foreground italic">
-                  {lang === 'hi' ? 'जोखिम की जानकारी लोड हो रही है...' :
-                   lang === 'te' ? 'రిస్క్ సమాచారం లోడ్ అవుతోంది...' :
-                   'Loading risk information...'}
-                </li>
-              )}
-            </ul>
+            <div className="space-y-3">
+              {(() => {
+                const risksData = processedData.risksConsiderations;
+
+                if (Array.isArray(risksData)) {
+                  return risksData.map((risk, index) => (
+                    <div key={index} className="flex items-start space-x-3">
+                      <AlertTriangle className="w-5 h-5 text-orange-500 mt-1 flex-shrink-0" />
+                      <span className="text-muted-foreground">
+                        {typeof risk === 'string' ? risk : risk[lang] || risk.en || risk}
+                      </span>
+                    </div>
+                  ));
+                }
+
+                if (risksData && typeof risksData === 'object') {
+                  const langKey = lang === 'hi' ? 'Hindi' : lang === 'te' ? 'Telugu' : 'English';
+                  const items = risksData[langKey] || risksData[lang] || risksData.en || risksData.English || [];
+
+                  if (Array.isArray(items)) {
+                    return items.map((risk, index) => (
+                      <div key={index} className="flex items-start space-x-3">
+                        <AlertTriangle className="w-5 h-5 text-orange-500 mt-1 flex-shrink-0" />
+                        <span className="text-muted-foreground">{risk}</span>
+                      </div>
+                    ));
+                  }
+                }
+
+                return <p className="text-muted-foreground">Risk information not available</p>;
+              })()}
+            </div>
           </CardContent>
         </Card>
 
-        {/* Cost Information */}
+        {/* Cost Considerations */}
         <Card className="rounded-3xl p-6 card-shadow">
-          <CardHeader>
+          <CardHeader className="pb-4">
             <CardTitle className="text-xl font-bold text-foreground font-serif flex items-center">
-              <DollarSign className="w-5 h-5 mr-2 text-green-500" />
+              <DollarSign className="w-6 h-6 mr-3 text-green-600" />
               {lang === 'hi' ? 'लागत संबंधी विचार' :
                lang === 'te' ? 'ఖర్చు పరిగణనలు' :
                'Cost Considerations'}
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <ul className="space-y-3">
-              {costConsiderations && costConsiderations.length > 0 ? costConsiderations.map((cost, index) => (
-                <li key={index} className="flex items-start space-x-3" data-testid={`item-cost-${index}`}>
-                  <DollarSign className="w-4 h-4 text-green-500 mt-1 flex-shrink-0" />
-                  <span className="text-muted-foreground">{cost}</span>
-                </li>
-              )) : (
-                <li className="text-muted-foreground italic">
-                  {lang === 'hi' ? 'लागत की जानकारी लोड हो रही है...' :
-                   lang === 'te' ? 'ఖర్చు సమాచారం లోడ్ అవుతోంది...' :
-                   'Loading cost information...'}
-                </li>
-              )}
-            </ul>
+            <div className="space-y-3">
+              {(() => {
+                const costData = processedData.costConsiderations;
+
+                if (Array.isArray(costData)) {
+                  return costData.map((cost, index) => (
+                    <div key={index} className="flex items-start space-x-3">
+                      <DollarSign className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" />
+                      <span className="text-muted-foreground">
+                        {typeof cost === 'string' ? cost : cost[lang] || cost.en || cost}
+                      </span>
+                    </div>
+                  ));
+                }
+
+                if (costData && typeof costData === 'object') {
+                  const langKey = lang === 'hi' ? 'Hindi' : lang === 'te' ? 'Telugu' : 'English';
+                  const items = costData[langKey] || costData[lang] || costData.en || costData.English || [];
+
+                  if (Array.isArray(items)) {
+                    return items.map((cost, index) => (
+                      <div key={index} className="flex items-start space-x-3">
+                        <DollarSign className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" />
+                        <span className="text-muted-foreground">{cost}</span>
+                      </div>
+                    ));
+                  }
+                }
+
+                return <p className="text-muted-foreground">Cost information not available</p>;
+              })()}
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Questions to Ask Your Doctor */}
+        <Card className="rounded-3xl p-6 card-shadow">
+          <CardHeader className="pb-4">
+            <CardTitle className="text-xl font-bold text-foreground font-serif flex items-center">
+              <HelpCircle className="w-6 h-6 mr-3 text-blue-600" />
+              {lang === 'hi' ? 'अपने डॉक्टर से पूछने योग्य सवाल' :
+               lang === 'te' ? 'మీ వైద్యుడిని అడగవలసిన ప్రశ్నలు' :
+               'Questions to Ask Your Doctor'}
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-3">
+              {(() => {
+                const questionsData = processedData.questionsToAsk;
+
+                if (Array.isArray(questionsData)) {
+                  return questionsData.map((question, index) => (
+                    <div key={index} className="flex items-start space-x-3">
+                      <HelpCircle className="w-5 h-5 text-blue-500 mt-1 flex-shrink-0" />
+                      <span className="text-muted-foreground">
+                        {typeof question === 'string' ? question : question[lang] || question.en || question}
+                      </span>
+                    </div>
+                  ));
+                }
+
+                if (questionsData && typeof questionsData === 'object') {
+                  const langKey = lang === 'hi' ? 'Hindi' : lang === 'te' ? 'Telugu' : 'English';
+                  const items = questionsData[langKey] || questionsData[lang] || questionsData.en || questionsData.English || [];
+
+                  if (Array.isArray(items)) {
+                    return items.map((question, index) => (
+                      <div key={index} className="flex items-start space-x-3">
+                        <HelpCircle className="w-5 h-5 text-blue-500 mt-1 flex-shrink-0" />
+                        <span className="text-muted-foreground">{question}</span>
+                      </div>
+                    ));
+                  }
+                }
+
+                return <p className="text-muted-foreground">Questions not available</p>;
+              })()}
+            </div>
           </CardContent>
         </Card>
       </div>
 
-      {/* Questions to Ask Doctor */}
-      <Card className="rounded-3xl p-6 card-shadow mb-8">
-        <CardHeader>
-          <CardTitle className="text-xl font-bold text-foreground font-serif flex items-center">
-            <HelpCircle className="w-5 h-5 mr-2 text-blue-500" />
-            {lang === 'hi' ? 'अपने डॉक्टर से पूछने के लिए प्रश्न' :
-             lang === 'te' ? 'మీ వైద్యుడిని అడగవలసిన ప్రశ్నలు' :
-             'Questions to Ask Your Doctor'}
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <ul className="space-y-4">
-            {questionsToAsk && questionsToAsk.length > 0 ? questionsToAsk.map((question, index) => (
-              <li key={index} className="flex items-start space-x-3" data-testid={`item-doctor-question-${index}`}>
-                <HelpCircle className="w-5 h-5 text-blue-500 mt-0.5 flex-shrink-0" />
-                <span className="text-muted-foreground font-medium">{question}</span>
-              </li>
-            )) : (
-              <li className="text-muted-foreground italic">
-                {lang === 'hi' ? 'सवाल लोड हो रहे हैं...' :
-                 lang === 'te' ? 'ప్రశ్నలు లోడ్ అవుతున్నాయి...' :
-                 'Loading questions...'}
-              </li>
-            )}
-          </ul>
-        </CardContent>
-      </Card>
-
       {/* Sources */}
       <Card className="rounded-3xl p-6 card-shadow">
-        <CardHeader>
+        <CardHeader className="pb-4">
           <CardTitle className="text-lg font-bold text-foreground font-serif">
             {lang === 'hi' ? 'स्रोत' :
              lang === 'te' ? 'మూలాలు' :

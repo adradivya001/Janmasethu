@@ -46,6 +46,10 @@
   transform: scale(1.04);
 }
 
+.hover\:scale-102:hover {
+    transform: scale(1.02);
+  }
+
 :root {
   --background: hsl(221, 83%, 97%);
   --foreground: hsl(220, 14%, 11%);
