@@ -1,0 +1,226 @@
+{
+  "slug": "cost-planning-101",
+  "title": {
+    "en": "Cost Planning 101",
+    "hi": "लागत योजना 101",
+    "te": "ఖర్చు ప్రణాళిక 101"
+  },
+  "overview": {
+    "en": "A simple guide to budgeting for your pregnancy and asking the right questions about costs and insurance.",
+    "hi": "आपकी गर्भावस्था के लिए बजट बनाने और लागत तथा बीमा के बारे में सही सवाल पूछने के लिए एक सरल गाइड।",
+    "te": "మీ గర్భధారణ కోసం బడ్జెట్ వేయడానికి మరియు ఖర్చులు మరియు భీమా గురించి సరైన ప్రశ్నలు అడగడానికి ఒక సాధారణ గైడ్."
+  },
+  "metadata": {
+    "readTime": {
+      "en": "5 min read",
+      "hi": "5 मिनट में पढ़ें",
+      "te": "5 నిమిషాల పఠనం"
+    },
+    "reviewer": {
+      "en": "Reviewed by Arjun Menon, Health Finance",
+      "hi": "अर्जुन मेनन, स्वास्थ्य वित्त द्वारा समीक्षित",
+      "te": "అర్జున్ మీనన్, హెల్త్ ఫైనాన్స్ ద్వారా సమీక్షించబడింది"
+    },
+    "sources": [
+      "NABH (National Accreditation Board for Hospitals & Healthcare Providers)"
+    ]
+  },
+  "sections": [
+    {
+      "id": "introduction",
+      "title": {
+        "en": "",
+        "hi": "",
+        "te": ""
+      },
+      "content": [
+        {
+          "type": "paragraph",
+          "text": {
+            "en": "Welcoming a baby is one of life's most joyful milestones, but it also comes with significant financial planning. Understanding the costs involved and how your insurance works can reduce stress, allowing you to focus on the happy journey ahead. This guide will help you create a budget and ask the right questions.",
+            "hi": "एक बच्चे का स्वागत करना जीवन के सबसे आनंदमय मील के पत्थरों में से एक है, लेकिन इसके साथ महत्वपूर्ण वित्तीय योजना भी आती है। इसमें शामिल लागतों को समझना और आपका बीमा कैसे काम करता है, यह जानने से तनाव कम हो सकता है, जिससे आप आगे की सुखद यात्रा पर ध्यान केंद्रित कर सकते हैं। यह गाइड आपको बजट बनाने और सही सवाल पूछने में मदद करेगी।",
+            "te": "ఒక శిశువును స్వాగతించడం జీవితంలోని అత్యంత ఆనందకరమైన మైలురాళ్లలో ఒకటి, కానీ ఇది గణనీయమైన ఆర్థిక ప్రణాళికతో కూడా వస్తుంది. ఇందులో ఉన్న ఖర్చులను అర్థం చేసుకోవడం మరియు మీ భీమా ఎలా పనిచేస్తుందో తెలుసుకోవడం ఒత్తిడిని తగ్గిస్తుంది, ఇది మీరు రాబోయే సంతోషకరమైన ప్రయాణంపై దృష్టి పెట్టడానికి అనుమతిస్తుంది. ఈ గైడ్ మీకు బడ్జెట్ సృష్టించడానికి మరియు సరైన ప్రశ్నలు అడగడానికి సహాయపడుతుంది."
+          }
+        }
+      ]
+    },
+    {
+      "id": "budget-planning",
+      "title": {
+        "en": "Budget Planning",
+        "hi": "बजट योजना",
+        "te": "బడ్జెట్ ప్రణాళిక"
+      },
+      "content": [
+        {
+          "type": "paragraph",
+          "text": {
+            "en": "It's helpful to break down pregnancy-related expenses into three main categories:",
+            "hi": "गर्भावस्था से संबंधित खर्चों को तीन मुख्य श्रेणियों में विभाजित करना सहायक होता है:",
+            "te": "గర్భధారణ సంబంధిత ఖర్చులను మూడు ప్రధాన వర్గాలుగా విభజించడం సహాయకరంగా ఉంటుంది:"
+          }
+        },
+        {
+          "type": "subheading",
+          "text": {
+            "en": "1. Pre-Delivery Expenses",
+            "hi": "1. प्रसव-पूर्व व्यय",
+            "te": "1. ప్రసవానికి ముందు ఖర్చులు"
+          }
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "en": "Doctor's Consultation Fees: These can range from ₹500 to ₹2000+ per visit.",
+              "hi": "डॉक्टर की परामर्श शुल्क: यह प्रति विजिट ₹500 से ₹2000+ तक हो सकता है।",
+              "te": "డాక్టర్ కన్సల్టేషన్ ఫీజులు: ఇవి ప్రతి సందర్శనకు ₹500 నుండి ₹2000+ వరకు ఉండవచ్చు."
+            },
+            {
+              "en": "Scans & Tests: Ultrasounds and mandatory blood tests can add up. The anomaly scan (Level II) alone can cost ₹2,500 - ₹5,000.",
+              "hi": "स्कैन और परीक्षण: अल्ट्रासाउंड और अनिवार्य रक्त परीक्षणों का खर्च बढ़ सकता है। अकेले एनोमली स्कैन (लेवल II) की लागत ₹2,500 - ₹5,000 हो सकती है।",
+              "te": "స్కాన్‌లు & పరీక్షలు: అల్ట్రాసౌండ్‌లు మరియు తప్పనిసరి రక్త పరీక్షల ఖర్చు ఎక్కువగా ఉండవచ్చు. అనామలీ స్కాన్ (లెవల్ II) ఒక్కదానికే ₹2,500 - ₹5,000 ఖర్చు కావచ్చు."
+            },
+            {
+              "en": "Medications: Prenatal vitamins and any other prescribed supplements.",
+              "hi": "दवाएं: प्रसव पूर्व विटामिन और कोई अन्य निर्धारित सप्लीमेंट्स।",
+              "te": "మందులు: ప్రినేటల్ విటమిన్లు మరియు సూచించిన ఏవైనా ఇతర సప్లిమెంట్లు."
+            }
+          ]
+        },
+        {
+          "type": "subheading",
+          "text": {
+            "en": "2. Delivery Expenses",
+            "hi": "2. प्रसव व्यय",
+            "te": "2. ప్రసవ ఖర్చులు"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": {
+            "en": "This is the largest expense. Costs vary hugely based on the city and hospital. A normal delivery in a private hospital can range from ₹40,000 to ₹1,00,000+, while a C-section can range from ₹60,000 to ₹2,00,000+.",
+            "hi": "यह सबसे बड़ा खर्च है। शहर और अस्पताल के आधार पर लागत बहुत भिन्न होती है। एक निजी अस्पताल में सामान्य प्रसव का खर्च ₹40,000 से ₹1,00,000+ तक हो सकता है, जबकि सी-सेक्शन का खर्च ₹60,000 से ₹2,00,000+ तक हो सकता है।",
+            "te": "ఇది అతిపెద్ద ఖర్చు. నగరం మరియు ఆసుపత్రిని బట్టి ఖర్చులు చాలా తేడా ఉంటాయి. ఒక ప్రైవేట్ ఆసుపత్రిలో సాధారణ ప్రసవం ₹40,000 నుండి ₹1,00,000+ వరకు ఉండవచ్చు, అయితే సి-సెక్షన్ ₹60,000 నుండి ₹2,00,000+ వరకు ఉండవచ్చు."
+          }
+        },
+        {
+          "type": "subheading",
+          "text": {
+            "en": "3. Post-Delivery & Newborn Expenses",
+            "hi": "3. प्रसवोत्तर और नवजात व्यय",
+            "te": "3. ప్రసవానంతర & నవజాత ఖర్చులు"
+          }
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "en": "Pediatrician consultations and initial vaccinations.",
+              "hi": "बाल रोग विशेषज्ञ के परामर्श और प्रारंभिक टीकाकरण।",
+              "te": "శిశువైద్యుని సంప్రదింపులు మరియు ప్రారంభ టీకాలు."
+            },
+            {
+              "en": "Baby essentials: Diapers, wipes, formula (if needed), clothing, a crib, etc.",
+              "hi": "बच्चे की आवश्यक वस्तुएं: डायपर, वाइप्स, फॉर्मूला (यदि आवश्यक हो), कपड़े, एक पालना, आदि।",
+              "te": "శిశువు అవసరాలు: డైపర్లు, వైప్స్, ఫార్ములా (అవసరమైతే), బట్టలు, ఒక తొట్టి, మొదలైనవి."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "insurance-coverage",
+      "title": {
+        "en": "Insurance Coverage",
+        "hi": "बीमा कवरेज",
+        "te": "భీమా కవరేజ్"
+      },
+      "content": [
+        {
+          "type": "paragraph",
+          "text": {
+            "en": "Understanding your health insurance policy is crucial to avoid surprises. Here are the key things to check in India:",
+            "hi": "आश्चर्य से बचने के लिए अपनी स्वास्थ्य बीमा पॉलिसी को समझना महत्वपूर्ण है। भारत में जांच करने के लिए यहां मुख्य बातें हैं:",
+            "te": "ఆశ్చర్యాలను నివారించడానికి మీ ఆరోగ్య భీమా పాలసీని అర్థం చేసుకోవడం చాలా ముఖ్యం. భారతదేశంలో తనిఖీ చేయవలసిన ముఖ్యమైన విషయాలు ఇక్కడ ఉన్నాయి:"
+          }
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "en": "Waiting Period: Almost all policies have a maternity benefit waiting period, typically from 2 to 4 years. You can only claim the benefits after this period has passed. Plan ahead!",
+              "hi": "प्रतीक्षा अवधि: लगभग सभी पॉलिसियों में मातृत्व लाभ की प्रतीक्षा अवधि होती है, जो आमतौर पर 2 से 4 साल तक होती है। आप इस अवधि के बीत जाने के बाद ही लाभ का दावा कर सकते हैं। पहले से योजना बनाएं!",
+              "te": "వేచి ఉండే కాలం: దాదాపు అన్ని పాలసీలకు ప్రసూతి ప్రయోజనం కోసం వేచి ఉండే కాలం ఉంటుంది, సాధారణంగా 2 నుండి 4 సంవత్సరాలు. ఈ కాలం గడిచిన తర్వాతే మీరు ప్రయోజనాలను క్లెయిమ్ చేయగలరు. ముందుగానే ప్లాన్ చేసుకోండి!"
+            },
+            {
+              "en": "Coverage Limits (Sub-limits): Most policies have a specific cap on maternity expenses which is much lower than the total policy sum insured. For example, a policy of ₹10 lakh might only cover ₹50,000 for a C-section.",
+              "hi": "कवरेज सीमाएं (उप-सीमाएं): अधिकांश पॉलिसियों में मातृत्व खर्चों पर एक विशिष्ट सीमा होती है जो कुल पॉलिसी बीमित राशि से बहुत कम होती है। उदाहरण के लिए, ₹10 लाख की पॉलिसी में सी-सेक्शन के लिए केवल ₹50,000 कवर हो सकते हैं।",
+              "te": "కవరేజ్ పరిమితులు (ఉప-పరిమితులు): చాలా పాలసీలు ప్రసూతి ఖర్చులపై ఒక నిర్దిష్ట పరిమితిని కలిగి ఉంటాయి, ఇది మొత్తం పాలసీ బీమా మొత్తం కంటే చాలా తక్కువగా ఉంటుంది. ఉదాహరణకు, ₹10 లక్షల పాలసీ సి-సెక్షన్ కోసం కేవలం ₹50,000 మాత్రమే కవర్ చేయవచ్చు."
+            },
+            {
+              "en": "Newborn Coverage: Check if your policy covers the newborn from day one for any health issues or vaccinations, and understand the process to add the baby to your policy.",
+              "hi": "नवजात शिशु का कवरेज: जांचें कि क्या आपकी पॉलिसी नवजात शिशु को किसी भी स्वास्थ्य समस्या या टीकाकरण के लिए पहले दिन से कवर करती है, और बच्चे को अपनी पॉलिसी में जोड़ने की प्रक्रिया को समझें।",
+              "te": "నవజాత శిశువు కవరేజ్: మీ పాలసీ నవజాత శిశువును ఏదైనా ఆరోగ్య సమస్యలు లేదా టీకాల కోసం మొదటి రోజు నుండి కవర్ చేస్తుందో లేదో తనిఖీ చేయండి మరియు శిశువును మీ పాలసీకి జోడించే ప్రక్రియను అర్థం చేసుకోండి."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cost-questions",
+      "title": {
+        "en": "Cost Questions to Ask",
+        "hi": "पूछने के लिए लागत संबंधी प्रश्न",
+        "te": "అడగవలసిన ఖర్చు ప్రశ్నలు"
+      },
+      "content": [
+        {
+          "type": "paragraph",
+          "text": {
+            "en": "Being prepared with the right questions can save you a lot of money and stress. Don't be afraid to ask for detailed breakdowns.",
+            "hi": "सही सवालों के साथ तैयार रहने से आपका बहुत सारा पैसा और तनाव बच सकता है। विस्तृत विवरण मांगने से न डरें।",
+            "te": "సరైన ప్రశ్నలతో సిద్ధంగా ఉండటం వల్ల మీకు చాలా డబ్బు మరియు ఒత్తిడి ఆదా అవుతుంది. వివరణాత్మక వివరాలు అడగడానికి భయపడకండి."
+          }
+        },
+        {
+          "type": "subheading",
+          "text": {
+            "en": "For Your Hospital:",
+            "hi": "आपके अस्पताल के लिए:",
+            "te": "మీ ఆసుపత్రి కోసం:"
+          }
+        },
+        {
+          "type": "list",
+          "items": [
+            { "en": "What are your package costs for a normal and a C-section delivery?", "hi": "सामान्य और सी-सेक्शन डिलीवरी के लिए आपके पैकेज की लागत क्या है?", "te": "సాధారణ మరియు సి-సెక్షన్ డెలివరీ కోసం మీ ప్యాకేజీ ఖర్చులు ఏమిటి?" },
+            { "en": "What is included and excluded in this package? (Ask about doctor fees, medicines, room rent, baby care, etc.)", "hi": "इस पैकेज में क्या शामिल है और क्या नहीं? (डॉक्टर की फीस, दवाएं, कमरे का किराया, बच्चे की देखभाल आदि के बारे में पूछें)", "te": "ఈ ప్యాకేజీలో ఏమి చేర్చబడ్డాయి మరియు ఏమి చేర్చబడలేదు? (డాక్టర్ ఫీజు, మందులు, గది అద్దె, శిశువు సంరక్షణ మొదలైనవి అడగండి)" },
+            { "en": "What are the estimated costs for potential complications like a NICU stay?", "hi": "एनआईसीयू में रहने जैसी संभावित जटिलताओं के लिए अनुमानित लागत क्या है?", "te": "NICUలో ఉండటం వంటి సంభావ్య సమస్యలకు అంచనా ఖర్చులు ఏమిటి?" }
+          ]
+        },
+        {
+          "type": "subheading",
+          "text": {
+            "en": "For Your Insurance Provider:",
+            "hi": "आपके बीमा प्रदाता के लिए:",
+            "te": "మీ భీమా ప్రదాత కోసం:"
+          }
+        },
+        {
+          "type": "list",
+          "items": [
+            { "en": "What is the exact sub-limit for my maternity claim?", "hi": "मेरे मातृत्व दावे के लिए सटीक उप-सीमा क्या है?", "te": "నా ప్రసూతి క్లెయిమ్ కోసం ఖచ్చితమైన ఉప-పరిమితి ఏమిటి?" },
+            { "en": "Are pre and post-natal consultations and tests covered?", "hi": "क्या प्रसव पूर्व और प्रसवोत्तर परामर्श और परीक्षण कवर किए गए हैं?", "te": "ప్రసవానికి ముందు మరియు తర్వాత సంప్రదింపులు మరియు పరీక్షలు కవర్ చేయబడతాయా?" },
+            { "en": "What is the process to get cashless approval?", "hi": "कैशलेस अनुमोदन प्राप्त करने की प्रक्रिया क्या है?", "te": "క్యాష్‌లెస్ ఆమోదం పొందడానికి ప్రక్రియ ఏమిటి?" }
+          ]
+        }
+      ]
+    }
+  ],
+  "disclaimer": {
+    "en": "This article provides general financial guidance and is not a substitute for professional financial advice. Costs are estimates and can vary. Please review your specific insurance policy and consult a financial advisor for personalized planning.",
+    "hi": "यह लेख सामान्य वित्तीय मार्गदर्शन प्रदान करता है और पेशेवर वित्तीय सलाह का विकल्प नहीं है। लागत अनुमानित है और भिन्न हो सकती है। कृपया अपनी विशिष्ट बीमा पॉलिसी की समीक्षा करें और व्यक्तिगत योजना के लिए एक वित्तीय सलाहकार से परामर्श करें।",
+    "te": "ఈ కథనం సాధారణ ఆర్థిక మార్గదర్శకత్వాన్ని అందిస్తుంది మరియు వృత్తిపరమైన ఆర్థిక సలహాకు ప్రత్యామ్నాయం కాదు. ఖర్చులు అంచనా మాత్రమే మరియు మారవచ్చు. దయచేసి మీ నిర్దిష్ట భీమా పాలసీని సమీక్షించండి మరియు వ్యక్తిగతీకరించిన ప్రణాళిక కోసం ఒక ఆర్థిక సలహాదారుని సంప్రదించండి."
+  }
+}

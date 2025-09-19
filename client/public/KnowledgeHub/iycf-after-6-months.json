@@ -1,0 +1,251 @@
+{
+  "slug": "iycf-after-6-months",
+  "title": {
+    "en": "IYCF after 6 months",
+    "hi": "6 महीने के बाद IYCF",
+    "te": "6 నెలల తర్వాత IYCF"
+  },
+  "overview": {
+    "en": "A guide to introducing solids: textures, iron-rich foods, and preventing allergies.",
+    "hi": "ठोस आहार शुरू करने के लिए एक गाइड: बनावट, आयरन युक्त खाद्य पदार्थ और एलर्जी की रोकथाम।",
+    "te": "ఘనపదార్థాలను పరిచయం చేయడానికి ఒక గైడ్: ఆకృతి, ఐరన్ అధికంగా ఉండే ఆహారాలు మరియు అలెర్జీల నివారణ."
+  },
+  "metadata": {
+    "readTime": {
+      "en": "6 min read",
+      "hi": "6 मिनट में पढ़ें",
+      "te": "6 నిమిషాల పఠనం"
+    },
+    "reviewer": {
+      "en": "Reviewed by Ritu Malhotra, MSc Nutrition",
+      "hi": "रितु मल्होत्रा, एमएससी न्यूट्रिशन द्वारा समीक्षित",
+      "te": "రితు మల్హోత్రా, MSc న్యూట్రిషన్ ద్వారా సమీక్షించబడింది"
+    },
+    "sources": [
+      "WHO (World Health Organization)",
+      "UNICEF"
+    ]
+  },
+  "sections": [
+    {
+      "id": "introduction",
+      "title": {
+        "en": "",
+        "hi": "",
+        "te": ""
+      },
+      "content": [
+        {
+          "type": "paragraph",
+          "text": {
+            "en": "Congratulations on reaching the six-month milestone! Your baby is now ready to explore a new world of tastes and textures. While breast milk or formula will remain their main source of nutrition for a while, introducing complementary foods (solids) is essential for their growth and development, especially for iron. This journey is about learning and exploration, so be patient and have fun!",
+            "hi": "छह महीने का पड़ाव पार करने पर बधाई! आपका बच्चा अब स्वाद और बनावट की एक नई दुनिया का पता लगाने के लिए तैयार है। जबकि स्तन का दूध या फार्मूला कुछ समय के लिए उनके पोषण का मुख्य स्रोत बना रहेगा, उनके विकास और वृद्धि के लिए, विशेष रूप से आयरन के लिए, पूरक खाद्य पदार्थ (ठोस) शुरू करना आवश्यक है। यह यात्रा सीखने और अन्वेषण के बारे में है, इसलिए धैर्य रखें और इसका आनंद लें!",
+            "te": "ఆరు నెలల మైలురాయిని చేరుకున్నందుకు అభినందనలు! మీ శిశువు ఇప్పుడు రుచులు మరియు ఆకృతుల యొక్క కొత్త ప్రపంచాన్ని అన్వేషించడానికి సిద్ధంగా ఉంది. తల్లి పాలు లేదా ఫార్ములా కొంతకాలం పాటు వారి ప్రధాన పోషకాహార వనరుగా ఉన్నప్పటికీ, వారి పెరుగుదల మరియు అభివృద్ధికి, ముఖ్యంగా ఐరన్ కోసం, అనుబంధ ఆహారాలను (ఘనపదార్థాలు) పరిచయం చేయడం చాలా అవసరం. ఈ ప్రయాణం నేర్చుకోవడం మరియు అన్వేషణ గురించి, కాబట్టి ఓపికగా ఉండండి మరియు ఆనందించండి!"
+          }
+        }
+      ]
+    },
+    {
+      "id": "starting-solids",
+      "title": {
+        "en": "Starting Solids",
+        "hi": "ठोस आहार शुरू करना",
+        "te": "ఘనపదార్థాలను ప్రారంభించడం"
+      },
+      "content": [
+        {
+          "type": "subheading",
+          "text": {
+            "en": "Signs Your Baby is Ready",
+            "hi": "संकेत कि आपका बच्चा तैयार है",
+            "te": "మీ శిశువు సిద్ధంగా ఉందని సూచించే సంకేతాలు"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": {
+            "en": "Look for these developmental cues, in addition to age:",
+            "hi": "उम्र के अलावा, इन विकासात्मक संकेतों पर ध्यान दें:",
+            "te": "వయస్సుతో పాటు, ఈ అభివృద్ధి సూచనల కోసం చూడండి:"
+          }
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "en": "Can sit up well with support and has good head and neck control.",
+              "hi": "सहारे से अच्छी तरह बैठ सकता है और सिर और गर्दन पर अच्छा नियंत्रण है।",
+              "te": "మద్దతుతో బాగా కూర్చోగలదు మరియు మంచి తల మరియు మెడ నియంత్రణను కలిగి ఉంటుంది."
+            },
+            {
+              "en": "Shows interest in your food by watching you eat or reaching for it.",
+              "hi": "आपको खाते हुए देखकर या उसके लिए हाथ बढ़ाकर आपके भोजन में रुचि दिखाता है।",
+              "te": "మీరు తినేటప్పుడు చూడటం ద్వారా లేదా దాని కోసం చేతులు చాచడం ద్వారా మీ ఆహారంపై ఆసక్తిని చూపుతుంది."
+            },
+            {
+              "en": "Opens their mouth when a spoon is offered.",
+              "hi": "चम्मच दिए जाने पर अपना मुँह खोलता है।",
+              "te": "స్పూన్ అందించినప్పుడు వారి నోరు తెరుస్తుంది."
+            }
+          ]
+        },
+        {
+          "type": "subheading",
+          "text": {
+            "en": "Good First Foods (India-Friendly)",
+            "hi": "अच्छे पहले खाद्य पदार्थ (भारत के अनुकूल)",
+            "te": "మంచి మొదటి ఆహారాలు (భారతదేశానికి అనుకూలమైనవి)"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": {
+            "en": "Start with single-ingredient, iron-fortified, or naturally iron-rich foods. Introduce one new food every 3-4 days to watch for reactions.",
+            "hi": "एकल-घटक, आयरन-फोर्टिफाइड, या प्राकृतिक रूप से आयरन युक्त खाद्य पदार्थों से शुरुआत करें। प्रतिक्रियाओं पर नजर रखने के लिए हर 3-4 दिनों में एक नया भोजन शुरू करें।",
+              "te": "ఒకే-పదార్థం, ఐరన్-ఫోర్టిఫైడ్, లేదా సహజంగా ఐరన్ అధికంగా ఉండే ఆహారాలతో ప్రారంభించండి. ప్రతిచర్యల కోసం చూడటానికి ప్రతి 3-4 రోజులకు ఒక కొత్త ఆహారాన్ని పరిచయం చేయండి."
+          }
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "en": "Cereals: Thin porridges made from rice, suji (semolina), or ragi (finger millet).",
+              "hi": "अनाज: चावल, सूजी, या रागी से बनी पतली दलिया।",
+              "te": "ధాన్యాలు: బియ్యం, సూజీ (సెమోలినా), లేదా రాగి (ఫింగర్ మిల్లెట్) నుండి తయారు చేసిన పలుచని గంజి."
+            },
+            {
+              "en": "Lentils: Start with clear lentil soup (dal ka paani) and then move to smooth, mashed dal.",
+              "hi": "दालें: पतली दाल के सूप (दाल का पानी) से शुरू करें और फिर चिकनी, मैश की हुई दाल पर जाएं।",
+              "te": "పప్పులు: పలుచని పప్పు సూప్ (పప్పు నీళ్ళు)తో ప్రారంభించి, ఆ తర్వాత మెత్తగా, మెదిపిన పప్పుకు మారండి."
+            },
+            {
+              "en": "Vegetables: Smooth purees of single vegetables like sweet potato, pumpkin, carrot, or potato.",
+              "hi": "सब्जियां: शकरकंद, कद्दू, गाजर, या आलू जैसी एकल सब्जियों की चिकनी प्यूरी।",
+              "te": "కూరగాయలు: చిలగడదుంప, గుమ్మడికాయ, క్యారెట్, లేదా బంగాళాదుంప వంటి ఒకే కూరగాయల యొక్క నున్నటి ప్యూరీలు."
+            },
+            {
+              "en": "Fruits: Mashed banana, or steamed and pureed apple or pear.",
+              "hi": "फल: मसला हुआ केला, या उबला हुआ और प्यूरी किया हुआ सेब या नाशपाती।",
+              "te": "పండ్లు: మెదిపిన అరటిపండు, లేదా ఆవిరి మీద ఉడికించి ప్యూరీ చేసిన ఆపిల్ లేదా పియర్."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "texture-progression",
+      "title": {
+        "en": "Texture Progression",
+        "hi": "बनावट की प्रगति",
+        "te": "ఆకృతి పురోగతి"
+      },
+      "content": [
+        {
+          "type": "paragraph",
+          "text": {
+            "en": "As your baby gets older and more skilled at eating, you should gradually change the texture of their food. This is vital for developing their chewing and swallowing skills.",
+            "hi": "जैसे-जैसे आपका बच्चा बड़ा होता है और खाने में अधिक कुशल होता जाता है, आपको धीरे-धीरे उनके भोजन की बनावट बदलनी चाहिए। यह उनके चबाने और निगलने के कौशल को विकसित करने के लिए महत्वपूर्ण है।",
+            "te": "మీ శిశువు పెద్దయ్యాక మరియు తినడంలో మరింత నైపుణ్యం సంపాదించినప్పుడు, మీరు క్రమంగా వారి ఆహారం యొక్క ఆకృతిని మార్చాలి. ఇది వారి నమలడం మరియు మింగడం నైపుణ్యాలను అభివృద్ధి చేయడానికి చాలా ముఖ్యం."
+          }
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "en": "6-7 Months: Start with thin, smooth purees. The consistency should be runny.",
+              "hi": "6-7 महीने: पतली, चिकनी प्यूरी से शुरू करें। स्थिरता बहने वाली होनी चाहिए।",
+              "te": "6-7 నెలలు: పలుచని, నున్నటి ప్యూరీలతో ప్రారంభించండి. స్థిరత్వం నీరుగా ఉండాలి."
+            },
+            {
+              "en": "7-8 Months: Move to thicker purees and well-mashed foods (like mashed khichdi). Some small, soft lumps are good for them to practice chewing.",
+              "hi": "7-8 महीने: गाढ़ी प्यूरी और अच्छी तरह से मैश किए हुए खाद्य पदार्थों (जैसे मैश की हुई खिचड़ी) पर जाएं। चबाने का अभ्यास करने के लिए कुछ छोटे, नरम गांठें अच्छी होती हैं।",
+              "te": "7-8 నెలలు: చిక్కటి ప్యూరీలు మరియు బాగా మెదిపిన ఆహారాలకు (మెదిపిన కిచిడీ వంటివి) మారండి. నమలడం ప్రాక్టీస్ చేయడానికి కొన్ని చిన్న, మృదువైన గడ్డలు మంచివి."
+            },
+            {
+              "en": "8-10 Months: Introduce soft, lumpy foods and easy-to-hold finger foods. You can offer minced or finely chopped textures. Think soft vegetable pieces, small cubes of paneer, or a piece of soft roti soaked in dal.",
+              "hi": "8-10 महीने: नरम, गांठदार खाद्य पदार्थ और आसानी से पकड़े जाने वाले फिंगर फूड्स का परिचय दें। आप कीमा बनाया हुआ या बारीक कटा हुआ बनावट दे सकते हैं। नरम सब्जी के टुकड़े, पनीर के छोटे क्यूब्स, या दाल में भिगोई हुई नरम रोटी का एक टुकड़ा सोचें।",
+              "te": "8-10 నెలలు: మృదువైన, గడ్డలున్న ఆహారాలు మరియు సులభంగా పట్టుకునే ఫింగర్ ఫుడ్స్‌ను పరిచయం చేయండి. మీరు ముక్కలు చేసిన లేదా సన్నగా తరిగిన ఆకృతులను అందించవచ్చు. మృదువైన కూరగాయల ముక్కలు, పనీర్ యొక్క చిన్న ఘనాల, లేదా పప్పులో నానబెట్టిన మృదువైన రోటీ ముక్క గురించి ఆలోచించండి."
+            },
+            {
+              "en": "10-12 Months: Your baby can now start eating what the family eats, but chopped into small pieces and without added salt, sugar, or strong spices.",
+              "hi": "10-12 महीने: अब आपका बच्चा वह खाना शुरू कर सकता है जो परिवार खाता है, लेकिन छोटे टुकड़ों में कटा हुआ और बिना अतिरिक्त नमक, चीनी, या तेज मसालों के।",
+              "te": "10-12 నెలలు: మీ శిశువు ఇప్పుడు కుటుంబం తినే ఆహారాన్ని తినడం ప్రారంభించవచ్చు, కానీ చిన్న ముక్కలుగా తరిగి, అదనపు ఉప్పు, చక్కెర, లేదా బలమైన మసాలాలు లేకుండా."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "allergy-prevention",
+      "title": {
+        "en": "Allergy Prevention",
+        "hi": "एलर्जी की रोकथाम",
+        "te": "అలెర్జీ నివారణ"
+      },
+      "content": [
+        {
+          "type": "paragraph",
+          "text": {
+            "en": "Current research shows that introducing common allergenic foods early (after 6 months) may help prevent food allergies. Always introduce one at a time and watch for a reaction.",
+            "hi": "वर्तमान शोध से पता चलता है कि आम एलर्जी पैदा करने वाले खाद्य पदार्थों को जल्दी (6 महीने के बाद) शुरू करने से खाद्य एलर्जी को रोकने में मदद मिल सकती है। हमेशा एक बार में एक ही शुरू करें और प्रतिक्रिया पर नजर रखें।",
+            "te": "ప్రస్తుత పరిశోధనలు సాధారణ అలెర్జీ కారక ఆహారాలను త్వరగా (6 నెలల తర్వాత) పరిచయం చేయడం వల్ల ఆహార అలెర్జీలను నివారించడంలో సహాయపడabileceğini చూపిస్తున్నాయి. ఎల్లప్పుడూ ఒకేసారి ఒకదాన్ని పరిచయం చేయండి మరియు ప్రతిచర్య కోసం చూడండి."
+          }
+        },
+        {
+          "type": "subheading",
+          "text": {
+            "en": "Common Allergens to Introduce:",
+            "hi": "पेश किए जाने वाले आम एलर्जी कारक:",
+            "te": "పరిచయం చేయవలసిన సాధారణ అలెర్జీ కారకాలు:"
+          }
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "en": "Eggs (well-cooked and mashed)",
+              "hi": "अंडे (अच्छी तरह से पके और मैश किए हुए)",
+              "te": "గుడ్లు (బాగా ఉడికించి, మెదిపినవి)"
+            },
+            {
+              "en": "Peanuts/Nuts (as smooth butter or powder, NEVER whole)",
+              "hi": "मूंगफली/मेवे (चिकने मक्खन या पाउडर के रूप में, कभी भी साबुत नहीं)",
+              "te": "వేరుశెనగలు/నట్స్ (నునుపైన వెన్న లేదా పొడి రూపంలో, ఎప్పుడూ పూర్తిగా కాదు)"
+            },
+            {
+              "en": "Cow's milk products (dahi/curd, paneer)",
+              "hi": "गाय के दूध के उत्पाद (दही, पनीर)",
+              "te": "ఆవు పాల ఉత్పత్తులు (పెరుగు, పనీర్)"
+            },
+            {
+              "en": "Wheat (suji porridge, soft roti)",
+              "hi": "गेहूं (सूजी की दलिया, नरम रोटी)",
+              "te": "గోధుమ (సూజీ గంజి, మృదువైన రోటీ)"
+            }
+          ]
+        },
+        {
+          "type": "subheading",
+          "text": {
+            "en": "Signs of a Reaction:",
+            "hi": "प्रतिक्रिया के संकेत:",
+            "te": "ప్రతిచర్య యొక్క సంకేతాలు:"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": {
+            "en": "Watch for hives, rash, swelling of the face or lips, vomiting, or diarrhea. In case of difficulty breathing, seek emergency medical help immediately. If you suspect any reaction, stop the food and consult your pediatrician.",
+            "hi": "पित्ती, दाने, चेहरे या होंठों पर सूजन, उल्टी, या दस्त पर ध्यान दें। सांस लेने में कठिनाई होने पर, तुरंत आपातकालीन चिकित्सा सहायता लें। यदि आपको किसी भी प्रतिक्रिया का संदेह है, तो भोजन बंद कर दें और अपने बाल रोग विशेषज्ञ से परामर्श करें।",
+            "te": "దద్దుర్లు, చర్మంపై ఎర్రటి మచ్చలు, ముఖం లేదా పెదవుల వాపు, వాంతులు, లేదా విరేచనాల కోసం చూడండి. శ్వాస తీసుకోవడంలో ఇబ్బంది ఉంటే, వెంటనే అత్యవసర వైద్య సహాయం తీసుకోండి. మీరు ఏదైనా ప్రతిచర్యను అనుమానించినట్లయితే, ఆహారాన్ని ఆపివేసి, మీ శిశువైద్యుడిని సంప్రదించండి."
+          }
+        }
+      ]
+    }
+  ],
+  "disclaimer": {
+    "en": "This guide provides general information based on WHO/UNICEF guidelines and should not replace advice from your pediatrician. Every baby is different, so always consult a doctor for personalized feeding advice.",
+    "hi": "यह गाइड WHO/UNICEF दिशानिर्देशों पर आधारित सामान्य जानकारी प्रदान करता है और इसे आपके बाल रोग विशेषज्ञ की सलाह का स्थान नहीं लेना चाहिए। हर बच्चा अलग होता है, इसलिए व्यक्तिगत आहार सलाह के लिए हमेशा डॉक्टर से सलाह लें।",
+    "te": "ఈ గైడ్ WHO/UNICEF మార్గదర్శకాల ఆధారంగా సాధారణ సమాచారాన్ని అందిస్తుంది మరియు మీ శిశువైద్యుడి సలహాను భర్తీ చేయకూడదు. ప్రతి శిశువు భిన్నంగా ఉంటుంది, కాబట్టి వ్యక్తిగతీకరించిన ఆహార సలహా కోసం ఎల్లప్పుడూ వైద్యుడిని సంప్రదించండి."
+  }
+}

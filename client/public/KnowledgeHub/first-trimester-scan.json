@@ -1,0 +1,183 @@
+{
+  "slug": "first-trimester-scan-what-it-checks",
+  "title": {
+    "en": "First-Trimester Scan: What It Checks",
+    "hi": "पहली तिमाही का स्कैन: इसमें क्या जांचा जाता है",
+    "te": "మొదటి త్రైమాసికం స్కాన్: ఇది ఏమి తనిఖీ చేస్తుంది"
+  },
+  "overview": {
+    "en": "What the 11-14 week scan looks for and what to expect during this important milestone.",
+    "hi": "11-14 सप्ताह का स्कैन क्या देखता है और इस महत्वपूर्ण पड़ाव के दौरान क्या उम्मीद करनी चाहिए।",
+    "te": "11-14 వారాల స్కాన్ ఏమి చూస్తుంది మరియు ఈ ముఖ్యమైన మైలురాయి సమయంలో ఏమి ఆశించాలి."
+  },
+  "metadata": {
+    "readTime": {
+      "en": "5 min read",
+      "hi": "5 मिनट में पढ़ें",
+      "te": "5 నిమిషాల పఠనం"
+    },
+    "reviewer": {
+      "en": "Reviewed by Dr. Ananya Sharma, MS OBGYN",
+      "hi": "डॉ. अनन्या शर्मा, एमएस ओबीजीवाईएन द्वारा समीक्षित",
+      "te": "డా. అనన్య శర్మ, MS OBGYN ద్వారా సమీక్షించబడింది"
+    },
+    "sources": [
+      "NHS (National Health Service, UK)",
+      "WHO (World Health Organization)"
+    ]
+  },
+  "sections": [
+    {
+      "id": "why-it-matters",
+      "title": {
+        "en": "Why It Matters",
+        "hi": "यह क्यों महत्वपूर्ण है",
+        "te": "ఇది ఎందుకు ముఖ్యం"
+      },
+      "content": [
+        {
+          "type": "paragraph",
+          "text": {
+            "en": "The first-trimester scan, typically performed between 11 and 14 weeks of pregnancy, is one of the most important and exciting milestones. It's more than just the first chance to see your baby; it provides crucial information about the health and development of the pregnancy.",
+            "hi": "पहली तिमाही का स्कैन, जो आमतौर पर गर्भावस्था के 11 से 14 सप्ताह के बीच किया जाता है, सबसे महत्वपूर्ण और रोमांचक पड़ावों में से एक है। यह सिर्फ आपके बच्चे को देखने का पहला मौका नहीं है; यह गर्भावस्था के स्वास्थ्य और विकास के बारे में महत्वपूर्ण जानकारी प्रदान करता है।",
+            "te": "మొదటి త్రైమాసికం స్కాన్, సాధారణంగా గర్భం దాల్చిన 11 నుండి 14 వారాల మధ్య నిర్వహిస్తారు, ఇది అత్యంత ముఖ్యమైన మరియు ఉత్తేజకరమైన మైలురాళ్లలో ఒకటి. ఇది మీ బిడ్డను చూడటానికి మొదటి అవకాశం మాత్రమే కాదు; ఇది గర్భం యొక్క ఆరోగ్యం మరియు అభివృద్ధి గురించి కీలకమైన సమాచారాన్ని అందిస్తుంది."
+          }
+        },
+        {
+          "type": "subheading",
+          "text": {
+            "en": "Key Objectives of the Scan:",
+            "hi": "स्कैन के मुख्य उद्देश्य:",
+            "te": "స్కాన్ యొక్క ముఖ్య ఉద్దేశ్యాలు:"
+          }
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "en": "Accurate Dating: By measuring your baby from head to bottom (Crown-Rump Length or CRL), the doctor can determine a precise due date. This is the most accurate time in the entire pregnancy to date the pregnancy.",
+              "hi": "सही तारीख तय करना: आपके बच्चे को सिर से नीचे तक (क्राउन-रंप लेंथ या सीआरएल) मापकर, डॉक्टर एक सटीक डिलीवरी की तारीख निर्धारित कर सकते हैं। गर्भावस्था की तारीख तय करने के लिए यह पूरी गर्भावस्था का सबसे सटीक समय है।",
+              "te": "ఖచ్చితమైన తేదీ నిర్ధారణ: మీ శిశువును తల నుండి పిరుదుల వరకు (క్రౌన్-రంప్ లెంగ్త్ లేదా CRL) కొలవడం ద్వారా, డాక్టర్ ఖచ్చితమైన ప్రసవ తేదీని నిర్ధారించగలరు. గర్భం యొక్క తేదీని నిర్ధారించడానికి మొత్తం గర్భధారణ కాలంలో ఇది అత్యంత ఖచ్చితమైన సమయం."
+            },
+            {
+              "en": "Checking the Heartbeat: The scan confirms a viable pregnancy by detecting the fetal heartbeat.",
+              "hi": "दिल की धड़कन की जाँच: स्कैन भ्रूण के दिल की धड़कन का पता लगाकर एक व्यवहार्य गर्भावस्था की पुष्टि करता है।",
+              "te": "గుండెచప్పుడును తనిఖీ చేయడం: ఈ స్కాన్ పిండం యొక్క గుండెచప్పుడును గుర్తించడం ద్వారా గర్భం సజీవంగా ఉందని నిర్ధారిస్తుంది."
+            },
+            {
+              "en": "Detecting Multiple Pregnancies: It identifies if you are carrying one baby, twins, or more. For twins, it's crucial to determine if they share a placenta (chorionicity), which helps manage the pregnancy.",
+              "hi": "कई गर्भधारण का पता लगाना: यह पहचानता है कि आप एक बच्चा, जुड़वाँ या अधिक गर्भ में पाल रही हैं। जुड़वा बच्चों के लिए, यह निर्धारित करना महत्वपूर्ण है कि क्या वे एक ही प्लेसेंटा (कोरियोनिकिटी) साझा करते हैं, जो गर्भावस्था के प्रबंधन में मदद करता है।",
+              "te": "బహుళ గర్భాలను గుర్తించడం: మీరు ఒక శిశువు, కవలలు లేదా అంతకంటే ఎక్కువ మందిని మోస్తున్నారో ఇది గుర్తిస్తుంది. కవలల కోసం, వారు ఒకే మావిని (కోరియోనిసిటీ) పంచుకుంటున్నారో లేదో నిర్ధారించడం చాలా ముఖ్యం, ఇది గర్భం యొక్క నిర్వహణలో సహాయపడుతుంది."
+            },
+            {
+              "en": "Screening for Chromosomal Conditions: This is a major component. The scan measures the fluid-filled space at the back of the baby’s neck, known as the Nuchal Translucency (NT). An increased NT measurement can indicate a higher chance of conditions like Down's syndrome. This is usually combined with a blood test (Double Marker Test) for a more accurate risk assessment.",
+              "hi": "गुणसूत्र संबंधी स्थितियों के लिए स्क्रीनिंग: यह एक प्रमुख घटक है। स्कैन बच्चे की गर्दन के पीछे तरल पदार्थ से भरी जगह को मापता है, जिसे न्यूकल ट्रांसलूसेंसी (एनटी) के रूप में जाना जाता है। बढ़ा हुआ एनटी माप डाउन सिंड्रोम जैसी स्थितियों की अधिक संभावना का संकेत दे सकता है। इसे आमतौर पर अधिक सटीक जोखिम मूल्यांकन के लिए रक्त परीक्षण (डबल मार्कर टेस्ट) के साथ जोड़ा जाता है।",
+              "te": "క్రోమోజోమ్ సంబంధిత పరిస్థితుల కోసం స్క్రీనింగ్: ఇది ఒక ముఖ్యమైన భాగం. ఈ స్కాన్ శిశువు మెడ వెనుక ఉన్న ద్రవంతో నిండిన ఖాళీని కొలుస్తుంది, దీనిని నూచల్ ట్రాన్స్‌లూసెన్సీ (NT) అంటారు. పెరిగిన NT కొలత డౌన్ సిండ్రోమ్ వంటి పరిస్థితుల యొక్క అధిక అవకాశాన్ని సూచిస్తుంది. మరింత ఖచ్చితమైన ప్రమాద అంచనా కోసం ఇది సాధారణంగా రక్త పరీక్ష (డబుల్ మార్కర్ టెస్ట్)తో కలిపి చేయబడుతుంది."
+            },
+            {
+              "en": "Basic Anatomy Check: The sonographer checks for the baby's skull, brain, stomach, bladder, limbs, and abdominal wall to ensure they are developing as expected.",
+              "hi": "बुनियादी शारीरिक जांच: सोनोग्राफर बच्चे की खोपड़ी, मस्तिष्क, पेट, मूत्राशय, अंगों और पेट की दीवार की जांच करता है ताकि यह सुनिश्चित हो सके कि वे अपेक्षा के अनुरूप विकसित हो रहे हैं।",
+              "te": "ప్రాథమిక శరీర నిర్మాణ తనిఖీ: సోనోగ్రాఫర్ శిశువు పుర్రె, మెదడు, కడుపు, మూత్రాశయం, అవయవాలు మరియు పొత్తికడుపు గోడను తనిఖీ చేసి, అవి ఆశించిన విధంగా అభివృద్ధి చెందుతున్నాయని నిర్ధారిస్తారు."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "how-its-done",
+      "title": {
+        "en": "How It's Done",
+        "hi": "यह कैसे किया जाता है",
+        "te": "ఇది ఎలా జరుగుతుంది"
+      },
+      "content": [
+        {
+          "type": "paragraph",
+          "text": {
+            "en": "The first-trimester scan is a straightforward and safe ultrasound procedure. To get a clear view of the baby, you will likely be asked to come for the scan with a full bladder. This helps lift the uterus into a better position for scanning.",
+            "hi": "पहली तिमाही का स्कैन एक सीधी और सुरक्षित अल्ट्रासाउंड प्रक्रिया है। बच्चे का स्पष्ट दृश्य प्राप्त करने के लिए, आपको संभवतः भरे हुए मूत्राशय के साथ स्कैन के लिए आने के लिए कहा जाएगा। यह गर्भाशय को स्कैनिंग के लिए बेहतर स्थिति में उठाने में मदद करता है।",
+            "te": "మొదటి త్రైమాసికం స్కాన్ ఒక సూటి మరియు సురక్షితమైన అల్ట్రాసౌండ్ ప్రక్రియ. శిశువు యొక్క స్పష్టమైన వీక్షణను పొందడానికి, మీరు నిండిన మూత్రాశయంతో స్కాన్ కోసం రమ్మని అడగబడతారు. ఇది గర్భాశయాన్ని స్కానింగ్ కోసం మెరుగైన స్థితికి తీసుకురావడానికి సహాయపడుతుంది."
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": {
+            "en": "The scan is usually performed transabdominally. The sonographer will apply a clear gel to your lower abdomen and move a small probe (transducer) over your skin. This probe sends sound waves that create an image of your baby on a screen. The entire procedure is painless and typically lasts between 20 to 30 minutes. In some cases, if a clearer image is needed, a transvaginal scan (where a slim probe is gently inserted into the vagina) might be offered, but this is less common.",
+            "hi": "स्कैन आमतौर पर ट्रांसएब्डोमिनली (पेट के ऊपर से) किया जाता है। सोनोग्राफर आपके निचले पेट पर एक स्पष्ट जेल लगाएगा और आपकी त्वचा पर एक छोटा प्रोब (ट्रांसड्यूसर) घुमाएगा। यह प्रोब ध्वनि तरंगें भेजता है जो स्क्रीन पर आपके बच्चे की एक छवि बनाती है। पूरी प्रक्रिया दर्द रहित होती है और आमतौर पर 20 से 30 मिनट तक चलती है। कुछ मामलों में, यदि एक स्पष्ट छवि की आवश्यकता होती है, तो एक ट्रांसवेजिनल स्कैन (जहां एक पतला प्रोब धीरे से योनि में डाला जाता है) की पेशकश की जा सकती है, लेकिन यह कम आम है।",
+            "te": "స్కాన్ సాధారణంగా ట్రాన్స్‌అబ్డామినల్‌గా (పొట్టపై నుండి) నిర్వహిస్తారు. సోనోగ్రాఫర్ మీ పొత్తికడుపుపై ఒక స్పష్టమైన జెల్‌ను పూసి, మీ చర్మంపై ఒక చిన్న ప్రోబ్ (ట్రాన్స్‌డ్యూసర్)ను కదిలిస్తారు. ఈ ప్రోబ్ ధ్వని తరంగాలను పంపుతుంది, ఇవి మీ శిశువు యొక్క చిత్రాన్ని తెరపై సృష్టిస్తాయి. మొత్తం ప్రక్రియ నొప్పిలేకుండా ఉంటుంది మరియు సాధారణంగా 20 నుండి 30 నిమిషాల వరకు ఉంటుంది. కొన్ని సందర్భాల్లో, స్పష్టమైన చిత్రం అవసరమైతే, ఒక ట్రాన్స్‌వాజినల్ స్కాన్ (ఇక్కడ ఒక సన్నని ప్రోబ్ సున్నితంగా యోనిలోకి చొప్పించబడుతుంది) అందించవచ్చు, కానీ ఇది తక్కువ సాధారణం."
+          }
+        }
+      ]
+    },
+    {
+      "id": "results",
+      "title": {
+        "en": "Understanding the Results",
+        "hi": "परिणामों को समझना",
+        "te": "ఫలితాలను అర్థం చేసుకోవడం"
+      },
+      "content": [
+        {
+          "type": "paragraph",
+          "text": {
+            "en": "It’s very important to remember that this scan is a 'screening' test, not a 'diagnostic' test. A screening test assesses the level of risk or chance of a condition being present. It does not provide a definitive 'yes' or 'no' answer.",
+            "hi": "यह याद रखना बहुत महत्वपूर्ण है कि यह स्कैन एक 'स्क्रीनिंग' परीक्षण है, 'निदान' परीक्षण नहीं। एक स्क्रीनिंग परीक्षण किसी स्थिति के मौजूद होने के जोखिम या संभावना के स्तर का आकलन करता है। यह एक निश्चित 'हाँ' या 'नहीं' उत्तर प्रदान नहीं करता है।",
+            "te": "ఈ స్కాన్ ఒక 'స్క్రీనింగ్' పరీక్ష అని గుర్తుంచుకోవడం చాలా ముఖ్యం, 'రోగనిర్ధారణ' పరీక్ష కాదు. ఒక స్క్రీనింగ్ పరీక్ష ఒక పరిస్థితి యొక్క ప్రమాదం లేదా అవకాశం యొక్క స్థాయిని అంచనా వేస్తుంది. ఇది ఖచ్చితమైన 'అవును' లేదా 'కాదు' అనే సమాధానాన్ని అందించదు."
+          }
+        },
+        {
+          "type": "subheading",
+          "text": {
+            "en": "What the Results Look Like:",
+            "hi": "परिणाम कैसे दिखते हैं:",
+            "te": "ఫలితాలు ఎలా ఉంటాయి:"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": {
+            "en": "The results of the combined screening (NT scan + Double Marker blood test) are given as a risk ratio, for example, '1 in 1500'.",
+            "hi": "संयुक्त स्क्रीनिंग (एनटी स्कैन + डबल मार्कर रक्त परीक्षण) के परिणाम एक जोखिम अनुपात के रूप में दिए जाते हैं, उदाहरण के लिए, '1500 में 1'।",
+            "te": "సంయుక్త స్క్రీనింగ్ (NT స్కాన్ + డబుల్ మార్కర్ రక్త పరీక్ష) యొక్క ఫలితాలు ఒక ప్రమాద నిష్పత్తిగా ఇవ్వబడతాయి, ఉదాహరణకు, '1500లో 1'."
+          }
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "en": "Low Risk / Screen Negative: A result like '1 in 1500' means that for every 1500 women with this result, one will have a baby with the condition. This is considered a low chance, and no further testing is usually recommended.",
+              "hi": "कम जोखिम / स्क्रीन नेगेटिव: '1500 में 1' जैसा परिणाम का मतलब है कि इस परिणाम वाली हर 1500 महिलाओं में से एक के बच्चे को यह स्थिति होगी। इसे कम संभावना माना जाता है, और आमतौर पर आगे कोई परीक्षण की सिफारिश नहीं की जाती है।",
+              "te": "తక్కువ ప్రమాదం / స్క్రీన్ నెగటివ్: '1500లో 1' వంటి ఫలితం అంటే ఈ ఫలితం ఉన్న ప్రతి 1500 మంది మహిళలలో ఒకరికి ఆ పరిస్థితి ఉన్న శిశువు ఉంటుంది. ఇది తక్కువ అవకాశంగా పరిగణించబడుతుంది మరియు సాధారణంగా తదుపరి పరీక్ష సిఫార్సు చేయబడదు."
+            },
+            {
+              "en": "High Risk / Screen Positive: A result like '1 in 100' is considered high risk or an increased chance. It is crucial to understand this DOES NOT mean your baby has the condition. It means the chance is higher than the cutoff, and you will be offered further, more definitive diagnostic tests.",
+              "hi": "उच्च जोखिम / स्क्रीन पॉजिटिव: '100 में 1' जैसा परिणाम उच्च जोखिम या बढ़ी हुई संभावना माना जाता है। यह समझना महत्वपूर्ण है कि इसका मतलब यह नहीं है कि आपके बच्चे को यह स्थिति है। इसका मतलब है कि संभावना कटऑफ से अधिक है, और आपको आगे, अधिक निश्चित निदान परीक्षणों की पेशकश की जाएगी।",
+              "te": "అధిక ప్రమాదం / స్క్రీన్ పాజిటివ్: '100లో 1' వంటి ఫలితం అధిక ప్రమాదం లేదా పెరిగిన అవకాశంగా పరిగణించబడుతుంది. దీని అర్థం మీ శిశువుకు ఆ పరిస్థితి ఉందని కాదు అని అర్థం చేసుకోవడం చాలా ముఖ్యం. దీని అర్థం అవకాశం కట్ఆఫ్ కంటే ఎక్కువగా ఉంది మరియు మీకు తదుపరి, మరింత ఖచ్చితమైన రోగనిర్ధారణ పరీక్షలు అందించబడతాయి."
+            }
+          ]
+        },
+        {
+          "type": "subheading",
+          "text": {
+            "en": "Next Steps After a High-Risk Result",
+            "hi": "उच्च जोखिम वाले परिणाम के बाद अगले कदम",
+            "te": "అధిక-ప్రమాద ఫలితం తర్వాత తదుపరి దశలు"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": {
+            "en": "If your screening result comes back as high risk, your doctor will discuss options for diagnostic testing, which can provide a definitive answer. These include Non-Invasive Prenatal Testing (NIPT), which is a more advanced blood screening test, or invasive tests like Chorionic Villus Sampling (CVS) or Amniocentesis. It is your choice whether to proceed with further testing, and your doctor will provide counseling to help you decide.",
+            "hi": "यदि आपका स्क्रीनिंग परिणाम उच्च जोखिम वाला आता है, तो आपका डॉक्टर नैदानिक परीक्षण के विकल्पों पर चर्चा करेगा, जो एक निश्चित उत्तर प्रदान कर सकते हैं। इनमें नॉन-इनवेसिव प्रीनेटल टेस्टिंग (एनआईपीटी), जो एक अधिक उन्नत रक्त स्क्रीनिंग परीक्षण है, या कोरियोनिक विलस सैंपलिंग (सीवीएस) या एम्नियोसेंटेसिस जैसे आक्रामक परीक्षण शामिल हैं। आगे के परीक्षण के साथ आगे बढ़ना आपकी पसंद है, और आपका डॉक्टर आपको निर्णय लेने में मदद करने के लिए परामर्श प्रदान करेगा।",
+            "te": "మీ స్క్రీనింగ్ ఫలితం అధిక ప్రమాదంగా వస్తే, మీ డాక్టర్ రోగనిర్ధారణ పరీక్షల కోసం ఎంపికలను చర్చిస్తారు, ఇవి ఖచ్చితమైన సమాధానాన్ని అందిస్తాయి. వీటిలో నాన్-ఇన్వాసివ్ ప్రినేటల్ టెస్టింగ్ (NIPT), ఇది మరింత అధునాతన రక్త స్క్రీనింగ్ పరీక్ష, లేదా కోరియోనిక్ విల్లస్ శాంప్లింగ్ (CVS) లేదా అమ్నియోసెంటెసిస్ వంటి ఇన్వాసివ్ పరీక్షలు ఉన్నాయి. తదుపరి పరీక్షలతో ముందుకు సాగడం మీ ఇష్టం, మరియు మీ డాక్టర్ మీకు నిర్ణయం తీసుకోవడంలో సహాయపడటానికి కౌన్సెలింగ్ అందిస్తారు."
+          }
+        }
+      ]
+    }
+  ],
+  "disclaimer": {
+    "en": "This article is for informational purposes only and does not constitute medical advice. Please consult with a qualified healthcare professional for any health concerns or before making any decisions related to your health or treatment.",
+    "hi": "यह लेख केवल सूचना के उद्देश्यों के लिए है और चिकित्सा सलाह का गठन नहीं करता है। कृपया किसी भी स्वास्थ्य संबंधी चिंता के लिए या अपने स्वास्थ्य या उपचार से संबंधित कोई भी निर्णय लेने से पहले एक योग्य स्वास्थ्य देखभाल पेशेवर से परामर्श करें।",
+    "te": "ఈ కథనం కేవలం సమాచార ప్రయోజనాల కోసం మాత్రమే మరియు వైద్య సలహా కాదు. దయచేసి ఏదైనా ఆరోగ్య సమస్యల కోసం లేదా మీ ఆరోగ్యం లేదా చికిత్సకు సంబంధించి ఏదైనా నిర్ణయాలు తీసుకునే ముందు అర్హత కలిగిన ఆరోగ్య సంరక్షణ నిపుణుడిని సంప్రదించండి."
+  }
+}

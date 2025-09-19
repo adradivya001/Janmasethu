@@ -1,0 +1,222 @@
+{
+  "slug": "embryo-grading-lay-guide",
+  "title": {
+    "en": "Embryo Grading — A Lay Guide",
+    "hi": "भ्रूण ग्रेडिंग — एक सरल गाइड",
+    "te": "పిండం గ్రేడింగ్ — ఒక సాధారణ గైడ్"
+  },
+  "overview": {
+    "en": "Understanding what embryo grades mean in simple terms and why they are just one part of the IVF journey.",
+    "hi": "सरल शब्दों में भ्रूण ग्रेड का क्या मतलब है और वे आईवीएफ यात्रा का सिर्फ एक हिस्सा क्यों हैं, यह समझना।",
+    "te": "సాధారణ మాటలలో పిండం గ్రేడ్‌ల అర్థం ఏమిటో మరియు అవి IVF ప్రయాణంలో కేవలం ఒక భాగం మాత్రమే ఎందుకో అర్థం చేసుకోవడం."
+  },
+  "metadata": {
+    "readTime": {
+      "en": "5 min read",
+      "hi": "5 मिनट में पढ़ें",
+      "te": "5 నిమిషాల పఠనం"
+    },
+    "reviewer": {
+      "en": "Reviewed by Meera N., MSc Embryology",
+      "hi": "मीरा एन., एमएससी एम्ब्रियोलॉजी द्वारा समीक्षित",
+      "te": "మీరా ఎన్., MSc ఎంబ్రియాలజీ ద్వారా సమీక్షించబడింది"
+    },
+    "sources": [
+      "ESHRE (European Society of Human Reproduction and Embryology)"
+    ]
+  },
+  "sections": [
+    {
+      "id": "introduction",
+      "title": {
+        "en": "",
+        "hi": "",
+        "te": ""
+      },
+      "content": [
+        {
+          "type": "paragraph",
+          "text": {
+            "en": "After an egg is fertilized in the IVF lab, it begins to divide and grow, becoming an embryo. Embryologists carefully monitor this growth and assign a 'grade' to each embryo. Think of it as a report card for the embryo's development in the lab. This grade helps your doctor and the embryologist choose the embryo with the highest potential for transfer, but it's important to remember it's not a perfect predictor of success.",
+            "hi": "आईवीएफ लैब में अंडे के निषेचित होने के बाद, वह विभाजित और विकसित होने लगता है, जिससे भ्रूण बनता है। भ्रूण विज्ञानी इस विकास की सावधानीपूर्वक निगरानी करते हैं और प्रत्येक भ्रूण को एक 'ग्रेड' देते हैं। इसे लैब में भ्रूण के विकास के लिए एक रिपोर्ट कार्ड की तरह समझें। यह ग्रेड आपके डॉक्टर और भ्रूण विज्ञानी को ट्रांसफर के लिए उच्चतम क्षमता वाले भ्रूण को चुनने में मदद करता है, लेकिन यह याद रखना महत्वपूर्ण है कि यह सफलता का सटीक भविष्यवक्ता नहीं है।",
+            "te": "IVF ప్రయోగశాలలో అండం ఫలదీకరణం చెందిన తర్వాత, అది విభజించి పెరగడం ప్రారంభించి, పిండంగా మారుతుంది. పిండోత్పత్తి శాస్త్రవేత్తలు ఈ పెరుగుదలను జాగ్రత్తగా పర్యవేక్షించి, ప్రతి పిండానికి ఒక 'గ్రేడ్' ఇస్తారు. దానిని ప్రయోగశాలలో పిండం యొక్క అభివృద్ధికి ఒక రిపోర్ట్ కార్డ్‌గా భావించండి. ఈ గ్రేడ్ మీ డాక్టర్ మరియు పిండోత్పత్తి శాస్త్రవేత్తకు బదిలీ కోసం అత్యధిక సామర్థ్యం ఉన్న పిండాన్ని ఎంచుకోవడంలో సహాయపడుతుంది, కానీ ఇది విజయాన్ని ఖచ్చితంగా అంచనా వేయదని గుర్తుంచుకోవడం ముఖ్యం."
+          }
+        }
+      ]
+    },
+    {
+      "id": "grading-system",
+      "title": {
+        "en": "The Grading System",
+        "hi": "ग्रेडिंग प्रणाली",
+        "te": "గ్రేడింగ్ వ్యవస్థ"
+      },
+      "content": [
+        {
+          "type": "paragraph",
+          "text": {
+            "en": "Embryos are typically graded at two key stages: Day 3 (Cleavage Stage) and Day 5 (Blastocyst Stage).",
+            "hi": "भ्रूणों को आम तौर पर दो प्रमुख चरणों में ग्रेड किया जाता है: दिन 3 (क्लिवेज स्टेज) और दिन 5 (ब्लास्टोसिस्ट स्टेज)।",
+            "te": "పిండాలను సాధారణంగా రెండు ముఖ్య దశలలో గ్రేడ్ చేస్తారు: 3వ రోజు (విచ్ఛిత్తి దశ) మరియు 5వ రోజు (బ్లాస్టోసిస్ట్ దశ)."
+          }
+        },
+        {
+          "type": "subheading",
+          "text": {
+            "en": "Day 3 Embryo Grading",
+            "hi": "दिन 3 भ्रूण ग्रेडिंग",
+            "te": "3వ రోజు పిండం గ్రేడింగ్"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": {
+            "en": "On Day 3, the embryologist looks at two main things:",
+            "hi": "तीसरे दिन, भ्रूण विज्ञानी दो मुख्य चीजों को देखते हैं:",
+            "te": "3వ రోజున, పిండోత్పత్తి శాస్త్రవేత్త రెండు ముఖ్యమైన విషయాలను చూస్తారు:"
+          }
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "en": "Number of Cells: A healthy embryo usually has between 6 to 8 cells at this stage.",
+              "hi": "कोशिकाओं की संख्या: इस स्तर पर एक स्वस्थ भ्रूण में आमतौर पर 6 से 8 कोशिकाएं होती हैं।",
+              "te": "కణాల సంఖ్య: ఈ దశలో ఒక ఆరోగ్యకరమైన పిండంలో సాధారణంగా 6 నుండి 8 కణాలు ఉంటాయి."
+            },
+            {
+              "en": "Appearance: They assess cell symmetry (are the cells evenly sized?) and 'fragmentation' (are there little bits that have broken off?). Less fragmentation is better. A Grade A or 1 embryo is considered top quality.",
+              "hi": "दिखावट: वे कोशिका समरूपता (क्या कोशिकाएं समान आकार की हैं?) और 'विखंडन' (क्या छोटे-छोटे टुकड़े टूट गए हैं?) का आकलन करते हैं। कम विखंडन बेहतर है। ग्रेड ए या 1 भ्रूण को उच्च गुणवत्ता वाला माना जाता है।",
+              "te": "స్వరూపం: వారు కణాల సౌష్టవాన్ని (కణాలు సమాన పరిమాణంలో ఉన్నాయా?) మరియు 'ఫ్రాగ్మెంటేషన్' (ఏవైనా చిన్న ముక్కలు విరిగిపోయాయా?) అంచనా వేస్తారు. తక్కువ ఫ్రాగ్మెంటేషన్ మంచిది. గ్రేడ్ A లేదా 1 పిండం అత్యుత్తమ నాణ్యతగా పరిగణించబడుతుంది."
+            }
+          ]
+        },
+        {
+          "type": "subheading",
+          "text": {
+            "en": "Day 5 Embryo (Blastocyst) Grading",
+            "hi": "दिन 5 भ्रूण (ब्लास्टोसिस्ट) ग्रेडिंग",
+            "te": "5వ రోజు పిండం (బ్లాస్టోసిస్ట్) గ్రేడింగ్"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": {
+            "en": "By Day 5, the embryo has developed into a blastocyst, which has a fluid-filled cavity and two cell types. It is graded on three components, resulting in a grade like '4AA' or '3BC'.",
+            "hi": "दिन 5 तक, भ्रूण एक ब्लास्टोसिस्ट में विकसित हो जाता है, जिसमें एक द्रव से भरी गुहा और दो प्रकार की कोशिकाएं होती हैं। इसे तीन घटकों पर ग्रेड किया जाता है, जिसके परिणामस्वरूप '4AA' या '3BC' जैसा ग्रेड होता है।",
+            "te": "5వ రోజు నాటికి, పిండం బ్లాస్టోసిస్ట్‌గా అభివృద్ధి చెందుతుంది, దీనిలో ద్రవంతో నిండిన కుహరం మరియు రెండు రకాల కణాలు ఉంటాయి. దీనిని మూడు భాగాలపై గ్రేడ్ చేస్తారు, ఫలితంగా '4AA' లేదా '3BC' వంటి గ్రేడ్ వస్తుంది."
+          }
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "en": "Expansion (the Number): This measures how expanded the fluid cavity is, from 1 (early) to 6 (fully hatched). Grades 3 and above are typically preferred for transfer.",
+              "hi": "विस्तार (संख्या): यह मापता है कि द्रव गुहा कितना विस्तारित है, 1 (प्रारंभिक) से 6 (पूरी तरह से हैच) तक। ट्रांसफर के लिए आमतौर पर 3 और उससे ऊपर के ग्रेड को प्राथमिकता दी जाती है।",
+              "te": "విస్తరణ (సంఖ్య): ఇది ద్రవ కుహరం ఎంత విస్తరించిందో కొలుస్తుంది, 1 (ప్రారంభ) నుండి 6 (పూర్తిగా పొదిగిన) వరకు. బదిలీ కోసం సాధారణంగా 3 మరియు అంతకంటే ఎక్కువ గ్రేడ్‌లకు ప్రాధాన్యత ఇవ్వబడుతుంది."
+            },
+            {
+              "en": "Inner Cell Mass (ICM) (the first Letter): This is the group of cells that will develop into the baby. It's graded A (best), B (good), or C (fair).",
+              "hi": "आंतरिक कोशिका द्रव्यमान (ICM) (पहला अक्षर): यह कोशिकाओं का समूह है जो बच्चे के रूप में विकसित होगा। इसे A (सर्वश्रेष्ठ), B (अच्छा), या C (औसत) में ग्रेड किया जाता है।",
+              "te": "లోపలి కణ ద్రవ్యరాశి (ICM) (మొదటి అక్షరం): ఇది శిశువుగా అభివృద్ధి చెందే కణాల సమూహం. దీనిని A (ఉత్తమమైనది), B (మంచిది), లేదా C (ఫర్వాలేదు)గా గ్రేడ్ చేస్తారు."
+            },
+            {
+              "en": "Trophectoderm (TE) (the second Letter): These are the cells that will form the placenta. They are also graded A, B, or C.",
+              "hi": "ट्रोफेक्टोडर्म (TE) (दूसरा अक्षर): ये वे कोशिकाएं हैं जो प्लेसेंटा बनाएंगी। उन्हें भी A, B, या C में ग्रेड किया जाता है।",
+              "te": "ట్రోఫెక్టోడెర్మ్ (TE) (రెండవ అక్షరం): ఇవి మావిని ఏర్పరిచే కణాలు. వాటిని కూడా A, B, లేదా Cగా గ్రేడ్ చేస్తారు."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "what-it-means",
+      "title": {
+        "en": "What the Grade Really Means",
+        "hi": "ग्रेड का वास्तव में क्या मतलब है",
+        "te": "గ్రేడ్ యొక్క నిజమైన అర్థం"
+      },
+      "content": [
+        {
+          "type": "paragraph",
+          "text": {
+            "en": "An embryo's grade is a beauty contest, not an IQ test. It's a 'snapshot' of how the embryo looks, not a definitive measure of its genetic health or potential.",
+            "hi": "भ्रूण का ग्रेड एक सौंदर्य प्रतियोगिता है, कोई आईक्यू टेस्ट नहीं। यह एक 'स्नैपशॉट' है कि भ्रूण कैसा दिखता है, न कि उसके आनुवंशिक स्वास्थ्य या क्षमता का निश्चित माप।",
+            "te": "పిండం యొక్క గ్రేడ్ ఒక అందాల పోటీ, ఐక్యూ పరీక్ష కాదు. ఇది పిండం ఎలా కనిపిస్తుందో తెలిపే ఒక 'స్నాప్‌షాట్', దాని జన్యు ఆరోగ్యం లేదా సామర్థ్యం యొక్క ఖచ్చితమైన కొలత కాదు."
+          }
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "en": "It's a Selection Tool: Grading helps embryologists select the embryo that appears to have the best chance of implanting. It helps prioritize which embryo to transfer first.",
+              "hi": "यह एक चयन उपकरण है: ग्रेडिंग भ्रूण विज्ञानियों को उस भ्रूण का चयन करने में मदद करती है जिसमें प्रत्यारोपण की सबसे अच्छी संभावना दिखाई देती है। यह प्राथमिकता देने में मदद करता है कि किस भ्रूण को पहले स्थानांतरित किया जाए।",
+              "te": "ఇది ఒక ఎంపిక సాధనం: గ్రేడింగ్ పిండోత్పత్తి శాస్త్రవేత్తలకు ఇంప్లాంట్ అయ్యే ఉత్తమ అవకాశం ఉన్న పిండాన్ని ఎంచుకోవడంలో సహాయపడుతుంది. ఏ పిండాన్ని మొదట బదిలీ చేయాలో ప్రాధాన్యత ఇవ్వడంలో ఇది సహాయపడుతుంది."
+            },
+            {
+              "en": "Grades are Not Guarantees: This is the most important takeaway. Beautiful, 'perfect' 4AA embryos can fail to implant, and 'fair' or 'average' graded embryos (like a 3BC) can and do result in perfectly healthy babies every day.",
+              "hi": "ग्रेड गारंटी नहीं हैं: यह सबसे महत्वपूर्ण बात है। सुंदर, 'परफेक्ट' 4AA भ्रूण प्रत्यारोपित होने में विफल हो सकते हैं, और 'औसत' या 'ठीक' ग्रेड वाले भ्रूण (जैसे 3BC) हर दिन पूरी तरह से स्वस्थ बच्चों को जन्म दे सकते हैं और देते हैं।",
+              "te": "గ్రేడ్‌లు గ్యారెంటీలు కావు: ఇది అత్యంత ముఖ్యమైన విషయం. అందమైన, 'పరిపూర్ణమైన' 4AA పిండాలు ఇంప్లాంట్ అవడంలో విఫలం కావచ్చు, మరియు 'ఫర్వాలేదు' లేదా 'సగటు' గ్రేడ్ ఉన్న పిండాలు (3BC వంటివి) ప్రతిరోజూ సంపూర్ణ ఆరోగ్యకరమైన శిశువులకు జన్మనిస్తాయి."
+            },
+            {
+              "en": "The Grade is NOT a Reflection of Your Future Child: An embryo's grade has absolutely no correlation with a child's health, appearance, or intelligence. It only reflects its early developmental appearance in the lab.",
+              "hi": "ग्रेड आपके भविष्य के बच्चे का प्रतिबिंब नहीं है: भ्रूण के ग्रेड का बच्चे के स्वास्थ्य, रूप-रंग या बुद्धिमत्ता से कोई संबंध नहीं है। यह केवल लैब में उसके शुरुआती विकासात्मक रूप को दर्शाता है।",
+              "te": "గ్రేడ్ మీ భవిష్యత్ శిశువు యొక్క ప్రతిబింబం కాదు: పిండం యొక్క గ్రేడ్‌కు శిశువు ఆరోగ్యం, స్వరూపం, లేదా తెలివితేటలతో ఎటువంటి సంబంధం లేదు. ఇది కేవలం ప్రయోగశాలలో దాని ప్రారంభ అభివృద్ధి రూపాన్ని మాత్రమే ప్రతిబింబిస్తుంది."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "success-factors",
+      "title": {
+        "en": "Success Factors Beyond the Grade",
+        "hi": "ग्रेड से परे सफलता के कारक",
+        "te": "గ్రేడ్ దాటి విజయ కారకాలు"
+      },
+      "content": [
+        {
+          "type": "paragraph",
+          "text": {
+            "en": "A successful pregnancy depends on many factors, with the embryo's visual grade being just one piece of the puzzle.",
+            "hi": "एक सफल गर्भावस्था कई कारकों पर निर्भर करती है, जिसमें भ्रूण का दृश्य ग्रेड पहेली का सिर्फ एक टुकड़ा है।",
+            "te": "విజయవంతమైన గర్భం అనేక కారకాలపై ఆధారపడి ఉంటుంది, పిండం యొక్క దృశ్య గ్రేడ్ పజిల్ యొక్క ఒక భాగం మాత్రమే."
+          }
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "en": "Genetic Health: The most critical factor is whether the embryo is chromosomally normal (euploid). This is strongly linked to maternal age and is something a visual grade cannot see.",
+              "hi": "आनुवंशिक स्वास्थ्य: सबसे महत्वपूर्ण कारक यह है कि क्या भ्रूण गुणसूत्र रूप से सामान्य (यूप्लॉइड) है। यह मातृ आयु से दृढ़ता से जुड़ा हुआ है और यह कुछ ऐसा है जिसे एक दृश्य ग्रेड नहीं देख सकता है।",
+              "te": "జన్యు ఆరోగ్యం: అత్యంత కీలకమైన అంశం పిండం క్రోమోజోమ్‌పరంగా సాధారణంగా (యూప్లాయిడ్) ఉందా లేదా అనేది. ఇది తల్లి వయస్సుతో బలంగా ముడిపడి ఉంది మరియు ఇది దృశ్య గ్రేడ్ చూడలేని విషయం."
+            },
+            {
+              "en": "Uterine Receptivity: A healthy embryo needs a healthy and receptive uterine lining (endometrium) to implant and grow.",
+              "hi": "गर्भाशय की ग्रहणशीलता: एक स्वस्थ भ्रूण को प्रत्यारोपित होने और बढ़ने के लिए एक स्वस्थ और ग्रहणशील गर्भाशय परत (एंडोमेट्रियम) की आवश्यकता होती है।",
+              "te": "గర్భాశయ స్వీకరణ: ఒక ఆరోగ్యకరమైన పిండం ఇంప్లాంట్ అవ్వడానికి మరియు పెరగడానికి ఒక ఆరోగ్యకరమైన మరియు స్వీకరించే గర్భాశయ పొర (ఎండోమెట్రియం) అవసరం."
+            },
+            {
+              "en": "The Transfer Procedure: The skill of the doctor performing the embryo transfer also plays a role.",
+              "hi": "ट्रांसफर प्रक्रिया: भ्रूण ट्रांसफर करने वाले डॉक्टर का कौशल भी एक भूमिका निभाता है।",
+              "te": "బదిలీ ప్రక్రియ: పిండం బదిలీ చేసే డాక్టర్ యొక్క నైపుణ్యం కూడా ఒక పాత్ర పోషిస్తుంది."
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": {
+            "en": "Always discuss your embryo grades with your fertility doctor. They can provide a complete picture by considering all aspects of your cycle and health.",
+            "hi": "अपने भ्रूण के ग्रेड के बारे में हमेशा अपने फर्टिलिटी डॉक्टर से चर्चा करें। वे आपके चक्र और स्वास्थ्य के सभी पहलुओं पर विचार करके एक पूरी तस्वीर प्रदान कर सकते हैं।",
+            "te": "మీ పిండం గ్రేడ్‌ల గురించి ఎల్లప్పుడూ మీ ఫెర్టిలిటీ డాక్టర్‌తో చర్చించండి. వారు మీ చక్రం మరియు ఆరోగ్యం యొక్క అన్ని అంశాలను పరిగణనలోకి తీసుకుని పూర్తి చిత్రాన్ని అందించగలరు."
+          }
+        }
+      ]
+    }
+  ],
+  "disclaimer": {
+    "en": "This guide simplifies a complex topic for informational purposes and is not a substitute for a direct consultation with your embryologist and fertility specialist. Individual clinic grading systems may vary.",
+    "hi": "यह गाइड सूचना के उद्देश्यों के लिए एक जटिल विषय को सरल बनाती है और यह आपके भ्रूण विज्ञानी और फर्टिलिटी विशेषज्ञ के साथ सीधे परामर्श का विकल्प नहीं है। व्यक्तिगत क्लिनिक ग्रेडिंग सिस्टम भिन्न हो सकते हैं।",
+    "te": "ఈ గైడ్ సమాచార ప్రయోజనాల కోసం ఒక సంక్లిష్టమైన అంశాన్ని సులభతరం చేస్తుంది మరియు ఇది మీ పిండోత్పత్తి శాస్త్రవేత్త మరియు ఫెర్టిలిటీ నిపుణుడితో ప్రత్యక్ష సంప్రదింపులకు ప్రత్యామ్నాయం కాదు. వ్యక్తిగత క్లినిక్ గ్రేడింగ్ వ్యవస్థలు మారవచ్చు."
+  }
+}

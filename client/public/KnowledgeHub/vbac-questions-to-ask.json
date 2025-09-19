@@ -1,0 +1,236 @@
+{
+  "slug": "vbac-questions-to-ask",
+  "title": {
+    "en": "VBAC: Questions to Ask",
+    "hi": "वीबीएसी (VBAC): पूछने योग्य प्रश्न",
+    "te": "VBAC: అడగవలసిన ప్రశ్నలు"
+  },
+  "overview": {
+    "en": "A guide to balancing the benefits and risks of Vaginal Birth After Caesarean and making an informed choice.",
+    "hi": "सिजेरियन के बाद योनि प्रसव के लाभों और जोखिमों को संतुलित करने और एक सूचित विकल्प बनाने के लिए एक गाइड।",
+    "te": "సిజేరియన్ తర్వాత యోని ద్వారా ప్రసవం యొక్క ప్రయోజనాలు మరియు నష్టాలను సమతుల్యం చేయడానికి మరియు సమాచారంతో కూడిన ఎంపిక చేసుకోవడానికి ఒక గైడ్."
+  },
+  "metadata": {
+    "readTime": {
+      "en": "5 min read",
+      "hi": "5 मिनट में पढ़ें",
+      "te": "5 నిమిషాల పఠనం"
+    },
+    "reviewer": {
+      "en": "Reviewed by Dr. Ananya Sharma",
+      "hi": "डॉ. अनन्या शर्मा द्वारा समीक्षित",
+      "te": "డాక్టర్ అనన్య శర్మ ద్వారా సమీక్షించబడింది"
+    },
+    "sources": [
+      "NICE (National Institute for Health and Care Excellence, UK)"
+    ]
+  },
+  "sections": [
+    {
+      "id": "introduction",
+      "title": {
+        "en": "",
+        "hi": "",
+        "te": ""
+      },
+      "content": [
+        {
+          "type": "paragraph",
+          "text": {
+            "en": "If you've had a Caesarean section (C-section) before, you might be wondering about your options for your next delivery. A Vaginal Birth After Caesarean (VBAC) is an option for many women. The decision between attempting a VBAC and scheduling a repeat C-section is a personal one, made by balancing the potential benefits and risks in close consultation with your doctor. This guide will help you prepare for that conversation.",
+            "hi": "यदि आपका पहले सिजेरियन सेक्शन (सी-सेक्शन) हो चुका है, तो आप अपनी अगली डिलीवरी के विकल्पों के बारे में सोच रही होंगी। सिजेरियन के बाद योनि प्रसव (VBAC) कई महिलाओं के लिए एक विकल्प है। वीबीएसी का प्रयास करने और दोबारा सी-सेक्शन शेड्यूल करने के बीच का निर्णय एक व्यक्तिगत निर्णय है, जो आपके डॉक्टर के साथ गहन परामर्श में संभावित लाभों और जोखिमों को संतुलित करके किया जाता है। यह गाइड आपको उस बातचीत के लिए तैयार करने में मदद करेगी।",
+            "te": "మీరు ఇంతకు ముందు సిజేరియన్ సెక్షన్ (సి-సెక్షన్) చేయించుకుని ఉంటే, మీ తదుపరి ప్రసవానికి మీ ఎంపికల గురించి మీరు ఆలోచిస్తూ ఉండవచ్చు. సిజేరియన్ తర్వాత యోని ద్వారా ప్రసవం (VBAC) చాలా మంది మహిళలకు ఒక ఎంపిక. VBAC ప్రయత్నించడానికి మరియు పునరావృత సి-సెక్షన్‌ను షెడ్యూల్ చేయడానికి మధ్య నిర్ణయం ఒక వ్యక్తిగతమైనది, ఇది మీ వైద్యునితో సన్నిహిత సంప్రదింపులలో సంభావ్య ప్రయోజనాలు మరియు నష్టాలను సమతుల్యం చేయడం ద్వారా తీసుకోబడుతుంది. ఈ గైడ్ ఆ సంభాషణకు మిమ్మల్ని సిద్ధం చేయడంలో సహాయపడుతుంది."
+          }
+        }
+      ]
+    },
+    {
+      "id": "vbac-basics",
+      "title": {
+        "en": "VBAC Basics",
+        "hi": "वीबीएसी की मूल बातें",
+        "te": "VBAC ప్రాథమిక అంశాలు"
+      },
+      "content": [
+        {
+          "type": "subheading",
+          "text": {
+            "en": "Benefits of a Successful VBAC",
+            "hi": "एक सफल वीबीएसी के लाभ",
+            "te": "విజయవంతమైన VBAC యొక్క ప్రయోజనాలు"
+          }
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "en": "Avoids major abdominal surgery and its associated risks (like infection or blood loss).",
+              "hi": "बड़ी पेट की सर्जरी और उससे जुड़े जोखिमों (जैसे संक्रमण या रक्त हानि) से बचा जा सकता है।",
+              "te": "పెద్ద పొత్తికడుపు శస్త్రచికిత్స మరియు దానితో సంబంధం ఉన్న నష్టాలను (ఇన్ఫెక్షన్ లేదా రక్త నష్టం వంటివి) నివారిస్తుంది."
+            },
+            {
+              "en": "Shorter recovery time and a shorter hospital stay compared to a C-section.",
+              "hi": "सी-सेक्शन की तुलना में ठीक होने में कम समय और अस्पताल में कम समय तक रहना।",
+              "te": "సి-సెక్షన్‌తో పోలిస్తే తక్కువ రికవరీ సమయం మరియు తక్కువ ఆసుపత్రిలో ఉండటం."
+            },
+            {
+              "en": "Lower risk of complications in future pregnancies that can arise from multiple C-section scars.",
+              "hi": "भविष्य की गर्भधारण में जटिलताओं का कम जोखिम जो कई सी-सेक्शन के निशानों से उत्पन्न हो सकती हैं।",
+              "te": "భవిష్యత్ గర్భాలలో బహుళ సి-సెక్షన్ మచ్చల నుండి ఉత్పన్నమయ్యే సమస్యల యొక్క తక్కువ ప్రమాదం."
+            }
+          ]
+        },
+        {
+          "type": "subheading",
+          "text": {
+            "en": "Risks of Attempting a VBAC",
+            "hi": "वीबीएसी का प्रयास करने के जोखिम",
+            "te": "VBAC ప్రయత్నించడం వల్ల కలిగే నష్టాలు"
+          }
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "en": "Uterine Rupture: This is the main risk. It's a rare (about 1 in 200 cases) but serious event where the scar from the previous C-section tears open. It requires an immediate emergency C-section.",
+              "hi": "गर्भाशय का फटना: यह मुख्य जोखिम है। यह एक दुर्लभ (लगभग 200 मामलों में 1) लेकिन गंभीर घटना है जिसमें पिछले सी-सेक्शन का निशान फट जाता है। इसके लिए तत्काल आपातकालीन सी-सेक्शन की आवश्यकता होती है।",
+              "te": "గర్భాశయం పగలడం: ఇది ప్రధాన ప్రమాదం. ఇది ఒక అరుదైన (సుమారు 200 కేసులలో 1) కానీ తీవ్రమైన సంఘటన, ఇందులో గత సి-సెక్షన్ యొక్క మచ్చ చిరిగిపోతుంది. దీనికి తక్షణ అత్యవసర సి-సెక్షన్ అవసరం."
+            },
+            {
+              "en": "Emergency C-section: The VBAC attempt may not be successful, leading to an unplanned C-section during labour. An emergency C-section carries slightly more risk than a planned one.",
+              "hi": "आपातकालीन सी-सेक्शन: वीबीएसी का प्रयास सफल नहीं हो सकता है, जिससे प्रसव के दौरान एक अनियोजित सी-सेक्शन हो सकता है। एक आपातकालीन सी-सेक्शन में एक नियोजित सी-सेक्शन की तुलना में थोड़ा अधिक जोखिम होता है।",
+              "te": "అత్యవసర సి-సెక్షన్: VBAC ప్రయత్నం విజయవంతం కాకపోవచ్చు, ఇది ప్రసవ సమయంలో ఒక ప్రణాళిక లేని సి-సెక్షన్‌కు దారితీస్తుంది. ఒక అత్యవసర సి-సెక్షన్ ఒక ప్రణాళికాబద్ధమైన దాని కంటే కొంచెం ఎక్కువ ప్రమాదాన్ని కలిగి ఉంటుంది."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "risk-assessment",
+      "title": {
+        "en": "Risk Assessment: Are You a Good Candidate?",
+        "hi": "जोखिम मूल्यांकन: क्या आप एक अच्छी उम्मीदवार हैं?",
+        "te": "ప్రమాద అంచనా: మీరు మంచి అభ్యర్థినా?"
+      },
+      "content": [
+        {
+          "type": "paragraph",
+          "text": {
+            "en": "Your doctor will assess several factors to determine if VBAC is a safe option for you. The success rate for a planned VBAC is high, around 75%.",
+            "hi": "आपका डॉक्टर यह निर्धारित करने के लिए कई कारकों का आकलन करेगा कि क्या वीबीएसी आपके लिए एक सुरक्षित विकल्प है। एक नियोजित वीबीएसी के लिए सफलता दर उच्च है, लगभग 75%।",
+            "te": "VBAC మీకు సురక్షితమైన ఎంపిక కాదా అని నిర్ధారించడానికి మీ డాక్టర్ అనేక అంశాలను అంచనా వేస్తారు. ఒక ప్రణాళికాబద్ధమైన VBAC యొక్క విజయ రేటు ఎక్కువగా ఉంటుంది, సుమారు 75%."
+          }
+        },
+        {
+          "type": "subheading",
+          "text": {
+            "en": "Factors that favour a successful VBAC:",
+            "hi": "एक सफल वीबीएसी के पक्ष में कारक:",
+            "te": "విజయవంతమైన VBACకు అనుకూలించే కారకాలు:"
+          }
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "en": "Only one previous C-section with a low-transverse ('bikini line') scar.",
+              "hi": "केवल एक पिछला सी-सेक्शन जिसमें कम-अनुप्रस्थ ('बिकनी लाइन') निशान हो।",
+              "te": "కేవలం ఒక గత సి-సెక్షన్, తక్కువ-అడ్డంగా ('బికినీ లైన్') మచ్చతో."
+            },
+            {
+              "en": "The reason for your first C-section is not present this time (e.g., a breech baby).",
+              "hi": "आपके पहले सी-सेक्शन का कारण इस बार मौजूद नहीं है (जैसे, ब्रीच बेबी)।",
+              "te": "మీ మొదటి సి-సెక్షన్‌కు కారణం ఈసారి లేదు (ఉదా., బ్రీచ్ బేబీ)."
+            },
+            {
+              "en": "You have previously had a successful vaginal delivery.",
+              "hi": "आपका पहले एक सफल योनि प्रसव हो चुका है।",
+              "te": "మీరు గతంలో ఒక విజయవంతమైన యోని ప్రసవం కలిగి ఉన్నారు."
+            }
+          ]
+        },
+        {
+          "type": "subheading",
+          "text": {
+            "en": "Factors that make VBAC less advisable:",
+            "hi": "वीबीएसी को कम सलाह योग्य बनाने वाले कारक:",
+            "te": "VBACను తక్కువ సలహా ఇవ్వదగినవిగా చేసే కారకాలు:"
+          }
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "en": "A high vertical ('classical') uterine scar.",
+              "hi": "एक उच्च ऊर्ध्वाधर ('शास्त्रीय') गर्भाशय का निशान।",
+              "te": "ఒక ఎత్తైన నిలువు ('శాస్త్రీయ') గర్భాశయ మచ్చ."
+            },
+            {
+              "en": "Previous uterine rupture or other major uterine surgery.",
+              "hi": "पिछला गर्भाशय का फटना या अन्य बड़ी गर्भाशय की सर्जरी।",
+              "te": "గతంలో గర్భాశయం పగలడం లేదా ఇతర పెద్ద గర్భాశయ శస్త్రచికిత్స."
+            },
+            {
+              "en": "Medical conditions that make vaginal delivery unsafe, like placenta previa.",
+              "hi": "चिकित्सीय स्थितियाँ जो योनि प्रसव को असुरक्षित बनाती हैं, जैसे कि प्लेसेंटा प्रिविया।",
+              "te": "ప్లాసెంటా ప్రివియా వంటి యోని ప్రసవాన్ని అసురక్షితంగా చేసే వైద్య పరిస్థితులు."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "decision-making",
+      "title": {
+        "en": "Decision Making: Questions to Ask Your Doctor",
+        "hi": "निर्णय लेना: अपने डॉक्टर से पूछने के लिए प्रश्न",
+        "te": "నిర్ణయం తీసుకోవడం: మీ వైద్యుడిని అడగవలసిన ప్రశ్నలు"
+      },
+      "content": [
+        {
+          "type": "paragraph",
+          "text": {
+            "en": "This is a shared decision. Go to your appointment prepared with these questions to help you make the best choice for you and your baby.",
+            "hi": "यह एक साझा निर्णय है। अपनी नियुक्ति पर इन सवालों के साथ तैयार होकर जाएं ताकि आप अपने और अपने बच्चे के लिए सबसे अच्छा विकल्प चुन सकें।",
+            "te": "ఇది ఒక భాగస్వామ్య నిర్ణయం. మీరు మరియు మీ శిశువు కోసం ఉత్తమ ఎంపిక చేసుకోవడంలో మీకు సహాయపడటానికి ఈ ప్రశ్నలతో మీ అపాయింట్‌మెంట్‌కు సిద్ధంగా వెళ్ళండి."
+          }
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "en": "Based on my medical history, what is my individual chance of a successful VBAC?",
+              "hi": "मेरे चिकित्सा इतिहास के आधार पर, एक सफल वीबीएसी की मेरी व्यक्तिगत संभावना क्या है?",
+              "te": "నా వైద్య చరిత్ర ఆధారంగా, ఒక విజయవంతమైన VBAC యొక్క నా వ్యక్తిగత అవకాశం ఏమిటి?"
+            },
+            {
+              "en": "What type of uterine incision did I have with my last C-section?",
+              "hi": "मेरे पिछले सी-सेक्शन में मेरे गर्भाशय का चीरा किस प्रकार का था?",
+              "te": "నా గత సి-సెక్షన్‌లో నాకు ఏ రకమైన గర్భాశయ కోత ఉంది?"
+            },
+            {
+              "en": "What are the VBAC policies at this hospital? Is there staff available 24/7 for an emergency C-section if needed?",
+              "hi": "इस अस्पताल में वीबीएसी की नीतियां क्या हैं? यदि आवश्यक हो तो क्या आपातकालीन सी-सेक्शन के लिए 24/7 कर्मचारी उपलब्ध हैं?",
+              "te": "ఈ ఆసుపత్రిలో VBAC విధానాలు ఏమిటి? అవసరమైతే అత్యవసర సి-సెక్షన్ కోసం 24/7 సిబ్బంది అందుబాటులో ఉన్నారా?"
+            },
+            {
+              "en": "How will my labour be monitored during a VBAC attempt?",
+              "hi": "वीबीएसी के प्रयास के दौरान मेरे प्रसव की निगरानी कैसे की जाएगी?",
+              "te": "ఒక VBAC ప్రయత్నం సమయంలో నా ప్రసవం ఎలా పర్యవేక్షించబడుతుంది?"
+            },
+            {
+              "en": "What are my options if I go past my due date?",
+              "hi": "यदि मैं अपनी नियत तारीख से आगे निकल जाती हूं तो मेरे पास क्या विकल्प हैं?",
+              "te": "నేను నా గడువు తేదీని దాటితే నా వద్ద ఉన్న ఎంపికలు ఏమిటి?"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "disclaimer": {
+    "en": "This information is for educational purposes and is not a substitute for professional medical advice. The decision to attempt a VBAC is complex and should be made in close consultation with your obstetrician.",
+    "hi": "यह जानकारी शैक्षिक उद्देश्यों के लिए है और पेशेवर चिकित्सा सलाह का विकल्प नहीं है। वीबीएसी का प्रयास करने का निर्णय जटिल है और इसे आपके प्रसूति विशेषज्ञ के साथ गहन परामर्श में किया जाना चाहिए।",
+    "te": "ఈ సమాచారం విద్యా ప్రయోజనాల కోసం మరియు వృత్తిపరమైన వైద్య సలహాకు ప్రత్యామ్నాయం కాదు. VBAC ప్రయత్నించాలనే నిర్ణయం సంక్లిష్టమైనది మరియు మీ ప్రసూతి వైద్యునితో సన్నిహిత సంప్రదింపుల ద్వారా తీసుకోవాలి."
+  }
+}

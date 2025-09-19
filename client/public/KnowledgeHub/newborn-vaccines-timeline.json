@@ -1,0 +1,182 @@
+{
+  "slug": "newborn-vaccines-timeline",
+  "title": {
+    "en": "Newborn Vaccines Timeline",
+    "hi": "नवजात शिशु के टीकों की समयरेखा",
+    "te": "నవజాత శిశువు టీకాల కాలక్రమం"
+  },
+  "overview": {
+    "en": "A guide to the essential vaccines your baby needs from birth to 6 weeks, as per the National Immunization Schedule of India.",
+    "hi": "भारत के राष्ट्रीय टीकाकरण कार्यक्रम के अनुसार, आपके बच्चे को जन्म से 6 सप्ताह तक आवश्यक टीकों के लिए एक गाइड।",
+    "te": "భారత జాతీయ రోగనిరోధకత షెడ్యూల్ ప్రకారం, మీ శిశువుకు పుట్టినప్పటి నుండి 6 వారాల వరకు అవసరమైన టీకాలకు ఒక గైడ్."
+  },
+  "metadata": {
+    "readTime": {
+      "en": "4 min read",
+      "hi": "4 मिनट में पढ़ें",
+      "te": "4 నిమిషాల పఠనం"
+    },
+    "reviewer": {
+      "en": "Reviewed by Dr. Ananya Sharma",
+      "hi": "डॉ. अनन्या शर्मा द्वारा समीक्षित",
+      "te": "డాక్టర్ అనన్య శర్మ ద్వారా సమీక్షించబడింది"
+    },
+    "sources": [
+      "MoHFW (Ministry of Health and Family Welfare, Govt. of India)"
+    ]
+  },
+  "sections": [
+    {
+      "id": "introduction",
+      "title": {
+        "en": "",
+        "hi": "",
+        "te": ""
+      },
+      "content": [
+        {
+          "type": "paragraph",
+          "text": {
+            "en": "Vaccination is the simplest and most effective way to protect your child from serious and life-threatening diseases. Following the immunization schedule is one of the most important things you can do for your baby's health. In India, these crucial vaccines are provided free of cost at government health facilities.",
+            "hi": "टीकाकरण आपके बच्चे को गंभीर और जानलेवा बीमारियों से बचाने का सबसे सरल और सबसे प्रभावी तरीका है। टीकाकरण सारणी का पालन करना आपके बच्चे के स्वास्थ्य के लिए सबसे महत्वपूर्ण चीजों में से एक है। भारत में, ये महत्वपूर्ण टीके सरकारी स्वास्थ्य सुविधाओं पर निःशुल्क प्रदान किए जाते हैं।",
+            "te": "మీ బిడ్డను తీవ్రమైన మరియు ప్రాణాంతక వ్యాధుల నుండి రక్షించడానికి టీకా అనేది సరళమైన మరియు అత్యంత ప్రభావవంతమైన మార్గం. రోగనిరోధకత షెడ్యూల్‌ను అనుసరించడం మీ శిశువు ఆరోగ్యం కోసం మీరు చేయగల అత్యంత ముఖ్యమైన పనులలో ఒకటి. భారతదేశంలో, ఈ కీలకమైన టీకాలు ప్రభుత్వ ఆరోగ్య సౌకర్యాల వద్ద ఉచితంగా అందించబడతాయి."
+          }
+        }
+      ]
+    },
+    {
+      "id": "birth-vaccines",
+      "title": {
+        "en": "Birth Vaccines",
+        "hi": "जन्म के समय के टीके",
+        "te": "పుట్టుకతో వేసే టీకాలు"
+      },
+      "content": [
+        {
+          "type": "paragraph",
+          "text": {
+            "en": "These three vaccines are given to your baby soon after birth, usually before you are discharged from the hospital.",
+            "hi": "ये तीन टीके आपके बच्चे को जन्म के तुरंत बाद दिए जाते हैं, आमतौर पर अस्पताल से छुट्टी मिलने से पहले।",
+            "te": "ఈ మూడు టీకాలు మీ శిశువుకు పుట్టిన వెంటనే, సాధారణంగా మీరు ఆసుపత్రి నుండి డిశ్చార్జ్ అయ్యే ముందు ఇవ్వబడతాయి."
+          }
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "en": "BCG (Bacillus Calmette-Guérin) Vaccine: Protects against severe forms of childhood tuberculosis (TB). A small blister or sore will form at the injection site in a few weeks, which is normal.",
+              "hi": "बीसीजी टीका: बचपन में होने वाले तपेदिक (टीबी) के गंभीर रूपों से बचाता है। कुछ हफ्तों में इंजेक्शन स्थल पर एक छोटा छाला या घाव बन जाएगा, जो सामान्य है।",
+              "te": "BCG (బాసిల్లస్ కాల్మెట్-గెరిన్) టీకా: బాల్య క్షయవ్యాధి (TB) యొక్క తీవ్రమైన రూపాల నుండి రక్షిస్తుంది. ఇంజెక్షన్ చేసిన ప్రదేశంలో కొన్ని వారాలలో ఒక చిన్న బొబ్బ లేదా పుండు ఏర్పడుతుంది, ఇది సాధారణం."
+            },
+            {
+              "en": "Hepatitis B Vaccine (Birth Dose): Protects against the Hepatitis B virus, which infects the liver. It should be given within 24 hours of birth.",
+              "hi": "हेपेटाइटिस बी टीका (जन्म खुराक): हेपेटाइटिस बी वायरस से बचाता है, जो यकृत को संक्रमित करता है। यह जन्म के 24 घंटे के भीतर दिया जाना चाहिए।",
+              "te": "హెపటైటిస్ బి టీకా (పుట్టిన డోస్): కాలేయాన్ని సోకే హెపటైటిస్ బి వైరస్ నుండి రక్షిస్తుంది. ఇది పుట్టిన 24 గంటలలోపు ఇవ్వాలి."
+            },
+            {
+              "en": "Oral Polio Vaccine (OPV - 0 Dose): This is the first dose to protect against the poliovirus. It is given as drops in the mouth.",
+              "hi": "ओरल पोलियो वैक्सीन (OPV - 0 खुराक): यह पोलियोवायरस से बचाने के लिए पहली खुराक है। यह मुंह में बूंदों के रूप में दी जाती है।",
+              "te": "ఓరల్ పోలియో వ్యాక్సిన్ (OPV - 0 డోస్): పోలియోవైరస్ నుండి రక్షించడానికి ఇది మొదటి డోస్. ఇది నోటిలో చుక్కల రూపంలో ఇవ్వబడుతుంది."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "first-6-weeks",
+      "title": {
+        "en": "First 6 Weeks",
+        "hi": "पहले 6 सप्ताह",
+        "te": "మొదటి 6 వారాలు"
+      },
+      "content": [
+        {
+          "type": "paragraph",
+          "text": {
+            "en": "This is the next major milestone for your baby's immunizations, setting the foundation for long-term protection.",
+            "hi": "यह आपके बच्चे के टीकाकरण के लिए अगला बड़ा मील का पत्थर है, जो दीर्घकालिक सुरक्षा की नींव रखता है।",
+            "te": "ఇది మీ శిశువు యొక్క రోగనిరోధకత కోసం తదుపరి ముఖ్యమైన మైలురాయి, ఇది దీర్ఘకాలిక రక్షణకు పునాది వేస్తుంది."
+          }
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "en": "Pentavalent Vaccine (1st Dose): A single injection that protects against five serious diseases: Diphtheria, Pertussis (whooping cough), Tetanus, Hepatitis B, and Haemophilus influenzae type B (a major cause of pneumonia and meningitis).",
+              "hi": "पेंटावेलेंट टीका (पहली खुराक): एक एकल इंजेक्शन जो पांच गंभीर बीमारियों से बचाता है: डिप्थीरिया, पर्टुसिस (काली खांसी), टेटनस, हेपेटाइटिस बी, और हीमोफिलस इन्फ्लुएंजा टाइप बी (निमोनिया और मेनिनजाइटिस का एक प्रमुख कारण)।",
+              "te": "పెంటావాలెంట్ టీకా (1వ డోస్): ఒకే ఇంజెక్షన్ ఐదు తీవ్రమైన వ్యాధుల నుండి రక్షిస్తుంది: డిఫ్తీరియా, పెర్టుసిస్ (కోరింత దగ్గు), టెటానస్, హెపటైటిస్ బి, మరియు హీమోఫిలస్ ఇన్ఫ్లుయెంజా టైప్ బి (న్యుమోనియా మరియు మెనింజైటిస్‌కు ఒక ప్రధాన కారణం)."
+            },
+            {
+              "en": "Oral Polio Vaccine (OPV - 1st Dose): The second dose of the polio drops.",
+              "hi": "ओरल पोलियो वैक्सीन (OPV - पहली खुराक): पोलियो ड्रॉप्स की दूसरी खुराक।",
+              "te": "ఓరల్ పోలియో వ్యాక్సిన్ (OPV - 1వ డోస్): పోలియో చుక్కల యొక్క రెండవ డోస్."
+            },
+            {
+              "en": "Rotavirus Vaccine (RVV - 1st Dose): Given as oral drops to protect against Rotavirus, a common cause of severe diarrhea in babies.",
+              "hi": "रोटावायरस वैक्सीन (RVV - पहली खुराक): रोटावायरस से बचाने के लिए मौखिक बूंदों के रूप में दी जाती है, जो शिशुओं में गंभीर दस्त का एक आम कारण है।",
+              "te": "రోటావైరస్ వ్యాక్సిన్ (RVV - 1వ డోస్): శిశువులలో తీవ్రమైన విరేచనాలకు ఒక సాధారణ కారణమైన రోటావైరస్ నుండి రక్షించడానికి నోటి చుక్కల రూపంలో ఇవ్వబడుతుంది."
+            },
+            {
+              "en": "Inactivated Polio Vaccine (fIPV - 1st Dose): An injectable polio vaccine given alongside OPV for enhanced protection.",
+              "hi": "निष्क्रिय पोलियो वैक्सीन (fIPV - पहली खुराक): बढ़ी हुई सुरक्षा के लिए OPV के साथ दिया जाने वाला एक इंजेक्शन वाला पोलियो टीका।",
+              "te": "ఇనాక్టివేటెడ్ పోలియో వ్యాక్సిన్ (fIPV - 1వ డోస్): మెరుగైన రక్షణ కోసం OPV తో పాటుగా ఇచ్చే ఒక ఇంజెక్ట్ చేయగల పోలియో టీకా."
+            },
+            {
+              "en": "Pneumococcal Conjugate Vaccine (PCV - 1st Dose): Protects against pneumococcal bacteria, which can cause severe pneumonia and meningitis. (This may be given as a primary or booster dose depending on the schedule followed).",
+              "hi": "न्यूमोकोकल कंजुगेट वैक्सीन (पीसीवी - पहली खुराक): न्यूमोकोकल बैक्टीरिया से बचाता है, जो गंभीर निमोनिया और मेनिनजाइटिस का कारण बन सकता है। (इसे अपनाए गए शेड्यूल के आधार पर प्राथमिक या बूस्टर खुराक के रूप में दिया जा सकता है)।",
+              "te": "న్యుమోకాకల్ కంజుగేట్ వ్యాక్సిన్ (PCV - 1వ డోస్): తీవ్రమైన న్యుమోనియా మరియు మెనింజైటిస్‌కు కారణమయ్యే న్యుమోకాకల్ బ్యాక్టీరియా నుండి రక్షిస్తుంది. (అనుసరించే షెడ్యూల్‌ను బట్టి ఇది ప్రాథమిక లేదా బూస్టర్ డోస్‌గా ఇవ్వబడుతుంది)."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "schedule-tracking",
+      "title": {
+        "en": "Schedule Tracking",
+        "hi": "शेड्यूल ट्रैकिंग",
+        "te": "షెడ్యూల్ ట్రాకింగ్"
+      },
+      "content": [
+        {
+          "type": "paragraph",
+          "text": {
+            "en": "Keeping up with your baby's vaccine schedule is crucial. Here are a few simple ways to stay on track:",
+            "hi": "अपने बच्चे के टीके के शेड्यूल के साथ बने रहना महत्वपूर्ण है। ट्रैक पर बने रहने के कुछ सरल तरीके यहां दिए गए हैं:",
+            "te": "మీ శిశువు టీకా షెడ్యూల్‌తో తాజాగా ఉండటం చాలా ముఖ్యం. ట్రాక్‌లో ఉండటానికి కొన్ని సరళమైన మార్గాలు ఇక్కడ ఉన్నాయి:"
+          }
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "en": "Your MCP Card: The Mother and Child Protection (MCP) card you receive is your most important health document. Every vaccine is recorded here. Keep it safe and bring it to every single doctor or health clinic visit.",
+              "hi": "आपका एमसीपी कार्ड: आपको मिलने वाला मदर एंड चाइल्ड प्रोटेक्शन (एमसीपी) कार्ड आपका सबसे महत्वपूर्ण स्वास्थ्य दस्तावेज है। हर टीका यहां दर्ज किया जाता है। इसे सुरक्षित रखें और हर डॉक्टर या स्वास्थ्य क्लिनिक की यात्रा पर इसे साथ लाएं।",
+              "te": "మీ MCP కార్డు: మీరు స్వీకరించే మదర్ అండ్ చైల్డ్ ప్రొటెక్షన్ (MCP) కార్డు మీ అత్యంత ముఖ్యమైన ఆరోగ్య పత్రం. ప్రతి టీకా ఇక్కడ నమోదు చేయబడుతుంది. దానిని సురక్షితంగా ఉంచండి మరియు ప్రతి డాక్టర్ లేదా ఆరోగ్య క్లినిక్ సందర్శనకు దానిని తీసుకురండి."
+            },
+            {
+              "en": "ASHA/Anganwadi Worker: Your local health worker is a fantastic resource. They will have a record of your child's vaccination dates and can provide reminders for the next due date.",
+              "hi": "आशा/आंगनवाड़ी कार्यकर्ता: आपकी स्थानीय स्वास्थ्य कार्यकर्ता एक शानदार संसाधन है। उनके पास आपके बच्चे के टीकाकरण की तारीखों का रिकॉर्ड होगा और वे अगली देय तिथि के लिए रिमाइंडर प्रदान कर सकती हैं।",
+              "te": "ఆశా/అంగన్‌వాడీ కార్యకర్త: మీ స్థానిక ఆరోగ్య కార్యకర్త ఒక అద్భుతమైన వనరు. వారి వద్ద మీ శిశువు టీకా తేదీల రికార్డు ఉంటుంది మరియు తదుపరి గడువు తేదీ కోసం రిమైండర్‌లను అందించగలరు."
+            },
+            {
+              "en": "Digital Reminders: Use the calendar on your phone to set reminders for each upcoming vaccine appointment.",
+              "hi": "डिजिटल रिमाइंडर: प्रत्येक आगामी टीके की नियुक्ति के लिए रिमाइंडर सेट करने के लिए अपने फोन पर कैलेंडर का उपयोग करें।",
+              "te": "డిజిటల్ రిమైండర్‌లు: రాబోయే ప్రతి టీకా అపాయింట్‌మెంట్ కోసం రిమైండర్‌లను సెట్ చేయడానికి మీ ఫోన్‌లోని క్యాలెండర్‌ను ఉపయోగించండి."
+            },
+            {
+              "en": "Don't Panic if a Dose is Delayed: If you miss a scheduled vaccine, contact your pediatrician or local health center as soon as possible. They will help you create a catch-up schedule.",
+              "hi": "यदि कोई खुराक देर से लगती है तो घबराएं नहीं: यदि आप कोई निर्धारित टीका चूक जाते हैं, तो जल्द से जल्द अपने बाल रोग विशेषज्ञ या स्थानीय स्वास्थ्य केंद्र से संपर्क करें। वे आपको एक कैच-अप शेड्यूल बनाने में मदद करेंगे।",
+              "te": "ఒక డోస్ ఆలస్యమైతే ఆందోళన చెందవద్దు: మీరు ఒక షెడ్యూల్డ్ టీకాను కోల్పోతే, వీలైనంత త్వరగా మీ శిశువైద్యుడిని లేదా స్థానిక ఆరోగ్య కేంద్రాన్ని సంప్రదించండి. వారు మీకు క్యాచ్-అప్ షెడ్యూల్ సృష్టించడంలో సహాయపడతారు."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "disclaimer": {
+    "en": "This information is based on the National Immunization Schedule (NIS) of India. Schedules can sometimes be updated. Always consult your pediatrician or local health authority for the most current and personalized advice for your child.",
+    "hi": "यह जानकारी भारत के राष्ट्रीय टीकाकरण सारणी (एनआईएस) पर आधारित है। सारणी कभी-कभी अद्यतन की जा सकती है। अपने बच्चे के लिए सबसे वर्तमान और व्यक्तिगत सलाह के लिए हमेशा अपने बाल रोग विशेषज्ञ या स्थानीय स्वास्थ्य प्राधिकरण से परामर्श करें।",
+    "te": "ఈ సమాచారం భారతదేశం యొక్క జాతీయ రోగనిరోధకత షెడ్యూల్ (NIS) ఆధారంగా రూపొందించబడింది. షెడ్యూల్‌లు కొన్నిసార్లు నవీకరించబడవచ్చు. మీ శిశువు కోసం అత్యంత తాజా మరియు వ్యక్తిగతీకరించిన సలహా కోసం ఎల్లప్పుడూ మీ శిశువైద్యుడిని లేదా స్థానిక ఆరోగ్య అధికారిని సంప్రదించండి."
+  }
+}

@@ -1,0 +1,285 @@
+{
+  "slug": "second-trimester-checklist",
+  "title": {
+    "en": "Second-Trimester Checklist",
+    "hi": "दूसरी तिमाही की चेकलिस्ट",
+    "te": "రెండవ త్రైమాసికం చెక్‌లిస్ట్"
+  },
+  "overview": {
+    "en": "A guide to the key appointments, important scans, and practical planning for weeks 13 to 28 of your pregnancy.",
+    "hi": "आपकी गर्भावस्था के 13 से 28 सप्ताह के लिए मुख्य अपॉइंटमेंट्स, महत्वपूर्ण स्कैन और व्यावहारिक योजना के लिए एक गाइड।",
+    "te": "మీ గర్భం యొక్క 13 నుండి 28 వారాల కోసం ముఖ్యమైన అపాయింట్‌మెంట్‌లు, ముఖ్యమైన స్కాన్‌లు మరియు ఆచరణాత్మక ప్రణాళిక కోసం ఒక గైడ్."
+  },
+  "metadata": {
+    "readTime": {
+      "en": "5 min read",
+      "hi": "5 मिनट में पढ़ें",
+      "te": "5 నిమిషాల పఠనం"
+    },
+    "reviewer": {
+      "en": "Reviewed by Dr. Ananya Sharma",
+      "hi": "डॉ. अनन्या शर्मा द्वारा समीक्षित",
+      "te": "డాక్టర్ అనన్య శర్మ ద్వారా సమీక్షించబడింది"
+    },
+    "sources": [
+      "NHS (National Health Service, UK)"
+    ]
+  },
+  "sections": [
+    {
+      "id": "introduction",
+      "title": {
+        "en": "",
+        "hi": "",
+        "te": ""
+      },
+      "content": [
+        {
+          "type": "paragraph",
+          "text": {
+            "en": "Welcome to the second trimester! Often called the 'honeymoon phase' of pregnancy, this period (weeks 13-28) typically brings renewed energy and less morning sickness. It's the perfect time to tackle key health check-ups and start planning for your baby's arrival. This checklist will guide you through it.",
+            "hi": "दूसरी तिमाही में आपका स्वागत है! इसे अक्सर गर्भावस्था का 'हनीमून चरण' कहा जाता है, इस अवधि (सप्ताह 13-28) में आम तौर पर नई ऊर्जा आती है और मॉर्निंग सिकनेस कम हो जाती है। यह स्वास्थ्य जांच कराने और आपके बच्चे के आगमन की योजना शुरू करने का सही समय है। यह चेकलिस्ट आपका मार्गदर्शन करेगी।",
+            "te": "రెండవ త్రైమాసికంలోకి స్వాగతం! దీనిని తరచుగా గర్భం యొక్క 'హనీమూన్ దశ' అని పిలుస్తారు, ఈ కాలం (13-28 వారాలు) సాధారణంగా పునరుద్ధరించబడిన శక్తిని మరియు తక్కువ మార్నింగ్ సిక్‌నెస్‌ను తెస్తుంది. ఇది ముఖ్యమైన ఆరోగ్య తనిఖీలను పూర్తి చేయడానికి మరియు మీ శిశువు రాక కోసం ప్రణాళికను ప్రారంభించడానికి సరైన సమయం. ఈ చెక్‌లిస్ట్ మీకు మార్గనిర్దేశం చేస్తుంది."
+          }
+        }
+      ]
+    },
+    {
+      "id": "key-appointments",
+      "title": {
+        "en": "Key Appointments",
+        "hi": "मुख्य अपॉइंटमेंट्स",
+        "te": "ముఖ్యమైన అపాయింట్‌మెంట్‌లు"
+      },
+      "content": [
+        {
+          "type": "paragraph",
+          "text": {
+            "en": "During the second trimester, your doctor's visits will likely be scheduled about once every four weeks for a low-risk pregnancy.",
+            "hi": "दूसरी तिमाही के दौरान, कम जोखिम वाली गर्भावस्था के लिए आपके डॉक्टर के दौरे हर चार सप्ताह में एक बार निर्धारित किए जाएंगे।",
+            "te": "రెండవ త్రైమాసికంలో, తక్కువ-ప్రమాదం ఉన్న గర్భం కోసం మీ డాక్టర్ సందర్శనలు ప్రతి నాలుగు వారాలకు ఒకసారి షెడ్యూల్ చేయబడతాయి."
+          }
+        },
+        {
+          "type": "subheading",
+          "text": {
+            "en": "At each check-up, expect:",
+            "hi": "प्रत्येक जांच में, उम्मीद करें:",
+            "te": "ప్రతి తనిఖీలో, ఆశించండి:"
+          }
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "en": "Weight and Blood Pressure Check: Routine monitoring to ensure both are in a healthy range.",
+              "hi": "वजन और रक्तचाप की जाँच: यह सुनिश्चित करने के लिए नियमित निगरानी कि दोनों स्वस्थ सीमा में हैं।",
+              "te": "బరువు మరియు రక్తపోటు తనిఖీ: రెండూ ఆరోగ్యకరమైన పరిధిలో ఉన్నాయని నిర్ధారించుకోవడానికి సాధారణ పర్యవేక్షణ."
+            },
+            {
+              "en": "Fundal Height Measurement: Your doctor will measure your abdomen to track your baby's growth.",
+              "hi": "फंडल हाइट का माप: आपके बच्चे के विकास को ट्रैक करने के लिए आपका डॉक्टर आपके पेट को मापेगा।",
+              "te": "ఫండల్ ఎత్తు కొలత: మీ శిశువు పెరుగుదలను ట్రాక్ చేయడానికి మీ డాక్టర్ మీ పొత్తికడుపును కొలుస్తారు."
+            },
+            {
+              "en": "Fetal Heartbeat: Listening to your baby's heartbeat with a handheld Doppler is a highlight of every visit.",
+              "hi": "भ्रूण की धड़कन: हैंडहेल्ड डॉपलर से अपने बच्चे की धड़कन सुनना हर दौरे का एक मुख्य आकर्षण होता है।",
+              "te": "పిండం యొక్క హృదయ స్పందన: చేతిలో పట్టుకునే డాప్లర్‌తో మీ శిశువు హృదయ స్పందనను వినడం ప్రతి సందర్శనలో ఒక ముఖ్యాంశం."
+            },
+            {
+              "en": "Urine Sample: To check for signs of gestational diabetes (sugar) and pre-eclampsia (protein).",
+              "hi": "मूत्र का नमूना: गर्भकालीन मधुमेह (शुगर) और प्री-एक्लेम्पसिया (प्रोटीन) के लक्षणों की जांच के लिए।",
+              "te": "మూత్ర నమూనా: గర్భధారణ మధుమేహం (చక్కెర) మరియు ప్రీ-ఎక్లాంప్సియా (ప్రోటీన్) సంకేతాల కోసం తనిఖీ చేయడానికి."
+            }
+          ]
+        },
+        {
+          "type": "subheading",
+          "text": {
+            "en": "Important Tests & Vaccinations:",
+            "hi": "महत्वपूर्ण परीक्षण और टीकाकरण:",
+            "te": "ముఖ్యమైన పరీక్షలు & టీకాలు:"
+          }
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "en": "Glucose Challenge Test (GCT): Done between 24-28 weeks, this test screens for gestational diabetes.",
+              "hi": "ग्लूकोज चैलेंज टेस्ट (GCT): 24-28 सप्ताह के बीच किया जाने वाला यह टेस्ट गर्भकालीन मधुमेह की जांच करता है।",
+              "te": "గ్లూకోజ్ ఛాలెంజ్ టెస్ట్ (GCT): 24-28 వారాల మధ్య చేయబడుతుంది, ఈ పరీక్ష గర్భధారణ మధుమేహం కోసం స్క్రీనింగ్ చేస్తుంది."
+            },
+            {
+              "en": "Tdap Vaccine: A booster shot for Tetanus, Diphtheria, and Pertussis (whooping cough) is recommended to protect your newborn.",
+              "hi": "Tdap वैक्सीन: आपके नवजात शिशु की सुरक्षा के लिए टेटनस, डिप्थीरिया और पर्टुसिस (काली खांसी) के लिए एक बूस्टर शॉट की सिफारिश की जाती है।",
+              "te": "Tdap టీకా: మీ నవజాత శిశువును రక్షించడానికి టెటనస్, డిఫ్తీరియా మరియు పెర్టుసిస్ (కోరింత దగ్గు) కోసం ఒక బూస్టర్ షాట్ సిఫార్సు చేయబడింది."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "important-scans",
+      "title": {
+        "en": "Important Scans",
+        "hi": "महत्वपूर्ण स्कैन",
+        "te": "ముఖ్యమైన స్కాన్‌లు"
+      },
+      "content": [
+        {
+          "type": "subheading",
+          "text": {
+            "en": "The Anomaly Scan (Level II Ultrasound)",
+            "hi": "एनोमली स्कैन (लेवल II अल्ट्रासाउंड)",
+            "te": "అనామలీ స్కాన్ (లెవల్ II అల్ట్రాసౌండ్)"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": {
+            "en": "This is the most detailed scan of your pregnancy, performed between 18 and 20 weeks. The sonographer will perform a thorough head-to-toe check of your baby's anatomy.",
+            "hi": "यह आपकी गर्भावस्था का सबसे विस्तृत स्कैन है, जो 18 से 20 सप्ताह के बीच किया जाता है। सोनोग्राफर आपके बच्चे के शरीर की सिर से पैर तक की पूरी जांच करेगा।",
+            "te": "ఇది మీ గర్భం యొక్క అత్యంత వివరణాత్మక స్కాన్, 18 నుండి 20 వారాల మధ్య చేయబడుతుంది. సోనోగ్రాఫర్ మీ శిశువు యొక్క తల నుండి కాలి వరకు శరీర నిర్మాణాన్ని క్షుణ్ణంగా తనిఖీ చేస్తారు."
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": {
+            "en": "It looks for:",
+            "hi": "यह जाँचता है:",
+            "te": "ఇది చూస్తుంది:"
+          }
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "en": "Baby's organs (heart, brain, spine, kidneys, stomach).",
+              "hi": "बच्चे के अंग (हृदय, मस्तिष्क, रीढ़, गुर्दे, पेट)।",
+              "te": "శిశువు అవయవాలు (గుండె, మెదడు, వెన్నెముక, మూత్రపిండాలు, కడుపు)."
+            },
+            {
+              "en": "Position of the placenta and umbilical cord.",
+              "hi": "प्लेसेंटा और गर्भनाल की स्थिति।",
+              "te": "మావి మరియు బొడ్డు తాడు యొక్క స్థానం."
+            },
+            {
+              "en": "Amount of amniotic fluid.",
+              "hi": "एमनियोटिक द्रव की मात्रा।",
+              "te": "అమ్నియోటిక్ ద్రవం యొక్క పరిమాణం."
+            },
+            {
+              "en": "Baby's growth and measurements.",
+              "hi": "बच्चे का विकास और माप।",
+              "te": "శిశువు పెరుగుదల మరియు కొలతలు."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "planning-ahead",
+      "title": {
+        "en": "Planning Ahead",
+        "hi": "आगे की योजना",
+        "te": "ముందస్తు ప్రణాళిక"
+      },
+      "content": [
+        {
+          "type": "subheading",
+          "text": {
+            "en": "Health & Wellness",
+            "hi": "स्वास्थ्य और कल्याण",
+            "te": "ఆరోగ్యం & శ్రేయస్సు"
+          }
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "en": "Continue with or start pregnancy-safe exercises like walking and prenatal yoga.",
+              "hi": "चलने और प्रसव पूर्व योग जैसे गर्भावस्था-सुरक्षित व्यायाम जारी रखें या शुरू करें।",
+              "te": "నడక మరియు ప్రినేటల్ యోగా వంటి గర్భధారణ-సురక్షిత వ్యాయామాలను కొనసాగించండి లేదా ప్రారంభించండి."
+            },
+            {
+              "en": "Enroll in prenatal or childbirth education classes.",
+              "hi": "प्रसव पूर्व या प्रसव शिक्षा कक्षाओं में दाखिला लें।",
+              "te": "ప్రినేటల్ లేదా చైల్డ్‌బర్త్ ఎడ్యుకేషన్ క్లాసులలో నమోదు చేసుకోండి."
+            },
+            {
+              "en": "Focus on an iron-rich diet to prevent anemia.",
+              "hi": "एनीमिया को रोकने के लिए आयरन युक्त आहार पर ध्यान दें।",
+              "te": "రక్తహీనతను నివారించడానికి ఐరన్ అధికంగా ఉండే ఆహారంపై దృష్టి పెట్టండి."
+            }
+          ]
+        },
+        {
+          "type": "subheading",
+          "text": {
+            "en": "Practical Preparations",
+            "hi": "व्यावहारिक तैयारियाँ",
+            "te": "ఆచరణాత్మక సన్నాహాలు"
+          }
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "en": "Start shopping for maternity clothes.",
+              "hi": "मैटरनिटी कपड़ों की खरीदारी शुरू करें।",
+              "te": "మెటర్నిటీ బట్టల కోసం షాపింగ్ ప్రారంభించండి."
+            },
+            {
+              "en": "Research essential baby gear like a crib, car seat, and stroller.",
+              "hi": "पालना, कार सीट और घुमक्कड़ जैसे आवश्यक शिशु गियर पर शोध करें।",
+              "te": "ఉయ్యాల, కార్ సీటు మరియు స్ట్రోలర్ వంటి అవసరమైన శిశువు వస్తువులపై పరిశోధన చేయండి."
+            },
+            {
+              "en": "Plan your finances and create a budget for the baby's expenses.",
+              "hi": "अपने वित्त की योजना बनाएं और बच्चे के खर्चों के लिए एक बजट बनाएं।",
+              "te": "మీ ఆర్థిక ప్రణాళికను రూపొందించుకోండి మరియు శిశువు ఖర్చుల కోసం బడ్జెట్‌ను సృష్టించండి."
+            },
+            {
+              "en": "Discuss your maternity and paternity leave options with your employer.",
+              "hi": "अपने नियोक्ता के साथ अपने मातृत्व और पितृत्व अवकाश विकल्पों पर चर्चा करें।",
+              "te": "మీ యజమానితో మీ ప్రసూతి మరియు పితృత్వ సెలవు ఎంపికలను చర్చించండి."
+            }
+          ]
+        },
+        {
+          "type": "subheading",
+          "text": {
+            "en": "Personal & Social",
+            "hi": "व्यक्तिगत और सामाजिक",
+            "te": "వ్యక్తిగత & సామాజిక"
+          }
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "en": "Consider taking a 'babymoon' trip. This is often the most comfortable trimester for travel.",
+              "hi": "'बेबीमून' यात्रा पर जाने पर विचार करें। यह अक्सर यात्रा के लिए सबसे आरामदायक तिमाही होती है।",
+              "te": "'బేబీమూన్' యాత్రకు వెళ్లడాన్ని పరిగణించండి. ప్రయాణానికి ఇది తరచుగా అత్యంత సౌకర్యవంతమైన త్రైమాసికం."
+            },
+            {
+              "en": "Start thinking about baby names.",
+              "hi": "बच्चे के नामों के बारे में सोचना शुरू करें।",
+              "te": "శిశువు పేర్ల గురించి ఆలోచించడం ప్రారంభించండి."
+            },
+            {
+              "en": "Connect with other expecting parents for support.",
+              "hi": "समर्थन के लिए अन्य गर्भवती माता-पिता से जुड़ें।",
+              "te": "మద్దతు కోసం ఇతర గర్భవతి తల్లిదండ్రులతో కనెక్ట్ అవ్వండి."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "disclaimer": {
+    "en": "This checklist is a general guide and does not replace medical advice. Always consult with your healthcare provider regarding your specific tests, appointments, and health plan.",
+    "hi": "यह चेकलिस्ट एक सामान्य गाइड है और चिकित्सा सलाह का स्थान नहीं लेती है। अपने विशिष्ट परीक्षणों, नियुक्तियों और स्वास्थ्य योजना के संबंध में हमेशा अपने स्वास्थ्य सेवा प्रदाता से परामर्श करें।",
+    "te": "ఈ చెక్‌లిస్ట్ ఒక సాధారణ గైడ్ మరియు వైద్య సలహాను భర్తీ చేయదు. మీ నిర్దిష్ట పరీక్షలు, అపాయింట్‌మెంట్‌లు మరియు ఆరోగ్య ప్రణాళికకు సంబంధించి ఎల్లప్పుడూ మీ ఆరోగ్య సంరక్షణ ప్రదాతని సంప్రదించండి."
+  }
+}

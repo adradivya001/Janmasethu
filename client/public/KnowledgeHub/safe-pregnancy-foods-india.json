@@ -1,0 +1,198 @@
+{
+  "slug": "safe-foods-in-pregnancy-eat-limit-avoid",
+  "title": {
+    "en": "Safe Foods in Pregnancy: Eat / Limit / Avoid",
+    "hi": "गर्भावस्था में सुरक्षित भोजन: क्या खाएं / क्या सीमित करें / क्या न खाएं",
+    "te": "గర్భధారణలో సురక్షితమైన ఆహారాలు: తినవలసినవి / పరిమితం చేయవలసినవి / నివారించవలసినవి"
+  },
+  "overview": {
+    "en": "A simple, India-aware guide to navigating your diet at home and outside.",
+    "hi": "घर और बाहर अपने आहार को संभालने के लिए एक सरल, भारत-केंद्रित गाइड।",
+    "te": "ఇంట్లో మరియు బయట మీ ఆహారాన్ని నిర్వహించడానికి ఒక సులభమైన, భారతదేశానికి అనుకూలమైన గైడ్."
+  },
+  "metadata": {
+    "readTime": {
+      "en": "6 min read",
+      "hi": "6 मिनट में पढ़ें",
+      "te": "6 నిమిషాల పఠనం"
+    },
+    "reviewer": {
+      "en": "Reviewed by Ritu Malhotra, MSc Nutrition",
+      "hi": "रितु मल्होत्रा, एमएससी न्यूट्रिशन द्वारा समीक्षित",
+      "te": "రితు మల్హోత్రా, MSc న్యూట్రిషన్ ద్వారా సమీక్షించబడింది"
+    },
+    "sources": [
+      "ICMR-NIN (National Institute of Nutrition)",
+      "WHO (World Health Organization)"
+    ]
+  },
+  "sections": [
+    {
+      "id": "introduction",
+      "title": {
+        "en": "",
+        "hi": "",
+        "te": ""
+      },
+      "content": [
+        {
+          "type": "paragraph",
+          "text": {
+            "en": "Eating a healthy, balanced diet is one of the best things you can do for yourself and your growing baby. However, pregnancy also comes with questions about what's safe to eat. This guide focuses on common Indian foods to help you make confident choices.",
+            "hi": "एक स्वस्थ, संतुलित आहार खाना आपके और आपके बढ़ते बच्चे के लिए सबसे अच्छी चीजों में से एक है। हालाँकि, गर्भावस्था में यह सवाल भी उठता है कि क्या खाना सुरक्षित है। यह गाइड आम भारतीय खाद्य पदार्थों पर ध्यान केंद्रित करती है ताकि आप आत्मविश्वास से भरे विकल्प चुन सकें।",
+            "te": "ఆరోగ్యకరమైన, సమతుల్య ఆహారం తినడం మీ కోసం మరియు మీ పెరుగుతున్న బిడ్డ కోసం మీరు చేయగల ఉత్తమమైన పనులలో ఒకటి. అయితే, గర్భధారణ సమయంలో ఏమి తినడం సురక్షితం అనే ప్రశ్నలు కూడా వస్తాయి. ఈ గైడ్ సాధారణ భారతీయ ఆహారాలపై దృష్టి పెడుతుంది, మీరు నమ్మకమైన ఎంపికలు చేసుకోవడంలో సహాయపడుతుంది."
+          }
+        }
+      ]
+    },
+    {
+      "id": "eat",
+      "title": {
+        "en": "Eat: Foods to Include in Your Diet",
+        "hi": "खाएं: अपने आहार में शामिल करने योग्य खाद्य पदार्थ",
+        "te": "తినండి: మీ ఆహారంలో చేర్చుకోవలసిన ఆహారాలు"
+      },
+      "content": [
+        {
+          "type": "paragraph",
+          "text": {
+            "en": "Focus on a variety of whole foods to get the essential nutrients you both need. A balanced Indian 'thali' is a great model.",
+            "hi": "आप दोनों के लिए आवश्यक पोषक तत्व प्राप्त करने के लिए विभिन्न प्रकार के संपूर्ण खाद्य पदार्थों पर ध्यान दें। एक संतुलित भारतीय 'थाली' एक बेहतरीन मॉडल है।",
+            "te": "మీ ఇద్దరికీ అవసరమైన పోషకాలను పొందడానికి వివిధ రకాల సంపూర్ణ ఆహారాలపై దృష్టి పెట్టండి. సమతుల్య భారతీయ 'థాలీ' ఒక గొప్ప నమూనా."
+          }
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "en": "Lentils & Legumes (Dals, Chana, Rajma): Excellent sources of protein, iron, and folate, which is crucial for preventing birth defects. Include at least one type of dal every day.",
+              "hi": "दालें और फलियां (दाल, चना, राजमा): प्रोटीन, आयरन और फोलेट के बेहतरीन स्रोत, जो जन्म दोषों को रोकने के लिए महत्वपूर्ण हैं। हर दिन कम से कम एक प्रकार की दाल शामिल करें।",
+              "te": "పప్పులు & చిక్కుళ్ళు (పప్పు, శనగలు, రాజ్మా): ప్రోటీన్, ఐరన్ మరియు ఫోలేట్ యొక్క అద్భుతమైన మూలాలు, ఇది జనన లోపాలను నివారించడానికి చాలా ముఖ్యం. ప్రతిరోజూ కనీసం ఒక రకమైన పప్పును చేర్చుకోండి."
+            },
+            {
+              "en": "Green Leafy Vegetables (Palak, Methi, Sarson): Packed with iron, calcium, and vitamins A, C, and K. Cook them well to ensure they are clean.",
+              "hi": "हरी पत्तेदार सब्जियां (पालक, मेथी, सरसों): आयरन, कैल्शियम और विटामिन ए, सी, और के से भरपूर। यह सुनिश्चित करने के लिए कि वे साफ हैं, उन्हें अच्छी तरह से पकाएं।",
+              "te": "ఆకుపచ్చ ఆకుకూరలు (పాలకూర, మెంతికూర, ఆవకూర): ఐరన్, కాల్షియం మరియు విటమిన్లు ఎ, సి, మరియు కె తో నిండి ఉంటాయి. అవి శుభ్రంగా ఉన్నాయని నిర్ధారించుకోవడానికి వాటిని బాగా ఉడికించండి."
+            },
+            {
+              "en": "Dairy Products (Milk, Dahi/Curd, Paneer): Essential for calcium to build your baby’s bones and teeth. Always choose pasteurized options.",
+              "hi": "डेयरी उत्पाद (दूध, दही, पनीर): आपके बच्चे की हड्डियों और दांतों के निर्माण के लिए कैल्शियम आवश्यक है। हमेशा पाश्चुरीकृत विकल्प चुनें।",
+              "te": "పాల ఉత్పత్తులు (పాలు, పెరుగు, పనీర్): మీ శిశువు ఎముకలు మరియు దంతాలను నిర్మించడానికి కాల్షియం అవసరం. ఎల్లప్పుడూ పాశ్చరైజ్ చేసిన ఎంపికలను ఎంచుకోండి."
+            },
+            {
+              "en": "Whole Grains & Millets (Atta Roti, Brown Rice, Ragi, Jowar): Provide energy and fibre, which helps prevent constipation—a common pregnancy issue.",
+              "hi": "साबुत अनाज और बाजरा (आटे की रोटी, ब्राउन राइस, रागी, ज्वार): ऊर्जा और फाइबर प्रदान करते हैं, जो कब्ज को रोकने में मदद करता है - एक आम गर्भावस्था की समस्या।",
+              "te": "సంపూర్ణ ధాన్యాలు & మిల్లెట్లు (గోధుమ రొట్టె, బ్రౌన్ రైస్, రాగి, జొన్న): శక్తి మరియు ఫైబర్‌ను అందిస్తాయి, ఇది గర్భధారణలో సాధారణ సమస్య అయిన మలబద్ధకాన్ని నివారించడానికి సహాయపడుతుంది."
+            },
+            {
+              "en": "Fruits & Vegetables: Eat a rainbow of colours. Include Vitamin C-rich foods like amla, oranges, and bell peppers to help your body absorb iron.",
+              "hi": "फल और सब्जियां: कई रंगों के फल और सब्जियां खाएं। अपने शरीर को आयरन सोखने में मदद करने के लिए आंवला, संतरे और शिमला मिर्च जैसे विटामिन सी से भरपूर खाद्य पदार्थ शामिल करें।",
+              "te": "పండ్లు & కూరగాయలు: ఇంద్రధనస్సులోని రంగులన్నీ తినండి. మీ శరీరం ఐరన్‌ను గ్రహించడానికి సహాయపడటానికి ఉసిరి, నారింజ మరియు బెల్ పెప్పర్స్ వంటి విటమిన్ సి అధికంగా ఉండే ఆహారాలను చేర్చుకోండి."
+            },
+            {
+              "en": "Well-Cooked Eggs & Lean Meats: Great sources of high-quality protein and choline, which is important for baby's brain development.",
+              "hi": "अच्छी तरह से पके हुए अंडे और लीन मीट्स: उच्च गुणवत्ता वाले प्रोटीन और कोलीन के बेहतरीन स्रोत, जो बच्चे के मस्तिष्क के विकास के लिए महत्वपूर्ण हैं।",
+              "te": "బాగా ఉడికించిన గుడ్లు & లీన్ మీట్స్: అధిక-నాణ్యత ప్రోటీన్ మరియు కోలిన్ యొక్క గొప్ప మూలాలు, ఇది శిశువు మెదడు అభివృద్ధికి ముఖ్యం."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "limit",
+      "title": {
+        "en": "Limit: Consume with Caution",
+        "hi": "सीमित करें: सावधानी के साथ सेवन करें",
+        "te": "పరిమితం చేయండి: జాగ్రత్తగా తినండి"
+      },
+      "content": [
+        {
+          "type": "paragraph",
+          "text": {
+            "en": "Some foods aren't completely off-limits but should be consumed in moderation and with care.",
+            "hi": "कुछ खाद्य पदार्थ पूरी तरह से वर्जित नहीं हैं, लेकिन उनका सेवन सीमित मात्रा में और सावधानी से किया जाना चाहिए।",
+            "te": "కొన్ని ఆహారాలు పూర్తిగా నిషిద్ధం కావు, కానీ వాటిని మితంగా మరియు జాగ్రత్తగా తీసుకోవాలి."
+          }
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "en": "Caffeine (Chai & Coffee): Limit your intake to about 1-2 small cups per day. High levels of caffeine have been linked to low birth weight.",
+              "hi": "कैफीन (चाय और कॉफी): अपने सेवन को प्रतिदिन लगभग 1-2 छोटे कप तक सीमित रखें। कैफीन के उच्च स्तर को जन्म के समय कम वजन से जोड़ा गया है।",
+              "te": "కెఫిన్ (ఛాయ్ & కాఫీ): రోజుకు సుమారు 1-2 చిన్న కప్పులకు మీ తీసుకోవడం పరిమితం చేయండి. అధిక స్థాయి కెఫిన్ తక్కువ జనన బరువుతో ముడిపడి ఉంది."
+            },
+            {
+              "en": "Certain Fish: While fish is healthy, some larger sea fish like King Mackerel (Surmai) can contain higher levels of mercury. Favour smaller fish like sardines (mathi) or pomfret.",
+              "hi": "कुछ मछलियाँ: हालाँकि मछली स्वस्थ है, कुछ बड़ी समुद्री मछलियों जैसे कि किंग मैकेरल (सुरमई) में पारा का स्तर अधिक हो सकता है। सार्डिन (मத்தி) या पॉम्फ्रेट जैसी छोटी मछलियों को प्राथमिकता दें।",
+              "te": "కొన్ని చేపలు: చేపలు ఆరోగ్యకరమైనవి అయినప్పటికీ, కింగ్ మాకెరెల్ (సుర్మై) వంటి కొన్ని పెద్ద సముద్ర చేపలలో పాదరసం అధిక స్థాయిలో ఉండవచ్చు. సార్డినెస్ (మత్తి) లేదా పాంఫ్రెట్ వంటి చిన్న చేపలకు ప్రాధాన్యత ఇవ్వండి."
+            },
+            {
+              "en": "Outside & Street Food (Chaat, Pani Puri): The biggest risk is hygiene, which can lead to infections. If you must eat out, choose a very clean and reputable place. Avoid raw chutneys and salads that may have been washed with unsafe water.",
+              "hi": "बाहर का और स्ट्रीट फूड (चाट, पानी पूरी): सबसे बड़ा जोखिम स्वच्छता का है, जिससे संक्रमण हो सकता है। यदि आपको बाहर खाना ही है, तो एक बहुत ही साफ और प्रतिष्ठित जगह चुनें। कच्ची चटनी और सलाद से बचें जिन्हें असुरक्षित पानी से धोया गया हो सकता है।",
+              "te": "బయటి & వీధి ఆహారం (చాట్, పానీ పూరి): అతి పెద్ద ప్రమాదం పరిశుభ్రత, ఇది ఇన్ఫెక్షన్లకు దారితీస్తుంది. మీరు బయట తినవలసి వస్తే, చాలా శుభ్రమైన మరియు పేరున్న ప్రదేశాన్ని ఎంచుకోండి. సురక్షితం కాని నీటితో కడిగిన పచ్చి చట్నీలు మరియు సలాడ్లకు దూరంగా ఉండండి."
+            },
+            {
+              "en": "Ghee & Fried Foods (Samosas, Pakoras): While ghee in moderation is healthy, excess fried and fatty foods can lead to unwanted weight gain and heartburn. Enjoy them as an occasional treat.",
+              "hi": "घी और तले हुए खाद्य पदार्थ (समोसा, पकोड़े): हालांकि सीमित मात्रा में घी स्वस्थ है, अतिरिक्त तले हुए और वसायुक्त खाद्य पदार्थों से अवांछित वजन बढ़ सकता है और सीने में जलन हो सकती है। इन्हें कभी-कभार ही खाएं।",
+              "te": "నెయ్యి & వేయించిన ఆహారాలు (సమోసాలు, పకోడీలు): మితంగా నెయ్యి ఆరోగ్యకరమైనది అయినప్పటికీ, అదనపు వేయించిన మరియు కొవ్వు పదార్ధాలు అవాంఛిత బరువు పెరగడానికి మరియు గుండెల్లో మంటకు దారితీస్తాయి. వాటిని అప్పుడప్పుడు మాత్రమే ఆస్వాదించండి."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "avoid",
+      "title": {
+        "en": "Avoid: Foods to Stay Away From",
+        "hi": "बचें: इन खाद्य पदार्थों से दूर रहें",
+        "te": "నివారించండి: దూరంగా ఉండవలసిన ఆహారాలు"
+      },
+      "content": [
+        {
+          "type": "paragraph",
+          "text": {
+            "en": "For the safety of your baby, it's best to completely avoid the following foods during pregnancy.",
+            "hi": "आपके बच्चे की सुरक्षा के लिए, गर्भावस्था के दौरान निम्नलिखित खाद्य पदार्थों से पूरी तरह बचना सबसे अच्छा है।",
+            "te": "మీ శిశువు భద్రత కోసం, గర్భధారణ సమయంలో ఈ క్రింది ఆహారాలకు పూర్తిగా దూరంగా ఉండటం ఉత్తమం."
+          }
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "en": "Alcohol: No amount of alcohol is considered safe during pregnancy. It can lead to serious birth defects.",
+              "hi": "शराब: गर्भावस्था के दौरान शराब की कोई भी मात्रा सुरक्षित नहीं मानी जाती है। यह गंभीर जन्म दोषों का कारण बन सकती है।",
+              "te": "ఆల్కహాల్: గర్భధారణ సమయంలో ఏ పరిమాణంలోనూ ఆల్కహాల్ సురక్షితం కాదు. ఇది తీవ్రమైన జనన లోపాలకు దారితీస్తుంది."
+            },
+            {
+              "en": "Unpasteurized Milk & Cheese: Raw milk and cheeses made from it (some local or 'farm fresh' paneer) can carry harmful bacteria like Listeria. Always buy products that are labeled 'pasteurized'.",
+              "hi": "बिना पाश्चुरीकृत दूध और पनीर: कच्चे दूध और उससे बने पनीर (कुछ स्थानीय या 'फार्म फ्रेश' पनीर) में लिस्टीरिया जैसे हानिकारक बैक्टीरिया हो सकते हैं। हमेशा 'पाश्चुरीकृत' लेबल वाले उत्पाद खरीदें।",
+              "te": "పాశ్చరైజ్ చేయని పాలు & చీజ్: పచ్చి పాలు మరియు దాని నుండి తయారైన చీజ్‌లు (కొన్ని స్థానిక లేదా 'ఫార్మ్ ఫ్రెష్' పనీర్) లిస్టీరియా వంటి హానికరమైన బ్యాక్టీరియాను కలిగి ఉంటాయి. ఎల్లప్పుడూ 'పాశ్చరైజ్డ్' అని లేబుల్ చేయబడిన ఉత్పత్తులను కొనండి."
+            },
+            {
+              "en": "Raw & Undercooked Meat, Eggs: Ensure all meat, poultry, and eggs are cooked thoroughly until steaming hot. This kills bacteria like Salmonella. Avoid foods with raw egg, like homemade mayonnaise.",
+              "hi": "कच्चा और अधपका मांस, अंडे: सुनिश्चित करें कि सभी मांस, मुर्गी और अंडे पूरी तरह से गर्म होने तक पकाए जाएं। यह साल्मोनेला जैसे बैक्टीरिया को मारता है। घर की बनी मेयोनीज जैसे कच्चे अंडे वाले खाद्य पदार्थों से बचें।",
+              "te": "పచ్చి & సరిగా ఉడకని మాంసం, గుడ్లు: అన్ని మాంసం, పౌల్ట్రీ మరియు గుడ్లు ఆవిరి వచ్చేంత వేడిగా ఉడికించినట్లు నిర్ధారించుకోండి. ఇది సాల్మొనెల్లా వంటి బ్యాక్టీరియాను చంపుతుంది. ఇంట్లో తయారుచేసిన మయోనైస్ వంటి పచ్చి గుడ్లు ఉన్న ఆహారాలకు దూరంగా ఉండండి."
+            },
+            {
+              "en": "Unripe Papaya & Pineapple (A Special Note): Unripe or semi-ripe papaya contains latex, which may trigger uterine contractions. Pineapple contains bromelain. While small amounts of the ripe fruits are likely safe, many doctors in India advise avoiding them, especially in the first trimester, to be cautious. Always consult your doctor.",
+              "hi": "कच्चा पपीता और अनानास (एक विशेष नोट): कच्चे या अधपके पपीते में लेटेक्स होता है, जो गर्भाशय के संकुचन को प्रेरित कर सकता है। अनानास में ब्रोमेलैन होता है। हालांकि पके फलों की थोड़ी मात्रा सुरक्षित हो सकती है, भारत में कई डॉक्टर सावधानी बरतने के लिए, विशेष रूप से पहली तिमाही में, इनसे बचने की सलाह देते हैं। हमेशा अपने डॉक्टर से सलाह लें।",
+              "te": "పచ్చి బొప్పాయి & పైనాపిల్ (ఒక ప్రత్యేక గమనిక): పచ్చి లేదా సగం పండిన బొప్పాయిలో లేటెక్స్ ఉంటుంది, ఇది గర్భాశయ సంకోచాలను ప్రేరేపించవచ్చు. పైనాపిల్‌లో బ్రోమెలైన్ ఉంటుంది. పండిన పండ్ల యొక్క చిన్న పరిమాణాలు సురక్షితం అయినప్పటికీ, భారతదేశంలోని చాలా మంది వైద్యులు జాగ్రత్తగా ఉండటానికి, ముఖ్యంగా మొదటి త్రైమాసికంలో, వాటిని నివారించమని సలహా ఇస్తారు. ఎల్లప్పుడూ మీ వైద్యుడిని సంప్రదించండి."
+            },
+            {
+              "en": "Old Leftovers: Avoid eating food that has been sitting out for more than two hours, especially in warm weather, as it can grow harmful bacteria.",
+              "hi": "पुराना बचा हुआ भोजन: दो घंटे से अधिक समय से बाहर रखे भोजन को खाने से बचें, खासकर गर्म मौसम में, क्योंकि इसमें हानिकारक बैक्टीरिया पनप सकते हैं।",
+              "te": "పాత మిగిలిపోయిన ఆహారం: ముఖ్యంగా వెచ్చని వాతావరణంలో, రెండు గంటల కంటే ఎక్కువ సేపు బయట ఉంచిన ఆహారాన్ని తినడం మానుకోండి, ఎందుకంటే అందులో హానికరమైన బ్యాక్టీరియా పెరగవచ్చు."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "disclaimer": {
+    "en": "This article is for informational purposes only and does not constitute medical advice. Every pregnancy is unique. Please consult with your doctor or a qualified nutritionist for personalized dietary advice.",
+    "hi": "यह लेख केवल सूचना के उद्देश्यों के लिए है और चिकित्सा सलाह का गठन नहीं करता है। हर गर्भावस्था अद्वितीय होती है। व्यक्तिगत आहार सलाह के लिए कृपया अपने डॉक्टर या एक योग्य पोषण विशेषज्ञ से परामर्श करें।",
+    "te": "ఈ కథనం కేవలం సమాచార ప్రయోజనాల కోసం మాత్రమే మరియు వైద్య సలహా కాదు. ప్రతి గర్భం ప్రత్యేకమైనది. వ్యక్తిగతీకరించిన ఆహార సలహా కోసం దయచేసి మీ వైద్యుడిని లేదా అర్హత కలిగిన పోషకాహార నిపుణుడిని సంప్రదించండి."
+  }
+}

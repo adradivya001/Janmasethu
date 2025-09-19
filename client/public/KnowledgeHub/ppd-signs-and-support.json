@@ -1,0 +1,239 @@
+{
+  "slug": "ppd-signs-and-support",
+  "title": {
+    "en": "PPD Signs & Support",
+    "hi": "पीपीडी के लक्षण और सहायता",
+    "te": "PPD సంకేతాలు & మద్దతు"
+  },
+  "overview": {
+    "en": "How to recognise the signs of Postpartum Depression and the steps to take to get help and feel better.",
+    "hi": "प्रसवोत्तर अवसाद के लक्षणों को कैसे पहचानें और मदद पाने व बेहतर महसूस करने के लिए क्या कदम उठाएं।",
+    "te": "ప్రసవానంతర డిప్రెషన్ (PPD) సంకేతాలను ఎలా గుర్తించాలి మరియు సహాయం పొంది, బాగుపడటానికి తీసుకోవలసిన చర్యలు."
+  },
+  "metadata": {
+    "readTime": {
+      "en": "5 min read",
+      "hi": "5 मिनट में पढ़ें",
+      "te": "5 నిమిషాల పఠనం"
+    },
+    "reviewer": {
+      "en": "Reviewed by Dr. Karan Bedi, PhD",
+      "hi": "डॉ. करन बेदी, पीएचडी द्वारा समीक्षित",
+      "te": "డాక్టర్ కరణ్ బేడీ, PhD ద్వారా సమీక్షించబడింది"
+    },
+    "sources": [
+      "NIMHANS (National Institute of Mental Health and Neuro-Sciences)"
+    ]
+  },
+  "sections": [
+    {
+      "id": "introduction",
+      "title": {
+        "en": "",
+        "hi": "",
+        "te": ""
+      },
+      "content": [
+        {
+          "type": "paragraph",
+          "text": {
+            "en": "Bringing a new life into the world is a profound experience, but it can also be overwhelming. It's common for new mothers to feel emotional and tired. However, if these feelings are intense, persistent, and interfere with your daily life, it could be Postpartum Depression (PPD). PPD is a treatable medical condition, not a sign of weakness or a reflection of your love for your baby. Recognising the signs and seeking help early is the strongest thing you can do.",
+            "hi": "एक नए जीवन को दुनिया में लाना एक गहरा अनुभव है, लेकिन यह भारी भी पड़ सकता है। नई माताओं का भावुक और थका हुआ महसूस करना आम बात है। हालांकि, अगर ये भावनाएं तीव्र, लगातार बनी रहती हैं और आपके दैनिक जीवन में हस्तक्षेप करती हैं, तो यह प्रसवोत्तर अवसाद (PPD) हो सकता है। पीपीडी एक इलाज योग्य चिकित्सा स्थिति है, यह कमजोरी का संकेत या आपके बच्चे के प्रति आपके प्यार का प्रतिबिंब नहीं है। लक्षणों को पहचानना और जल्दी मदद लेना सबसे मजबूत कदम है जो आप उठा सकती हैं।",
+            "te": "ఒక కొత్త జీవితాన్ని ప్రపంచంలోకి తీసుకురావడం ఒక గొప్ప అనుభవం, కానీ అది అధిక భారాన్ని కూడా కలిగించవచ్చు. కొత్త తల్లులు భావోద్వేగంగా మరియు అలసిపోయినట్లు అనిపించడం సాధారణం. అయితే, ఈ భావనలు తీవ్రంగా, నిరంతరంగా ఉండి, మీ రోజువారీ జీవితానికి ఆటంకం కలిగిస్తే, అది ప్రసవానంతర డిప్రెషన్ (PPD) కావచ్చు. PPD అనేది చికిత్స చేయగల వైద్య పరిస్థితి, ఇది బలహీనతకు సంకేతం లేదా మీ శిశువు పట్ల మీ ప్రేమకు ప్రతిబింబం కాదు. సంకేతాలను గుర్తించి, త్వరగా సహాయం కోరడం మీరు చేయగల అత్యంత బలమైన పని."
+          }
+        }
+      ]
+    },
+    {
+      "id": "warning-signs",
+      "title": {
+        "en": "Warning Signs: 'Baby Blues' vs. PPD",
+        "hi": "चेतावनी संकेत: 'बेबी ब्लूज' बनाम पीपीडी",
+        "te": "హెచ్చరిక సంకేతాలు: 'బేబీ బ్లూస్' వర్సెస్ PPD"
+      },
+      "content": [
+        {
+          "type": "subheading",
+          "text": {
+            "en": "The 'Baby Blues'",
+            "hi": "'बेबी ब्लूज'",
+            "te": "'బేబీ బ్లూస్'"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": {
+            "en": "This is very common, affecting up to 80% of new mothers. It typically starts a few days after birth and lasts for about two weeks. Symptoms include mood swings, crying spells, anxiety, and feeling overwhelmed. It usually gets better on its own with rest and support.",
+            "hi": "यह बहुत आम है, जो 80% तक नई माताओं को प्रभावित करता है। यह आमतौर पर जन्म के कुछ दिनों बाद शुरू होता है और लगभग दो सप्ताह तक रहता है। इसके लक्षणों में मूड स्विंग, रोना, चिंता और अभिभूत महसूस करना शामिल है। यह आमतौर पर आराम और समर्थन से अपने आप बेहतर हो जाता है।",
+            "te": "ఇది చాలా సాధారణం, 80% వరకు కొత్త తల్లులను ప్రభావితం చేస్తుంది. ఇది సాధారణంగా ప్రసవం జరిగిన కొన్ని రోజుల తర్వాత ప్రారంభమై, సుమారు రెండు వారాల పాటు ఉంటుంది. లక్షణాలలో మూడ్ స్వింగ్స్, ఏడుపు, ఆందోళన మరియు అధిక భారం అనిపించడం వంటివి ఉంటాయి. ఇది సాధారణంగా విశ్రాంతి మరియు మద్దతుతో దానంతట అదే మెరుగుపడుతుంది."
+          }
+        },
+        {
+          "type": "subheading",
+          "text": {
+            "en": "Postpartum Depression (PPD)",
+            "hi": "प्रसवोत्तर अवसाद (पीपीडी)",
+            "te": "ప్రసవానంతర డిప్రెషన్ (PPD)"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": {
+            "en": "PPD is more severe and lasts much longer. The feelings don't go away on their own and can appear anytime in the first year after birth. Look for:",
+            "hi": "पीपीडी अधिक गंभीर होता है और बहुत लंबे समय तक रहता है। ये भावनाएं अपने आप दूर नहीं होतीं और जन्म के बाद पहले वर्ष में कभी भी प्रकट हो सकती हैं। इन लक्षणों पर ध्यान दें:",
+            "te": "PPD మరింత తీవ్రమైనది మరియు చాలా కాలం పాటు ఉంటుంది. ఈ భావనలు వాటంతట అవే పోవు మరియు ప్రసవం తర్వాత మొదటి సంవత్సరంలో ఎప్పుడైనా కనిపించవచ్చు. వీటి కోసం చూడండి:"
+          }
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "en": "Deep, persistent sadness, feeling empty, or frequent crying.",
+              "hi": "गहरी, लगातार उदासी, खालीपन महसूस करना, या बार-बार रोना।",
+              "te": "లోతైన, నిరంతర విచారం, శూన్యంగా అనిపించడం, లేదా తరచుగా ఏడవడం."
+            },
+            {
+              "en": "Severe anger, irritability, or rage.",
+              "hi": "अत्यधिक गुस्सा, चिड़चिड़ापन, या रोष।",
+              "te": "తీవ్రమైన కోపం, చిరాకు, లేదా ఆవేశం."
+            },
+            {
+              "en": "Loss of interest or pleasure in activities you used to enjoy.",
+              "hi": "जिन गतिविधियों में आपको पहले आनंद आता था, उनमें रुचि या खुशी खो देना।",
+              "te": "మీరు గతంలో ఆనందించిన కార్యకలాపాలపై ఆసక్తి లేదా ఆనందం కోల్పోవడం."
+            },
+            {
+              "en": "Feelings of worthlessness, shame, or guilt.",
+              "hi": "बेकार, शर्म, या अपराधबोध की भावनाएं।",
+              "te": "పనికిరాని, సిగ్గు, లేదా అపరాధ భావనలు."
+            },
+            {
+              "en": "Difficulty bonding with your baby, or extreme anxiety about their wellbeing.",
+              "hi": "अपने बच्चे के साथ जुड़ाव महसूस करने में कठिनाई, या उनकी भलाई के बारे में अत्यधिक चिंता।",
+              "te": "మీ శిశువుతో బంధం ఏర్పరచుకోవడంలో ఇబ్బంది, లేదా వారి శ్రేయస్సు గురించి తీవ్రమైన ఆందోళన."
+            },
+            {
+              "en": "Inability to sleep (insomnia) or sleeping too much.",
+              "hi": "नींद न आना (अनिद्रा) या बहुत अधिक सोना।",
+              "te": "నిద్రలేమి (ఇన్సోమ్నియా) లేదా ఎక్కువగా నిద్రపోవడం."
+            },
+            {
+              "en": "Frightening thoughts of harming yourself or the baby. (This is a medical emergency).",
+              "hi": "खुद को या बच्चे को नुकसान पहुँचाने के डरावने विचार। (यह एक चिकित्सा आपात स्थिति है)।",
+              "te": "మిమ్మల్ని మీరు లేదా శిశువును హాని చేసుకోవాలనే భయానక ఆలోచనలు. (ఇది ఒక వైద్య అత్యవసర పరిస్థితి)."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "getting-help",
+      "title": {
+        "en": "Getting Help",
+        "hi": "मदद प्राप्त करना",
+        "te": "సహాయం పొందడం"
+      },
+      "content": [
+        {
+          "type": "paragraph",
+          "text": {
+            "en": "Taking the first step is the hardest part, but it's essential for your recovery. Seeking help for your mind is just as important as for your body.",
+            "hi": "पहला कदम उठाना सबसे कठिन हिस्सा है, लेकिन यह आपके ठीक होने के लिए आवश्यक है। अपने मन के लिए मदद मांगना उतना ही महत्वपूर्ण है जितना कि आपके शरीर के लिए।",
+            "te": "మొదటి అడుగు వేయడం చాలా కష్టమైన భాగం, కానీ అది మీ కోలుకోవడానికి చాలా అవసరం. మీ శరీరం కోసం సహాయం కోరినట్లే మీ మనస్సు కోసం కూడా సహాయం కోరడం అంతే ముఖ్యం."
+          }
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "en": "Talk to Someone: Break the silence. Confide in your partner, a trusted friend, or a family member. Simply saying your feelings out loud can be a huge relief.",
+              "hi": "किसी से बात करें: चुप्पी तोड़ें। अपने साथी, एक भरोसेमंद दोस्त, या परिवार के किसी सदस्य से अपनी बात कहें। अपनी भावनाओं को जोर से कहना ही एक बड़ी राहत हो सकती है।",
+              "te": "ఎవరితోనైనా మాట్లాడండి: నిశ్శబ్దాన్ని ఛేదించండి. మీ భాగస్వామి, ఒక నమ్మకమైన స్నేహితుడు, లేదా కుటుంబ సభ్యుడితో మీ భావాలను పంచుకోండి. మీ భావాలను గట్టిగా చెప్పడం ఒక పెద్ద ఉపశమనం కావచ్చు."
+            },
+            {
+              "en": "Contact Your Gynaecologist or a GP: Your doctor is a primary point of contact. They can screen you for PPD and rule out physical causes for your symptoms, like thyroid problems.",
+              "hi": "अपने स्त्री रोग विशेषज्ञ या एक जीपी से संपर्क करें: आपका डॉक्टर संपर्क का एक प्राथमिक बिंदु है। वे आपकी पीपीडी के लिए जांच कर सकते हैं और आपके लक्षणों के शारीरिक कारणों, जैसे थायराइड की समस्याओं, को खारिज कर सकते हैं।",
+              "te": "మీ గైనకాలజిస్ట్ లేదా ఒక GPని సంప్రదించండి: మీ డాక్టర్ ప్రాథమిక సంప్రదింపు కేంద్రం. వారు మిమ్మల్ని PPD కోసం స్క్రీనింగ్ చేయగలరు మరియు మీ లక్షణాలకు థైరాయిడ్ సమస్యల వంటి భౌతిక కారణాలను తోసిపుచ్చగలరు."
+            },
+            {
+              "en": "Seek a Mental Health Professional: This is the most effective step. A therapist or counsellor can provide talk therapy (psychotherapy), and a psychiatrist can discuss medication options that are often safe for breastfeeding mothers.",
+              "hi": "एक मानसिक स्वास्थ्य पेशेवर से मिलें: यह सबसे प्रभावी कदम है। एक चिकित्सक या परामर्शदाता टॉक थेरेपी (मनोचिकित्सा) प्रदान कर सकता है, और एक मनोचिकित्सक दवा के विकल्पों पर चर्चा कर सकता है जो अक्सर स्तनपान कराने वाली माताओं के लिए सुरक्षित होते हैं।",
+              "te": "ఒక మానసిక ఆరోగ్య నిపుణుడిని సంప్రదించండి: ఇది అత్యంత ప్రభావవంతమైన చర్య. ఒక థెరపిస్ట్ లేదా కౌన్సెలర్ టాక్ థెరపీ (సైకోథెరపీ) అందించగలరు, మరియు ఒక సైకియాట్రిస్ట్ పాలిచ్చే తల్లులకు సురక్షితమైన మందుల ఎంపికలను చర్చించగలరు."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "support-systems",
+      "title": {
+        "en": "Support Systems",
+        "hi": "सहायता प्रणालियाँ",
+        "te": "మద్దతు వ్యవస్థలు"
+      },
+      "content": [
+        {
+          "type": "subheading",
+          "text": {
+            "en": "For the New Mother:",
+            "hi": "नई माँ के लिए:",
+            "te": "కొత్త తల్లి కోసం:"
+          }
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "en": "Prioritize Rest: Sleep when the baby sleeps. Let the household chores wait.",
+              "hi": "आराम को प्राथमिकता दें: जब बच्चा सोए तब आप भी सोएं। घर के कामों को इंतजार करने दें।",
+              "te": "విశ్రాంతికి ప్రాధాన్యత ఇవ్వండి: శిశువు నిద్రపోయినప్పుడు మీరు కూడా నిద్రపోండి. ఇంటి పనులను వేచి ఉండనివ్వండి."
+            },
+            {
+              "en": "Nourish Yourself: Try to eat small, regular, nutritious meals. Stay hydrated.",
+              "hi": "खुद को पोषण दें: छोटे, नियमित, पौष्टिक भोजन करने की कोशिश करें। हाइड्रेटेड रहें।",
+              "te": "మిమ్మల్ని మీరు పోషించుకోండి: చిన్న, క్రమమైన, పోషకమైన భోజనం తినడానికి ప్రయత్నించండి. హైడ్రేటెడ్‌గా ఉండండి."
+            },
+            {
+              "en": "Get Fresh Air: Even a 10-minute walk outside can improve your mood.",
+              "hi": "ताजी हवा लें: बाहर 10 मिनट की सैर भी आपके मूड को बेहतर बना सकती है।",
+              "te": "తాజా గాలి పీల్చుకోండి: బయట 10 నిమిషాల నడక కూడా మీ మూడ్‌ను మెరుగుపరుస్తుంది."
+            }
+          ]
+        },
+        {
+          "type": "subheading",
+          "text": {
+            "en": "For Partners & Family:",
+            "hi": "साथी और परिवार के लिए:",
+            "te": "భాగస్వాములు & కుటుంబం కోసం:"
+          }
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "en": "Offer Practical Help: Take the baby for a few hours. Cook a meal. Do the laundry. This frees up her time to rest.",
+              "hi": "व्यावहारिक मदद की पेशकश करें: बच्चे को कुछ घंटों के लिए संभालें। भोजन बनाएं। कपड़े धोएं। इससे उसे आराम करने का समय मिलता है।",
+              "te": "ఆచరణాత్మక సహాయాన్ని అందించండి: శిశువును కొన్ని గంటల పాటు తీసుకోండి. భోజనం వండండి. బట్టలు ఉతకండి. ఇది ఆమెకు విశ్రాంతి తీసుకోవడానికి సమయాన్ని ఇస్తుంది."
+            },
+            {
+              "en": "Listen Without Judgment: Don't say 'You should be happy.' Instead, say 'I'm here for you. How can I help?'.",
+              "hi": "बिना निर्णय के सुनें: 'तुम्हें खुश होना चाहिए' न कहें। इसके बजाय, कहें 'मैं तुम्हारे लिए यहाँ हूँ। मैं कैसे मदद कर सकता हूँ?'।",
+              "te": "నిర్ణయించకుండా వినండి: 'నువ్వు సంతోషంగా ఉండాలి' అని అనకండి. బదులుగా, 'నేను నీ కోసం ఇక్కడ ఉన్నాను. నేను ఎలా సహాయం చేయగలను?' అని అనండి."
+            },
+            {
+              "en": "Encourage Professional Help: Help her find a doctor or therapist and offer to go with her to the appointment.",
+              "hi": "पेशेवर मदद के लिए प्रोत्साहित करें: उसे एक डॉक्टर या चिकित्सक खोजने में मदद करें और अपॉइंटमेंट पर उसके साथ जाने की पेशकश करें।",
+              "te": "వృత్తిపరమైన సహాయం కోసం ప్రోత్సహించండి: ఆమెకు ఒక డాక్టర్ లేదా థెరపిస్ట్‌ను కనుగొనడంలో సహాయం చేయండి మరియు అపాయింట్‌మెంట్‌కు ఆమెతో పాటు వెళ్లడానికి ముందుకురండి."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "disclaimer": {
+    "en": "This information is for educational purposes and is not a substitute for professional medical advice. If you think you may have postpartum depression, please contact a healthcare provider or mental health professional immediately.",
+    "hi": "यह जानकारी शैक्षिक उद्देश्यों के लिए है और पेशेवर चिकित्सा सलाह का विकल्प नहीं है। यदि आपको लगता है कि आपको प्रसवोत्तर अवसाद हो सकता है, तो कृपया तुरंत एक स्वास्थ्य सेवा प्रदाता या मानसिक स्वास्थ्य पेशेवर से संपर्क करें।",
+    "te": "ఈ సమాచారం విద్యా ప్రయోజనాల కోసం మరియు వృత్తిపరమైన వైద్య సలహాకు ప్రత్యామ్నాయం కాదు. మీకు ప్రసవానంతర డిప్రెషన్ ఉందని మీరు భావిస్తే, దయచేసి వెంటనే ఒక ఆరోగ్య సంరక్షణ ప్రదాత లేదా మానసిక ఆరోగ్య నిపుణుడిని సంప్రదించండి."
+  }
+}
