@@ -128,11 +128,11 @@ const Treatment = () => {
     title: treatment.title || treatmentKey,
     summary: treatment.summary || treatment.Summary || {},
     reviewedBy: treatment['Reviewed by'] || treatment.reviewed_by || 'Dr. Raghav Iyer',
-    whoMightBenefit: treatment['Who Might Benefit'] || treatment.whoMightBenefit || treatment['Who might benefit'] || [],
-    processSteps: treatment['Process Steps'] || treatment.processSteps || {},
-    risksConsiderations: treatment['Risks & Considerations'] || treatment.risksConsiderations || [],
-    costConsiderations: treatment['Cost Considerations'] || treatment.costConsiderations || [],
-    questionsToAsk: treatment['Questions to Ask Your Doctor'] || treatment.questionsToAsk || [],
+    whoMightBenefit: treatment['Who Might Benefit'] || treatment.who_might_benefit || [],
+    processSteps: treatment['Process Steps'] || treatment.process_steps || {},
+    risksConsiderations: treatment['Risks & Considerations'] || treatment.risks_considerations || [],
+    costConsiderations: treatment['Cost Considerations'] || treatment.cost_considerations || [],
+    questionsToAsk: treatment['Questions to Ask Your Doctor'] || treatment.questions_to_ask || [],
     sources: treatment['Sources'] || treatment.sources || []
   };
 
