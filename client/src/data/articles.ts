@@ -186,7 +186,7 @@ export const articles: Article[] = [
     reviewedBy: 'Dr. Raghav Iyer' 
   },
   { 
-    slug: 'embryo-grading-basics', 
+    slug: 'embryo-grading-guide', 
     title: {
       en: 'Embryo grading — lay guide',
       hi: 'भ्रूण ग्रेडिंग — सरल गाइड',

@@ -95,7 +95,7 @@ export const fetchAllArticlesMetadata = async (): Promise<Array<{
   reviewer: { en: string; hi: string; te: string };
 }>> => {
   const articles = [];
-  
+
   for (const slug of availableArticles) {
     try {
       const data = await fetchArticleData(slug);
@@ -112,6 +112,6 @@ export const fetchAllArticlesMetadata = async (): Promise<Array<{
       console.error(`Error fetching metadata for ${slug}:`, error);
     }
   }
-  
+
   return articles;
 };
