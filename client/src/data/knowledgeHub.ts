@@ -54,14 +54,36 @@ export interface ArticleData {
 
 export const fetchArticleData = async (slug: string): Promise<ArticleData | null> => {
   try {
-    const response = await fetch(`/KnowledgeHub/${slug}.json`);
+    // Map article slugs to their corresponding JSON files
+    const slugToFileMap: { [key: string]: string } = {
+      'pmmvy-jsy-how-to-apply': 'pmmvy-jsy-application-guide',
+      'pregnancy-foods': 'safe-pregnancy-foods-india',
+      'embryo-grading-guide': 'embryo-grading-guide',
+      'first-trimester-scan': 'first-trimester-scan',
+      'when-to-see-fertility-specialist': 'when-to-see-fertility-specialist',
+      'ivf-10-min': 'ivf-10-min',
+      'second-trimester-checklist': 'second-trimester-checklist',
+      'ppd-signs-support': 'ppd-signs-and-support',
+      'preeclampsia-basics': 'preeclampsia-basics',
+      'cervical-cerclage-basics': 'cervical-cerclage-basics',
+      'cost-planning-101': 'cost-planning-101',
+      'iycf-after-6-months': 'iycf-after-6-months',
+      'newborn-vaccines-timeline': 'newborn-vaccines-timeline',
+      'partner-playbook': 'partner-playbook',
+      'post-birth-warning-signs': 'post-birth-warning-signs',
+      'vbac-questions-to-ask': 'vbac-questions-to-ask'
+    };
+
+    const fileName = slugToFileMap[slug] || slug;
+    const response = await fetch(`/KnowledgeHub/${fileName}.json`);
+
     if (!response.ok) {
-      throw new Error(`Failed to fetch article: ${response.status}`);
+      return null;
     }
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error(`Error fetching article ${slug}:`, error);
+    console.error('Error fetching article:', error);
     return null;
   }
 };
@@ -69,7 +91,7 @@ export const fetchArticleData = async (slug: string): Promise<ArticleData | null
 // List of available articles - this matches the JSON files in public/KnowledgeHub
 export const availableArticles = [
   'cervical-cerclage-basics',
-  'cost-planning-101', 
+  'cost-planning-101',
   'embryo-grading-guide',
   'first-trimester-scan',
   'ivf-10-min',

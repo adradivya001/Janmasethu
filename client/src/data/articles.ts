@@ -53,7 +53,7 @@ export const articles: Article[] = [
     reviewedBy: 'Dr. Ananya Sharma, MS OBGYN' 
   },
   { 
-    slug: 'pmmvy-jsy-apply', 
+    slug: 'pmmvy-jsy-how-to-apply', 
     title: {
       en: "PMMVY & JSY: How to Apply",
       hi: "PMMVY व JSY: आवेदन कैसे करें",
