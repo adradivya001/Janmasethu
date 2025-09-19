@@ -7,28 +7,89 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { articles, type Lens, type Stage } from '@/data/articles';
+import { fetchAllArticlesMetadata } from '@/data/knowledgeHub';
 
 const Knowledge = () => {
   const { t, lang } = useLanguage();
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedLens, setSelectedLens] = useState<Lens | null>(null);
+  const [selectedStage, setSelectedStage] = useState<Stage | null>(null);
+  const [jsonArticles, setJsonArticles] = useState<Array<{
+    slug: string;
+    title: { en: string; hi: string; te: string };
+    overview: { en: string; hi: string; te: string };
+    readTime: { en: string; hi: string; te: string };
+    reviewer: { en: string; hi: string; te: string };
+  }>>([]);
+  const [loading, setLoading] = useState(true);
+
+  // Load JSON articles metadata
+  useEffect(() => {
+    const loadArticles = async () => {
+      try {
+        const data = await fetchAllArticlesMetadata();
+        setJsonArticles(data);
+      } catch (error) {
+        console.error('Error loading articles metadata:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadArticles();
+  }, []);
 
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  const [selectedLens, setSelectedLens] = useState<Lens | null>(null);
-  const [selectedStage, setSelectedStage] = useState<Stage | null>(null);
+
+  // Helper function to get localized content
+  const getLocalizedContent = (content: any) => {
+    if (!content) return '';
+    if (typeof content === 'string') return content;
+    
+    const langKey = lang === 'hi' ? 'hi' : lang === 'te' ? 'te' : 'en';
+    return content[langKey] || content.en || '';
+  };
+
+  // Combine legacy and JSON articles for display
+  const allArticles = useMemo(() => {
+    const legacyArticles = articles.map(article => ({
+      slug: article.slug,
+      title: getLocalizedContent(article.title),
+      summary: getLocalizedContent(article.summary),
+      lens: article.lens,
+      stage: article.stage,
+      readMins: article.readMins,
+      reviewedBy: article.reviewedBy,
+      isLegacy: true
+    }));
+
+    const newArticles = jsonArticles.map(article => ({
+      slug: article.slug,
+      title: getLocalizedContent(article.title),
+      summary: getLocalizedContent(article.overview),
+      lens: [] as Lens[], // JSON articles don't have lens/stage classification yet
+      stage: [] as Stage[],
+      readMins: parseInt(getLocalizedContent(article.readTime).replace(/\D/g, '')) || 5,
+      reviewedBy: getLocalizedContent(article.reviewer),
+      isLegacy: false
+    }));
+
+    return [...legacyArticles, ...newArticles];
+  }, [articles, jsonArticles, lang, getLocalizedContent]);
 
   const filteredArticles = useMemo(() => {
-    return articles.filter(article => {
-      const matchesSearch = article.title.en.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           article.summary.en.toLowerCase().includes(searchTerm.toLowerCase());
+    return allArticles.filter(article => {
+      const matchesSearch = article.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                           article.summary.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesLens = !selectedLens || article.lens.includes(selectedLens);
       const matchesStage = !selectedStage || article.stage.includes(selectedStage);
       
       return matchesSearch && matchesLens && matchesStage;
     });
-  }, [searchTerm, selectedLens, selectedStage]);
+  }, [allArticles, searchTerm, selectedLens, selectedStage]);
 
   const lensOptions: Array<{value: Lens; label: string; icon: string; color: string}> = [
     { value: 'medical', label: t('lens_medical'), icon: 'fas fa-stethoscope', color: 'bg-blue-100 text-blue-600' },
@@ -130,47 +191,63 @@ const Knowledge = () => {
       </div>
 
       {/* Articles Grid */}
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {filteredArticles.map((article, index) => (
-          <Link key={article.slug} href={`/knowledge/${article.slug}`} className="group h-full">
-            <Card className="rounded-3xl p-6 card-shadow hover:shadow-2xl transition-all duration-500 h-full cursor-pointer transform hover:scale-105 border-2 border-transparent hover:border-purple-200 relative overflow-hidden bg-gradient-to-br from-white to-purple-50/30" data-testid={`card-article-${index}`}>
+      {loading ? (
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {[...Array(6)].map((_, index) => (
+            <Card key={index} className="rounded-3xl p-6 card-shadow">
               <CardContent className="p-0">
-                {/* Click indicator */}
-                <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
-                    <Search className="w-4 h-4 text-purple-600" />
-                  </div>
-                </div>
-                
-                <div className="flex flex-wrap gap-1 mb-3">
-                  {article.lens.map(lens => (
-                    <Badge key={lens} variant="secondary" className="text-xs group-hover:shadow-sm transition-shadow" data-testid={`badge-lens-${lens}-${index}`}>
-                      {lensOptions.find(l => l.value === lens)?.label || lens}
-                    </Badge>
-                  ))}
-                </div>
-                
-                <h3 className="text-lg font-bold text-foreground font-serif mb-2 group-hover:text-purple-600 transition-colors" data-testid={`text-article-title-${index}`}>
-                  {article.title[lang as keyof typeof article.title] || article.title.en}
-                </h3>
-                <p className="text-sm text-muted-foreground mb-4 line-clamp-3" data-testid={`text-article-summary-${index}`}>
-                  {article.summary[lang as keyof typeof article.summary] || article.summary.en}
-                </p>
-                
-                <div className="flex items-center justify-between text-xs text-muted-foreground">
-                  <div className="flex items-center space-x-2">
-                    <span data-testid={`text-read-time-${index}`}>{article.readMins} min read</span>
-                    <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-purple-600 font-medium">
-                      • Click to read
-                    </span>
-                  </div>
-                  <span data-testid={`text-reviewed-by-${index}`}>by {article.reviewedBy}</span>
+                <div className="animate-pulse">
+                  <div className="h-4 bg-gray-200 rounded mb-2"></div>
+                  <div className="h-6 bg-gray-200 rounded mb-2"></div>
+                  <div className="h-4 bg-gray-200 rounded w-2/3"></div>
                 </div>
               </CardContent>
             </Card>
-          </Link>
-        ))}
-      </div>
+          ))}
+        </div>
+      ) : (
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {filteredArticles.map((article, index) => (
+            <Link key={article.slug} href={`/knowledge/${article.slug}`} className="group h-full">
+              <Card className="rounded-3xl p-6 card-shadow hover:shadow-2xl transition-all duration-500 h-full cursor-pointer transform hover:scale-105 border-2 border-transparent hover:border-purple-200 relative overflow-hidden bg-gradient-to-br from-white to-purple-50/30" data-testid={`card-article-${index}`}>
+                <CardContent className="p-0">
+                  {/* Click indicator */}
+                  <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
+                      <Search className="w-4 h-4 text-purple-600" />
+                    </div>
+                  </div>
+
+                  <div className="flex flex-wrap gap-1 mb-3">
+                    {article.lens.map((lens: Lens) => (
+                      <Badge key={lens} variant="secondary" className="text-xs group-hover:shadow-sm transition-shadow" data-testid={`badge-lens-${lens}-${index}`}>
+                        {lensOptions.find(l => l.value === lens)?.label || lens}
+                      </Badge>
+                    ))}
+                  </div>
+                  
+                  <h3 className="text-lg font-bold text-foreground font-serif mb-2 group-hover:text-purple-600 transition-colors" data-testid={`text-article-title-${index}`}>
+                    {article.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground mb-4 line-clamp-3" data-testid={`text-article-summary-${index}`}>
+                    {article.summary}
+                  </p>
+                  
+                  <div className="flex items-center justify-between text-xs text-muted-foreground">
+                    <div className="flex items-center space-x-2">
+                      <span data-testid={`text-read-time-${index}`}>{article.readMins} min read</span>
+                      <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-purple-600 font-medium">
+                        • Click to read
+                      </span>
+                    </div>
+                    <span data-testid={`text-reviewed-by-${index}`}>by {article.reviewedBy}</span>
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+          ))}
+        </div>
+      )}
 
       {filteredArticles.length === 0 && (
         <div className="text-center py-12">
