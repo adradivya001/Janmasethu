@@ -1,4 +1,3 @@
-
 import { useParams, Link } from 'wouter';
 import { useEffect, useState } from 'react';
 import { ArrowLeft, Clock, User, ExternalLink } from 'lucide-react';
@@ -17,9 +16,6 @@ const Article = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Try to find the article in the legacy articles data first as fallback
-  const legacyArticle = articles.find(a => a.slug === slug);
-
   // Load article data from JSON
   useEffect(() => {
     const loadArticle = async () => {
@@ -32,7 +28,7 @@ const Article = () => {
         const data = await fetchArticleData(slug);
         if (data) {
           setArticleData(data);
-        } else if (!legacyArticle) {
+        } else {
           setError('Article not found');
         }
       } catch (err) {
@@ -44,7 +40,7 @@ const Article = () => {
     };
 
     loadArticle();
-  }, [slug, legacyArticle]);
+  }, [slug]);
 
   // Scroll to top when component mounts
   useEffect(() => {
@@ -69,8 +65,8 @@ const Article = () => {
     );
   }
 
-  // Error state - only show if there's no article data available at all
-  if ((!articleData && !legacyArticle) || (error && !legacyArticle)) {
+  // Error state or article not found
+  if (error || !articleData) {
     return (
       <div className="container mx-auto px-4 py-8">
         <Card className="max-w-2xl mx-auto rounded-3xl p-8 card-shadow">
@@ -95,14 +91,6 @@ const Article = () => {
         </Card>
       </div>
     );
-  }
-
-  // Determine which data to use - prioritize JSON data over legacy data
-  const currentArticle = articleData || legacyArticle;
-  const useJsonData = !!articleData;  // Use JSON data if available
-  
-  if (!currentArticle) {
-    return null; // Should not happen given our error handling above
   }
 
   // Helper function to get content in the current language
@@ -154,11 +142,6 @@ const Article = () => {
     }
   };
 
-  // Get related articles (only for legacy articles that have lens data)
-  const relatedArticles = legacyArticle ? 
-    articles.filter(a => a.slug !== legacyArticle.slug && a.lens.some(l => legacyArticle.lens.includes(l))).slice(0, 3) : 
-    [];
-
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="mb-8">
@@ -174,49 +157,25 @@ const Article = () => {
 
       {/* Article Header */}
       <header className="mb-12">
-        {/* Show lens badges only for legacy articles (when no JSON data is available) */}
-        {!useJsonData && legacyArticle && (
-          <div className="flex flex-wrap gap-2 mb-4">
-            {legacyArticle.lens.map((lens: string) => (
-              <Badge key={lens} variant="secondary" className="rounded-full" data-testid={`badge-lens-${lens}`}>
-                {lens === 'medical' ? t('lens_medical') :
-                 lens === 'social' ? t('lens_social') :
-                 lens === 'financial' ? t('lens_financial') :
-                 lens === 'nutrition' ? t('lens_nutrition') : lens}
-              </Badge>
-            ))}
-          </div>
-        )}
-
         <h1 className="text-4xl md:text-5xl font-bold text-foreground font-serif mb-6" data-testid="text-article-title">
-          {useJsonData ? 
-            getLocalizedContent(articleData.title) : 
-            getLocalizedContent(legacyArticle?.title)}
+          {getLocalizedContent(articleData.title)}
         </h1>
 
         <p className="text-xl text-muted-foreground mb-8" data-testid="text-article-summary">
-          {useJsonData ? 
-            getLocalizedContent(articleData.overview) : 
-            getLocalizedContent(legacyArticle?.summary)}
+          {getLocalizedContent(articleData.overview)}
         </p>
 
         <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground">
           <div className="flex items-center space-x-2">
             <Clock className="w-4 h-4" />
             <span data-testid="text-read-time">
-              {useJsonData ? 
-                getLocalizedContent(articleData.metadata?.readTime) : 
-                `${legacyArticle?.readMins || 0} ${lang === 'hi' ? 'मिनट पढ़ना' : lang === 'te' ? 'నిమిషాల రీడ్' : 'min read'}`}
+              {getLocalizedContent(articleData.metadata?.readTime)}
             </span>
           </div>
           <div className="flex items-center space-x-2">
             <User className="w-4 h-4" />
             <span data-testid="text-reviewed-by">
-              {lang === 'hi' ? 'द्वारा समीक्षित' : lang === 'te' ? 'సమీక్షించినవారు' : 'Reviewed by'} {
-                useJsonData ? 
-                  getLocalizedContent(articleData.metadata?.reviewer) : 
-                  legacyArticle?.reviewedBy || ''
-              }
+              {getLocalizedContent(articleData.metadata?.reviewer)}
             </span>
           </div>
         </div>
@@ -226,56 +185,25 @@ const Article = () => {
       <div className="grid lg:grid-cols-3 gap-12">
         <div className="lg:col-span-2">
           <div className="space-y-8">
-            {useJsonData && articleData ? (
-              // Render new JSON structure with sections
-              articleData.sections.map((section, index) => (
-                <Card key={section.id} className="rounded-3xl p-8 card-shadow" data-testid={`card-section-${index}`}>
-                  <CardContent className="p-0">
-                    {/* Only show title if it's not empty */}
-                    {getLocalizedContent(section.title) && (
-                      <h2 className="text-2xl font-bold text-foreground font-serif mb-6" data-testid={`text-section-title-${index}`}>
-                        {getLocalizedContent(section.title)}
-                      </h2>
-                    )}
-                    <div className="space-y-4">
-                      {section.content.map((content, contentIndex) => (
-                        <div key={contentIndex}>
-                          {renderContent(content)}
-                        </div>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              ))
-            ) : legacyArticle ? (
-              // Render legacy structure - only if no JSON data is available
-              legacyArticle.body.map((section: string, index: number) => (
-                <Card key={index} className="rounded-3xl p-8 card-shadow" data-testid={`card-section-${index}`}>
-                  <CardContent className="p-0">
-                    <h2 className="text-2xl font-bold text-foreground font-serif mb-4" data-testid={`text-section-title-${index}`}>
-                      {section}
-                    </h2>
-                    <p className="text-muted-foreground leading-relaxed" data-testid={`text-section-content-${index}`}>
-                      {lang === 'hi' ? 
-                        `इस खंड में ${section.toLowerCase()} के बारे में विस्तृत जानकारी होगी।` :
-                       lang === 'te' ? 
-                        `ఈ విభాగంలో ${section.toLowerCase()} గురించి వివరణాత్మక సమాచారం ఉంటుంది.` :
-                        `This section would contain detailed information about ${section.toLowerCase()}.`}
-                    </p>
-                  </CardContent>
-                </Card>
-              ))
-            ) : (
-              <Card className="rounded-3xl p-8 card-shadow">
+            {articleData.sections.map((section, index) => (
+              <Card key={section.id} className="rounded-3xl p-8 card-shadow" data-testid={`card-section-${index}`}>
                 <CardContent className="p-0">
-                  <p className="text-muted-foreground leading-relaxed">
-                    {lang === 'hi' ? 'कोई सामग्री उपलब्ध नहीं है।' : 
-                     lang === 'te' ? 'కంటెంట్ అందుబాటులో లేదు.' : 
-                     'No content available.'}
-                  </p>
+                  {/* Only show title if it's not empty */}
+                  {getLocalizedContent(section.title) && (
+                    <h2 className="text-2xl font-bold text-foreground font-serif mb-6" data-testid={`text-section-title-${index}`}>
+                      {getLocalizedContent(section.title)}
+                    </h2>
+                  )}
+                  <div className="space-y-4">
+                    {section.content.map((content, contentIndex) => (
+                      <div key={contentIndex}>
+                        {renderContent(content)}
+                      </div>
+                    ))}
+                  </div>
                 </CardContent>
               </Card>
-            )}
+            ))}
           </div>
         </div>
 
@@ -290,10 +218,7 @@ const Article = () => {
             </CardHeader>
             <CardContent className="p-0">
               <div className="space-y-2">
-                {(useJsonData ? 
-                  articleData.metadata?.sources : 
-                  legacyArticle?.sources || []
-                ).map((source: string, index: number) => (
+                {(articleData.metadata?.sources || []).map((source: string, index: number) => (
                   <div key={index} className="flex items-center space-x-2">
                     <ExternalLink className="w-3 h-3 text-muted-foreground" />
                     <span className="text-sm text-muted-foreground">{source}</span>
@@ -302,39 +227,6 @@ const Article = () => {
               </div>
             </CardContent>
           </Card>
-
-          {/* Related Articles - only show for legacy articles when no JSON data */}
-          {!useJsonData && legacyArticle && relatedArticles.length > 0 && (
-            <Card className="rounded-3xl p-6 card-shadow">
-              <CardHeader className="p-0 pb-4">
-                <CardTitle className="text-lg font-semibold text-foreground">
-                  {lang === 'hi' ? 'संबंधित लेख' : lang === 'te' ? 'సంబంధిత వ్యాసాలు' : 'Related Articles'}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="p-0">
-                <div className="space-y-4">
-                  {relatedArticles.map((relatedArticle, index) => (
-                    <Link key={relatedArticle.slug} href={`/knowledge/${relatedArticle.slug}`}>
-                      <div className="p-4 rounded-2xl bg-background hover:bg-muted transition-colors cursor-pointer" data-testid={`link-related-article-${index}`}>
-                        <h4 className="font-semibold text-foreground mb-1" data-testid={`text-related-title-${index}`}>
-                          {getLocalizedContent(relatedArticle.title)}
-                        </h4>
-                        <p className="text-sm text-muted-foreground mb-2" data-testid={`text-related-summary-${index}`}>
-                          {getLocalizedContent(relatedArticle.summary)}
-                        </p>
-                        <div className="flex items-center space-x-1 text-xs text-muted-foreground">
-                          <Clock className="w-3 h-3" />
-                          <span data-testid={`text-related-readtime-${index}`}>
-                            {relatedArticle.readMins} {lang === 'hi' ? 'मिनट' : lang === 'te' ? 'నిమిషాలు' : 'min'}
-                          </span>
-                        </div>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          )}
         </div>
       </div>
     </div>
