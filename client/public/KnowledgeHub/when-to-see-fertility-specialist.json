@@ -214,3 +214,193 @@
     "te": "ఈ సమాచారం సాధారణ మార్గదర్శకాలను అందిస్తుంది మరియు వృత్తిపరమైన వైద్య సలహాకు ప్రత్యామ్నాయం కాదు. దయచేసి మీ వ్యక్తిగత పరిస్థితిని చర్చించడానికి ఒక ఆరోగ్య సంరక్షణ ప్రదాత లేదా ఫెర్టిలిటీ నిపుణుడిని సంప్రదించండి."
   }
 }
+{
+  "slug": "when-to-see-fertility-specialist",
+  "title": {
+    "en": "When to See a Fertility Specialist",
+    "hi": "प्रजनन विशेषज्ञ से कब मिलें",
+    "te": "ఫెర్టిలిటీ స్పెషలిస్ట్‌ను ఎప్పుడు చూడాలి"
+  },
+  "overview": {
+    "en": "Understanding when it's time to seek help from a fertility specialist and what to expect during your first consultation.",
+    "hi": "यह समझना कि प्रजनन विशेषज्ञ से सहायता कब लेनी चाहिए और आपकी पहली परामर्श के दौरान क्या अपेक्षा करनी चाहिए।",
+    "te": "ఫెర్టిలిటీ నిపుణుడి నుండి సహాయం ఎప్పుడు తీసుకోవాలో మరియు మీ మొదటి సంప్రదింపు సమయంలో ఏమి ఆశించాలో అర్థం చేసుకోవడం."
+  },
+  "metadata": {
+    "readTime": {
+      "en": "4 min read",
+      "hi": "4 मिनट में पढ़ें",
+      "te": "4 నిమిషాల పఠనం"
+    },
+    "reviewer": {
+      "en": "Reviewed by Dr. Raghav Iyer, DNB",
+      "hi": "डॉ. राघव अय्यर, DNB द्वारा समीक्षित",
+      "te": "డాక్టర్ రాఘవ్ అయ్యర్, DNB ద్వారా సమీక్షించబడింది"
+    },
+    "sources": [
+      "ASRM (American Society for Reproductive Medicine)"
+    ]
+  },
+  "sections": [
+    {
+      "id": "introduction",
+      "title": {
+        "en": "",
+        "hi": "",
+        "te": ""
+      },
+      "content": [
+        {
+          "type": "paragraph",
+          "text": {
+            "en": "Many couples trying to conceive wonder when they should seek help from a fertility specialist. While it's natural to want to conceive quickly, the timing for seeking professional help depends on several factors including age, medical history, and how long you've been trying. Understanding these guidelines can help you make an informed decision about when to take the next step in your fertility journey.",
+            "hi": "गर्भधारण की कोशिश कर रहे कई कपल्स सोचते हैं कि उन्हें प्रजनन विशेषज्ञ से कब सहायता लेनी चाहिए। जबकि जल्दी गर्भधारण की चाह स्वाभाविक है, पेशेवर सहायता लेने का समय कई कारकों पर निर्भर करता है जिसमें उम्र, चिकित्सा इतिहास, और आप कितने समय से कोशिश कर रहे हैं शामिल है। इन दिशानिर्देशों को समझना आपको अपनी प्रजनन यात्रा में अगला कदम कब उठाना है, इस बारे में एक सूचित निर्णय लेने में मदद कर सकता है।",
+            "te": "గర్భధారణకు ప్రయత్నిస్తున్న అనేక జంటలు ఫెర్టిలిటీ నిపుణుడి నుండి ఎప్పుడు సహాయం తీసుకోవాలో ఆలోచిస్తూ ఉంటారు. త్వరగా గర్భం దాల్చాలని అనిపించడం సహజమైనప్పటికీ, వృత్తిపరమైన సహాయం తీసుకోవాల్సిన సమయం వయస్సు, వైద్య చరిత్ర, మరియు మీరు ఎంతకాలంగా ప్రయత్నిస్తున్నారు వంటి అనేక కారకాలపై ఆధారపడి ఉంటుంది. ఈ మార్గదర్శకాలను అర్థం చేసుకోవడం మీ ఫెర్టిలిటీ ప్రయాణంలో తదుపరి అడుగు ఎప్పుడు వేయాలో సమాచారంతో కూడిన నిర్ణయం తీసుకోవడంలో మీకు సహాయపడుతుంది."
+          }
+        }
+      ]
+    },
+    {
+      "id": "age-considerations",
+      "title": {
+        "en": "Age Considerations",
+        "hi": "उम्र संबंधी विचार",
+        "te": "వయస్సు పరిగణనలు"
+      },
+      "content": [
+        {
+          "type": "paragraph",
+          "text": {
+            "en": "Age is one of the most important factors in determining when to seek fertility care:",
+            "hi": "प्रजनन देखभाल कब लेनी चाहिए, यह निर्धारित करने में उम्र सबसे महत्वपूर्ण कारकों में से एक है:",
+            "te": "ఫెర్టిలిటీ కేర్ ఎప్పుడు తీసుకోవాలో నిర్ణయించడంలో వయస్సు అత్యంత ముఖ్యమైన కారకాలలో ఒకటి:"
+          }
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "en": "Under 35: Try for one year before seeking help if you have regular menstrual cycles.",
+              "hi": "35 से कम उम्र: यदि आपका मासिक धर्म नियमित है तो सहायता लेने से पहले एक साल कोशिश करें।",
+              "te": "35 కంటే తక్కువ: మీకు క్రమం తప్పకుండా మాసిక ధర్మం ఉంటే సహాయం తీసుకోవడానికి ముందు ఒక సంవత్సరం ప్రయత్నించండి."
+            },
+            {
+              "en": "35-40 years: Seek help after 6 months of trying, as fertility declines more rapidly after 35.",
+              "hi": "35-40 साल: 6 महीने कोशिश करने के बाद सहायता लें, क्योंकि 35 के बाद प्रजनन क्षमता तेजी से घटती है।",
+              "te": "35-40 సంవత్సరాలు: 6 నెలల ప్రయత్నం తర్వాత సహాయం తీసుకోండి, ఎందుకంటే 35 తర్వాత ఫెర్టిలిటీ వేగంగా తగ్గుతుంది."
+            },
+            {
+              "en": "Over 40: Consider seeing a specialist immediately, as fertility declines significantly and pregnancy risks increase.",
+              "hi": "40 से अधिक: तुरंत विशेषज्ञ से मिलने पर विचार करें, क्योंकि प्रजनन क्षमता काफी घट जाती है और गर्भावस्था के जोखिम बढ़ जाते हैं।",
+              "te": "40 కంటే ఎక్కువ: వెంటనే నిపుణుడిని చూడాలని పరిగణించండి, ఎందుకంటే ఫెర్టిలిటీ గణనీయంగా తగ్గుతుంది మరియు గర్భధారణ ప్రమాదాలు పెరుగుతాయి."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "warning-signs",
+      "title": {
+        "en": "Warning Signs to See a Specialist Sooner",
+        "hi": "जल्दी विशेषज्ञ से मिलने के चेतावनी संकेत",
+        "te": "త్వరగా నిపుణుడిని చూడాల్సిన హెచ్చరిక సంకేతాలు"
+      },
+      "content": [
+        {
+          "type": "paragraph",
+          "text": {
+            "en": "Regardless of age or how long you've been trying, you should consider seeing a fertility specialist sooner if you have:",
+            "hi": "उम्र या आप कितने समय से कोशिश कर रहे हैं, इससे बावजूद आपको जल्दी प्रजनन विशेषज्ञ से मिलने पर विचार करना चाहिए यदि आपमें है:",
+            "te": "వయస్సు లేదా మీరు ఎంతకాలంగా ప్రయత్నిస్తున్నారనే దానితో సంబంధం లేకుండా, మీకు ఈ క్రింది వాటిలో ఏవైనా ఉంటే మీరు ఫెర్టిలిటీ నిపుణుడిని త్వరగా చూడాలని పరిగణించాలి:"
+          }
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "en": "Irregular or absent menstrual periods",
+              "hi": "अनियमित या अनुपस्थित मासिक धर्म",
+              "te": "క్రమం తప్పిన లేదా లేని మాసిక ధర్మం"
+            },
+            {
+              "en": "Known reproductive health conditions (PCOS, endometriosis, fibroids)",
+              "hi": "ज्ञात प्रजनन स्वास्थ्य स्थितियां (PCOS, एंडोमेट्रियोसिस, फाइब्रॉइड)",
+              "te": "తెలిసిన పునరుత్పత్తి ఆరోగ్య పరిస్థితులు (PCOS, ఎండోమెట్రియోసిస్, ఫైబ్రాయిడ్స్)"
+            },
+            {
+              "en": "History of pelvic inflammatory disease or sexually transmitted infections",
+              "hi": "पेल्विक इंफ्लेमेटरी डिजीज या यौन संचारित संक्रमण का इतिहास",
+              "te": "పెల్విక్ ఇన్ఫ్లామేటరీ వ్యాధి లేదా లైంగిక సంక్రమణల చరిత్ర"
+            },
+            {
+              "en": "Previous pelvic or abdominal surgery",
+              "hi": "पिछली पेल्विक या पेट की सर्जरी",
+              "te": "గతంలో పెల్విక్ లేదా పొత్తికడుపు శస్త్రచికిత్స"
+            },
+            {
+              "en": "Male partner with known fertility issues",
+              "hi": "पुरुष साथी में ज्ञात प्रजनन समस्याएं",
+              "te": "పురుష భాగస్వామికి తెలిసిన ఫెర్టిలిటీ సమస్యలు"
+            },
+            {
+              "en": "Family history of early menopause",
+              "hi": "जल्दी रजोनिवृत्ति का पारिवारिक इतिहास",
+              "te": "త్వరగా రజోనివృత్తి యొక్క కుటుంబ చరిత్ర"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "timing-guidelines",
+      "title": {
+        "en": "General Timing Guidelines",
+        "hi": "सामान्य समय दिशानिर्देश",
+        "te": "సాధారణ సమయ మార్గదర్శకాలు"
+      },
+      "content": [
+        {
+          "type": "paragraph",
+          "text": {
+            "en": "Here's when most couples should consider seeking fertility evaluation:",
+            "hi": "यहां बताया गया है कि अधिकांश कपल्स को प्रजनन मूल्यांकन कब लेना चाहिए:",
+            "te": "చాలా జంటలు ఫెర్టిలిటీ మూల్యాంకనను ఎప్పుడు పరిగణించాలి అనేది ఇక్కడ ఉంది:"
+          }
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "en": "Regular intercourse (2-3 times per week) without contraception",
+              "hi": "गर्भनिरोधक के बिना नियमित संभोग (सप्ताह में 2-3 बार)",
+              "te": "గర్భనిరోధకం లేకుండా క్రమం తప్పకుండా సంభోగం (వారానికి 2-3 సార్లు)"
+            },
+            {
+              "en": "Timing intercourse around ovulation (mid-cycle)",
+              "hi": "ओव्यूलेशन के आसपास संभोग का समय (मध्य चक्र)",
+              "te": "అండోత్సర్గం చుట్టూ సంభోగ సమయం (మధ్య చక్రం)"
+            },
+            {
+              "en": "Healthy lifestyle choices (no smoking, limited alcohol, healthy weight)",
+              "hi": "स्वस्थ जीवनशैली विकल्प (धूम्रपान नहीं, सीमित शराब, स्वस्थ वजन)",
+              "te": "ఆరోగ్యకరమైన జీవనశైలి ఎంపికలు (ధూమపానం లేదు, పరిమిత మద్యం, ఆరోగ్యకరమైన బరువు)"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": {
+            "en": "If you've been following these guidelines and still haven't conceived within the timeframes mentioned above, it's time to seek professional help.",
+            "hi": "यदि आप इन दिशानिर्देशों का पालन कर रहे हैं और अभी भी ऊपर बताई गई समयसीमा के भीतर गर्भधारण नहीं कर पाए हैं, तो पेशेवर सहायता लेने का समय आ गया है।",
+            "te": "మీరు ఈ మార్గదర్శకాలను అనుసరిస్తున్నారు మరియు ఇప్పటికీ పైన పేర్కొన్న కాలపరిమితుల్లో గర్భం దాల్చలేకపోతే, వృత్తిపరమైన సహాయం తీసుకోవాల్సిన సమయం వచ్చింది."
+          }
+        }
+      ]
+    }
+  ],
+  "disclaimer": {
+    "en": "This information is for educational purposes and is not a substitute for professional medical advice. The decision to seek fertility care should be made in consultation with your healthcare provider based on your individual circumstances.",
+    "hi": "यह जानकारी शैक्षिक उद्देश्यों के लिए है और पेशेवर चिकित्सा सलाह का विकल्प नहीं है। प्रजनन देखभाल लेने का निर्णय आपकी व्यक्तिगत परिस्थितियों के आधार पर आपके स्वास्थ्य सेवा प्रदाता के परामर्श से किया जाना चाहिए।",
+    "te": "ఈ సమాచారం విద్యా ప్రయోజనాల కోసం మరియు వృత్తిపరమైన వైద్య సలహాకు ప్రత్యామ్నాయం కాదు. ఫెర్టిలిటీ కేర్ తీసుకోవాలనే నిర్ణయం మీ వ్యక్తిగత పరిస్థితుల ఆధారంగా మీ ఆరోగ్య సేవా ప్రదాతతో సంప్రదించి తీసుకోవాలి."
+  }
+}
