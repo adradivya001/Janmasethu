@@ -68,8 +68,8 @@ const Article = () => {
     );
   }
 
-  // Error state or article not found
-  if (error || (!articleData && !legacyArticle)) {
+  // Error state - only show if there's no article data available at all
+  if ((!articleData && !legacyArticle) || (error && !legacyArticle)) {
     return (
       <div className="container mx-auto px-4 py-8">
         <Card className="max-w-2xl mx-auto rounded-3xl p-8 card-shadow">
