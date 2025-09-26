@@ -104,23 +104,6 @@
     @apply border-border;
   }
 
-  /* Performance optimizations */
-  * {
-    -webkit-transform: translateZ(0);
-    -moz-transform: translateZ(0);
-    -ms-transform: translateZ(0);
-    -o-transform: translateZ(0);
-    transform: translateZ(0);
-  }
-
-  /* Optimize animations */
-  .animate-in,
-  .animate-out,
-  [data-state="open"],
-  [data-state="closed"] {
-    will-change: transform, opacity;
-  }
-
   body {
     @apply font-sans antialiased text-foreground;
     background: linear-gradient(135deg, #F5F7FF 0%, #FFECEF 100%);

@@ -121,7 +121,7 @@ const WhoWeServe = () => {
                 <MousePointer2 className="w-4 h-4 text-purple-600" />
               </div>
             </div>
-
+            
             <div className="w-16 h-16 bg-gradient-to-br from-purple-100 to-pink-100 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-md">
               <Baby className="text-purple-600 text-2xl" />
             </div>
@@ -131,7 +131,7 @@ const WhoWeServe = () => {
             <p className="text-muted-foreground mb-4">
               {getCardContent("patients").about}
             </p>
-
+            
             {/* Call to action */}
             <div className="flex items-center justify-between mt-6">
               <span className="text-sm text-purple-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -158,7 +158,7 @@ const WhoWeServe = () => {
                 <MousePointer2 className="w-4 h-4 text-blue-600" />
               </div>
             </div>
-
+            
             <div className="w-16 h-16 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-md">
               <Stethoscope className="text-blue-600 text-2xl" />
             </div>
@@ -168,7 +168,7 @@ const WhoWeServe = () => {
             <p className="text-muted-foreground mb-4">
               {getCardContent("clinics").about}
             </p>
-
+            
             {/* Call to action */}
             <div className="flex items-center justify-between mt-6">
               <span className="text-sm text-blue-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -254,4 +254,4 @@ const WhoWeServe = () => {
   );
 };
 
-export default React.memo(WhoWeServe);
+export default WhoWeServe;

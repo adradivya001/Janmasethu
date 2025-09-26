@@ -34,9 +34,7 @@ import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { articles } from "../data/articles";
 import { stories } from "../data/stories";
-import { lazy, Suspense } from 'react';
-
-const WhoWeServe = lazy(() => import('../components/WhoWeServe'));
+import WhoWeServe from "../components/WhoWeServe";
 
 const Home = () => {
   const { t, lang } = useLanguage();
@@ -97,8 +95,7 @@ const Home = () => {
           loop
           muted
           playsInline
-          preload="metadata"
-          style={{ willChange: 'auto' }}
+          preload="auto"
           onLoadStart={() => console.log('Video loading started...')}
           onLoadedData={() => console.log('Video data loaded')}
           onCanPlay={() => console.log('Video can play')}
@@ -260,9 +257,7 @@ const Home = () => {
       </section>
 
       {/* Who We Serve - Interactive Cards with Modal */}
-      <Suspense fallback={<div className="h-32 animate-pulse bg-gray-100 rounded-3xl"></div>}>
-        <WhoWeServe />
-      </Suspense>
+      <WhoWeServe />
 
       {/* Parenthood Journey Strip */}
       <section className="py-16 bg-gradient-to-r from-purple-50 via-pink-50 to-orange-50 rounded-3xl mx-4">
@@ -576,7 +571,7 @@ const Home = () => {
                     <ArrowRight className="w-4 h-4 text-purple-600" />
                   </div>
                 </div>
-
+                
                 <div className="w-16 h-16 gradient-button rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-md">
                   <Heart className="text-white text-2xl" />
                 </div>
@@ -597,7 +592,7 @@ const Home = () => {
                   alt="Couple walking together in park"
                   className="rounded-xl w-full h-32 object-cover mt-auto group-hover:shadow-lg transition-shadow"
                 />
-
+                
                 {/* Call to action */}
                 <div className="flex items-center justify-between mt-4">
                   <span className="text-sm text-purple-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -621,7 +616,7 @@ const Home = () => {
                     <ArrowRight className="w-4 h-4 text-pink-600" />
                   </div>
                 </div>
-
+                
                 <div className="w-16 h-16 gradient-button rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-md">
                   <Baby className="text-white text-2xl" />
                 </div>
@@ -642,7 +637,7 @@ const Home = () => {
                   alt="Pregnant woman in peaceful outdoor setting"
                   className="rounded-xl w-full h-32 object-cover mt-auto group-hover:shadow-lg transition-shadow"
                 />
-
+                
                 {/* Call to action */}
                 <div className="flex items-center justify-between mt-4">
                   <span className="text-sm text-pink-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -666,7 +661,7 @@ const Home = () => {
                     <ArrowRight className="w-4 h-4 text-orange-600" />
                   </div>
                 </div>
-
+                
                 <div className="w-16 h-16 gradient-button rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-md">
                   <Cat className="text-white text-2xl" />
                 </div>
@@ -687,7 +682,7 @@ const Home = () => {
                   alt="Happy new parent holding newborn baby"
                   className="rounded-xl w-full h-32 object-cover mt-auto group-hover:shadow-lg transition-shadow"
                 />
-
+                
                 {/* Call to action */}
                 <div className="flex items-center justify-between mt-4">
                   <span className="text-sm text-orange-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -725,7 +720,7 @@ const Home = () => {
                     <ArrowRight className="w-3 h-3 text-blue-600" />
                   </div>
                 </div>
-
+                
                 <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-md">
                   <Stethoscope className="text-blue-600 text-2xl" />
                 </div>
@@ -735,13 +730,13 @@ const Home = () => {
                 >
                   {t("lens_medical")}
                 </h3>
-
+                
                 {/* Call to action */}
                 <div className="flex items-center justify-center mt-auto">
                   <span className="text-sm text-blue-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     {lang === "en" && "Browse topics"}
                     {lang === "hi" && "विषय ब्राउज़ करें"}
-                    {lang === "te" && "విషయాలను బ్రౌజ్ చేయండి"}
+                    {lang === "te" && "విषయాలను బ్రౌజ్ చేయండి"}
                   </span>
                 </div>
               </CardContent>
@@ -758,7 +753,7 @@ const Home = () => {
                     <ArrowRight className="w-3 h-3 text-pink-600" />
                   </div>
                 </div>
-
+                
                 <div className="w-16 h-16 bg-pink-100 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-md">
                   <Users className="text-pink-600 text-2xl" />
                 </div>
@@ -768,13 +763,13 @@ const Home = () => {
                 >
                   {t("lens_social")}
                 </h3>
-
+                
                 {/* Call to action */}
                 <div className="flex items-center justify-center mt-auto">
                   <span className="text-sm text-pink-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     {lang === "en" && "Browse topics"}
                     {lang === "hi" && "विषय ब्राउज़ करें"}
-                    {lang === "te" && "విషయాలను బ్రౌజ్ చేయండి"}
+                    {lang === "te" && "విषయాలను బ్రౌజ్ చేయండి"}
                   </span>
                 </div>
               </CardContent>
@@ -791,7 +786,7 @@ const Home = () => {
                     <ArrowRight className="w-3 h-3 text-green-600" />
                   </div>
                 </div>
-
+                
                 <div className="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-md">
                   <IndianRupee className="text-green-600 text-2xl" />
                 </div>
@@ -801,13 +796,13 @@ const Home = () => {
                 >
                   {t("lens_financial")}
                 </h3>
-
+                
                 {/* Call to action */}
                 <div className="flex items-center justify-center mt-auto">
                   <span className="text-sm text-green-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     {lang === "en" && "Browse topics"}
                     {lang === "hi" && "विषय ब्राउज़ करें"}
-                    {lang === "te" && "విషయాలను బ్రౌజ్ చేయండి"}
+                    {lang === "te" && "విषయాలను బ్రౌజ్ చేయండి"}
                   </span>
                 </div>
               </CardContent>
@@ -824,7 +819,7 @@ const Home = () => {
                     <ArrowRight className="w-3 h-3 text-orange-600" />
                   </div>
                 </div>
-
+                
                 <div className="w-16 h-16 bg-orange-100 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-md">
                   <Apple className="text-orange-600 text-2xl" />
                 </div>
@@ -834,7 +829,7 @@ const Home = () => {
                 >
                   {t("lens_nutrition")}
                 </h3>
-
+                
                 {/* Call to action */}
                 <div className="flex items-center justify-center mt-auto">
                   <span className="text-sm text-orange-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -878,7 +873,7 @@ const Home = () => {
                       <ArrowRight className="w-4 h-4 text-purple-600" />
                     </div>
                   </div>
-
+                  
                   <img
                     src={getArticleImage(index)}
                     alt={article.title.en}
@@ -896,7 +891,7 @@ const Home = () => {
                   >
                     {article.summary[lang as keyof typeof article.summary] || article.summary.en}
                   </p>
-
+                  
                   {/* Call to action */}
                   <div className="flex items-center justify-between mt-auto">
                     <span className="text-xs text-purple-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -942,7 +937,7 @@ const Home = () => {
                       <ArrowRight className="w-4 h-4 text-purple-600" />
                     </div>
                   </div>
-
+                  
                   <div
                     className={`w-16 h-16 ${treatment.bgColor} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-md`}
                   >
@@ -962,7 +957,7 @@ const Home = () => {
                   >
                     {treatment.description}
                   </p>
-
+                  
                   {/* Call to action */}
                   <div className="flex items-center justify-between mt-auto">
                     <span className="text-sm text-purple-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -1008,7 +1003,7 @@ const Home = () => {
                       <ArrowRight className="w-4 h-4 text-pink-600" />
                     </div>
                   </div>
-
+                  
                   <img
                     src={getStoryImage(index)}
                     alt={story.title}
@@ -1026,7 +1021,7 @@ const Home = () => {
                   >
                     {story.summary[lang]}
                   </p>
-
+                  
                   <div className="flex items-center justify-between mt-auto">
                     <div className="flex items-center text-xs text-muted-foreground">
                       <i className="fas fa-map-marker-alt mr-1"></i>
@@ -1034,7 +1029,7 @@ const Home = () => {
                         {story.city[lang]}
                       </span>
                     </div>
-
+                    
                     {/* Call to action */}
                     <div className="flex items-center">
                       <span className="text-xs text-pink-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 mr-2">
