@@ -94,6 +94,72 @@ const Knowledge = () => {
     { value: 'early-years', label: 'Early Years' },
   ];
 
+  // Handle search button click
+  const handleSearch = async () => {
+    try {
+      // Map lens values to proper format
+      const lensMapping: Record<Lens, string> = {
+        'medical': 'Medical',
+        'social': 'Social',
+        'financial': 'Financial',
+        'nutrition': 'Nutrition'
+      };
+
+      // Map stage values to proper format
+      const stageMapping: Record<Stage, string> = {
+        'ttc': 'TTC',
+        'pregnancy': 'Pregnancy',
+        'postpartum': 'Postpartum',
+        'newborn': 'Newborn',
+        'early-years': 'Early Years'
+      };
+
+      // Prepare lenses array
+      let lenses: string[] = [];
+      if (selectedLens === null) {
+        // If no lens selected, send all lenses
+        lenses = Object.values(lensMapping);
+      } else {
+        lenses = [lensMapping[selectedLens]];
+      }
+
+      // Prepare stages array
+      let stages: string[] = [];
+      if (selectedStage === null) {
+        // If no stage selected, send all stages
+        stages = Object.values(stageMapping);
+      } else {
+        stages = [stageMapping[selectedStage]];
+      }
+
+      // Prepare payload
+      const payload = {
+        q: searchTerm || '',
+        lenses: lenses,
+        stages: stages,
+        page: 1,
+        per_page: 10
+      };
+
+      // Call the webhook
+      const response = await fetch('https://n8n.ottobon.in/webhook/knowledge-hub', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (response.ok) {
+        console.log('Search request sent successfully:', payload);
+      } else {
+        console.error('Failed to send search request:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error sending search request:', error);
+    }
+  };
+
   return (
     <div className="container mx-auto px-4 py-8">
       {/* Page Header */}
@@ -125,6 +191,7 @@ const Knowledge = () => {
           <Button 
             className="rounded-full px-6"
             data-testid="button-search"
+            onClick={handleSearch}
           >
             Search
           </Button>
