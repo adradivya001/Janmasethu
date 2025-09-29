@@ -9,6 +9,33 @@ import { Badge } from '@/components/ui/badge';
 import { articles, type Lens, type Stage } from '@/data/articles';
 import { fetchAllArticlesMetadata } from '@/data/knowledgeHub';
 
+interface WebhookArticle {
+  id: string;
+  slug: string;
+  title: string;
+  summary: string;
+  topic: string;
+  section: string;
+  lens: string;
+  life_stage: string;
+  published_at: string;
+}
+
+interface WebhookResponse {
+  query: string;
+  filters: {
+    lenses: string[];
+    stages: string[];
+  };
+  pagination: {
+    page: number;
+    per_page: number;
+    total: number;
+    has_more: boolean;
+  };
+  items: WebhookArticle[];
+}
+
 const Knowledge = () => {
   const { t, lang } = useLanguage();
   const [searchTerm, setSearchTerm] = useState('');
@@ -21,7 +48,10 @@ const Knowledge = () => {
     readTime: { en: string; hi: string; te: string };
     reviewer: { en: string; hi: string; te: string };
   }>>([]);
+  const [webhookResults, setWebhookResults] = useState<WebhookResponse | null>(null);
   const [loading, setLoading] = useState(true);
+  const [searching, setSearching] = useState(false);
+  const [searchError, setSearchError] = useState<string | null>(null);
 
   // Load JSON articles metadata
   useEffect(() => {
@@ -53,23 +83,44 @@ const Knowledge = () => {
     return content[langKey] || content.en || '';
   };
 
-  // Show only JSON articles (the 16 articles you provided)
-  const allArticles = useMemo(() => {
-    return jsonArticles.map((article, index) => ({
-      slug: article.slug,
-      title: getLocalizedContent(article.title),
-      summary: getLocalizedContent(article.overview),
-      lens: [] as Lens[], // JSON articles don't have lens/stage classification yet
-      stage: [] as Stage[],
-      readMins: parseInt(getLocalizedContent(article.readTime).replace(/\D/g, '')) || 5,
-      reviewedBy: getLocalizedContent(article.reviewer),
-      isLegacy: false,
-      key: `json-${article.slug}-${index}`
-    }));
-  }, [jsonArticles, lang, getLocalizedContent]);
+  // Show webhook results if available, otherwise show JSON articles
+  const displayArticles = useMemo(() => {
+    if (webhookResults) {
+      // Use webhook results
+      return webhookResults.items.map((article, index) => ({
+        slug: article.slug,
+        title: article.title,
+        summary: article.summary,
+        lens: article.lens ? [article.lens.toLowerCase() as Lens] : [] as Lens[],
+        stage: article.life_stage ? [article.life_stage.toLowerCase().replace(' ', '-') as Stage] : [] as Stage[],
+        readMins: 5, // Default read time
+        reviewedBy: 'Expert Review', // Default reviewer
+        isLegacy: false,
+        key: `webhook-${article.slug}-${index}`
+      }));
+    } else {
+      // Fallback to JSON articles
+      return jsonArticles.map((article, index) => ({
+        slug: article.slug,
+        title: getLocalizedContent(article.title),
+        summary: getLocalizedContent(article.overview),
+        lens: [] as Lens[],
+        stage: [] as Stage[],
+        readMins: parseInt(getLocalizedContent(article.readTime).replace(/\D/g, '')) || 5,
+        reviewedBy: getLocalizedContent(article.reviewer),
+        isLegacy: false,
+        key: `json-${article.slug}-${index}`
+      }));
+    }
+  }, [webhookResults, jsonArticles, lang, getLocalizedContent]);
 
+  // Apply local filters only if we don't have webhook results
   const filteredArticles = useMemo(() => {
-    return allArticles.filter(article => {
+    if (webhookResults) {
+      return displayArticles; // Webhook already filtered
+    }
+    
+    return displayArticles.filter(article => {
       const matchesSearch = article.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                            article.summary.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesLens = !selectedLens || article.lens.includes(selectedLens);
@@ -77,7 +128,7 @@ const Knowledge = () => {
       
       return matchesSearch && matchesLens && matchesStage;
     });
-  }, [allArticles, searchTerm, selectedLens, selectedStage]);
+  }, [displayArticles, webhookResults, searchTerm, selectedLens, selectedStage]);
 
   const lensOptions: Array<{value: Lens; label: string; icon: string; color: string}> = [
     { value: 'medical', label: t('lens_medical'), icon: 'fas fa-stethoscope', color: 'bg-blue-100 text-blue-600' },
@@ -96,6 +147,9 @@ const Knowledge = () => {
 
   // Handle search button click
   const handleSearch = async () => {
+    setSearching(true);
+    setSearchError(null);
+    
     try {
       // Map lens values to proper format
       const lensMapping: Record<Lens, string> = {
@@ -138,7 +192,7 @@ const Knowledge = () => {
         lenses: lenses,
         stages: stages,
         page: 1,
-        per_page: 10
+        per_page: 12
       };
 
       // Call the webhook
@@ -151,12 +205,18 @@ const Knowledge = () => {
       });
 
       if (response.ok) {
-        console.log('Search request sent successfully:', payload);
+        const data: WebhookResponse = await response.json();
+        console.log('Search results received:', data);
+        setWebhookResults(data);
       } else {
         console.error('Failed to send search request:', response.statusText);
+        setSearchError('Failed to load articles');
       }
     } catch (error) {
       console.error('Error sending search request:', error);
+      setSearchError('Failed to load articles');
+    } finally {
+      setSearching(false);
     }
   };
 
@@ -249,10 +309,23 @@ const Knowledge = () => {
             ))}
           </div>
         </div>
+
+        {/* Results count and error */}
+        {webhookResults && (
+          <div className="mb-4 text-sm text-muted-foreground">
+            Found {webhookResults.pagination.total} articles
+          </div>
+        )}
+        
+        {searchError && (
+          <div className="mb-4 text-sm text-red-600 bg-red-50 p-3 rounded-lg">
+            {searchError}
+          </div>
+        )}
       </div>
 
       {/* Articles Grid */}
-      {loading ? (
+      {(loading || searching) ? (
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {[...Array(6)].map((_, index) => (
             <Card key={index} className="rounded-3xl p-6 card-shadow">
@@ -310,10 +383,10 @@ const Knowledge = () => {
         </div>
       )}
 
-      {filteredArticles.length === 0 && (
+      {filteredArticles.length === 0 && !loading && !searching && (
         <div className="text-center py-12">
           <p className="text-muted-foreground" data-testid="text-no-articles">
-            No articles found matching your criteria. Try adjusting your filters.
+            {webhookResults ? 'No articles found' : 'No articles found matching your criteria. Try adjusting your filters.'}
           </p>
         </div>
       )}
