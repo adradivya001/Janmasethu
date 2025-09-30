@@ -47,9 +47,6 @@ const Footer = () => {
               <Link href="/experts" className="block text-muted-foreground hover:text-primary text-sm" data-testid="link-footer-experts">
                 {t('nav_experts')}
               </Link>
-              <Link href="/tools" className="block text-muted-foreground hover:text-primary text-sm" data-testid="link-footer-tools">
-                {t('nav_tools')}
-              </Link>
               <Link href="/blog" className="block text-muted-foreground hover:text-primary text-sm" data-testid="link-footer-blog">
                 {t('nav_blog')}
               </Link>
