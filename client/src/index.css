@@ -197,88 +197,72 @@
     background: transparent;
   }
 
-  /* Responsive video styles with proper positioning to avoid header overlap */
+  /* Responsive video styles - full screen coverage */
   .responsive-video-container {
     position: relative;
     width: 100%;
-    height: 70vh; /* Increased height for better video visibility */
+    height: 100vh; /* Full viewport height */
     overflow: hidden;
-    min-height: 450px; /* Increased minimum height */
-    margin-top: 0; /* Reset any margin */
+    margin-top: 0;
   }
 
-  /* Small mobile devices - Portrait orientation */
-  @media screen and (max-width: 480px) {
-    .responsive-video-container {
-      height: 60vh; /* Increased mobile height */
-      min-height: 400px; /* Increased minimum height */
-    }
-  }
-
-  /* Small mobile devices - Landscape orientation */
-  @media screen and (max-width: 480px) and (orientation: landscape) {
-    .responsive-video-container {
-      height: 85vh; /* Much taller in landscape */
-      min-height: 350px;
-    }
-  }
-
-  /* Large mobile devices */
-  @media screen and (min-width: 480px) and (max-width: 767px) {
-    .responsive-video-container {
-      height: 65vh; /* Increased height */
-      min-height: 430px; /* Increased minimum height */
-    }
-  }
-
-  /* Tablet */
-  @media screen and (min-width: 768px) and (max-width: 1023px) {
-    .responsive-video-container {
-      height: 70vh; /* Increased height */
-      min-height: 500px; /* Increased minimum height */
-    }
-  }
-
-  /* Desktop */
-  @media screen and (min-width: 1024px) and (max-width: 1439px) {
-    .responsive-video-container {
-      height: 75vh; /* Increased height */
-      min-height: 550px; /* Increased minimum height */
-    }
-  }
-
-  /* Large Desktop */
-  @media screen and (min-width: 1440px) {
-    .responsive-video-container {
-      height: 80vh; /* Increased height */
-      min-height: 600px; /* Increased minimum height */
-      max-height: 900px; /* Increased max height */
-    }
-  }
-
-  /* Enhanced video object fitting with better mobile handling */
+  /* Enhanced video object fitting for all devices */
   .responsive-video-container video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center center;
-    /* Remove scaling to prevent content loss */
-    transform: none;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
   }
 
-  /* Mobile-specific video adjustments to prevent side cropping */
+  /* Mobile devices - maintain full coverage without cropping important content */
   @media screen and (max-width: 768px) {
+    .responsive-video-container {
+      height: 100vh;
+    }
+    
     .responsive-video-container video {
-      /* Use contain on mobile to show full video content */
-      object-fit: contain;
-      background: #000; /* Add black background for letterboxing if needed */
+      /* Slightly adjust object position to ensure text visibility on mobile */
+      object-position: center 45%;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
   }
 
-  /* For very small screens, use cover but with careful positioning */
-  @media screen and (max-width: 480px) {
+  /* Small mobile devices - Portrait */
+  @media screen and (max-width: 480px) and (orientation: portrait) {
     .responsive-video-container video {
-      object-fit: cover;
+      object-position: center 40%;
+    }
+  }
+
+  /* Small mobile devices - Landscape */
+  @media screen and (max-width: 480px) and (orientation: landscape) {
+    .responsive-video-container {
+      height: 100vh;
+    }
+    
+    .responsive-video-container video {
+      object-position: center 50%;
+    }
+  }
+
+  /* Tablet devices */
+  @media screen and (min-width: 769px) and (max-width: 1024px) {
+    .responsive-video-container video {
+      object-position: center 45%;
+    }
+  }
+
+  /* Desktop and larger screens */
+  @media screen and (min-width: 1025px) {
+    .responsive-video-container video {
       object-position: center center;
     }
   }
