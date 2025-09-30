@@ -1,0 +1,59 @@
+Make the hero/background video fully responsive on mobile and small screens (≤ 768px) with the following behavior and constraints:
+
+Goal
+
+The video must fill the viewport (no black bars), keep its aspect ratio, and must not cut off readable text in the video.
+
+The video should be centered and stable as the mobile browser UI expands/collapses.
+
+Implementation requirements
+
+Container
+
+Position: relative; Overflow: hidden.
+
+Height: min(100svh, 100dvh) with fallbacks (100vh and -webkit-fill-available) to cover iOS/Android address-bar changes.
+
+Width: 100%.
+
+Video element
+
+Absolutely positioned: inset: 0.
+
+width: 100%, height: 100%, object-fit: cover, object-position: center.
+
+Add playsinline and muted to prevent iOS fullscreen takeover.
+
+Prevent zoom/crop of important content: if any overlay text gets clipped on very tall/short devices, reduce scale slightly (e.g., transform: scale(.98) for ≤ 360px width) or shift focal point with object-position (e.g., center 15%).
+
+Media queries
+
+≤ 480px: keep object-fit: cover (to remove black bars) and adjust object-position to keep the title area visible; allow a small scale down (0.96–0.98) if needed.
+
+481–768px: similar rules; ensure no letterboxing; tweak object-position to center the hero title.
+
+≥ 769px (laptop/desktop): keep current desktop behavior (already working).
+
+Safe-area & layout
+
+Reserve space for any sticky floating buttons (language/fab) so they don’t overlap key video text (use padding-bottom on the container when those buttons are visible).
+
+Ensure no scroll-jank when the URL bar hides/shows (use 100svh/100dvh).
+
+Performance
+
+Add preload="auto" (or metadata if heavy), autoplay, muted, loop, playsinline.
+
+Provide a poster image for slow connections.
+
+Acceptance checklist (must pass):
+
+No black bars on iPhone 12/13/14, Pixel 6/7, Galaxy S series, and small 360×640 devices.
+
+No cropped/hidden hero words at top or bottom in portrait.
+
+Rotating to landscape keeps the video centered without letterboxing.
+
+Floating action buttons do not cover hero text.
+
+Lighthouse: no layout shift from the video when loading (CLS ~0).
