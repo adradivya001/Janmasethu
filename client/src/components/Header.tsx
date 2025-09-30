@@ -144,13 +144,23 @@ const Header = () => {
             <div className="flex items-center space-x-4">
               {/* Search */}
               <div className="hidden md:block relative">
-                <Input
-                  type="search"
-                  placeholder={t('search_placeholder')}
-                  className="pl-10 pr-4 py-2 rounded-full border-border bg-background/50 focus:ring-ring w-64"
-                  data-testid="input-search"
-                />
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
+                <form onSubmit={(e) => {
+                  e.preventDefault();
+                  const formData = new FormData(e.target as HTMLFormElement);
+                  const searchTerm = formData.get('search') as string;
+                  if (searchTerm.trim()) {
+                    window.location.href = `/knowledge?search=${encodeURIComponent(searchTerm.trim())}`;
+                  }
+                }}>
+                  <Input
+                    type="search"
+                    name="search"
+                    placeholder={t('search_placeholder')}
+                    className="pl-10 pr-4 py-2 rounded-full border-border bg-background/50 focus:ring-ring w-64"
+                    data-testid="input-search"
+                  />
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4 pointer-events-none" />
+                </form>
               </div>
 
               {/* Language Switcher */}

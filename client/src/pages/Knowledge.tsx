@@ -53,7 +53,7 @@ const Knowledge = () => {
   const [searching, setSearching] = useState(false);
   const [searchError, setSearchError] = useState<string | null>(null);
 
-  // Load JSON articles metadata
+  // Load JSON articles metadata and handle URL search params
   useEffect(() => {
     const loadArticles = async () => {
       try {
@@ -66,13 +66,40 @@ const Knowledge = () => {
       }
     };
 
+    // Check for search parameter in URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const searchParam = urlParams.get('search');
+    const lensParam = urlParams.get('lens');
+    const stageParam = urlParams.get('stage');
+    
+    if (searchParam) {
+      setSearchTerm(searchParam);
+    }
+    
+    if (lensParam && ['medical', 'social', 'financial', 'nutrition'].includes(lensParam)) {
+      setSelectedLens(lensParam as Lens);
+    }
+    
+    if (stageParam && ['ttc', 'pregnancy', 'postpartum', 'newborn', 'early-years'].includes(stageParam)) {
+      setSelectedStage(stageParam as Stage);
+    }
+
     loadArticles();
   }, []);
 
-  // Scroll to top when component mounts
+  // Auto-trigger search if URL has search parameters
   useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const searchParam = urlParams.get('search');
+    
+    if (searchParam && searchParam.trim()) {
+      // Trigger search automatically when component mounts with search param
+      handleSearch();
+    }
+    
+    // Scroll to top when component mounts
     window.scrollTo(0, 0);
-  }, []);
+  }, [jsonArticles]); // Trigger when articles are loaded
 
   // Helper function to get localized content
   const getLocalizedContent = (content: any) => {
@@ -200,6 +227,15 @@ const Knowledge = () => {
   const handleSearch = async () => {
     setSearching(true);
     setSearchError(null);
+    
+    // Update URL with current search parameters
+    const params = new URLSearchParams();
+    if (searchTerm) params.set('search', searchTerm);
+    if (selectedLens) params.set('lens', selectedLens);
+    if (selectedStage) params.set('stage', selectedStage);
+    
+    const newUrl = params.toString() ? `/knowledge?${params.toString()}` : '/knowledge';
+    window.history.replaceState({}, '', newUrl);
     
     // If no search term and no filters, just clear webhook results to show local articles
     if (!searchTerm && !selectedLens && !selectedStage) {
@@ -406,15 +442,20 @@ const Knowledge = () => {
       <div className="mb-8">
         <div className="flex flex-col md:flex-row gap-4 mb-6">
           <div className="relative flex-1">
-            <Input
-              type="search"
-              placeholder="Search articles..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10 pr-4 rounded-full"
-              data-testid="input-search-articles"
-            />
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
+            <form onSubmit={(e) => {
+              e.preventDefault();
+              handleSearch();
+            }}>
+              <Input
+                type="search"
+                placeholder="Search articles..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="pl-10 pr-4 rounded-full"
+                data-testid="input-search-articles"
+              />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4 pointer-events-none" />
+            </form>
           </div>
           <Button 
             className="rounded-full px-6"
@@ -432,6 +473,8 @@ const Knowledge = () => {
                 setSelectedLens(null);
                 setSelectedStage(null);
                 setWebhookResults(null);
+                // Clear URL parameters
+                window.history.replaceState({}, '', '/knowledge');
               }}
             >
               Clear All
