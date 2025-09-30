@@ -59,7 +59,7 @@ const Sakhi = () => {
   return (
     <>
       {/* Responsive Video Section */}
-      <section className="w-full py-1 px-2 sm:px-4 lg:py-2 lg:px-8">
+      <section className="w-full py-0 px-0">
         <div className="responsive-video-container relative overflow-hidden">
           <video
             className="absolute inset-0 w-full h-full"
