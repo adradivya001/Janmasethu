@@ -64,7 +64,7 @@ const Header = () => {
     setIsHovering(false);
     hoverTimeoutRef.current = setTimeout(() => {
       setIsExpanded(false);
-    }, 150); // Quick delay to allow moving to secondary nav
+    }, 300); // Increased delay to allow moving to secondary nav
   };
 
   // Toggle function for click interaction
@@ -180,10 +180,15 @@ const Header = () => {
                 ? 'max-h-24 opacity-100 pointer-events-auto transform translate-y-0' 
                 : 'max-h-0 opacity-0 pointer-events-none transform -translate-y-2'
             }`}
-            onMouseEnter={() => setIsHovering(true)}
+            onMouseEnter={() => {
+              if (hoverTimeoutRef.current) {
+                clearTimeout(hoverTimeoutRef.current);
+              }
+              setIsHovering(true);
+            }}
             onMouseLeave={handleMoreAreaMouseLeave}
           >
-            <nav className="flex items-center justify-between w-full max-w-6xl mx-auto pt-6 pb-4 px-8" role="navigation" aria-label="Secondary navigation">
+            <nav className="flex items-center justify-between w-full max-w-6xl mx-auto pt-4 pb-6 px-8" role="navigation" aria-label="Secondary navigation">
               {secondaryNavItems.map(({ key, href }, index) => (
                 <Link 
                   key={href}
