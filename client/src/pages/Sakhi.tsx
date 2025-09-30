@@ -57,9 +57,9 @@ const Sakhi = () => {
   ];
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-6">
       {/* Hero Section */}
-      <section className="text-center py-16 relative">
+      <section className="text-center py-12 relative">
         <div className="max-w-4xl mx-auto">
           <h1
             className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground font-serif mb-6 leading-tight"
@@ -107,7 +107,7 @@ const Sakhi = () => {
       </section>
 
       {/* How Sakhi Helps */}
-      <section className="py-16">
+      <section className="py-12">
         <div className="text-center mb-12">
           <h2
             className="text-4xl font-bold text-foreground font-serif mb-4"
@@ -120,7 +120,7 @@ const Sakhi = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
           {sakhiFeatures.map((feature, index) => {
             const Icon = feature.icon;
             return (
@@ -174,7 +174,7 @@ const Sakhi = () => {
       </section>
 
       {/* Interactive Demo Section */}
-      <section className="py-16">
+      <section className="py-12">
         <div className="text-center mb-12">
           <h2
             className="text-4xl md:text-5xl font-bold text-foreground font-serif mb-6"
@@ -191,7 +191,7 @@ const Sakhi = () => {
         </div>
 
         {/* Privacy Features */}
-        <div className="grid md:grid-cols-3 gap-6 mb-12">
+        <div className="grid md:grid-cols-3 gap-4 mb-8">
           <Card
             className="rounded-3xl p-4 card-shadow text-center h-full flex flex-col"
             data-testid="card-privacy-feature-0"
@@ -255,13 +255,13 @@ const Sakhi = () => {
         </div>
 
         {/* Main Chat Interface */}
-        <div className="grid lg:grid-cols-3 gap-8 mb-12">
+        <div className="grid lg:grid-cols-3 gap-6 mb-8">
           <div className="lg:col-span-2">
             <ChatInterface />
           </div>
 
           {/* Sidebar with Quick Scenarios */}
-          <div className="space-y-6">
+          <div className="space-y-4">
             <Card className="rounded-3xl p-6 card-shadow">
               <CardHeader>
                 <CardTitle className="text-lg font-bold text-foreground font-serif flex items-center">
@@ -380,28 +380,12 @@ const Sakhi = () => {
               </CardContent>
             </Card>
 
-            <Card className="rounded-3xl p-6 card-shadow bg-gradient-to-br from-blue-50 to-purple-50">
-              <CardContent className="p-0 text-center">
-                <Shield className="w-10 h-10 text-blue-600 mx-auto mb-3" />
-                <h3 className="font-bold text-foreground mb-2">
-                  {t("sakhi_privacy_first")}
-                </h3>
-                <p
-                  className="text-xs text-muted-foreground mb-4"
-                  data-testid="text-privacy-notice"
-                >
-                  {t("chat_privacy")}
-                </p>
-                <p className="text-xs text-muted-foreground">
-                  {t("sakhi_no_account")}
-                </p>
-              </CardContent>
-            </Card>
+            
           </div>
         </div>
 
         {/* Important Disclaimer */}
-        <Card className="rounded-3xl p-8 card-shadow bg-gradient-to-br from-orange-50 to-red-50 border border-orange-200">
+        <Card className="rounded-3xl p-6 card-shadow bg-gradient-to-br from-orange-50 to-red-50 border border-orange-200">
           <CardContent className="p-0 text-center">
             <Heart className="w-12 h-12 text-orange-600 mx-auto mb-4" />
             <h3 className="text-xl font-bold text-foreground font-serif mb-4">
@@ -427,7 +411,7 @@ const Sakhi = () => {
         </Card>
 
         {/* Continue Exploring */}
-        <div className="bg-white rounded-3xl p-8 card-shadow text-center mt-16">
+        <div className="bg-white rounded-3xl p-6 card-shadow text-center mt-8">
           <h2 className="text-2xl font-bold text-foreground font-serif mb-4">
             {t("sakhi_continue_journey")}
           </h2>
@@ -456,20 +440,7 @@ const Sakhi = () => {
         </div>
       </section>
 
-      {/* Important Notice */}
-      <section className="py-16">
-        <Card className="rounded-3xl p-8 card-shadow bg-blue-50 border border-blue-200">
-          <CardContent className="p-0 text-center">
-            <Shield className="w-12 h-12 text-blue-600 mx-auto mb-4" />
-            <h3 className="text-xl font-bold text-foreground font-serif mb-4">
-              {t("sakhi_important_notice")}
-            </h3>
-            <p className="text-muted-foreground max-w-3xl mx-auto">
-              {t("sakhi_important_desc")}
-            </p>
-          </CardContent>
-        </Card>
-      </section>
+      
     </div>
   );
 };
