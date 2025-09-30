@@ -10,12 +10,12 @@
 
 /* Header expandable navigation */
 .site-header {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   min-height: 80px;
 }
 
 .site-header.is-expanded {
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 .nav-primary {
@@ -26,19 +26,90 @@
 }
 
 .nav-secondary {
-  transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .nav-secondary nav {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(8px);
-  border-radius: 12px;
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  border: 1px solid rgba(139, 92, 246, 0.1);
+  box-shadow: 0 8px 32px rgba(139, 92, 246, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-secondary nav::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.3), transparent);
 }
 
 .chevron {
-  transition: transform 0.2s ease-in-out;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Enhanced navigation link animations */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Navigation link hover effects */
+.nav-secondary a {
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-secondary a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.1), transparent);
+  transition: left 0.3s ease;
+}
+
+.nav-secondary a:hover::before {
+  left: 100%;
+}
+
+/* Primary navigation enhanced hover effects */
+.nav-primary a {
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-primary a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #8B5CF6, #EC4899);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav-primary a:hover::after {
+  width: 80%;
+}
+
+.nav-primary a[aria-current="page"]::after {
+  width: 80%;
 }
 
 /* Who We Serve hover effect */
@@ -350,10 +421,41 @@
 
   .gradient-button {
     background: linear-gradient(135deg, #9333EA 0%, #EC4899 50%, #F97316 100%);
+    transition: all 0.3s ease;
+  }
+
+  .gradient-button:hover {
+    background: linear-gradient(135deg, #7C3AED 0%, #DB2777 50%, #EA580C 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3);
   }
 
   .gradient-button-secondary {
     background: linear-gradient(90deg, #8B5CF6, #3B82F6);
+    transition: all 0.3s ease;
+  }
+
+  .gradient-button-secondary:hover {
+    background: linear-gradient(90deg, #7C3AED, #2563EB);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+  }
+
+  /* Button pulse animation */
+  @keyframes buttonPulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.4);
+    }
+    70% {
+      box-shadow: 0 0 0 10px rgba(139, 92, 246, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(139, 92, 246, 0);
+    }
+  }
+
+  .nav-toggle-button:focus {
+    animation: buttonPulse 0.6s ease-out;
   }
 
   .card-shadow {

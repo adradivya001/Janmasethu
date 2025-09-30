@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'wouter';
 import { Search, Menu, ChevronDown } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageProvider';
@@ -12,6 +12,8 @@ const Header = () => {
   const [location] = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
+  const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // Navigation configuration with priority for two-row layout
   const navConfig = [
@@ -36,17 +38,63 @@ const Header = () => {
   // Handle ESC key to collapse when focus is in secondary nav
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isExpanded) {
+      if (e.key === 'Escape' && (isExpanded || isHovering)) {
         setIsExpanded(false);
+        setIsHovering(false);
       }
     };
     document.addEventListener('keydown', handleEsc);
     return () => document.removeEventListener('keydown', handleEsc);
-  }, [isExpanded]);
+  }, [isExpanded, isHovering]);
+
+  // Handle mouse enter with slight delay
+  const handleMouseEnter = () => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+    }
+    setIsHovering(true);
+    if (!isExpanded) {
+      hoverTimeoutRef.current = setTimeout(() => {
+        setIsExpanded(true);
+      }, 200); // Small delay to prevent accidental expansion
+    }
+  };
+
+  // Handle mouse leave with delay to prevent flickering
+  const handleMouseLeave = () => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+    }
+    setIsHovering(false);
+    hoverTimeoutRef.current = setTimeout(() => {
+      if (!isHovering) {
+        setIsExpanded(false);
+      }
+    }, 300); // Delay to allow user to move to secondary nav
+  };
+
+  // Toggle function for click interaction
+  const handleToggleExpanded = () => {
+    setIsExpanded(!isExpanded);
+    setIsHovering(!isExpanded); // Sync hover state with click state
+  };
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (hoverTimeoutRef.current) {
+        clearTimeout(hoverTimeoutRef.current);
+      }
+    };
+  }, []);
 
   return (
     <>
-      <header className={`site-header sticky top-0 z-40 w-full bg-white/80 backdrop-blur-sm border-b border-border transition-all duration-300 ${isExpanded ? 'is-expanded' : ''}`}>
+      <header 
+        className={`site-header sticky top-0 z-40 w-full bg-white/80 backdrop-blur-sm border-b border-border transition-all duration-300 ${isExpanded ? 'is-expanded' : ''}`}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
         <div className="container mx-auto px-4 py-4">
           {/* Primary Row */}
           <div className="flex items-center justify-between">
@@ -81,14 +129,17 @@ const Header = () => {
                 <Button
                   variant="ghost"
                   size="sm"
-                  onClick={() => setIsExpanded(!isExpanded)}
-                  className="px-4 py-3 rounded-md text-base font-semibold transition-all duration-200 hover:bg-primary/5"
+                  onClick={handleToggleExpanded}
+                  onMouseEnter={() => setIsHovering(true)}
+                  className={`px-4 py-3 rounded-md text-base font-semibold transition-all duration-200 hover:bg-primary/5 hover:scale-105 ${
+                    isExpanded ? 'bg-primary/10 text-primary' : 'hover:text-primary'
+                  }`}
                   aria-expanded={isExpanded}
                   aria-controls="header-secondary-row"
                   data-testid="button-nav-toggle"
                 >
                   <span className="mr-2">{isExpanded ? t('nav_less') : t('nav_more')}</span>
-                  <ChevronDown className={`w-4 h-4 chevron transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`} />
+                  <ChevronDown className={`w-4 h-4 chevron transition-transform duration-300 ease-in-out ${isExpanded ? 'rotate-180' : ''}`} />
                 </Button>
               </nav>
             </div>
@@ -128,22 +179,28 @@ const Header = () => {
           {/* Secondary Row - Expandable */}
           <div 
             id="header-secondary-row"
-            className={`nav-secondary hidden lg:block overflow-hidden transition-all duration-300 ease-in-out ${
+            className={`nav-secondary hidden lg:block overflow-hidden transition-all duration-400 ease-in-out ${
               isExpanded 
-                ? 'max-h-24 opacity-100 pointer-events-auto' 
-                : 'max-h-0 opacity-0 pointer-events-none'
+                ? 'max-h-24 opacity-100 pointer-events-auto transform translate-y-0' 
+                : 'max-h-0 opacity-0 pointer-events-none transform -translate-y-2'
             }`}
+            onMouseEnter={() => setIsHovering(true)}
+            onMouseLeave={() => setIsHovering(false)}
           >
             <nav className="flex items-center justify-between w-full max-w-6xl mx-auto pt-6 pb-4 px-8" role="navigation" aria-label="Secondary navigation">
-              {secondaryNavItems.map(({ key, href }) => (
+              {secondaryNavItems.map(({ key, href }, index) => (
                 <Link 
                   key={href}
                   href={href} 
-                  className={`font-semibold text-base tracking-wide transition-all duration-200 px-4 py-3 rounded-md flex-1 text-center ${
+                  className={`font-semibold text-base tracking-wide transition-all duration-300 px-4 py-3 rounded-md flex-1 text-center transform hover:scale-105 hover:-translate-y-1 ${
                     location === href 
-                      ? 'text-primary bg-primary/10' 
-                      : 'text-foreground hover:text-primary hover:bg-primary/5'
+                      ? 'text-primary bg-primary/10 shadow-lg' 
+                      : 'text-foreground hover:text-primary hover:bg-primary/5 hover:shadow-md'
                   }`}
+                  style={{
+                    animationDelay: `${index * 50}ms`,
+                    animation: isExpanded ? 'slideInUp 0.3s ease-out forwards' : ''
+                  }}
                   data-testid={`link-nav-secondary-${key.replace('nav_', '')}`}
                 >
                   {t(key)}
