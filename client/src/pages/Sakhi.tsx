@@ -58,6 +58,30 @@ const Sakhi = () => {
 
   return (
     <div className="container mx-auto px-4 py-6">
+      {/* Responsive Video Section */}
+      <section className="w-full py-4 px-2 sm:px-4 lg:py-8 lg:px-8">
+        <div className="responsive-video-container relative overflow-hidden">
+          <video
+            className="absolute inset-0 w-full h-full"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            poster="/babyFeet.jpg"
+            webkit-playsinline="true"
+            x5-playsinline="true"
+            onLoadStart={() => console.log('Sakhi video loading started...')}
+            onLoadedData={() => console.log('Sakhi video data loaded')}
+            onCanPlay={() => console.log('Sakhi video can play')}
+            onPlay={() => console.log('Sakhi video started playing')}
+          >
+            <source src="/sakhi.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </section>
+
       {/* Hero Section */}
       <section className="text-center py-12 relative">
         <div className="max-w-4xl mx-auto">
@@ -93,15 +117,6 @@ const Sakhi = () => {
                 {t("sakhi_browse_knowledge")}
               </Button>
             </Link>
-          </div>
-
-          {/* Background Image */}
-          <div className="absolute inset-0 -z-10 opacity-10">
-            <img
-              src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080"
-              alt={t('alt_peaceful_meditation')}
-              className="w-full h-full object-cover rounded-3xl"
-            />
           </div>
         </div>
       </section>
