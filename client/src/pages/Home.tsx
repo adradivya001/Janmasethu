@@ -87,9 +87,28 @@ const Home = () => {
 
   return (
     <>
-      {/* Hero Text Section */}
-      <section className="text-center py-16 relative bg-gradient-to-br from-white/90 via-purple-50/70 to-pink-50/70">
-        <div className="container mx-auto px-4">
+      {/* Responsive Video Section */}
+      <section className="w-full responsive-video-container relative overflow-hidden">
+        <video
+          className="absolute inset-0 w-full h-full object-cover"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          onLoadStart={() => console.log('Video loading started...')}
+          onLoadedData={() => console.log('Video data loaded')}
+          onCanPlay={() => console.log('Video can play')}
+          onPlay={() => console.log('Video started playing')}
+        >
+          <source src="/janmasethu.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </section>
+
+      <div className="container mx-auto px-4 py-8">
+      {/* Hero Section */}
+      <section className="text-center py-16 relative">
         {/* Trust Badge - Centered at top */}
         <div className="flex justify-center mb-8">
           <div className="inline-flex items-center space-x-2 bg-white rounded-full px-4 py-2 card-shadow">
@@ -231,31 +250,11 @@ const Home = () => {
               alt="Baby feet - nurturing parenthood journey"
               className="w-full h-full object-cover rounded-3xl opacity-60"
             />
+            {/* Light gradient overlay to maintain text readability */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white/90 via-purple-50/70 to-pink-50/70 rounded-3xl"></div>
           </div>
         </div>
-        </div>
       </section>
-
-      {/* Full-Width Hero Video Section */}
-      <section className="hero-video-section">
-        <video
-          className="hero-video"
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          onLoadStart={() => console.log('Video loading started...')}
-          onLoadedData={() => console.log('Video data loaded')}
-          onCanPlay={() => console.log('Video can play')}
-          onPlay={() => console.log('Video started playing')}
-        >
-          <source src="/janmasethu.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </section>
-
-      <div className="container mx-auto px-4 py-8"></div>
 
       {/* Who We Serve - Interactive Cards with Modal */}
       <WhoWeServe />
