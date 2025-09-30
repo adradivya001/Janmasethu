@@ -183,7 +183,7 @@ const Header = () => {
             onMouseEnter={() => setIsHovering(true)}
             onMouseLeave={handleMoreAreaMouseLeave}
           >
-            <nav className="flex items-center justify-between w-full max-w-6xl mx-auto pt-6 pb-4 px-8" role="navigation" aria-label="Secondary navigation"></nav>
+            <nav className="flex items-center justify-between w-full max-w-6xl mx-auto pt-6 pb-4 px-8" role="navigation" aria-label="Secondary navigation">
               {secondaryNavItems.map(({ key, href }, index) => (
                 <Link 
                   key={href}
