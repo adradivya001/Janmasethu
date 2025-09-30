@@ -88,7 +88,7 @@ const Home = () => {
   return (
     <>
       {/* Responsive Video Section */}
-      <section className="w-full py-4 px-4 lg:py-8 lg:px-8">
+      <section className="w-full py-4 px-2 sm:px-4 lg:py-8 lg:px-8">
         <div className="responsive-video-container relative overflow-hidden">
           <video
             className="absolute inset-0 w-full h-full"

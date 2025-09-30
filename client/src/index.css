@@ -206,7 +206,7 @@
     min-height: 300px;
     max-height: 400px;
     overflow: hidden;
-    margin-top: 0;
+    margin: 0 auto;
     border-radius: 16px;
     /* Safe area padding for floating buttons */
     padding-bottom: env(safe-area-inset-bottom, 0);
@@ -231,7 +231,7 @@
       height: 40vh;
       min-height: 250px;
       max-height: 300px;
-      margin: 0 8px;
+      margin: 0 auto;
     }
     
     .responsive-video-container video {
@@ -246,7 +246,7 @@
       height: 50vh;
       min-height: 300px;
       max-height: 400px;
-      margin: 0 16px;
+      margin: 0 auto;
     }
     
     .responsive-video-container video {
@@ -261,7 +261,7 @@
       height: 60vh;
       min-height: 400px;
       max-height: 500px;
-      margin: 0 24px;
+      margin: 0 auto;
     }
     
     .responsive-video-container video {
@@ -276,7 +276,7 @@
       height: 80vh;
       min-height: 500px;
       max-height: none;
-      margin: 0;
+      margin: 0 auto;
       border-radius: 24px;
     }
     
