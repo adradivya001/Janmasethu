@@ -249,15 +249,118 @@ const Knowledge = () => {
       });
 
       if (response.ok) {
-        const data: WebhookResponse = await response.json();
-        console.log('Search results received:', data);
-        console.log('Number of articles:', data.items?.length || 0);
-        setWebhookResults(data);
-        setSearchError(null); // Clear any previous errors
-        
-        // Show success message if articles found
-        if (data.items && data.items.length > 0) {
-          console.log(`Successfully loaded ${data.items.length} articles from webhook`);
+        try {
+          // First, get the response as text to handle any format
+          const responseText = await response.text();
+          console.log('Raw response received:', responseText);
+          
+          let data: WebhookResponse;
+          
+          // Try to parse as JSON first
+          try {
+            data = JSON.parse(responseText);
+            console.log('Successfully parsed JSON response:', data);
+          } catch (jsonError) {
+            console.log('Response is not JSON, attempting to extract data from text');
+            
+            // If not JSON, try to extract structured data from text
+            // Look for patterns like title, summary, etc.
+            const lines = responseText.split('\n').filter(line => line.trim());
+            const extractedItems: WebhookArticle[] = [];
+            
+            // Try to find title and summary patterns
+            let currentItem: Partial<WebhookArticle> = {};
+            let itemIndex = 0;
+            
+            for (const line of lines) {
+              const trimmedLine = line.trim();
+              
+              // Look for title patterns
+              if (trimmedLine.toLowerCase().includes('title') || 
+                  trimmedLine.match(/^[A-Z][^.]*—[^.]*$/)) {
+                if (currentItem.title && currentItem.summary) {
+                  // Save previous item
+                  extractedItems.push({
+                    id: `extracted-${itemIndex++}`,
+                    slug: `extracted-${itemIndex}`,
+                    title: currentItem.title,
+                    summary: currentItem.summary,
+                    topic: currentItem.topic || 'General',
+                    section: currentItem.section || 'General',
+                    lens: currentItem.lens || 'Medical',
+                    life_stage: currentItem.life_stage || 'TTC',
+                    published_at: new Date().toISOString()
+                  });
+                }
+                currentItem = { title: trimmedLine };
+              }
+              // Look for summary/description patterns
+              else if ((trimmedLine.toLowerCase().includes('understanding') || 
+                       trimmedLine.toLowerCase().includes('description') ||
+                       trimmedLine.length > 50) && !currentItem.summary) {
+                currentItem.summary = trimmedLine;
+              }
+              // Look for other metadata
+              else if (trimmedLine.toLowerCase().includes('topic')) {
+                currentItem.topic = trimmedLine.split(':')[1]?.trim() || 'General';
+              }
+              else if (trimmedLine.toLowerCase().includes('lens')) {
+                currentItem.lens = trimmedLine.split(':')[1]?.trim() || 'Medical';
+              }
+              else if (trimmedLine.toLowerCase().includes('stage')) {
+                currentItem.life_stage = trimmedLine.split(':')[1]?.trim() || 'TTC';
+              }
+            }
+            
+            // Add the last item if it has both title and summary
+            if (currentItem.title && currentItem.summary) {
+              extractedItems.push({
+                id: `extracted-${itemIndex}`,
+                slug: `extracted-${itemIndex}`,
+                title: currentItem.title,
+                summary: currentItem.summary,
+                topic: currentItem.topic || 'General',
+                section: currentItem.section || 'General',
+                lens: currentItem.lens || 'Medical',
+                life_stage: currentItem.life_stage || 'TTC',
+                published_at: new Date().toISOString()
+              });
+            }
+            
+            // Create a mock WebhookResponse structure
+            data = {
+              query: searchTerm || '',
+              filters: {
+                lenses: selectedLens ? [selectedLens] : [],
+                stages: selectedStage ? [selectedStage] : []
+              },
+              pagination: {
+                page: 1,
+                per_page: extractedItems.length,
+                total: extractedItems.length,
+                has_more: false
+              },
+              items: extractedItems
+            };
+            
+            console.log('Extracted data from text response:', data);
+          }
+          
+          console.log('Final data to use:', data);
+          console.log('Number of articles:', data.items?.length || 0);
+          setWebhookResults(data);
+          setSearchError(null); // Clear any previous errors
+          
+          // Show success message if articles found
+          if (data.items && data.items.length > 0) {
+            console.log(`Successfully loaded ${data.items.length} articles from webhook`);
+          } else {
+            console.log('No articles found in response');
+          }
+          
+        } catch (parseError) {
+          console.error('Failed to parse response:', parseError);
+          setSearchError('Failed to parse response data');
         }
       } else {
         console.error('Failed to send search request:', response.statusText);
