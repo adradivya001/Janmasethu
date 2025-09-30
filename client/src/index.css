@@ -233,7 +233,7 @@
       max-height: 300px;
       margin: 0 auto;
     }
-
+    
     .responsive-video-container video {
       object-fit: contain; /* Ensure full video is visible */
       border-radius: 12px;
@@ -248,7 +248,7 @@
       max-height: 400px;
       margin: 0 auto;
     }
-
+    
     .responsive-video-container video {
       object-fit: contain;
       border-radius: 16px;
@@ -263,7 +263,7 @@
       max-height: 500px;
       margin: 0 auto;
     }
-
+    
     .responsive-video-container video {
       object-fit: cover;
       border-radius: 20px;
@@ -279,7 +279,7 @@
       margin: 0 auto;
       border-radius: 24px;
     }
-
+    
     .responsive-video-container video {
       object-fit: cover;
       border-radius: 24px;
@@ -292,7 +292,7 @@
       height: 100vh;
       border-radius: 0;
     }
-
+    
     .responsive-video-container video {
       border-radius: 0;
     }
@@ -319,79 +319,6 @@
   /* Remove any border radius from video elements */
   video {
     border-radius: 0 !important;
-  }
-
-  /* Responsive Video Container */
-  .responsive-video-container {
-    position: relative;
-    width: 100%;
-    padding-bottom: 56.25%; /* 16:9 aspect ratio */
-    height: 0;
-    overflow: hidden;
-    border-radius: 1rem;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-  }
-
-  .responsive-video-container:hover {
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-    transform: translateY(-2px);
-  }
-
-  .responsive-video-container video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    transition: transform 0.3s ease;
-  }
-
-  .responsive-video-container:hover video {
-    transform: scale(1.02);
-  }
-
-  /* Mobile-specific optimizations */
-  @media (max-width: 768px) {
-    .responsive-video-container {
-      padding-bottom: 75%; /* Adjusted aspect ratio for mobile */
-      border-radius: 0.75rem;
-      margin: 0 -0.5rem; /* Slight negative margin to use full width on mobile */
-    }
-
-    .responsive-video-container video {
-      object-fit: cover;
-      object-position: center center;
-    }
-
-    .responsive-video-container:hover {
-      transform: none; /* Disable hover transform on mobile */
-    }
-
-    .responsive-video-container:hover video {
-      transform: none; /* Disable hover transform on mobile */
-    }
-  }
-
-  /* Tablet optimizations */
-  @media (min-width: 769px) and (max-width: 1024px) {
-    .responsive-video-container {
-      padding-bottom: 60%; /* Slightly different aspect ratio for tablets */
-      border-radius: 1rem;
-    }
-  }
-
-  /* Desktop optimizations */
-  @media (min-width: 1025px) {
-    .responsive-video-container {
-      padding-bottom: 50%; /* More cinematic aspect ratio on desktop */
-      border-radius: 1.5rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
   }
 }
 
