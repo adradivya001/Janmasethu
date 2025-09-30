@@ -51,6 +51,7 @@
   }
 
 :root {
+  --header-h: 120px;
   --background: hsl(221, 83%, 97%);
   --foreground: hsl(220, 14%, 11%);
   --card: hsl(0, 0%, 100%);
@@ -108,6 +109,10 @@
     @apply font-sans antialiased text-foreground;
     background: linear-gradient(135deg, #F5F7FF 0%, #FFECEF 100%);
     min-height: 100vh;
+  }
+
+  main {
+    padding-top: var(--header-h);
   }
 
   /* Comprehensive multilingual text rendering improvements */
@@ -287,9 +292,34 @@
   video {
     border-radius: 0 !important;
   }
+
+  /* Responsive video wrapper with 16:9 aspect ratio */
+  .video-wrapper {
+    aspect-ratio: 16 / 9;
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px rgba(20, 20, 43, 0.15);
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .video-wrapper video,
+  .video-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #000;
+  }
 }
 
 @layer components {
+  .container {
+    max-width: 1200px;
+    width: 92vw;
+    margin: 0 auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
   .gradient-text {
     background: linear-gradient(90deg, #8B5CF6, #EC4899, #F97316);
     -webkit-background-clip: text;
@@ -411,6 +441,13 @@
 
   .journey-line.glowing {
     box-shadow: 0 0 20px rgba(139, 92, 246, 0.6);
+  }
+
+  /* Mobile responsive grid breakpoint for stacking */
+  @media (max-width: 900px) {
+    .grid {
+      grid-template-columns: 1fr !important;
+    }
   }
 
   /* Mobile responsive journey timeline lines */

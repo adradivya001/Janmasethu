@@ -1,3 +1,4 @@
+
 import { Link } from "wouter";
 import {
   ArrowRight,
@@ -86,29 +87,9 @@ const Home = () => {
   ];
 
   return (
-    <>
-      {/* Responsive Video Section */}
-      <section className="w-full responsive-video-container relative overflow-hidden">
-        <video
-          className="absolute inset-0 w-full h-full object-cover"
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          onLoadStart={() => console.log('Video loading started...')}
-          onLoadedData={() => console.log('Video data loaded')}
-          onCanPlay={() => console.log('Video can play')}
-          onPlay={() => console.log('Video started playing')}
-        >
-          <source src="/janmasethu.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </section>
-
-      <div className="container mx-auto px-4 py-8">
-      {/* Hero Section */}
-      <section className="text-center py-16 relative">
+    <main>
+      {/* First Hero Section */}
+      <section className="container py-16 relative">
         {/* Trust Badge - Centered at top */}
         <div className="flex justify-center mb-8">
           <div className="inline-flex items-center space-x-2 bg-white rounded-full px-4 py-2 card-shadow">
@@ -124,7 +105,7 @@ const Home = () => {
 
         {/* Hero Title - On its own line below */}
         <h1
-          className="text-4xl md:text-5xl lg:text-6xl font-bold gradient-text font-serif mb-6 leading-relaxed"
+          className="text-4xl md:text-5xl lg:text-6xl font-bold gradient-text font-serif mb-6 leading-relaxed text-center"
           data-testid="text-hero-title"
         >
           <span dangerouslySetInnerHTML={{ __html: t("hero_title") }} />
@@ -132,7 +113,7 @@ const Home = () => {
 
         {/* Hero Subtitle */}
         <p
-          className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto"
+          className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto text-center"
           data-testid="text-hero-subtitle"
         >
           {t("hero_sub")}
@@ -215,7 +196,7 @@ const Home = () => {
           </svg>
         </div>
 
-        {/* CTA Buttons - Updated to match blueprint exactly */}
+        {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <Link href="/sakhi/try">
             <Button
@@ -256,680 +237,382 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Who We Serve - Interactive Cards with Modal */}
-      <WhoWeServe />
-
-      {/* Parenthood Journey Strip */}
-      <section className="py-16 bg-gradient-to-r from-purple-50 via-pink-50 to-orange-50 rounded-3xl mx-4">
-        <div className="text-center mb-12">
-          <h2
-            className="text-4xl font-bold text-foreground font-serif mb-4"
-            data-testid="text-journey-title"
-          >
-            {t("journey_title")}
+      {/* Second Hero Section - What We Provide */}
+      <section className="container py-16">
+        <div className="text-center mb-16">
+          <h2 className="text-5xl font-bold gradient-text font-serif mb-6">
+            What We Provide
           </h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            {t("journey_subtitle")}
+          <p className="text-xl text-muted-foreground max-w-4xl mx-auto">
+            Expert advice, reliable resources, and compassionate companion support throughout your journey to parenthood
           </p>
         </div>
 
-        {/* Journey Timeline */}
-        <div className="relative overflow-x-auto pb-8">
-          <div className="journey-timeline-mobile flex items-center justify-between min-w-[800px] px-8">
-            {/* Stage 1: Thinking of Parenthood */}
-            <div
-              className="flex flex-col items-center group cursor-pointer hover:scale-105 transition-all duration-300"
-              data-testid="journey-stage-thinking"
-            >
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-green-200 transition-colors shadow-lg">
-                <span className="text-2xl">🌱</span>
-              </div>
-              <h3 className="text-sm font-bold text-foreground text-center mb-2">
-                {t("journey_stage_1_title")}
-              </h3>
-              <p className="text-xs text-muted-foreground text-center max-w-[120px]">
-                {t("journey_stage_1_desc")}
-              </p>
-              <div className="hidden group-hover:block absolute top-20 bg-white rounded-lg shadow-lg p-2 z-10 mt-4">
-                <p className="text-xs text-center whitespace-nowrap">
-                  {t("journey_stage_tooltip")}
-                </p>
-              </div>
+        <div className="grid md:grid-cols-3 gap-8 mb-12">
+          <div className="text-center">
+            <div className="w-24 h-24 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-6">
+              <Stethoscope className="w-12 h-12 text-pink-600" />
             </div>
-
-            {/* Connection Line 1 */}
-            <div className="flex-1 h-1 bg-gradient-to-r from-green-200 to-pink-200 mx-4 rounded-full min-w-[40px]"></div>
-
-            {/* Stage 2: Trying Naturally */}
-            <div
-              className="flex flex-col items-center group cursor-pointer hover:scale-105 transition-all duration-300"
-              data-testid="journey-stage-trying"
-            >
-              <div className="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-pink-200 transition-colors shadow-lg">
-                <span className="text-2xl">💖</span>
-              </div>
-              <h3 className="text-sm font-bold text-foreground text-center mb-2">
-                {t("journey_stage_2_title")}
-              </h3>
-              <p className="text-xs text-muted-foreground text-center max-w-[120px]">
-                {t("journey_stage_2_desc")}
-              </p>
-              <div className="hidden group-hover:block absolute top-20 bg-white rounded-lg shadow-lg p-2 z-10 mt-4">
-                <p className="text-xs text-center whitespace-nowrap">
-                  {t("journey_stage_tooltip")}
-                </p>
-              </div>
-            </div>
-
-            {/* Connection Line 2 */}
-            <div className="flex-1 h-1 bg-gradient-to-r from-pink-200 to-blue-200 mx-4 rounded-full min-w-[40px]"></div>
-
-            {/* Stage 3: Exploring Options */}
-            <div
-              className="flex flex-col items-center group cursor-pointer hover:scale-105 transition-all duration-300"
-              data-testid="journey-stage-exploring"
-            >
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-blue-200 transition-colors shadow-lg">
-                <span className="text-2xl">🔬</span>
-              </div>
-              <h3 className="text-sm font-bold text-foreground text-center mb-2">
-                {t("journey_stage_3_title")}
-              </h3>
-              <p className="text-xs text-muted-foreground text-center max-w-[120px]">
-                {t("journey_stage_3_desc")}
-              </p>
-              <div className="hidden group-hover:block absolute top-20 bg-white rounded-lg shadow-lg p-2 z-10 mt-4">
-                <p className="text-xs text-center whitespace-nowrap">
-                  {t("journey_stage_tooltip")}
-                </p>
-              </div>
-            </div>
-
-            {/* Connection Line 3 */}
-            <div className="flex-1 h-1 bg-gradient-to-r from-blue-200 to-purple-200 mx-4 rounded-full min-w-[40px]"></div>
-
-            {/* Stage 4: Pregnancy */}
-            <div
-              className="flex flex-col items-center group cursor-pointer hover:scale-105 transition-all duration-300"
-              data-testid="journey-stage-pregnancy"
-            >
-              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-purple-200 transition-colors shadow-lg">
-                <span className="text-2xl">🤰</span>
-              </div>
-              <h3 className="text-sm font-bold text-foreground text-center mb-2">
-                {t("journey_stage_4_title")}
-              </h3>
-              <p className="text-xs text-muted-foreground text-center max-w-[120px]">
-                {t("journey_stage_4_desc")}
-              </p>
-              <div className="hidden group-hover:block absolute top-20 bg-white rounded-lg shadow-lg p-2 z-10 mt-4">
-                <p className="text-xs text-center whitespace-nowrap">
-                  {t("journey_stage_tooltip")}
-                </p>
-              </div>
-            </div>
-
-            {/* Connection Line 4 */}
-            <div className="flex-1 h-1 bg-gradient-to-r from-purple-200 to-orange-200 mx-4 rounded-full min-w-[40px]"></div>
-
-            {/* Stage 5: Post-Delivery */}
-            <div
-              className="flex flex-col items-center group cursor-pointer hover:scale-105 transition-all duration-300"
-              data-testid="journey-stage-postdelivery"
-            >
-              <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-orange-200 transition-colors shadow-lg">
-                <span className="text-2xl">👶</span>
-              </div>
-              <h3 className="text-sm font-bold text-foreground text-center mb-2">
-                {t("journey_stage_5_title")}
-              </h3>
-              <p className="text-xs text-muted-foreground text-center max-w-[120px]">
-                {t("journey_stage_5_desc")}
-              </p>
-              <div className="hidden group-hover:block absolute top-20 bg-white rounded-lg shadow-lg p-2 z-10 mt-4">
-                <p className="text-xs text-center whitespace-nowrap">
-                  {t("journey_stage_tooltip")}
-                </p>
-              </div>
-            </div>
+            <h3 className="text-2xl font-bold text-pink-600 mb-4">Expert Advice</h3>
+            <p className="text-muted-foreground">Medical insights from fertility specialists and healthcare professionals</p>
           </div>
-        </div>
 
-        {/* CTA under strip */}
-        <div className="text-center mt-12">
-          <Link href="/sakhi">
-            <Button
-              className="gradient-button text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-lg transition-all duration-300 inline-flex items-center"
-              data-testid="button-sakhi-support"
-            >
-              {t("journey_cta")}
-              <ArrowRight className="ml-2 w-4 h-4" />
-            </Button>
-          </Link>
-        </div>
-      </section>
-
-      {/* Sakhi Preview Section */}
-      <section className="py-16">
-        <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-3xl p-8 md:p-12">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2
-                className="text-4xl font-bold text-foreground font-serif mb-6"
-                data-testid="text-sakhi-hero"
-                dangerouslySetInnerHTML={{ __html: t("sakhi_hero") }}
-              ></h2>
-              <p
-                className="text-lg text-muted-foreground mb-8"
-                data-testid="text-sakhi-sub"
-              >
-                {t("sakhi_sub")}
-              </p>
-
-              <h3
-                className="text-2xl font-bold text-foreground font-serif mb-4"
-                data-testid="text-sakhi-how-title"
-              >
-                {t("sakhi_how_title")}
-              </h3>
-              <ul className="space-y-3 mb-8">
-                {t("sakhi_how_list")
-                  .split("|")
-                  .filter((item: string) => item.trim().length > 0)
-                  .map((item: string, index: number) => (
-                    <li
-                      key={index}
-                      className="flex items-start space-x-3"
-                      data-testid={`item-sakhi-help-${index}`}
-                    >
-                      <Heart className="text-pink-500 w-5 h-5 mt-1 flex-shrink-0" />
-                      <span className="text-muted-foreground">
-                        {item.trim()}
-                      </span>
-                    </li>
-                  ))}
-              </ul>
-
-              <Link href="/sakhi/try">
-                <Button
-                  className="gradient-button-secondary text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-lg transition-all duration-300 inline-flex items-center"
-                  data-testid="button-try-sakhi"
-                >
-                  {t("sakhi_try")}
-                  <ArrowRight className="ml-2 w-4 h-4" />
-                </Button>
-              </Link>
+          <div className="text-center">
+            <div className="w-24 h-24 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+              <BookOpen className="w-12 h-12 text-blue-600" />
             </div>
+            <h3 className="text-2xl font-bold text-blue-600 mb-4">Reliable Resources</h3>
+            <p className="text-muted-foreground">Evidence-based information and comprehensive guides for every stage</p>
+          </div>
 
-            {/* Chat Interface Preview */}
-            <Card className="rounded-3xl p-6 card-shadow">
-              <div className="border-b border-border pb-4 mb-4">
-                <h4
-                  className="font-bold text-foreground"
-                  data-testid="text-chat-preview-title"
-                >
-                  Chat with Sakhi
-                </h4>
-                <p
-                  className="text-sm text-muted-foreground"
-                  data-testid="text-chat-preview-hint"
-                >
-                  <span className="w-2 h-2 bg-green-500 rounded-full inline-block mr-2"></span>
-                  Sakhi is online and ready to help
-                </p>
-              </div>
-
-              <div className="space-y-4 mb-4 h-60 overflow-y-auto">
-                {/* Sample Chat Messages */}
-                <div className="flex justify-end">
-                  <div
-                    className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-2xl max-w-xs shadow-md"
-                    data-testid="message-sample-user"
-                  >
-                    I'm feeling anxious about tomorrow's scan
-                  </div>
-                </div>
-
-                <div className="flex justify-start">
-                  <div
-                    className="bg-white border border-gray-200 text-gray-700 px-4 py-2 rounded-2xl max-w-xs shadow-md"
-                    data-testid="message-sample-bot"
-                  >
-                    I understand your anxiety. It's completely normal to feel
-                    this way before scans.
-                    <div className="mt-2 text-xs text-gray-500">
-                      <span className="animate-pulse">
-                        💭 Try some deep breathing exercises...
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Typing indicator */}
-                <div className="flex justify-start">
-                  <div className="bg-gray-100 px-4 py-2 rounded-2xl">
-                    <div className="flex space-x-1">
-                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
-                      <div
-                        className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
-                        style={{ animationDelay: "0.1s" }}
-                      ></div>
-                      <div
-                        className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
-                        style={{ animationDelay: "0.2s" }}
-                      ></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex space-x-2">
-                <Input
-                  type="text"
-                  placeholder="Type your message..."
-                  className="flex-1 rounded-full focus:ring-ring"
-                  data-testid="input-chat-preview"
-                />
-                <Button
-                  className="gradient-button text-white rounded-full hover:shadow-lg transition-all duration-300"
-                  data-testid="button-send-preview"
-                >
-                  <Send className="w-4 h-4" />
-                </Button>
-              </div>
-
-              <p
-                className="text-xs text-muted-foreground mt-2"
-                data-testid="text-chat-preview-privacy"
-              >
-                {t("chat_privacy")}
-              </p>
-            </Card>
+          <div className="text-center">
+            <div className="w-24 h-24 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
+              <Heart className="w-12 h-12 text-purple-600" />
+            </div>
+            <h3 className="text-2xl font-bold text-purple-600 mb-4">Companion</h3>
+            <p className="text-muted-foreground">24/7 emotional support through Sakhi, your caring AI companion</p>
           </div>
         </div>
       </section>
 
-      {/* Start Here - Orientation Section */}
-      <section className="py-16">
+      {/* Responsive Video Section */}
+      <section className="container py-16">
         <div className="text-center mb-12">
-          <h2
-            className="text-4xl font-bold text-foreground font-serif mb-4"
-            data-testid="text-orientation-title"
-          >
-            {t("orient_title")}
+          <h2 className="text-4xl font-bold text-foreground font-serif mb-4">
+            Your Journey with JanmaSethu
           </h2>
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+            See how we support families through every step of their parenthood journey
+          </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {/* TTC Card */}
-          <Link href="/life-stages/ttc" className="group h-full">
-            <Card className="rounded-3xl p-8 card-shadow hover:shadow-2xl transition-all duration-500 h-full flex flex-col cursor-pointer transform hover:scale-105 border-2 border-transparent hover:border-purple-200 relative overflow-hidden bg-gradient-to-br from-white to-purple-50/30">
-              <CardContent className="p-0 flex flex-col h-full">
-                {/* Click indicator */}
-                <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
-                    <ArrowRight className="w-4 h-4 text-purple-600" />
-                  </div>
-                </div>
-                
-                <div className="w-16 h-16 gradient-button rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-md">
-                  <Heart className="text-white text-2xl" />
-                </div>
-                <h3
-                  className="text-2xl font-bold text-foreground font-serif mb-4 group-hover:text-purple-600 transition-colors"
-                  data-testid="text-ttc-title"
-                >
-                  {t("orient_ttc")}
-                </h3>
-                <p
-                  className="text-muted-foreground mb-6 flex-grow"
-                  data-testid="text-ttc-desc"
-                >
-                  {t("orient_desc_ttc")}
-                </p>
-                <img
-                  src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300"
-                  alt="Couple walking together in park"
-                  className="rounded-xl w-full h-32 object-cover mt-auto group-hover:shadow-lg transition-shadow"
-                />
-                
-                {/* Call to action */}
-                <div className="flex items-center justify-between mt-4">
-                  <span className="text-sm text-purple-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    {lang === "en" && "Explore this stage"}
-                    {lang === "hi" && "इस चरण का अन्वेषण करें"}
-                    {lang === "te" && "ఈ దశను అన్వేషించండి"}
-                  </span>
-                  <ArrowRight className="w-5 h-5 text-purple-600 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
-                </div>
-              </CardContent>
-            </Card>
-          </Link>
-
-          {/* Pregnancy Card */}
-          <Link href="/life-stages/pregnancy" className="group h-full">
-            <Card className="rounded-3xl p-8 card-shadow hover:shadow-2xl transition-all duration-500 h-full flex flex-col cursor-pointer transform hover:scale-105 border-2 border-transparent hover:border-pink-200 relative overflow-hidden bg-gradient-to-br from-white to-pink-50/30">
-              <CardContent className="p-0 flex flex-col h-full">
-                {/* Click indicator */}
-                <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="w-8 h-8 bg-pink-100 rounded-full flex items-center justify-center">
-                    <ArrowRight className="w-4 h-4 text-pink-600" />
-                  </div>
-                </div>
-                
-                <div className="w-16 h-16 gradient-button rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-md">
-                  <Baby className="text-white text-2xl" />
-                </div>
-                <h3
-                  className="text-2xl font-bold text-foreground font-serif mb-4 group-hover:text-pink-600 transition-colors"
-                  data-testid="text-pregnancy-title"
-                >
-                  {t("orient_preg")}
-                </h3>
-                <p
-                  className="text-muted-foreground mb-6 flex-grow"
-                  data-testid="text-pregnancy-desc"
-                >
-                  {t("orient_desc_preg")}
-                </p>
-                <img
-                  src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300"
-                  alt="Pregnant woman in peaceful outdoor setting"
-                  className="rounded-xl w-full h-32 object-cover mt-auto group-hover:shadow-lg transition-shadow"
-                />
-                
-                {/* Call to action */}
-                <div className="flex items-center justify-between mt-4">
-                  <span className="text-sm text-pink-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    {lang === "en" && "Explore this stage"}
-                    {lang === "hi" && "इस चरण का अन्वेषण करें"}
-                    {lang === "te" && "ఈ దశను అన్వేషించండి"}
-                  </span>
-                  <ArrowRight className="w-5 h-5 text-pink-600 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
-                </div>
-              </CardContent>
-            </Card>
-          </Link>
-
-          {/* New Parent Card */}
-          <Link href="/life-stages/newborn" className="group h-full">
-            <Card className="rounded-3xl p-8 card-shadow hover:shadow-2xl transition-all duration-500 h-full flex flex-col cursor-pointer transform hover:scale-105 border-2 border-transparent hover:border-orange-200 relative overflow-hidden bg-gradient-to-br from-white to-orange-50/30">
-              <CardContent className="p-0 flex flex-col h-full">
-                {/* Click indicator */}
-                <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center">
-                    <ArrowRight className="w-4 h-4 text-orange-600" />
-                  </div>
-                </div>
-                
-                <div className="w-16 h-16 gradient-button rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-md">
-                  <Cat className="text-white text-2xl" />
-                </div>
-                <h3
-                  className="text-2xl font-bold text-foreground font-serif mb-4 group-hover:text-orange-600 transition-colors"
-                  data-testid="text-parent-title"
-                >
-                  {t("orient_parent")}
-                </h3>
-                <p
-                  className="text-muted-foreground mb-6 flex-grow"
-                  data-testid="text-parent-desc"
-                >
-                  {t("orient_desc_parent")}
-                </p>
-                <img
-                  src="https://images.unsplash.com/photo-1566004100631-35d015d6a491?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300"
-                  alt="Happy new parent holding newborn baby"
-                  className="rounded-xl w-full h-32 object-cover mt-auto group-hover:shadow-lg transition-shadow"
-                />
-                
-                {/* Call to action */}
-                <div className="flex items-center justify-between mt-4">
-                  <span className="text-sm text-orange-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    {lang === "en" && "Explore this stage"}
-                    {lang === "hi" && "इस चरण का अन्वेषण करें"}
-                    {lang === "te" && "ఈ దశను అన్వేషించండి"}
-                  </span>
-                  <ArrowRight className="w-5 h-5 text-orange-600 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
-                </div>
-              </CardContent>
-            </Card>
-          </Link>
+        <div className="video-wrapper mx-auto max-w-4xl">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            onLoadStart={() => console.log('Video loading started...')}
+            onLoadedData={() => console.log('Video data loaded')}
+            onCanPlay={() => console.log('Video can play')}
+            onPlay={() => console.log('Video started playing')}
+          >
+            <source src="/janmasethu.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
         </div>
       </section>
 
-      {/* Explore by Lens Section */}
-      <section className="py-16">
-        <div className="text-center mb-12">
-          <h2
-            className="text-4xl font-bold text-foreground font-serif mb-4"
-            data-testid="text-lens-title"
-          >
-            {t("lens_title")}
-          </h2>
-        </div>
+      <div className="container py-8">
+        {/* Who We Serve - Interactive Cards with Modal */}
+        <WhoWeServe />
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {/* Medical Lens */}
-          <Link href="/knowledge?lens=medical" className="group h-full">
-            <Card className="rounded-3xl p-6 card-shadow hover:shadow-2xl transition-all duration-500 text-center h-full flex flex-col cursor-pointer transform hover:scale-105 border-2 border-transparent hover:border-blue-200 relative overflow-hidden bg-gradient-to-br from-white to-blue-50/30">
-              <CardContent className="p-0 flex flex-col h-full justify-center">
-                {/* Click indicator */}
-                <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center">
-                    <ArrowRight className="w-3 h-3 text-blue-600" />
-                  </div>
-                </div>
-                
-                <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-md">
-                  <Stethoscope className="text-blue-600 text-2xl" />
-                </div>
-                <h3
-                  className="text-xl font-bold text-foreground font-serif mb-4 group-hover:text-blue-600 transition-colors"
-                  data-testid="text-lens-medical"
-                >
-                  {t("lens_medical")}
-                </h3>
-                
-                {/* Call to action */}
-                <div className="flex items-center justify-center mt-auto">
-                  <span className="text-sm text-blue-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    {lang === "en" && "Browse topics"}
-                    {lang === "hi" && "विषय ब्राउज़ करें"}
-                    {lang === "te" && "విषయాలను బ్రౌజ్ చేయండి"}
-                  </span>
-                </div>
-              </CardContent>
-            </Card>
-          </Link>
-
-          {/* Social & Emotional Lens */}
-          <Link href="/knowledge?lens=social" className="group h-full">
-            <Card className="rounded-3xl p-6 card-shadow hover:shadow-2xl transition-all duration-500 text-center h-full flex flex-col cursor-pointer transform hover:scale-105 border-2 border-transparent hover:border-pink-200 relative overflow-hidden bg-gradient-to-br from-white to-pink-50/30">
-              <CardContent className="p-0 flex flex-col h-full justify-center">
-                {/* Click indicator */}
-                <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="w-6 h-6 bg-pink-100 rounded-full flex items-center justify-center">
-                    <ArrowRight className="w-3 h-3 text-pink-600" />
-                  </div>
-                </div>
-                
-                <div className="w-16 h-16 bg-pink-100 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-md">
-                  <Users className="text-pink-600 text-2xl" />
-                </div>
-                <h3
-                  className="text-xl font-bold text-foreground font-serif mb-4 group-hover:text-pink-600 transition-colors"
-                  data-testid="text-lens-social"
-                >
-                  {t("lens_social")}
-                </h3>
-                
-                {/* Call to action */}
-                <div className="flex items-center justify-center mt-auto">
-                  <span className="text-sm text-pink-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    {lang === "en" && "Browse topics"}
-                    {lang === "hi" && "विषय ब्राउज़ करें"}
-                    {lang === "te" && "విषయాలను బ్రౌజ్ చేయండి"}
-                  </span>
-                </div>
-              </CardContent>
-            </Card>
-          </Link>
-
-          {/* Financial Lens */}
-          <Link href="/knowledge?lens=financial" className="group h-full">
-            <Card className="rounded-3xl p-6 card-shadow hover:shadow-2xl transition-all duration-500 text-center h-full flex flex-col cursor-pointer transform hover:scale-105 border-2 border-transparent hover:border-green-200 relative overflow-hidden bg-gradient-to-br from-white to-green-50/30">
-              <CardContent className="p-0 flex flex-col h-full justify-center">
-                {/* Click indicator */}
-                <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center">
-                    <ArrowRight className="w-3 h-3 text-green-600" />
-                  </div>
-                </div>
-                
-                <div className="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-md">
-                  <IndianRupee className="text-green-600 text-2xl" />
-                </div>
-                <h3
-                  className="text-xl font-bold text-foreground font-serif mb-4 group-hover:text-green-600 transition-colors"
-                  data-testid="text-lens-financial"
-                >
-                  {t("lens_financial")}
-                </h3>
-                
-                {/* Call to action */}
-                <div className="flex items-center justify-center mt-auto">
-                  <span className="text-sm text-green-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    {lang === "en" && "Browse topics"}
-                    {lang === "hi" && "विषय ब्राउज़ करें"}
-                    {lang === "te" && "విषయాలను బ్రౌజ్ చేయండి"}
-                  </span>
-                </div>
-              </CardContent>
-            </Card>
-          </Link>
-
-          {/* Nutrition Lens */}
-          <Link href="/knowledge?lens=nutrition" className="group h-full">
-            <Card className="rounded-3xl p-6 card-shadow hover:shadow-2xl transition-all duration-500 text-center h-full flex flex-col cursor-pointer transform hover:scale-105 border-2 border-transparent hover:border-orange-200 relative overflow-hidden bg-gradient-to-br from-white to-orange-50/30">
-              <CardContent className="p-0 flex flex-col h-full justify-center">
-                {/* Click indicator */}
-                <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="w-6 h-6 bg-orange-100 rounded-full flex items-center justify-center">
-                    <ArrowRight className="w-3 h-3 text-orange-600" />
-                  </div>
-                </div>
-                
-                <div className="w-16 h-16 bg-orange-100 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-md">
-                  <Apple className="text-orange-600 text-2xl" />
-                </div>
-                <h3
-                  className="text-xl font-bold text-foreground font-serif mb-4 group-hover:text-orange-600 transition-colors"
-                  data-testid="text-lens-nutrition"
-                >
-                  {t("lens_nutrition")}
-                </h3>
-                
-                {/* Call to action */}
-                <div className="flex items-center justify-center mt-auto">
-                  <span className="text-sm text-orange-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    {lang === "en" && "Browse topics"}
-                    {lang === "hi" && "विषय ब्राउज़ करें"}
-                    {lang === "te" && "విషయాలను బ్రౌజ్ చేయండి"}
-                  </span>
-                </div>
-              </CardContent>
-            </Card>
-          </Link>
-        </div>
-      </section>
-
-      {/* Featured Knowledge Section */}
-      <section className="py-16">
-        <div className="text-center mb-12">
-          <h2
-            className="text-4xl font-bold text-foreground font-serif mb-4"
-            data-testid="text-featured-title"
-          >
-            {t("featured_title")}
-          </h2>
-        </div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {featuredArticles.map((article, index) => (
-            <Link
-              key={article.slug}
-              href={`/knowledge/${article.slug}`}
-              className="group h-full"
+        {/* Parenthood Journey Strip */}
+        <section className="py-16 bg-gradient-to-r from-purple-50 via-pink-50 to-orange-50 rounded-3xl mx-4">
+          <div className="text-center mb-12">
+            <h2
+              className="text-4xl font-bold text-foreground font-serif mb-4"
+              data-testid="text-journey-title"
             >
-              <Card
-                className="rounded-3xl p-6 card-shadow hover:shadow-2xl transition-all duration-500 h-full flex flex-col cursor-pointer transform hover:scale-105 border-2 border-transparent hover:border-purple-200 relative overflow-hidden bg-gradient-to-br from-white to-purple-50/30"
-                data-testid={`card-featured-article-${index}`}
+              {t("journey_title")}
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              {t("journey_subtitle")}
+            </p>
+          </div>
+
+          {/* Journey Timeline */}
+          <div className="relative overflow-x-auto pb-8">
+            <div className="journey-timeline-mobile flex items-center justify-between min-w-[800px] px-8">
+              {/* Stage 1: Thinking of Parenthood */}
+              <div
+                className="flex flex-col items-center group cursor-pointer hover:scale-105 transition-all duration-300"
+                data-testid="journey-stage-thinking"
               >
-                <CardContent className="p-0 flex flex-col h-full">
-                  {/* Click indicator */}
-                  <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
-                      <ArrowRight className="w-4 h-4 text-purple-600" />
-                    </div>
-                  </div>
-                  
-                  <img
-                    src={getArticleImage(index)}
-                    alt={article.title.en}
-                    className="rounded-xl w-full h-32 object-cover mb-4 group-hover:shadow-lg transition-shadow"
-                  />
-                  <h3
-                    className="text-lg font-bold text-foreground font-serif mb-2 group-hover:text-purple-600 transition-colors"
-                    data-testid={`text-article-title-${index}`}
-                  >
-                    {article.title[lang as keyof typeof article.title] || article.title.en}
-                  </h3>
-                  <p
-                    className="text-sm text-muted-foreground flex-grow mb-4"
-                    data-testid={`text-article-summary-${index}`}
-                  >
-                    {article.summary[lang as keyof typeof article.summary] || article.summary.en}
+                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-green-200 transition-colors shadow-lg">
+                  <span className="text-2xl">🌱</span>
+                </div>
+                <h3 className="text-sm font-bold text-foreground text-center mb-2">
+                  {t("journey_stage_1_title")}
+                </h3>
+                <p className="text-xs text-muted-foreground text-center max-w-[120px]">
+                  {t("journey_stage_1_desc")}
+                </p>
+                <div className="hidden group-hover:block absolute top-20 bg-white rounded-lg shadow-lg p-2 z-10 mt-4">
+                  <p className="text-xs text-center whitespace-nowrap">
+                    {t("journey_stage_tooltip")}
                   </p>
-                  
-                  {/* Call to action */}
-                  <div className="flex items-center justify-between mt-auto">
-                    <span className="text-xs text-purple-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      {lang === "en" && "Read article"}
-                      {lang === "hi" && "लेख पढ़ें"}
-                      {lang === "te" && "వ్యాసం చదవండి"}
-                    </span>
-                    <ArrowRight className="w-4 h-4 text-purple-600 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
-                  </div>
-                </CardContent>
-              </Card>
-            </Link>
-          ))}
-        </div>
-      </section>
+                </div>
+              </div>
 
-      {/* Treatments Overview Section */}
-      <section className="py-16">
-        <div className="text-center mb-12">
-          <h2
-            className="text-4xl font-bold text-foreground font-serif mb-4"
-            data-testid="text-treatments-title"
-          >
-            {t("treatments_overview_title")}
-          </h2>
-        </div>
+              {/* Connection Line 1 */}
+              <div className="flex-1 h-1 bg-gradient-to-r from-green-200 to-pink-200 mx-4 rounded-full min-w-[40px]"></div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {getTreatmentCards().map((treatment, index) => (
-            <Link
-              key={treatment.slug}
-              href={`/treatments/${treatment.slug}`}
-              className="group h-full"
-            >
-              <Card
-                className="rounded-3xl p-8 card-shadow hover:shadow-2xl transition-all duration-500 h-full flex flex-col cursor-pointer transform hover:scale-105 border-2 border-transparent hover:border-purple-200 relative overflow-hidden bg-gradient-to-br from-white to-purple-50/30"
-                data-testid={`card-treatment-${index}`}
+              {/* Stage 2: Trying Naturally */}
+              <div
+                className="flex flex-col items-center group cursor-pointer hover:scale-105 transition-all duration-300"
+                data-testid="journey-stage-trying"
               >
+                <div className="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-pink-200 transition-colors shadow-lg">
+                  <span className="text-2xl">💖</span>
+                </div>
+                <h3 className="text-sm font-bold text-foreground text-center mb-2">
+                  {t("journey_stage_2_title")}
+                </h3>
+                <p className="text-xs text-muted-foreground text-center max-w-[120px]">
+                  {t("journey_stage_2_desc")}
+                </p>
+                <div className="hidden group-hover:block absolute top-20 bg-white rounded-lg shadow-lg p-2 z-10 mt-4">
+                  <p className="text-xs text-center whitespace-nowrap">
+                    {t("journey_stage_tooltip")}
+                  </p>
+                </div>
+              </div>
+
+              {/* Connection Line 2 */}
+              <div className="flex-1 h-1 bg-gradient-to-r from-pink-200 to-blue-200 mx-4 rounded-full min-w-[40px]"></div>
+
+              {/* Stage 3: Exploring Options */}
+              <div
+                className="flex flex-col items-center group cursor-pointer hover:scale-105 transition-all duration-300"
+                data-testid="journey-stage-exploring"
+              >
+                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-blue-200 transition-colors shadow-lg">
+                  <span className="text-2xl">🔬</span>
+                </div>
+                <h3 className="text-sm font-bold text-foreground text-center mb-2">
+                  {t("journey_stage_3_title")}
+                </h3>
+                <p className="text-xs text-muted-foreground text-center max-w-[120px]">
+                  {t("journey_stage_3_desc")}
+                </p>
+                <div className="hidden group-hover:block absolute top-20 bg-white rounded-lg shadow-lg p-2 z-10 mt-4">
+                  <p className="text-xs text-center whitespace-nowrap">
+                    {t("journey_stage_tooltip")}
+                  </p>
+                </div>
+              </div>
+
+              {/* Connection Line 3 */}
+              <div className="flex-1 h-1 bg-gradient-to-r from-blue-200 to-purple-200 mx-4 rounded-full min-w-[40px]"></div>
+
+              {/* Stage 4: Pregnancy */}
+              <div
+                className="flex flex-col items-center group cursor-pointer hover:scale-105 transition-all duration-300"
+                data-testid="journey-stage-pregnancy"
+              >
+                <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-purple-200 transition-colors shadow-lg">
+                  <span className="text-2xl">🤰</span>
+                </div>
+                <h3 className="text-sm font-bold text-foreground text-center mb-2">
+                  {t("journey_stage_4_title")}
+                </h3>
+                <p className="text-xs text-muted-foreground text-center max-w-[120px]">
+                  {t("journey_stage_4_desc")}
+                </p>
+                <div className="hidden group-hover:block absolute top-20 bg-white rounded-lg shadow-lg p-2 z-10 mt-4">
+                  <p className="text-xs text-center whitespace-nowrap">
+                    {t("journey_stage_tooltip")}
+                  </p>
+                </div>
+              </div>
+
+              {/* Connection Line 4 */}
+              <div className="flex-1 h-1 bg-gradient-to-r from-purple-200 to-orange-200 mx-4 rounded-full min-w-[40px]"></div>
+
+              {/* Stage 5: Post-Delivery */}
+              <div
+                className="flex flex-col items-center group cursor-pointer hover:scale-105 transition-all duration-300"
+                data-testid="journey-stage-postdelivery"
+              >
+                <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-orange-200 transition-colors shadow-lg">
+                  <span className="text-2xl">👶</span>
+                </div>
+                <h3 className="text-sm font-bold text-foreground text-center mb-2">
+                  {t("journey_stage_5_title")}
+                </h3>
+                <p className="text-xs text-muted-foreground text-center max-w-[120px]">
+                  {t("journey_stage_5_desc")}
+                </p>
+                <div className="hidden group-hover:block absolute top-20 bg-white rounded-lg shadow-lg p-2 z-10 mt-4">
+                  <p className="text-xs text-center whitespace-nowrap">
+                    {t("journey_stage_tooltip")}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* CTA under strip */}
+          <div className="text-center mt-12">
+            <Link href="/sakhi">
+              <Button
+                className="gradient-button text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-lg transition-all duration-300 inline-flex items-center"
+                data-testid="button-sakhi-support"
+              >
+                {t("journey_cta")}
+                <ArrowRight className="ml-2 w-4 h-4" />
+              </Button>
+            </Link>
+          </div>
+        </section>
+
+        {/* Sakhi Preview Section */}
+        <section className="py-16">
+          <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-3xl p-8 md:p-12">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <h2
+                  className="text-4xl font-bold text-foreground font-serif mb-6"
+                  data-testid="text-sakhi-hero"
+                  dangerouslySetInnerHTML={{ __html: t("sakhi_hero") }}
+                ></h2>
+                <p
+                  className="text-lg text-muted-foreground mb-8"
+                  data-testid="text-sakhi-sub"
+                >
+                  {t("sakhi_sub")}
+                </p>
+
+                <h3
+                  className="text-2xl font-bold text-foreground font-serif mb-4"
+                  data-testid="text-sakhi-how-title"
+                >
+                  {t("sakhi_how_title")}
+                </h3>
+                <ul className="space-y-3 mb-8">
+                  {t("sakhi_how_list")
+                    .split("|")
+                    .filter((item: string) => item.trim().length > 0)
+                    .map((item: string, index: number) => (
+                      <li
+                        key={index}
+                        className="flex items-start space-x-3"
+                        data-testid={`item-sakhi-help-${index}`}
+                      >
+                        <Heart className="text-pink-500 w-5 h-5 mt-1 flex-shrink-0" />
+                        <span className="text-muted-foreground">
+                          {item.trim()}
+                        </span>
+                      </li>
+                    ))}
+                </ul>
+
+                <Link href="/sakhi/try">
+                  <Button
+                    className="gradient-button-secondary text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-lg transition-all duration-300 inline-flex items-center"
+                    data-testid="button-try-sakhi"
+                  >
+                    {t("sakhi_try")}
+                    <ArrowRight className="ml-2 w-4 h-4" />
+                  </Button>
+                </Link>
+              </div>
+
+              {/* Chat Interface Preview */}
+              <Card className="rounded-3xl p-6 card-shadow">
+                <div className="border-b border-border pb-4 mb-4">
+                  <h4
+                    className="font-bold text-foreground"
+                    data-testid="text-chat-preview-title"
+                  >
+                    Chat with Sakhi
+                  </h4>
+                  <p
+                    className="text-sm text-muted-foreground"
+                    data-testid="text-chat-preview-hint"
+                  >
+                    <span className="w-2 h-2 bg-green-500 rounded-full inline-block mr-2"></span>
+                    Sakhi is online and ready to help
+                  </p>
+                </div>
+
+                <div className="space-y-4 mb-4 h-60 overflow-y-auto">
+                  {/* Sample Chat Messages */}
+                  <div className="flex justify-end">
+                    <div
+                      className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-2xl max-w-xs shadow-md"
+                      data-testid="message-sample-user"
+                    >
+                      I'm feeling anxious about tomorrow's scan
+                    </div>
+                  </div>
+
+                  <div className="flex justify-start">
+                    <div
+                      className="bg-white border border-gray-200 text-gray-700 px-4 py-2 rounded-2xl max-w-xs shadow-md"
+                      data-testid="message-sample-bot"
+                    >
+                      I understand your anxiety. It's completely normal to feel
+                      this way before scans.
+                      <div className="mt-2 text-xs text-gray-500">
+                        <span className="animate-pulse">
+                          💭 Try some deep breathing exercises...
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Typing indicator */}
+                  <div className="flex justify-start">
+                    <div className="bg-gray-100 px-4 py-2 rounded-2xl">
+                      <div className="flex space-x-1">
+                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+                        <div
+                          className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
+                          style={{ animationDelay: "0.1s" }}
+                        ></div>
+                        <div
+                          className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
+                          style={{ animationDelay: "0.2s" }}
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex space-x-2">
+                  <Input
+                    type="text"
+                    placeholder="Type your message..."
+                    className="flex-1 rounded-full focus:ring-ring"
+                    data-testid="input-chat-preview"
+                  />
+                  <Button
+                    className="gradient-button text-white rounded-full hover:shadow-lg transition-all duration-300"
+                    data-testid="button-send-preview"
+                  >
+                    <Send className="w-4 h-4" />
+                  </Button>
+                </div>
+
+                <p
+                  className="text-xs text-muted-foreground mt-2"
+                  data-testid="text-chat-preview-privacy"
+                >
+                  {t("chat_privacy")}
+                </p>
+              </Card>
+            </div>
+          </div>
+        </section>
+
+        {/* Start Here - Orientation Section */}
+        <section className="py-16">
+          <div className="text-center mb-12">
+            <h2
+              className="text-4xl font-bold text-foreground font-serif mb-4"
+              data-testid="text-orientation-title"
+            >
+              {t("orient_title")}
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* TTC Card */}
+            <Link href="/life-stages/ttc" className="group h-full">
+              <Card className="rounded-3xl p-8 card-shadow hover:shadow-2xl transition-all duration-500 h-full flex flex-col cursor-pointer transform hover:scale-105 border-2 border-transparent hover:border-purple-200 relative overflow-hidden bg-gradient-to-br from-white to-purple-50/30">
                 <CardContent className="p-0 flex flex-col h-full">
                   {/* Click indicator */}
                   <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -938,64 +621,43 @@ const Home = () => {
                     </div>
                   </div>
                   
-                  <div
-                    className={`w-16 h-16 ${treatment.bgColor} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-md`}
-                  >
-                    <treatment.icon
-                      className={`${treatment.iconColor} w-8 h-8`}
-                    />
+                  <div className="w-16 h-16 gradient-button rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-md">
+                    <Heart className="text-white text-2xl" />
                   </div>
                   <h3
                     className="text-2xl font-bold text-foreground font-serif mb-4 group-hover:text-purple-600 transition-colors"
-                    data-testid={`text-treatment-name-${index}`}
+                    data-testid="text-ttc-title"
                   >
-                    {treatment.name}
+                    {t("orient_ttc")}
                   </h3>
                   <p
-                    className="text-muted-foreground flex-grow mb-6"
-                    data-testid={`text-treatment-desc-${index}`}
+                    className="text-muted-foreground mb-6 flex-grow"
+                    data-testid="text-ttc-desc"
                   >
-                    {treatment.description}
+                    {t("orient_desc_ttc")}
                   </p>
+                  <img
+                    src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300"
+                    alt="Couple walking together in park"
+                    className="rounded-xl w-full h-32 object-cover mt-auto group-hover:shadow-lg transition-shadow"
+                  />
                   
                   {/* Call to action */}
-                  <div className="flex items-center justify-between mt-auto">
+                  <div className="flex items-center justify-between mt-4">
                     <span className="text-sm text-purple-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      {lang === "en" && "Learn more"}
-                      {lang === "hi" && "और जानें"}
-                      {lang === "te" && "మరింత తెలుసుకోండి"}
+                      {lang === "en" && "Explore this stage"}
+                      {lang === "hi" && "इस चरण का अन्वेषण करें"}
+                      {lang === "te" && "ఈ దశను అన్వేషించండి"}
                     </span>
                     <ArrowRight className="w-5 h-5 text-purple-600 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
                   </div>
                 </CardContent>
               </Card>
             </Link>
-          ))}
-        </div>
-      </section>
 
-      {/* Success Stories Preview */}
-      <section className="py-16">
-        <div className="text-center mb-12">
-          <h2
-            className="text-4xl font-bold text-foreground font-serif mb-4"
-            data-testid="text-success-title"
-          >
-            {t("success_preview_title")}
-          </h2>
-        </div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {featuredStories.map((story, index) => (
-            <Link
-              key={story.slug}
-              href={`/success-stories/${story.slug}`}
-              className="group h-full"
-            >
-              <Card
-                className="rounded-3xl p-6 card-shadow hover:shadow-2xl transition-all duration-500 h-full flex flex-col cursor-pointer transform hover:scale-105 border-2 border-transparent hover:border-pink-200 relative overflow-hidden bg-gradient-to-br from-white to-pink-50/30"
-                data-testid={`card-success-story-${index}`}
-              >
+            {/* Pregnancy Card */}
+            <Link href="/life-stages/pregnancy" className="group h-full">
+              <Card className="rounded-3xl p-8 card-shadow hover:shadow-2xl transition-all duration-500 h-full flex flex-col cursor-pointer transform hover:scale-105 border-2 border-transparent hover:border-pink-200 relative overflow-hidden bg-gradient-to-br from-white to-pink-50/30">
                 <CardContent className="p-0 flex flex-col h-full">
                   {/* Click indicator */}
                   <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -1004,50 +666,437 @@ const Home = () => {
                     </div>
                   </div>
                   
-                  <img
-                    src={getStoryImage(index)}
-                    alt={story.title}
-                    className="rounded-xl w-full h-32 object-cover mb-4 group-hover:shadow-lg transition-shadow"
-                  />
+                  <div className="w-16 h-16 gradient-button rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-md">
+                    <Baby className="text-white text-2xl" />
+                  </div>
                   <h3
-                    className="text-lg font-bold text-foreground font-serif mb-2 group-hover:text-pink-600 transition-colors"
-                    data-testid={`text-story-title-${index}`}
+                    className="text-2xl font-bold text-foreground font-serif mb-4 group-hover:text-pink-600 transition-colors"
+                    data-testid="text-pregnancy-title"
                   >
-                    {story.title[lang]}
+                    {t("orient_preg")}
                   </h3>
                   <p
-                    className="text-sm text-muted-foreground mb-4 flex-grow"
-                    data-testid={`text-story-summary-${index}`}
+                    className="text-muted-foreground mb-6 flex-grow"
+                    data-testid="text-pregnancy-desc"
                   >
-                    {story.summary[lang]}
+                    {t("orient_desc_preg")}
                   </p>
+                  <img
+                    src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300"
+                    alt="Pregnant woman in peaceful outdoor setting"
+                    className="rounded-xl w-full h-32 object-cover mt-auto group-hover:shadow-lg transition-shadow"
+                  />
                   
-                  <div className="flex items-center justify-between mt-auto">
-                    <div className="flex items-center text-xs text-muted-foreground">
-                      <i className="fas fa-map-marker-alt mr-1"></i>
-                      <span data-testid={`text-story-city-${index}`}>
-                        {story.city[lang]}
-                      </span>
-                    </div>
-                    
-                    {/* Call to action */}
-                    <div className="flex items-center">
-                      <span className="text-xs text-pink-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 mr-2">
-                        {lang === "en" && "Read story"}
-                        {lang === "hi" && "कहानी पढ़ें"}
-                        {lang === "te" && "కథ చదవండి"}
-                      </span>
-                      <ArrowRight className="w-4 h-4 text-pink-600 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
-                    </div>
+                  {/* Call to action */}
+                  <div className="flex items-center justify-between mt-4">
+                    <span className="text-sm text-pink-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      {lang === "en" && "Explore this stage"}
+                      {lang === "hi" && "इस चरण का अन्वेषण करें"}
+                      {lang === "te" && "ఈ దశను అన్వేషించండి"}
+                    </span>
+                    <ArrowRight className="w-5 h-5 text-pink-600 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
                   </div>
                 </CardContent>
               </Card>
             </Link>
-          ))}
-        </div>
-      </section>
+
+            {/* New Parent Card */}
+            <Link href="/life-stages/newborn" className="group h-full">
+              <Card className="rounded-3xl p-8 card-shadow hover:shadow-2xl transition-all duration-500 h-full flex flex-col cursor-pointer transform hover:scale-105 border-2 border-transparent hover:border-orange-200 relative overflow-hidden bg-gradient-to-br from-white to-orange-50/30">
+                <CardContent className="p-0 flex flex-col h-full">
+                  {/* Click indicator */}
+                  <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center">
+                      <ArrowRight className="w-4 h-4 text-orange-600" />
+                    </div>
+                  </div>
+                  
+                  <div className="w-16 h-16 gradient-button rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-md">
+                    <Cat className="text-white text-2xl" />
+                  </div>
+                  <h3
+                    className="text-2xl font-bold text-foreground font-serif mb-4 group-hover:text-orange-600 transition-colors"
+                    data-testid="text-parent-title"
+                  >
+                    {t("orient_parent")}
+                  </h3>
+                  <p
+                    className="text-muted-foreground mb-6 flex-grow"
+                    data-testid="text-parent-desc"
+                  >
+                    {t("orient_desc_parent")}
+                  </p>
+                  <img
+                    src="https://images.unsplash.com/photo-1566004100631-35d015d6a491?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300"
+                    alt="Happy new parent holding newborn baby"
+                    className="rounded-xl w-full h-32 object-cover mt-auto group-hover:shadow-lg transition-shadow"
+                  />
+                  
+                  {/* Call to action */}
+                  <div className="flex items-center justify-between mt-4">
+                    <span className="text-sm text-orange-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      {lang === "en" && "Explore this stage"}
+                      {lang === "hi" && "इस चरण का अन्वेषण करें"}
+                      {lang === "te" && "ఈ దశను అన్వేషించండి"}
+                    </span>
+                    <ArrowRight className="w-5 h-5 text-orange-600 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+          </div>
+        </section>
+
+        {/* Explore by Lens Section */}
+        <section className="py-16">
+          <div className="text-center mb-12">
+            <h2
+              className="text-4xl font-bold text-foreground font-serif mb-4"
+              data-testid="text-lens-title"
+            >
+              {t("lens_title")}
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Medical Lens */}
+            <Link href="/knowledge?lens=medical" className="group h-full">
+              <Card className="rounded-3xl p-6 card-shadow hover:shadow-2xl transition-all duration-500 text-center h-full flex flex-col cursor-pointer transform hover:scale-105 border-2 border-transparent hover:border-blue-200 relative overflow-hidden bg-gradient-to-br from-white to-blue-50/30">
+                <CardContent className="p-0 flex flex-col h-full justify-center">
+                  {/* Click indicator */}
+                  <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center">
+                      <ArrowRight className="w-3 h-3 text-blue-600" />
+                    </div>
+                  </div>
+                  
+                  <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-md">
+                    <Stethoscope className="text-blue-600 text-2xl" />
+                  </div>
+                  <h3
+                    className="text-xl font-bold text-foreground font-serif mb-4 group-hover:text-blue-600 transition-colors"
+                    data-testid="text-lens-medical"
+                  >
+                    {t("lens_medical")}
+                  </h3>
+                  
+                  {/* Call to action */}
+                  <div className="flex items-center justify-center mt-auto">
+                    <span className="text-sm text-blue-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      {lang === "en" && "Browse topics"}
+                      {lang === "hi" && "विषय ब्राउज़ करें"}
+                      {lang === "te" && "విషయాలను బ్రౌజ్ చేయండి"}
+                    </span>
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+
+            {/* Social & Emotional Lens */}
+            <Link href="/knowledge?lens=social" className="group h-full">
+              <Card className="rounded-3xl p-6 card-shadow hover:shadow-2xl transition-all duration-500 text-center h-full flex flex-col cursor-pointer transform hover:scale-105 border-2 border-transparent hover:border-pink-200 relative overflow-hidden bg-gradient-to-br from-white to-pink-50/30">
+                <CardContent className="p-0 flex flex-col h-full justify-center">
+                  {/* Click indicator */}
+                  <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="w-6 h-6 bg-pink-100 rounded-full flex items-center justify-center">
+                      <ArrowRight className="w-3 h-3 text-pink-600" />
+                    </div>
+                  </div>
+                  
+                  <div className="w-16 h-16 bg-pink-100 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-md">
+                    <Users className="text-pink-600 text-2xl" />
+                  </div>
+                  <h3
+                    className="text-xl font-bold text-foreground font-serif mb-4 group-hover:text-pink-600 transition-colors"
+                    data-testid="text-lens-social"
+                  >
+                    {t("lens_social")}
+                  </h3>
+                  
+                  {/* Call to action */}
+                  <div className="flex items-center justify-center mt-auto">
+                    <span className="text-sm text-pink-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      {lang === "en" && "Browse topics"}
+                      {lang === "hi" && "विषय ब्राउज़ करें"}
+                      {lang === "te" && "విషయాలను బ్రౌజ్ చేయండి"}
+                    </span>
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+
+            {/* Financial Lens */}
+            <Link href="/knowledge?lens=financial" className="group h-full">
+              <Card className="rounded-3xl p-6 card-shadow hover:shadow-2xl transition-all duration-500 text-center h-full flex flex-col cursor-pointer transform hover:scale-105 border-2 border-transparent hover:border-green-200 relative overflow-hidden bg-gradient-to-br from-white to-green-50/30">
+                <CardContent className="p-0 flex flex-col h-full justify-center">
+                  {/* Click indicator */}
+                  <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center">
+                      <ArrowRight className="w-3 h-3 text-green-600" />
+                    </div>
+                  </div>
+                  
+                  <div className="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-md">
+                    <IndianRupee className="text-green-600 text-2xl" />
+                  </div>
+                  <h3
+                    className="text-xl font-bold text-foreground font-serif mb-4 group-hover:text-green-600 transition-colors"
+                    data-testid="text-lens-financial"
+                  >
+                    {t("lens_financial")}
+                  </h3>
+                  
+                  {/* Call to action */}
+                  <div className="flex items-center justify-center mt-auto">
+                    <span className="text-sm text-green-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      {lang === "en" && "Browse topics"}
+                      {lang === "hi" && "विषय ब्राउज़ करें"}
+                      {lang === "te" && "విషయాలను బ్రౌజ్ చేయండి"}
+                    </span>
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+
+            {/* Nutrition Lens */}
+            <Link href="/knowledge?lens=nutrition" className="group h-full">
+              <Card className="rounded-3xl p-6 card-shadow hover:shadow-2xl transition-all duration-500 text-center h-full flex flex-col cursor-pointer transform hover:scale-105 border-2 border-transparent hover:border-orange-200 relative overflow-hidden bg-gradient-to-br from-white to-orange-50/30">
+                <CardContent className="p-0 flex flex-col h-full justify-center">
+                  {/* Click indicator */}
+                  <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="w-6 h-6 bg-orange-100 rounded-full flex items-center justify-center">
+                      <ArrowRight className="w-3 h-3 text-orange-600" />
+                    </div>
+                  </div>
+                  
+                  <div className="w-16 h-16 bg-orange-100 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-md">
+                    <Apple className="text-orange-600 text-2xl" />
+                  </div>
+                  <h3
+                    className="text-xl font-bold text-foreground font-serif mb-4 group-hover:text-orange-600 transition-colors"
+                    data-testid="text-lens-nutrition"
+                  >
+                    {t("lens_nutrition")}
+                  </h3>
+                  
+                  {/* Call to action */}
+                  <div className="flex items-center justify-center mt-auto">
+                    <span className="text-sm text-orange-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      {lang === "en" && "Browse topics"}
+                      {lang === "hi" && "विषय ब्राउज़ करें"}
+                      {lang === "te" && "విషయాలను బ్రౌజ్ చేయండి"}
+                    </span>
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+          </div>
+        </section>
+
+        {/* Featured Knowledge Section */}
+        <section className="py-16">
+          <div className="text-center mb-12">
+            <h2
+              className="text-4xl font-bold text-foreground font-serif mb-4"
+              data-testid="text-featured-title"
+            >
+              {t("featured_title")}
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {featuredArticles.map((article, index) => (
+              <Link
+                key={article.slug}
+                href={`/knowledge/${article.slug}`}
+                className="group h-full"
+              >
+                <Card
+                  className="rounded-3xl p-6 card-shadow hover:shadow-2xl transition-all duration-500 h-full flex flex-col cursor-pointer transform hover:scale-105 border-2 border-transparent hover:border-purple-200 relative overflow-hidden bg-gradient-to-br from-white to-purple-50/30"
+                  data-testid={`card-featured-article-${index}`}
+                >
+                  <CardContent className="p-0 flex flex-col h-full">
+                    {/* Click indicator */}
+                    <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
+                        <ArrowRight className="w-4 h-4 text-purple-600" />
+                      </div>
+                    </div>
+                    
+                    <img
+                      src={getArticleImage(index)}
+                      alt={article.title.en}
+                      className="rounded-xl w-full h-32 object-cover mb-4 group-hover:shadow-lg transition-shadow"
+                    />
+                    <h3
+                      className="text-lg font-bold text-foreground font-serif mb-2 group-hover:text-purple-600 transition-colors"
+                      data-testid={`text-article-title-${index}`}
+                    >
+                      {article.title[lang as keyof typeof article.title] || article.title.en}
+                    </h3>
+                    <p
+                      className="text-sm text-muted-foreground flex-grow mb-4"
+                      data-testid={`text-article-summary-${index}`}
+                    >
+                      {article.summary[lang as keyof typeof article.summary] || article.summary.en}
+                    </p>
+                    
+                    {/* Call to action */}
+                    <div className="flex items-center justify-between mt-auto">
+                      <span className="text-xs text-purple-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        {lang === "en" && "Read article"}
+                        {lang === "hi" && "लेख पढ़ें"}
+                        {lang === "te" && "వ్యాసం చదవండి"}
+                      </span>
+                      <ArrowRight className="w-4 h-4 text-purple-600 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        {/* Treatments Overview Section */}
+        <section className="py-16">
+          <div className="text-center mb-12">
+            <h2
+              className="text-4xl font-bold text-foreground font-serif mb-4"
+              data-testid="text-treatments-title"
+            >
+              {t("treatments_overview_title")}
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {getTreatmentCards().map((treatment, index) => (
+              <Link
+                key={treatment.slug}
+                href={`/treatments/${treatment.slug}`}
+                className="group h-full"
+              >
+                <Card
+                  className="rounded-3xl p-8 card-shadow hover:shadow-2xl transition-all duration-500 h-full flex flex-col cursor-pointer transform hover:scale-105 border-2 border-transparent hover:border-purple-200 relative overflow-hidden bg-gradient-to-br from-white to-purple-50/30"
+                  data-testid={`card-treatment-${index}`}
+                >
+                  <CardContent className="p-0 flex flex-col h-full">
+                    {/* Click indicator */}
+                    <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
+                        <ArrowRight className="w-4 h-4 text-purple-600" />
+                      </div>
+                    </div>
+                    
+                    <div
+                      className={`w-16 h-16 ${treatment.bgColor} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-md`}
+                    >
+                      <treatment.icon
+                        className={`${treatment.iconColor} w-8 h-8`}
+                      />
+                    </div>
+                    <h3
+                      className="text-2xl font-bold text-foreground font-serif mb-4 group-hover:text-purple-600 transition-colors"
+                      data-testid={`text-treatment-name-${index}`}
+                    >
+                      {treatment.name}
+                    </h3>
+                    <p
+                      className="text-muted-foreground flex-grow mb-6"
+                      data-testid={`text-treatment-desc-${index}`}
+                    >
+                      {treatment.description}
+                    </p>
+                    
+                    {/* Call to action */}
+                    <div className="flex items-center justify-between mt-auto">
+                      <span className="text-sm text-purple-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        {lang === "en" && "Learn more"}
+                        {lang === "hi" && "और जानें"}
+                        {lang === "te" && "మరింత తెలుసుకోండి"}
+                      </span>
+                      <ArrowRight className="w-5 h-5 text-purple-600 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        {/* Success Stories Preview */}
+        <section className="py-16">
+          <div className="text-center mb-12">
+            <h2
+              className="text-4xl font-bold text-foreground font-serif mb-4"
+              data-testid="text-success-title"
+            >
+              {t("success_preview_title")}
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {featuredStories.map((story, index) => (
+              <Link
+                key={story.slug}
+                href={`/success-stories/${story.slug}`}
+                className="group h-full"
+              >
+                <Card
+                  className="rounded-3xl p-6 card-shadow hover:shadow-2xl transition-all duration-500 h-full flex flex-col cursor-pointer transform hover:scale-105 border-2 border-transparent hover:border-pink-200 relative overflow-hidden bg-gradient-to-br from-white to-pink-50/30"
+                  data-testid={`card-success-story-${index}`}
+                >
+                  <CardContent className="p-0 flex flex-col h-full">
+                    {/* Click indicator */}
+                    <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <div className="w-8 h-8 bg-pink-100 rounded-full flex items-center justify-center">
+                        <ArrowRight className="w-4 h-4 text-pink-600" />
+                      </div>
+                    </div>
+                    
+                    <img
+                      src={getStoryImage(index)}
+                      alt={story.title}
+                      className="rounded-xl w-full h-32 object-cover mb-4 group-hover:shadow-lg transition-shadow"
+                    />
+                    <h3
+                      className="text-lg font-bold text-foreground font-serif mb-2 group-hover:text-pink-600 transition-colors"
+                      data-testid={`text-story-title-${index}`}
+                    >
+                      {story.title[lang]}
+                    </h3>
+                    <p
+                      className="text-sm text-muted-foreground mb-4 flex-grow"
+                      data-testid={`text-story-summary-${index}`}
+                    >
+                      {story.summary[lang]}
+                    </p>
+                    
+                    <div className="flex items-center justify-between mt-auto">
+                      <div className="flex items-center text-xs text-muted-foreground">
+                        <i className="fas fa-map-marker-alt mr-1"></i>
+                        <span data-testid={`text-story-city-${index}`}>
+                          {story.city[lang]}
+                        </span>
+                      </div>
+                      
+                      {/* Call to action */}
+                      <div className="flex items-center">
+                        <span className="text-xs text-pink-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 mr-2">
+                          {lang === "en" && "Read story"}
+                          {lang === "hi" && "कहानी पढ़ें"}
+                          {lang === "te" && "కథ చదవండి"}
+                        </span>
+                        <ArrowRight className="w-4 h-4 text-pink-600 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
+          </div>
+        </section>
       </div>
-    </>
+    </main>
   );
 };
 
