@@ -200,14 +200,14 @@
   /* Responsive video styles - mobile-first approach */
   .responsive-video-container {
     position: relative;
-    width: 100vw; /* Full viewport width to eliminate side spaces */
-    /* Default mobile height - smaller to fit screen */
-    height: 30vh;
-    min-height: 200px;
-    max-height: 250px;
+    width: 100%;
+    /* Default mobile height - much smaller */
+    height: 50vh;
+    min-height: 300px;
+    max-height: 400px;
     overflow: hidden;
-    margin: 0 calc(-50vw + 50%); /* Center the full-width container */
-    border-radius: 0; /* Remove border radius for full width */
+    margin: 0 auto;
+    border-radius: 16px;
     /* Safe area padding for floating buttons */
     padding-bottom: env(safe-area-inset-bottom, 0);
   }
@@ -218,9 +218,9 @@
     inset: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Cover the container while maintaining aspect ratio */
+    object-fit: contain; /* Show full video without cropping on mobile */
     object-position: center center;
-    border-radius: 0;
+    border-radius: 16px;
     /* Prevent iOS fullscreen takeover */
     -webkit-playsinline: true;
   }
@@ -228,71 +228,71 @@
   /* Very small mobile devices (≤ 480px) - prioritize content visibility */
   @media screen and (max-width: 480px) {
     .responsive-video-container {
-      height: 25vh;
-      min-height: 180px;
-      max-height: 220px;
-      margin: 0 calc(-50vw + 50%);
+      height: 40vh;
+      min-height: 250px;
+      max-height: 300px;
+      margin: 0 auto;
     }
-
+    
     .responsive-video-container video {
-      object-fit: cover;
-      border-radius: 0;
+      object-fit: contain; /* Ensure full video is visible */
+      border-radius: 12px;
     }
   }
 
   /* Medium mobile devices (481-768px) */
   @media screen and (min-width: 481px) and (max-width: 768px) {
     .responsive-video-container {
-      height: 35vh;
-      min-height: 220px;
-      max-height: 280px;
-      margin: 0 calc(-50vw + 50%);
+      height: 50vh;
+      min-height: 300px;
+      max-height: 400px;
+      margin: 0 auto;
     }
-
+    
     .responsive-video-container video {
-      object-fit: cover;
-      border-radius: 0;
+      object-fit: contain;
+      border-radius: 16px;
     }
   }
 
   /* Tablet devices (769-1024px) - start using more space */
   @media screen and (min-width: 769px) and (max-width: 1024px) {
     .responsive-video-container {
-      height: 45vh;
-      min-height: 300px;
-      max-height: 400px;
-      margin: 0 calc(-50vw + 50%);
+      height: 60vh;
+      min-height: 400px;
+      max-height: 500px;
+      margin: 0 auto;
     }
-
+    
     .responsive-video-container video {
       object-fit: cover;
-      border-radius: 0;
+      border-radius: 20px;
     }
   }
 
   /* Desktop and larger screens (≥ 1025px) - full hero treatment */
   @media screen and (min-width: 1025px) {
     .responsive-video-container {
-      height: 60vh;
-      min-height: 400px;
-      max-height: 600px;
-      margin: 0 calc(-50vw + 50%);
-      border-radius: 0;
+      height: 80vh;
+      min-height: 500px;
+      max-height: none;
+      margin: 0 auto;
+      border-radius: 24px;
     }
-
+    
     .responsive-video-container video {
       object-fit: cover;
-      border-radius: 0;
+      border-radius: 24px;
     }
   }
 
   /* Large desktop screens (≥ 1440px) - full viewport */
   @media screen and (min-width: 1440px) {
     .responsive-video-container {
-      height: 70vh;
+      height: 100vh;
       border-radius: 0;
     }
-
+    
     .responsive-video-container video {
       border-radius: 0;
     }
