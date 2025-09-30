@@ -30,23 +30,8 @@
 }
 
 .nav-secondary nav {
-  background: rgba(255, 255, 255, 0.98);
-  backdrop-filter: blur(12px);
-  border-radius: 16px;
-  border: 1px solid rgba(139, 92, 246, 0.1);
-  box-shadow: 0 8px 32px rgba(139, 92, 246, 0.15);
+  background: transparent;
   position: relative;
-  overflow: hidden;
-}
-
-.nav-secondary nav::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.3), transparent);
 }
 
 .chevron {
@@ -65,25 +50,30 @@
   }
 }
 
-/* Navigation link hover effects */
+/* Navigation link hover effects for secondary nav - same as primary */
 .nav-secondary a {
   position: relative;
   overflow: hidden;
 }
 
-.nav-secondary a::before {
+.nav-secondary a::after {
   content: '';
   position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.1), transparent);
-  transition: left 0.3s ease;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #8B5CF6, #EC4899);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
 }
 
-.nav-secondary a:hover::before {
-  left: 100%;
+.nav-secondary a:hover::after {
+  width: 80%;
+}
+
+.nav-secondary a[aria-current="page"]::after {
+  width: 80%;
 }
 
 /* Primary navigation enhanced hover effects */

@@ -47,30 +47,24 @@ const Header = () => {
     return () => document.removeEventListener('keydown', handleEsc);
   }, [isExpanded, isHovering]);
 
-  // Handle mouse enter with slight delay
-  const handleMouseEnter = () => {
+  // Handle mouse enter only for the More button
+  const handleMoreButtonMouseEnter = () => {
     if (hoverTimeoutRef.current) {
       clearTimeout(hoverTimeoutRef.current);
     }
     setIsHovering(true);
-    if (!isExpanded) {
-      hoverTimeoutRef.current = setTimeout(() => {
-        setIsExpanded(true);
-      }, 200); // Small delay to prevent accidental expansion
-    }
+    setIsExpanded(true);
   };
 
-  // Handle mouse leave with delay to prevent flickering
-  const handleMouseLeave = () => {
+  // Handle mouse leave from the More button and secondary nav area
+  const handleMoreAreaMouseLeave = () => {
     if (hoverTimeoutRef.current) {
       clearTimeout(hoverTimeoutRef.current);
     }
     setIsHovering(false);
     hoverTimeoutRef.current = setTimeout(() => {
-      if (!isHovering) {
-        setIsExpanded(false);
-      }
-    }, 300); // Delay to allow user to move to secondary nav
+      setIsExpanded(false);
+    }, 150); // Quick delay to allow moving to secondary nav
   };
 
   // Toggle function for click interaction
@@ -92,8 +86,6 @@ const Header = () => {
     <>
       <header 
         className={`site-header sticky top-0 z-40 w-full bg-white/80 backdrop-blur-sm border-b border-border transition-all duration-300 ${isExpanded ? 'is-expanded' : ''}`}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
       >
         <div className="container mx-auto px-4 py-4">
           {/* Primary Row */}
@@ -126,21 +118,25 @@ const Header = () => {
                 ))}
 
                 {/* Expand/Collapse Button */}
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={handleToggleExpanded}
-                  onMouseEnter={() => setIsHovering(true)}
-                  className={`px-4 py-3 rounded-md text-base font-semibold transition-all duration-200 hover:bg-primary/5 hover:scale-105 ${
-                    isExpanded ? 'bg-primary/10 text-primary' : 'hover:text-primary'
-                  }`}
-                  aria-expanded={isExpanded}
-                  aria-controls="header-secondary-row"
-                  data-testid="button-nav-toggle"
+                <div
+                  onMouseEnter={handleMoreButtonMouseEnter}
+                  onMouseLeave={handleMoreAreaMouseLeave}
                 >
-                  <span className="mr-2">{isExpanded ? t('nav_less') : t('nav_more')}</span>
-                  <ChevronDown className={`w-4 h-4 chevron transition-transform duration-300 ease-in-out ${isExpanded ? 'rotate-180' : ''}`} />
-                </Button>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={handleToggleExpanded}
+                    className={`px-4 py-3 rounded-md text-base font-semibold transition-all duration-200 hover:bg-primary/5 hover:scale-105 ${
+                      isExpanded ? 'bg-primary/10 text-primary' : 'hover:text-primary'
+                    }`}
+                    aria-expanded={isExpanded}
+                    aria-controls="header-secondary-row"
+                    data-testid="button-nav-toggle"
+                  >
+                    <span className="mr-2">{isExpanded ? t('nav_less') : t('nav_more')}</span>
+                    <ChevronDown className={`w-4 h-4 chevron transition-transform duration-300 ease-in-out ${isExpanded ? 'rotate-180' : ''}`} />
+                  </Button>
+                </div>
               </nav>
             </div>
 
@@ -185,9 +181,9 @@ const Header = () => {
                 : 'max-h-0 opacity-0 pointer-events-none transform -translate-y-2'
             }`}
             onMouseEnter={() => setIsHovering(true)}
-            onMouseLeave={() => setIsHovering(false)}
+            onMouseLeave={handleMoreAreaMouseLeave}
           >
-            <nav className="flex items-center justify-between w-full max-w-6xl mx-auto pt-6 pb-4 px-8" role="navigation" aria-label="Secondary navigation">
+            <nav className="flex items-center justify-between w-full max-w-6xl mx-auto pt-6 pb-4 px-8" role="navigation" aria-label="Secondary navigation"></nav>
               {secondaryNavItems.map(({ key, href }, index) => (
                 <Link 
                   key={href}
