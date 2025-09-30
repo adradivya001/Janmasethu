@@ -106,23 +106,6 @@ const Sakhi = () => {
         </div>
       </section>
 
-      {/* Video Section */}
-      <section className="py-12">
-        <div className="max-w-6xl mx-auto">
-          <video
-            className="w-full h-auto rounded-3xl shadow-lg"
-            autoPlay
-            loop
-            muted
-            playsInline
-            controls // Add controls for user interaction
-          >
-            <source src="/client/public/sakhi.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </section>
-
       {/* How Sakhi Helps */}
       <section className="py-12">
         <div className="text-center mb-12">
@@ -397,7 +380,7 @@ const Sakhi = () => {
               </CardContent>
             </Card>
 
-
+            
           </div>
         </div>
 
@@ -455,7 +438,7 @@ const Sakhi = () => {
         </div>
       </section>
 
-
+      
     </div>
   );
 };
