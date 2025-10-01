@@ -20,12 +20,12 @@ const FloatingLanguage = () => {
             variant="ghost"
             size="sm"
             onClick={() => setLang(code)}
-            className={`w-12 h-12 rounded-full bg-white card-shadow flex items-center justify-center text-sm font-bold min-w-[3rem] min-h-[3rem] ${
-              lang === code ? 'text-primary border-2 border-primary' : 'text-muted-foreground'
+            className={`w-12 h-12 rounded-full bg-white card-shadow flex items-center justify-center text-sm font-bold ${
+              lang === code ? 'text-primary' : 'text-muted-foreground'
             }`}
             data-testid={`button-floating-language-${code}`}
           >
-            <span className="text-center leading-none">{label}</span>
+            {label}
           </Button>
         ))}
       </div>
