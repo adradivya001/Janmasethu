@@ -1,0 +1,79 @@
+Please redesign the filter Select (trigger button + dropdown menu) to be fully responsive and visually consistent across mobile and desktop. Keep existing logic; only improve styling/structure and accessibility.
+
+Goals
+
+The trigger button should look clean and compact on desktop, and easy to tap on mobile.
+
+The dropdown menu should align with the trigger, never overflow the viewport, and feel native on small screens.
+
+Visual style: modern, subtle shadow, 10–12px radius, good contrast, smooth open/close.
+
+Trigger (button) requirements
+
+Sizing:
+
+Mobile (≤ 480px): height 44–48px, horizontal padding 12–14px, font 14–15px, icon 16–18px.
+
+Tablet (481–1024px): height 44–48px, padding 12–16px, font 15–16px.
+
+Desktop (≥ 1025px): height 40–44px, padding 12–16px, font 14–15px.
+
+Layout: text left, chevron right; 8–10px gap; rounded 10–12px; 1px subtle border; soft shadow on focus.
+
+States: hover, focus-visible, active, disabled. Focus ring with 2–3px outline and accessible contrast (WCAG AA).
+
+Width behavior:
+
+Mobile: full-width of its container with max-width: 100%.
+
+Desktop: intrinsic width to content; allow an optional min-width (e.g., 200–240px) so text doesn’t wrap.
+
+Menu (dropdown) requirements
+
+Positioning: anchored to trigger; use portal/overlay with high z-index so it isn’t clipped by parents; flip to top if not enough space below.
+
+Max size & scroll:
+
+Mobile: width equals trigger (full-width); max-height ~ 50–60vh; enable smooth vertical scroll; sticky top header is NOT needed.
+
+Desktop: width matches trigger or min 220px; max-height 320–400px with scroll.
+
+Item style: 12–14px padding vertically, 12–16px horizontally; 8px corner radius for active/hover background; selected item shows checkmark or bold; keep line-height ≥ 1.25.
+
+Touch targets: minimum 40px item height on mobile; no accidental taps.
+
+Animation: 120–180ms fade+scale (small) on open/close; prefers-reduced-motion respected.
+
+Shadows & borders: subtle drop shadow; 1px border same as trigger; menu corners 10–12px.
+
+Overflow handling: if menu would exceed viewport width, constrain and center within screen; never cause horizontal scroll. Use safe-area-inset-* to avoid notches.
+
+Keyboard & a11y: proper ARIA roles (combobox/listbox/option), arrow-key navigation, type-ahead, Esc closes, focus trapped inside while open, returns focus to trigger when closed.
+
+Visual polish
+
+Neutral background (surface), strong text contrast; selected row accent color consistent with brand.
+
+Chevron rotates on open.
+
+Truncate long option text with ellipsis + accessible tooltip on hover (desktop).
+
+Dark mode & RTL
+
+Provide dark-mode tokens for background, border, text, and hover.
+
+Support RTL: icon alignment and menu origin mirrored when dir="rtl".
+
+Edge cases to verify
+
+Small phones (360×640), iPhone notch devices (safe-area), long option labels, keyboard navigation, and when the trigger is near the bottom of the screen (menu flips upward).
+
+No layout shift (CLS) when menu opens.
+
+Deliverables
+
+Update styles for the select trigger and menu per breakpoints above.
+
+Keep component API the same.
+
+Add visual regression friendly variables/tokens (spacing, radius, colors) so future buttons match this style.
