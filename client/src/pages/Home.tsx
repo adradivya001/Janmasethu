@@ -221,28 +221,28 @@ const Home = () => {
         </div>
 
         {/* CTA Buttons - Mobile Responsive */}
-        <div className="hero-mobile-cta flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <Link href="/sakhi/try" className="w-full sm:w-auto flex justify-center">
+        <div className="flex flex-col gap-4 items-center max-w-md mx-auto px-4 sm:max-w-none sm:flex-row sm:justify-center sm:gap-6">
+          <Link href="/sakhi/try" className="w-full sm:w-auto">
             <Button
-              className="gradient-button text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-lg transition-all duration-300 group overflow-hidden relative w-full sm:w-auto max-w-xs"
+              className="gradient-button text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full font-semibold text-base sm:text-lg hover:shadow-lg transition-all duration-300 group overflow-hidden relative w-full sm:w-auto min-w-0 sm:min-w-[200px]"
               data-testid="button-cta-primary"
             >
-              <span className="relative z-10 transition-transform duration-300 group-hover:-translate-x-2">
+              <span className="relative z-10 transition-transform duration-300 group-hover:-translate-x-2 truncate">
                 {t("cta_primary")}
               </span>
-              <ArrowRight className="absolute right-4 w-5 h-5 opacity-0 transform translate-x-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 z-10" />
+              <ArrowRight className="absolute right-3 sm:right-4 w-4 h-4 sm:w-5 sm:h-5 opacity-0 transform translate-x-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 z-10" />
             </Button>
           </Link>
-          <Link href="/clinic" className="w-full sm:w-auto flex justify-center">
+          <Link href="/clinic" className="w-full sm:w-auto">
             <Button
               variant="outline"
-              className="bg-white text-foreground px-8 py-4 rounded-full font-semibold text-lg border-border hover:shadow-lg transition-all duration-300 group overflow-hidden relative w-full sm:w-auto max-w-xs"
+              className="bg-white/90 backdrop-blur-sm text-foreground px-6 py-3 sm:px-8 sm:py-4 rounded-full font-semibold text-base sm:text-lg border-2 border-white/30 hover:border-purple-200 hover:shadow-lg transition-all duration-300 group overflow-hidden relative w-full sm:w-auto min-w-0 sm:min-w-[200px]"
               data-testid="button-cta-secondary"
             >
-              <span className="relative z-10 transition-transform duration-300 group-hover:-translate-x-2">
+              <span className="relative z-10 transition-transform duration-300 group-hover:-translate-x-2 truncate">
                 {t("cta_secondary")}
               </span>
-              <ArrowRight className="absolute right-4 w-5 h-5 opacity-0 transform translate-x-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 z-10" />
+              <ArrowRight className="absolute right-3 sm:right-4 w-4 h-4 sm:w-5 sm:h-5 opacity-0 transform translate-x-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 z-10" />
             </Button>
           </Link>
         </div>

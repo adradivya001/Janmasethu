@@ -899,23 +899,39 @@
 /* Mobile Button Fixes and Responsive Utilities */
 @media (max-width: 767px) {
   /* Hero section mobile fixes */
-  .hero-mobile-cta {
-    flex-direction: column !important;
-    gap: 1rem !important;
-    width: 100% !important;
+  .hero-cta-container {
+    max-width: 380px !important;
+    margin: 0 auto !important;
     padding: 0 1rem !important;
   }
 
-  .hero-mobile-cta .gradient-button,
-  .hero-mobile-cta .gradient-button-secondary,
-  .hero-mobile-cta button {
-    width: 100% !important;
-    max-width: 280px !important;
-    margin: 0 auto !important;
+  .hero-cta-container .gradient-button,
+  .hero-cta-container button {
+    min-height: 48px !important;
+    font-size: 0.95rem !important;
+    font-weight: 600 !important;
+    padding: 0.75rem 1.25rem !important;
+    border-radius: 2rem !important;
     justify-content: center !important;
-    font-size: 1rem !important;
-    padding: 0.875rem 1.5rem !important;
-    min-height: 56px !important;
+    align-items: center !important;
+    white-space: nowrap !important;
+    text-overflow: ellipsis !important;
+    overflow: hidden !important;
+  }
+
+  /* Better button spacing on very small screens */
+  @media (max-width: 480px) {
+    .hero-cta-container {
+      max-width: 320px !important;
+      padding: 0 0.5rem !important;
+    }
+    
+    .hero-cta-container .gradient-button,
+    .hero-cta-container button {
+      font-size: 0.9rem !important;
+      padding: 0.75rem 1rem !important;
+      min-height: 44px !important;
+    }
   }
 
   /* Journey CTA mobile fixes */
