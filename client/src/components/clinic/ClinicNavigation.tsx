@@ -47,7 +47,7 @@ export default function ClinicNavigation({ collapsed = false, onCollapsedChange 
   return (
     <div className={`h-screen bg-white border-r border-gray-200 flex flex-col transition-all duration-300 ${
       collapsed ? "w-16" : "w-64"
-    }`}>
+    } ${typeof window !== 'undefined' && window.innerWidth < 1024 ? 'fixed z-40' : ''}`}>
       {/* Header */}
       <div className="flex items-center justify-between p-4 border-b border-gray-200">
         {!collapsed && (
@@ -56,7 +56,7 @@ export default function ClinicNavigation({ collapsed = false, onCollapsedChange 
               <Heart className="w-5 h-5 text-white" />
             </div>
             <div>
-              <h2 className="font-semibold text-gray-900">Samnada Clinic</h2>
+              <h2 className="font-semibold text-gray-900 text-sm lg:text-base">Samnada Clinic</h2>
               <p className="text-xs text-gray-500">Management Portal</p>
             </div>
           </div>
@@ -65,14 +65,23 @@ export default function ClinicNavigation({ collapsed = false, onCollapsedChange 
           variant="ghost"
           size="sm"
           onClick={handleToggleCollapse}
-          className="p-1.5 hover:bg-gray-100"
+          className="p-1.5 hover:bg-gray-100 lg:flex hidden"
         >
           {collapsed ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
+        </Button>
+        {/* Mobile close button */}
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => onCollapsedChange?.(true)}
+          className="p-1.5 hover:bg-gray-100 lg:hidden"
+        >
+          <ChevronLeft className="w-4 h-4" />
         </Button>
       </div>
 
       {/* Navigation Items */}
-      <div className="flex-1 p-2 space-y-1">
+      <div className="flex-1 p-2 space-y-1 overflow-y-auto">
         {navigationItems.map((item) => {
           const Icon = item.icon;
           const isActive = location === item.href;
@@ -81,16 +90,22 @@ export default function ClinicNavigation({ collapsed = false, onCollapsedChange 
             <Link key={item.key} href={item.href}>
               <Button
                 variant="ghost"
-                className={`w-full justify-start p-3 h-auto transition-all duration-200 ${
+                className={`w-full justify-start p-3 h-auto transition-all duration-200 text-sm lg:text-base ${
                   isActive 
                     ? "bg-purple-50 text-purple-700 border-r-2 border-purple-600" 
                     : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
                 } ${collapsed ? "px-2" : ""}`}
                 data-testid={`nav-${item.key}`}
+                onClick={() => {
+                  // Close mobile menu when item is clicked
+                  if (typeof window !== 'undefined' && window.innerWidth < 1024) {
+                    onCollapsedChange?.(true);
+                  }
+                }}
               >
-                <Icon className={`w-5 h-5 ${collapsed ? "" : "mr-3"}`} />
+                <Icon className={`w-5 h-5 ${collapsed ? "" : "mr-3"} flex-shrink-0`} />
                 {!collapsed && (
-                  <span className="font-medium">{item.label}</span>
+                  <span className="font-medium truncate">{item.label}</span>
                 )}
               </Button>
             </Link>
@@ -103,13 +118,13 @@ export default function ClinicNavigation({ collapsed = false, onCollapsedChange 
         <Button
           variant="ghost"
           onClick={handleLogout}
-          className={`w-full justify-start p-3 h-auto text-gray-600 hover:bg-red-50 hover:text-red-600 transition-colors duration-200 ${
+          className={`w-full justify-start p-3 h-auto text-gray-600 hover:bg-red-50 hover:text-red-600 transition-colors duration-200 text-sm lg:text-base ${
             collapsed ? "px-2" : ""
           }`}
           data-testid="nav-logout"
         >
-          <LogOut className={`w-5 h-5 ${collapsed ? "" : "mr-3"}`} />
-          {!collapsed && <span className="font-medium">Logout</span>}
+          <LogOut className={`w-5 h-5 ${collapsed ? "" : "mr-3"} flex-shrink-0`} />
+          {!collapsed && <span className="font-medium truncate">Logout</span>}
         </Button>
       </div>
     </div>
