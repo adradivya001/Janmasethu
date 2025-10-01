@@ -193,71 +193,50 @@ export default function LeadManagement() {
                   
                   <div>
                     <Label htmlFor="interest">Interest</Label>
-                    <div className="relative mt-1">
-                      <select 
-                        id="interest"
-                        value={newLead.interest}
-                        onChange={(e) => handleInputChange("interest", e.target.value)}
-                        className="w-full h-[42px] px-3 py-0 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-xl shadow-sm transition-all duration-200 appearance-none cursor-pointer hover:border-gray-300 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-1 focus:border-purple-500"
-                      >
-                        <option value="">Select interest</option>
-                        <option value="IVF Consultation">IVF Consultation</option>
-                        <option value="Fertility Assessment">Fertility Assessment</option>
-                        <option value="IUI Treatment">IUI Treatment</option>
-                        <option value="ICSI Treatment">ICSI Treatment</option>
-                        <option value="Egg Freezing">Egg Freezing</option>
-                      </select>
-                      <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                        <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </div>
-                    </div>
+                    <select 
+                      id="interest"
+                      value={newLead.interest}
+                      onChange={(e) => handleInputChange("interest", e.target.value)}
+                      className="w-full mt-1 px-3 py-2 border border-gray-200 rounded-md bg-white"
+                    >
+                      <option value="">Select interest</option>
+                      <option value="IVF Consultation">IVF Consultation</option>
+                      <option value="Fertility Assessment">Fertility Assessment</option>
+                      <option value="IUI Treatment">IUI Treatment</option>
+                      <option value="ICSI Treatment">ICSI Treatment</option>
+                      <option value="Egg Freezing">Egg Freezing</option>
+                    </select>
                   </div>
                   
                   <div>
                     <Label htmlFor="source">Source</Label>
-                    <div className="relative mt-1">
-                      <select 
-                        id="source"
-                        value={newLead.source}
-                        onChange={(e) => handleInputChange("source", e.target.value)}
-                        className="w-full h-[42px] px-3 py-0 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-xl shadow-sm transition-all duration-200 appearance-none cursor-pointer hover:border-gray-300 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-1 focus:border-purple-500"
-                      >
-                        <option value="">Select source</option>
-                        <option value="Website">Website</option>
-                        <option value="Referral">Referral</option>
-                        <option value="Social Media">Social Media</option>
-                        <option value="Google Ads">Google Ads</option>
-                        <option value="Walk-in">Walk-in</option>
-                      </select>
-                      <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                        <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </div>
-                    </div>
+                    <select 
+                      id="source"
+                      value={newLead.source}
+                      onChange={(e) => handleInputChange("source", e.target.value)}
+                      className="w-full mt-1 px-3 py-2 border border-gray-200 rounded-md bg-white"
+                    >
+                      <option value="">Select source</option>
+                      <option value="Website">Website</option>
+                      <option value="Referral">Referral</option>
+                      <option value="Social Media">Social Media</option>
+                      <option value="Google Ads">Google Ads</option>
+                      <option value="Walk-in">Walk-in</option>
+                    </select>
                   </div>
                   
                   <div>
                     <Label htmlFor="priority">Priority</Label>
-                    <div className="relative mt-1">
-                      <select 
-                        id="priority"
-                        value={newLead.priority}
-                        onChange={(e) => handleInputChange("priority", e.target.value)}
-                        className="w-full h-[42px] px-3 py-0 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-xl shadow-sm transition-all duration-200 appearance-none cursor-pointer hover:border-gray-300 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-1 focus:border-purple-500"
-                      >
-                        <option value="low">Low</option>
-                        <option value="medium">Medium</option>
-                        <option value="high">High</option>
-                      </select>
-                      <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                        <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </div>
-                    </div>
+                    <select 
+                      id="priority"
+                      value={newLead.priority}
+                      onChange={(e) => handleInputChange("priority", e.target.value)}
+                      className="w-full mt-1 px-3 py-2 border border-gray-200 rounded-md bg-white"
+                    >
+                      <option value="low">Low</option>
+                      <option value="medium">Medium</option>
+                      <option value="high">High</option>
+                    </select>
                   </div>
                   
                   <div className="flex justify-end space-x-2 pt-4">
@@ -297,11 +276,11 @@ export default function LeadManagement() {
                 />
               </div>
               
-              <div className="relative flex-1 sm:flex-initial min-w-0 sm:min-w-[180px] lg:min-w-[200px]">
+              <div className="relative flex-1 sm:flex-initial min-w-0">
                 <select 
                   value={filterStatus}
                   onChange={(e) => setFilterStatus(e.target.value)}
-                  className="w-full h-[44px] sm:h-[44px] lg:h-[42px] px-3 md:px-4 py-0 text-sm md:text-base font-medium text-gray-900 bg-white border border-gray-200 rounded-xl shadow-sm transition-all duration-200 appearance-none cursor-pointer hover:border-gray-300 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-1 focus:border-purple-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full px-3 py-2 border border-gray-200 rounded-md bg-white text-sm md:text-base appearance-none cursor-pointer focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                 >
                   <option value="all">All Status</option>
                   <option value="new">New</option>
@@ -310,7 +289,7 @@ export default function LeadManagement() {
                   <option value="scheduled">Scheduled</option>
                 </select>
                 <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                  <svg className="w-4 h-4 md:w-5 md:h-5 text-gray-500 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                   </svg>
                 </div>

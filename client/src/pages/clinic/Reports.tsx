@@ -76,46 +76,32 @@ export default function Reports() {
             <Card>
               <CardContent className="p-3 md:p-4">
                 <label className="block text-xs md:text-sm font-medium text-gray-700 mb-2">Report Type</label>
-                <div className="relative">
-                  <select 
-                    value={selectedReport}
-                    onChange={(e) => setSelectedReport(e.target.value)}
-                    className="w-full h-[44px] sm:h-[44px] lg:h-[42px] px-3 md:px-4 py-0 text-sm md:text-base font-medium text-gray-900 bg-white border border-gray-200 rounded-xl shadow-sm transition-all duration-200 appearance-none cursor-pointer hover:border-gray-300 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-1 focus:border-purple-500 disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    <option value="monthly">Monthly Overview</option>
-                    <option value="outcomes">Treatment Outcomes</option>
-                    <option value="financial">Financial Summary</option>
-                    <option value="patient">Patient Demographics</option>
-                  </select>
-                  <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                    <svg className="w-4 h-4 md:w-5 md:h-5 text-gray-500 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </div>
-                </div>
+                <select 
+                  value={selectedReport}
+                  onChange={(e) => setSelectedReport(e.target.value)}
+                  className="w-full px-2 md:px-3 py-2 text-xs md:text-sm border border-gray-200 rounded-md bg-white"
+                >
+                  <option value="monthly">Monthly Overview</option>
+                  <option value="outcomes">Treatment Outcomes</option>
+                  <option value="financial">Financial Summary</option>
+                  <option value="patient">Patient Demographics</option>
+                </select>
               </CardContent>
             </Card>
 
             <Card>
               <CardContent className="p-3 md:p-4">
                 <label className="block text-xs md:text-sm font-medium text-gray-700 mb-2">Time Period</label>
-                <div className="relative">
-                  <select 
-                    value={selectedPeriod}
-                    onChange={(e) => setSelectedPeriod(e.target.value)}
-                    className="w-full h-[44px] sm:h-[44px] lg:h-[42px] px-3 md:px-4 py-0 text-sm md:text-base font-medium text-gray-900 bg-white border border-gray-200 rounded-xl shadow-sm transition-all duration-200 appearance-none cursor-pointer hover:border-gray-300 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-1 focus:border-purple-500 disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    <option value="last3months">Last 3 Months</option>
-                    <option value="last6months">Last 6 Months</option>
-                    <option value="lastyear">Last Year</option>
-                    <option value="custom">Custom Range</option>
-                  </select>
-                  <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                    <svg className="w-4 h-4 md:w-5 md:h-5 text-gray-500 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </div>
-                </div>
+                <select 
+                  value={selectedPeriod}
+                  onChange={(e) => setSelectedPeriod(e.target.value)}
+                  className="w-full px-2 md:px-3 py-2 text-xs md:text-sm border border-gray-200 rounded-md bg-white"
+                >
+                  <option value="last3months">Last 3 Months</option>
+                  <option value="last6months">Last 6 Months</option>
+                  <option value="lastyear">Last Year</option>
+                  <option value="custom">Custom Range</option>
+                </select>
               </CardContent>
             </Card>
 
