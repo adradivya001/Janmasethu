@@ -896,6 +896,101 @@
   }
 }
 
+/* Mobile Button Fixes and Responsive Utilities */
+@media (max-width: 767px) {
+  /* Hero section mobile fixes */
+  .hero-mobile-cta {
+    flex-direction: column !important;
+    gap: 1rem !important;
+    width: 100% !important;
+    padding: 0 1rem !important;
+  }
+
+  .hero-mobile-cta .gradient-button,
+  .hero-mobile-cta .gradient-button-secondary,
+  .hero-mobile-cta button {
+    width: 100% !important;
+    max-width: 280px !important;
+    margin: 0 auto !important;
+    justify-content: center !important;
+    font-size: 1rem !important;
+    padding: 0.875rem 1.5rem !important;
+    min-height: 56px !important;
+  }
+
+  /* Journey CTA mobile fixes */
+  .journey-mobile-cta {
+    text-align: center !important;
+    padding: 0 1rem !important;
+  }
+
+  .journey-mobile-cta .gradient-button {
+    width: 100% !important;
+    max-width: 320px !important;
+    margin: 0 auto !important;
+    font-size: 1rem !important;
+    padding: 1rem 2rem !important;
+    min-height: 56px !important;
+    border-radius: 2rem !important;
+  }
+
+  /* General CTA button fixes for mobile */
+  .mobile-cta-fix {
+    width: 100% !important;
+    max-width: 300px !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    padding: 1rem 1.5rem !important;
+    min-height: 56px !important;
+    border-radius: 2rem !important;
+    text-align: center !important;
+  }
+
+  /* Sakhi preview section mobile fixes */
+  .sakhi-preview-mobile {
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 2rem !important;
+  }
+
+  .sakhi-preview-mobile .gradient-button-secondary {
+    width: 100% !important;
+    max-width: 280px !important;
+    margin: 0 auto !important;
+  }
+
+  /* Grid layout fixes for mobile */
+  .mobile-grid-fix {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+
+  /* Text adjustments for mobile */
+  .mobile-text-center {
+    text-align: center !important;
+  }
+
+  .mobile-text-sm {
+    font-size: 0.875rem !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Card spacing fixes for mobile */
+  .mobile-card-spacing {
+    padding: 1.5rem 1rem !important;
+    margin: 0 0.5rem !important;
+  }
+
+  /* Section spacing adjustments */
+  .mobile-section-spacing {
+    padding: 2rem 1rem !important;
+  }
+}
+
 /* Enhanced Dropdown Styling - Responsive and Theme Consistent */
 .dropdown-trigger {
   @apply relative w-full bg-white border border-gray-200 rounded-2xl px-4 py-3 text-left shadow-sm transition-all duration-200 hover:border-purple-300 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent;

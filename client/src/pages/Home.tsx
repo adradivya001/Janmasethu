@@ -220,11 +220,11 @@ const Home = () => {
           </svg>
         </div>
 
-        {/* CTA Buttons - Updated to match blueprint exactly */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <Link href="/sakhi/try">
+        {/* CTA Buttons - Mobile Responsive */}
+        <div className="hero-mobile-cta flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <Link href="/sakhi/try" className="w-full sm:w-auto flex justify-center">
             <Button
-              className="gradient-button text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-lg transition-all duration-300 group overflow-hidden relative"
+              className="gradient-button text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-lg transition-all duration-300 group overflow-hidden relative w-full sm:w-auto max-w-xs"
               data-testid="button-cta-primary"
             >
               <span className="relative z-10 transition-transform duration-300 group-hover:-translate-x-2">
@@ -233,10 +233,10 @@ const Home = () => {
               <ArrowRight className="absolute right-4 w-5 h-5 opacity-0 transform translate-x-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 z-10" />
             </Button>
           </Link>
-          <Link href="/clinic">
+          <Link href="/clinic" className="w-full sm:w-auto flex justify-center">
             <Button
               variant="outline"
-              className="bg-white text-foreground px-8 py-4 rounded-full font-semibold text-lg border-border hover:shadow-lg transition-all duration-300 group overflow-hidden relative"
+              className="bg-white text-foreground px-8 py-4 rounded-full font-semibold text-lg border-border hover:shadow-lg transition-all duration-300 group overflow-hidden relative w-full sm:w-auto max-w-xs"
               data-testid="button-cta-secondary"
             >
               <span className="relative z-10 transition-transform duration-300 group-hover:-translate-x-2">
@@ -400,11 +400,11 @@ const Home = () => {
           </div>
         </div>
 
-        {/* CTA under strip */}
-        <div className="text-center mt-12">
-          <Link href="/sakhi">
+        {/* CTA under strip - Mobile Responsive */}
+        <div className="journey-mobile-cta text-center mt-12">
+          <Link href="/sakhi" className="inline-block w-full sm:w-auto">
             <Button
-              className="gradient-button text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-lg transition-all duration-300 inline-flex items-center"
+              className="mobile-cta-fix gradient-button text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-lg transition-all duration-300 inline-flex items-center"
               data-testid="button-sakhi-support"
             >
               {t("journey_cta")}
@@ -417,27 +417,27 @@ const Home = () => {
       {/* Sakhi Preview Section */}
       <section className="py-16">
         <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-3xl p-8 md:p-12">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
+          <div className="sakhi-preview-mobile grid lg:grid-cols-2 gap-12 items-center">
+            <div className="mobile-text-center lg:text-left">
               <h2
-                className="text-4xl font-bold text-foreground font-serif mb-6"
+                className="text-3xl lg:text-4xl font-bold text-foreground font-serif mb-6"
                 data-testid="text-sakhi-hero"
                 dangerouslySetInnerHTML={{ __html: t("sakhi_hero") }}
               ></h2>
               <p
-                className="text-lg text-muted-foreground mb-8"
+                className="text-base lg:text-lg text-muted-foreground mb-8"
                 data-testid="text-sakhi-sub"
               >
                 {t("sakhi_sub")}
               </p>
 
               <h3
-                className="text-2xl font-bold text-foreground font-serif mb-4"
+                className="text-xl lg:text-2xl font-bold text-foreground font-serif mb-4"
                 data-testid="text-sakhi-how-title"
               >
                 {t("sakhi_how_title")}
               </h3>
-              <ul className="space-y-3 mb-8">
+              <ul className="space-y-3 mb-8 text-left">
                 {t("sakhi_how_list")
                   .split("|")
                   .filter((item: string) => item.trim().length > 0)
@@ -448,22 +448,24 @@ const Home = () => {
                       data-testid={`item-sakhi-help-${index}`}
                     >
                       <Heart className="text-pink-500 w-5 h-5 mt-1 flex-shrink-0" />
-                      <span className="text-muted-foreground">
+                      <span className="text-muted-foreground text-sm lg:text-base">
                         {item.trim()}
                       </span>
                     </li>
                   ))}
               </ul>
 
-              <Link href="/sakhi/try">
-                <Button
-                  className="gradient-button-secondary text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-lg transition-all duration-300 inline-flex items-center"
-                  data-testid="button-try-sakhi"
-                >
-                  {t("sakhi_try")}
-                  <ArrowRight className="ml-2 w-4 h-4" />
-                </Button>
-              </Link>
+              <div className="flex justify-center lg:justify-start">
+                <Link href="/sakhi/try" className="w-full sm:w-auto max-w-xs lg:max-w-none">
+                  <Button
+                    className="mobile-cta-fix lg:inline-flex gradient-button-secondary text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-lg transition-all duration-300 items-center"
+                    data-testid="button-try-sakhi"
+                  >
+                    {t("sakhi_try")}
+                    <ArrowRight className="ml-2 w-4 h-4" />
+                  </Button>
+                </Link>
+              </div>
             </div>
 
             {/* Chat Interface Preview */}
@@ -555,20 +557,20 @@ const Home = () => {
       </section>
 
       {/* Start Here - Orientation Section */}
-      <section className="py-16">
+      <section className="mobile-section-spacing py-16">
         <div className="text-center mb-12">
           <h2
-            className="text-4xl font-bold text-foreground font-serif mb-4"
+            className="text-3xl lg:text-4xl font-bold text-foreground font-serif mb-4"
             data-testid="text-orientation-title"
           >
             {t("orient_title")}
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="mobile-grid-fix grid md:grid-cols-3 gap-8">
           {/* TTC Card */}
           <Link href="/life-stages/ttc" className="group h-full">
-            <Card className="rounded-3xl p-8 card-shadow hover:shadow-2xl transition-all duration-500 h-full flex flex-col cursor-pointer transform hover:scale-105 border-2 border-transparent hover:border-purple-200 relative overflow-hidden bg-gradient-to-br from-white to-purple-50/30">
+            <Card className="mobile-card-spacing rounded-3xl p-8 card-shadow hover:shadow-2xl transition-all duration-500 h-full flex flex-col cursor-pointer transform hover:scale-105 border-2 border-transparent hover:border-purple-200 relative overflow-hidden bg-gradient-to-br from-white to-purple-50/30">
               <CardContent className="p-0 flex flex-col h-full">
                 {/* Click indicator */}
                 <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
