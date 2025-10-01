@@ -24,7 +24,7 @@ interface LanguageProviderProps {
 export const LanguageProvider = ({ children }: LanguageProviderProps) => {
   const [lang, setLangState] = useState<Lang>(() => {
     const stored = localStorage.getItem('js_lang');
-    return (stored === 'hi' || stored === 'te' || stored === 'en') ? stored : 'te';
+    return (stored === 'hi' || stored === 'te' || stored === 'en') ? stored : 'en';
   });
 
   const setLang = (newLang: Lang) => {
@@ -33,7 +33,7 @@ export const LanguageProvider = ({ children }: LanguageProviderProps) => {
   };
 
   const t = (key: string): string => {
-    return (dict[lang] as any)?.[key] || (dict.te as any)?.[key] || key;
+    return (dict[lang] as any)?.[key] || (dict.en as any)?.[key] || key;
   };
 
   useEffect(() => {
