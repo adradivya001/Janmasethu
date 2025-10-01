@@ -461,51 +461,7 @@
     transform: translateX(0);
   }
 
-  .floating-lang {
-    position: fixed;
-    bottom: 20px;
-    right: 16px;
-    z-index: 50;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    align-items: center;
-    padding: 8px;
-  }
-
-  /* Enhanced button styling for multilingual support */
-  .floating-lang button {
-    text-rendering: optimizeLegibility;
-    -webkit-font-feature-settings: "kern" 1;
-    font-feature-settings: "kern" 1;
-    overflow: visible !important;
-    white-space: nowrap;
-    word-wrap: normal;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  /* Specific styling for Telugu text */
-  .floating-lang button span {
-    display: inline-block;
-    vertical-align: middle;
-    overflow: visible;
-  }
-
-  @media (min-width: 768px) {
-    .floating-lang {
-      display: none;
-    }
-  }
-
-  /* Additional spacing for mobile safe area */
-  @media (max-width: 480px) {
-    .floating-lang {
-      bottom: calc(20px + env(safe-area-inset-bottom, 0px));
-      right: 12px;
-      gap: 10px;
-    }
-  }
+  
 
   .skip-link {
     position: absolute;

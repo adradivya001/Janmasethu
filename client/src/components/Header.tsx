@@ -164,7 +164,7 @@ const Header = () => {
               </div>
 
               {/* Language Switcher */}
-              <div className="hidden md:block">
+              <div>
                 <LanguageSwitcher />
               </div>
 
