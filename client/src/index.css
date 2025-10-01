@@ -659,9 +659,145 @@
   animation: modalFadeIn 0.2s ease-out;
 }
 
-/* Backdrop blur effect */
+/* Enhanced Backdrop blur effect */
 .backdrop-blur-sm {
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Dialog Overlay Enhanced */
+[data-radix-popper-content-wrapper] {
+  z-index: 9999 !important;
+}
+
+/* Dialog Content Mobile Responsive */
+@media (max-width: 767px) {
+  [role="dialog"] {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: translate(-50%, -50%) !important;
+    width: calc(100vw - 2rem) !important;
+    max-width: calc(100vw - 2rem) !important;
+    max-height: calc(100vh - 2rem) !important;
+    margin: 0 !important;
+    border-radius: 1rem !important;
+    overflow-y: auto !important;
+    z-index: 9999 !important;
+  }
+
+  /* Enhanced dialog overlay for mobile */
+  [data-state="open"][data-radix-dialog-overlay] {
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 9998 !important;
+    background: rgba(0, 0, 0, 0.8) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    animation: fadeIn 0.3s ease-out !important;
+  }
+
+  /* Ensure dialog content is properly positioned */
+  [data-state="open"][role="dialog"] {
+    animation: slideInScale 0.3s ease-out !important;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideInScale {
+    from {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+
+  /* Form inputs in mobile dialog */
+  [role="dialog"] input,
+  [role="dialog"] select,
+  [role="dialog"] textarea {
+    width: 100% !important;
+    min-height: 48px !important;
+    font-size: 16px !important; /* Prevent zoom on iOS */
+    border-radius: 0.75rem !important;
+    padding: 0.75rem 1rem !important;
+  }
+
+  /* Button adjustments in mobile dialog */
+  [role="dialog"] button {
+    min-height: 48px !important;
+    border-radius: 0.75rem !important;
+    font-weight: 600 !important;
+    font-size: 1rem !important;
+  }
+
+  /* Grid adjustments for mobile */
+  [role="dialog"] .grid-cols-2 {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+
+  /* Spacing adjustments */
+  [role="dialog"] .space-y-4 > * + * {
+    margin-top: 1rem !important;
+  }
+}
+
+/* Desktop dialog enhancements */
+@media (min-width: 768px) {
+  [role="dialog"] {
+    min-width: 500px !important;
+    max-width: 600px !important;
+  }
+
+  [data-state="open"][data-radix-dialog-overlay] {
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    background: rgba(0, 0, 0, 0.6) !important;
+  }
+}
+
+/* Header button responsiveness in clinic pages */
+@media (max-width: 767px) {
+  .clinic-header-button {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 0.875rem 1.5rem !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    border-radius: 0.75rem !important;
+    min-height: 48px !important;
+  }
+
+  .clinic-header {
+    flex-direction: column !important;
+    gap: 1rem !important;
+    align-items: stretch !important;
+  }
+
+  .clinic-header-content {
+    text-align: center !important;
+  }
+
+  .clinic-header h1 {
+    font-size: 1.5rem !important;
+  }
+
+  .clinic-header p {
+    font-size: 0.875rem !important;
+  }
 }
 
 /* Clinic Navigation Mobile Styles */

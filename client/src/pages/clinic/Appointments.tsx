@@ -89,77 +89,77 @@ export default function Appointments() {
       
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Header */}
-        <header className="bg-white border-b border-gray-200 px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-2xl font-bold text-gray-900">Appointments</h1>
-              <p className="text-gray-600">Manage patient appointments and scheduling</p>
+        <header className="bg-white border-b border-gray-200 px-4 md:px-6 py-4">
+          <div className="clinic-header flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
+            <div className="clinic-header-content">
+              <h1 className="text-xl md:text-2xl font-bold text-gray-900">Appointments</h1>
+              <p className="text-gray-600 text-sm md:text-base">Manage patient appointments and scheduling</p>
             </div>
             
             <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
               <DialogTrigger asChild>
-                <Button className="bg-purple-600 hover:bg-purple-700 text-white">
+                <Button className="clinic-header-button bg-purple-600 hover:bg-purple-700 text-white shadow-lg hover:shadow-xl transition-all duration-200">
                   <Plus className="w-4 h-4 mr-2" />
                   New Appointment
                 </Button>
               </DialogTrigger>
-              <DialogContent className="max-w-md">
+              <DialogContent className="max-w-md mx-4 rounded-2xl">
                 <DialogHeader>
-                  <DialogTitle>Schedule New Appointment</DialogTitle>
+                  <DialogTitle className="text-lg md:text-xl font-semibold">Schedule New Appointment</DialogTitle>
                 </DialogHeader>
                 <div className="space-y-4">
                   <div>
-                    <Label htmlFor="patientName">Patient Name *</Label>
+                    <Label htmlFor="patientName" className="text-sm font-medium">Patient Name *</Label>
                     <Input
                       id="patientName"
                       value={newAppointment.patientName}
                       onChange={(e) => handleInputChange("patientName", e.target.value)}
                       placeholder="Enter patient name"
-                      className="mt-1"
+                      className="mt-1 rounded-xl border-gray-200 focus:border-purple-500 focus:ring-purple-500"
                     />
                   </div>
                   
                   <div>
-                    <Label htmlFor="patientId">Patient ID *</Label>
+                    <Label htmlFor="patientId" className="text-sm font-medium">Patient ID *</Label>
                     <Input
                       id="patientId"
                       value={newAppointment.patientId}
                       onChange={(e) => handleInputChange("patientId", e.target.value)}
                       placeholder="Enter patient ID"
-                      className="mt-1"
+                      className="mt-1 rounded-xl border-gray-200 focus:border-purple-500 focus:ring-purple-500"
                     />
                   </div>
                   
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <Label htmlFor="date">Date *</Label>
+                      <Label htmlFor="date" className="text-sm font-medium">Date *</Label>
                       <Input
                         id="date"
                         type="date"
                         value={newAppointment.date}
                         onChange={(e) => handleInputChange("date", e.target.value)}
-                        className="mt-1"
+                        className="mt-1 rounded-xl border-gray-200 focus:border-purple-500 focus:ring-purple-500"
                       />
                     </div>
                     <div>
-                      <Label htmlFor="time">Time *</Label>
+                      <Label htmlFor="time" className="text-sm font-medium">Time *</Label>
                       <Input
                         id="time"
                         type="time"
                         value={newAppointment.time}
                         onChange={(e) => handleInputChange("time", e.target.value)}
-                        className="mt-1"
+                        className="mt-1 rounded-xl border-gray-200 focus:border-purple-500 focus:ring-purple-500"
                       />
                     </div>
                   </div>
                   
                   <div>
-                    <Label htmlFor="type">Appointment Type</Label>
+                    <Label htmlFor="type" className="text-sm font-medium">Appointment Type</Label>
                     <select 
                       id="type"
                       value={newAppointment.type}
                       onChange={(e) => handleInputChange("type", e.target.value)}
-                      className="w-full mt-1 px-3 py-2 border border-gray-200 rounded-md bg-white"
+                      className="w-full mt-1 px-4 py-3 border border-gray-200 rounded-xl bg-white focus:border-purple-500 focus:ring-2 focus:ring-purple-500 focus:outline-none appearance-none text-base"
                     >
                       <option value="Initial Consultation">Initial Consultation</option>
                       <option value="Follow-up">Follow-up</option>
@@ -172,12 +172,12 @@ export default function Appointments() {
                   </div>
                   
                   <div>
-                    <Label htmlFor="doctor">Doctor</Label>
+                    <Label htmlFor="doctor" className="text-sm font-medium">Doctor</Label>
                     <select 
                       id="doctor"
                       value={newAppointment.doctor}
                       onChange={(e) => handleInputChange("doctor", e.target.value)}
-                      className="w-full mt-1 px-3 py-2 border border-gray-200 rounded-md bg-white"
+                      className="w-full mt-1 px-4 py-3 border border-gray-200 rounded-xl bg-white focus:border-purple-500 focus:ring-2 focus:ring-purple-500 focus:outline-none appearance-none text-base"
                     >
                       <option value="Dr. Rao">Dr. Rao</option>
                       <option value="Dr. Mehta">Dr. Mehta</option>
@@ -186,12 +186,12 @@ export default function Appointments() {
                   </div>
                   
                   <div>
-                    <Label htmlFor="status">Status</Label>
+                    <Label htmlFor="status" className="text-sm font-medium">Status</Label>
                     <select 
                       id="status"
                       value={newAppointment.status}
                       onChange={(e) => handleInputChange("status", e.target.value)}
-                      className="w-full mt-1 px-3 py-2 border border-gray-200 rounded-md bg-white"
+                      className="w-full mt-1 px-4 py-3 border border-gray-200 rounded-xl bg-white focus:border-purple-500 focus:ring-2 focus:ring-purple-500 focus:outline-none appearance-none text-base"
                     >
                       <option value="scheduled">Scheduled</option>
                       <option value="confirmed">Confirmed</option>
@@ -200,26 +200,27 @@ export default function Appointments() {
                   </div>
                   
                   <div>
-                    <Label htmlFor="notes">Notes</Label>
+                    <Label htmlFor="notes" className="text-sm font-medium">Notes</Label>
                     <Input
                       id="notes"
                       value={newAppointment.notes}
                       onChange={(e) => handleInputChange("notes", e.target.value)}
                       placeholder="Additional notes (optional)"
-                      className="mt-1"
+                      className="mt-1 rounded-xl border-gray-200 focus:border-purple-500 focus:ring-purple-500"
                     />
                   </div>
                   
-                  <div className="flex justify-end space-x-2 pt-4">
+                  <div className="flex flex-col md:flex-row justify-end space-y-2 md:space-y-0 md:space-x-2 pt-4">
                     <Button 
                       variant="outline" 
                       onClick={() => setIsModalOpen(false)}
+                      className="w-full md:w-auto rounded-xl border-gray-200 hover:border-gray-300"
                     >
                       Cancel
                     </Button>
                     <Button 
                       onClick={handleAddAppointment}
-                      className="bg-purple-600 hover:bg-purple-700 text-white"
+                      className="w-full md:w-auto bg-purple-600 hover:bg-purple-700 text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
                       disabled={!newAppointment.patientName || !newAppointment.patientId || !newAppointment.date || !newAppointment.time}
                     >
                       Schedule Appointment
