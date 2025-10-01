@@ -56,17 +56,17 @@ export default function ClinicDashboard() {
   return (
     <div className="flex h-screen bg-gray-50">
       {/* Mobile Navigation Overlay */}
-      <div className={`lg:hidden fixed inset-0 z-50 ${collapsed ? 'pointer-events-none' : ''}`}>
-        {!collapsed && (
+      {!collapsed && (
+        <div className="lg:hidden fixed inset-0 z-50">
           <div 
             className="absolute inset-0 bg-black bg-opacity-50" 
             onClick={() => setCollapsed(true)}
           />
-        )}
-        <div className={`absolute left-0 top-0 h-full transition-transform duration-300 ${collapsed ? '-translate-x-full' : 'translate-x-0'}`}>
-          <ClinicNavigation collapsed={false} onCollapsedChange={setCollapsed} />
+          <div className="absolute left-0 top-0 h-full">
+            <ClinicNavigation collapsed={false} onCollapsedChange={setCollapsed} />
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Desktop Navigation */}
       <div className="hidden lg:block">

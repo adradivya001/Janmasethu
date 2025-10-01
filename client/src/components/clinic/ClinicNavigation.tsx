@@ -35,6 +35,7 @@ interface ClinicNavigationProps {
 
 export default function ClinicNavigation({ collapsed = false, onCollapsedChange }: ClinicNavigationProps) {
   const [location] = useLocation();
+  const [isHovered, setIsHovered] = useState(false);
 
   const handleToggleCollapse = () => {
     onCollapsedChange?.(!collapsed);
@@ -44,13 +45,23 @@ export default function ClinicNavigation({ collapsed = false, onCollapsedChange 
     window.location.href = "/clinic";
   };
 
+  const handleClose = () => {
+    onCollapsedChange?.(true);
+  };
+
+  const isExpanded = !collapsed || isHovered;
+
   return (
-    <div className={`h-screen bg-white border-r border-gray-200 flex flex-col transition-all duration-300 ${
-      collapsed ? "w-16" : "w-64"
-    } ${typeof window !== 'undefined' && window.innerWidth < 1024 ? 'fixed z-40' : ''}`}>
+    <div 
+      className={`h-screen bg-white border-r border-gray-200 flex flex-col transition-all duration-300 ${
+        isExpanded ? "w-64" : "w-16"
+      } ${typeof window !== 'undefined' && window.innerWidth < 1024 ? 'fixed z-40' : ''}`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       {/* Header */}
       <div className="flex items-center justify-between p-4 border-b border-gray-200">
-        {!collapsed && (
+        {isExpanded && (
           <div className="flex items-center space-x-3">
             <div className="w-8 h-8 bg-gradient-to-r from-purple-600 to-purple-400 rounded-lg flex items-center justify-center">
               <Heart className="w-5 h-5 text-white" />
@@ -73,7 +84,7 @@ export default function ClinicNavigation({ collapsed = false, onCollapsedChange 
         <Button
           variant="ghost"
           size="sm"
-          onClick={() => onCollapsedChange?.(true)}
+          onClick={handleClose}
           className="p-1.5 hover:bg-gray-100 lg:hidden"
         >
           <ChevronLeft className="w-4 h-4" />
@@ -94,7 +105,7 @@ export default function ClinicNavigation({ collapsed = false, onCollapsedChange 
                   isActive 
                     ? "bg-purple-50 text-purple-700 border-r-2 border-purple-600" 
                     : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
-                } ${collapsed ? "px-2" : ""}`}
+                } ${!isExpanded ? "px-2" : ""}`}
                 data-testid={`nav-${item.key}`}
                 onClick={() => {
                   // Close mobile menu when item is clicked
@@ -103,8 +114,8 @@ export default function ClinicNavigation({ collapsed = false, onCollapsedChange 
                   }
                 }}
               >
-                <Icon className={`w-5 h-5 ${collapsed ? "" : "mr-3"} flex-shrink-0`} />
-                {!collapsed && (
+                <Icon className={`w-5 h-5 ${!isExpanded ? "" : "mr-3"} flex-shrink-0`} />
+                {isExpanded && (
                   <span className="font-medium truncate">{item.label}</span>
                 )}
               </Button>
@@ -119,12 +130,12 @@ export default function ClinicNavigation({ collapsed = false, onCollapsedChange 
           variant="ghost"
           onClick={handleLogout}
           className={`w-full justify-start p-3 h-auto text-gray-600 hover:bg-red-50 hover:text-red-600 transition-colors duration-200 text-sm lg:text-base ${
-            collapsed ? "px-2" : ""
+            !isExpanded ? "px-2" : ""
           }`}
           data-testid="nav-logout"
         >
-          <LogOut className={`w-5 h-5 ${collapsed ? "" : "mr-3"} flex-shrink-0`} />
-          {!collapsed && <span className="font-medium truncate">Logout</span>}
+          <LogOut className={`w-5 h-5 ${!isExpanded ? "" : "mr-3"} flex-shrink-0`} />
+          {isExpanded && <span className="font-medium truncate">Logout</span>}
         </Button>
       </div>
     </div>
