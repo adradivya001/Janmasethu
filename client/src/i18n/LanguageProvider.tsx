@@ -22,23 +22,15 @@ interface LanguageProviderProps {
 }
 
 export const LanguageProvider = ({ children }: LanguageProviderProps) => {
-  const [lang, setLangState] = useState<Lang>(() => {
-    const stored = localStorage.getItem('js_lang');
-    return (stored === 'hi' || stored === 'te' || stored === 'en') ? stored : 'en';
-  });
+  const [lang, setLangState] = useState<Lang>('en');
 
   const setLang = (newLang: Lang) => {
     setLangState(newLang);
-    localStorage.setItem('js_lang', newLang);
   };
 
   const t = (key: string): string => {
     return (dict[lang] as any)?.[key] || (dict.en as any)?.[key] || key;
   };
-
-  useEffect(() => {
-    localStorage.setItem('js_lang', lang);
-  }, [lang]);
 
   return (
     <LanguageContext.Provider value={{ lang, setLang, t }}>
