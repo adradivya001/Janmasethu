@@ -4,6 +4,7 @@ import { Search, Menu, ChevronDown } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageProvider';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import LanguageSwitcher from './LanguageSwitcher';
 import MobileMenu from './MobileMenu';
 
 const Header = () => {
@@ -162,8 +163,8 @@ const Header = () => {
                 </form>
               </div>
 
-              {/* Language Switcher - This is conditionally rendered for the 'Try Sakhi' page */}
-              {location === '/sakhi' && (
+              {/* Language Switcher - Only shown on Try Sakhi page */}
+              {location === '/sakhi/try' && (
                 <div>
                   <LanguageSwitcher />
                 </div>
