@@ -258,85 +258,53 @@
     background: transparent;
   }
 
-  /* Responsive video styles - full screen fit without scrolling */
-  .responsive-video-container {
+  /* Full-screen video container - no white spaces */
+  section:has(video) {
     position: relative;
-    width: 100vw;
-    height: 100vh;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
+    width: 100vw !important;
+    height: 100vh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
   }
 
-  /* Enhanced video object fitting - cover entire screen */
-  .responsive-video-container video {
+  /* Video element - perfect screen fit */
+  section video {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     object-fit: cover;
     object-position: center center;
-    /* Prevent iOS fullscreen takeover */
     -webkit-playsinline: true;
-  }
-
-  /* Mobile devices - full screen fit */
-  @media screen and (max-width: 768px) {
-    .responsive-video-container {
-      width: 100vw;
-      height: 100vh;
-      margin: 0;
-      padding: 0;
-    }
-
-    .responsive-video-container video {
-      object-fit: cover;
-    }
-  }
-
-  /* Tablet devices - full screen fit */
-  @media screen and (min-width: 769px) and (max-width: 1024px) {
-    .responsive-video-container {
-      width: 100vw;
-      height: 100vh;
-      margin: 0;
-      padding: 0;
-    }
-
-    .responsive-video-container video {
-      object-fit: cover;
-    }
-  }
-
-  /* Desktop and larger screens - full screen fit */
-  @media screen and (min-width: 1025px) {
-    .responsive-video-container {
-      width: 100vw;
-      height: 100vh;
-      margin: 0;
-      padding: 0;
-    }
-
-    .responsive-video-container video {
-      object-fit: cover;
-    }
-  }
-
-  /* Prevent layout shift during video loading */
-  .responsive-video-container::before {
-    content: '';
     display: block;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, #F5F7FF 0%, #FFECEF 100%);
-    position: absolute;
-    inset: 0;
-    z-index: -1;
+  }
+
+  /* Ensure no spacing issues across all devices */
+  @media screen and (max-width: 768px) {
+    section:has(video) {
+      min-height: 100vh;
+      min-height: -webkit-fill-available;
+    }
+    
+    section video {
+      min-height: 100vh;
+      min-height: -webkit-fill-available;
+    }
+  }
+
+  @media screen and (min-width: 769px) and (max-width: 1024px) {
+    section:has(video) {
+      aspect-ratio: 16/9;
+      min-height: 100vh;
+    }
+  }
+
+  @media screen and (min-width: 1025px) {
+    section:has(video) {
+      max-height: 100vh;
+    }
   }
 }
 
