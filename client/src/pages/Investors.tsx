@@ -154,7 +154,7 @@ const Investors = () => {
             </ul>
           </Card>
 
-          <Card className="p-8 relative overflow-hidden border-purple-200 bg-purple-50/30">
+          <Card className="p-8 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-purple-100 to-purple-200 rounded-full -mr-10 -mt-10"></div>
             <h3 className="text-2xl font-bold text-foreground mb-4">{t('investors_model_phase2_title')}</h3>
             <p className="text-gray-600 mb-4">{t('investors_model_phase2_desc')}</p>
