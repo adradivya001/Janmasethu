@@ -128,11 +128,11 @@ export default function LeadManagement() {
                   <span className="xs:hidden">Add Lead</span>
                 </Button>
               </DialogTrigger>
-              <DialogContent className="max-w-md max-h-[85vh] sm:max-h-[80vh] overflow-hidden flex flex-col">
+              <DialogContent className="max-w-lg max-h-[85vh] sm:max-h-[80vh] overflow-hidden flex flex-col px-8">
                 <DialogHeader className="flex-shrink-0">
                   <DialogTitle>Add New Lead</DialogTitle>
                 </DialogHeader>
-                <div className="space-y-4 overflow-y-auto overflow-x-hidden pr-1 flex-1 scrollbar-hide">
+                <div className="space-y-4 overflow-y-auto overflow-x-hidden pr-2 flex-1 scrollbar-hide">
                   <div>
                     <Label htmlFor="name">Full Name *</Label>
                     <Input
