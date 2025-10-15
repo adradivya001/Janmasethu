@@ -32,11 +32,13 @@ const Sakhi = () => {
     setShowAuthModal(true);
   };
 
-  const handleAuthSuccess = (isNewUser: boolean) => {
+  const handleAuthSuccess = (isNewUser: boolean, relationship?: string) => {
     setShowAuthModal(false);
     
     if (isNewUser) {
       // New user - show onboarding questions
+      // You can store the relationship value if needed
+      console.log("User relationship:", relationship);
       setShowOnboarding(true);
     } else {
       // Existing user - go directly to Try Sakhi

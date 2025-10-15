@@ -5,20 +5,23 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 interface AuthModalProps {
   open: boolean;
   onClose: () => void;
-  onAuthSuccess: (isNewUser: boolean) => void;
+  onAuthSuccess: (isNewUser: boolean, relationship?: string) => void;
 }
 
 export default function AuthModal({ open, onClose, onAuthSuccess }: AuthModalProps) {
   const [isSignUp, setIsSignUp] = useState(true);
+  const [showRelationship, setShowRelationship] = useState(false);
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
     password: "",
   });
+  const [relationship, setRelationship] = useState("");
   const { toast } = useToast();
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -34,12 +37,8 @@ export default function AuthModal({ open, onClose, onAuthSuccess }: AuthModalPro
         return;
       }
       
-      toast({
-        title: "Account created successfully!",
-        description: "Please complete the onboarding questions.",
-      });
-      
-      onAuthSuccess(true); // New user - show onboarding
+      // Show relationship selection for new users
+      setShowRelationship(true);
     } else {
       if (!formData.email || !formData.password) {
         toast({
@@ -58,6 +57,123 @@ export default function AuthModal({ open, onClose, onAuthSuccess }: AuthModalPro
       onAuthSuccess(false); // Existing user - skip onboarding
     }
   };
+
+  const handleRelationshipSubmit = () => {
+    if (!relationship) {
+      toast({
+        title: "Required",
+        description: "Please select your relationship to the patient",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    toast({
+      title: "Account created successfully!",
+      description: "Please complete the onboarding questions.",
+    });
+    
+    onAuthSuccess(true, relationship); // New user - show onboarding
+  };
+
+  const handleBack = () => {
+    setShowRelationship(false);
+    setRelationship("");
+  };
+
+  if (showRelationship) {
+    return (
+      <Dialog open={open} onOpenChange={onClose}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-bold text-center">
+              Tell us about yourself
+            </DialogTitle>
+            <p className="text-sm text-muted-foreground text-center mt-2">
+              This helps us personalize your experience
+            </p>
+          </DialogHeader>
+          
+          <div className="space-y-6 mt-4">
+            <div className="space-y-4">
+              <Label className="text-base font-semibold">
+                Please select your relation to the patient
+              </Label>
+              
+              <RadioGroup value={relationship} onValueChange={setRelationship}>
+                <div className="flex items-center space-x-3 p-3 rounded-lg border hover:bg-accent transition-colors">
+                  <RadioGroupItem value="myself" id="myself" />
+                  <Label htmlFor="myself" className="cursor-pointer flex-1 font-normal">
+                    Myself (I am the patient)
+                  </Label>
+                </div>
+                
+                <div className="flex items-center space-x-3 p-3 rounded-lg border hover:bg-accent transition-colors">
+                  <RadioGroupItem value="mother" id="mother" />
+                  <Label htmlFor="mother" className="cursor-pointer flex-1 font-normal">
+                    Mother
+                  </Label>
+                </div>
+                
+                <div className="flex items-center space-x-3 p-3 rounded-lg border hover:bg-accent transition-colors">
+                  <RadioGroupItem value="father" id="father" />
+                  <Label htmlFor="father" className="cursor-pointer flex-1 font-normal">
+                    Father
+                  </Label>
+                </div>
+                
+                <div className="flex items-center space-x-3 p-3 rounded-lg border hover:bg-accent transition-colors">
+                  <RadioGroupItem value="mother-in-law" id="mother-in-law" />
+                  <Label htmlFor="mother-in-law" className="cursor-pointer flex-1 font-normal">
+                    Mother-in-law
+                  </Label>
+                </div>
+                
+                <div className="flex items-center space-x-3 p-3 rounded-lg border hover:bg-accent transition-colors">
+                  <RadioGroupItem value="father-in-law" id="father-in-law" />
+                  <Label htmlFor="father-in-law" className="cursor-pointer flex-1 font-normal">
+                    Father-in-law
+                  </Label>
+                </div>
+                
+                <div className="flex items-center space-x-3 p-3 rounded-lg border hover:bg-accent transition-colors">
+                  <RadioGroupItem value="sibling" id="sibling" />
+                  <Label htmlFor="sibling" className="cursor-pointer flex-1 font-normal">
+                    Sibling
+                  </Label>
+                </div>
+                
+                <div className="flex items-center space-x-3 p-3 rounded-lg border hover:bg-accent transition-colors">
+                  <RadioGroupItem value="other" id="other" />
+                  <Label htmlFor="other" className="cursor-pointer flex-1 font-normal">
+                    Other family member
+                  </Label>
+                </div>
+              </RadioGroup>
+            </div>
+            
+            <div className="flex gap-3 pt-2">
+              <Button
+                type="button"
+                variant="outline"
+                onClick={handleBack}
+                className="flex-1"
+              >
+                Back
+              </Button>
+              <Button
+                type="button"
+                onClick={handleRelationshipSubmit}
+                className="flex-1 gradient-button text-white"
+              >
+                Continue
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+    );
+  }
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
