@@ -91,13 +91,6 @@ const Treatments = () => {
               <Link key={treatment.slug} href={`/treatments/${treatment.slug}`} className="group h-full">
                 <Card className="rounded-2xl p-6 card-shadow hover:shadow-xl transition-all duration-300 h-full flex flex-col cursor-pointer transform hover:scale-102 border border-gray-100 hover:border-purple-200 relative overflow-hidden bg-white">
                   <CardContent className="p-0 flex flex-col h-full">
-                    {/* Click indicator */}
-                    <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <div className="w-6 h-6 bg-purple-100 rounded-full flex items-center justify-center">
-                        <ArrowRight className="w-3 h-3 text-purple-600" />
-                      </div>
-                    </div>
-
                     <div className={`w-12 h-12 ${iconData.color.split(' ')[0]} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-sm`}>
                       <iconData.icon className={`${iconData.color.split(' ')[1]} w-6 h-6`} />
                     </div>
