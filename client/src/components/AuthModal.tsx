@@ -174,7 +174,7 @@ export default function AuthModal({ open, onClose, onAuthSuccess }: AuthModalPro
   if (showRelationship) {
     return (
       <Dialog open={open} onOpenChange={onClose}>
-        <DialogContent className="sm:max-w-md">
+        <DialogContent className="sm:max-w-md max-h-[80vh]">
           <DialogHeader>
             <DialogTitle className="text-2xl font-bold text-center">
               Tell us about yourself
@@ -184,7 +184,7 @@ export default function AuthModal({ open, onClose, onAuthSuccess }: AuthModalPro
             </p>
           </DialogHeader>
           
-          <div className="space-y-6 mt-4">
+          <div className="space-y-6 mt-4 overflow-y-auto max-h-[50vh] pr-2">
             <div className="space-y-4">
               <Label className="text-base font-semibold">
                 Please select your relation to the patient
