@@ -492,9 +492,13 @@ export default function OnboardingQuestions({ open, onClose, relationship = "her
       return;
     }
 
+    console.log("Moving to next question. Current answers:", answers);
+    console.log("Current step:", currentStep, "Total questions:", questions.length);
+
     if (currentStep < questions.length) {
       setCurrentStep(currentStep + 1);
     } else {
+      console.log("Last question answered. Calling handleComplete...");
       handleComplete();
     }
   };
@@ -506,13 +510,14 @@ export default function OnboardingQuestions({ open, onClose, relationship = "her
   };
 
   const handleComplete = async () => {
-    // Validate all questions are answered
-    const allAnswered = Object.keys(answers).length === getQuestions().length;
+    // Validate required questions are answered (excluding optional ones)
+    const requiredQuestions = questions.filter(q => !q.optional);
+    const answeredRequired = requiredQuestions.every(q => answers[q.field]);
 
-    if (!allAnswered) {
+    if (!answeredRequired) {
       toast({
-        title: "Please answer all questions",
-        description: "Complete all questions before proceeding.",
+        title: "Please answer all required questions",
+        description: "Complete all required questions before proceeding.",
         variant: "destructive",
       });
       return;
@@ -539,7 +544,7 @@ export default function OnboardingQuestions({ open, onClose, relationship = "her
       timestamp: new Date().toISOString(),
     };
 
-    console.log("Sending onboarding data:", onboardingData);
+    console.log("Sending onboarding data to webhook:", onboardingData);
 
     try {
       // Send to webhook
@@ -551,29 +556,35 @@ export default function OnboardingQuestions({ open, onClose, relationship = "her
         body: JSON.stringify(onboardingData),
       });
 
+      console.log("Webhook response status:", response.status);
+
       if (!response.ok) {
-        throw new Error("Failed to submit onboarding data");
+        const errorText = await response.text();
+        console.error("Webhook error response:", errorText);
+        throw new Error(`Failed to submit onboarding data: ${response.status}`);
       }
 
       const data = await response.json();
-      console.log("Onboarding response:", data);
+      console.log("Onboarding response from webhook:", data);
 
       toast({
         title: "Welcome to Sakhi!",
         description: "Let's begin your journey together.",
       });
 
-      // Close onboarding modal and navigate to Sakhi page
+      // Close onboarding modal
       onClose();
 
       // Navigate to Sakhi page
-      window.location.href = "/sakhi";
+      setTimeout(() => {
+        window.location.href = "/sakhi";
+      }, 500);
 
     } catch (error) {
       console.error("Onboarding submission error:", error);
       toast({
         title: "Error",
-        description: "Failed to save your information. Please try again.",
+        description: error instanceof Error ? error.message : "Failed to save your information. Please try again.",
         variant: "destructive",
       });
     }
