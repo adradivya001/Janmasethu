@@ -265,21 +265,9 @@
 
   /* Desktop video container height override */
   @media (min-width: 1024px) {
-    .relative.w-full.lg\:h-\[calc\(70vh\)\] {
+    .relative.w-full.lg\:h-\[calc\(80vh\)\] {
       padding-bottom: 0 !important;
-      height: calc(70vh) !important;
-    }
-    
-    /* Remove side gaps for desktop video section */
-    section:first-of-type {
-      margin-left: calc(-1 * var(--spacing, 0));
-      margin-right: calc(-1 * var(--spacing, 0));
-      width: 100vw;
-      position: relative;
-      left: 50%;
-      right: 50%;
-      margin-left: -50vw;
-      margin-right: -50vw;
+      height: calc(80vh) !important;
     }
   }
 }
