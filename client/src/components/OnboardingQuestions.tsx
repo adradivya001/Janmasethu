@@ -553,7 +553,7 @@ export default function OnboardingQuestions({ open, onClose, relationship = "her
     };
 
     console.log("=== Preparing to send to webhook ===");
-    console.log("Webhook URL: https://n8n.ottobon.in/webhook/pp");
+    console.log("Webhook URL: https://n8n.ottobon.in/webhook/parentprofile");
     console.log("Payload:", JSON.stringify(onboardingData, null, 2));
 
     // Show loading toast
@@ -564,13 +564,13 @@ export default function OnboardingQuestions({ open, onClose, relationship = "her
 
     try {
       console.log("=== SENDING WEBHOOK REQUEST ===");
-      console.log("URL: https://n8n.ottobon.in/webhook/pp");
+      console.log("URL: https://n8n.ottobon.in/webhook/parentprofile");
       console.log("Method: POST");
       console.log("Payload:", JSON.stringify(onboardingData, null, 2));
       
       // First, test if webhook is reachable with OPTIONS (CORS preflight)
       console.log("Testing CORS preflight...");
-      const preflightResponse = await fetch("https://n8n.ottobon.in/webhook/pp", {
+      const preflightResponse = await fetch("https://n8n.ottobon.in/webhook/parentprofile", {
         method: "OPTIONS",
         headers: {
           "Access-Control-Request-Method": "POST",
@@ -588,7 +588,7 @@ export default function OnboardingQuestions({ open, onClose, relationship = "her
       
       // Now send the actual POST request
       console.log("\nSending actual POST request...");
-      const webhookResponse = await fetch("https://n8n.ottobon.in/webhook/pp", {
+      const webhookResponse = await fetch("https://n8n.ottobon.in/webhook/parentprofile", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
