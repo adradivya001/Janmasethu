@@ -583,21 +583,27 @@ export default function OnboardingQuestions({ open, onClose, relationship = "her
       // Continue with navigation even if webhook fails
     }
 
-    // Close modal
+    // Show welcome message
+    toast({
+      title: "Welcome to Sakhi!",
+      description: "Let's begin your journey together.",
+    });
+
+    // Close modal first
     console.log("Closing onboarding modal...");
     onClose();
 
-    // Navigate to /sakhi/try immediately after closing
+    // Navigate to /sakhi/try after a brief delay to ensure modal closes
     console.log("Navigating to /sakhi/try...");
-    setLocation("/sakhi/try");
-
-    // Show welcome message after navigation
     setTimeout(() => {
+      setLocation("/sakhi/try");
+      
+      // Show welcome toast after navigation
       toast({
         title: "Welcome to Sakhi!",
         description: "Let's begin your journey together.",
       });
-    }, 300);
+    }, 100);
   };
 
 
