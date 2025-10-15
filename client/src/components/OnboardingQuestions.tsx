@@ -510,9 +510,16 @@ export default function OnboardingQuestions({ open, onClose, relationship = "her
   };
 
   const handleComplete = async () => {
+    console.log("=== handleComplete called ===");
+    console.log("Total questions:", questions.length);
+    console.log("Current answers:", answers);
+    
     // Validate required questions are answered (excluding optional ones)
     const requiredQuestions = questions.filter(q => !q.optional);
     const answeredRequired = requiredQuestions.every(q => answers[q.field]);
+
+    console.log("Required questions:", requiredQuestions.map(q => q.field));
+    console.log("All required answered:", answeredRequired);
 
     if (!answeredRequired) {
       toast({
@@ -525,9 +532,10 @@ export default function OnboardingQuestions({ open, onClose, relationship = "her
 
     // Get userId from sessionStorage
     const userId = sessionStorage.getItem('janmasethu_user_id');
+    console.log("User ID from session:", userId);
 
     if (!userId) {
-      console.error("No user ID found");
+      console.error("No user ID found in sessionStorage");
       toast({
         title: "Error",
         description: "User ID not found. Please try signing up again.",
@@ -544,9 +552,13 @@ export default function OnboardingQuestions({ open, onClose, relationship = "her
       timestamp: new Date().toISOString(),
     };
 
-    console.log("Sending onboarding data to webhook:", onboardingData);
+    console.log("=== Preparing to send to webhook ===");
+    console.log("Webhook URL: https://n8n.ottobon.in/webhook/pp");
+    console.log("Payload:", JSON.stringify(onboardingData, null, 2));
 
     try {
+      console.log("Sending POST request to webhook...");
+      
       // Send to webhook
       const response = await fetch("https://n8n.ottobon.in/webhook/pp", {
         method: "POST",
@@ -556,16 +568,30 @@ export default function OnboardingQuestions({ open, onClose, relationship = "her
         body: JSON.stringify(onboardingData),
       });
 
-      console.log("Webhook response status:", response.status);
+      console.log("=== Webhook Response Received ===");
+      console.log("Status:", response.status);
+      console.log("Status Text:", response.statusText);
+      console.log("Headers:", Object.fromEntries(response.headers.entries()));
 
       if (!response.ok) {
         const errorText = await response.text();
-        console.error("Webhook error response:", errorText);
-        throw new Error(`Failed to submit onboarding data: ${response.status}`);
+        console.error("Webhook error response body:", errorText);
+        throw new Error(`Failed to submit onboarding data: ${response.status} - ${errorText}`);
       }
 
-      const data = await response.json();
-      console.log("Onboarding response from webhook:", data);
+      const contentType = response.headers.get("content-type");
+      let data;
+      
+      if (contentType && contentType.includes("application/json")) {
+        data = await response.json();
+        console.log("Webhook JSON response:", data);
+      } else {
+        const textResponse = await response.text();
+        console.log("Webhook text response:", textResponse);
+        data = { message: textResponse };
+      }
+
+      console.log("=== Webhook call successful ===");
 
       toast({
         title: "Welcome to Sakhi!",
@@ -576,12 +602,17 @@ export default function OnboardingQuestions({ open, onClose, relationship = "her
       onClose();
 
       // Navigate to Sakhi page
+      console.log("Navigating to /sakhi in 500ms...");
       setTimeout(() => {
         window.location.href = "/sakhi";
       }, 500);
 
     } catch (error) {
-      console.error("Onboarding submission error:", error);
+      console.error("=== Webhook Error ===");
+      console.error("Error type:", error instanceof Error ? error.constructor.name : typeof error);
+      console.error("Error message:", error instanceof Error ? error.message : error);
+      console.error("Full error:", error);
+      
       toast({
         title: "Error",
         description: error instanceof Error ? error.message : "Failed to save your information. Please try again.",
@@ -673,7 +704,11 @@ export default function OnboardingQuestions({ open, onClose, relationship = "her
             </Button>
             <Button
               type="button"
-              onClick={handleNext}
+              onClick={() => {
+                console.log("Button clicked! Current step:", currentStep, "Total questions:", questions.length);
+                console.log("Is last question:", currentStep === questions.length);
+                handleNext();
+              }}
               className="flex-1 gradient-button text-white"
             >
               {currentStep === questions.length ? "Enter Sakhi Now" : "Next"}
