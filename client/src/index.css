@@ -1115,13 +1115,21 @@ textarea:focus-visible {
   }
 
   [data-radix-select-content] {
-    @apply rounded-2xl;
+    @apply rounded-3xl;
     max-height: 70vh !important;
+    padding: 8px !important;
+    border-width: 2px !important;
   }
 
   [data-radix-select-item] {
-    @apply py-4 px-5 text-base rounded-xl;
+    @apply py-4 px-5 text-base rounded-2xl;
     min-height: 56px;
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+
+  [data-radix-select-item]:last-child {
+    margin-bottom: 0;
   }
 }
 
@@ -1132,10 +1140,17 @@ textarea:focus-visible {
 
   [data-radix-select-content] {
     @apply rounded-2xl;
+    padding: 6px !important;
+    border-width: 2px !important;
   }
 
   [data-radix-select-item] {
     @apply rounded-xl;
+    margin-bottom: 4px;
+  }
+
+  [data-radix-select-item]:last-child {
+    margin-bottom: 0;
   }
 }
 

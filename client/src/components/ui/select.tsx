@@ -76,8 +76,9 @@ const SelectContent = React.forwardRef<
     <SelectPrimitive.Content
       ref={ref}
       className={cn(
-        "relative z-50 max-h-[--radix-select-content-available-height] min-w-[8rem] overflow-y-auto overflow-x-hidden rounded-2xl border-2 border-gray-200 bg-white text-gray-900 shadow-2xl backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 origin-[--radix-select-content-transform-origin]",
-        "shadow-[0_20px_60px_rgba(139,92,246,0.15),0_8px_32px_rgba(0,0,0,0.1)]",
+        "relative z-50 max-h-[--radix-select-content-available-height] min-w-[8rem] overflow-y-auto overflow-x-hidden rounded-3xl border-2 border-purple-200 bg-white text-gray-900 shadow-2xl backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 origin-[--radix-select-content-transform-origin]",
+        "shadow-[0_20px_60px_rgba(139,92,246,0.2),0_10px_40px_rgba(0,0,0,0.12)]",
+        "bg-gradient-to-b from-white to-purple-50/30",
         position === "popper" &&
           "data-[side=bottom]:translate-y-2 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-2",
         className
@@ -120,15 +121,16 @@ const SelectItem = React.forwardRef<
   <SelectPrimitive.Item
     ref={ref}
     className={cn(
-      "relative flex w-full cursor-pointer select-none items-center rounded-xl py-3 pl-10 pr-4 text-sm font-medium text-gray-700 outline-none transition-all duration-200 hover:bg-gradient-to-r hover:from-purple-50 hover:to-blue-50 hover:text-purple-700 focus:bg-gradient-to-r focus:from-purple-50 focus:to-blue-50 focus:text-purple-700 data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-purple-100 data-[state=checked]:to-blue-100 data-[state=checked]:text-purple-700 data-[state=checked]:font-semibold data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+      "relative flex w-full cursor-pointer select-none items-center rounded-2xl py-3.5 pl-10 pr-4 text-sm font-medium text-gray-700 outline-none transition-all duration-200 hover:bg-gradient-to-r hover:from-purple-50 hover:to-blue-50 hover:text-purple-700 hover:shadow-sm focus:bg-gradient-to-r focus:from-purple-50 focus:to-blue-50 focus:text-purple-700 data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-purple-100 data-[state=checked]:to-blue-100 data-[state=checked]:text-purple-700 data-[state=checked]:font-semibold data-[state=checked]:shadow-md data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
       "min-h-[48px] mb-1 last:mb-0",
+      "border border-transparent data-[state=checked]:border-purple-200",
       className
     )}
     {...props}
   >
     <span className="absolute left-3 flex h-5 w-5 items-center justify-center">
       <SelectPrimitive.ItemIndicator>
-        <Check className="h-4 w-4 text-purple-600" />
+        <Check className="h-4 w-4 text-purple-600 font-bold" />
       </SelectPrimitive.ItemIndicator>
     </span>
 
