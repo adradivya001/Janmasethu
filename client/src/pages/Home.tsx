@@ -28,6 +28,12 @@ import {
   HeartHandshake,
   Snowflake,
 } from "lucide-react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "../components/ui/accordion";
 import { useLanguage } from "../i18n/LanguageProvider";
 import { Card, CardContent } from "../components/ui/card";
 import { Button } from "../components/ui/button";
@@ -1053,6 +1059,113 @@ const Home = () => {
               </Card>
             </Link>
           ))}
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-16">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold text-foreground font-serif mb-4" data-testid="text-faq-title">
+            Frequently Asked Questions
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Everything you need to know about JanmaSethu and how we support your journey
+          </p>
+        </div>
+
+        <div className="max-w-4xl mx-auto">
+          <Card className="rounded-3xl p-8 card-shadow bg-gradient-to-br from-white to-purple-50/30">
+            <CardContent className="p-0">
+              <Accordion type="single" collapsible className="w-full space-y-4">
+                <AccordionItem value="item-1" className="border-b border-purple-100">
+                  <AccordionTrigger className="text-left hover:text-purple-600 transition-colors">
+                    <span className="font-semibold text-foreground">What is JanmaSethu?</span>
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground">
+                    JanmaSethu is a digital guide that supports you through your journey to parenthood — from planning to pregnancy and beyond. 
+                    It brings together trusted medical information, local language support, and personal guidance through our companion, Sakhi.
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="item-2" className="border-b border-purple-100">
+                  <AccordionTrigger className="text-left hover:text-purple-600 transition-colors">
+                    <span className="font-semibold text-foreground">Is JanmaSethu a hospital or fertility clinic?</span>
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground">
+                    No. JanmaSethu is not a clinic — we don't provide medical treatment directly. 
+                    We help you understand your options, prepare for appointments, and connect you to verified clinics and experts when you're ready.
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="item-3" className="border-b border-purple-100">
+                  <AccordionTrigger className="text-left hover:text-purple-600 transition-colors">
+                    <span className="font-semibold text-foreground">Is JanmaSethu free to use?</span>
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground">
+                    Yes. Reading articles, using checklists, or chatting with Sakhi is completely free for everyone.
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="item-4" className="border-b border-purple-100">
+                  <AccordionTrigger className="text-left hover:text-purple-600 transition-colors">
+                    <span className="font-semibold text-foreground">What is Sakhi?</span>
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground">
+                    Sakhi is your AI-powered health companion inside JanmaSethu. 
+                    You can chat with her anytime for fertility or pregnancy guidance in your own language — she's friendly, quick, and always ready to help.
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="item-5" className="border-b border-purple-100">
+                  <AccordionTrigger className="text-left hover:text-purple-600 transition-colors">
+                    <span className="font-semibold text-foreground">How does JanmaSethu get its medical information?</span>
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground">
+                    All our content is written and reviewed by real doctors and nurses. 
+                    Each article clearly mentions the reviewer's name and date, so you know it's verified and updated.
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="item-6" className="border-b border-purple-100">
+                  <AccordionTrigger className="text-left hover:text-purple-600 transition-colors">
+                    <span className="font-semibold text-foreground">Will my personal details be safe?</span>
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground">
+                    Absolutely. We never share your personal data with anyone. Your chats and health questions stay private and secure.
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="item-7" className="border-b border-purple-100">
+                  <AccordionTrigger className="text-left hover:text-purple-600 transition-colors">
+                    <span className="font-semibold text-foreground">What languages can I use JanmaSethu in?</span>
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground">
+                    You can switch between English, Hindi, and Telugu anytime — and more Indian languages are coming soon.
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="item-8" className="border-b-0">
+                  <AccordionTrigger className="text-left hover:text-purple-600 transition-colors">
+                    <span className="font-semibold text-foreground">What makes JanmaSethu different from other health websites?</span>
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground">
+                    Most sites just give you articles. JanmaSethu actually guides you step-by-step — with localized content, verified doctors, reminders, 
+                    and a personal companion that understands your journey.
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </CardContent>
+          </Card>
+
+          <div className="text-center mt-8">
+            <p className="text-muted-foreground mb-4">Still have questions?</p>
+            <Link href="/sakhi">
+              <Button className="gradient-button text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-300">
+                Ask Sakhi Anything
+                <MessageCircle className="ml-2 w-4 h-4" />
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
       </div>
