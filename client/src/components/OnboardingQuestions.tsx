@@ -701,7 +701,7 @@ export default function OnboardingQuestions({ open, onClose, relationship = "her
               }}
               className="flex-1 gradient-button text-white"
             >
-              {currentStep === questions.length ? "Enter Sakhi Now" : "Next"}
+              {currentStep === questions.length ? "Submit" : "Next"}
             </Button>
           </div>
         </div>
