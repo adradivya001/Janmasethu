@@ -265,9 +265,9 @@
 
   /* Desktop video container height override */
   @media (min-width: 1024px) {
-    .relative.w-full.lg\:h-\[70vh\] {
+    .relative.w-full.lg\:h-\[calc\(70vh\)\] {
       padding-bottom: 0 !important;
-      height: 70vh !important;
+      height: calc(70vh) !important;
     }
   }
 }
