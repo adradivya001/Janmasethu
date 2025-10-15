@@ -262,6 +262,14 @@
   video {
     border-radius: 0 !important;
   }
+
+  /* Desktop video container height override */
+  @media (min-width: 1024px) {
+    .relative.w-full.lg\:h-\[70vh\] {
+      padding-bottom: 0 !important;
+      height: 70vh !important;
+    }
+  }
 }
 
 @layer components {
