@@ -22,9 +22,11 @@ export default function AuthModal({ open, onClose, onAuthSuccess }: AuthModalPro
     password: "",
   });
   const [relationship, setRelationship] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [userId, setUserId] = useState<string>("");
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (isSignUp) {
@@ -37,8 +39,46 @@ export default function AuthModal({ open, onClose, onAuthSuccess }: AuthModalPro
         return;
       }
       
-      // Show relationship selection for new users
-      setShowRelationship(true);
+      // Trigger webhook for sign-up
+      setIsLoading(true);
+      try {
+        const response = await fetch("https://n8n.ottobon.in/webhook/start", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            fullName: formData.fullName,
+            email: formData.email,
+            password: formData.password,
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to create account");
+        }
+
+        const data = await response.json();
+        
+        // Capture the unique ID from the response
+        if (data.id || data.userId || data.user_id) {
+          const uniqueId = data.id || data.userId || data.user_id;
+          setUserId(uniqueId);
+          console.log("User ID captured:", uniqueId);
+        }
+
+        // Show relationship selection for new users
+        setShowRelationship(true);
+      } catch (error) {
+        console.error("Sign-up error:", error);
+        toast({
+          title: "Error",
+          description: "Failed to create account. Please try again.",
+          variant: "destructive",
+        });
+      } finally {
+        setIsLoading(false);
+      }
     } else {
       if (!formData.email || !formData.password) {
         toast({
@@ -227,8 +267,12 @@ export default function AuthModal({ open, onClose, onAuthSuccess }: AuthModalPro
             />
           </div>
           
-          <Button type="submit" className="w-full gradient-button text-white">
-            {isSignUp ? "Create Account" : "Sign In"}
+          <Button 
+            type="submit" 
+            className="w-full gradient-button text-white"
+            disabled={isLoading}
+          >
+            {isLoading ? "Creating Account..." : (isSignUp ? "Create Account" : "Sign In")}
           </Button>
           
           <div className="text-center text-sm">
