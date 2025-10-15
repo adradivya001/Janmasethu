@@ -564,6 +564,7 @@ export default function OnboardingQuestions({ open, onClose, relationship = "her
 
     try {
       console.log("Sending POST request to webhook...");
+      console.log("Request payload:", JSON.stringify(onboardingData, null, 2));
       
       // Send to webhook
       const webhookResponse = await fetch("https://n8n.ottobon.in/webhook/pp", {
@@ -575,6 +576,8 @@ export default function OnboardingQuestions({ open, onClose, relationship = "her
       });
 
       console.log("Webhook response status:", webhookResponse.status);
+      const responseData = await webhookResponse.text();
+      console.log("Webhook response:", responseData);
       console.log("Webhook data sent successfully with userId:", userId);
 
     } catch (error) {
@@ -583,19 +586,14 @@ export default function OnboardingQuestions({ open, onClose, relationship = "her
       // Continue with navigation even if webhook fails
     }
 
-    // Show welcome message
-    toast({
-      title: "Welcome to Sakhi!",
-      description: "Let's begin your journey together.",
-    });
-
     // Close modal first
     console.log("Closing onboarding modal...");
     onClose();
 
-    // Navigate to /sakhi/try after a brief delay to ensure modal closes
-    console.log("Navigating to /sakhi/try...");
+    // Navigate to /sakhi/try with a small delay
+    console.log("Scheduling navigation to /sakhi/try...");
     setTimeout(() => {
+      console.log("Executing navigation to /sakhi/try");
       setLocation("/sakhi/try");
       
       // Show welcome toast after navigation
@@ -603,7 +601,7 @@ export default function OnboardingQuestions({ open, onClose, relationship = "her
         title: "Welcome to Sakhi!",
         description: "Let's begin your journey together.",
       });
-    }, 100);
+    }, 300);
   };
 
 
