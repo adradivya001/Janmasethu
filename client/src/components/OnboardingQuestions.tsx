@@ -575,7 +575,7 @@ export default function OnboardingQuestions({ open, onClose, relationship = "her
       });
 
       console.log("Webhook response status:", webhookResponse.status);
-      console.log("Webhook request sent successfully");
+      console.log("Webhook data sent successfully with userId:", userId);
 
     } catch (error) {
       console.error("=== Webhook Error ===");
@@ -583,22 +583,19 @@ export default function OnboardingQuestions({ open, onClose, relationship = "her
       // Continue with navigation even if webhook fails
     }
 
-    // Close modal first
+    // Show welcome message
+    toast({
+      title: "Welcome to Sakhi!",
+      description: "Let's begin your journey together.",
+    });
+
+    // Close modal
     console.log("Closing onboarding modal...");
     onClose();
 
-    // Navigate to /sakhi/try after a short delay to ensure modal closes
-    console.log("Preparing to navigate to /sakhi/try...");
-    setTimeout(() => {
-      console.log("Navigating to /sakhi/try now...");
-      setLocation("/sakhi/try");
-      
-      // Show welcome message after navigation
-      toast({
-        title: "Welcome to Sakhi!",
-        description: "Let's begin your journey together.",
-      });
-    }, 200);
+    // Navigate immediately using window.location for guaranteed navigation
+    console.log("Navigating to /sakhi/try...");
+    window.location.href = "/sakhi/try";
   };
 
 
