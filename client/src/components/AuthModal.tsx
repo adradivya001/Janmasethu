@@ -89,12 +89,43 @@ export default function AuthModal({ open, onClose, onAuthSuccess }: AuthModalPro
         return;
       }
       
-      toast({
-        title: "Welcome back!",
-        description: "Redirecting to Sakhi...",
-      });
-      
-      onAuthSuccess(false); // Existing user - skip onboarding
+      // Trigger webhook for sign-in
+      setIsLoading(true);
+      try {
+        const response = await fetch("https://n8n.ottobon.in/webhook/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: formData.email,
+            password: formData.password,
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to sign in");
+        }
+
+        const data = await response.json();
+        console.log("Login response:", data);
+
+        toast({
+          title: "Welcome back!",
+          description: "Redirecting to Sakhi...",
+        });
+        
+        onAuthSuccess(false); // Existing user - skip onboarding
+      } catch (error) {
+        console.error("Sign-in error:", error);
+        toast({
+          title: "Error",
+          description: "Failed to sign in. Please check your credentials.",
+          variant: "destructive",
+        });
+      } finally {
+        setIsLoading(false);
+      }
     }
   };
 
@@ -272,7 +303,10 @@ export default function AuthModal({ open, onClose, onAuthSuccess }: AuthModalPro
             className="w-full gradient-button text-white"
             disabled={isLoading}
           >
-            {isLoading ? "Creating Account..." : (isSignUp ? "Create Account" : "Sign In")}
+            {isLoading 
+              ? (isSignUp ? "Creating Account..." : "Signing In...") 
+              : (isSignUp ? "Create Account" : "Sign In")
+            }
           </Button>
           
           <div className="text-center text-sm">
