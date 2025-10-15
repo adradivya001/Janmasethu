@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -342,7 +342,7 @@
     transform: translateX(0);
   }
 
-  
+
 
   .skip-link {
     position: absolute;
@@ -625,7 +625,7 @@
     border-radius: 0.75rem !important;
     padding: 0.75rem 1rem !important;
   }
-  
+
   /* Fix focus ring to stay inside input boundaries */
   [role="dialog"] input:focus-visible,
   [role="dialog"] select:focus-visible,
@@ -847,7 +847,7 @@ textarea:focus-visible {
       max-width: 320px !important;
       padding: 0 0.5rem !important;
     }
-    
+
     .hero-cta-container .gradient-button,
     .hero-cta-container button {
       font-size: 0.9rem !important;
@@ -1101,7 +1101,7 @@ textarea:focus-visible {
   .export-buttons {
     @apply grid grid-cols-2 gap-2;
   }
-  
+
   .export-button {
     @apply text-xs px-3 py-2.5 rounded-xl;
   }
@@ -1185,4 +1185,31 @@ textarea:focus-visible {
 
 .priority-badge.low {
   @apply bg-green-100 text-green-700 border border-green-200;
+}
+
+/* FAQ Accordion Hover Effect */
+.faq-accordion-trigger {
+  transition: transform 0.3s ease-in-out, color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  background-color: transparent;
+  padding: 1rem; /* Consistent padding */
+  border-radius: 0.5rem; /* Slightly rounded corners */
+}
+
+.faq-accordion-trigger:hover {
+  background-color: rgba(139, 92, 246, 0.05); /* Subtle background highlight */
+  color: #8B5CF6; /* Purple text color on hover */
+  transform: translateY(-2px); /* Slight lift effect */
+  box-shadow: 0 4px 10px rgba(139, 92, 246, 0.1); /* Soft shadow */
+}
+
+.faq-accordion-trigger[data-state=open] {
+  background-color: rgba(139, 92, 246, 0.1); /* Slightly darker background when open */
+  color: #8B5CF6;
+  font-weight: 500; /* Ensure bold when open */
+}
+
+.faq-accordion-trigger[data-state=open]:hover {
+  background-color: rgba(139, 92, 246, 0.15); /* Darker on hover when open */
+  box-shadow: 0 6px 15px rgba(139, 92, 246, 0.15); /* Stronger shadow when open */
+  transform: translateY(-3px);
 }
