@@ -12,9 +12,10 @@ interface OnboardingQuestionsProps {
   open: boolean;
   onClose: () => void;
   relationship?: string;
+  userId?: string;
 }
 
-export default function OnboardingQuestions({ open, onClose, relationship = "herself" }: OnboardingQuestionsProps) {
+export default function OnboardingQuestions({ open, onClose, relationship = "herself", userId }: OnboardingQuestionsProps) {
   const [, setLocation] = useLocation();
   const { toast } = useToast();
   const [currentStep, setCurrentStep] = useState(1);
@@ -530,12 +531,11 @@ export default function OnboardingQuestions({ open, onClose, relationship = "her
       return;
     }
 
-    // Get userId from sessionStorage
-    const userId = sessionStorage.getItem('janmasethu_user_id');
-    console.log("User ID from session:", userId);
+    // Use userId from props
+    console.log("User ID from props:", userId);
 
     if (!userId) {
-      console.error("No user ID found in sessionStorage");
+      console.error("No user ID provided");
       toast({
         title: "Error",
         description: "User ID not found. Please try signing up again.",
