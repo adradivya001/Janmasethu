@@ -589,13 +589,21 @@ export default function OnboardingQuestions({ open, onClose, relationship = "her
       description: "Let's begin your journey together.",
     });
 
-    // Close modal
+    // Close modal first
     console.log("Closing onboarding modal...");
     onClose();
 
-    // Navigate immediately using window.location for guaranteed navigation
+    // Navigate to /sakhi/try after a brief delay to ensure modal closes
     console.log("Navigating to /sakhi/try...");
-    window.location.href = "/sakhi/try";
+    setTimeout(() => {
+      setLocation("/sakhi/try");
+      
+      // Show welcome toast after navigation
+      toast({
+        title: "Welcome to Sakhi!",
+        description: "Let's begin your journey together.",
+      });
+    }, 100);
   };
 
 
