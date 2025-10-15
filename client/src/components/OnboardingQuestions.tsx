@@ -558,12 +558,16 @@ export default function OnboardingQuestions({ open, onClose, relationship = "her
 
     try {
       console.log("Sending POST request to webhook...");
+      console.log("Webhook URL: https://n8n.ottobon.in/webhook/pp");
+      console.log("Request body:", JSON.stringify(onboardingData, null, 2));
       
       // Send to webhook
       const response = await fetch("https://n8n.ottobon.in/webhook/pp", {
         method: "POST",
+        mode: "cors",
         headers: {
           "Content-Type": "application/json",
+          "Accept": "application/json",
         },
         body: JSON.stringify(onboardingData),
       });
@@ -704,10 +708,22 @@ export default function OnboardingQuestions({ open, onClose, relationship = "her
             </Button>
             <Button
               type="button"
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log("=== BUTTON CLICKED ===");
                 console.log("Button clicked! Current step:", currentStep, "Total questions:", questions.length);
                 console.log("Is last question:", currentStep === questions.length);
-                handleNext();
+                console.log("Current answers:", answers);
+                console.log("Current question:", currentQuestion);
+                
+                if (currentStep === questions.length) {
+                  console.log("This is the last question - calling handleComplete directly");
+                  handleComplete();
+                } else {
+                  console.log("Not last question - calling handleNext");
+                  handleNext();
+                }
               }}
               className="flex-1 gradient-button text-white"
             >
