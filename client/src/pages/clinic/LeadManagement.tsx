@@ -140,7 +140,7 @@ export default function LeadManagement() {
                       value={newLead.name}
                       onChange={(e) => handleInputChange("name", e.target.value)}
                       placeholder="Enter full name"
-                      className="mt-1"
+                      className="mt-1 px-4 py-3"
                     />
                   </div>
                   
@@ -152,7 +152,7 @@ export default function LeadManagement() {
                       value={newLead.email}
                       onChange={(e) => handleInputChange("email", e.target.value)}
                       placeholder="Enter email address"
-                      className="mt-1"
+                      className="mt-1 px-4 py-3"
                     />
                   </div>
                   
@@ -163,7 +163,7 @@ export default function LeadManagement() {
                       value={newLead.phone}
                       onChange={(e) => handleInputChange("phone", e.target.value)}
                       placeholder="+91 98765 43210"
-                      className="mt-1"
+                      className="mt-1 px-4 py-3"
                     />
                   </div>
                   
@@ -176,7 +176,7 @@ export default function LeadManagement() {
                         value={newLead.age}
                         onChange={(e) => handleInputChange("age", e.target.value)}
                         placeholder="30"
-                        className="mt-1"
+                        className="mt-1 px-4 py-3"
                       />
                     </div>
                     <div>
@@ -186,7 +186,7 @@ export default function LeadManagement() {
                         value={newLead.location}
                         onChange={(e) => handleInputChange("location", e.target.value)}
                         placeholder="City"
-                        className="mt-1"
+                        className="mt-1 px-4 py-3"
                       />
                     </div>
                   </div>
