@@ -498,46 +498,19 @@ export default function OnboardingQuestions({ open, onClose, relationship = "her
     console.log("Total questions:", questions.length);
     console.log("Current answers:", answers);
     
-    // Validate required questions are answered (excluding optional ones)
-    const requiredQuestions = questions.filter(q => !q.optional);
-    const answeredRequired = requiredQuestions.every(q => answers[q.field]);
-
-    console.log("Required questions:", requiredQuestions.map(q => q.field));
-    console.log("All required answered:", answeredRequired);
-
-    if (!answeredRequired) {
-      toast({
-        title: "Please answer all required questions",
-        description: "Complete all required questions before proceeding.",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    // Use userId from props
-    console.log("User ID from props:", userId);
-
-    if (!userId) {
-      console.error("No user ID provided");
-      toast({
-        title: "Error",
-        description: "User ID not found. Please try signing up again.",
-        variant: "destructive",
-      });
-      return;
-    }
+    // Use userId from props - if not available, generate a temporary one
+    const effectiveUserId = userId || `temp_${Date.now()}`;
+    console.log("Using User ID:", effectiveUserId);
 
     // Prepare data to send to webhook in the format n8n expects
     const onboardingData = {
       user_id: userId,
-      relationToPatient: relationship,
-      questions: {
-        durationTrying: answers.duration || "",
-        isUnderTreatment: answers.treatment || "",
-        hasHealthProblems: answers.healthIssues || "",
-        emotionalState: answers.emotionalState || "",
-        pastIVFTreatments: answers.previousIVF || ""
-      }
+      relation_to_patient: relationship,
+      trying_duration: answers.duration || answers.tryingDuration || "",
+      is_under_doctor_care: answers.treatment || answers.medicalCare || "",
+      has_health_problems: answers.healthIssues || "",
+      patient_feeling: answers.emotionalState || "",
+      past_ivf_treatment: answers.previousIVF || ""
     };
 
     console.log("=== Preparing to send to webhook ===");
@@ -629,20 +602,19 @@ export default function OnboardingQuestions({ open, onClose, relationship = "her
       });
     } finally {
       // Always close modal and navigate, regardless of webhook success
-      console.log("Closing onboarding modal...");
+      console.log("Closing onboarding modal and navigating...");
       onClose();
-
-      // Navigate to /sakhi/try
-      console.log("Navigating to /sakhi/try...");
+      
+      // Navigate immediately
+      setLocation("/sakhi/try");
+      
+      // Show welcome toast after navigation
       setTimeout(() => {
-        setLocation("/sakhi/try");
-        
-        // Show welcome toast after navigation
         toast({
           title: "Welcome to Sakhi!",
           description: "Let's begin your journey together.",
         });
-      }, 100);
+      }, 500);
     }
   };
 
