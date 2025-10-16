@@ -365,7 +365,7 @@ const SakhiTry = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50">
       {/* Full Width Header */}
-      <div className="fixed top-0 left-0 right-0 bg-gradient-to-r from-purple-600 to-pink-600 text-white p-4 flex items-center justify-between z-40 shadow-lg">
+      <div className="fixed top-0 left-0 right-0 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 py-3 flex items-center justify-between z-40 shadow-lg h-16">
         <div className="flex items-center space-x-3">
           <Heart className="w-6 h-6" />
           <h3 className="font-bold text-lg">Sakhi</h3>
@@ -375,16 +375,19 @@ const SakhiTry = () => {
           <Button
             variant="ghost"
             size="sm"
-            onClick={() => setIsChatOpen(false)}
-            className="text-white hover:bg-white/20 md:hidden"
+            onClick={() => {
+              // Clear any stored data and redirect to home
+              setLocation("/");
+            }}
+            className="text-white hover:bg-white/20 flex items-center space-x-2 px-3 py-2"
           >
-            <X className="w-5 h-5" />
+            <span className="text-sm font-medium">Logout</span>
           </Button>
         </div>
       </div>
 
       {/* Chat Panel */}
-      <div className={`fixed top-16 left-0 h-[calc(100vh-4rem)] bg-white shadow-2xl transition-all duration-300 ease-in-out z-50 ${
+      <div className={`fixed top-16 left-0 h-[calc(100vh-4rem)] bg-white shadow-2xl transition-all duration-300 ease-in-out z-30 ${
         isChatOpen ? 'w-full md:w-96' : 'w-0'
       } overflow-hidden`}>
 
