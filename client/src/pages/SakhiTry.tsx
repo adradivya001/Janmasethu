@@ -4,7 +4,6 @@ import { Send, MessageCircle, Heart, Shield, Clock, Users, Play, Volume2, Volume
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from '@/components/ui/resizable';
 import { Badge } from '@/components/ui/badge';
 import { useLanguage } from '../i18n/LanguageProvider';
 import { detectScript } from '@/utils/language';
@@ -603,8 +602,16 @@ const SakhiTry = () => {
 };
 
 // Preview Panel Component
-const PreviewPanel = ({ previewContent, isVideoPlaying, setIsVideoPlaying, isMuted, setIsMuted }: any) => {
-  const { t } = useLanguage();
+interface PreviewPanelProps {
+  previewContent: PreviewContent | null;
+  isVideoPlaying: boolean;
+  setIsVideoPlaying: (value: boolean) => void;
+  isMuted: boolean;
+  setIsMuted: (value: boolean) => void;
+}
+
+const PreviewPanel = ({ previewContent, isVideoPlaying, setIsVideoPlaying, isMuted, setIsMuted }: PreviewPanelProps) => {
+  const { t, lang } = useLanguage();
   
   if (!previewContent) {
     return (
