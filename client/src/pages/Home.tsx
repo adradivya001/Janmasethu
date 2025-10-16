@@ -230,7 +230,7 @@ const Home = () => {
 
           {/* CTA Buttons - Mobile Responsive */}
           <div className="flex flex-col gap-4 items-center max-w-md mx-auto px-4 sm:max-w-none sm:flex-row sm:justify-center sm:gap-6">
-            <Link href="/sakhi/try" className="w-full sm:w-auto">
+            <Link href="/sakhi" className="w-full sm:w-auto">
               <Button
                 className="gradient-button text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full font-semibold text-base sm:text-lg hover:shadow-lg transition-all duration-300 group overflow-hidden relative w-full sm:w-auto min-w-0 sm:min-w-[200px]"
                 data-testid="button-cta-primary"
