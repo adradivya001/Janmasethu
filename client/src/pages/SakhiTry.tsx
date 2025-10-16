@@ -91,16 +91,16 @@ const SakhiTry = () => {
   const [isMuted, setIsMuted] = useState(true);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  // Regenerate preview content AND update all messages when language changes
+  // Regenerate preview content when language changes
   useEffect(() => {
-    if (lastUserMessage && previewContent) {
+    if (lastUserMessage) {
       const newContent = generatePreviewContent(lastUserMessage, lang);
       setPreviewContent(newContent);
       
       // Update all bot messages with new language content
       setMessages(prevMessages => 
         prevMessages.map(msg => {
-          if (!msg.isUser) {
+          if (!msg.isUser && msg.previewContent) {
             const responses = {
               en: "I understand your feelings, and they're completely valid. Let me share some strategies that might help you through this.",
               hi: "मैं आपकी भावनाओं को समझती हूं, और वे पूर्णतः वैध हैं। मैं कुछ रणनीतियां साझा करती हूं जो इस दौरान आपकी मदद कर सकती हैं।",
@@ -117,7 +117,7 @@ const SakhiTry = () => {
         })
       );
     }
-  }, [lang, lastUserMessage, previewContent]);
+  }, [lang, lastUserMessage]); // Removed previewContent from dependencies
 
   // Component is now ready to use any language from context
 
@@ -378,14 +378,29 @@ const SakhiTry = () => {
 
       const data = await response.json();
       
-      // Format backend response - handle both string and JSON object responses
+      console.log('Webhook response:', data);
+      
+      // Format backend response - handle n8n AI Agent response structure
       let botResponseText = "";
       
       if (typeof data === 'string') {
         botResponseText = data;
+      } else if (Array.isArray(data)) {
+        // n8n returns array of items - get the first item's output
+        const firstItem = data[0];
+        if (firstItem?.output) {
+          botResponseText = String(firstItem.output);
+        } else if (firstItem?.text) {
+          botResponseText = String(firstItem.text);
+        } else {
+          botResponseText = JSON.stringify(firstItem);
+        }
       } else if (data.output) {
         // Handle n8n webhook response with 'output' field
         botResponseText = String(data.output);
+      } else if (data.text) {
+        // Handle AI Agent response with 'text' field
+        botResponseText = String(data.text);
       } else if (data.response) {
         // If response is a JSON object with structured data
         if (typeof data.response === 'object') {
@@ -410,8 +425,9 @@ const SakhiTry = () => {
       } else if (data.message) {
         botResponseText = String(data.message);
       } else {
-        // Fallback
-        botResponseText = "I understand your feelings, and they're completely valid. Let me share some strategies that might help you through this.";
+        // Fallback - try to extract any text from the response
+        console.warn('Unexpected response format:', data);
+        botResponseText = JSON.stringify(data);
       }
 
       const botMessage: Message = {
