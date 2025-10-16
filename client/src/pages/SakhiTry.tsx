@@ -28,15 +28,13 @@ interface PreviewContent {
   keyPoints: string[];
 }
 
-// Dummy LanguageSwitcher component for demonstration
+// Language Switcher component
 const LanguageSwitcher = () => {
-  const { t, setLang } = useLanguage();
+  const { lang, setLang } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedLang, setSelectedLang] = useState('en'); // Default to English
 
-  const handleLanguageChange = (lang: string) => {
-    setSelectedLang(lang);
-    setLang(lang as 'en' | 'hi' | 'te');
+  const handleLanguageChange = (newLang: 'en' | 'hi' | 'te') => {
+    setLang(newLang);
     setIsOpen(false);
   };
 
@@ -49,7 +47,7 @@ const LanguageSwitcher = () => {
         className="text-white hover:bg-white/20 flex items-center space-x-1"
       >
         <Globe className="w-4 h-4" />
-        <span>{selectedLang.toUpperCase()}</span>
+        <span>{lang.toUpperCase()}</span>
       </Button>
       {isOpen && (
         <div className="absolute right-0 mt-2 w-24 bg-white rounded-md shadow-lg py-1 z-50">
@@ -63,13 +61,13 @@ const LanguageSwitcher = () => {
             onClick={() => handleLanguageChange('hi')}
             className="block w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100"
           >
-            Hindi
+            हिंदी
           </button>
           <button
             onClick={() => handleLanguageChange('te')}
             className="block w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100"
           >
-            Telugu
+            తెలుగు
           </button>
         </div>
       )}
@@ -88,16 +86,12 @@ const SakhiTry = () => {
   }, []);
 
   const [inputText, setInputText] = useState('');
-  const [selectedLanguage, setSelectedLanguage] = useState('en'); // Default to English
   const [previewContent, setPreviewContent] = useState<PreviewContent | null>(null);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  // Set initial language to English
-  useEffect(() => {
-    setLang('en');
-  }, [setLang]);
+  // Component is now ready to use any language from context
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -360,7 +354,7 @@ const SakhiTry = () => {
     { en: "How can I support my partner through this?", hi: "इसमें अपने साथी का समर्थन कैसे करूं?", te: "దీనిలో నా భాగస్వామికి ఎలా మద్దతు ఇవ్వాలి?" }
   ];
 
-  const currentPrompts = quickPrompts.map(p => p[selectedLanguage as keyof typeof p]);
+  const currentPrompts = quickPrompts.map(p => p[lang as keyof typeof p]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50">
@@ -376,8 +370,8 @@ const SakhiTry = () => {
             variant="ghost"
             size="sm"
             onClick={() => {
-              // Clear any stored data and redirect to home
-              setLocation("/");
+              // Clear any stored data and redirect to Sakhi page
+              window.location.href = "/sakhi";
             }}
             className="text-white hover:bg-white/20 flex items-center space-x-2 px-3 py-2"
           >
@@ -552,7 +546,6 @@ const SakhiTry = () => {
             setIsVideoPlaying={setIsVideoPlaying}
             isMuted={isMuted}
             setIsMuted={setIsMuted}
-            selectedLanguage={selectedLanguage}
           />
         </div>
       </div>
@@ -571,7 +564,7 @@ const SakhiTry = () => {
 };
 
 // Preview Panel Component
-const PreviewPanel = ({ previewContent, isVideoPlaying, setIsVideoPlaying, isMuted, setIsMuted, selectedLanguage }: any) => {
+const PreviewPanel = ({ previewContent, isVideoPlaying, setIsVideoPlaying, isMuted, setIsMuted }: any) => {
   if (!previewContent) {
     return (
       <div className="h-full bg-gray-50 flex items-center justify-center p-8">
