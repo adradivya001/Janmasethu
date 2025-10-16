@@ -50,22 +50,22 @@ const LanguageSwitcher = () => {
         <span>{lang.toUpperCase()}</span>
       </Button>
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-24 bg-white rounded-md shadow-lg py-1 z-50">
+        <div className="absolute right-0 mt-2 w-24 bg-white rounded-md shadow-lg py-1 z-50 overflow-hidden">
           <button
             onClick={() => handleLanguageChange('en')}
-            className="block w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100"
+            className="block w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-purple-50 transition-colors"
           >
             English
           </button>
           <button
             onClick={() => handleLanguageChange('hi')}
-            className="block w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100"
+            className="block w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-purple-50 transition-colors"
           >
             हिंदी
           </button>
           <button
             onClick={() => handleLanguageChange('te')}
-            className="block w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100"
+            className="block w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-purple-50 transition-colors"
           >
             తెలుగు
           </button>
