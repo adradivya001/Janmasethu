@@ -30,13 +30,13 @@ interface PreviewContent {
 
 // Dummy LanguageSwitcher component for demonstration
 const LanguageSwitcher = () => {
-  const { t, setLanguage } = useLanguage();
+  const { t, setLang } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedLang, setSelectedLang] = useState('en'); // Default to English
 
   const handleLanguageChange = (lang: string) => {
     setSelectedLang(lang);
-    setLanguage(lang);
+    setLang(lang as 'en' | 'hi' | 'te');
     setIsOpen(false);
   };
 
@@ -78,7 +78,7 @@ const LanguageSwitcher = () => {
 };
 
 const SakhiTry = () => {
-  const { t, setLanguage } = useLanguage();
+  const { t, setLang } = useLanguage();
   const [messages, setMessages] = useState<Message[]>([]);
   const [isChatOpen, setIsChatOpen] = useState(true); // State to control chat panel visibility
 
@@ -96,8 +96,8 @@ const SakhiTry = () => {
 
   // Set initial language to English
   useEffect(() => {
-    setLanguage('en');
-  }, [setLanguage]);
+    setLang('en');
+  }, [setLang]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
