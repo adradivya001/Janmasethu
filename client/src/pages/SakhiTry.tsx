@@ -368,100 +368,18 @@ const SakhiTry = () => {
     // Clear input immediately
     setInputText('');
 
-    try {
-      // Call backend webhook
-      const response = await fetch('https://n8n.ottobon.in/webhook/janma', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          message: newMessage.text,
-          language: detectedLanguage
-        })
-      });
+    // Use static responses based on language
+    const responses = {
+      en: "I understand your feelings, and they're completely valid. Let me share some strategies that might help you through this.",
+      hi: "मैं आपकी भावनाओं को समझती हूं, और वे पूर्णतः वैध हैं। मैं कुछ रणनीतियां साझा करती हूं जो इस दौरान आपकी मदद कर सकती हैं।",
+      te: "నేను మీ భావనలను అర్థం చేసుకుంటున్నాను, మరియు అవి పూర్ణంగా చెల్లుబాటు అయ్యేవి. ఈ సమయంలో మీకు సహాయపడే కొన్ని వ్యూహాలను పంచుకుంటాను."
+    };
 
-      if (!response.ok) {
-        throw new Error('Failed to get response from backend');
-      }
-
-      const data = await response.json();
-      
-      console.log('Webhook response:', data);
-      
-      // Format backend response - handle n8n AI Agent response structure
-      let botResponseText = "";
-      
-      if (typeof data === 'string') {
-        botResponseText = data;
-      } else if (Array.isArray(data)) {
-        // n8n returns array of items - get the first item's output
-        const firstItem = data[0];
-        if (firstItem?.output) {
-          botResponseText = String(firstItem.output);
-        } else if (firstItem?.text) {
-          botResponseText = String(firstItem.text);
-        } else {
-          botResponseText = JSON.stringify(firstItem);
-        }
-      } else if (data.output) {
-        // Handle n8n webhook response with 'output' field
-        botResponseText = String(data.output);
-      } else if (data.text) {
-        // Handle AI Agent response with 'text' field
-        botResponseText = String(data.text);
-      } else if (data.response) {
-        // If response is a JSON object with structured data
-        if (typeof data.response === 'object') {
-          // Format as a natural Sakhi response
-          const parts = [];
-          
-          if (data.response.greeting) parts.push(data.response.greeting);
-          if (data.response.message) parts.push(data.response.message);
-          if (data.response.advice) parts.push(`\n\n${data.response.advice}`);
-          if (data.response.tips && Array.isArray(data.response.tips)) {
-            parts.push(`\n\n💡 Here are some helpful tips:\n${data.response.tips.map((tip: string, i: number) => `${i + 1}. ${tip}`).join('\n')}`);
-          }
-          if (data.response.resources && Array.isArray(data.response.resources)) {
-            parts.push(`\n\n📚 You might find these resources helpful:\n${data.response.resources.map((res: any) => `• ${res.title || res}`).join('\n')}`);
-          }
-          if (data.response.warning) parts.push(`\n\n⚠️ ${data.response.warning}`);
-          
-          botResponseText = parts.join(' ');
-        } else {
-          botResponseText = String(data.response);
-        }
-      } else if (data.message) {
-        botResponseText = String(data.message);
-      } else {
-        // Fallback - try to extract any text from the response
-        console.warn('Unexpected response format:', data);
-        botResponseText = JSON.stringify(data);
-      }
-
+    // Simulate a slight delay for a more natural feel
+    setTimeout(() => {
       const botMessage: Message = {
         id: (Date.now() + 1).toString(),
-        text: botResponseText,
-        isUser: false,
-        timestamp: new Date(),
-        language: detectedLanguage,
-        previewContent: preview // Add preview content to bot message
-      };
-
-      setMessages(prev => [...prev, botMessage]);
-    } catch (error) {
-      console.error('Error calling webhook:', error);
-      
-      // Fallback response on error
-      const responses = {
-        en: "I understand your feelings, and they're completely valid. Let me share some strategies that might help you through this.",
-        hi: "मैं आपकी भावनाओं को समझती हूं, और वे पूर्णतः वैध हैं। मैं कुछ रणनीतियां साझा करती हूं जो इस दौरान आपकी मदद कर सकती हैं।",
-        te: "నేను మీ భావనలను అర్థం చేసుకుంటున్నాను, మరియు అవి పూర్ణంగా చెల్లుబాటు అయ్యేవి. ఈ సమయంలో మీకు సహాయపడే కొన్ని వ్యూహాలను పంచుకుంటాను."
-      };
-
-      const botMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        text: responses[detectedLanguage as keyof typeof responses] || responses.en,
+        text: responses[lang as keyof typeof responses] || responses.en,
         isUser: false,
         timestamp: new Date(),
         language: detectedLanguage,
@@ -469,7 +387,7 @@ const SakhiTry = () => {
       };
 
       setMessages(prev => [...prev, botMessage]);
-    }
+    }, 500);
   };
 
   const quickPrompts = [
