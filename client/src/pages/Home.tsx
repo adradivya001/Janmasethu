@@ -93,30 +93,29 @@ const Home = () => {
 
   return (
     <>
-      {/* Responsive Video Section */}
-      <section className="w-full py-4 px-2 sm:px-4 lg:py-8 lg:px-8">
-        <div className="relative w-full mx-auto overflow-hidden rounded-2xl md:rounded-3xl">
-          <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
-            <video
-              className="absolute top-0 left-0 w-full h-full object-contain md:object-cover"
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="auto"
-              poster="/babyFeet.jpg"
-              webkit-playsinline="true"
-              x5-playsinline="true"
-              onLoadStart={() => console.log("Video loading started...")}
-              onLoadedData={() => console.log("Video data loaded")}
-              onCanPlay={() => console.log("Video can play")}
-              onPlay={() => console.log("Video started playing")}
-            >
-              <source src="/Janmasethu1.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          </div>
-        </div>
+      {/* Full-Screen Hero Video Section */}
+      <section className="relative w-full h-screen overflow-hidden">
+        <video
+          className="absolute top-0 left-0 w-full h-full object-cover"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          poster="/babyFeet.jpg"
+          webkit-playsinline="true"
+          x5-playsinline="true"
+          onLoadStart={() => console.log("Video loading started...")}
+          onLoadedData={() => console.log("Video data loaded")}
+          onCanPlay={() => console.log("Video can play")}
+          onPlay={() => console.log("Video started playing")}
+        >
+          <source src="/Janmasethu1.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        
+        {/* Optional overlay gradient for better text readability if needed */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/30 pointer-events-none"></div>
       </section>
 
       <div className="container mx-auto px-4 py-8">
