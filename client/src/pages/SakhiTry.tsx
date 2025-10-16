@@ -87,9 +87,18 @@ const SakhiTry = () => {
 
   const [inputText, setInputText] = useState('');
   const [previewContent, setPreviewContent] = useState<PreviewContent | null>(null);
+  const [lastUserMessage, setLastUserMessage] = useState<string>(''); // Store last user message for regenerating content
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  // Regenerate preview content when language changes
+  useEffect(() => {
+    if (lastUserMessage && previewContent) {
+      const newContent = generatePreviewContent(lastUserMessage, lang);
+      setPreviewContent(newContent);
+    }
+  }, [lang]);
 
   // Component is now ready to use any language from context
 
@@ -321,8 +330,11 @@ const SakhiTry = () => {
 
     setMessages(prev => [...prev, newMessage]);
 
-    // Generate preview content based on the message
-    const preview = generatePreviewContent(inputText, detectedLanguage);
+    // Store the last user message for regenerating content when language changes
+    setLastUserMessage(inputText.trim());
+
+    // Generate preview content based on the current UI language
+    const preview = generatePreviewContent(inputText, lang);
     setPreviewContent(preview);
 
     // Simulate Sakhi's response
