@@ -129,13 +129,19 @@ export default function AuthModal({ open, onClose, onAuthSuccess }: AuthModalPro
         const data = await response.json();
         console.log("Login response:", data);
         
-        // Close modal first, then trigger redirect
-        onAuthSuccess(false); // Existing user - skip onboarding
-        
-        toast({
-          title: "Welcome back!",
-          description: "Redirecting to Sakhi...",
-        });
+        // If response contains user ID (or is true), redirect to Sakhi
+        if (data === true || data.id || data.userId || data.user_id) {
+          toast({
+            title: "Welcome back!",
+            description: "Redirecting to Sakhi...",
+          });
+          
+          // Close modal and redirect to Sakhi page
+          onClose();
+          window.location.href = '/sakhi';
+        } else {
+          onAuthSuccess(false); // Fallback to existing flow
+        }
       } catch (error) {
         console.error("Sign-in error:", error);
         toast({
