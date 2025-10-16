@@ -64,12 +64,6 @@ const SuccessStories = () => {
                   </div>
                 </div>
 
-                <img
-                  src={getStoryImage(index)}
-                  alt={story.title[lang]}
-                  className="rounded-xl w-full h-32 object-cover mb-4 group-hover:shadow-lg transition-shadow"
-                />
-
                 <div className="flex flex-wrap gap-2 mb-3">
                   <Badge
                     variant="secondary"

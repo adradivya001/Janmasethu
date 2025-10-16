@@ -98,15 +98,6 @@ const Story = () => {
         </CardContent>
       </Card>
 
-      {/* Hero Image */}
-      <div className="mb-8">
-        <img
-          src={getStoryImage()}
-          alt={story.title[lang]}
-          className="w-full h-64 md:h-80 object-cover rounded-3xl"
-        />
-      </div>
-
       {/* Story Content */}
       <div className="grid lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2">
