@@ -135,6 +135,7 @@ const SakhiTry = () => {
         en: {
           title: "Managing Pre-Scan Anxiety",
           description: "Feeling anxious before medical appointments is completely normal during fertility journeys. Here are evidence-based techniques to help you cope.",
+          videoUrl: "https://www.youtube.com/embed/jq_MxKVlDCU?si=D-TE7Ewsb1CCUJfS&start=10",
           tips: [
             "Practice 4-4-6 breathing: Inhale for 4 counts, hold for 4, exhale for 6",
             "Use progressive muscle relaxation starting from your toes",
@@ -155,6 +156,7 @@ const SakhiTry = () => {
         hi: {
           title: "स्कैन से पहले की चिंता का प्रबंधन",
           description: "चिकित्सा जांच से पहले चिंता महसूस करना प्रजनन यात्रा में बिल्कुल सामान्य है। यहाँ कुछ वैज्ञानिक तकनीकें हैं।",
+          videoUrl: "https://www.youtube.com/embed/jq_MxKVlDCU?si=D-TE7Ewsb1CCUJfS&start=10",
           tips: [
             "4-4-6 सांस: 4 गिनती में सांस लें, 4 तक रोकें, 6 में छोड़ें",
             "पैर की अंगुलियों से शुरू करके प्रगतिशील मांसपेशी शिथिलता करें",
@@ -175,6 +177,7 @@ const SakhiTry = () => {
         te: {
           title: "స్కాన్ ముందు ఆత్రుత నిర్వహణ",
           description: "వైద్య పరీక్షల ముందు ఆందోళన అనుభవించడం ప్రసవ ప్రయాణంలో పూర్ణంగా సాధారణం. ఇక్కడ కొన్ని శాస్త్రీయ పద్ధతులు ఉన్నాయి.",
+          videoUrl: "https://www.youtube.com/embed/jq_MxKVlDCU?si=D-TE7Ewsb1CCUJfS&start=10",
           tips: [
             "4-4-6 శ్వాస: 4 లెక్కలలో లోపల, 4 ఆపి, 6లో బయటకు",
             "కాలివేళ్ళ నుండి ప్రారంభించి క్రమంగా కండరాల సడలింపు చేయండి",
@@ -197,6 +200,7 @@ const SakhiTry = () => {
         en: {
           title: "Navigating the Two-Week Wait",
           description: "The two-week wait can be emotionally challenging. Here's how to manage this difficult period with self-compassion.",
+          videoUrl: "https://www.youtube.com/embed/g9WZwXSRcRU?si=ntMXZN6F7KO0i9M9&start=14",
           tips: [
             "Create daily routines to maintain structure",
             "Practice gentle activities like walking or reading",
@@ -217,6 +221,7 @@ const SakhiTry = () => {
         hi: {
           title: "दो सप्ताह की प्रतीक्षा का सामना",
           description: "दो सप्ताह की प्रतीक्षा भावनात्मक रूप से चुनौतीपूर्ण हो सकती है। इस कठिन अवधि को आत्म-करुणा के साथ कैसे संभालें।",
+          videoUrl: "https://www.youtube.com/embed/g9WZwXSRcRU?si=ntMXZN6F7KO0i9M9&start=14",
           tips: [
             "संरचना बनाए रखने के लिए दैनिक दिनचर्या बनाएं",
             "चलना या पढ़ना जैसी सौम्य गतिविधियां करें",
@@ -237,6 +242,7 @@ const SakhiTry = () => {
         te: {
           title: "రెండు వారాల వేచిచూపును ఎదుర్కోవడం",
           description: "రెండు వారాల వేచిచూపు భావోద్వేగంగా సవాలుగా ఉంటుంది. ఈ కష్టమైన కాలాన్ని స్వీయ-కరుణతో ఎలా నిర్వహించాలి.",
+          videoUrl: "https://www.youtube.com/embed/g9WZwXSRcRU?si=ntMXZN6F7KO0i9M9&start=14",
           tips: [
             "నిర్మాణాన్ని కొనసాగించడానికి రోజువారీ దినచర్యలను సృష్టించండి",
             "నడక లేదా చదవడం వంటి సౌమ్య కార్యకలాపాలు చేయండి",
@@ -259,6 +265,7 @@ const SakhiTry = () => {
         en: {
           title: "Supporting Your Partner Through Diagnosis",
           description: "Partners often feel helpless when facing fertility challenges. Here's how to provide meaningful support while caring for yourself.",
+          videoUrl: "https://www.youtube.com/embed/BseFS_zSXLw?si=ZgfqXLf2rZxyLzfB",
           tips: [
             "Listen without trying to immediately solve problems",
             "Ask 'How can I support you today?' regularly",
@@ -279,6 +286,7 @@ const SakhiTry = () => {
         hi: {
           title: "निदान के दौरान अपने साथी का समर्थन",
           description: "प्रजनन चुनौतियों का सामना करते समय साथी अक्सर असहाय महसूस करते हैं। अपनी देखभाल करते हुए अर्थपूर्ण सहारा कैसे दें।",
+          videoUrl: "https://www.youtube.com/embed/BseFS_zSXLw?si=ZgfqXLf2rZxyLzfB",
           tips: [
             "तुरंत समस्या सुलझाने की कोशिश किए बिना सुनें",
             "नियमित रूप से पूछें 'आज मैं आपका कैसे साथ दे सकता हूं?'",
@@ -299,6 +307,7 @@ const SakhiTry = () => {
         te: {
           title: "రోగ నిర్ధారణ సమయంలో మీ భాగస్వామికి మద్దతు",
           description: "ప్రసవ సవాళ్లను ఎదుర్కొంటున్నప్పుడు భాగస్వాములు తరచుగా నిస్సహాయంగా అనిపిస్తుంది. మిమ్మల్ని మీరు చూసుకుంటూ అర్థవంతమైన మద్దతు ఎలా అందించాలి.",
+          videoUrl: "https://www.youtube.com/embed/BseFS_zSXLw?si=ZgfqXLf2rZxyLzfB",
           tips: [
             "వెంటనే సమస్యలను పరిష్కరించడానికి ప్రయత్నించకుండా వినండి",
             "నియమితంగా 'ఈరోజు నేను మీకు ఎలా మద్దతు ఇవ్వగలను?' అని అడగండి",
@@ -564,7 +573,7 @@ const SakhiTry = () => {
                             <iframe
                               width="100%"
                               height="100%"
-                              src="https://www.youtube.com/embed/jq_MxKVlDCU?si=D-TE7Ewsb1CCUJfS&start=10"
+                              src={message.previewContent.videoUrl || "https://www.youtube.com/embed/jq_MxKVlDCU?si=D-TE7Ewsb1CCUJfS&start=10"}
                               title="YouTube video player"
                               frameBorder="0"
                               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -754,7 +763,7 @@ const PreviewPanel = ({ previewContent, isVideoPlaying, setIsVideoPlaying, isMut
               <iframe
                 width="100%"
                 height="100%"
-                src="https://www.youtube.com/embed/jq_MxKVlDCU?si=D-TE7Ewsb1CCUJfS&start=10"
+                src={previewContent.videoUrl || "https://www.youtube.com/embed/jq_MxKVlDCU?si=D-TE7Ewsb1CCUJfS&start=10"}
                 title="YouTube video player"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
