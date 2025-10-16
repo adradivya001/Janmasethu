@@ -623,7 +623,7 @@ const Home = () => {
                     {t("orient_desc_preg")}
                   </p>
                   <img
-                    src="https://images.unsplash.com/photo-1544787215259-38e31be8751f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300"
+                    src="https://images.unsplash.com/photo-1493894473891-10fc1e5dbd22?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300"
                     alt="Pregnant woman in peaceful outdoor setting"
                     className="rounded-xl w-full h-32 object-cover mt-auto group-hover:shadow-lg transition-shadow"
                   />
