@@ -559,12 +559,19 @@ const SakhiTry = () => {
                         </div>
 
                         {/* Video Section */}
-                        <div className="relative bg-gradient-to-br from-purple-100 to-pink-100 rounded-xl h-32 flex items-center justify-center">
-                          <div className="text-center">
-                            <div className="w-12 h-12 bg-white bg-opacity-90 rounded-full flex items-center justify-center shadow-lg mx-auto mb-2">
-                              <Play className="w-5 h-5 text-purple-600" />
-                            </div>
-                            <p className="text-xs text-gray-600">Click to play: Guided Breathing Exercise</p>
+                        <div className="relative bg-gradient-to-br from-purple-100 to-pink-100 rounded-xl overflow-hidden">
+                          <div className="aspect-video">
+                            <iframe
+                              width="100%"
+                              height="100%"
+                              src="https://www.youtube.com/embed/BseFS_zSXLw?si=ZgfqXLf2rZxyLzfB"
+                              title="YouTube video player"
+                              frameBorder="0"
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                              referrerPolicy="strict-origin-when-cross-origin"
+                              allowFullScreen
+                              className="w-full h-full"
+                            ></iframe>
                           </div>
                         </div>
 
@@ -742,25 +749,20 @@ const PreviewPanel = ({ previewContent, isVideoPlaying, setIsVideoPlaying, isMut
 
         {/* Video Section */}
         <Card className="overflow-hidden">
-          <div className="relative bg-gradient-to-br from-purple-100 to-pink-100 h-48 flex items-center justify-center">
-            <div className="text-center">
-              <button
-                onClick={() => setIsVideoPlaying(!isVideoPlaying)}
-                className="w-16 h-16 bg-white bg-opacity-90 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all mb-4"
-              >
-                <Play className={`w-6 h-6 text-purple-600 ${isVideoPlaying ? 'hidden' : 'block'}`} />
-                <div className={`w-4 h-4 bg-purple-600 ${isVideoPlaying ? 'block' : 'hidden'}`} />
-              </button>
-              <p className="text-sm text-gray-600">
-                {isVideoPlaying ? 'Playing: Breathing Exercise Video' : 'Click to play: Guided Breathing Exercise'}
-              </p>
+          <div className="relative bg-gradient-to-br from-purple-100 to-pink-100">
+            <div className="aspect-video">
+              <iframe
+                width="100%"
+                height="100%"
+                src="https://www.youtube.com/embed/BseFS_zSXLw?si=ZgfqXLf2rZxyLzfB"
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+                className="w-full h-full"
+              ></iframe>
             </div>
-            <button
-              onClick={() => setIsMuted(!isMuted)}
-              className="absolute top-4 right-4 w-8 h-8 bg-white bg-opacity-70 rounded-full flex items-center justify-center"
-            >
-              {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
-            </button>
           </div>
         </Card>
 
