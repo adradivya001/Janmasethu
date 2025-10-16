@@ -393,13 +393,12 @@ const SakhiTry = () => {
           {messages.length === 0 && (
             <div className="text-center py-4 lg:py-8 px-4">
               <Heart className="w-8 h-8 lg:w-12 lg:h-12 text-purple-300 mx-auto mb-3 lg:mb-4" />
-              <h3 className="text-base lg:text-lg font-semibold text-gray-700 mb-2">Welcome to Sakhi</h3>
+              <h3 className="text-base lg:text-lg font-semibold text-gray-700 mb-2">{t("sakhi_try_welcome")}</h3>
               <p className="text-gray-500 text-xs lg:text-sm mb-3 lg:mb-4 leading-relaxed">
-                I'm here to provide compassionate support for your fertility journey.
-                Type in any language - I'll respond in the same language.
+                {t("sakhi_try_intro")}
               </p>
               <div className="space-y-2">
-                <p className="text-xs text-gray-400">Try asking about:</p>
+                <p className="text-xs text-gray-400">{t("sakhi_try_ask_about")}</p>
                 {currentPrompts.map((prompt, index) => (
                   <button
                     key={index}
@@ -565,31 +564,33 @@ const SakhiTry = () => {
 
 // Preview Panel Component
 const PreviewPanel = ({ previewContent, isVideoPlaying, setIsVideoPlaying, isMuted, setIsMuted }: any) => {
+  const { t } = useLanguage();
+  
   if (!previewContent) {
     return (
       <div className="h-full bg-gray-50 flex items-center justify-center p-8">
         <div className="text-center max-w-md">
           <MessageCircle className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-          <h3 className="text-xl font-semibold text-gray-600 mb-2">Start a Conversation</h3>
+          <h3 className="text-xl font-semibold text-gray-600 mb-2">{t("sakhi_try_start_conversation")}</h3>
           <p className="text-gray-500">
-            Send a message to Sakhi and see personalized support content, tips, and resources appear here.
+            {t("sakhi_try_preview_desc")}
           </p>
           <div className="mt-6 grid grid-cols-2 gap-4 text-sm">
             <div className="flex items-center space-x-2 text-gray-600">
               <Shield className="w-4 h-4 text-green-500" />
-              <span>Private & Secure</span>
+              <span>{t("sakhi_try_private_secure")}</span>
             </div>
             <div className="flex items-center space-x-2 text-gray-600">
               <Clock className="w-4 h-4 text-blue-500" />
-              <span>24/7 Available</span>
+              <span>{t("sakhi_247_available")}</span>
             </div>
             <div className="flex items-center space-x-2 text-gray-600">
               <Users className="w-4 h-4 text-purple-500" />
-              <span>Partner Support</span>
+              <span>{t("sakhi_try_partner_support")}</span>
             </div>
             <div className="flex items-center space-x-2 text-gray-600">
               <Globe className="w-4 h-4 text-pink-500" />
-              <span>Multi-language</span>
+              <span>{t("sakhi_try_multilanguage")}</span>
             </div>
           </div>
         </div>

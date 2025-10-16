@@ -221,6 +221,16 @@ export const dict = {
     chat_breathing_exercise: "Try some deep breathing exercises...",
     chat_type_message: "Type your message...",
     chat_send_message: "Send message",
+    
+    // Sakhi Try Page
+    sakhi_try_welcome: "Welcome to Sakhi",
+    sakhi_try_intro: "I'm here to provide compassionate support for your fertility journey. Type in any language - I'll respond in the same language.",
+    sakhi_try_ask_about: "Try asking about:",
+    sakhi_try_start_conversation: "Start a Conversation",
+    sakhi_try_preview_desc: "Send a message to Sakhi and see personalized support content, tips, and resources appear here.",
+    sakhi_try_private_secure: "Private & Secure",
+    sakhi_try_partner_support: "Partner Support",
+    sakhi_try_multilanguage: "Multi-language",
 
     // Sakhi
     sakhi_demo_title: "Try a scenario",
@@ -542,6 +552,16 @@ export const dict = {
     chat_breathing_exercise: "कुछ गहरी सांस लेने के व्यायाम करें...",
     chat_type_message: "अपना संदेश टाइप करें...",
     chat_send_message: "संदेश भेजें",
+    
+    // Sakhi Try Page - Hindi
+    sakhi_try_welcome: "सखी में आपका स्वागत है",
+    sakhi_try_intro: "मैं आपकी प्रजनन यात्रा के लिए दयालु सहायता प्रदान करने के लिए यहाँ हूँ। किसी भी भाषा में टाइप करें - मैं उसी भाषा में जवाब दूंगी।",
+    sakhi_try_ask_about: "इनके बारे में पूछें:",
+    sakhi_try_start_conversation: "बातचीत शुरू करें",
+    sakhi_try_preview_desc: "सखी को संदेश भेजें और व्यक्तिगत सहायता सामग्री, सुझाव और संसाधन यहाँ देखें।",
+    sakhi_try_private_secure: "निजी और सुरक्षित",
+    sakhi_try_partner_support: "साथी सहायता",
+    sakhi_try_multilanguage: "बहुभाषी",
 
     sakhi_hero: "प्रजनन यात्रा के लिए सहृदय साथी",
     sakhi_sub: "24/7 भावनात्मक सहयोग — निजी",
@@ -868,6 +888,16 @@ export const dict = {
     chat_breathing_exercise: "కొన్ని లోతైన శ్వాస వ్యాయామాలు చేయండి...",
     chat_type_message: "మీ సందేశాన్ని టైప్ చేయండి...",
     chat_send_message: "సందేశం పంపండి",
+    
+    // Sakhi Try Page - Telugu
+    sakhi_try_welcome: "సఖికి స్వాగతం",
+    sakhi_try_intro: "మీ ప్రసవ ప్రయాణానికి దయతో కూడిన మద్దతు అందించడానికి నేను ఇక్కడ ఉన్నాను. ఏ భాషలోనైనా టైప్ చేయండి - నేను అదే భాషలో స్పందిస్తాను.",
+    sakhi_try_ask_about: "వీటి గురించి అడగండి:",
+    sakhi_try_start_conversation: "సంభాషణ ప్రారంభించండి",
+    sakhi_try_preview_desc: "సఖికి సందేశం పంపండి మరియు వ్యక్తిగతీకరించిన మద్దతు కంటెంట్, చిట్కాలు మరియు వనరులు ఇక్కడ కనిపించడాన్ని చూడండి.",
+    sakhi_try_private_secure: "ప్రైవేట్ & సురక్షితం",
+    sakhi_try_partner_support: "భాగస్వామి మద్దతు",
+    sakhi_try_multilanguage: "బహుభాషా",
 
     sakhi_hero: "మీ ఫెర్టిలిటీ ప్రయాణంలో తోడు సఖి",
     sakhi_sub:
