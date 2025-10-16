@@ -383,6 +383,9 @@ const SakhiTry = () => {
       
       if (typeof data === 'string') {
         botResponseText = data;
+      } else if (data.output) {
+        // Handle n8n webhook response with 'output' field
+        botResponseText = String(data.output);
       } else if (data.response) {
         // If response is a JSON object with structured data
         if (typeof data.response === 'object') {
