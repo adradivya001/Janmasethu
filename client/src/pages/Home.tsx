@@ -1218,17 +1218,7 @@ const Home = () => {
               </CardContent>
             </Card>
 
-            <div className="text-center mt-8">
-              <p className="text-muted-foreground mb-4">
-                Still have questions?
-              </p>
-              <Link href="/sakhi">
-                <Button className="gradient-button text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-300">
-                  Ask Sakhi Anything
-                  <MessageCircle className="ml-2 w-4 h-4" />
-                </Button>
-              </Link>
-            </div>
+            
           </div>
         </section>
       </div>
