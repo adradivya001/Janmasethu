@@ -108,7 +108,7 @@ export const availableArticles = [
   'when-to-see-fertility-specialist'
 ];
 
-// Function to fetch basic article metadata for listing pages
+// Function to fetch basic article metadata for listing pages - optimized for parallel loading
 export const fetchAllArticlesMetadata = async (): Promise<Array<{
   slug: string;
   title: { en: string; hi: string; te: string };
@@ -116,24 +116,26 @@ export const fetchAllArticlesMetadata = async (): Promise<Array<{
   readTime: { en: string; hi: string; te: string };
   reviewer: { en: string; hi: string; te: string };
 }>> => {
-  const articles = [];
-
-  for (const slug of availableArticles) {
+  // Fetch all articles in parallel for faster loading
+  const articlePromises = availableArticles.map(async (slug) => {
     try {
       const data = await fetchArticleData(slug);
       if (data) {
-        articles.push({
+        return {
           slug: data.slug,
           title: data.title,
           overview: data.overview,
           readTime: data.metadata.readTime,
           reviewer: data.metadata.reviewer
-        });
+        };
       }
+      return null;
     } catch (error) {
       console.error(`Error fetching metadata for ${slug}:`, error);
+      return null;
     }
-  }
+  });
 
-  return articles;
+  const results = await Promise.all(articlePromises);
+  return results.filter((article): article is NonNullable<typeof article> => article !== null);
 };
