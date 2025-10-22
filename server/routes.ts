@@ -30,7 +30,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const { rows } = await query(
         `
         SELECT slug, title, COALESCE(excerpt, '') AS excerpt, image_url, created_at
-        FROM scraped_blogs
+        FROM public.scraped_blogs
         ORDER BY id DESC
         LIMIT $1 OFFSET $2
         `,
@@ -50,7 +50,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const { rows } = await query(
         `
         SELECT id, slug, title, excerpt, content_html, image_url, source_url, created_at
-        FROM scraped_blogs
+        FROM public.scraped_blogs
         WHERE slug = $1
         LIMIT 1
         `,
