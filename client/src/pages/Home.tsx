@@ -923,13 +923,6 @@ const Home = () => {
                   data-testid={`card-treatment-${index}`}
                 >
                   <CardContent className="p-0 flex flex-col h-full">
-                    {/* Click indicator */}
-                    <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
-                        <ArrowRight className="w-4 h-4 text-purple-600" />
-                      </div>
-                    </div>
-
                     <div
                       className={`w-16 h-16 ${treatment.bgColor} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-md`}
                     >
