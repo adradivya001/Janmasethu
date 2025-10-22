@@ -1249,3 +1249,10 @@ textarea:focus-visible {
   box-shadow: 0 6px 15px rgba(139, 92, 246, 0.15); /* Stronger shadow when open */
   transform: translateY(-3px);
 }
+
+/* Remove underline and add text size increase on hover */
+.faq-accordion-trigger:hover .font-semibold {
+  text-decoration: none !important;
+  font-size: 1.05em;
+  transition: font-size 0.2s ease;
+}
