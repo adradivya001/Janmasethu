@@ -1096,7 +1096,7 @@ const Home = () => {
                   >
                     <AccordionTrigger className="text-left hover:text-purple-600 transition-colors">
                       <span className="font-semibold text-foreground">
-                        Is JanmaSethu free to use?
+                        Is Sakhi free to use?
                       </span>
                     </AccordionTrigger>
                     <AccordionContent className="text-muted-foreground">
