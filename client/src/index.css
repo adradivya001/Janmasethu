@@ -1225,7 +1225,7 @@ textarea:focus-visible {
 
 /* FAQ Accordion Hover Effect */
 .faq-accordion-trigger {
-  transition: transform 0.3s ease-in-out, color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, color 0.3s ease-in-out, background-color 0.3s ease-in-out, font-size 0.3s ease-in-out;
   background-color: transparent;
   padding: 1rem; /* Consistent padding */
   border-radius: 0.5rem; /* Slightly rounded corners */
@@ -1250,9 +1250,12 @@ textarea:focus-visible {
   transform: translateY(-3px);
 }
 
-/* Remove underline and add text size increase on hover */
+/* Smooth text size transition on hover */
+.faq-accordion-trigger .font-semibold {
+  transition: font-size 0.3s ease-in-out;
+}
+
 .faq-accordion-trigger:hover .font-semibold {
   text-decoration: none !important;
   font-size: 1.05em;
-  transition: font-size 0.2s ease;
 }
