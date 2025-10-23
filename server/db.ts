@@ -2,10 +2,14 @@
 import pg from "pg";
 const { Pool } = pg;
 
+const url = process.env.DATABASE_URL || "";
+const needSSL =
+  process.env.PGSSL === "true" ||
+  /sslmode=require/i.test(url); // also handle ?sslmode=require in the URL
+
 export const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  // If you set PGSSL=true in Secrets, enable SSL (common on hosted DBs)
-  ssl: process.env.PGSSL === "true" ? { rejectUnauthorized: false } : undefined,
+  connectionString: url,
+  ssl: needSSL ? { rejectUnauthorized: false } : undefined,
 });
 
 export async function query<T = any>(text: string, params?: any[]) {
