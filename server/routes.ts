@@ -20,6 +20,68 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // --- DEBUG: confirm SSL options on the pool
+  app.get("/api/health/db/ssl", (_req, res) => {
+    // @ts-ignore access internal
+    const opts = (pool as any).options || {};
+    res.json({ hasSsl: !!opts.ssl, rejectUnauthorized: opts.ssl?.rejectUnauthorized ?? null });
+  });
+
+  // --- DEBUG: what DB am I connected to?
+  app.get("/api/health/db/info", async (_req, res) => {
+    try {
+      const { rows } = await query(`
+        SELECT current_database() AS db,
+               current_user AS usr,
+               current_schema() AS sch
+      `);
+      res.json(rows[0]);
+    } catch (e: any) {
+      console.error("GET /api/health/db/info error:", e);
+      res.status(500).json({ error: e.message });
+    }
+  });
+
+  // --- DEBUG: list public tables
+  app.get("/api/health/db/tables", async (_req, res) => {
+    try {
+      const { rows } = await query(
+        `SELECT table_schema, table_name
+         FROM information_schema.tables
+         WHERE table_schema = 'public'
+         ORDER BY table_name;`
+      );
+      res.json(rows);
+    } catch (e: any) {
+      console.error("GET /api/health/db/tables error:", e);
+      res.status(500).json({ error: e.message });
+    }
+  });
+
+  // --- ONE-TIME: create the table in *this* DB if missing
+  app.post("/api/dev/create-scraped-table", async (_req, res) => {
+    try {
+      await query(`
+        CREATE SCHEMA IF NOT EXISTS public;
+        CREATE TABLE IF NOT EXISTS public.scraped_blogs (
+          id SERIAL PRIMARY KEY,
+          title TEXT NOT NULL,
+          slug TEXT UNIQUE NOT NULL,
+          excerpt TEXT,
+          content_html TEXT,
+          source_url TEXT,
+          image_url TEXT,
+          created_at TIMESTAMP DEFAULT NOW()
+        );
+        CREATE INDEX IF NOT EXISTS idx_scraped_blogs_slug ON public.scraped_blogs(slug);
+      `);
+      res.json({ ok: true });
+    } catch (e: any) {
+      console.error("POST /api/dev/create-scraped-table error:", e);
+      res.status(500).json({ ok: false, error: e.message });
+    }
+  });
+
   // =========================
   // BLOG API ENDPOINTS
   // =========================
@@ -52,7 +114,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const { rows } = await query(
         `
-        SELECT id, slug, title, excerpt, content_html, image_url, source_url, created_at
+        SELECT id, slug, title, excerpt, content_html, source_url, created_at
         FROM public.scraped_blogs
         WHERE slug = $1
         LIMIT 1
