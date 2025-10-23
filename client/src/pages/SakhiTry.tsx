@@ -145,7 +145,7 @@ const SakhiTry = () => {
       const newContent = generatePreviewContent(lastUserMessage, sakhiLang);
       setPreviewContent(newContent);
 
-      setMessages(prevMessages =>
+      setMessages(prevMessages => 
         prevMessages.map(msg => {
           if (!msg.isUser && msg.previewContent) {
             const responses = {
@@ -487,12 +487,6 @@ const SakhiTry = () => {
 
   const t = translations[sakhiLang];
 
-  // Function to handle opening the YouTube modal
-  const onVideoOpen = (url: string) => {
-    setIsVideoPlaying(true);
-    // You might want to store the URL in state to pass to the modal
-  };
-
   return (
     <SakhiLanguageContext.Provider value={{ lang: sakhiLang, setLang: setSakhiLang }}>
       <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50">
@@ -555,8 +549,8 @@ const SakhiTry = () => {
                 <div className={`max-w-[95%] lg:max-w-[80%] ${message.isUser ? 'order-2' : 'order-1'}`}>
                   <div className={`flex items-start space-x-3 ${message.isUser ? 'flex-row-reverse space-x-reverse' : ''}`}>
                     <div className={`w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 shadow-sm ${
-                      message.isUser
-                        ? 'bg-gradient-to-br from-purple-500 to-pink-500 text-white'
+                      message.isUser 
+                        ? 'bg-gradient-to-br from-purple-500 to-pink-500 text-white' 
                         : 'bg-gradient-to-br from-purple-100 to-pink-100 text-purple-600'
                     }`}>
                       {message.isUser ? <User className="w-4 h-4" /> : <Bot className="w-5 h-5" />}
@@ -569,7 +563,7 @@ const SakhiTry = () => {
                       }`}>
                         <p className="text-sm leading-relaxed">{message.text}</p>
                         <p className={`text-xs mt-1.5 ${message.isUser ? 'text-white/80' : 'text-gray-400'}`}>
-                          {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                          {message.timestamp.toLocaleTimeString()}
                         </p>
                       </div>
 
@@ -716,34 +710,6 @@ const SakhiTry = () => {
   );
 };
 
-// YouTube Embed Card component
-const YouTubeEmbedCard: React.FC<{ url: string; title: string; onOpen: () => void }> = ({ url, title, onOpen }) => {
-  return (
-    <Card className="overflow-hidden border-gray-100 shadow-sm hover:shadow-lg transition-shadow duration-300">
-      <CardHeader className="pb-4">
-        <CardTitle className="flex items-center space-x-2 text-xl">
-          <Play className="w-6 h-6 text-red-500" />
-          <span>{title}</span>
-        </CardTitle>
-      </CardHeader>
-      <CardContent className="p-0">
-        <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
-          <iframe
-            className="absolute top-0 left-0 w-full h-full"
-            src={url}
-            title="YouTube video player"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen
-            onClick={onOpen}
-          ></iframe>
-        </div>
-      </CardContent>
-    </Card>
-  );
-};
-
 // Preview Panel Component
 interface PreviewPanelProps {
   previewContent: PreviewContent | null;
@@ -758,13 +724,9 @@ interface PreviewPanelProps {
 
 const PreviewPanel = ({ previewContent, isVideoPlaying, setIsVideoPlaying, isMuted, setIsMuted, translations: t, showFloating, setShowFloating }: PreviewPanelProps) => {
 
-  // Function to handle opening the YouTube modal
-  const onVideoOpen = (url: string) => {
-    setIsVideoPlaying(true);
-    // In a real app, you'd likely open a modal here with the video URL
-    // For this example, we'll just log it and let the card handle its own embedding.
-    console.log("Opening video:", url);
-  };
+  // The video is always displayed in mini-player mode, so scroll-based floating logic is removed.
+  // const videoContainerRef = useRef<HTMLDivElement>(null);
+  // const { isFloating, showFloating, setShowFloating } = useFloatingPlayer(videoContainerRef);
 
   if (!previewContent) {
     return (
@@ -809,19 +771,8 @@ const PreviewPanel = ({ previewContent, isVideoPlaying, setIsVideoPlaying, isMut
           <p className="text-gray-600 leading-relaxed">{previewContent.description}</p>
         </div>
 
-        {/* Video Card */}
-        {previewContent.videoUrl && (
-          <div className="max-w-2xl">
-            <YouTubeEmbedCard
-              url={previewContent.videoUrl}
-              title={`Watch: ${previewContent.title}`}
-              onOpen={() => onVideoOpen(previewContent.videoUrl || '')}
-            />
-          </div>
-        )}
-
         {/* Floating Mini Player */}
-        {showFloating && previewContent && previewContent.videoUrl && (
+        {showFloating && previewContent && (
           <div className="fixed bottom-4 right-4 z-[9999] floating-mini-player safe-area-padding-bottom pointer-events-auto">
             <div className="relative bg-black rounded-2xl overflow-hidden shadow-2xl" style={{ width: '280px', maxWidth: 'calc(100vw - 2rem)' }}>
               <button
@@ -834,10 +785,10 @@ const PreviewPanel = ({ previewContent, isVideoPlaying, setIsVideoPlaying, isMut
               <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
                 <iframe
                   className="absolute top-0 left-0 w-full h-full"
-                  src={previewContent.videoUrl + '&autoplay=1'} // Autoplay for mini player
+                  src={previewContent.videoUrl || "https://www.youtube.com/embed/jq_MxKVlDCU?si=D-TE7Ewsb1CCUJfS&start=10&enablejsapi=1&autoplay=1"}
                   title="YouTube video player (mini)"
                   frameBorder="0"
-                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   referrerPolicy="strict-origin-when-cross-origin"
                   allowFullScreen
                 ></iframe>
