@@ -4,8 +4,7 @@ const { Pool } = pg;
 
 const url = process.env.DATABASE_URL || "";
 const needSSL =
-  process.env.PGSSL === "true" ||
-  /sslmode=require/i.test(url); // also handle ?sslmode=require in the URL
+  process.env.PGSSL === "true" || /sslmode=require/i.test(url);
 
 export const pool = new Pool({
   connectionString: url,
