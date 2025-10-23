@@ -112,6 +112,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // add this for browser testing:
+  app.get("/api/dev/scrape/medcy", async (req, res) => {
+    try {
+      const max = Number(req.query.max ?? "8");
+      const out = await runMedcyScrape({ max: isNaN(max) ? 8 : max });
+      res.json({ ok: true, ...out });
+    } catch (e: any) {
+      res.status(500).json({ ok: false, error: e.message });
+    }
+  });
+
   // =========================
   // BLOG API ENDPOINTS
   // =========================
