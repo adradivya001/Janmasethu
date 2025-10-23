@@ -93,7 +93,7 @@ const Header = () => {
       >
         <div className="container mx-auto px-3 md:px-4 py-2">
           {/* Primary Row */}
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between lg:justify-start lg:gap-8">
             {/* Logo with Brand Text */}
             <Link
               href="/"
@@ -121,9 +121,9 @@ const Header = () => {
             </Link>
 
             {/* Desktop Navigation - Primary Row */}
-            <div className="hidden lg:flex items-center justify-center flex-grow">
+            <div className="hidden lg:flex items-center flex-grow">
               <nav
-                className="nav-primary flex items-center justify-center space-x-6 xl:space-x-12"
+                className="nav-primary flex items-center space-x-6 xl:space-x-12"
                 role="navigation"
                 aria-label="Main navigation"
               >
@@ -172,7 +172,7 @@ const Header = () => {
             </div>
 
             {/* Search & Language & Mobile Menu */}
-            <div className="flex items-center space-x-2 md:space-x-4 flex-shrink-0">
+            <div className="flex items-center space-x-2 md:space-x-4 flex-shrink-0 lg:ml-auto">
               {/* Search */}
               <div className="hidden md:block relative">
                 <form
