@@ -785,9 +785,9 @@ const PreviewPanel = ({ previewContent, isVideoPlaying, setIsVideoPlaying, isMut
           </Card>
         </div>
 
-        {/* Floating Mini Player */}
-        {isFloating && showFloating && (
-          <div className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-[9999] floating-mini-player safe-area-padding-bottom">
+        {/* Floating Mini Player - appears when main video scrolls out of view */}
+        {isFloating && showFloating && previewContent && (
+          <div className="fixed bottom-20 right-4 md:bottom-6 md:right-6 z-[9999] floating-mini-player safe-area-padding-bottom pointer-events-auto">
             <div className="relative bg-black rounded-2xl overflow-hidden shadow-2xl" style={{ width: '280px', maxWidth: 'calc(100vw - 2rem)' }}>
               <button
                 onClick={() => setShowFloating(false)}
@@ -799,7 +799,7 @@ const PreviewPanel = ({ previewContent, isVideoPlaying, setIsVideoPlaying, isMut
               <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
                 <iframe
                   className="absolute top-0 left-0 w-full h-full"
-                  src={previewContent.videoUrl || "https://www.youtube.com/embed/jq_MxKVlDCU?si=D-TE7Ewsb1CCUJfS&start=10&enablejsapi=1"}
+                  src={previewContent.videoUrl || "https://www.youtube.com/embed/jq_MxKVlDCU?si=D-TE7Ewsb1CCUJfS&start=10&enablejsapi=1&autoplay=1"}
                   title="YouTube video player (mini)"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

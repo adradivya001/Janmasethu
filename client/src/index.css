@@ -1218,14 +1218,14 @@ textarea:focus-visible {
 /* Prevent video overlap with chat elements on mobile */
 @media (max-width: 767px) {
   .floating-mini-player {
-    bottom: calc(1rem + env(safe-area-inset-bottom, 0px)) !important;
+    bottom: calc(5rem + env(safe-area-inset-bottom, 0px)) !important;
     right: 1rem !important;
     left: auto !important;
   }
   
-  /* Ensure it doesn't overlap with mobile chat button */
-  body:has(.floating-mini-player) .mobile-chat-toggle {
-    bottom: calc(6rem + env(safe-area-inset-bottom, 0px)) !important;
+  /* Ensure it doesn't overlap with mobile chat input area */
+  .sakhi-chat-panel:has(~ * .floating-mini-player) {
+    padding-bottom: 6rem !important;
   }
 }
 
