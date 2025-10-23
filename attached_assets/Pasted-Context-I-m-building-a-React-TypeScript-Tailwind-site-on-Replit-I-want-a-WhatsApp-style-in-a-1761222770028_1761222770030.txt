@@ -1,0 +1,99 @@
+Context:
+I’m building a React + TypeScript + Tailwind site on Replit. I want a WhatsApp-style “in-app YouTube player” so that when users click a YouTube link or card, the video plays inline (in a modal/overlay or embedded section) WITHOUT redirecting to youtube.com or opening a new tab. This should replace my current behavior where links navigate away.
+
+Deliverables:
+1) A reusable component set:
+   - <YouTubeInlinePlayer />  // wraps an iframe with the YouTube IFrame Player API
+   - <YouTubeModal />         // full-screen overlay modal with focus trap, ESC to close
+   - optional: <YouTubeEmbedCard /> // clickable thumbnail/title that opens the modal
+
+2) Behavior & UX:
+   - Input: Accept either a full YouTube URL (e.g., https://www.youtube.com/watch?v=VIDEO_ID or youtu.be/VIDEO_ID) or just a videoId prop.
+   - Parse URLs: Robustly extract videoId and start time (t= or ?start). Support deep links like ?t=90s or ?t=1m30s.
+   - Open inline: On click, open a modal overlay (centered, max-w-4xl) that auto-initializes the YouTube IFrame Player API and starts playback (respecting browser policies—autoplay muted if required).
+   - No redirect: Prevent navigation to external YouTube page. All playback stays inside the modal/inline frame.
+   - Mobile-first: Modal must be fully responsive (16:9 area, safe-area insets respected, no content overflow, close button always reachable).
+   - Controls: Show YouTube controls; allow fullscreen and Picture-in-Picture. Add allow attributes: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen".
+   - Player vars: modestbranding=1, rel=0, playsinline=1, origin set to my site, enablejsapi=1. Ensure captions button remains available.
+   - Start time: If URL includes time, seek to that time on ready before play.
+   - State handling: Pause video on modal close; destroy player instance to free memory.
+   - Keyboard & A11y: Focus trap in modal, ESC closes, Tab cycles, aria-modal, role="dialog", labelled by the video title. Close on backdrop click (outside the player).
+   - Scroll lock: Body scroll disabled while modal is open (and restored on close).
+   - Analytics hooks: Expose callbacks onPlay, onPause, onEnded with currentTime and videoId so I can wire analytics later.
+   - Error fallback: If API fails or the URL is invalid, show a graceful error state with a retry button.
+   - Multiple instances: Support multiple YouTubeEmbedCard components on a page; only one modal/player should be active at a time.
+
+3) API & Props:
+   <YouTubeInlinePlayer
+     videoId?: string
+     url?: string                 // if provided, parse videoId + start
+     title?: string               // for a11y labeling
+     start?: number               // seconds; override URL time if provided
+     autoplay?: boolean           // default true (mute if needed for autoplay policy)
+     controls?: boolean           // default true
+     muted?: boolean              // default auto true when autoplay
+     loop?: boolean               // optional
+     className?: string
+     onPlay?(t: number): void
+     onPause?(t: number): void
+     onEnded?(): void
+   />
+
+   <YouTubeModal
+     open: boolean
+     onClose: () => void
+     playerProps: PropsForInlinePlayer
+   />
+
+   <YouTubeEmbedCard
+     url: string | videoId
+     title: string
+     thumbnailUrl?: string        // else auto-fetch via i.ytimg.com/vi/{id}/hqdefault.jpg
+     onOpen?(): void
+     className?: string
+   />
+
+4) Implementation details:
+   - Use the YouTube IFrame Player API properly:
+     * Load script once (https://www.youtube.com/iframe_api), then window.onYouTubeIframeAPIReady.
+     * Create/destroy YT.Player instances on mount/unmount.
+     * Respect autoplay policies: if autoplay is requested, initialize muted=true, then allow unmute after user interaction (add a small unmute button overlay if needed).
+   - Responsive:
+     * Maintain a 16:9 container using CSS: aspect-[16/9]; iframe fills parent (w-full h-full).
+     * Modal width: clamp(320px, 92vw, 1024px); height auto with 16:9, center aligned.
+     * Use safe-area insets for iOS: padding-bottom: env(safe-area-inset-bottom).
+   - Styling:
+     * Tailwind classes for a subtle glass overlay (backdrop-blur-md bg-black/70).
+     * Player container with rounded-2xl, overflow-hidden, ring-1 ring-white/10 (dark) or ring-black/10 (light), shadow-xl.
+     * Close button in the top-right inside modal (large touch target, accessible label).
+   - SEO / No-FOUC:
+     * Render a static thumbnail + play button immediately; on open, replace with the iframe (lazy load).
+     * Prevent layout shift: the modal reserves 16:9 space before iframe loads.
+
+5) Edge cases:
+   - Invalid link → show “Invalid video” message and copy of the URL.
+   - Network error while loading API → retry button.
+   - If user opens another video while one is playing, close the previous modal and open the new one (only one active globally).
+
+6) Tests / Acceptance:
+   - Desktop, tablet, mobile: modal opens quickly, video plays inline, no redirects.
+   - Deep links: ?t=90 or ?start=90 seeks correctly.
+   - Autoplay muted on first open; unmute works after a click.
+   - ESC closes and pauses/destroys the player. Body scroll lock works.
+   - Multiple cards on page all work; only one modal/player at a time.
+   - Lighthouse: no CLS from the player; minimal main-thread work.
+   - Works in latest Chrome, Safari (iOS), Firefox, Edge.
+
+7) Integration:
+   - Provide example usage:
+     - A grid of <YouTubeEmbedCard /> items pulling from a small array of URLs/titles.
+     - Clicking a card opens <YouTubeModal /> with the matched video.
+   - Keep file structure consistent with React + TS + Tailwind; export components from /components/youtube/.
+
+8) Do NOT:
+   - Do not navigate users to youtube.com.
+   - Do not break my existing routing or global styles.
+   - Do not require any paid service; this should work with the free YouTube embed API.
+
+Please implement all components, types, and a small demo page section that I can paste into my existing page to verify. 
+Add concise inline comments explaining important parts (script loader, parsing, autoplay constraints, cleanup).
