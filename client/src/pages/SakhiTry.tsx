@@ -1,7 +1,7 @@
 
 import React, { useState, useRef, useEffect, createContext, useContext } from 'react';
 import { Link } from 'wouter';
-import { Send, MessageCircle, Heart, Shield, Clock, Users, Play, Volume2, VolumeX, Globe, User, Bot, X } from 'lucide-react';
+import { Send, MessageCircle, Heart, Shield, Clock, Users, Play, Volume2, VolumeX, Globe, User, Bot, X, UserCircle2, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -494,7 +494,7 @@ const SakhiTry = () => {
         } overflow-hidden border-r border-gray-100`}>
 
           {/* Messages Area */}
-          <div className="flex-1 overflow-y-auto p-4 lg:p-6 space-y-4 lg:space-y-5 h-[calc(100%-100px)] pt-6">
+          <div className="flex-1 overflow-y-auto p-4 lg:p-6 space-y-4 lg:space-y-5 h-[calc(100%-100px)] pt-8">
             {messages.length === 0 && (
               <div className="text-center py-8 px-4">
                 <div className="w-16 h-16 bg-gradient-to-br from-purple-100 to-pink-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
@@ -528,7 +528,7 @@ const SakhiTry = () => {
                         ? 'bg-gradient-to-br from-purple-500 to-pink-500 text-white' 
                         : 'bg-gradient-to-br from-purple-100 to-pink-100 text-purple-600'
                     }`}>
-                      {message.isUser ? <User className="w-4 h-4" /> : <Bot className="w-5 h-5" />}
+                      {message.isUser ? <UserCircle2 className="w-5 h-5" /> : <Sparkles className="w-5 h-5" />}
                     </div>
                     <div className="flex-1">
                       <div className={`px-4 py-3 rounded-2xl transition-all duration-200 hover:shadow-lg ${
@@ -643,9 +643,9 @@ const SakhiTry = () => {
               />
               <Button
                 onClick={sendMessage}
-                className="rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 h-11 w-11 shadow-md hover:shadow-lg transition-all"
+                className="rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 h-11 w-11 shadow-md hover:shadow-lg transition-all flex items-center justify-center group"
               >
-                <Send className="w-4 h-4" />
+                <Send className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </Button>
             </div>
             <p className="text-xs text-gray-500 text-center flex items-center justify-center">
