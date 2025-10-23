@@ -104,7 +104,7 @@ const Header = () => {
                 <img
                   src="/JanmaSethu Logo.png"
                   alt="JanmaSethu Logo"
-                  className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 object-cover"
+                  className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 object-contain"
                 />
                 <div className="flex items-baseline gap-1">
                   <span className="text-black font-bold text-base sm:text-lg md:text-xl lg:text-1xl font-serif mt-2 sm:mt-3">
