@@ -1,5 +1,11 @@
 import { useState } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -9,10 +15,18 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 interface AuthModalProps {
   open: boolean;
   onClose: () => void;
-  onAuthSuccess: (isNewUser: boolean, relationship?: string, userId?: string) => void;
+  onAuthSuccess: (
+    isNewUser: boolean,
+    relationship?: string,
+    userId?: string,
+  ) => void;
 }
 
-export default function AuthModal({ open, onClose, onAuthSuccess }: AuthModalProps) {
+export default function AuthModal({
+  open,
+  onClose,
+  onAuthSuccess,
+}: AuthModalProps) {
   const [isSignUp, setIsSignUp] = useState(true);
   const [showRelationship, setShowRelationship] = useState(false);
   const [formData, setFormData] = useState({
@@ -45,7 +59,8 @@ export default function AuthModal({ open, onClose, onAuthSuccess }: AuthModalPro
         });
 
         const data = await response.json();
-        const uniqueId = data.id || data.userId || data.user_id || `user_${Date.now()}`;
+        const uniqueId =
+          data.id || data.userId || data.user_id || `user_${Date.now()}`;
         setUserId(uniqueId);
 
         toast({
@@ -56,16 +71,19 @@ export default function AuthModal({ open, onClose, onAuthSuccess }: AuthModalPro
         setShowRelationship(true);
       } else {
         // Login - Call the login webhook
-        const response = await fetch("https://n8n.ottobon.in/webhook/login", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
+        const response = await fetch(
+          "https://n8n.ottobon.in/webhook/sakhi/login",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              email: formData.email,
+              password: formData.password,
+            }),
           },
-          body: JSON.stringify({
-            email: formData.email,
-            password: formData.password,
-          }),
-        });
+        );
 
         const data = await response.json();
         console.log("Login webhook response:", data);
@@ -81,7 +99,10 @@ export default function AuthModal({ open, onClose, onAuthSuccess }: AuthModalPro
       console.error("Authentication error:", error);
       toast({
         title: "Error",
-        description: error instanceof Error ? error.message : "An unexpected error occurred. Please try again.",
+        description:
+          error instanceof Error
+            ? error.message
+            : "An unexpected error occurred. Please try again.",
         variant: "destructive",
       });
     } finally {
@@ -128,57 +149,113 @@ export default function AuthModal({ open, onClose, onAuthSuccess }: AuthModalPro
 
               <RadioGroup value={relationship} onValueChange={setRelationship}>
                 <div className="flex items-center space-x-3 p-3 rounded-lg border hover:bg-accent transition-colors">
-                  <RadioGroupItem value="herself" id="herself" className="shrink-0" />
-                  <Label htmlFor="herself" className="cursor-pointer flex-1 font-normal">
+                  <RadioGroupItem
+                    value="herself"
+                    id="herself"
+                    className="shrink-0"
+                  />
+                  <Label
+                    htmlFor="herself"
+                    className="cursor-pointer flex-1 font-normal"
+                  >
                     Herself
                   </Label>
                 </div>
 
                 <div className="flex items-center space-x-3 p-3 rounded-lg border hover:bg-accent transition-colors">
-                  <RadioGroupItem value="himself" id="himself" className="shrink-0" />
-                  <Label htmlFor="himself" className="cursor-pointer flex-1 font-normal">
+                  <RadioGroupItem
+                    value="himself"
+                    id="himself"
+                    className="shrink-0"
+                  />
+                  <Label
+                    htmlFor="himself"
+                    className="cursor-pointer flex-1 font-normal"
+                  >
                     Himself
                   </Label>
                 </div>
 
                 <div className="flex items-center space-x-3 p-3 rounded-lg border hover:bg-accent transition-colors">
-                  <RadioGroupItem value="mother" id="mother" className="shrink-0" />
-                  <Label htmlFor="mother" className="cursor-pointer flex-1 font-normal">
+                  <RadioGroupItem
+                    value="mother"
+                    id="mother"
+                    className="shrink-0"
+                  />
+                  <Label
+                    htmlFor="mother"
+                    className="cursor-pointer flex-1 font-normal"
+                  >
                     Mother
                   </Label>
                 </div>
 
                 <div className="flex items-center space-x-3 p-3 rounded-lg border hover:bg-accent transition-colors">
-                  <RadioGroupItem value="father" id="father" className="shrink-0" />
-                  <Label htmlFor="father" className="cursor-pointer flex-1 font-normal">
+                  <RadioGroupItem
+                    value="father"
+                    id="father"
+                    className="shrink-0"
+                  />
+                  <Label
+                    htmlFor="father"
+                    className="cursor-pointer flex-1 font-normal"
+                  >
                     Father
                   </Label>
                 </div>
 
                 <div className="flex items-center space-x-3 p-3 rounded-lg border hover:bg-accent transition-colors">
-                  <RadioGroupItem value="mother-in-law" id="mother-in-law" className="shrink-0" />
-                  <Label htmlFor="mother-in-law" className="cursor-pointer flex-1 font-normal">
+                  <RadioGroupItem
+                    value="mother-in-law"
+                    id="mother-in-law"
+                    className="shrink-0"
+                  />
+                  <Label
+                    htmlFor="mother-in-law"
+                    className="cursor-pointer flex-1 font-normal"
+                  >
                     Mother-in-law
                   </Label>
                 </div>
 
                 <div className="flex items-center space-x-3 p-3 rounded-lg border hover:bg-accent transition-colors">
-                  <RadioGroupItem value="father-in-law" id="father-in-law" className="shrink-0" />
-                  <Label htmlFor="father-in-law" className="cursor-pointer flex-1 font-normal">
+                  <RadioGroupItem
+                    value="father-in-law"
+                    id="father-in-law"
+                    className="shrink-0"
+                  />
+                  <Label
+                    htmlFor="father-in-law"
+                    className="cursor-pointer flex-1 font-normal"
+                  >
                     Father-in-law
                   </Label>
                 </div>
 
                 <div className="flex items-center space-x-3 p-3 rounded-lg border hover:bg-accent transition-colors">
-                  <RadioGroupItem value="sibling" id="sibling" className="shrink-0" />
-                  <Label htmlFor="sibling" className="cursor-pointer flex-1 font-normal">
+                  <RadioGroupItem
+                    value="sibling"
+                    id="sibling"
+                    className="shrink-0"
+                  />
+                  <Label
+                    htmlFor="sibling"
+                    className="cursor-pointer flex-1 font-normal"
+                  >
                     Sibling
                   </Label>
                 </div>
 
                 <div className="flex items-center space-x-3 p-3 rounded-lg border hover:bg-accent transition-colors">
-                  <RadioGroupItem value="other" id="other" className="shrink-0" />
-                  <Label htmlFor="other" className="cursor-pointer flex-1 font-normal">
+                  <RadioGroupItem
+                    value="other"
+                    id="other"
+                    className="shrink-0"
+                  />
+                  <Label
+                    htmlFor="other"
+                    className="cursor-pointer flex-1 font-normal"
+                  >
                     Other family member
                   </Label>
                 </div>
@@ -216,7 +293,9 @@ export default function AuthModal({ open, onClose, onAuthSuccess }: AuthModalPro
             {isSignUp ? "Create Account" : "Sign In"}
           </DialogTitle>
           <DialogDescription className="text-sm text-muted-foreground text-center">
-            {isSignUp ? "Join JanmaSethu to get personalized support" : "Welcome back to JanmaSethu"}
+            {isSignUp
+              ? "Join JanmaSethu to get personalized support"
+              : "Welcome back to JanmaSethu"}
           </DialogDescription>
         </DialogHeader>
 
@@ -229,7 +308,9 @@ export default function AuthModal({ open, onClose, onAuthSuccess }: AuthModalPro
                 type="text"
                 placeholder="Enter your full name"
                 value={formData.fullName}
-                onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, fullName: e.target.value })
+                }
               />
             </div>
           )}
@@ -241,7 +322,9 @@ export default function AuthModal({ open, onClose, onAuthSuccess }: AuthModalPro
               type="email"
               placeholder="Enter your email"
               value={formData.email}
-              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              onChange={(e) =>
+                setFormData({ ...formData, email: e.target.value })
+              }
             />
           </div>
 
@@ -252,7 +335,9 @@ export default function AuthModal({ open, onClose, onAuthSuccess }: AuthModalPro
               type="password"
               placeholder="Enter your password"
               value={formData.password}
-              onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+              onChange={(e) =>
+                setFormData({ ...formData, password: e.target.value })
+              }
             />
           </div>
 
@@ -262,9 +347,12 @@ export default function AuthModal({ open, onClose, onAuthSuccess }: AuthModalPro
             disabled={isLoading}
           >
             {isLoading
-              ? (isSignUp ? "Creating Account..." : "Signing In...")
-              : (isSignUp ? "Create Account" : "Sign In")
-            }
+              ? isSignUp
+                ? "Creating Account..."
+                : "Signing In..."
+              : isSignUp
+                ? "Create Account"
+                : "Sign In"}
           </Button>
 
           <div className="text-center text-sm">
