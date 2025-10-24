@@ -55,8 +55,27 @@ export default function AuthModal({ open, onClose, onAuthSuccess }: AuthModalPro
 
         setShowRelationship(true);
       } else {
-        // Login - Static UI only, no backend call
-        // Do nothing
+        // Login - Call the login webhook
+        const response = await fetch("https://n8n.ottobon.in/webhook/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: formData.email,
+            password: formData.password,
+          }),
+        });
+
+        const data = await response.json();
+        console.log("Login webhook response:", data);
+
+        // Close modal and navigate to Sakhi
+        onClose();
+        toast({
+          title: "Login successful",
+          description: "Redirecting to Sakhi...",
+        });
       }
     } catch (error) {
       console.error("Authentication error:", error);
