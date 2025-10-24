@@ -1,0 +1,200 @@
+{
+  "name": "login",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "login",
+        "responseMode": "responseNode",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Access-Control-Allow-Origin",
+                "value": "*"
+              },
+              {
+                "name": "Access-Control-Allow-Headers",
+                "value": "*"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -80,
+        740
+      ],
+      "id": "317b03be-1f90-4f92-be7b-79fc43168b53",
+      "name": "Login Trigger",
+      "webhookId": "38b01dd1-5a81-464b-a667-fd2111d0c1a5"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "b66980ce-626b-4f68-8df3-282574b2dbf7",
+              "leftValue": "={{ $('Login Trigger').item.json.body.password }}",
+              "rightValue": "={{ $json.password }}",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        440,
+        740
+      ],
+      "id": "397ba958-737b-4314-9bfd-7a5f131d1de8",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT user_id, email, Password\nFROM users \nWHERE email = $1\n\nUNION ALL\n\nSELECT \n  NULL::uuid AS user_id, \n  'false' AS email, \n  'false' AS Password\nWHERE NOT EXISTS (\n  SELECT 1 FROM users WHERE email = $1\n);",
+        "options": {
+          "queryReplacement": "={{ $json.body.email }}"
+        }
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        200,
+        740
+      ],
+      "id": "18f9f0cd-d1f4-4712-ae92-5bbbf05ff01f",
+      "name": "Getting user and password1",
+      "credentials": {
+        "postgres": {
+          "id": "t76ylpvSIw6MYOfN",
+          "name": "janma"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "=True:  {{ $json.user_id }}",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        860,
+        620
+      ],
+      "id": "b9840c06-488a-48b3-bdcf-b07053fe2f8a",
+      "name": "If True Response1"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        660,
+        860
+      ],
+      "id": "9043707c-0e25-486f-94d0-728135e92f36",
+      "name": "False Response1"
+    },
+    {
+      "parameters": {
+        "jsCode": "const results = [];\n\nfor (const item of $input.all()) {\n  results.push({\n    json: {\n      user_id: item.json.user_id\n    }\n  });\n}\n\nreturn results;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        660,
+        620
+      ],
+      "id": "ef6918cc-d44c-458c-90ce-1bded2accef3",
+      "name": "Code1"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Login Trigger": {
+      "main": [
+        [
+          {
+            "node": "Getting user and password1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "False Response1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Getting user and password1": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "If True Response1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "8dbd0700-de79-4368-87a3-989fd253ba08",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "59e10422e2cab43eea53cd528e77f00b03bfbaffc066053f53d54d30c906caa0"
+  },
+  "id": "PK0kMF02CHMzf6V7",
+  "tags": []
+}
