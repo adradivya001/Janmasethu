@@ -101,22 +101,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // --- DEV: run scraper for medcyivf.in/blog (on-demand)
-  app.post("/api/dev/scrape/medcy", async (req, res) => {
-    try {
-      const max = Number(req.query.max ?? "8");
-      const out = await runMedcyScrape({ max: isNaN(max) ? 8 : max });
-      res.json({ ok: true, ...out });
-    } catch (e: any) {
-      res.status(500).json({ ok: false, error: e.message });
-    }
-  });
+  // --- Middleware to require a secret key
+  const requireKey = (req: any, res: any, next: any) => {
+    const key = (req.query.key as string) || (req.headers["x-api-key"] as string);
+    if (process.env.SCRAPE_KEY && key === process.env.SCRAPE_KEY) return next();
+    return res.status(403).json({ ok: false, error: "forbidden" });
+  };
 
-  // add this for browser testing:
-  app.get("/api/dev/scrape/medcy", async (req, res) => {
+  // --- Scrape endpoint (GET for external schedulers, secured with requireKey)
+  app.get("/api/dev/scrape/medcy", requireKey, async (req, res) => {
     try {
-      const max = Number(req.query.max ?? "8");
-      const out = await runMedcyScrape({ max: isNaN(max) ? 8 : max });
+      const max = Number(req.query.max ?? "30");
+      const out = await runMedcyScrape({ max: isNaN(max) ? 30 : max });
       res.json({ ok: true, ...out });
     } catch (e: any) {
       res.status(500).json({ ok: false, error: e.message });
