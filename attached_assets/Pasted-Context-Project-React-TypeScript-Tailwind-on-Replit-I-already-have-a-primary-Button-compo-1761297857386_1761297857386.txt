@@ -1,0 +1,56 @@
+Context
+- Project: React + TypeScript + Tailwind (on Replit). I already have a primary Button component rendered across the site.
+- Goal: Replicate the feel of this old CSS button animation (hover moves background sprite, active/focus shifts it again) but implemented the Tailwind way, and applied to my existing button component.
+- Important: Do NOT change page layout, alignment, spacing, text/content, or any other components. Keep responsiveness intact. Use my theme colors (Tailwind tokens) — DO NOT use the original hex colors (#696666, #F9C23C, #EAA502).
+
+What to build
+1) Add a reusable Tailwind utility (via @layer utilities) that gives my button:
+   - A background sprite effect on hover/active (background-position shifts like the sample).
+   - Rounded, bold, uppercase, with subtle scale/shadow transitions.
+   - Works with my existing Button className prop. I should only add a class like `btn-animated` to opt in.
+
+2) Sprite / icon handling:
+   - Use a neutral, license-safe icon sprite (or a small inline SVG sprite) positioned at left inside the button.
+   - Implement two background positions: default and hover/active, to mimic the “slide” effect.
+   - If using an external sprite image, place it under `/public/assets/btn-sprite.png`. Otherwise, prefer an inline SVG technique with `mask-image` / `background-image` and `background-position` changes.
+   - Keep icon size responsive (clamp) and ensure high-DPI sharpness.
+
+3) Tailwind + CSS details:
+   - Create a utility class `.btn-animated` that:
+     * Preserves my current button’s padding, font-size, and alignment (do not break my layout).
+     * Adds left padding to make room for the icon background (like the original).
+     * Uses theme tokens for borders, ring, text, and background (e.g., `bg-primary`, `text-primary-foreground`, `border-primary`, etc.), NOT the hex colors from the sample.
+     * Adds smooth transitions: `transition-[transform,box-shadow,background-position,background-color,border-color] duration-300 ease`.
+     * On `hover:` → shift background-position (simulate sprite), slightly elevate with shadow and maybe `scale-[1.02]`.
+     * On `active:` or `focus-visible:` → different background-position (third frame), `scale-[0.98]`, stronger ring for accessibility.
+     * Keep `uppercase font-bold tracking-wide`.
+     * Rounded full or `rounded-2xl` as appropriate to match my design system.
+
+   - Add keyframes only if needed (prefer pure `background-position` transition first).
+   - Respect dark mode (use `dark:` variants) but keep colors from my tokens.
+
+4) Accessibility & responsiveness:
+   - Maintain button’s ARIA roles and `type="button" | "submit"` as-is. Do not change the DOM structure of my Button component.
+   - Focus states must be visible (use `ring` with theme colors).
+   - Ensure it looks good from 320px width upwards; test wrapping text (multi-line) doesn’t misalign the icon.
+
+5) Integration:
+   - Modify only the Button component styles and/or add a small CSS file with `@layer utilities`. Do not change page layouts, grids, or containers.
+   - Expose a prop (e.g., `animated`) on my Button component that conditionally appends the `btn-animated` class while preserving incoming `className`.
+   - Do not change any copy/text. Alignment and content must remain unchanged.
+
+6) Acceptance criteria:
+   - I can add `animated` (or `className="btn-animated"`) to any existing Button and get:
+     * Default state: icon sprite at top position, normal scale.
+     * Hover: background-position shifts (like a sprite slide) and smooth color/box-shadow transition using my theme tokens.
+     * Active/Focus: third background-position, slight press scale, visible ring.
+   - No global color changes; no usage of #696666, #F9C23C, or #EAA502.
+   - Works in light and dark theme automatically, responsive on all breakpoints.
+   - No visual regressions to spacing or alignment anywhere the Button is used.
+   - Provide a short usage example: my existing Button with `animated` enabled.
+
+7) Deliver:
+   - The `@layer utilities` snippet, the updated Button component (minimal, additive changes), and a quick test snippet showing hover/active behavior.
+   - Comments explaining where to place the sprite asset and how to swap it later.
+
+Generate the code now, keeping changes minimal, opt-in, and fully responsive.
