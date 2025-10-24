@@ -502,15 +502,17 @@ export default function OnboardingQuestions({ open, onClose, relationship = "her
     const effectiveUserId = userId || `temp_${Date.now()}`;
     console.log("Using User ID:", effectiveUserId);
 
+    // Convert answers object to the required array format with question_key and selected_option
+    const answersArray = questions.map((q, index) => ({
+      question_key: `${relationship}_q${index + 1}`,
+      selected_option: answers[q.field] || ""
+    }));
+
     // Prepare data to send to webhook in the format n8n expects
     const onboardingData = {
       user_id: userId,
-      relation_to_patient: relationship,
-      trying_duration: answers.duration || answers.tryingDuration || "",
-      is_under_doctor_care: answers.treatment || answers.medicalCare || "",
-      has_health_problems: answers.healthIssues || "",
-      patient_feeling: answers.emotionalState || "",
-      past_ivf_treatment: answers.previousIVF || ""
+      relationship: relationship,
+      answers: answersArray
     };
 
     console.log("=== Preparing to send to webhook ===");
