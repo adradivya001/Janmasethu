@@ -1349,32 +1349,32 @@ textarea:focus-visible {
   left: 0;
   right: 0;
   z-index: 40;
-  height: 64px;
+  height: 56px;
 }
 
 @media (max-width: 767px) {
   .sakhi-try-header {
-    height: 64px;
+    height: 56px;
   }
 
   .sakhi-chat-panel {
-    top: 64px !important;
-    height: calc(100vh - 64px) !important;
+    top: 56px !important;
+    height: calc(100vh - 56px) !important;
   }
 
   .sakhi-main-content {
-    padding-top: 80px !important;
+    padding-top: 64px !important;
   }
 }
 
 @media (min-width: 768px) {
   .sakhi-chat-panel {
-    top: 64px !important;
-    height: calc(100vh - 64px) !important;
+    top: 56px !important;
+    height: calc(100vh - 56px) !important;
   }
 
   .sakhi-main-content {
-    padding-top: 80px !important;
+    padding-top: 64px !important;
   }
 }
 

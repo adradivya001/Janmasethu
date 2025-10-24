@@ -491,12 +491,12 @@ const SakhiTry = () => {
     <SakhiLanguageContext.Provider value={{ lang: sakhiLang, setLang: setSakhiLang }}>
       <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50">
         {/* Enhanced Header */}
-        <div className="fixed top-0 left-0 right-0 bg-gradient-to-r from-purple-600 via-purple-700 to-pink-600 text-white px-6 py-4 flex items-center justify-between z-40 shadow-2xl border-b border-white/10 backdrop-blur-sm">
-          <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
-              <Heart className="w-6 h-6" />
+        <div className="fixed top-0 left-0 right-0 bg-gradient-to-r from-purple-600 via-purple-700 to-pink-600 text-white px-6 py-3 flex items-center justify-between z-40 shadow-2xl border-b border-white/10 backdrop-blur-sm">
+          <div className="flex items-center space-x-2.5">
+            <div className="w-9 h-9 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
+              <Heart className="w-5 h-5" />
             </div>
-            <h3 className="font-bold text-xl">Sakhi</h3>
+            <h3 className="font-bold text-lg">Sakhi</h3>
           </div>
           <div className="flex items-center space-x-4">
             <LanguageSwitcher />
@@ -514,7 +514,7 @@ const SakhiTry = () => {
         </div>
 
         {/* Chat Panel */}
-        <div className={`fixed top-16 left-0 h-[calc(100vh-4rem)] bg-white shadow-2xl transition-all duration-300 ease-in-out z-30 ${
+        <div className={`fixed top-14 left-0 h-[calc(100vh-3.5rem)] bg-white shadow-2xl transition-all duration-300 ease-in-out z-30 ${
           isChatOpen ? 'w-full md:w-[420px]' : 'w-0'
         } overflow-hidden border-r border-gray-100`}>
 
@@ -684,7 +684,7 @@ const SakhiTry = () => {
         </div>
 
         {/* Main Content Area - Now contains only the PreviewPanel which will render the mini-player */}
-        <div className={`transition-all duration-300 pt-16 ${isChatOpen ? 'md:ml-[420px]' : 'ml-0'}`}>
+        <div className={`transition-all duration-300 pt-14 ${isChatOpen ? 'md:ml-[420px]' : 'ml-0'}`}>
           <div className="container mx-auto px-4 py-8 lg:px-8 lg:py-12">
             <PreviewPanel
               previewContent={previewContent}
