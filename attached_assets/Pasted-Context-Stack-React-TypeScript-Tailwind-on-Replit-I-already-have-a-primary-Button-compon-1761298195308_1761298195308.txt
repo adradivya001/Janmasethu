@@ -1,0 +1,46 @@
+Context
+- Stack: React + TypeScript + Tailwind on Replit.
+- I already have a primary Button component used across the site.
+- Do NOT change layout, alignment, spacing, text/content, or any other components. Keep everything responsive. Use my existing theme tokens for colors; do NOT introduce hardcoded hex values.
+
+Goal
+- Add an opt-in animation to my existing Button that mimics a sprite/icon shift:
+  • Hover effect: subtle lift and a background/icon slide (as if a sprite moves vertically or shifts frames).
+  • Click/Active effect: pressed feedback with a distinct frame/position and a slight scale-down.
+- The effect should feel premium, responsive, and work in light/dark themes automatically.
+
+Behavior (what the button should do)
+1) Default (idle):
+   - Button looks exactly like my current design.
+   - An icon/graphic is visually aligned on the left (inside the button) with enough left padding so text never overlaps.
+   - No layout or content changes anywhere it’s used.
+
+2) Hover (pointer over):
+   - The icon/graphic appears to “slide” to a second frame/state (e.g., a background/position change).
+   - The button gently elevates (shadow/depth) and slightly scales up (very subtle).
+   - Transition duration around 250–300ms; smooth and consistent.
+
+3) Active/Click (pointer down) and Focus-visible:
+   - The icon/graphic shifts to a third frame/state (distinct from hover).
+   - The button gives pressed feedback (slight scale-down) and shows a clear focus/active emphasis that meets accessibility.
+   - On keyboard focus, the state should be clearly visible without moving layout.
+
+4) Accessibility & Responsiveness:
+   - Keep ARIA roles and semantics of my existing Button.
+   - Focus styles must be obvious; keyboard users should clearly see focus.
+   - Works properly from 320px to desktop; long labels or wrapped text must remain aligned with the icon.
+   - Respect my existing design tokens for text, background, border, shadow; do not add new color values.
+
+Integration
+- Make this animation opt-in via a prop or class on my existing Button (e.g., `animated`), without breaking any current usage.
+- Do not change copy, sizes, or container layouts; only enhance the visual behavior on hover/click/focus.
+- Ensure there’s no layout shift when the effect triggers.
+
+Acceptance Criteria
+- When I enable the feature on any Button, I get:
+  • Default: current look and spacing, icon present and aligned.
+  • Hover: smooth lift + icon/graphic frame shift (sprite-like).
+  • Active/Focus: pressed feel + distinct frame, accessible focus.
+- No hardcoded hex colors; use my theme tokens.
+- No regressions to alignment, content, or responsiveness.
+- Provide a tiny usage example showing my existing Button with the animation enabled (no changes to its text or layout).
