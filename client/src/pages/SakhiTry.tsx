@@ -469,7 +469,7 @@ const SakhiTry = () => {
           question: userQuestion,
           language: sakhiLang,
           username: userName,
-          userId: userId
+          user_id: userId
         })
       });
 
@@ -477,7 +477,7 @@ const SakhiTry = () => {
         question: userQuestion, 
         language: sakhiLang, 
         username: userName,
-        userId: userId 
+        user_id: userId 
       });
 
       console.log('🔵 Webhook response status:', webhookResponse.status, webhookResponse.statusText);
