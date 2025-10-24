@@ -37,11 +37,13 @@ export default function AuthModal({
   const [relationship, setRelationship] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [userId, setUserId] = useState<string>("");
+  const [loginError, setLoginError] = useState("");
   const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+    setLoginError(""); // Clear any previous errors
 
     try {
       if (isSignUp) {
@@ -107,6 +109,8 @@ export default function AuthModal({
           onAuthSuccess(false, undefined, loginUserId);
         } else {
           // Login failed - False response or any other response
+          setLoginError("Either your email or password is wrong. Please try again.");
+          
           toast({
             title: "Login Failed",
             description: "Invalid email or password. Please check your credentials and try again.",
@@ -354,11 +358,18 @@ export default function AuthModal({
               type="password"
               placeholder="Enter your password"
               value={formData.password}
-              onChange={(e) =>
-                setFormData({ ...formData, password: e.target.value })
-              }
+              onChange={(e) => {
+                setFormData({ ...formData, password: e.target.value });
+                setLoginError(""); // Clear error when user types
+              }}
             />
           </div>
+
+          {!isSignUp && loginError && (
+            <div className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-md p-3">
+              {loginError}
+            </div>
+          )}
 
           <Button
             type="submit"
@@ -380,6 +391,7 @@ export default function AuthModal({
               onClick={() => {
                 setIsSignUp(!isSignUp);
                 setFormData({ fullName: "", email: "", password: "" });
+                setLoginError(""); // Clear error when switching modes
               }}
               className="text-primary hover:underline font-medium"
             >
