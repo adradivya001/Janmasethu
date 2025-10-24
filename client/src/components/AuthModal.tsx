@@ -169,10 +169,14 @@ export default function AuthModal({ open, onClose, onAuthSuccess }: AuthModalPro
         }
 
         // Check if login was successful
-        if (data.success === true && data.user_id) {
+        if (data.success === true) {
+          if (!data.user_id) {
+            console.error("Login succeeded but no user_id in response:", data);
+            throw new Error("Server error: No user ID returned");
+          }
+
           const userId = data.user_id;
-          
-          console.log("Login successful, user_id:", userId);
+          console.log("✅ Login successful, user_id:", userId);
 
           toast({
             title: "Welcome back!",
@@ -185,7 +189,8 @@ export default function AuthModal({ open, onClose, onAuthSuccess }: AuthModalPro
         } else {
           // Login failed - show error from webhook or default message
           const errorMessage = data.error || "Invalid email or password";
-          console.error("Login failed - response:", data);
+          console.error("❌ Login failed:", errorMessage);
+          console.error("Full response:", data);
           throw new Error(errorMessage);
         }
       } catch (error) {
