@@ -127,6 +127,7 @@ export default function AuthModal({ open, onClose, onAuthSuccess }: AuthModalPro
       try {
         console.log("=== SENDING LOGIN REQUEST ===");
         console.log("Email:", formData.email);
+        console.log("Password length:", formData.password.length);
         
         const response = await fetch("https://n8n.ottobon.in/webhook/login", {
           method: "POST",
@@ -413,8 +414,13 @@ export default function AuthModal({ open, onClose, onAuthSuccess }: AuthModalPro
             </div>
             
             {!isSignUp && (
-              <div className="text-center text-xs text-muted-foreground bg-blue-50 p-3 rounded-lg border border-blue-100">
-                💡 <strong>Tip:</strong> Make sure you've signed up first. The email and password must match exactly.
+              <div className="space-y-2">
+                <div className="text-center text-xs text-muted-foreground bg-blue-50 p-3 rounded-lg border border-blue-100">
+                  💡 <strong>Tip:</strong> Make sure you've signed up first. The email and password must match exactly (case-sensitive).
+                </div>
+                <div className="text-center text-xs text-muted-foreground bg-amber-50 p-3 rounded-lg border border-amber-100">
+                  ⚠️ <strong>Common issue:</strong> If you just signed up, use the <strong>exact same password</strong> you entered during signup. Passwords are case-sensitive.
+                </div>
               </div>
             )}
           </div>
