@@ -181,19 +181,23 @@ async function scrapeDoctor(url: string): Promise<Doctor> {
 
   /* 2) If there's a heading that contains "Appointment",
         remove that heading and EVERYTHING after it in the article */
-  const appHead = content.find("h1,h2,h3,h4,h5,h6").filter((_i, el) =>
-    $(el).text().trim().toLowerCase().includes("appointment")
-  );
-
-  if (appHead.length) {
-    // remove the heading and all following siblings until the end
-    let node = appHead.first();
-    while (node.length) {
-      const next = node.next();
-      node.remove();
-      node = next;
+  content.find("h1,h2,h3,h4,h5,h6").each((_i, el) => {
+    const $heading = $(el);
+    const headingText = $heading.text().trim().toLowerCase();
+    
+    if (headingText.includes("appointment") || headingText.includes("book") || headingText.includes("schedule")) {
+      // Remove this heading and all following siblings
+      let node = $heading;
+      while (node.length) {
+        const next = node.next();
+        node.remove();
+        node = next;
+      }
     }
-  }
+  });
+
+  // Also remove any parent section/div that contains "appointment" in its class or id
+  content.find("[class*='appointment'], [id*='appointment'], [class*='booking'], [id*='booking']").remove();
 
   /* 3) Safety: if any leftover element still contains inputs,
         remove the nearest section-like wrapper */
