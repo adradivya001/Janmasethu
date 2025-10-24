@@ -76,6 +76,51 @@
   width: 80%;
 }
 
+/* Privacy Badge - Modern & Classic Design */
+.privacy-badge {
+  @apply relative overflow-hidden;
+  @apply bg-gradient-to-r from-emerald-50 via-teal-50 to-cyan-50;
+  @apply border border-emerald-200/60;
+  @apply rounded-xl;
+  @apply px-4 py-3;
+  @apply transition-all duration-300;
+}
+
+.privacy-badge::before {
+  content: '';
+  @apply absolute inset-0;
+  @apply bg-gradient-to-r from-emerald-100/0 via-emerald-100/50 to-emerald-100/0;
+  @apply opacity-0 transition-opacity duration-300;
+}
+
+.privacy-badge:hover::before {
+  @apply opacity-100;
+}
+
+.privacy-badge-icon {
+  @apply w-4 h-4 text-emerald-600;
+  filter: drop-shadow(0 1px 2px rgba(5, 150, 105, 0.15));
+}
+
+.privacy-badge-text {
+  @apply text-xs font-medium text-emerald-800;
+  @apply flex items-center gap-1.5;
+}
+
+.privacy-badge-dot {
+  @apply w-1.5 h-1.5 bg-emerald-500 rounded-full;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% {
+    @apply opacity-100 scale-100;
+  }
+  50% {
+    @apply opacity-60 scale-90;
+  }
+}
+
 /* Primary navigation enhanced hover effects */
 .nav-primary a {
   position: relative;
@@ -1163,7 +1208,7 @@ textarea:focus-visible {
     bottom: 1rem !important;
     right: 1rem !important;
   }
-  
+
   .floating-mini-player > div {
     width: 240px !important;
   }
@@ -1209,7 +1254,7 @@ textarea:focus-visible {
     max-width: 100%;
     margin: 0;
   }
-  
+
   .responsive-iframe-container iframe {
     border-radius: 0.5rem;
   }
@@ -1222,7 +1267,7 @@ textarea:focus-visible {
     right: 1rem !important;
     left: auto !important;
   }
-  
+
   /* Ensure it doesn't overlap with mobile chat input area */
   .sakhi-chat-panel:has(~ * .floating-mini-player) {
     padding-bottom: 6rem !important;
@@ -1311,12 +1356,12 @@ textarea:focus-visible {
   .sakhi-try-header {
     height: 64px;
   }
-  
+
   .sakhi-chat-panel {
     top: 64px !important;
     height: calc(100vh - 64px) !important;
   }
-  
+
   .sakhi-main-content {
     padding-top: 80px !important;
   }
@@ -1327,7 +1372,7 @@ textarea:focus-visible {
     top: 64px !important;
     height: calc(100vh - 64px) !important;
   }
-  
+
   .sakhi-main-content {
     padding-top: 80px !important;
   }

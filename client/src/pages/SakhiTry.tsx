@@ -673,10 +673,13 @@ const SakhiTry = () => {
                 <Send className="w-4 h-4" />
               </Button>
             </div>
-            <p className="text-xs text-gray-500 text-center flex items-center justify-center">
-              <Shield className="w-3 h-3 inline mr-1.5" />
-              {t.privateSecure}
-            </p>
+            <div className="privacy-badge">
+              <div className="privacy-badge-text">
+                <Shield className="privacy-badge-icon" />
+                <div className="privacy-badge-dot" />
+                <span>End-to-end encrypted • Your data stays on your device</span>
+              </div>
+            </div>
           </div>
         </div>
 
