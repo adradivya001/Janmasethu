@@ -191,13 +191,20 @@ export default function AuthModal({ open, onClose, onAuthSuccess }: AuthModalPro
           const errorMessage = data.error || "Invalid email or password";
           console.error("❌ Login failed:", errorMessage);
           console.error("Full response:", data);
-          throw new Error(errorMessage);
+          
+          toast({
+            title: "Login Failed",
+            description: errorMessage,
+            variant: "destructive",
+          });
+          return; // Don't throw error, just return
         }
       } catch (error) {
         console.error("Login error:", error);
+        const errorMessage = error instanceof Error ? error.message : "An unexpected error occurred";
         toast({
           title: "Error",
-          description: "Invalid email or password. Please try again.",
+          description: errorMessage,
           variant: "destructive",
         });
       } finally {
@@ -389,19 +396,27 @@ export default function AuthModal({ open, onClose, onAuthSuccess }: AuthModalPro
             }
           </Button>
 
-          <div className="text-center text-sm">
-            <button
-              type="button"
-              onClick={() => {
-                setIsSignUp(!isSignUp);
-                setFormData({ fullName: "", email: "", password: "" });
-              }}
-              className="text-primary hover:underline"
-            >
-              {isSignUp
-                ? "Already have an account? Sign in"
-                : "Don't have an account? Sign up"}
-            </button>
+          <div className="space-y-3">
+            <div className="text-center text-sm">
+              <button
+                type="button"
+                onClick={() => {
+                  setIsSignUp(!isSignUp);
+                  setFormData({ fullName: "", email: "", password: "" });
+                }}
+                className="text-primary hover:underline font-medium"
+              >
+                {isSignUp
+                  ? "Already have an account? Sign in"
+                  : "Don't have an account? Sign up"}
+              </button>
+            </div>
+            
+            {!isSignUp && (
+              <div className="text-center text-xs text-muted-foreground bg-blue-50 p-3 rounded-lg border border-blue-100">
+                💡 <strong>Tip:</strong> Make sure you've signed up first. The email and password must match exactly.
+              </div>
+            )}
           </div>
         </form>
       </DialogContent>
