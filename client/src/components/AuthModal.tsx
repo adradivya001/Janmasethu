@@ -93,6 +93,8 @@ export default function AuthModal({ open, onClose, onAuthSuccess }: AuthModalPro
           console.log("Generated temporary user ID:", tempId);
         }
         
+        console.log("Account created successfully, showing relationship selection");
+        
         toast({
           title: "Account created!",
           description: "Please tell us about yourself.",
@@ -100,6 +102,7 @@ export default function AuthModal({ open, onClose, onAuthSuccess }: AuthModalPro
         
         // Show relationship selection
         setShowRelationship(true);
+        console.log("showRelationship state set to:", true);
       } catch (error) {
         console.error("Sign-up error:", error);
         toast({
@@ -196,6 +199,9 @@ export default function AuthModal({ open, onClose, onAuthSuccess }: AuthModalPro
   };
 
   const handleRelationshipSubmit = () => {
+    console.log("=== handleRelationshipSubmit called ===");
+    console.log("Selected relationship:", relationship);
+    
     if (!relationship) {
       toast({
         title: "Required",
@@ -207,6 +213,7 @@ export default function AuthModal({ open, onClose, onAuthSuccess }: AuthModalPro
 
     console.log("Relationship selected:", relationship);
     console.log("User ID:", userId);
+    console.log("Calling onAuthSuccess with isNewUser=true");
     
     // Close the auth modal and trigger onboarding with userId
     onAuthSuccess(true, relationship, userId);
