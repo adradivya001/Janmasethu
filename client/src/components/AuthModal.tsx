@@ -134,36 +134,52 @@ export default function AuthModal({ open, onClose, onAuthSuccess }: AuthModalPro
           }),
         });
 
-        if (!response.ok) {
-          throw new Error("Failed to log in");
+        // Parse response - handle both JSON and text formats
+        const contentType = response.headers.get("content-type");
+        let loginSuccess = false;
+        let userId = "";
+        
+        if (contentType && contentType.includes("application/json")) {
+          // Handle JSON response format
+          const jsonResponse = await response.json();
+          console.log("Login JSON response:", jsonResponse);
+          
+          if (jsonResponse.success === true) {
+            loginSuccess = true;
+            userId = jsonResponse.user_id || jsonResponse.userId || "";
+          } else {
+            throw new Error(jsonResponse.error || "Invalid credentials");
+          }
+        } else {
+          // Handle text response format (old format)
+          const textResponse = await response.text();
+          console.log("Login text response:", textResponse);
+          
+          if (textResponse.startsWith("True:")) {
+            loginSuccess = true;
+            userId = textResponse.split("True:")[1]?.trim() || "";
+          } else {
+            throw new Error("Invalid credentials");
+          }
         }
 
-        // Parse response - n8n returns "True: {user_id}" or "False"
-        const textResponse = await response.text();
-        console.log("Login response:", textResponse);
-
-        // Check if login was successful
-        if (textResponse.startsWith("True:")) {
-          // Extract user_id from "True: {user_id}" format
-          const userId = textResponse.split("True:")[1]?.trim();
-          
-          if (userId) {
-            // Store user_id
-            storeUserId(userId);
-            console.log("User logged in with ID:", userId);
-          }
-
-          toast({
-            title: "Welcome back!",
-            description: "Redirecting to Sakhi...",
-          });
-          
-          // Close modal and trigger success callback for existing user
-          onAuthSuccess(false);
-        } else {
-          // Login failed - wrong password or user not found
+        if (!loginSuccess) {
           throw new Error("Invalid credentials");
         }
+
+        // Store user_id if available
+        if (userId) {
+          storeUserId(userId);
+          console.log("User logged in with ID:", userId);
+        }
+
+        toast({
+          title: "Welcome back!",
+          description: "Redirecting to Sakhi...",
+        });
+        
+        // Close modal and trigger success callback for existing user
+        onAuthSuccess(false);
       } catch (error) {
         console.error("Login error:", error);
         toast({
