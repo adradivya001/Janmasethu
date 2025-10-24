@@ -169,7 +169,42 @@ async function scrapeDoctor(url: string): Promise<Doctor> {
     };
   }
 
-  content.find("script, style, noscript").remove();
+  // remove junk/interactive bits we don't want on our site
+  content.find(`
+    script, style, noscript,
+    form, iframe, button, select, input, textarea,
+    .appointment, [class*="appoint"], [id*="appoint"],
+    .elementor-widget-form, .wpcf7, .g-recaptcha, .grecaptcha-badge,
+    .wpforms-container, .booking, .book-appointment,
+    .hs-form, .mktoForm, .contact-form
+  `).remove();
+
+  // Also: if there is any section whose heading contains "Appointment", drop that section
+  content.find("h2,h3,h4").each((_i, h) => {
+    const $h = $(h);
+    const t = $h.text().toLowerCase();
+    if (t.includes("appointment")) {
+      // remove the heading and everything until the next heading (common WP layout)
+      const toRemove = [$h.get(0)];
+      let next = $h.next();
+      while (next.length && !/H2|H3|H4/.test(next[0].tagName)) {
+        toRemove.push(next.get(0));
+        next = next.next();
+      }
+      toRemove.forEach(el => $(el).remove());
+    }
+  });
+
+  // final safety: drop any element that has a submit button inside
+  content.find(":has(button[type='submit']), :has(input[type='submit'])").remove();
+
+  // Finally remove any empty wrappers left behind
+  content.find("*").each((_i, el) => {
+    const $el = $(el);
+    if (!$el.text().trim() && $el.children().length === 0 && !$el.is("img,figure")) {
+      $el.remove();
+    }
+  });
 
   // Pull specialties/qualifications heuristically (lists/labels common in WP profiles)
   const textContent = content.text().trim();
