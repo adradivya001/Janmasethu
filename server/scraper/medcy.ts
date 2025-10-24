@@ -1,6 +1,7 @@
 // server/scraper/medcy.ts
 import { fetch } from "undici";
 import * as cheerio from "cheerio";
+import { createHash } from "crypto";
 import { query } from "../db";
 
 type ScrapedPost = {
@@ -15,6 +16,10 @@ type ScrapedPost = {
 const SLEEP_MS = 1200; // be polite to their server
 
 const sleep = (ms: number) => new Promise(r => setTimeout(r, ms));
+
+function hash(html: string) {
+  return createHash("sha256").update(html.trim()).digest("hex");
+}
 
 function getSlugFromUrl(url: string) {
   try {
@@ -115,16 +120,38 @@ export async function collectPostUrls(startUrl = "https://medcyivf.in/blog/", ma
 
 /** Upsert into public.scraped_blogs by slug */
 async function upsert(post: ScrapedPost) {
+  const content_hash = hash(post.content_html);
+
   await query(
     `
-    INSERT INTO public.scraped_blogs (title, slug, excerpt, content_html, image_url, source_url)
-    VALUES ($1,$2,$3,$4,$5,$6)
-    ON CONFLICT (slug) DO UPDATE SET
-      title = EXCLUDED.title,
-      excerpt = EXCLUDED.excerpt,
-      content_html = EXCLUDED.content_html,
-      image_url = EXCLUDED.image_url,
-      source_url = EXCLUDED.source_url
+    INSERT INTO public.scraped_blogs
+      (title, slug, excerpt, content_html, image_url, source_url, content_hash, last_scraped_at, last_changed_at)
+    VALUES
+      ($1,$2,$3,$4,$5,$6,$7, NOW(), NOW())
+    ON CONFLICT (slug) DO UPDATE
+    SET
+      -- only rewrite content if hash changed
+      title         = EXCLUDED.title,
+      excerpt       = EXCLUDED.excerpt,
+      image_url     = EXCLUDED.image_url,
+      source_url    = EXCLUDED.source_url,
+      last_scraped_at = NOW(),
+      -- update these only when new content is different
+      content_html  = CASE
+                        WHEN public.scraped_blogs.content_hash IS DISTINCT FROM EXCLUDED.content_hash
+                        THEN EXCLUDED.content_html
+                        ELSE public.scraped_blogs.content_html
+                      END,
+      content_hash  = CASE
+                        WHEN public.scraped_blogs.content_hash IS DISTINCT FROM EXCLUDED.content_hash
+                        THEN EXCLUDED.content_hash
+                        ELSE public.scraped_blogs.content_hash
+                      END,
+      last_changed_at = CASE
+                        WHEN public.scraped_blogs.content_hash IS DISTINCT FROM EXCLUDED.content_hash
+                        THEN NOW()
+                        ELSE public.scraped_blogs.last_changed_at
+                      END
     `,
     [
       post.title,
@@ -133,6 +160,7 @@ async function upsert(post: ScrapedPost) {
       post.content_html,
       post.image_url,
       post.source_url,
+      content_hash,
     ]
   );
 }
