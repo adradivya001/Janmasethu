@@ -145,9 +145,24 @@ export default function AuthModal({ open, onClose, onAuthSuccess }: AuthModalPro
           throw new Error("Login failed");
         }
 
-        // n8n returns JSON response
-        const data = await response.json();
-        console.log("Login response data:", data);
+        // Read response as text first
+        const responseText = await response.text();
+        console.log("Login response text:", responseText);
+
+        // Try to parse as JSON
+        let data: any;
+        try {
+          if (responseText.trim()) {
+            data = JSON.parse(responseText);
+            console.log("Login response data:", data);
+          } else {
+            console.error("Empty response from webhook");
+            throw new Error("Server returned empty response");
+          }
+        } catch (parseError) {
+          console.error("Failed to parse response:", parseError);
+          throw new Error("Invalid response from server");
+        }
 
         // Check if login was successful
         if (data.success === true && data.user_id) {
@@ -165,7 +180,7 @@ export default function AuthModal({ open, onClose, onAuthSuccess }: AuthModalPro
           onAuthSuccess(false, undefined, userId);
         } else {
           // Login failed - show error from webhook or default message
-          const errorMessage = data.error || "Invalid login credentials";
+          const errorMessage = data.error || "Invalid email or password";
           console.error("Login failed - response:", data);
           throw new Error(errorMessage);
         }
