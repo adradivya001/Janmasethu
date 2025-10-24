@@ -63,31 +63,43 @@ export default function AuthModal({ open, onClose, onAuthSuccess }: AuthModalPro
           throw new Error("Failed to create account");
         }
 
-        const data = await response.json();
+        // Try to parse JSON, but handle non-JSON responses
+        let data: any = {};
+        const contentType = response.headers.get("content-type");
         
-        // Capture the unique ID from the response
+        try {
+          if (contentType && contentType.includes("application/json")) {
+            data = await response.json();
+          } else {
+            // Handle non-JSON response (like "True")
+            const textResponse = await response.text();
+            console.log("Non-JSON response received:", textResponse);
+            data = { success: true };
+          }
+        } catch (parseError) {
+          console.log("Response parsing handled:", parseError);
+          data = { success: true };
+        }
+        
+        // Capture the unique ID from the response if available
         if (data.id || data.userId || data.user_id) {
           const uniqueId = data.id || data.userId || data.user_id;
           storeUserId(uniqueId);
           console.log("User ID captured:", uniqueId);
-          
-          toast({
-            title: "Account created!",
-            description: "Please tell us about yourself.",
-          });
-          
-          // Show relationship selection instead of closing
-          setShowRelationship(true);
         } else {
-          console.error("No user ID in response:", data);
-          toast({
-            title: "Warning",
-            description: "Account created but user ID not found. Continuing...",
-          });
-          
-          // Show relationship selection anyway
-          setShowRelationship(true);
+          // Generate a temporary ID if none provided
+          const tempId = `user_${Date.now()}`;
+          storeUserId(tempId);
+          console.log("Generated temporary user ID:", tempId);
         }
+        
+        toast({
+          title: "Account created!",
+          description: "Please tell us about yourself.",
+        });
+        
+        // Show relationship selection
+        setShowRelationship(true);
       } catch (error) {
         console.error("Sign-up error:", error);
         toast({
@@ -99,15 +111,50 @@ export default function AuthModal({ open, onClose, onAuthSuccess }: AuthModalPro
         setIsLoading(false);
       }
     } else {
-      // Static sign-in - skip authentication and go directly to SakhiTry
-      toast({
-        title: "Welcome back!",
-        description: "Redirecting to Sakhi...",
-      });
+      // Handle login
+      if (!formData.email || !formData.password) {
+        toast({
+          title: "Error",
+          description: "Please fill in all fields",
+          variant: "destructive",
+        });
+        return;
+      }
       
-      // Close modal and redirect to SakhiTry page
-      onClose();
-      window.location.href = '/sakhi/try';
+      setIsLoading(true);
+      try {
+        const response = await fetch("https://n8n.ottobon.in/webhook/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: formData.email,
+            password: formData.password,
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to log in");
+        }
+
+        toast({
+          title: "Welcome back!",
+          description: "Redirecting to Sakhi...",
+        });
+        
+        // Close modal and trigger success callback for existing user
+        onAuthSuccess(false);
+      } catch (error) {
+        console.error("Login error:", error);
+        toast({
+          title: "Error",
+          description: "Failed to log in. Please try again.",
+          variant: "destructive",
+        });
+      } finally {
+        setIsLoading(false);
+      }
     }
   };
 
