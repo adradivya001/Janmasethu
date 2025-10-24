@@ -126,13 +126,17 @@ const SakhiTry = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isChatOpen, setIsChatOpen] = useState(true);
   const [userName, setUserName] = useState<string>('');
+  const [userId, setUserId] = useState<string>('');
 
-  // Scroll to top when component mounts and get username
+  // Scroll to top when component mounts and get username and userId
   useEffect(() => {
     window.scrollTo(0, 0);
-    // Retrieve username from localStorage
+    // Retrieve username and userId from localStorage
     const storedUserName = localStorage.getItem('userName') || localStorage.getItem('userEmail') || 'Anonymous';
+    const storedUserId = localStorage.getItem('userId') || '';
     setUserName(storedUserName);
+    setUserId(storedUserId);
+    console.log('📋 Retrieved from localStorage:', { userName: storedUserName, userId: storedUserId });
   }, []);
 
   const [inputText, setInputText] = useState('');
@@ -464,8 +468,16 @@ const SakhiTry = () => {
         body: JSON.stringify({
           question: userQuestion,
           language: sakhiLang,
-          username: userName
+          username: userName,
+          userId: userId
         })
+      });
+
+      console.log('📤 Sent to webhook:', { 
+        question: userQuestion, 
+        language: sakhiLang, 
+        username: userName,
+        userId: userId 
       });
 
       console.log('🔵 Webhook response status:', webhookResponse.status, webhookResponse.statusText);
