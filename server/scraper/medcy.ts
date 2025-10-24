@@ -21,6 +21,20 @@ function hash(html: string) {
   return createHash("sha256").update(html.trim()).digest("hex");
 }
 
+function isMedcyPostUrl(url: string) {
+  try {
+    const u = new URL(url);
+    // must be on medcyivf.in
+    if (!/\.?medcyivf\.in$/i.test(u.hostname)) return false;
+    // path must be like /blog/<slug>/ (one segment after /blog), not /blog/ itself
+    const parts = u.pathname.split("/").filter(Boolean);
+    const i = parts.indexOf("blog");
+    return i >= 0 && parts.length === i + 2; // exactly /blog/<slug>
+  } catch {
+    return false;
+  }
+}
+
 function getSlugFromUrl(url: string) {
   try {
     const u = new URL(url);
@@ -99,18 +113,9 @@ export async function collectPostUrls(startUrl = "https://medcyivf.in/blog/", ma
 
   const urls = new Set<string>();
 
-  // Common WP blog listing anchors
-  $("h2.entry-title a, article a[rel='bookmark'], .post h2 a, .blog a.more-link").each((_i, a) => {
-    const href = $(a).attr("href");
-    if (href && href.startsWith("http") && href.includes("/blog/")) {
-      urls.add(href.split("#")[0]);
-    }
-  });
-
-  // Also try general article links under /blog/
   $("a").each((_i, a) => {
     const href = $(a).attr("href");
-    if (href && href.startsWith("http") && href.includes("/blog/")) {
+    if (href && href.startsWith("http") && isMedcyPostUrl(href)) {
       urls.add(href.split("#")[0]);
     }
   });
