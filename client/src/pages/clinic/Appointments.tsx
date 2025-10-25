@@ -38,12 +38,17 @@ export default function Appointments() {
     patientName: "",
     patientId: "",
     email: "",
+    title: "",
+    description: "",
     date: "",
     time: "",
-    type: "Initial Consultation",
+    duration: "00:30:00",
+    type: "Consultation",
     doctor: "Dr. Rao",
     status: "scheduled",
-    notes: ""
+    notes: "",
+    reminderSent: false,
+    googleCalendar: true
   });
 
   const getStatusColor = (status: string) => {
@@ -57,7 +62,7 @@ export default function Appointments() {
   };
 
   const handleAddAppointment = async () => {
-    if (newAppointment.patientName && newAppointment.patientId && newAppointment.email && newAppointment.date && newAppointment.time) {
+    if (newAppointment.patientName && newAppointment.patientId && newAppointment.email && newAppointment.title && newAppointment.description && newAppointment.date && newAppointment.time) {
       const appointmentToAdd = {
         id: `A${String(appointmentsData.length + 1).padStart(3, '0')}`,
         ...newAppointment
@@ -66,16 +71,20 @@ export default function Appointments() {
       try {
         console.log('🔵 Triggering appointment webhook...');
         
+        // Combine date and time into ISO format
+        const appointmentDateTime = `${newAppointment.date}T${newAppointment.time}:00Z`;
+        
         const webhookPayload = {
-          patient_name: newAppointment.patientName,
-          patient_id: newAppointment.patientId,
-          email: newAppointment.email,
-          date: newAppointment.date,
-          time: newAppointment.time,
+          patient_email: newAppointment.email,
+          title: newAppointment.title,
+          description: newAppointment.description,
+          appointment_date: appointmentDateTime,
+          duration: newAppointment.duration,
           type: newAppointment.type,
-          doctor: newAppointment.doctor,
           status: newAppointment.status,
-          notes: newAppointment.notes
+          notes: newAppointment.notes,
+          reminder_sent: newAppointment.reminderSent,
+          google_calendar: newAppointment.googleCalendar
         };
 
         const webhookResponse = await fetch('https://n8n.ottobon.in/webhook/appointments', {
@@ -105,12 +114,17 @@ export default function Appointments() {
         patientName: "",
         patientId: "",
         email: "",
+        title: "",
+        description: "",
         date: "",
         time: "",
-        type: "Initial Consultation",
+        duration: "00:30:00",
+        type: "Consultation",
         doctor: "Dr. Rao",
         status: "scheduled",
-        notes: ""
+        notes: "",
+        reminderSent: false,
+        googleCalendar: true
       });
       setIsModalOpen(false);
     }
@@ -181,6 +195,28 @@ export default function Appointments() {
                     />
                   </div>
                   
+                  <div>
+                    <Label htmlFor="title" className="text-sm font-medium">Title *</Label>
+                    <Input
+                      id="title"
+                      value={newAppointment.title}
+                      onChange={(e) => handleInputChange("title", e.target.value)}
+                      placeholder="e.g., IVF Consultation"
+                      className="mt-1 rounded-xl border-gray-200 focus:border-purple-500 focus:ring-purple-500"
+                    />
+                  </div>
+                  
+                  <div>
+                    <Label htmlFor="description" className="text-sm font-medium">Description *</Label>
+                    <Input
+                      id="description"
+                      value={newAppointment.description}
+                      onChange={(e) => handleInputChange("description", e.target.value)}
+                      placeholder="e.g., Initial consultation for IVF treatment"
+                      className="mt-1 rounded-xl border-gray-200 focus:border-purple-500 focus:ring-purple-500"
+                    />
+                  </div>
+                  
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <Label htmlFor="date" className="text-sm font-medium">Date *</Label>
@@ -204,22 +240,39 @@ export default function Appointments() {
                     </div>
                   </div>
                   
-                  <div>
-                    <Label htmlFor="type" className="text-sm font-medium">Appointment Type</Label>
-                    <select 
-                      id="type"
-                      value={newAppointment.type}
-                      onChange={(e) => handleInputChange("type", e.target.value)}
-                      className="w-full mt-1 px-4 py-3 border border-gray-200 rounded-xl bg-white focus:border-purple-500 focus:ring-2 focus:ring-purple-500 focus:outline-none appearance-none text-base"
-                    >
-                      <option value="Initial Consultation">Initial Consultation</option>
-                      <option value="Follow-up">Follow-up</option>
-                      <option value="Ultrasound Scan">Ultrasound Scan</option>
-                      <option value="Blood Test">Blood Test</option>
-                      <option value="IUI Procedure">IUI Procedure</option>
-                      <option value="IVF Procedure">IVF Procedure</option>
-                      <option value="Embryo Transfer">Embryo Transfer</option>
-                    </select>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="duration" className="text-sm font-medium">Duration</Label>
+                      <select 
+                        id="duration"
+                        value={newAppointment.duration}
+                        onChange={(e) => handleInputChange("duration", e.target.value)}
+                        className="w-full mt-1 px-4 py-3 border border-gray-200 rounded-xl bg-white focus:border-purple-500 focus:ring-2 focus:ring-purple-500 focus:outline-none appearance-none text-base"
+                      >
+                        <option value="00:15:00">15 minutes</option>
+                        <option value="00:30:00">30 minutes</option>
+                        <option value="00:45:00">45 minutes</option>
+                        <option value="01:00:00">1 hour</option>
+                        <option value="01:30:00">1.5 hours</option>
+                        <option value="02:00:00">2 hours</option>
+                      </select>
+                    </div>
+                    
+                    <div>
+                      <Label htmlFor="type" className="text-sm font-medium">Type</Label>
+                      <select 
+                        id="type"
+                        value={newAppointment.type}
+                        onChange={(e) => handleInputChange("type", e.target.value)}
+                        className="w-full mt-1 px-4 py-3 border border-gray-200 rounded-xl bg-white focus:border-purple-500 focus:ring-2 focus:ring-purple-500 focus:outline-none appearance-none text-base"
+                      >
+                        <option value="Consultation">Consultation</option>
+                        <option value="Follow-up">Follow-up</option>
+                        <option value="Procedure">Procedure</option>
+                        <option value="Scan">Scan</option>
+                        <option value="Test">Test</option>
+                      </select>
+                    </div>
                   </div>
                   
                   <div>
@@ -272,7 +325,7 @@ export default function Appointments() {
                     <Button 
                       onClick={handleAddAppointment}
                       className="w-full md:w-auto bg-purple-600 hover:bg-purple-700 text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
-                      disabled={!newAppointment.patientName || !newAppointment.patientId || !newAppointment.email || !newAppointment.date || !newAppointment.time}
+                      disabled={!newAppointment.patientName || !newAppointment.patientId || !newAppointment.email || !newAppointment.title || !newAppointment.description || !newAppointment.date || !newAppointment.time}
                     >
                       Schedule Appointment
                     </Button>
