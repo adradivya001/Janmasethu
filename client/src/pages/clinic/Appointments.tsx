@@ -37,6 +37,7 @@ export default function Appointments() {
   const [newAppointment, setNewAppointment] = useState({
     patientName: "",
     patientId: "",
+    email: "",
     date: "",
     time: "",
     type: "Initial Consultation",
@@ -56,7 +57,7 @@ export default function Appointments() {
   };
 
   const handleAddAppointment = async () => {
-    if (newAppointment.patientName && newAppointment.patientId && newAppointment.date && newAppointment.time) {
+    if (newAppointment.patientName && newAppointment.patientId && newAppointment.email && newAppointment.date && newAppointment.time) {
       const appointmentToAdd = {
         id: `A${String(appointmentsData.length + 1).padStart(3, '0')}`,
         ...newAppointment
@@ -68,6 +69,7 @@ export default function Appointments() {
         const webhookPayload = {
           patient_name: newAppointment.patientName,
           patient_id: newAppointment.patientId,
+          email: newAppointment.email,
           date: newAppointment.date,
           time: newAppointment.time,
           type: newAppointment.type,
@@ -102,6 +104,7 @@ export default function Appointments() {
       setNewAppointment({
         patientName: "",
         patientId: "",
+        email: "",
         date: "",
         time: "",
         type: "Initial Consultation",
@@ -162,6 +165,18 @@ export default function Appointments() {
                       value={newAppointment.patientId}
                       onChange={(e) => handleInputChange("patientId", e.target.value)}
                       placeholder="Enter patient ID"
+                      className="mt-1 rounded-xl border-gray-200 focus:border-purple-500 focus:ring-purple-500"
+                    />
+                  </div>
+                  
+                  <div>
+                    <Label htmlFor="email" className="text-sm font-medium">Email *</Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      value={newAppointment.email}
+                      onChange={(e) => handleInputChange("email", e.target.value)}
+                      placeholder="Enter email address"
                       className="mt-1 rounded-xl border-gray-200 focus:border-purple-500 focus:ring-purple-500"
                     />
                   </div>
@@ -257,7 +272,7 @@ export default function Appointments() {
                     <Button 
                       onClick={handleAddAppointment}
                       className="w-full md:w-auto bg-purple-600 hover:bg-purple-700 text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
-                      disabled={!newAppointment.patientName || !newAppointment.patientId || !newAppointment.date || !newAppointment.time}
+                      disabled={!newAppointment.patientName || !newAppointment.patientId || !newAppointment.email || !newAppointment.date || !newAppointment.time}
                     >
                       Schedule Appointment
                     </Button>
