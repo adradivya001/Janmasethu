@@ -55,12 +55,48 @@ export default function Appointments() {
     }
   };
 
-  const handleAddAppointment = () => {
+  const handleAddAppointment = async () => {
     if (newAppointment.patientName && newAppointment.patientId && newAppointment.date && newAppointment.time) {
       const appointmentToAdd = {
         id: `A${String(appointmentsData.length + 1).padStart(3, '0')}`,
         ...newAppointment
       };
+      
+      try {
+        console.log('🔵 Triggering appointment webhook...');
+        
+        const webhookPayload = {
+          patient_name: newAppointment.patientName,
+          patient_id: newAppointment.patientId,
+          date: newAppointment.date,
+          time: newAppointment.time,
+          type: newAppointment.type,
+          doctor: newAppointment.doctor,
+          status: newAppointment.status,
+          notes: newAppointment.notes
+        };
+
+        const webhookResponse = await fetch('https://n8n.ottobon.in/webhook/appointments', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            query: {},
+            body: webhookPayload
+          })
+        });
+
+        console.log('📤 Sent to webhook:', webhookPayload);
+        console.log('🔵 Webhook response status:', webhookResponse.status, webhookResponse.statusText);
+
+        if (webhookResponse.ok) {
+          const responseData = await webhookResponse.json();
+          console.log('✅ Appointment response:', responseData);
+        }
+      } catch (error) {
+        console.error('❌ Error triggering appointment webhook:', error);
+      }
       
       setAppointmentsData([...appointmentsData, appointmentToAdd]);
       setNewAppointment({
