@@ -1,6 +1,8 @@
 // server/routes.ts
 import type { Express } from "express";
-import { db } from "@db";
+import { db } from "@shared/db";
+import { doctors, leads } from "@shared/schema";
+import { eq, desc } from "drizzle-orm";
 import { createServer, type Server } from "http";
 import { query } from "./db";
 import { runMedcyDoctorsScrape } from "./scraper/medcyDoctors";
@@ -218,6 +220,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (e: any) {
       console.error("GET /api/blogs/:slug error:", e);
       res.status(500).json({ error: e.message });
+    }
+  });
+
+  // Get all leads
+  app.get("/api/leads", async (req, res) => {
+    try {
+      const allLeads = await db.select().from(leads).orderBy(desc(leads.created_at));
+      res.json(allLeads);
+    } catch (error) {
+      console.error("Error fetching leads:", error);
+      res.status(500).json({ error: "Failed to fetch leads" });
     }
   });
 
