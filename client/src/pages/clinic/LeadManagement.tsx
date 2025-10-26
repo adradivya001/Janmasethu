@@ -75,27 +75,12 @@ export default function LeadManagement() {
   }, []);
 
   useEffect(() => {
-    initializeLeads();
+    fetchLeads();
   }, []);
-
-  const initializeLeads = async () => {
-    try {
-      setIsLoading(true);
-      
-      // First, try to create the leads table (will do nothing if it already exists)
-      console.log('🔧 Ensuring leads table exists...');
-      await fetch('/api/dev/create-leads-table', { method: 'POST' });
-      
-      // Then fetch the leads
-      await fetchLeads();
-    } catch (error) {
-      console.error('❌ Error initializing leads:', error);
-      setIsLoading(false);
-    }
-  };
 
   const fetchLeads = async () => {
     try {
+      setIsLoading(true);
       const response = await fetch('/api/leads');
       if (response.ok) {
         const data = await response.json();
@@ -184,8 +169,8 @@ export default function LeadManagement() {
           const responseData = await webhookResponse.json();
           console.log('✅ Lead created successfully:', responseData);
 
-          // Refresh leads from the database to ensure consistency
-          await fetchLeads();
+          // Add the response data directly to state
+          setLeadsData([responseData, ...leadsData]);
           
           // Reset form
           setNewLead({
