@@ -50,6 +50,14 @@ export default function Patients() {
 
   const handleAddPatient = async () => {
     if (newPatient.firstName && newPatient.lastName && newPatient.email && newPatient.phone && newPatient.dateOfBirth) {
+      const patientToAdd = {
+        id: `P${String(patientsData.length + 1).padStart(3, '0')}`,
+        name: `${newPatient.firstName} ${newPatient.lastName}`,
+        ...newPatient,
+        age: parseInt(newPatient.age) || 25,
+        lastVisit: new Date().toISOString().split('T')[0]
+      };
+      
       try {
         console.log('🔵 Triggering patient webhook...');
         
@@ -79,62 +87,29 @@ export default function Patients() {
         if (webhookResponse.ok) {
           const responseData = await webhookResponse.json();
           console.log('✅ Patient response:', responseData);
-          
-          // Calculate age from birth_date
-          const birthDate = new Date(responseData.birth_date);
-          const today = new Date();
-          const calculatedAge = today.getFullYear() - birthDate.getFullYear();
-          
-          // Create patient object from webhook response
-          const patientToAdd = {
-            id: responseData.patient_id,
-            name: `${responseData.first_name} ${responseData.last_name}`,
-            firstName: responseData.first_name,
-            lastName: responseData.last_name,
-            email: responseData.email,
-            phone: responseData.phone,
-            gender: responseData.gender,
-            age: calculatedAge,
-            dateOfBirth: responseData.birth_date.split('T')[0],
-            status: "active",
-            treatmentType: newPatient.treatmentType || "IVF",
-            cycle: newPatient.cycle || "1",
-            doctor: newPatient.doctor || "Dr. Rao",
-            medicalHistory: newPatient.medicalHistory || "",
-            emergencyContact: newPatient.emergencyContact || "",
-            lastVisit: responseData.created_at.split('T')[0]
-          };
-          
-          // Add the new patient to the list
-          setPatientsData([patientToAdd, ...patientsData]);
-          
-          // Reset form
-          setNewPatient({
-            firstName: "",
-            lastName: "",
-            name: "",
-            email: "",
-            phone: "",
-            gender: "Female",
-            age: "",
-            dateOfBirth: "",
-            status: "active",
-            treatmentType: "IVF",
-            cycle: "1",
-            doctor: "Dr. Rao",
-            medicalHistory: "",
-            emergencyContact: ""
-          });
-          
-          setIsModalOpen(false);
-        } else {
-          console.error('❌ Patient creation failed:', webhookResponse.statusText);
-          alert('Failed to create patient. Please try again.');
         }
       } catch (error) {
         console.error('❌ Error triggering patient webhook:', error);
-        alert('An error occurred while creating the patient. Please try again.');
       }
+      
+      setPatientsData([...patientsData, patientToAdd]);
+      setNewPatient({
+        firstName: "",
+        lastName: "",
+        name: "",
+        email: "",
+        phone: "",
+        gender: "Female",
+        age: "",
+        dateOfBirth: "",
+        status: "active",
+        treatmentType: "IVF",
+        cycle: "1",
+        doctor: "Dr. Rao",
+        medicalHistory: "",
+        emergencyContact: ""
+      });
+      setIsModalOpen(false);
     }
   };
 
