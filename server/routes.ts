@@ -1,10 +1,7 @@
 // server/routes.ts
 import type { Express } from "express";
-import { db } from "@shared/db";
-import { doctors, leads } from "@shared/schema";
-import { eq, desc } from "drizzle-orm";
 import { createServer, type Server } from "http";
-import { query } from "./db";
+import { query, pool } from "./db";
 import { runMedcyDoctorsScrape } from "./scraper/medcyDoctors";
 
 // Dev key for scraping - use environment variable in production
@@ -226,8 +223,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Get all leads
   app.get("/api/leads", async (req, res) => {
     try {
-      const allLeads = await db.select().from(leads).orderBy(desc(leads.created_at));
-      res.json(allLeads);
+      const { rows } = await query(
+        `SELECT * FROM leads ORDER BY created_at DESC`
+      );
+      res.json(rows);
     } catch (error) {
       console.error("Error fetching leads:", error);
       res.status(500).json({ error: "Failed to fetch leads" });
