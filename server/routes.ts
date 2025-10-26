@@ -1,7 +1,8 @@
 // server/routes.ts
 import type { Express } from "express";
+import { db } from "@db";
 import { createServer, type Server } from "http";
-import { query, pool } from "./db";
+import { query } from "./db";
 import { runMedcyDoctorsScrape } from "./scraper/medcyDoctors";
 
 // Dev key for scraping - use environment variable in production
@@ -217,19 +218,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (e: any) {
       console.error("GET /api/blogs/:slug error:", e);
       res.status(500).json({ error: e.message });
-    }
-  });
-
-  // Get all leads
-  app.get("/api/leads", async (req, res) => {
-    try {
-      const { rows } = await query(
-        `SELECT * FROM leads ORDER BY created_at DESC`
-      );
-      res.json(rows);
-    } catch (error) {
-      console.error("Error fetching leads:", error);
-      res.status(500).json({ error: "Failed to fetch leads" });
     }
   });
 

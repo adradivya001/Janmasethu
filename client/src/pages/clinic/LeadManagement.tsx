@@ -5,7 +5,6 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
-import { useToast } from "@/hooks/use-toast";
 import ClinicNavigation from "@/components/clinic/ClinicNavigation";
 import { 
   Search, 
@@ -16,45 +15,19 @@ import {
   Eye,
   Edit,
   Filter,
-  X,
-  Loader2
+  X
 } from "lucide-react";
 
-interface Lead {
-  id?: string;
-  first_name: string;
-  last_name: string;
-  email: string;
-  phone: string;
-  age: number;
-  source: string;
-  campaign: string;
-  utm_source: string;
-  utm_medium: string;
-  utm_campaign: string;
-  inquiry_type: string;
-  priority: string;
-  status: string;
-  assigned_to?: string | null;
-  clinic_id?: string | null;
-  notes?: string | null;
-  last_contact_date?: string | null;
-  next_follow_up_date?: string | null;
-  converted_date?: string | null;
-  created_at?: string;
-  updated_at?: string;
-}
+// Import mock data
+import leads from "@/data/clinic/leads.json";
 
 export default function LeadManagement() {
   const [collapsed, setCollapsed] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [filterStatus, setFilterStatus] = useState("all");
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [leadsData, setLeadsData] = useState<Lead[]>([]);
+  const [leadsData, setLeadsData] = useState(leads);
   const [isMobile, setIsMobile] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const { toast } = useToast();
   const [newLead, setNewLead] = useState({
     name: "",
     email: "",
@@ -67,34 +40,6 @@ export default function LeadManagement() {
     location: ""
   });
 
-  // Fetch leads from backend
-  const fetchLeads = async () => {
-    try {
-      setIsLoading(true);
-      const response = await fetch('/api/leads');
-      if (response.ok) {
-        const data = await response.json();
-        setLeadsData(data);
-      } else {
-        console.error('Failed to fetch leads');
-        toast({
-          title: "Error",
-          description: "Failed to load leads. Please try again.",
-          variant: "destructive"
-        });
-      }
-    } catch (error) {
-      console.error('Error fetching leads:', error);
-      toast({
-        title: "Error",
-        description: "An error occurred while loading leads.",
-        variant: "destructive"
-      });
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
   useEffect(() => {
     const checkIsMobile = () => {
       setIsMobile(window.innerWidth < 768);
@@ -103,18 +48,14 @@ export default function LeadManagement() {
     checkIsMobile();
     window.addEventListener('resize', checkIsMobile);
     
-    // Fetch leads on component mount
-    fetchLeads();
-    
     return () => window.removeEventListener('resize', checkIsMobile);
   }, []);
 
   const filteredLeads = leadsData.filter(lead => {
-    const fullName = `${lead.first_name} ${lead.last_name}`.toLowerCase();
-    const matchesSearch = fullName.includes(searchQuery.toLowerCase()) ||
+    const matchesSearch = lead.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          lead.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          lead.phone.includes(searchQuery);
-    const matchesFilter = filterStatus === "all" || lead.status.toLowerCase() === filterStatus.toLowerCase();
+    const matchesFilter = filterStatus === "all" || lead.status === filterStatus;
     return matchesSearch && matchesFilter;
   });
 
@@ -140,7 +81,6 @@ export default function LeadManagement() {
   const handleAddLead = async () => {
     if (newLead.name && newLead.email && newLead.phone) {
       try {
-        setIsSubmitting(true);
         console.log('🔵 Triggering lead creation webhook...');
         
         // Split the name into first_name and last_name
@@ -183,17 +123,15 @@ export default function LeadManagement() {
           const responseData = await webhookResponse.json();
           console.log('✅ Lead created successfully:', responseData);
 
-          // Show success toast
-          toast({
-            title: "Success!",
-            description: "Lead has been created successfully.",
-            variant: "default"
-          });
-
-          // Refresh leads data from backend
-          await fetchLeads();
+          // Add to local state
+          const leadToAdd = {
+            id: `L${String(leadsData.length + 1).padStart(3, '0')}`,
+            ...newLead,
+            lastContact: new Date().toISOString().split('T')[0],
+            age: parseInt(newLead.age) || 0
+          };
           
-          // Reset form
+          setLeadsData([...leadsData, leadToAdd]);
           setNewLead({
             name: "",
             email: "",
@@ -208,21 +146,11 @@ export default function LeadManagement() {
           setIsModalOpen(false);
         } else {
           console.error('❌ Lead creation failed:', webhookResponse.statusText);
-          toast({
-            title: "Error",
-            description: "Failed to create lead. Please try again.",
-            variant: "destructive"
-          });
+          alert('Failed to create lead. Please try again.');
         }
       } catch (error) {
         console.error('❌ Error during lead creation:', error);
-        toast({
-          title: "Error",
-          description: "An error occurred while creating the lead.",
-          variant: "destructive"
-        });
-      } finally {
-        setIsSubmitting(false);
+        alert('An error occurred while creating the lead. Please try again.');
       }
     }
   };
@@ -394,16 +322,9 @@ export default function LeadManagement() {
                     <Button 
                       onClick={handleAddLead}
                       className="bg-purple-600 hover:bg-purple-700 text-white"
-                      disabled={!newLead.name || !newLead.email || !newLead.phone || isSubmitting}
+                      disabled={!newLead.name || !newLead.email || !newLead.phone}
                     >
-                      {isSubmitting ? (
-                        <>
-                          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                          Adding...
-                        </>
-                      ) : (
-                        "Add Lead"
-                      )}
+                      Add Lead
                     </Button>
                   </div>
                 </div>
@@ -459,9 +380,7 @@ export default function LeadManagement() {
             <Card className="hover:shadow-md transition-shadow">
               <CardContent className="p-3 md:p-4">
                 <div className="text-center">
-                  <p className="text-lg md:text-2xl font-bold text-blue-600">
-                    {leadsData.filter(l => l.status.toLowerCase() === "new").length}
-                  </p>
+                  <p className="text-lg md:text-2xl font-bold text-blue-600">{leadsData.filter(l => l.status === "new").length}</p>
                   <p className="text-xs md:text-sm text-gray-600 truncate">New Leads</p>
                 </div>
               </CardContent>
@@ -469,9 +388,7 @@ export default function LeadManagement() {
             <Card className="hover:shadow-md transition-shadow">
               <CardContent className="p-3 md:p-4">
                 <div className="text-center">
-                  <p className="text-lg md:text-2xl font-bold text-yellow-600">
-                    {leadsData.filter(l => l.status.toLowerCase() === "contacted").length}
-                  </p>
+                  <p className="text-lg md:text-2xl font-bold text-yellow-600">{leadsData.filter(l => l.status === "contacted").length}</p>
                   <p className="text-xs md:text-sm text-gray-600 truncate">Contacted</p>
                 </div>
               </CardContent>
@@ -479,9 +396,7 @@ export default function LeadManagement() {
             <Card className="hover:shadow-md transition-shadow">
               <CardContent className="p-3 md:p-4">
                 <div className="text-center">
-                  <p className="text-lg md:text-2xl font-bold text-green-600">
-                    {leadsData.filter(l => l.status.toLowerCase() === "qualified").length}
-                  </p>
+                  <p className="text-lg md:text-2xl font-bold text-green-600">{leadsData.filter(l => l.status === "qualified").length}</p>
                   <p className="text-xs md:text-sm text-gray-600 truncate">Qualified</p>
                 </div>
               </CardContent>
@@ -489,9 +404,7 @@ export default function LeadManagement() {
             <Card className="hover:shadow-md transition-shadow">
               <CardContent className="p-3 md:p-4">
                 <div className="text-center">
-                  <p className="text-lg md:text-2xl font-bold text-purple-600">
-                    {leadsData.filter(l => l.status.toLowerCase() === "scheduled").length}
-                  </p>
+                  <p className="text-lg md:text-2xl font-bold text-purple-600">{leadsData.filter(l => l.status === "scheduled").length}</p>
                   <p className="text-xs md:text-sm text-gray-600 truncate">Scheduled</p>
                 </div>
               </CardContent>
@@ -506,169 +419,128 @@ export default function LeadManagement() {
             <CardContent className="p-0 md:p-6">
               {/* Mobile Card Layout */}
               <div className="md:hidden">
-                {isLoading ? (
-                  <div className="flex justify-center items-center p-12">
-                    <Loader2 className="w-8 h-8 animate-spin text-purple-600" />
-                  </div>
-                ) : filteredLeads.length === 0 ? (
-                  <div className="text-center p-8 text-gray-500">
-                    No leads found
-                  </div>
-                ) : (
-                  filteredLeads.map((lead) => (
-                    <div key={lead.id || lead.email} className="border-b border-gray-100 p-4 hover:bg-gray-50">
-                      <div className="flex justify-between items-start mb-3">
-                        <div className="flex-1 min-w-0">
-                          <h3 className="font-medium text-gray-900 truncate">
-                            {lead.first_name} {lead.last_name}
-                          </h3>
-                          <p className="text-sm text-gray-600">
-                            Age: {lead.age} • {lead.utm_source}
-                          </p>
-                        </div>
-                        <div className="flex flex-col sm:flex-row gap-1 sm:gap-2 ml-3 flex-shrink-0">
-                          <span className={`status-badge ${lead.status.toLowerCase()}`}>
-                            {lead.status}
-                          </span>
-                          <span className={`priority-badge ${lead.priority.toLowerCase()}`}>
-                            {lead.priority}
-                          </span>
-                        </div>
+                {filteredLeads.map((lead) => (
+                  <div key={lead.id} className="border-b border-gray-100 p-4 hover:bg-gray-50">
+                    <div className="flex justify-between items-start mb-3">
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-medium text-gray-900 truncate">{lead.name}</h3>
+                        <p className="text-sm text-gray-600">Age: {lead.age} • {lead.location}</p>
                       </div>
-                      
-                      <div className="space-y-2 mb-3">
-                        <div className="flex items-center text-sm text-gray-600">
-                          <Phone className="w-4 h-4 mr-2 flex-shrink-0" />
-                          <span className="truncate">{lead.phone}</span>
-                        </div>
-                        <div className="flex items-center text-sm text-gray-600">
-                          <Mail className="w-4 h-4 mr-2 flex-shrink-0" />
-                          <span className="truncate">{lead.email}</span>
-                        </div>
-                      </div>
-                      
-                      <div className="grid grid-cols-2 gap-2 text-sm mb-3">
-                        <div>
-                          <span className="text-gray-500">Interest: </span>
-                          <span className="text-gray-700">{lead.inquiry_type}</span>
-                        </div>
-                        <div>
-                          <span className="text-gray-500">Source: </span>
-                          <span className="text-gray-700">{lead.source}</span>
-                        </div>
-                        <div className="col-span-2">
-                          <span className="text-gray-500">Campaign: </span>
-                          <span className="text-gray-700">{lead.campaign}</span>
-                        </div>
-                      </div>
-                      
-                      <div className="flex justify-end space-x-2">
-                        <Button variant="ghost" size="sm">
-                          <Eye className="w-4 h-4" />
-                        </Button>
-                        <Button variant="ghost" size="sm">
-                          <Edit className="w-4 h-4" />
-                        </Button>
-                        <Button variant="ghost" size="sm">
-                          <Phone className="w-4 h-4" />
-                        </Button>
+                      <div className="flex flex-col sm:flex-row gap-1 sm:gap-2 ml-3 flex-shrink-0">
+                        <span className={`status-badge ${lead.status}`}>
+                          {lead.status}
+                        </span>
+                        <span className={`priority-badge ${lead.priority}`}>
+                          {lead.priority}
+                        </span>
                       </div>
                     </div>
-                  ))
-                )}
+                    
+                    <div className="space-y-2 mb-3">
+                      <div className="flex items-center text-sm text-gray-600">
+                        <Phone className="w-4 h-4 mr-2 flex-shrink-0" />
+                        <span className="truncate">{lead.phone}</span>
+                      </div>
+                      <div className="flex items-center text-sm text-gray-600">
+                        <Mail className="w-4 h-4 mr-2 flex-shrink-0" />
+                        <span className="truncate">{lead.email}</span>
+                      </div>
+                    </div>
+                    
+                    <div className="grid grid-cols-2 gap-2 text-sm mb-3">
+                      <div>
+                        <span className="text-gray-500">Interest: </span>
+                        <span className="text-gray-700">{lead.interest}</span>
+                      </div>
+                      <div>
+                        <span className="text-gray-500">Source: </span>
+                        <span className="text-gray-700">{lead.source}</span>
+                      </div>
+                    </div>
+                    
+                    <div className="flex justify-end space-x-2">
+                      <Button variant="ghost" size="sm">
+                        <Eye className="w-4 h-4" />
+                      </Button>
+                      <Button variant="ghost" size="sm">
+                        <Edit className="w-4 h-4" />
+                      </Button>
+                      <Button variant="ghost" size="sm">
+                        <Phone className="w-4 h-4" />
+                      </Button>
+                    </div>
+                  </div>
+                ))}
               </div>
 
               {/* Desktop Table Layout */}
               <div className="hidden md:block overflow-x-auto">
-                {isLoading ? (
-                  <div className="flex justify-center items-center p-12">
-                    <Loader2 className="w-8 h-8 animate-spin text-purple-600" />
-                  </div>
-                ) : (
-                  <table className="w-full">
-                    <thead>
-                      <tr className="border-b border-gray-200">
-                        <th className="text-left py-3 px-4 font-medium text-gray-700">Lead</th>
-                        <th className="text-left py-3 px-4 font-medium text-gray-700">Contact</th>
-                        <th className="text-left py-3 px-4 font-medium text-gray-700">Status</th>
-                        <th className="text-left py-3 px-4 font-medium text-gray-700">Priority</th>
-                        <th className="text-left py-3 px-4 font-medium text-gray-700">Interest</th>
-                        <th className="text-left py-3 px-4 font-medium text-gray-700">Source</th>
-                        <th className="text-left py-3 px-4 font-medium text-gray-700">Campaign</th>
-                        <th className="text-left py-3 px-4 font-medium text-gray-700">Actions</th>
+                <table className="w-full">
+                  <thead>
+                    <tr className="border-b border-gray-200">
+                      <th className="text-left py-3 px-4 font-medium text-gray-700">Lead</th>
+                      <th className="text-left py-3 px-4 font-medium text-gray-700">Contact</th>
+                      <th className="text-left py-3 px-4 font-medium text-gray-700">Status</th>
+                      <th className="text-left py-3 px-4 font-medium text-gray-700">Priority</th>
+                      <th className="text-left py-3 px-4 font-medium text-gray-700">Interest</th>
+                      <th className="text-left py-3 px-4 font-medium text-gray-700">Source</th>
+                      <th className="text-left py-3 px-4 font-medium text-gray-700">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {filteredLeads.map((lead) => (
+                      <tr key={lead.id} className="border-b border-gray-100 hover:bg-gray-50">
+                        <td className="py-4 px-4">
+                          <div>
+                            <p className="font-medium text-gray-900">{lead.name}</p>
+                            <p className="text-sm text-gray-600">Age: {lead.age} • {lead.location}</p>
+                          </div>
+                        </td>
+                        <td className="py-4 px-4">
+                          <div className="space-y-1">
+                            <div className="flex items-center text-sm text-gray-600">
+                              <Phone className="w-4 h-4 mr-2" />
+                              {lead.phone}
+                            </div>
+                            <div className="flex items-center text-sm text-gray-600">
+                              <Mail className="w-4 h-4 mr-2" />
+                              {lead.email}
+                            </div>
+                          </div>
+                        </td>
+                        <td className="py-4 px-4">
+                          <span className={`status-badge ${lead.status}`}>
+                            {lead.status}
+                          </span>
+                        </td>
+                        <td className="py-4 px-4">
+                          <span className={`priority-badge ${lead.priority}`}>
+                            {lead.priority}
+                          </span>
+                        </td>
+                        <td className="py-4 px-4">
+                          <p className="text-sm text-gray-700">{lead.interest}</p>
+                        </td>
+                        <td className="py-4 px-4">
+                          <p className="text-sm text-gray-700">{lead.source}</p>
+                        </td>
+                        <td className="py-4 px-4">
+                          <div className="flex space-x-2">
+                            <Button variant="ghost" size="sm">
+                              <Eye className="w-4 h-4" />
+                            </Button>
+                            <Button variant="ghost" size="sm">
+                              <Edit className="w-4 h-4" />
+                            </Button>
+                            <Button variant="ghost" size="sm">
+                              <Phone className="w-4 h-4" />
+                            </Button>
+                          </div>
+                        </td>
                       </tr>
-                    </thead>
-                    <tbody>
-                      {filteredLeads.length === 0 ? (
-                        <tr>
-                          <td colSpan={8} className="text-center py-8 text-gray-500">
-                            No leads found
-                          </td>
-                        </tr>
-                      ) : (
-                        filteredLeads.map((lead) => (
-                          <tr key={lead.id || lead.email} className="border-b border-gray-100 hover:bg-gray-50">
-                            <td className="py-4 px-4">
-                              <div>
-                                <p className="font-medium text-gray-900">
-                                  {lead.first_name} {lead.last_name}
-                                </p>
-                                <p className="text-sm text-gray-600">Age: {lead.age}</p>
-                              </div>
-                            </td>
-                            <td className="py-4 px-4">
-                              <div className="space-y-1">
-                                <div className="flex items-center text-sm text-gray-600">
-                                  <Phone className="w-4 h-4 mr-2" />
-                                  {lead.phone}
-                                </div>
-                                <div className="flex items-center text-sm text-gray-600">
-                                  <Mail className="w-4 h-4 mr-2" />
-                                  {lead.email}
-                                </div>
-                              </div>
-                            </td>
-                            <td className="py-4 px-4">
-                              <span className={`status-badge ${lead.status.toLowerCase()}`}>
-                                {lead.status}
-                              </span>
-                            </td>
-                            <td className="py-4 px-4">
-                              <span className={`priority-badge ${lead.priority.toLowerCase()}`}>
-                                {lead.priority}
-                              </span>
-                            </td>
-                            <td className="py-4 px-4">
-                              <p className="text-sm text-gray-700">{lead.inquiry_type}</p>
-                            </td>
-                            <td className="py-4 px-4">
-                              <div>
-                                <p className="text-sm text-gray-700">{lead.source}</p>
-                                <p className="text-xs text-gray-500">{lead.utm_medium}</p>
-                              </div>
-                            </td>
-                            <td className="py-4 px-4">
-                              <p className="text-sm text-gray-700">{lead.campaign}</p>
-                            </td>
-                            <td className="py-4 px-4">
-                              <div className="flex space-x-2">
-                                <Button variant="ghost" size="sm">
-                                  <Eye className="w-4 h-4" />
-                                </Button>
-                                <Button variant="ghost" size="sm">
-                                  <Edit className="w-4 h-4" />
-                                </Button>
-                                <Button variant="ghost" size="sm">
-                                  <Phone className="w-4 h-4" />
-                                </Button>
-                              </div>
-                            </td>
-                          </tr>
-                        ))
-                      )}
-                    </tbody>
-                  </table>
-                )}
+                    ))}
+                  </tbody>
+                </table>
               </div>
             </CardContent>
           </Card>
