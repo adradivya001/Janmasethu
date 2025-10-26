@@ -117,21 +117,24 @@ export default function Patients() {
             return age;
           };
 
+          // Handle both array and object response
+          const patientData = Array.isArray(responseData) ? responseData[0] : responseData;
+
           // Map webhook response to our patient format
           const newPatientData: Patient = {
-            patient_id: responseData.patient_id,
-            first_name: responseData.first_name,
-            last_name: responseData.last_name,
-            email: responseData.email,
-            phone: responseData.phone,
-            gender: responseData.gender,
-            birth_date: responseData.birth_date,
-            created_at: responseData.created_at,
-            updated_at: responseData.updated_at,
+            patient_id: patientData.patient_id,
+            first_name: patientData.first_name,
+            last_name: patientData.last_name,
+            email: patientData.email,
+            phone: patientData.phone,
+            gender: patientData.gender,
+            birth_date: patientData.birth_date,
+            created_at: patientData.created_at,
+            updated_at: patientData.updated_at,
             // Additional fields for display
-            id: responseData.patient_id,
-            name: `${responseData.first_name} ${responseData.last_name}`,
-            age: calculateAge(responseData.birth_date),
+            id: patientData.patient_id,
+            name: `${patientData.first_name} ${patientData.last_name}`,
+            age: calculateAge(patientData.birth_date),
             status: newPatient.status || "active",
             treatmentType: newPatient.treatmentType || "IVF",
             cycle: newPatient.cycle || "1",
