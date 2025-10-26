@@ -71,7 +71,7 @@ export default function ClinicDashboard() {
       
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Top Bar */}
-        <header className="bg-white border-b border-gray-200 px-4 md:px-8 py-5 shadow-sm">
+        <header className="bg-white border-b border-gray-200 px-4 md:px-8 py-3 shadow-sm">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 max-w-7xl mx-auto">
             <div>
               <h1 className="text-2xl md:text-3xl font-semibold text-gray-900">Welcome back, Dr. Rao</h1>
