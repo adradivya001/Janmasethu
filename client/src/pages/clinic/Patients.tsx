@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -17,14 +17,33 @@ import {
   Heart
 } from "lucide-react";
 
-// Import mock data
-import patients from "@/data/clinic/patients.json";
+interface Patient {
+  patient_id: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+  phone: string;
+  gender: string;
+  birth_date: string;
+  created_at: string;
+  updated_at: string;
+  // Additional fields for UI
+  id?: string;
+  name?: string;
+  age?: number;
+  status?: string;
+  treatmentType?: string;
+  cycle?: string;
+  doctor?: string;
+  lastVisit?: string;
+}
 
 export default function Patients() {
   const [collapsed, setCollapsed] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [patientsData, setPatientsData] = useState(patients);
+  const [patientsData, setPatientsData] = useState<Patient[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [newPatient, setNewPatient] = useState({
     firstName: "",
     lastName: "",
@@ -42,23 +61,20 @@ export default function Patients() {
     emergencyContact: ""
   });
 
-  const filteredPatients = patientsData.filter(patient => 
-    patient.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    patient.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    patient.id.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const filteredPatients = patientsData.filter(patient => {
+    const name = patient.name || `${patient.first_name} ${patient.last_name}`;
+    const id = patient.id || patient.patient_id;
+    return (
+      name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      patient.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      id.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  });
 
   const handleAddPatient = async () => {
     if (newPatient.firstName && newPatient.lastName && newPatient.email && newPatient.phone && newPatient.dateOfBirth) {
-      const patientToAdd = {
-        id: `P${String(patientsData.length + 1).padStart(3, '0')}`,
-        name: `${newPatient.firstName} ${newPatient.lastName}`,
-        ...newPatient,
-        age: parseInt(newPatient.age) || 25,
-        lastVisit: new Date().toISOString().split('T')[0]
-      };
-      
       try {
+        setIsLoading(true);
         console.log('🔵 Triggering patient webhook...');
         
         const webhookPayload = {
@@ -69,6 +85,8 @@ export default function Patients() {
           phone: newPatient.phone,
           email: newPatient.email
         };
+
+        console.log('📤 Sending to webhook:', webhookPayload);
 
         const webhookResponse = await fetch('https://n8n.ottobon.in/webhook/patient-details', {
           method: 'POST',
@@ -81,35 +99,77 @@ export default function Patients() {
           })
         });
 
-        console.log('📤 Sent to webhook:', webhookPayload);
         console.log('🔵 Webhook response status:', webhookResponse.status, webhookResponse.statusText);
 
         if (webhookResponse.ok) {
           const responseData = await webhookResponse.json();
           console.log('✅ Patient response:', responseData);
+
+          // Calculate age from birth_date
+          const calculateAge = (birthDate: string) => {
+            const today = new Date();
+            const birth = new Date(birthDate);
+            let age = today.getFullYear() - birth.getFullYear();
+            const monthDiff = today.getMonth() - birth.getMonth();
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birth.getDate())) {
+              age--;
+            }
+            return age;
+          };
+
+          // Map webhook response to our patient format
+          const newPatientData: Patient = {
+            patient_id: responseData.patient_id,
+            first_name: responseData.first_name,
+            last_name: responseData.last_name,
+            email: responseData.email,
+            phone: responseData.phone,
+            gender: responseData.gender,
+            birth_date: responseData.birth_date,
+            created_at: responseData.created_at,
+            updated_at: responseData.updated_at,
+            // Additional fields for display
+            id: responseData.patient_id,
+            name: `${responseData.first_name} ${responseData.last_name}`,
+            age: calculateAge(responseData.birth_date),
+            status: newPatient.status || "active",
+            treatmentType: newPatient.treatmentType || "IVF",
+            cycle: newPatient.cycle || "1",
+            doctor: newPatient.doctor || "Dr. Rao",
+            lastVisit: new Date().toISOString().split('T')[0]
+          };
+
+          // Add the new patient to the list
+          setPatientsData([newPatientData, ...patientsData]);
+          
+          // Reset form
+          setNewPatient({
+            firstName: "",
+            lastName: "",
+            name: "",
+            email: "",
+            phone: "",
+            gender: "Female",
+            age: "",
+            dateOfBirth: "",
+            status: "active",
+            treatmentType: "IVF",
+            cycle: "1",
+            doctor: "Dr. Rao",
+            medicalHistory: "",
+            emergencyContact: ""
+          });
+          setIsModalOpen(false);
+        } else {
+          console.error('❌ Patient creation failed:', webhookResponse.statusText);
+          alert('Failed to create patient. Please try again.');
         }
       } catch (error) {
         console.error('❌ Error triggering patient webhook:', error);
+        alert('An error occurred while creating the patient. Please try again.');
+      } finally {
+        setIsLoading(false);
       }
-      
-      setPatientsData([...patientsData, patientToAdd]);
-      setNewPatient({
-        firstName: "",
-        lastName: "",
-        name: "",
-        email: "",
-        phone: "",
-        gender: "Female",
-        age: "",
-        dateOfBirth: "",
-        status: "active",
-        treatmentType: "IVF",
-        cycle: "1",
-        doctor: "Dr. Rao",
-        medicalHistory: "",
-        emergencyContact: ""
-      });
-      setIsModalOpen(false);
     }
   };
 
@@ -279,15 +339,16 @@ export default function Patients() {
                     <Button 
                       variant="outline" 
                       onClick={() => setIsModalOpen(false)}
+                      disabled={isLoading}
                     >
                       Cancel
                     </Button>
                     <Button 
                       onClick={handleAddPatient}
                       className="bg-purple-600 hover:bg-purple-700 text-white"
-                      disabled={!newPatient.firstName || !newPatient.lastName || !newPatient.email || !newPatient.phone || !newPatient.dateOfBirth}
+                      disabled={!newPatient.firstName || !newPatient.lastName || !newPatient.email || !newPatient.phone || !newPatient.dateOfBirth || isLoading}
                     >
-                      Add Patient
+                      {isLoading ? 'Adding...' : 'Add Patient'}
                     </Button>
                   </div>
                 </div>
@@ -321,7 +382,7 @@ export default function Patients() {
                     <User className="w-6 h-6 text-green-600" />
                   </div>
                   <div>
-                    <p className="text-2xl font-bold text-gray-900">{patients.filter(p => p.status === "active").length}</p>
+                    <p className="text-2xl font-bold text-gray-900">{patientsData.filter(p => p.status === "active").length}</p>
                     <p className="text-sm text-gray-600">Active Patients</p>
                   </div>
                 </div>
@@ -335,7 +396,7 @@ export default function Patients() {
                     <Heart className="w-6 h-6 text-blue-600" />
                   </div>
                   <div>
-                    <p className="text-2xl font-bold text-gray-900">{patients.filter(p => p.treatmentType === "IVF").length}</p>
+                    <p className="text-2xl font-bold text-gray-900">{patientsData.filter(p => p.treatmentType === "IVF").length}</p>
                     <p className="text-sm text-gray-600">IVF Patients</p>
                   </div>
                 </div>
@@ -349,7 +410,12 @@ export default function Patients() {
                     <Calendar className="w-6 h-6 text-purple-600" />
                   </div>
                   <div>
-                    <p className="text-2xl font-bold text-gray-900">7</p>
+                    <p className="text-2xl font-bold text-gray-900">{patientsData.filter(p => {
+                      const today = new Date();
+                      const weekAgo = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000);
+                      const lastVisit = p.lastVisit ? new Date(p.lastVisit) : null;
+                      return lastVisit && lastVisit >= weekAgo;
+                    }).length}</p>
                     <p className="text-sm text-gray-600">This Week</p>
                   </div>
                 </div>
@@ -363,7 +429,7 @@ export default function Patients() {
                     <FileText className="w-6 h-6 text-orange-600" />
                   </div>
                   <div>
-                    <p className="text-2xl font-bold text-gray-900">{patients.length}</p>
+                    <p className="text-2xl font-bold text-gray-900">{patientsData.length}</p>
                     <p className="text-sm text-gray-600">Total Records</p>
                   </div>
                 </div>
@@ -372,74 +438,104 @@ export default function Patients() {
           </div>
 
           {/* Patients Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredPatients.map((patient) => (
-              <Card key={patient.id} className="hover:shadow-lg transition-shadow cursor-pointer">
-                <CardContent className="p-6">
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="flex items-center">
-                      <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mr-3">
-                        <User className="w-6 h-6 text-purple-600" />
+          {isLoading ? (
+            <div className="p-12 text-center">
+              <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600"></div>
+              <p className="mt-4 text-gray-600">Adding patient...</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredPatients.map((patient) => {
+                const patientName = patient.name || `${patient.first_name} ${patient.last_name}`;
+                const patientId = patient.id || patient.patient_id;
+                const patientStatus = patient.status || "active";
+                
+                return (
+                  <Card key={patientId} className="hover:shadow-lg transition-shadow cursor-pointer">
+                    <CardContent className="p-6">
+                      <div className="flex items-start justify-between mb-4">
+                        <div className="flex items-center">
+                          <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mr-3">
+                            <User className="w-6 h-6 text-purple-600" />
+                          </div>
+                          <div>
+                            <h3 className="font-semibold text-gray-900">{patientName}</h3>
+                            <p className="text-sm text-gray-600">ID: {patientId}</p>
+                          </div>
+                        </div>
+                        <Badge className={getStatusColor(patientStatus)}>
+                          {patientStatus}
+                        </Badge>
                       </div>
-                      <div>
-                        <h3 className="font-semibold text-gray-900">{patient.name}</h3>
-                        <p className="text-sm text-gray-600">ID: {patient.id}</p>
-                      </div>
-                    </div>
-                    <Badge className={getStatusColor(patient.status)}>
-                      {patient.status}
-                    </Badge>
-                  </div>
 
-                  <div className="space-y-2 mb-4">
-                    <div className="flex items-center text-sm text-gray-600">
-                      <Mail className="w-4 h-4 mr-2" />
-                      {patient.email}
-                    </div>
-                    <div className="flex items-center text-sm text-gray-600">
-                      <Phone className="w-4 h-4 mr-2" />
-                      {patient.phone}
-                    </div>
-                    <div className="flex items-center text-sm text-gray-600">
-                      <Calendar className="w-4 h-4 mr-2" />
-                      Last visit: {patient.lastVisit}
-                    </div>
-                  </div>
+                      <div className="space-y-2 mb-4">
+                        <div className="flex items-center text-sm text-gray-600">
+                          <Mail className="w-4 h-4 mr-2" />
+                          {patient.email}
+                        </div>
+                        <div className="flex items-center text-sm text-gray-600">
+                          <Phone className="w-4 h-4 mr-2" />
+                          {patient.phone}
+                        </div>
+                        {patient.lastVisit && (
+                          <div className="flex items-center text-sm text-gray-600">
+                            <Calendar className="w-4 h-4 mr-2" />
+                            Last visit: {patient.lastVisit}
+                          </div>
+                        )}
+                      </div>
 
-                  <div className="bg-gray-50 rounded-lg p-3 mb-4">
-                    <div className="grid grid-cols-2 gap-2 text-sm">
-                      <div>
-                        <span className="text-gray-600">Age:</span>
-                        <span className="ml-1 font-medium">{patient.age}</span>
+                      <div className="bg-gray-50 rounded-lg p-3 mb-4">
+                        <div className="grid grid-cols-2 gap-2 text-sm">
+                          {patient.age && (
+                            <div>
+                              <span className="text-gray-600">Age:</span>
+                              <span className="ml-1 font-medium">{patient.age}</span>
+                            </div>
+                          )}
+                          {patient.gender && (
+                            <div>
+                              <span className="text-gray-600">Gender:</span>
+                              <span className="ml-1 font-medium">{patient.gender}</span>
+                            </div>
+                          )}
+                          {patient.cycle && (
+                            <div>
+                              <span className="text-gray-600">Cycle:</span>
+                              <span className="ml-1 font-medium">{patient.cycle}</span>
+                            </div>
+                          )}
+                          {patient.treatmentType && (
+                            <div className="col-span-2">
+                              <span className="text-gray-600">Treatment:</span>
+                              <span className="ml-1 font-medium">{patient.treatmentType}</span>
+                            </div>
+                          )}
+                          {patient.doctor && (
+                            <div className="col-span-2">
+                              <span className="text-gray-600">Doctor:</span>
+                              <span className="ml-1 font-medium">{patient.doctor}</span>
+                            </div>
+                          )}
+                        </div>
                       </div>
-                      <div>
-                        <span className="text-gray-600">Cycle:</span>
-                        <span className="ml-1 font-medium">{patient.cycle}</span>
-                      </div>
-                      <div className="col-span-2">
-                        <span className="text-gray-600">Treatment:</span>
-                        <span className="ml-1 font-medium">{patient.treatmentType}</span>
-                      </div>
-                      <div className="col-span-2">
-                        <span className="text-gray-600">Doctor:</span>
-                        <span className="ml-1 font-medium">{patient.doctor}</span>
-                      </div>
-                    </div>
-                  </div>
 
-                  <div className="flex space-x-2">
-                    <Button variant="outline" size="sm" className="flex-1">
-                      <FileText className="w-3 h-3 mr-1" />
-                      View Records
-                    </Button>
-                    <Button variant="outline" size="sm" className="flex-1">
-                      <Phone className="w-3 h-3 mr-1" />
-                      Contact
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+                      <div className="flex space-x-2">
+                        <Button variant="outline" size="sm" className="flex-1">
+                          <FileText className="w-3 h-3 mr-1" />
+                          View Records
+                        </Button>
+                        <Button variant="outline" size="sm" className="flex-1">
+                          <Phone className="w-3 h-3 mr-1" />
+                          Contact
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                );
+              })}
+            </div>
+          )}
           </div>
 
           {filteredPatients.length === 0 && (
