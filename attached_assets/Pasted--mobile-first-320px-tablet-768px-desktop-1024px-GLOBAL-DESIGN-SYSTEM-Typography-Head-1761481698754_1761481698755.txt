@@ -1,0 +1,436 @@
+ (mobile-first 320px+, tablet 768px+, desktop 1024px+).
+
+GLOBAL DESIGN SYSTEM
+Typography:
+
+Headers: 600-700 weight, tight leading (1.2-1.3)
+
+Body text: 400 weight, relaxed leading (1.6-1.75), minimum 14px (mobile), 16px (desktop)
+
+Metric numbers: 700-800 weight, 32-48px size
+
+Subtle text ("+12% vs last"): 500 weight, 12-14px, minimum 4.5:1 contrast ratio
+
+Spacing:
+
+Card padding: 20px (mobile), 24-32px (desktop)
+
+Card gaps: 16px (mobile), 24-32px (desktop)
+
+Section padding: 16px (mobile), 24px (tablet), 32-40px (desktop)
+
+Colors:
+
+Primary purple: #8B5CF6 (buttons, active nav, primary actions)
+
+Purple variants: #A78BFA (hover), #7C3AED (pressed), #F3E8FF (light backgrounds)
+
+Success green: #10B981, Error red: #EF4444, Warning orange: #F59E0B
+
+Neutral grays: #F9FAFB (bg), #E5E7EB (borders), #6B7280 (secondary text), #111827 (primary text)
+
+Shadows & Elevation:
+
+Cards: 0 2px 8px rgba(139, 92, 246, 0.08)
+
+Hover cards: 0 4px 16px rgba(139, 92, 246, 0.12)
+
+Buttons: 0 2px 4px rgba(139, 92, 246, 0.2)
+
+Interactive States:
+
+Hover: scale(1.02), brightness(105%), visible shadow increase
+
+Focus: 2px solid purple ring with 2px offset
+
+Disabled: opacity 0.5, cursor not-allowed
+
+PAGE-SPECIFIC IMPROVEMENTS
+1. DASHBOARD PAGE
+Header Section:
+
+Increase "Welcome back, Dr. Rao" to 28px (mobile), 32px (desktop), weight 700
+
+Add 16px bottom margin to "Here's what's happening" subtitle
+
+Search bar: 240px min-width (mobile), 320px (desktop), add search icon inside left, 40px height
+
+Metric Cards (New Leads, Appointments Today, Conversion Rate, Active Patients):
+
+Increase main numbers to 42px (mobile), 48px (desktop), weight 800
+
+Icons: standardize to 40x40px, single color matching metric theme
+
+Add 8px padding around icon, place in top-right corner
+
+Comparison text ("+12% from last week"): green (#10B981) with up arrow icon, 14px, weight 500
+
+Card height: 140px fixed, center content vertically
+
+Hover: lift 4px with shadow transition 200ms
+
+Weekly Appointment Trends Chart:
+
+Add 24px padding inside chart container
+
+X-axis: show all day labels (Mon-Sun), 12px font, #6B7280 color
+
+Y-axis: 12px font, start at 0, max based on data + 20% headroom
+
+Line: 3px stroke width, smooth curves (tension: 0.4)
+
+Data points: 8px circles, white fill, 3px purple border, show on hover with tooltip
+
+Tooltip: white bg, shadow, show "Thu: 15 appointments"
+
+Add chart legend if multiple lines exist
+
+Priority Tasks Card:
+
+Card background: white with subtle purple tint (#F9F5FF)
+
+Task items: 16px left padding, 12px vertical padding
+
+Priority badge ("high"): #FEE2E2 background, #DC2626 text, 8px padding, rounded-full
+
+Add checkbox (24x24px) on the left of each task for interaction
+
+Hover task: slight purple background (#F3E8FF)
+
+Mobile Responsive (320-767px):
+
+Stack metric cards 2x2 grid with 12px gap
+
+Chart: reduce height to 240px, rotate X-axis labels 45deg if needed
+
+Priority Tasks: collapse to accordion if >3 tasks
+
+2. LEAD MANAGEMENT PAGE
+Header & Actions:
+
+"Add New Lead" button: 48px height, 16px horizontal padding, weight 600
+
+Search bar: full-width mobile, 320px min desktop, left-aligned
+
+"All Status" dropdown: 180px width, aligned next to search with 12px gap
+
+"More Filters" button: secondary style (outline purple), same height as dropdowns
+
+Status Cards (New Leads, Contacted, Qualified, Scheduled):
+
+Increase numbers to 56px, weight 800
+
+Label below: 14px, weight 500, #6B7280
+
+Card width: equal flex distribution, 160px min-width
+
+Add color-coded top border: 4px solid (blue, orange, green, purple)
+
+Hover: scale(1.03)
+
+Leads Table (when populated):
+
+Row height: 64px, 12px vertical padding
+
+Alternating row background: white / #F9FAFB
+
+Column headers: 14px, weight 600, uppercase, letter-spacing 0.5px, sticky top
+
+Status badges: pill shape, 8px padding, colored backgrounds (New: blue, Contacted: orange, Qualified: green)
+
+Action buttons: icon-only (24px), show on row hover, right-aligned
+
+Mobile: convert to card layout (one lead per card, stack fields vertically)
+
+Empty State:
+
+Icon: 80x80px, #D1D5DB color
+
+"No leads found": 20px, weight 600
+
+Subtitle: 14px, #6B7280, max-width 400px centered
+
+CTA: "Add First Lead" button, purple, 48px height
+
+3. PATIENTS PAGE
+Metric Cards (Active Patients, IVF Patients, This Week, Total Records):
+
+Icon backgrounds: light colored circles (green for Active, blue for IVF, purple for Week, orange for Total)
+
+Icons: 32x32px, centered in 56x56px circle background
+
+Numbers: 48px, weight 800
+
+Label: 14px, #6B7280, weight 500
+
+Search Bar:
+
+Placeholder: "Search patients by name, email, or ID..." (full text)
+
+Width: full-width mobile, 480px desktop
+
+Height: 44px
+
+Icon: magnifying glass, left-inside, 20px size, #9CA3AF
+
+Empty State:
+
+Add illustration (patient icon or medical graphic), 120px size
+
+Subtitle: "Try adjusting your search terms or add a new patient." with actionable CTA
+
+"Add New Patient" button: below subtitle, purple, 48px height
+
+Mobile:
+
+Stack metric cards 2x2 with 12px gap
+
+Search bar: 100% width, 16px margin bottom
+
+4. APPOINTMENTS PAGE
+Calendar Section:
+
+Month navigation: increase arrow button size to 40x40px, add hover states
+
+Calendar grid: equal cell sizes, 64px height (desktop), 48px (mobile)
+
+Date numbers: 16px, centered
+
+Active date (16th with 3 apts): purple background, white text, rounded corners
+
+Appointment count badge: 12px font, below date number
+
+Weekend dates: lighter text (#9CA3AF)
+
+Today indicator: purple outline ring
+
+Today's Appointments Sidebar:
+
+Card backgrounds: white with subtle shadow
+
+Patient name: 18px, weight 600
+
+Time: 14px with clock icon (16px)
+
+Doctor: 14px with user icon (16px)
+
+Status badges: "confirmed" (green bg), "scheduled" (blue bg), 8px padding, rounded-full
+
+Action buttons: "Call" (outline), "Reschedule" (text), equal width, 36px height, 12px gap
+
+This Week's Overview (bottom section):
+
+Card grid: 4 equal columns (desktop), 2x2 (tablet), 1x4 (mobile)
+
+Numbers: 64px, weight 800, color-coded (Scheduled: blue, Confirmed: green, Pending: orange, Total: purple)
+
+Labels: 14px, weight 500, below numbers
+
+Mobile:
+
+Calendar: show week view instead of month
+
+Sidebar: convert to bottom sheet or accordion below calendar
+
+This Week cards: full-width stack with 12px gap
+
+5. REPORTS & ANALYTICS PAGE
+Header & Controls:
+
+Subtitle: increase to 16px, #6B7280
+
+Dropdowns (Report Type, Time Period): 240px width each, 44px height, 16px gap between
+
+"Generate Report" button: inline-block (not full-width), right-aligned, 48px height, purple gradient
+
+Metric Cards (Total Patients, Success Rate, Revenue, Avg. Cycle Time):
+
+Increase padding to 24px
+
+Main numbers: 48px (mobile), 56px (desktop), weight 800
+
+Icons: remove or standardize to monochrome 32px, top-right corner, opacity 0.2
+
+Comparison text: 14px, green for positive (+), red for negative (-), with arrow icon
+
+Add subtle gradient backgrounds per card (light purple, light blue, light green, light orange)
+
+Lead Conversion Trends Chart:
+
+Add chart title at top-left
+
+Add legend at top-right: colored dots with labels (blue: Leads, purple: Conversions, teal: Qualified)
+
+X-axis: show month labels (Sep, Oct, Nov, Dec, Jan), 14px
+
+Y-axis: show values (0, 20, 40, 60, 80), 14px, #6B7280
+
+Lines: increase to 3px stroke, add gradient fill below lines (optional)
+
+Data points: 8px circles, show on hover with crosshair and tooltip
+
+Grid lines: 1px, #E5E7EB, dashed
+
+Treatment Type Distribution (Pie Chart):
+
+Increase chart size to 280px diameter
+
+Labels: position outside with leader lines if cramped
+
+Add legend below chart: colored squares + labels, 14px
+
+Percentages: 16px, weight 600, inside segments if space allows
+
+Hover segment: slightly separate from center (explode effect)
+
+Treatment Success Rate Trends (Bar Chart):
+
+Bar width: 48px (desktop), 32px (mobile), 16px gap
+
+X-axis: month labels centered below bars
+
+Y-axis: percentage values, 0-60 range
+
+Add data labels on top of bars: 14px, weight 600
+
+Bars: purple gradient fill
+
+Report Summary Section:
+
+Two-column layout (desktop), stack (mobile)
+
+Key Insights: bullet points with 20px left padding, 16px line height
+
+Recommendations: bullet points with 20px left padding, 16px line height, purple bullet color
+
+Background: light gray (#F9FAFB), 24px padding, rounded corners
+
+Export Buttons (PDF, Excel):
+
+Same size (120px width, 40px height), 12px gap
+
+Icons: download icon left-inside, 20px
+
+Hover: purple outline, scale(1.05)
+
+Mobile:
+
+Stack metric cards 2x2
+
+Charts: full-width, reduce height to 240-280px
+
+Report Summary: stack Key Insights above Recommendations
+
+Export buttons: full-width stack with 8px gap
+
+ACCESSIBILITY & PERFORMANCE
+Accessibility:
+
+All interactive elements: visible focus ring (2px purple, 2px offset)
+
+Minimum touch target: 44x44px (mobile)
+
+Color contrast: minimum 4.5:1 for text, 3:1 for UI components
+
+Chart data: add ARIA labels and table alternative
+
+Form inputs: associate labels with for/id attributes
+
+Keyboard navigation: tab order logical, Enter/Space activates buttons
+
+Performance:
+
+Lazy load charts and heavy components
+
+Add skeleton loaders for data fetch states
+
+Optimize images: WebP format, responsive srcset
+
+Debounce search inputs (300ms)
+
+Virtualize long lists/tables (>50 items)
+
+Loading States:
+
+Buttons: show spinner icon, disable, change text to "Loading..."
+
+Charts: show skeleton with pulsing animation
+
+Tables: show 5 skeleton rows with shimmer effect
+
+Cards: show skeleton with gray blocks for text/numbers
+
+Error States:
+
+Show inline error messages below inputs with red text and icon
+
+Toast notifications for global errors: red background, white text, 4s duration, dismissible
+
+Chart errors: show "Unable to load data" with retry button
+
+RESPONSIVE BREAKPOINTS
+Mobile (320-767px):
+
+Single column layout
+
+Sidebar: convert to hamburger menu (top-left), full-height drawer
+
+Cards: stack vertically with 12px gap
+
+Tables: convert to card layout or horizontal scroll with sticky first column
+
+Metric cards: 2-column grid
+
+Buttons: full-width or auto-width with min 160px
+
+Tablet (768-1023px):
+
+Two-column layout where applicable
+
+Sidebar: collapsible (icon-only mode), 80px width collapsed
+
+Cards: 2-column grid with equal heights
+
+Charts: full-width, 320px height
+
+Desktop (1024px+):
+
+Full sidebar (240px width), always visible
+
+Three or four-column card grids
+
+Charts: optimal size (400-600px height)
+
+Tables: full-featured with all columns visible
+
+ANIMATION & TRANSITIONS
+Card hover: transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1)
+
+Button click: active scale(0.98)
+
+Chart data: animate on load with 600ms delay per data point
+
+Modal/drawer: slide-in from right (300ms ease-out)
+
+Toast: slide-down from top (250ms ease-out), fade-out on dismiss
+
+FINAL CHECKS
+Visual consistency: All buttons same height/style, all cards same border-radius (12px), all inputs same height (44px)
+
+Icon consistency: Use single icon library (Lucide/Heroicons), 20-24px default size
+
+Font consistency: Use single font family (Inter/system-ui), weights 400-800 only
+
+Spacing consistency: Use 4px/8px/12px/16px/24px/32px increments only
+
+Color consistency: Purple (#8B5CF6) for all primary actions, purple tints for secondary UI
+
+Shadow consistency: Use defined elevation system (2px, 4px, 8px blur values)
+
+Border-radius consistency: 8px (small), 12px (medium), 16px (large), 9999px (pill)
+
+Test all breakpoints: 320px, 375px, 768px, 1024px, 1440px
+
+Test dark mode (if applicable): ensure sufficient contrast with background
+
+Test with real data: long names, large numbers, empty states, error states
