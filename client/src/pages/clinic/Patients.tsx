@@ -536,9 +536,8 @@ export default function Patients() {
               })}
             </div>
           )}
-          </div>
 
-          {filteredPatients.length === 0 && (
+          {filteredPatients.length === 0 && !isLoading && (
             <Card>
               <CardContent className="p-12 text-center">
                 <User className="w-12 h-12 text-gray-400 mx-auto mb-4" />
