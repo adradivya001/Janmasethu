@@ -288,22 +288,23 @@ export default function LeadManagement() {
                   
                   <div>
                     <Label htmlFor="interest">Interest</Label>
-                    <div className="relative filter-dropdown mt-1">
+                    <div className="relative mt-1">
                       <select 
                         id="interest"
                         value={newLead.interest}
                         onChange={(e) => handleInputChange("interest", e.target.value)}
-                        className="dropdown-trigger appearance-none cursor-pointer"
+                        className="w-full appearance-none cursor-pointer bg-gradient-to-r from-white to-purple-50/30 border-2 border-purple-200 rounded-2xl px-4 py-3 pr-10 text-sm font-medium text-gray-700 shadow-sm transition-all duration-200 hover:border-purple-300 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                        style={{ backgroundImage: 'none' }}
                       >
-                        <option value="">Select interest</option>
-                        <option value="IVF Consultation">IVF Consultation</option>
-                        <option value="Fertility Assessment">Fertility Assessment</option>
-                        <option value="IUI Treatment">IUI Treatment</option>
-                        <option value="ICSI Treatment">ICSI Treatment</option>
-                        <option value="Egg Freezing">Egg Freezing</option>
+                        <option value="" className="bg-white text-gray-500 py-3">Select interest</option>
+                        <option value="IVF Consultation" className="bg-white text-gray-900 py-3">IVF Consultation</option>
+                        <option value="Fertility Assessment" className="bg-white text-gray-900 py-3">Fertility Assessment</option>
+                        <option value="IUI Treatment" className="bg-white text-gray-900 py-3">IUI Treatment</option>
+                        <option value="ICSI Treatment" className="bg-white text-gray-900 py-3">ICSI Treatment</option>
+                        <option value="Egg Freezing" className="bg-white text-gray-900 py-3">Egg Freezing</option>
                       </select>
-                      <div className="dropdown-chevron">
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <div className="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none">
+                        <svg className="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                         </svg>
                       </div>
@@ -312,22 +313,23 @@ export default function LeadManagement() {
                   
                   <div>
                     <Label htmlFor="source">Source</Label>
-                    <div className="relative filter-dropdown mt-1">
+                    <div className="relative mt-1">
                       <select 
                         id="source"
                         value={newLead.source}
                         onChange={(e) => handleInputChange("source", e.target.value)}
-                        className="dropdown-trigger appearance-none cursor-pointer"
+                        className="w-full appearance-none cursor-pointer bg-gradient-to-r from-white to-purple-50/30 border-2 border-purple-200 rounded-2xl px-4 py-3 pr-10 text-sm font-medium text-gray-700 shadow-sm transition-all duration-200 hover:border-purple-300 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                        style={{ backgroundImage: 'none' }}
                       >
-                        <option value="">Select source</option>
-                        <option value="Website">Website</option>
-                        <option value="Referral">Referral</option>
-                        <option value="Social Media">Social Media</option>
-                        <option value="Google Ads">Google Ads</option>
-                        <option value="Walk-in">Walk-in</option>
+                        <option value="" className="bg-white text-gray-500 py-3">Select source</option>
+                        <option value="Website" className="bg-white text-gray-900 py-3">Website</option>
+                        <option value="Referral" className="bg-white text-gray-900 py-3">Referral</option>
+                        <option value="Social Media" className="bg-white text-gray-900 py-3">Social Media</option>
+                        <option value="Google Ads" className="bg-white text-gray-900 py-3">Google Ads</option>
+                        <option value="Walk-in" className="bg-white text-gray-900 py-3">Walk-in</option>
                       </select>
-                      <div className="dropdown-chevron">
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <div className="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none">
+                        <svg className="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                         </svg>
                       </div>
@@ -336,19 +338,20 @@ export default function LeadManagement() {
                   
                   <div>
                     <Label htmlFor="priority">Priority</Label>
-                    <div className="relative filter-dropdown mt-1">
+                    <div className="relative mt-1">
                       <select 
                         id="priority"
                         value={newLead.priority}
                         onChange={(e) => handleInputChange("priority", e.target.value)}
-                        className="dropdown-trigger appearance-none cursor-pointer"
+                        className="w-full appearance-none cursor-pointer bg-gradient-to-r from-white to-purple-50/30 border-2 border-purple-200 rounded-2xl px-4 py-3 pr-10 text-sm font-medium text-gray-700 shadow-sm transition-all duration-200 hover:border-purple-300 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                        style={{ backgroundImage: 'none' }}
                       >
-                        <option value="low">Low</option>
-                        <option value="medium">Medium</option>
-                        <option value="high">High</option>
+                        <option value="low" className="bg-white text-gray-900 py-3">Low</option>
+                        <option value="medium" className="bg-white text-gray-900 py-3">Medium</option>
+                        <option value="high" className="bg-white text-gray-900 py-3">High</option>
                       </select>
-                      <div className="dropdown-chevron">
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <div className="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none">
+                        <svg className="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                         </svg>
                       </div>
@@ -397,16 +400,17 @@ export default function LeadManagement() {
                   <select 
                     value={filterStatus}
                     onChange={(e) => setFilterStatus(e.target.value)}
-                    className="w-full px-4 py-2.5 pr-10 border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-purple-500 focus:border-transparent appearance-none cursor-pointer text-sm font-medium"
+                    className="w-full appearance-none cursor-pointer bg-gradient-to-r from-white to-purple-50/30 border-2 border-purple-200 rounded-2xl px-4 py-2.5 pr-10 text-sm font-medium text-gray-700 shadow-sm transition-all duration-200 hover:border-purple-300 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    style={{ backgroundImage: 'none' }}
                   >
-                    <option value="all">All Status</option>
-                    <option value="new">New</option>
-                    <option value="contacted">Contacted</option>
-                    <option value="qualified">Qualified</option>
-                    <option value="scheduled">Scheduled</option>
+                    <option value="all" className="bg-white text-gray-900 py-3">All Status</option>
+                    <option value="new" className="bg-white text-gray-900 py-3">New</option>
+                    <option value="contacted" className="bg-white text-gray-900 py-3">Contacted</option>
+                    <option value="qualified" className="bg-white text-gray-900 py-3">Qualified</option>
+                    <option value="scheduled" className="bg-white text-gray-900 py-3">Scheduled</option>
                   </select>
                   <div className="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none">
-                    <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                     </svg>
                   </div>

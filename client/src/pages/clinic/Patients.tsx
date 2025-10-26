@@ -262,16 +262,24 @@ export default function Patients() {
                   
                   <div>
                     <Label htmlFor="gender">Gender *</Label>
-                    <select
-                      id="gender"
-                      value={newPatient.gender}
-                      onChange={(e) => handleInputChange("gender", e.target.value)}
-                      className="w-full mt-1 p-2 border border-gray-300 rounded-md"
-                    >
-                      <option value="Female">Female</option>
-                      <option value="Male">Male</option>
-                      <option value="Other">Other</option>
-                    </select>
+                    <div className="relative mt-1">
+                      <select
+                        id="gender"
+                        value={newPatient.gender}
+                        onChange={(e) => handleInputChange("gender", e.target.value)}
+                        className="w-full appearance-none cursor-pointer bg-gradient-to-r from-white to-purple-50/30 border-2 border-purple-200 rounded-2xl px-4 py-3 pr-10 text-sm font-medium text-gray-700 shadow-sm transition-all duration-200 hover:border-purple-300 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                        style={{ backgroundImage: 'none' }}
+                      >
+                        <option value="Female" className="bg-white text-gray-900 py-3">Female</option>
+                        <option value="Male" className="bg-white text-gray-900 py-3">Male</option>
+                        <option value="Other" className="bg-white text-gray-900 py-3">Other</option>
+                      </select>
+                      <div className="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none">
+                        <svg className="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </div>
+                    </div>
                   </div>
                   
                   <div className="grid grid-cols-2 gap-4">
@@ -300,31 +308,47 @@ export default function Patients() {
                   
                   <div>
                     <Label htmlFor="treatmentType">Treatment Type</Label>
-                    <select
-                      id="treatmentType"
-                      value={newPatient.treatmentType}
-                      onChange={(e) => handleInputChange("treatmentType", e.target.value)}
-                      className="w-full mt-1 p-2 border border-gray-300 rounded-md"
-                    >
-                      <option value="IVF">IVF</option>
-                      <option value="IUI">IUI</option>
-                      <option value="ICSI">ICSI</option>
-                      <option value="Consultation">Consultation</option>
-                    </select>
+                    <div className="relative mt-1">
+                      <select
+                        id="treatmentType"
+                        value={newPatient.treatmentType}
+                        onChange={(e) => handleInputChange("treatmentType", e.target.value)}
+                        className="w-full appearance-none cursor-pointer bg-gradient-to-r from-white to-purple-50/30 border-2 border-purple-200 rounded-2xl px-4 py-3 pr-10 text-sm font-medium text-gray-700 shadow-sm transition-all duration-200 hover:border-purple-300 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                        style={{ backgroundImage: 'none' }}
+                      >
+                        <option value="IVF" className="bg-white text-gray-900 py-3">IVF</option>
+                        <option value="IUI" className="bg-white text-gray-900 py-3">IUI</option>
+                        <option value="ICSI" className="bg-white text-gray-900 py-3">ICSI</option>
+                        <option value="Consultation" className="bg-white text-gray-900 py-3">Consultation</option>
+                      </select>
+                      <div className="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none">
+                        <svg className="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </div>
+                    </div>
                   </div>
                   
                   <div>
                     <Label htmlFor="doctor">Assigned Doctor</Label>
-                    <select
-                      id="doctor"
-                      value={newPatient.doctor}
-                      onChange={(e) => handleInputChange("doctor", e.target.value)}
-                      className="w-full mt-1 p-2 border border-gray-300 rounded-md"
-                    >
-                      <option value="Dr. Rao">Dr. Rao</option>
-                      <option value="Dr. Mehta">Dr. Mehta</option>
-                      <option value="Dr. Singh">Dr. Singh</option>
-                    </select>
+                    <div className="relative mt-1">
+                      <select
+                        id="doctor"
+                        value={newPatient.doctor}
+                        onChange={(e) => handleInputChange("doctor", e.target.value)}
+                        className="w-full appearance-none cursor-pointer bg-gradient-to-r from-white to-purple-50/30 border-2 border-purple-200 rounded-2xl px-4 py-3 pr-10 text-sm font-medium text-gray-700 shadow-sm transition-all duration-200 hover:border-purple-300 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                        style={{ backgroundImage: 'none' }}
+                      >
+                        <option value="Dr. Rao" className="bg-white text-gray-900 py-3">Dr. Rao</option>
+                        <option value="Dr. Mehta" className="bg-white text-gray-900 py-3">Dr. Mehta</option>
+                        <option value="Dr. Singh" className="bg-white text-gray-900 py-3">Dr. Singh</option>
+                      </select>
+                      <div className="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none">
+                        <svg className="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </div>
+                    </div>
                   </div>
                   
                   <div>

@@ -76,19 +76,22 @@ export default function Reports() {
             <Card className="overflow-visible">
               <CardContent className="p-3 md:p-4">
                 <label className="block text-xs md:text-sm font-medium text-gray-700 mb-2">Report Type</label>
-                <div className="relative filter-dropdown">
+                <div className="relative">
                   <select 
                     value={selectedReport}
                     onChange={(e) => setSelectedReport(e.target.value)}
-                    className="dropdown-trigger appearance-none cursor-pointer"
+                    className="w-full appearance-none cursor-pointer bg-gradient-to-r from-white to-purple-50/30 border-2 border-purple-200 rounded-2xl px-4 py-3 pr-10 text-sm font-medium text-gray-700 shadow-sm transition-all duration-200 hover:border-purple-300 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    style={{
+                      backgroundImage: 'none',
+                    }}
                   >
-                    <option value="monthly">Monthly Overview</option>
-                    <option value="outcomes">Treatment Outcomes</option>
-                    <option value="financial">Financial Summary</option>
-                    <option value="patient">Patient Demographics</option>
+                    <option value="monthly" className="bg-white text-gray-900 py-3">Monthly Overview</option>
+                    <option value="outcomes" className="bg-white text-gray-900 py-3">Treatment Outcomes</option>
+                    <option value="financial" className="bg-white text-gray-900 py-3">Financial Summary</option>
+                    <option value="patient" className="bg-white text-gray-900 py-3">Patient Demographics</option>
                   </select>
-                  <div className="dropdown-chevron">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none">
+                    <svg className="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                     </svg>
                   </div>
@@ -99,19 +102,22 @@ export default function Reports() {
             <Card className="overflow-visible">
               <CardContent className="p-3 md:p-4">
                 <label className="block text-xs md:text-sm font-medium text-gray-700 mb-2">Time Period</label>
-                <div className="relative filter-dropdown">
+                <div className="relative">
                   <select 
                     value={selectedPeriod}
                     onChange={(e) => setSelectedPeriod(e.target.value)}
-                    className="dropdown-trigger appearance-none cursor-pointer"
+                    className="w-full appearance-none cursor-pointer bg-gradient-to-r from-white to-purple-50/30 border-2 border-purple-200 rounded-2xl px-4 py-3 pr-10 text-sm font-medium text-gray-700 shadow-sm transition-all duration-200 hover:border-purple-300 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    style={{
+                      backgroundImage: 'none',
+                    }}
                   >
-                    <option value="last3months">Last 3 Months</option>
-                    <option value="last6months">Last 6 Months</option>
-                    <option value="lastyear">Last Year</option>
-                    <option value="custom">Custom Range</option>
+                    <option value="last3months" className="bg-white text-gray-900 py-3">Last 3 Months</option>
+                    <option value="last6months" className="bg-white text-gray-900 py-3">Last 6 Months</option>
+                    <option value="lastyear" className="bg-white text-gray-900 py-3">Last Year</option>
+                    <option value="custom" className="bg-white text-gray-900 py-3">Custom Range</option>
                   </select>
-                  <div className="dropdown-chevron">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none">
+                    <svg className="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                     </svg>
                   </div>
@@ -121,7 +127,7 @@ export default function Reports() {
 
             <Card className="sm:col-span-2 lg:col-span-1">
               <CardContent className="p-3 md:p-4 flex items-end">
-                <Button className="w-full button-dropdown text-xs md:text-sm">
+                <Button className="w-full bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200 text-xs md:text-sm font-semibold py-3">
                   <Filter className="w-3 h-3 md:w-4 md:h-4 mr-1 md:mr-2" />
                   Generate Report
                 </Button>

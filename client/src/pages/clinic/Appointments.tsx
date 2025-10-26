@@ -285,24 +285,25 @@ export default function Appointments() {
                   
                   <div>
                     <Label htmlFor="type">Appointment Type *</Label>
-                    <div className="relative filter-dropdown mt-1">
+                    <div className="relative mt-1">
                       <select 
                         id="type"
                         value={newAppointment.type}
                         onChange={(e) => handleInputChange("type", e.target.value)}
-                        className="dropdown-trigger appearance-none cursor-pointer"
+                        className="w-full appearance-none cursor-pointer bg-gradient-to-r from-white to-purple-50/30 border-2 border-purple-200 rounded-2xl px-4 py-3 pr-10 text-sm font-medium text-gray-700 shadow-sm transition-all duration-200 hover:border-purple-300 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                        style={{ backgroundImage: 'none' }}
                       >
-                        <option value="">Select type</option>
-                        <option value="Initial Consultation">Initial Consultation</option>
-                        <option value="Ultrasound Scan">Ultrasound Scan</option>
-                        <option value="IUI Procedure">IUI Procedure</option>
-                        <option value="IVF Procedure">IVF Procedure</option>
-                        <option value="Blood Test">Blood Test</option>
-                        <option value="Embryo Transfer">Embryo Transfer</option>
-                        <option value="Follow-up">Follow-up</option>
+                        <option value="" className="bg-white text-gray-500 py-3">Select type</option>
+                        <option value="Initial Consultation" className="bg-white text-gray-900 py-3">Initial Consultation</option>
+                        <option value="Ultrasound Scan" className="bg-white text-gray-900 py-3">Ultrasound Scan</option>
+                        <option value="IUI Procedure" className="bg-white text-gray-900 py-3">IUI Procedure</option>
+                        <option value="IVF Procedure" className="bg-white text-gray-900 py-3">IVF Procedure</option>
+                        <option value="Blood Test" className="bg-white text-gray-900 py-3">Blood Test</option>
+                        <option value="Embryo Transfer" className="bg-white text-gray-900 py-3">Embryo Transfer</option>
+                        <option value="Follow-up" className="bg-white text-gray-900 py-3">Follow-up</option>
                       </select>
-                      <div className="dropdown-chevron">
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <div className="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none">
+                        <svg className="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                         </svg>
                       </div>
@@ -311,20 +312,21 @@ export default function Appointments() {
                   
                   <div>
                     <Label htmlFor="doctor">Assigned Doctor</Label>
-                    <div className="relative filter-dropdown mt-1">
+                    <div className="relative mt-1">
                       <select 
                         id="doctor"
                         value={newAppointment.doctor}
                         onChange={(e) => handleInputChange("doctor", e.target.value)}
-                        className="dropdown-trigger appearance-none cursor-pointer"
+                        className="w-full appearance-none cursor-pointer bg-gradient-to-r from-white to-purple-50/30 border-2 border-purple-200 rounded-2xl px-4 py-3 pr-10 text-sm font-medium text-gray-700 shadow-sm transition-all duration-200 hover:border-purple-300 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                        style={{ backgroundImage: 'none' }}
                       >
-                        <option value="Dr. Rao">Dr. Rao</option>
-                        <option value="Dr. Mehta">Dr. Mehta</option>
-                        <option value="Dr. Singh">Dr. Singh</option>
-                        <option value="Lab Team">Lab Team</option>
+                        <option value="Dr. Rao" className="bg-white text-gray-900 py-3">Dr. Rao</option>
+                        <option value="Dr. Mehta" className="bg-white text-gray-900 py-3">Dr. Mehta</option>
+                        <option value="Dr. Singh" className="bg-white text-gray-900 py-3">Dr. Singh</option>
+                        <option value="Lab Team" className="bg-white text-gray-900 py-3">Lab Team</option>
                       </select>
-                      <div className="dropdown-chevron">
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <div className="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none">
+                        <svg className="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                         </svg>
                       </div>
