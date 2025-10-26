@@ -18,16 +18,39 @@ import {
   X
 } from "lucide-react";
 
-// Import mock data
-import leads from "@/data/clinic/leads.json";
+interface Lead {
+  lead_id: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+  phone: string;
+  age: number;
+  source: string;
+  campaign: string;
+  utm_source: string;
+  utm_medium: string;
+  utm_campaign: string;
+  inquiry_type: string;
+  priority: string;
+  status: string;
+  assigned_to: string | null;
+  clinic_id: string | null;
+  notes: string | null;
+  last_contact_date: string | null;
+  next_follow_up_date: string | null;
+  converted_date: string | null;
+  created_at: string;
+  updated_at: string;
+}
 
 export default function LeadManagement() {
   const [collapsed, setCollapsed] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [filterStatus, setFilterStatus] = useState("all");
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [leadsData, setLeadsData] = useState(leads);
+  const [leadsData, setLeadsData] = useState<Lead[]>([]);
   const [isMobile, setIsMobile] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [newLead, setNewLead] = useState({
     name: "",
     email: "",
@@ -51,11 +74,34 @@ export default function LeadManagement() {
     return () => window.removeEventListener('resize', checkIsMobile);
   }, []);
 
+  useEffect(() => {
+    fetchLeads();
+  }, []);
+
+  const fetchLeads = async () => {
+    try {
+      setIsLoading(true);
+      const response = await fetch('/api/leads');
+      if (response.ok) {
+        const data = await response.json();
+        setLeadsData(data);
+        console.log('✅ Leads fetched successfully:', data);
+      } else {
+        console.error('❌ Failed to fetch leads');
+      }
+    } catch (error) {
+      console.error('❌ Error fetching leads:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const filteredLeads = leadsData.filter(lead => {
-    const matchesSearch = lead.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    const fullName = `${lead.first_name} ${lead.last_name}`.toLowerCase();
+    const matchesSearch = fullName.includes(searchQuery.toLowerCase()) ||
                          lead.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          lead.phone.includes(searchQuery);
-    const matchesFilter = filterStatus === "all" || lead.status === filterStatus;
+    const matchesFilter = filterStatus === "all" || lead.status.toLowerCase() === filterStatus;
     return matchesSearch && matchesFilter;
   });
 
@@ -123,15 +169,10 @@ export default function LeadManagement() {
           const responseData = await webhookResponse.json();
           console.log('✅ Lead created successfully:', responseData);
 
-          // Add to local state
-          const leadToAdd = {
-            id: `L${String(leadsData.length + 1).padStart(3, '0')}`,
-            ...newLead,
-            lastContact: new Date().toISOString().split('T')[0],
-            age: parseInt(newLead.age) || 0
-          };
+          // Add the response data directly to state
+          setLeadsData([responseData, ...leadsData]);
           
-          setLeadsData([...leadsData, leadToAdd]);
+          // Reset form
           setNewLead({
             name: "",
             email: "",
@@ -419,128 +460,158 @@ export default function LeadManagement() {
             <CardContent className="p-0 md:p-6">
               {/* Mobile Card Layout */}
               <div className="md:hidden">
-                {filteredLeads.map((lead) => (
-                  <div key={lead.id} className="border-b border-gray-100 p-4 hover:bg-gray-50">
-                    <div className="flex justify-between items-start mb-3">
-                      <div className="flex-1 min-w-0">
-                        <h3 className="font-medium text-gray-900 truncate">{lead.name}</h3>
-                        <p className="text-sm text-gray-600">Age: {lead.age} • {lead.location}</p>
+                {isLoading ? (
+                  <div className="p-8 text-center text-gray-500">Loading leads...</div>
+                ) : filteredLeads.length === 0 ? (
+                  <div className="p-8 text-center text-gray-500">No leads found</div>
+                ) : (
+                  filteredLeads.map((lead) => (
+                    <div key={lead.lead_id} className="border-b border-gray-100 p-4 hover:bg-gray-50">
+                      <div className="flex justify-between items-start mb-3">
+                        <div className="flex-1 min-w-0">
+                          <h3 className="font-medium text-gray-900 truncate">
+                            {lead.first_name} {lead.last_name}
+                          </h3>
+                          <p className="text-sm text-gray-600">Age: {lead.age}</p>
+                        </div>
+                        <div className="flex flex-col sm:flex-row gap-1 sm:gap-2 ml-3 flex-shrink-0">
+                          <span className={`status-badge ${lead.status.toLowerCase()}`}>
+                            {lead.status}
+                          </span>
+                          <span className={`priority-badge ${lead.priority.toLowerCase()}`}>
+                            {lead.priority}
+                          </span>
+                        </div>
                       </div>
-                      <div className="flex flex-col sm:flex-row gap-1 sm:gap-2 ml-3 flex-shrink-0">
-                        <span className={`status-badge ${lead.status}`}>
-                          {lead.status}
-                        </span>
-                        <span className={`priority-badge ${lead.priority}`}>
-                          {lead.priority}
-                        </span>
+                      
+                      <div className="space-y-2 mb-3">
+                        <div className="flex items-center text-sm text-gray-600">
+                          <Phone className="w-4 h-4 mr-2 flex-shrink-0" />
+                          <span className="truncate">{lead.phone}</span>
+                        </div>
+                        <div className="flex items-center text-sm text-gray-600">
+                          <Mail className="w-4 h-4 mr-2 flex-shrink-0" />
+                          <span className="truncate">{lead.email}</span>
+                        </div>
+                      </div>
+                      
+                      <div className="grid grid-cols-2 gap-2 text-sm mb-3">
+                        <div>
+                          <span className="text-gray-500">Inquiry: </span>
+                          <span className="text-gray-700">{lead.inquiry_type}</span>
+                        </div>
+                        <div>
+                          <span className="text-gray-500">Source: </span>
+                          <span className="text-gray-700">{lead.source}</span>
+                        </div>
+                        <div>
+                          <span className="text-gray-500">Campaign: </span>
+                          <span className="text-gray-700">{lead.campaign}</span>
+                        </div>
+                        <div>
+                          <span className="text-gray-500">UTM Source: </span>
+                          <span className="text-gray-700">{lead.utm_source}</span>
+                        </div>
+                      </div>
+                      
+                      <div className="flex justify-end space-x-2">
+                        <Button variant="ghost" size="sm">
+                          <Eye className="w-4 h-4" />
+                        </Button>
+                        <Button variant="ghost" size="sm">
+                          <Edit className="w-4 h-4" />
+                        </Button>
+                        <Button variant="ghost" size="sm">
+                          <Phone className="w-4 h-4" />
+                        </Button>
                       </div>
                     </div>
-                    
-                    <div className="space-y-2 mb-3">
-                      <div className="flex items-center text-sm text-gray-600">
-                        <Phone className="w-4 h-4 mr-2 flex-shrink-0" />
-                        <span className="truncate">{lead.phone}</span>
-                      </div>
-                      <div className="flex items-center text-sm text-gray-600">
-                        <Mail className="w-4 h-4 mr-2 flex-shrink-0" />
-                        <span className="truncate">{lead.email}</span>
-                      </div>
-                    </div>
-                    
-                    <div className="grid grid-cols-2 gap-2 text-sm mb-3">
-                      <div>
-                        <span className="text-gray-500">Interest: </span>
-                        <span className="text-gray-700">{lead.interest}</span>
-                      </div>
-                      <div>
-                        <span className="text-gray-500">Source: </span>
-                        <span className="text-gray-700">{lead.source}</span>
-                      </div>
-                    </div>
-                    
-                    <div className="flex justify-end space-x-2">
-                      <Button variant="ghost" size="sm">
-                        <Eye className="w-4 h-4" />
-                      </Button>
-                      <Button variant="ghost" size="sm">
-                        <Edit className="w-4 h-4" />
-                      </Button>
-                      <Button variant="ghost" size="sm">
-                        <Phone className="w-4 h-4" />
-                      </Button>
-                    </div>
-                  </div>
-                ))}
+                  ))
+                )}
               </div>
 
               {/* Desktop Table Layout */}
               <div className="hidden md:block overflow-x-auto">
-                <table className="w-full">
-                  <thead>
-                    <tr className="border-b border-gray-200">
-                      <th className="text-left py-3 px-4 font-medium text-gray-700">Lead</th>
-                      <th className="text-left py-3 px-4 font-medium text-gray-700">Contact</th>
-                      <th className="text-left py-3 px-4 font-medium text-gray-700">Status</th>
-                      <th className="text-left py-3 px-4 font-medium text-gray-700">Priority</th>
-                      <th className="text-left py-3 px-4 font-medium text-gray-700">Interest</th>
-                      <th className="text-left py-3 px-4 font-medium text-gray-700">Source</th>
-                      <th className="text-left py-3 px-4 font-medium text-gray-700">Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {filteredLeads.map((lead) => (
-                      <tr key={lead.id} className="border-b border-gray-100 hover:bg-gray-50">
-                        <td className="py-4 px-4">
-                          <div>
-                            <p className="font-medium text-gray-900">{lead.name}</p>
-                            <p className="text-sm text-gray-600">Age: {lead.age} • {lead.location}</p>
-                          </div>
-                        </td>
-                        <td className="py-4 px-4">
-                          <div className="space-y-1">
-                            <div className="flex items-center text-sm text-gray-600">
-                              <Phone className="w-4 h-4 mr-2" />
-                              {lead.phone}
-                            </div>
-                            <div className="flex items-center text-sm text-gray-600">
-                              <Mail className="w-4 h-4 mr-2" />
-                              {lead.email}
-                            </div>
-                          </div>
-                        </td>
-                        <td className="py-4 px-4">
-                          <span className={`status-badge ${lead.status}`}>
-                            {lead.status}
-                          </span>
-                        </td>
-                        <td className="py-4 px-4">
-                          <span className={`priority-badge ${lead.priority}`}>
-                            {lead.priority}
-                          </span>
-                        </td>
-                        <td className="py-4 px-4">
-                          <p className="text-sm text-gray-700">{lead.interest}</p>
-                        </td>
-                        <td className="py-4 px-4">
-                          <p className="text-sm text-gray-700">{lead.source}</p>
-                        </td>
-                        <td className="py-4 px-4">
-                          <div className="flex space-x-2">
-                            <Button variant="ghost" size="sm">
-                              <Eye className="w-4 h-4" />
-                            </Button>
-                            <Button variant="ghost" size="sm">
-                              <Edit className="w-4 h-4" />
-                            </Button>
-                            <Button variant="ghost" size="sm">
-                              <Phone className="w-4 h-4" />
-                            </Button>
-                          </div>
-                        </td>
+                {isLoading ? (
+                  <div className="p-8 text-center text-gray-500">Loading leads...</div>
+                ) : filteredLeads.length === 0 ? (
+                  <div className="p-8 text-center text-gray-500">No leads found</div>
+                ) : (
+                  <table className="w-full">
+                    <thead>
+                      <tr className="border-b border-gray-200">
+                        <th className="text-left py-3 px-4 font-medium text-gray-700">Lead</th>
+                        <th className="text-left py-3 px-4 font-medium text-gray-700">Contact</th>
+                        <th className="text-left py-3 px-4 font-medium text-gray-700">Status</th>
+                        <th className="text-left py-3 px-4 font-medium text-gray-700">Priority</th>
+                        <th className="text-left py-3 px-4 font-medium text-gray-700">Inquiry</th>
+                        <th className="text-left py-3 px-4 font-medium text-gray-700">Campaign</th>
+                        <th className="text-left py-3 px-4 font-medium text-gray-700">Source</th>
+                        <th className="text-left py-3 px-4 font-medium text-gray-700">Actions</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody>
+                      {filteredLeads.map((lead) => (
+                        <tr key={lead.lead_id} className="border-b border-gray-100 hover:bg-gray-50">
+                          <td className="py-4 px-4">
+                            <div>
+                              <p className="font-medium text-gray-900">
+                                {lead.first_name} {lead.last_name}
+                              </p>
+                              <p className="text-sm text-gray-600">Age: {lead.age}</p>
+                            </div>
+                          </td>
+                          <td className="py-4 px-4">
+                            <div className="space-y-1">
+                              <div className="flex items-center text-sm text-gray-600">
+                                <Phone className="w-4 h-4 mr-2" />
+                                {lead.phone}
+                              </div>
+                              <div className="flex items-center text-sm text-gray-600">
+                                <Mail className="w-4 h-4 mr-2" />
+                                {lead.email}
+                              </div>
+                            </div>
+                          </td>
+                          <td className="py-4 px-4">
+                            <span className={`status-badge ${lead.status.toLowerCase()}`}>
+                              {lead.status}
+                            </span>
+                          </td>
+                          <td className="py-4 px-4">
+                            <span className={`priority-badge ${lead.priority.toLowerCase()}`}>
+                              {lead.priority}
+                            </span>
+                          </td>
+                          <td className="py-4 px-4">
+                            <p className="text-sm text-gray-700">{lead.inquiry_type}</p>
+                          </td>
+                          <td className="py-4 px-4">
+                            <p className="text-sm text-gray-700">{lead.campaign}</p>
+                            <p className="text-xs text-gray-500">{lead.utm_campaign}</p>
+                          </td>
+                          <td className="py-4 px-4">
+                            <p className="text-sm text-gray-700">{lead.source}</p>
+                            <p className="text-xs text-gray-500">{lead.utm_source} / {lead.utm_medium}</p>
+                          </td>
+                          <td className="py-4 px-4">
+                            <div className="flex space-x-2">
+                              <Button variant="ghost" size="sm">
+                                <Eye className="w-4 h-4" />
+                              </Button>
+                              <Button variant="ghost" size="sm">
+                                <Edit className="w-4 h-4" />
+                              </Button>
+                              <Button variant="ghost" size="sm">
+                                <Phone className="w-4 h-4" />
+                              </Button>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                )}
               </div>
             </CardContent>
           </Card>

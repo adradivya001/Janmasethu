@@ -104,6 +104,44 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // --- ONE-TIME: create the leads table
+  app.post("/api/dev/create-leads-table", async (_req, res) => {
+    try {
+      await query(`
+        CREATE TABLE IF NOT EXISTS public.leads (
+          lead_id VARCHAR(255) PRIMARY KEY,
+          first_name VARCHAR(255) NOT NULL,
+          last_name VARCHAR(255),
+          email VARCHAR(255) NOT NULL,
+          phone VARCHAR(50) NOT NULL,
+          age INTEGER,
+          source VARCHAR(100),
+          campaign VARCHAR(255),
+          utm_source VARCHAR(100),
+          utm_medium VARCHAR(100),
+          utm_campaign VARCHAR(255),
+          inquiry_type VARCHAR(255),
+          priority VARCHAR(50),
+          status VARCHAR(50),
+          assigned_to VARCHAR(255),
+          clinic_id VARCHAR(255),
+          notes TEXT,
+          last_contact_date TIMESTAMP,
+          next_follow_up_date TIMESTAMP,
+          converted_date TIMESTAMP,
+          created_at TIMESTAMP DEFAULT NOW(),
+          updated_at TIMESTAMP DEFAULT NOW()
+        );
+        CREATE INDEX IF NOT EXISTS idx_leads_email ON public.leads(email);
+        CREATE INDEX IF NOT EXISTS idx_leads_status ON public.leads(status);
+      `);
+      res.json({ ok: true, message: "Leads table created successfully" });
+    } catch (e: any) {
+      console.error("POST /api/dev/create-leads-table error:", e);
+      res.status(500).json({ ok: false, error: e.message });
+    }
+  });
+
   // --- Middleware to require a secret key
   const requireKey = (req: any, res: any, next: any) => {
     const key = (req.query.key as string) || (req.headers["x-api-key"] as string);
@@ -130,6 +168,85 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json({ ok: true, ...out });
     } catch (e: any) {
       res.status(500).json({ ok: false, error: e.message });
+    }
+  });
+
+  // =========================
+  // LEADS API ENDPOINTS
+  // =========================
+
+  // Get all leads
+  app.get("/api/leads", async (req, res) => {
+    try {
+      const { rows } = await query(
+        `SELECT * FROM leads ORDER BY created_at DESC`
+      );
+      res.json(rows);
+    } catch (error) {
+      console.error("Error fetching leads:", error);
+      res.status(500).json({ error: "Failed to fetch leads" });
+    }
+  });
+
+  // Webhook receiver to store leads from n8n
+  app.post("/api/leads/webhook", async (req, res) => {
+    try {
+      const leadData = req.body;
+      
+      // Insert or update lead in database
+      await query(`
+        INSERT INTO leads (
+          lead_id, first_name, last_name, email, phone, age,
+          source, campaign, utm_source, utm_medium, utm_campaign,
+          inquiry_type, priority, status, assigned_to, clinic_id,
+          notes, last_contact_date, next_follow_up_date, converted_date,
+          created_at, updated_at
+        ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22)
+        ON CONFLICT (lead_id) 
+        DO UPDATE SET
+          first_name = EXCLUDED.first_name,
+          last_name = EXCLUDED.last_name,
+          email = EXCLUDED.email,
+          phone = EXCLUDED.phone,
+          age = EXCLUDED.age,
+          source = EXCLUDED.source,
+          campaign = EXCLUDED.campaign,
+          utm_source = EXCLUDED.utm_source,
+          utm_medium = EXCLUDED.utm_medium,
+          utm_campaign = EXCLUDED.utm_campaign,
+          inquiry_type = EXCLUDED.inquiry_type,
+          priority = EXCLUDED.priority,
+          status = EXCLUDED.status,
+          updated_at = EXCLUDED.updated_at
+      `, [
+        leadData.lead_id,
+        leadData.first_name,
+        leadData.last_name,
+        leadData.email,
+        leadData.phone,
+        leadData.age,
+        leadData.source,
+        leadData.campaign,
+        leadData.utm_source,
+        leadData.utm_medium,
+        leadData.utm_campaign,
+        leadData.inquiry_type,
+        leadData.priority,
+        leadData.status,
+        leadData.assigned_to,
+        leadData.clinic_id,
+        leadData.notes,
+        leadData.last_contact_date,
+        leadData.next_follow_up_date,
+        leadData.converted_date,
+        leadData.created_at,
+        leadData.updated_at
+      ]);
+
+      res.json({ ok: true, message: "Lead stored successfully" });
+    } catch (error) {
+      console.error("Error storing lead:", error);
+      res.status(500).json({ ok: false, error: "Failed to store lead" });
     }
   });
 
