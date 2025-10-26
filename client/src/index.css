@@ -1011,11 +1011,36 @@ textarea:focus-visible {
 }
 
 .dropdown-item {
-  @apply px-5 py-4 text-base text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition-all duration-200 cursor-pointer;
+  @apply px-5 py-4 text-base text-gray-700 transition-all duration-200 cursor-pointer;
   border-bottom: 1px solid rgba(229, 231, 235, 0.3);
   min-height: 56px;
   display: flex;
   align-items: center;
+  position: relative;
+}
+
+.dropdown-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, #8b5cf6 0%, #6366f1 100%);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  border-radius: 0 4px 4px 0;
+}
+
+.dropdown-item:hover::before {
+  opacity: 1;
+}
+
+.dropdown-item:hover {
+  background: linear-gradient(135deg, #f3e8ff 0%, #e0f2fe 100%);
+  color: #7c3aed;
+  padding-left: 1.75rem;
+  box-shadow: inset 0 0 0 1px rgba(139, 92, 246, 0.1);
 }
 
 .dropdown-item:last-child {
@@ -1027,13 +1052,19 @@ textarea:focus-visible {
   border-radius: 1.5rem 1.5rem 0 0;
 }
 
-.dropdown-item.selected {
-  @apply bg-purple-100 text-purple-700 font-medium;
-  background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%);
+.dropdown-item.selected,
+.dropdown-item[aria-selected="true"] {
+  @apply font-semibold;
+  background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+  color: white;
+  padding-left: 1.75rem;
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
 }
 
-.dropdown-item:hover {
-  background: linear-gradient(135deg, #f8faff 0%, #f0f4ff 100%);
+.dropdown-item.selected::before,
+.dropdown-item[aria-selected="true"]::before {
+  opacity: 1;
+  background: white;
 }
 
 .dropdown-chevron {
@@ -1173,6 +1204,17 @@ textarea:focus-visible {
     font-weight: 500;
   }
 
+  [data-radix-select-item]:hover {
+    background: linear-gradient(135deg, #f3e8ff 0%, #e0f2fe 100%);
+    transform: translateX(4px);
+  }
+
+  [data-radix-select-item][data-state="checked"] {
+    background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+  }
+
 /* Floating Mini Player Styles - Draggable */
 .floating-mini-player {
   animation: floatIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -1298,6 +1340,20 @@ textarea:focus-visible {
   [data-radix-select-item] {
     @apply rounded-xl;
     margin-bottom: 4px;
+    transition: all 0.2s ease;
+  }
+
+  [data-radix-select-item]:hover {
+    background: linear-gradient(135deg, #f3e8ff 0%, #e0f2fe 100%);
+    transform: translateX(4px);
+    box-shadow: 0 2px 8px rgba(139, 92, 246, 0.15);
+  }
+
+  [data-radix-select-item][data-state="checked"] {
+    background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
   }
 
   [data-radix-select-item]:last-child {

@@ -121,16 +121,24 @@ const SelectItem = React.forwardRef<
   <SelectPrimitive.Item
     ref={ref}
     className={cn(
-      "relative flex w-full cursor-pointer select-none items-center rounded-2xl py-3.5 pl-10 pr-4 text-sm font-medium text-gray-700 outline-none transition-all duration-200 hover:bg-gradient-to-r hover:from-purple-50 hover:to-blue-50 hover:text-purple-700 hover:shadow-sm focus:bg-gradient-to-r focus:from-purple-50 focus:to-blue-50 focus:text-purple-700 data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-purple-100 data-[state=checked]:to-blue-100 data-[state=checked]:text-purple-700 data-[state=checked]:font-semibold data-[state=checked]:shadow-md data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+      "relative flex w-full cursor-pointer select-none items-center rounded-2xl py-3.5 pl-10 pr-4 text-sm font-medium text-gray-700 outline-none transition-all duration-200",
       "min-h-[48px] mb-1 last:mb-0",
-      "border border-transparent data-[state=checked]:border-purple-200",
+      "border border-transparent",
+      // Hover state
+      "hover:bg-gradient-to-r hover:from-purple-50 hover:to-blue-50 hover:text-purple-700 hover:shadow-sm hover:border-purple-100 hover:translate-x-1",
+      // Focus state
+      "focus:bg-gradient-to-r focus:from-purple-50 focus:to-blue-50 focus:text-purple-700",
+      // Checked state
+      "data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-purple-600 data-[state=checked]:to-indigo-600 data-[state=checked]:text-white data-[state=checked]:font-semibold data-[state=checked]:shadow-lg data-[state=checked]:shadow-purple-500/30 data-[state=checked]:border-purple-400",
+      // Disabled state
+      "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
       className
     )}
     {...props}
   >
     <span className="absolute left-3 flex h-5 w-5 items-center justify-center">
       <SelectPrimitive.ItemIndicator>
-        <Check className="h-4 w-4 text-purple-600 font-bold" />
+        <Check className="h-4 w-4 font-bold drop-shadow-sm" />
       </SelectPrimitive.ItemIndicator>
     </span>
 
