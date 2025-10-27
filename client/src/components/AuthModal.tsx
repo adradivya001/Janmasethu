@@ -166,6 +166,10 @@ export default function AuthModal({
       return;
     }
 
+    // Close the auth modal first
+    onClose();
+    
+    // Then trigger onboarding with the relationship and userId
     onAuthSuccess(true, relationship, userId);
   };
 

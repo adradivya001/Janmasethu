@@ -39,16 +39,23 @@ const Sakhi = () => {
   const handleAuthSuccess = (isNewUser: boolean, relationship?: string, userId?: string) => {
     console.log("=== handleAuthSuccess called ===");
     console.log("isNewUser:", isNewUser);
+    console.log("relationship:", relationship);
     console.log("userId:", userId);
     
+    // Close auth modal
     setShowAuthModal(false);
     
     if (isNewUser) {
       // New user - show onboarding questions
-      console.log("New user - showing onboarding");
+      console.log("New user - showing onboarding questions");
       setUserRelationship(relationship || "herself");
       setUserId(userId || "");
-      setShowOnboarding(true);
+      
+      // Use setTimeout to ensure state updates are applied before showing onboarding
+      setTimeout(() => {
+        console.log("Opening onboarding modal");
+        setShowOnboarding(true);
+      }, 100);
     } else {
       // Existing user - redirect to /sakhi/try immediately after login webhook success
       console.log("Existing user - redirecting to /sakhi/try");
