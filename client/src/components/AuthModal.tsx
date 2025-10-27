@@ -166,10 +166,8 @@ export default function AuthModal({
       return;
     }
 
-    // Close the auth modal first
-    onClose();
-    
-    // Then trigger onboarding with the relationship and userId
+    // Trigger onboarding immediately with the relationship and userId
+    // The parent component will handle closing this modal and opening onboarding
     onAuthSuccess(true, relationship, userId);
   };
 

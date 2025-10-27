@@ -42,27 +42,29 @@ const Sakhi = () => {
     console.log("relationship:", relationship);
     console.log("userId:", userId);
     
-    // Close auth modal
-    setShowAuthModal(false);
-    
     if (isNewUser) {
       // New user - show onboarding questions
       console.log("New user - showing onboarding questions");
       setUserRelationship(relationship || "herself");
       setUserId(userId || "");
       
-      // Use setTimeout to ensure state updates are applied before showing onboarding
-      setTimeout(() => {
-        console.log("Opening onboarding modal");
-        setShowOnboarding(true);
-      }, 100);
+      // Close auth modal and open onboarding immediately
+      setShowAuthModal(false);
+      setShowOnboarding(true);
+      
+      console.log("Onboarding modal should be visible now");
     } else {
       // Existing user - redirect to /sakhi/try immediately after login webhook success
       console.log("Existing user - redirecting to /sakhi/try");
+      
+      // Close auth modal
+      setShowAuthModal(false);
+      
       toast({
         title: "Welcome back!",
         description: "You're all set to continue your journey.",
       });
+      
       // Navigate immediately after successful login
       setTimeout(() => {
         console.log("Navigating to /sakhi/try");
