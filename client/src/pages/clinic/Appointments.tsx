@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -39,6 +38,7 @@ export default function Appointments() {
   const [newAppointment, setNewAppointment] = useState({
     patientName: "",
     patientId: "",
+    phone: "",
     date: "",
     time: "",
     type: "",
@@ -50,10 +50,10 @@ export default function Appointments() {
     const checkIsMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
-    
+
     checkIsMobile();
     window.addEventListener('resize', checkIsMobile);
-    
+
     return () => window.removeEventListener('resize', checkIsMobile);
   }, []);
 
@@ -100,10 +100,11 @@ export default function Appointments() {
       try {
         setIsLoading(true);
         console.log('🔵 Triggering appointment webhook...');
-        
+
         const webhookPayload = {
           patient_name: newAppointment.patientName,
           patient_id: newAppointment.patientId,
+          phone: newAppointment.phone,
           appointment_date: newAppointment.date,
           appointment_time: newAppointment.time,
           appointment_type: newAppointment.type,
@@ -143,11 +144,12 @@ export default function Appointments() {
           };
 
           setAppointments([newAppointmentData, ...appointments]);
-          
+
           // Reset form
           setNewAppointment({
             patientName: "",
             patientId: "",
+            phone: "",
             date: "",
             time: "",
             type: "",
@@ -181,10 +183,10 @@ export default function Appointments() {
 
   const daysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
   const firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getDay();
-  
+
   const monthNames = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"];
-  
+
   const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   const handlePrevMonth = () => {
@@ -216,7 +218,7 @@ export default function Appointments() {
         <ClinicNavigation collapsed={collapsed} onCollapsedChange={setCollapsed} />
       )}
       {isMobile && <ClinicNavigation />}
-      
+
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Header */}
         <header className="bg-white border-b border-gray-200 px-4 md:px-8 py-3 shadow-sm">
@@ -225,7 +227,7 @@ export default function Appointments() {
               <h1 className="text-[28px] md:text-[32px] font-bold text-gray-900 leading-tight mb-2">Appointments</h1>
               <p className="text-sm md:text-base text-gray-600">Manage patient appointments and scheduling</p>
             </div>
-            
+
             <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
               <DialogTrigger asChild>
                 <Button className="bg-purple-600 hover:bg-purple-700 text-white text-sm px-3 md:px-4 py-2 w-full sm:w-auto rounded-lg shadow-md hover:shadow-lg transition-all">
@@ -248,7 +250,7 @@ export default function Appointments() {
                       className="mt-1 px-4 py-3"
                     />
                   </div>
-                  
+
                   <div>
                     <Label htmlFor="patientId">Patient ID</Label>
                     <Input
@@ -259,7 +261,19 @@ export default function Appointments() {
                       className="mt-1 px-4 py-3"
                     />
                   </div>
-                  
+
+                  <div>
+                    <Label htmlFor="phone">Phone Number *</Label>
+                    <Input
+                      id="phone"
+                      type="tel"
+                      value={newAppointment.phone}
+                      onChange={(e) => handleInputChange("phone", e.target.value)}
+                      placeholder="e.g., 9876543210"
+                      className="mt-1 px-4 py-3"
+                    />
+                  </div>
+
                   <div className="grid grid-cols-2 gap-4">
                     <div>
                       <Label htmlFor="date">Date *</Label>
@@ -282,7 +296,7 @@ export default function Appointments() {
                       />
                     </div>
                   </div>
-                  
+
                   <div>
                     <Label htmlFor="type">Appointment Type *</Label>
                     <div className="relative mt-1">
@@ -309,7 +323,7 @@ export default function Appointments() {
                       </div>
                     </div>
                   </div>
-                  
+
                   <div>
                     <Label htmlFor="doctor">Assigned Doctor</Label>
                     <div className="relative mt-1">
@@ -332,7 +346,7 @@ export default function Appointments() {
                       </div>
                     </div>
                   </div>
-                  
+
                   <div>
                     <Label htmlFor="notes">Notes</Label>
                     <Input
@@ -343,7 +357,7 @@ export default function Appointments() {
                       className="mt-1 px-4 py-3"
                     />
                   </div>
-                  
+
                   <div className="flex justify-end space-x-2 pt-4">
                     <Button 
                       variant="outline" 
@@ -355,7 +369,7 @@ export default function Appointments() {
                     <Button 
                       onClick={handleAddAppointment}
                       className="bg-purple-600 hover:bg-purple-700 text-white"
-                      disabled={!newAppointment.patientName || !newAppointment.date || !newAppointment.time || !newAppointment.type || isLoading}
+                      disabled={!newAppointment.patientName || !newAppointment.phone || !newAppointment.date || !newAppointment.time || !newAppointment.type || isLoading}
                     >
                       {isLoading ? 'Scheduling...' : 'Schedule Appointment'}
                     </Button>
@@ -407,19 +421,19 @@ export default function Appointments() {
                           {day}
                         </div>
                       ))}
-                      
+
                       {/* Empty cells for days before month starts */}
                       {Array.from({ length: firstDayOfMonth }).map((_, index) => (
                         <div key={`empty-${index}`} className="aspect-square" />
                       ))}
-                      
+
                       {/* Calendar days */}
                       {Array.from({ length: daysInMonth }).map((_, index) => {
                         const day = index + 1;
                         const appointments = getAppointmentsForDate(day);
                         const isSelected = day === selectedDate;
                         const isToday = day === 16;
-                        
+
                         return (
                           <button
                             key={day}
@@ -467,9 +481,9 @@ export default function Appointments() {
                             {appointment.status}
                           </Badge>
                         </div>
-                        
+
                         <p className="text-xs text-gray-600 mb-2">ID: {appointment.patientId}</p>
-                        
+
                         <div className="space-y-1.5 mb-3">
                           <div className="flex items-center text-sm text-gray-700">
                             <Clock className="w-4 h-4 mr-2 text-gray-500" />
@@ -480,10 +494,10 @@ export default function Appointments() {
                             {appointment.doctor}
                           </div>
                         </div>
-                        
+
                         <p className="font-medium text-sm text-gray-900 mb-1">{appointment.type}</p>
                         <p className="text-xs text-gray-600 mb-3">{appointment.notes}</p>
-                        
+
                         <div className="flex gap-2">
                           <Button 
                             variant="outline" 
@@ -522,7 +536,7 @@ export default function Appointments() {
                     </div>
                   </CardContent>
                 </Card>
-                
+
                 <Card className="border-0 shadow-md hover:shadow-lg transition-shadow bg-white">
                   <CardContent className="p-4 md:p-6">
                     <div className="text-center">
@@ -533,7 +547,7 @@ export default function Appointments() {
                     </div>
                   </CardContent>
                 </Card>
-                
+
                 <Card className="border-0 shadow-md hover:shadow-lg transition-shadow bg-white">
                   <CardContent className="p-4 md:p-6">
                     <div className="text-center">
@@ -544,7 +558,7 @@ export default function Appointments() {
                     </div>
                   </CardContent>
                 </Card>
-                
+
                 <Card className="border-0 shadow-md hover:shadow-lg transition-shadow bg-white">
                   <CardContent className="p-4 md:p-6">
                     <div className="text-center">
