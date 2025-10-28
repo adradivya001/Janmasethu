@@ -39,23 +39,43 @@ export default function ClinicLanding() {
         console.log('✅ Login response:', responseData);
         
         // Check if login was successful
-        // Handle both array response [{ success: true }] and object response { success: true }
         let isSuccess = false;
         
-        if (Array.isArray(responseData) && responseData.length > 0) {
-          isSuccess = responseData[0].success === true;
-        } else if (responseData.success === true) {
-          isSuccess = true;
+        // Handle different response formats from n8n
+        if (Array.isArray(responseData)) {
+          // Array format: [{ success: true }] or [{ username: "false", password: "false" }]
+          if (responseData.length > 0) {
+            const firstItem = responseData[0];
+            // Check if success is explicitly true
+            if (firstItem.success === true) {
+              isSuccess = true;
+            }
+            // Check if username/password are not "false" (string)
+            else if (firstItem.username && firstItem.password && 
+                     firstItem.username !== "false" && firstItem.password !== "false") {
+              isSuccess = true;
+            }
+          }
+        } else if (typeof responseData === 'object' && responseData !== null) {
+          // Object format: { success: true }
+          if (responseData.success === true) {
+            isSuccess = true;
+          }
         }
+        
+        console.log('🔍 Login success status:', isSuccess);
         
         if (isSuccess) {
           // Store credentials in localStorage
           localStorage.setItem('clinicUsername', username);
           
+          console.log('✅ Redirecting to dashboard...');
+          
           // Redirect to dashboard
           window.location.href = "/clinic/dashboard";
         } else {
           // Login failed - incorrect credentials
+          console.error('❌ Login failed - invalid credentials');
           alert('Login failed. Please check your credentials.');
         }
       } else {
