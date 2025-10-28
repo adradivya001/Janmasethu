@@ -20,27 +20,16 @@ import {
 
 interface Lead {
   lead_id: string;
-  first_name: string;
-  last_name: string;
+  full_name: string;
   email: string;
   phone: string;
   age: number;
+  location: string;
+  interest: string;
   source: string;
-  campaign: string;
-  utm_source: string;
-  utm_medium: string;
-  utm_campaign: string;
-  inquiry_type: string;
   priority: string;
   status: string;
-  assigned_to: string | null;
-  clinic_id: string | null;
-  notes: string | null;
-  last_contact_date: string | null;
-  next_follow_up_date: string | null;
-  converted_date: string | null;
   created_at: string;
-  updated_at: string;
 }
 
 export default function LeadManagement() {
@@ -83,7 +72,13 @@ export default function LeadManagement() {
   const fetchLeads = async () => {
     try {
       setIsLoading(true);
-      const response = await fetch('/api/leads');
+      const response = await fetch('/api/leads', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ action: "fetch" })
+      });
       if (response.ok) {
         const data = await response.json();
         setLeadsData(data);
@@ -99,8 +94,7 @@ export default function LeadManagement() {
   };
 
   const filteredLeads = leadsData.filter(lead => {
-    const fullName = `${lead.first_name} ${lead.last_name}`.toLowerCase();
-    const matchesSearch = fullName.includes(searchQuery.toLowerCase()) ||
+    const matchesSearch = lead.full_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          lead.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          lead.phone.includes(searchQuery);
     const matchesFilter = filterStatus === "all" || lead.status.toLowerCase() === filterStatus;
@@ -131,20 +125,17 @@ export default function LeadManagement() {
       try {
         console.log('🔵 Creating new lead...');
         
-        // Split the name into first_name and last_name
-        const nameParts = newLead.name.trim().split(' ');
-        const first_name = nameParts[0] || '';
-        const last_name = nameParts.slice(1).join(' ') || '';
-        
         const payload = {
-          first_name,
-          last_name,
+          action: "insert",
+          full_name: newLead.name,
+          last_name: "",
           email: newLead.email,
           phone: newLead.phone,
-          age: newLead.age,
-          source: newLead.source,
-          interest: newLead.interest,
-          priority: newLead.priority
+          age: newLead.age || "0",
+          location: newLead.location || "",
+          interest: newLead.interest || "IVF Consultation",
+          source: newLead.source || "Website",
+          priority: newLead.priority.charAt(0).toUpperCase() + newLead.priority.slice(1)
         };
 
         console.log('📤 Sending to backend API:', payload);
@@ -161,8 +152,11 @@ export default function LeadManagement() {
           const responseData = await response.json();
           console.log('✅ Lead created successfully:', responseData);
 
+          // Add status field if not present
+          const leadWithStatus = { ...responseData, status: 'new' };
+          
           // Add the new lead to state
-          setLeadsData([responseData, ...leadsData]);
+          setLeadsData([leadWithStatus, ...leadsData]);
           
           // Reset form
           setNewLead({
@@ -198,21 +192,38 @@ export default function LeadManagement() {
     try {
       console.log('🔵 Updating lead:', editingLead.lead_id);
 
-      const response = await fetch(`/api/leads/${editingLead.lead_id}`, {
-        method: 'PUT',
+      const payload = {
+        action: "update",
+        lead_id: editingLead.lead_id,
+        full_name: editingLead.full_name,
+        last_name: "",
+        email: editingLead.email,
+        phone: editingLead.phone,
+        age: editingLead.age?.toString() || "0",
+        location: editingLead.location || "",
+        interest: editingLead.interest || "IVF Consultation",
+        source: editingLead.source || "Website",
+        priority: editingLead.priority
+      };
+
+      const response = await fetch('/api/leads', {
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(editingLead)
+        body: JSON.stringify(payload)
       });
 
       if (response.ok) {
         const updatedLead = await response.json();
         console.log('✅ Lead updated successfully:', updatedLead);
 
+        // Add status field if not present
+        const leadWithStatus = { ...updatedLead, status: editingLead.status || 'new' };
+
         // Update the lead in state
         setLeadsData(leadsData.map(lead => 
-          lead.lead_id === updatedLead.lead_id ? updatedLead : lead
+          lead.lead_id === updatedLead.lead_id ? leadWithStatus : lead
         ));
         
         setIsEditModalOpen(false);
@@ -509,7 +520,7 @@ export default function LeadManagement() {
                       <div className="flex justify-between items-start mb-3">
                         <div className="flex-1 min-w-0">
                           <h3 className="font-medium text-gray-900 truncate">
-                            {lead.first_name} {lead.last_name}
+                            {lead.full_name}
                           </h3>
                           <p className="text-sm text-gray-600">Age: {lead.age}</p>
                         </div>
@@ -536,20 +547,16 @@ export default function LeadManagement() {
                       
                       <div className="grid grid-cols-2 gap-2 text-sm mb-3">
                         <div>
-                          <span className="text-gray-500">Inquiry: </span>
-                          <span className="text-gray-700">{lead.inquiry_type}</span>
+                          <span className="text-gray-500">Interest: </span>
+                          <span className="text-gray-700">{lead.interest}</span>
                         </div>
                         <div>
                           <span className="text-gray-500">Source: </span>
                           <span className="text-gray-700">{lead.source}</span>
                         </div>
                         <div>
-                          <span className="text-gray-500">Campaign: </span>
-                          <span className="text-gray-700">{lead.campaign}</span>
-                        </div>
-                        <div>
-                          <span className="text-gray-500">UTM Source: </span>
-                          <span className="text-gray-700">{lead.utm_source}</span>
+                          <span className="text-gray-500">Location: </span>
+                          <span className="text-gray-700">{lead.location}</span>
                         </div>
                       </div>
                       
@@ -583,8 +590,8 @@ export default function LeadManagement() {
                         <th className="text-left py-3 px-4 font-medium text-gray-700">Contact</th>
                         <th className="text-left py-3 px-4 font-medium text-gray-700">Status</th>
                         <th className="text-left py-3 px-4 font-medium text-gray-700">Priority</th>
-                        <th className="text-left py-3 px-4 font-medium text-gray-700">Inquiry</th>
-                        <th className="text-left py-3 px-4 font-medium text-gray-700">Campaign</th>
+                        <th className="text-left py-3 px-4 font-medium text-gray-700">Interest</th>
+                        <th className="text-left py-3 px-4 font-medium text-gray-700">Location</th>
                         <th className="text-left py-3 px-4 font-medium text-gray-700">Source</th>
 
 
@@ -597,21 +604,11 @@ export default function LeadManagement() {
             {editingLead && (
               <div className="space-y-4 overflow-y-auto pr-1 flex-1 scrollbar-hide">
                 <div>
-                  <Label htmlFor="edit-first-name">First Name *</Label>
+                  <Label htmlFor="edit-full-name">Full Name *</Label>
                   <Input
-                    id="edit-first-name"
-                    value={editingLead.first_name}
-                    onChange={(e) => setEditingLead({...editingLead, first_name: e.target.value})}
-                    className="mt-1 px-4 py-3"
-                  />
-                </div>
-                
-                <div>
-                  <Label htmlFor="edit-last-name">Last Name</Label>
-                  <Input
-                    id="edit-last-name"
-                    value={editingLead.last_name || ''}
-                    onChange={(e) => setEditingLead({...editingLead, last_name: e.target.value})}
+                    id="edit-full-name"
+                    value={editingLead.full_name}
+                    onChange={(e) => setEditingLead({...editingLead, full_name: e.target.value})}
                     className="mt-1 px-4 py-3"
                   />
                 </div>
@@ -649,11 +646,21 @@ export default function LeadManagement() {
                 </div>
                 
                 <div>
-                  <Label htmlFor="edit-inquiry">Inquiry Type</Label>
+                  <Label htmlFor="edit-location">Location</Label>
                   <Input
-                    id="edit-inquiry"
-                    value={editingLead.inquiry_type || ''}
-                    onChange={(e) => setEditingLead({...editingLead, inquiry_type: e.target.value})}
+                    id="edit-location"
+                    value={editingLead.location || ''}
+                    onChange={(e) => setEditingLead({...editingLead, location: e.target.value})}
+                    className="mt-1 px-4 py-3"
+                  />
+                </div>
+                
+                <div>
+                  <Label htmlFor="edit-interest">Interest</Label>
+                  <Input
+                    id="edit-interest"
+                    value={editingLead.interest || ''}
+                    onChange={(e) => setEditingLead({...editingLead, interest: e.target.value})}
                     className="mt-1 px-4 py-3"
                   />
                 </div>
@@ -697,16 +704,6 @@ export default function LeadManagement() {
                   </select>
                 </div>
                 
-                <div>
-                  <Label htmlFor="edit-notes">Notes</Label>
-                  <Input
-                    id="edit-notes"
-                    value={editingLead.notes || ''}
-                    onChange={(e) => setEditingLead({...editingLead, notes: e.target.value})}
-                    className="mt-1 px-4 py-3"
-                  />
-                </div>
-                
                 <div className="flex justify-end space-x-2 pt-4">
                   <Button 
                     variant="outline" 
@@ -738,7 +735,7 @@ export default function LeadManagement() {
                           <td className="py-4 px-4">
                             <div>
                               <p className="font-medium text-gray-900">
-                                {lead.first_name} {lead.last_name}
+                                {lead.full_name}
                               </p>
                               <p className="text-sm text-gray-600">Age: {lead.age}</p>
                             </div>
@@ -766,15 +763,13 @@ export default function LeadManagement() {
                             </span>
                           </td>
                           <td className="py-4 px-4">
-                            <p className="text-sm text-gray-700">{lead.inquiry_type}</p>
+                            <p className="text-sm text-gray-700">{lead.interest}</p>
                           </td>
                           <td className="py-4 px-4">
-                            <p className="text-sm text-gray-700">{lead.campaign}</p>
-                            <p className="text-xs text-gray-500">{lead.utm_campaign}</p>
+                            <p className="text-sm text-gray-700">{lead.location}</p>
                           </td>
                           <td className="py-4 px-4">
                             <p className="text-sm text-gray-700">{lead.source}</p>
-                            <p className="text-xs text-gray-500">{lead.utm_source} / {lead.utm_medium}</p>
                           </td>
                           <td className="py-4 px-4">
                             <div className="flex space-x-2">

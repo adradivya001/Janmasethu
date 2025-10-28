@@ -108,27 +108,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/dev/create-leads-table", async (_req, res) => {
     try {
       await query(`
-        CREATE TABLE IF NOT EXISTS public.leads (
+        DROP TABLE IF EXISTS public.leads CASCADE;
+        CREATE TABLE public.leads (
           lead_id VARCHAR(255) PRIMARY KEY,
-          first_name VARCHAR(255) NOT NULL,
-          last_name VARCHAR(255),
+          full_name VARCHAR(255) NOT NULL,
           email VARCHAR(255) NOT NULL,
           phone VARCHAR(50) NOT NULL,
           age INTEGER,
+          location VARCHAR(255),
+          interest VARCHAR(255),
           source VARCHAR(100),
-          campaign VARCHAR(255),
-          utm_source VARCHAR(100),
-          utm_medium VARCHAR(100),
-          utm_campaign VARCHAR(255),
-          inquiry_type VARCHAR(255),
           priority VARCHAR(50),
-          status VARCHAR(50),
-          assigned_to VARCHAR(255),
-          clinic_id VARCHAR(255),
-          notes TEXT,
-          last_contact_date TIMESTAMP,
-          next_follow_up_date TIMESTAMP,
-          converted_date TIMESTAMP,
+          status VARCHAR(50) DEFAULT 'new',
           created_at TIMESTAMP DEFAULT NOW(),
           updated_at TIMESTAMP DEFAULT NOW()
         );
@@ -175,140 +166,150 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // LEADS API ENDPOINTS
   // =========================
 
-  // Get all leads
-  app.get("/api/leads", async (req, res) => {
-    try {
-      const { rows } = await query(
-        `SELECT * FROM leads ORDER BY created_at DESC`
-      );
-      res.json(rows);
-    } catch (error) {
-      console.error("Error fetching leads:", error);
-      res.status(500).json({ error: "Failed to fetch leads" });
-    }
-  });
-
-  // Create a new lead (calls n8n webhook, then stores in DB)
+  // Unified leads endpoint with action-based routing
   app.post("/api/leads", async (req, res) => {
     try {
-      const { first_name, last_name, email, phone, age, source, interest, priority } = req.body;
+      const { action } = req.body;
 
-      // Prepare payload for n8n webhook
-      const payload = {
-        query: {},
-        body: {
-          first_name,
+      // FETCH action - get all leads
+      if (action === "fetch") {
+        const { rows } = await query(
+          `SELECT lead_id, full_name, email, phone, age, location, interest, source, priority, status, created_at 
+           FROM leads ORDER BY created_at DESC`
+        );
+        console.log('✅ Fetched leads:', rows.length);
+        return res.json(rows);
+      }
+
+      // INSERT action - create new lead
+      if (action === "insert") {
+        const { full_name, last_name, email, phone, age, location, interest, source, priority } = req.body;
+
+        // Call n8n webhook for insert
+        const webhookPayload = {
+          action: "insert",
+          full_name,
           last_name: last_name || '',
           email,
           phone,
-          age: age ? parseInt(age) : 29,
-          source: source || 'Chatbot',
-          campaign: 'Parenthood_Awareness',
-          utm_source: 'Facebook',
-          utm_medium: 'Ad',
-          utm_campaign: 'IVF_Journey_2025',
-          inquiry_type: interest || 'IVF_Consultation',
-          priority: priority === 'high' ? 'High' : priority === 'medium' ? 'Medium' : 'Low'
+          age: age ? parseInt(age) : null,
+          location: location || '',
+          interest: interest || '',
+          source: source || 'Website',
+          priority: priority || 'Medium'
+        };
+
+        console.log('📤 Calling n8n webhook (insert):', webhookPayload);
+
+        const webhookResponse = await fetch('https://n8n.ottobon.in/webhook/lead_details', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(webhookPayload)
+        });
+
+        if (!webhookResponse.ok) {
+          throw new Error(`n8n webhook failed: ${webhookResponse.statusText}`);
         }
-      };
 
-      console.log('📤 Calling n8n webhook:', payload);
+        const leadData = await webhookResponse.json();
+        console.log('✅ n8n response (insert):', leadData);
 
-      // Call n8n webhook
-      const webhookResponse = await fetch('https://n8n.ottobon.in/webhook/lead_details', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload)
-      });
+        // Store in database
+        await query(`
+          INSERT INTO leads (
+            lead_id, full_name, email, phone, age, location, 
+            interest, source, priority, status, created_at
+          ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, NOW())
+          ON CONFLICT (lead_id) DO NOTHING
+        `, [
+          leadData.lead_id,
+          leadData.full_name,
+          leadData.email,
+          leadData.phone,
+          leadData.age,
+          leadData.location || '',
+          leadData.interest,
+          leadData.source,
+          leadData.priority,
+          'new'
+        ]);
 
-      if (!webhookResponse.ok) {
-        throw new Error(`n8n webhook failed: ${webhookResponse.statusText}`);
+        console.log('✅ Lead stored in database');
+        return res.json(leadData);
       }
 
-      // Check if response has content before parsing
-      const responseText = await webhookResponse.text();
-      console.log('📥 Raw n8n response:', responseText);
-      
-      if (!responseText || responseText.trim() === '') {
-        throw new Error('n8n webhook returned empty response');
+      // UPDATE action - update existing lead
+      if (action === "update") {
+        const { lead_id, full_name, last_name, email, phone, age, location, interest, source, priority } = req.body;
+
+        // Call n8n webhook for update
+        const webhookPayload = {
+          action: "update",
+          lead_id,
+          full_name,
+          last_name: last_name || '',
+          email,
+          phone,
+          age: age ? parseInt(age) : null,
+          location: location || '',
+          interest: interest || '',
+          source: source || 'Website',
+          priority: priority || 'Medium'
+        };
+
+        console.log('📤 Calling n8n webhook (update):', webhookPayload);
+
+        const webhookResponse = await fetch('https://n8n.ottobon.in/webhook/lead_details', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(webhookPayload)
+        });
+
+        if (!webhookResponse.ok) {
+          throw new Error(`n8n webhook failed: ${webhookResponse.statusText}`);
+        }
+
+        const leadData = await webhookResponse.json();
+        console.log('✅ n8n response (update):', leadData);
+
+        // Update in database
+        await query(`
+          UPDATE leads SET
+            full_name = $1,
+            email = $2,
+            phone = $3,
+            age = $4,
+            location = $5,
+            interest = $6,
+            source = $7,
+            priority = $8,
+            updated_at = NOW()
+          WHERE lead_id = $9
+        `, [
+          leadData.full_name,
+          leadData.email,
+          leadData.phone,
+          leadData.age,
+          leadData.location || '',
+          leadData.interest,
+          leadData.source,
+          leadData.priority,
+          leadData.lead_id
+        ]);
+
+        console.log('✅ Lead updated in database');
+        return res.json(leadData);
       }
 
-      const leadData = JSON.parse(responseText);
-      console.log('✅ n8n response:', leadData);
+      return res.status(400).json({ error: "Invalid action. Use 'fetch', 'insert', or 'update'" });
 
-      // Store in database
-      await query(`
-        INSERT INTO leads (
-          lead_id, first_name, last_name, email, phone, age,
-          source, campaign, utm_source, utm_medium, utm_campaign,
-          inquiry_type, priority, status, assigned_to, clinic_id,
-          notes, last_contact_date, next_follow_up_date, converted_date,
-          created_at, updated_at
-        ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22)
-      `, [
-        leadData.lead_id,
-        leadData.first_name,
-        leadData.last_name,
-        leadData.email,
-        leadData.phone,
-        leadData.age,
-        leadData.source,
-        leadData.campaign,
-        leadData.utm_source,
-        leadData.utm_medium,
-        leadData.utm_campaign,
-        leadData.inquiry_type,
-        leadData.priority,
-        leadData.status,
-        leadData.assigned_to,
-        leadData.clinic_id,
-        leadData.notes,
-        leadData.last_contact_date,
-        leadData.next_follow_up_date,
-        leadData.converted_date,
-        leadData.created_at,
-        leadData.updated_at
-      ]);
-
-      console.log('✅ Lead stored in database');
-      res.json(leadData);
     } catch (error) {
-      console.error("Error creating lead:", error);
-      res.status(500).json({ error: "Failed to create lead" });
-    }
-  });
-
-  // Update a lead
-  app.put("/api/leads/:lead_id", async (req, res) => {
-    try {
-      const { lead_id } = req.params;
-      const { first_name, last_name, email, phone, age, source, inquiry_type, priority, status, notes } = req.body;
-
-      await query(`
-        UPDATE leads SET
-          first_name = $1,
-          last_name = $2,
-          email = $3,
-          phone = $4,
-          age = $5,
-          source = $6,
-          inquiry_type = $7,
-          priority = $8,
-          status = $9,
-          notes = $10,
-          updated_at = NOW()
-        WHERE lead_id = $11
-      `, [first_name, last_name, email, phone, age, source, inquiry_type, priority, status, notes, lead_id]);
-
-      const { rows } = await query(`SELECT * FROM leads WHERE lead_id = $1`, [lead_id]);
-      
-      console.log('✅ Lead updated:', lead_id);
-      res.json(rows[0]);
-    } catch (error) {
-      console.error("Error updating lead:", error);
-      res.status(500).json({ error: "Failed to update lead" });
+      console.error("Error in leads API:", error);
+      res.status(500).json({ error: "Failed to process lead request" });
     }
   });
 
