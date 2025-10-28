@@ -16,17 +16,52 @@ export default function ClinicLanding() {
     setIsLoading(true);
     
     try {
-      // Simple client-side login - redirect to dashboard
-      console.log('🔵 Login attempt:', { username });
+      console.log('🔵 Triggering clinic login webhook...');
       
-      // Store credentials in localStorage for demo purposes
-      localStorage.setItem('clinicUsername', username);
-      
-      // Simulate a brief delay
-      await new Promise(resolve => setTimeout(resolve, 500));
-      
-      // Redirect to dashboard
-      window.location.href = "/clinic/dashboard";
+      const webhookResponse = await fetch('https://n8n.ottobon.in/webhook/clinic_details', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          body: {
+            username: username,
+            password: password
+          }
+        })
+      });
+
+      console.log('📤 Sent to webhook:', { username, password });
+      console.log('🔵 Webhook response status:', webhookResponse.status, webhookResponse.statusText);
+
+      if (webhookResponse.ok) {
+        const responseData = await webhookResponse.json();
+        console.log('✅ Login response:', responseData);
+        
+        // Check if login was successful
+        // Handle both array response [{ success: true }] and object response { success: true }
+        let isSuccess = false;
+        
+        if (Array.isArray(responseData) && responseData.length > 0) {
+          isSuccess = responseData[0].success === true;
+        } else if (responseData.success === true) {
+          isSuccess = true;
+        }
+        
+        if (isSuccess) {
+          // Store credentials in localStorage
+          localStorage.setItem('clinicUsername', username);
+          
+          // Redirect to dashboard
+          window.location.href = "/clinic/dashboard";
+        } else {
+          // Login failed - incorrect credentials
+          alert('Login failed. Please check your credentials.');
+        }
+      } else {
+        console.error('❌ Login failed:', webhookResponse.statusText);
+        alert('Login failed. Please check your credentials.');
+      }
     } catch (error) {
       console.error('❌ Error during login:', error);
       alert('An error occurred during login. Please try again.');
