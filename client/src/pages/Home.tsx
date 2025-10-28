@@ -539,155 +539,6 @@ const Home = () => {
           </div>
         </section>
 
-        {/* Start Here - Orientation Section */}
-        <section className="mobile-section-spacing py-16">
-          <div className="text-center mb-12">
-            <h2
-              className="text-3xl lg:text-4xl font-bold text-foreground font-serif mb-4"
-              data-testid="text-orientation-title"
-            >
-              {t("orient_title")}
-            </h2>
-          </div>
-
-          <div className="mobile-grid-fix grid md:grid-cols-3 gap-8">
-            {/* TTC Card */}
-            <Link href="/life-stages/ttc" className="group h-full">
-              <Card className="mobile-card-spacing rounded-3xl p-8 card-shadow hover:shadow-2xl transition-all duration-500 h-full flex flex-col cursor-pointer transform hover:scale-105 border-2 border-transparent hover:border-purple-200 relative overflow-hidden bg-gradient-to-br from-white to-purple-50/30">
-                <CardContent className="p-0 flex flex-col h-full">
-                  {/* Click indicator */}
-                  <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
-                      <ArrowRight className="w-4 h-4 text-purple-600" />
-                    </div>
-                  </div>
-
-                  <div className="w-16 h-16 gradient-button rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-md">
-                    <Heart className="text-white text-2xl" />
-                  </div>
-                  <h3
-                    className="text-2xl font-bold text-foreground font-serif mb-4 group-hover:text-purple-600 transition-colors"
-                    data-testid="text-ttc-title"
-                  >
-                    {t("orient_ttc")}
-                  </h3>
-                  <p
-                    className="text-muted-foreground mb-6 flex-grow"
-                    data-testid="text-ttc-desc"
-                  >
-                    {t("orient_desc_ttc")}
-                  </p>
-                  <img
-                    src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300"
-                    alt="Couple walking together in park"
-                    className="rounded-xl w-full h-32 object-cover mt-auto group-hover:shadow-lg transition-shadow"
-                  />
-
-                  {/* Call to action */}
-                  <div className="flex items-center justify-between mt-4">
-                    <span className="text-sm text-purple-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      {lang === "en" && "Explore this stage"}
-                      {lang === "hi" && "इस चरण का अन्वेषण करें"}
-                      {lang === "te" && "ఈ దశను అన్వేషించండి"}
-                    </span>
-                    <ArrowRight className="w-5 h-5 text-purple-600 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
-                  </div>
-                </CardContent>
-              </Card>
-            </Link>
-
-            {/* Pregnancy Card */}
-            <Link href="/life-stages/pregnancy" className="group h-full">
-              <Card className="rounded-3xl p-8 card-shadow hover:shadow-2xl transition-all duration-500 h-full flex flex-col cursor-pointer transform hover:scale-105 border-2 border-transparent hover:border-pink-200 relative overflow-hidden bg-gradient-to-br from-white to-pink-50/30">
-                <CardContent className="p-0 flex flex-col h-full">
-                  {/* Click indicator */}
-                  <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="w-8 h-8 bg-pink-100 rounded-full flex items-center justify-center">
-                      <ArrowRight className="w-4 h-4 text-pink-600" />
-                    </div>
-                  </div>
-
-                  <div className="w-16 h-16 gradient-button rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-md">
-                    <Baby className="text-white text-2xl" />
-                  </div>
-                  <h3
-                    className="text-2xl font-bold text-foreground font-serif mb-4 group-hover:text-pink-600 transition-colors"
-                    data-testid="text-pregnancy-title"
-                  >
-                    {t("orient_preg")}
-                  </h3>
-                  <p
-                    className="text-muted-foreground mb-6 flex-grow"
-                    data-testid="text-pregnancy-desc"
-                  >
-                    {t("orient_desc_preg")}
-                  </p>
-                  <img
-                    src="https://images.unsplash.com/photo-1493894473891-10fc1e5dbd22?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300"
-                    alt="Pregnant woman in peaceful outdoor setting"
-                    className="rounded-xl w-full h-32 object-cover mt-auto group-hover:shadow-lg transition-shadow"
-                  />
-
-                  {/* Call to action */}
-                  <div className="flex items-center justify-between mt-4">
-                    <span className="text-sm text-pink-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      {lang === "en" && "Explore this stage"}
-                      {lang === "hi" && "इस चरण का अन्वेषण करें"}
-                      {lang === "te" && "ఈ దశను అన్వేషించండి"}
-                    </span>
-                    <ArrowRight className="w-5 h-5 text-pink-600 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
-                  </div>
-                </CardContent>
-              </Card>
-            </Link>
-
-            {/* New Parent Card */}
-            <Link href="/life-stages/newborn" className="group h-full">
-              <Card className="rounded-3xl p-8 card-shadow hover:shadow-2xl transition-all duration-500 h-full flex flex-col cursor-pointer transform hover:scale-105 border-2 border-transparent hover:border-orange-200 relative overflow-hidden bg-gradient-to-br from-white to-orange-50/30">
-                <CardContent className="p-0 flex flex-col h-full">
-                  {/* Click indicator */}
-                  <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center">
-                      <ArrowRight className="w-4 h-4 text-orange-600" />
-                    </div>
-                  </div>
-
-                  <div className="w-16 h-16 gradient-button rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-md">
-                    <Cat className="text-white text-2xl" />
-                  </div>
-                  <h3
-                    className="text-2xl font-bold text-foreground font-serif mb-4 group-hover:text-orange-600 transition-colors"
-                    data-testid="text-parent-title"
-                  >
-                    {t("orient_parent")}
-                  </h3>
-                  <p
-                    className="text-muted-foreground mb-6 flex-grow"
-                    data-testid="text-parent-desc"
-                  >
-                    {t("orient_desc_parent")}
-                  </p>
-                  <img
-                    src="https://images.unsplash.com/photo-1566004100631-35d015d6a491?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300"
-                    alt="Happy new parent holding newborn baby"
-                    className="rounded-xl w-full h-32 object-cover mt-auto group-hover:shadow-lg transition-shadow"
-                  />
-
-                  {/* Call to action */}
-                  <div className="flex items-center justify-between mt-4">
-                    <span className="text-sm text-orange-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      {lang === "en" && "Explore this stage"}
-                      {lang === "hi" && "इस चरण का अन्वेषण करें"}
-                      {lang === "te" && "ఈ దశను అన్వేషించండి"}
-                    </span>
-                    <ArrowRight className="w-5 h-5 text-orange-600 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
-                  </div>
-                </CardContent>
-              </Card>
-            </Link>
-          </div>
-        </section>
-
         {/* Explore by Lens Section */}
         <section className="py-16">
           <div className="text-center mb-12">
@@ -959,79 +810,6 @@ const Home = () => {
           </div>
         </section>
 
-        {/* Success Stories Preview */}
-        <section className="py-16">
-          <div className="text-center mb-12">
-            <h2
-              className="text-4xl font-bold text-foreground font-serif mb-4"
-              data-testid="text-success-title"
-            >
-              {t("success_preview_title")}
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuredStories.map((story, index) => (
-              <Link
-                key={story.slug}
-                href={`/success-stories/${story.slug}`}
-                className="group h-full"
-              >
-                <Card
-                  className="rounded-3xl p-6 card-shadow hover:shadow-2xl transition-all duration-500 h-full flex flex-col cursor-pointer transform hover:scale-105 border-2 border-transparent hover:border-pink-200 relative overflow-hidden bg-gradient-to-br from-white to-pink-50/30"
-                  data-testid={`card-success-story-${index}`}
-                >
-                  <CardContent className="p-0 flex flex-col h-full">
-                    {/* Click indicator */}
-                    <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <div className="w-8 h-8 bg-pink-100 rounded-full flex items-center justify-center">
-                        <ArrowRight className="w-4 h-4 text-pink-600" />
-                      </div>
-                    </div>
-
-                    <img
-                      src={getStoryImage(index)}
-                      alt={story.title}
-                      className="rounded-xl w-full h-32 object-cover mb-4 group-hover:scale-105 group-hover:shadow-lg transition-all duration-300"
-                    />
-                    <h3
-                      className="text-lg font-bold text-foreground font-serif mb-2 group-hover:text-pink-600 transition-colors"
-                      data-testid={`text-story-title-${index}`}
-                    >
-                      {story.title[lang]}
-                    </h3>
-                    <p
-                      className="text-sm text-muted-foreground mb-4 flex-grow"
-                      data-testid={`text-story-summary-${index}`}
-                    >
-                      {story.summary[lang]}
-                    </p>
-
-                    <div className="flex items-center justify-between mt-auto">
-                      <div className="flex items-center text-xs text-muted-foreground">
-                        <i className="fas fa-map-marker-alt mr-1"></i>
-                        <span data-testid={`text-story-city-${index}`}>
-                          {story.city[lang]}
-                        </span>
-                      </div>
-
-                      {/* Call to action */}
-                      <div className="flex items-center">
-                        <span className="text-xs text-pink-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 mr-2">
-                          {lang === "en" && "Read story"}
-                          {lang === "hi" && "कहानी पढ़ें"}
-                          {lang === "te" && "కథ చదవండి"}
-                        </span>
-                        <ArrowRight className="w-4 h-4 text-pink-600 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </Link>
-            ))}
-          </div>
-        </section>
-
         {/* FAQ Section */}
         <section className="py-16">
           <div className="text-center mb-12">
@@ -1048,7 +826,7 @@ const Home = () => {
           </div>
 
           <div className="max-w-4xl mx-auto">
-            <Card className="rounded-3xl p-8 card-shadow bg-gradient-to-br from-white to-purple-50/30">
+            <Card className="rounded-3xl p-6 card-shadow bg-gradient-to-br from-white to-purple-50/30">
               <CardContent className="p-0">
                 <Accordion
                   type="single"
@@ -1185,8 +963,6 @@ const Home = () => {
                 </Accordion>
               </CardContent>
             </Card>
-
-            
           </div>
         </section>
       </div>
