@@ -298,7 +298,7 @@ const Home = () => {
             <div className="journey-timeline-mobile flex items-center justify-between min-w-[800px] px-12 py-8">
               {/* Stage 1: Thinking of Parenthood */}
               <div
-                className="flex flex-col items-center group cursor-pointer transition-all duration-500 ease-out journey-stage"
+                className="flex flex-col items-center group cursor-pointer transition-all duration-700 ease-out journey-stage"
                 data-testid="journey-stage-thinking"
                 style={{ '--stage-index': 0 } as React.CSSProperties}
               >
@@ -324,7 +324,7 @@ const Home = () => {
 
               {/* Stage 2: Trying Naturally */}
               <div
-                className="flex flex-col items-center group cursor-pointer transition-all duration-500 ease-out journey-stage"
+                className="flex flex-col items-center group cursor-pointer transition-all duration-700 ease-out journey-stage"
                 data-testid="journey-stage-trying"
                 style={{ '--stage-index': 1 } as React.CSSProperties}
               >
@@ -350,7 +350,7 @@ const Home = () => {
 
               {/* Stage 3: Exploring Options */}
               <div
-                className="flex flex-col items-center group cursor-pointer transition-all duration-500 ease-out journey-stage"
+                className="flex flex-col items-center group cursor-pointer transition-all duration-700 ease-out journey-stage"
                 data-testid="journey-stage-exploring"
                 style={{ '--stage-index': 2 } as React.CSSProperties}
               >
@@ -376,7 +376,7 @@ const Home = () => {
 
               {/* Stage 4: Pregnancy */}
               <div
-                className="flex flex-col items-center group cursor-pointer transition-all duration-500 ease-out journey-stage"
+                className="flex flex-col items-center group cursor-pointer transition-all duration-700 ease-out journey-stage"
                 data-testid="journey-stage-pregnancy"
                 style={{ '--stage-index': 3 } as React.CSSProperties}
               >
@@ -402,7 +402,7 @@ const Home = () => {
 
               {/* Stage 5: Post-Delivery */}
               <div
-                className="flex flex-col items-center group cursor-pointer transition-all duration-500 ease-out journey-stage"
+                className="flex flex-col items-center group cursor-pointer transition-all duration-700 ease-out journey-stage"
                 data-testid="journey-stage-postdelivery"
                 style={{ '--stage-index': 4 } as React.CSSProperties}
               >
