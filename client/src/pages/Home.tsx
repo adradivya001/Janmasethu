@@ -288,7 +288,7 @@ const Home = () => {
 
           {/* Journey Timeline */}
           <div className="relative overflow-x-auto pb-8">
-            <div className="journey-timeline-mobile flex items-center justify-between min-w-[800px] px-8">
+            <div className="journey-timeline-mobile flex items-center justify-between min-w-[800px] px-12 py-8">
               {/* Stage 1: Thinking of Parenthood */}
               <div
                 className="flex flex-col items-center group cursor-pointer hover:scale-105 transition-all duration-300"
