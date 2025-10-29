@@ -6,183 +6,201 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import LanguageSwitcher from "./LanguageSwitcher";
 import MobileMenu from "./MobileMenu";
-import { PrimaryNav } from "./header/PrimaryNav";
-import { MegaMenu } from "./header/MegaMenu";
-import { TabletPills } from "./header/TabletPills";
-import { MobileDrawer } from "./header/MobileDrawer";
-import { SearchPanel } from "./header/SearchPanel";
-import { NavSearchButton } from "./header/NavSearchButton";
-import { NavCTA } from "./header/NavCTA";
-import { useDisclosure } from "./header/useDisclosure";
-import { useStickyHeader } from "./header/useStickyHeader";
-import type { NavItem, NavSection } from "./header/types";
 
 const Header = () => {
   const { t } = useLanguage();
   const [location] = useLocation();
-  const { isScrolled } = useStickyHeader();
-  const megaMenu = useDisclosure();
-  const mobileDrawer = useDisclosure();
-  const searchPanel = useDisclosure();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
+  const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Navigation configuration with priority for two-row layout
+  const navConfig = [
+    { key: "nav_home", href: "/", priority: 1 },
+    { key: "nav_knowledge", href: "/knowledge", priority: 2 },
+    { key: "nav_treatments", href: "/treatments", priority: 3 },
+    { key: "nav_sakhi", href: "/sakhi", priority: 4 },
+    { key: "nav_life", href: "/life-stages", priority: 5 },
+    { key: "nav_success", href: "/success-stories", priority: 6 },
+    { key: "nav_blog", href: "/blog", priority: 7 },
+    { key: "nav_experts", href: "/experts", priority: 8 },
+    { key: "nav_investors", href: "/investors", priority: 10 },
+  ];
+
+  // Split navigation into primary (first 4) and secondary (remaining)
+  const primaryNavItems = navConfig.filter((item) => item.priority <= 4);
+  const secondaryNavItems = navConfig.filter((item) => item.priority > 4);
 
   // Mobile menu gets all items
-  const allNavItems = [
-    { key: "nav_home", href: "/", label: t("nav_home") },
-    { key: "nav_knowledge", href: "/knowledge", label: t("nav_knowledge") },
-    { key: "nav_treatments", href: "/treatments", label: t("nav_treatments") },
-    { key: "nav_sakhi", href: "/sakhi", label: t("nav_sakhi") },
-    { key: "nav_life", href: "/life-stages", label: t("nav_life") },
-    { key: "nav_success", href: "/success-stories", label: t("nav_success") },
-    { key: "nav_blog", href: "/blog", label: t("nav_blog") },
-    { key: "nav_experts", href: "/experts", label: t("nav_experts") },
-    { key: "nav_investors", href: "/investors", label: t("nav_investors") },
-  ];
+  const allNavItems = navConfig.map(({ key, href }) => ({
+    key,
+    href,
+    label: t(key),
+  }));
 
-  // Primary navigation items (shown in all layouts)
-  const primaryNavItems: NavItem[] = [
-    { key: "nav_home", href: "/", label: t("nav_home") },
-    { key: "nav_knowledge", href: "/knowledge", label: t("nav_knowledge") },
-    { key: "nav_treatments", href: "/treatments", label: t("nav_treatments") },
-    { key: "nav_sakhi", href: "/sakhi", label: t("nav_sakhi") },
-  ];
-
-  // Mega menu sections (desktop) and drawer sections (mobile)
-  const megaMenuSections: NavSection[] = [
-    {
-      title: "Explore",
-      items: [
-        { key: "nav_life", href: "/life-stages", label: t("nav_life") },
-        { key: "nav_success", href: "/success-stories", label: t("nav_success") },
-      ],
-    },
-    {
-      title: "Resources",
-      description: "Latest insights and stories",
-      items: [
-        { key: "nav_blog", href: "/blog", label: t("nav_blog") },
-        { key: "nav_experts", href: "/experts", label: t("nav_experts") },
-      ],
-    },
-    {
-      title: "Company",
-      items: [
-        { key: "nav_investors", href: "/investors", label: t("nav_investors") },
-      ],
-    },
-  ];
-
-  // Quick links for mobile drawer
-  const mobileQuickLinks: NavItem[] = [
-    ...primaryNavItems,
-    { key: "cta", href: "/sakhi/try", label: "Book Consultation" },
-  ];
-
-  // Global "/" shortcut to open search
-  useEffect(() => {
-    const handleSlashKey = (e: KeyboardEvent) => {
-      if (e.key === "/" && e.target === document.body && !searchPanel.isOpen) {
-        e.preventDefault();
-        searchPanel.open();
-      }
-    };
-
-    window.addEventListener("keydown", handleSlashKey);
-    return () => window.removeEventListener("keydown", handleSlashKey);
-  }, [searchPanel]);
-
-  // Handle ESC key to collapse mega menu
+  // Handle ESC key to collapse when focus is in secondary nav
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && megaMenu.isOpen) {
-        megaMenu.close();
+      if (e.key === "Escape" && (isExpanded || isHovering)) {
+        setIsExpanded(false);
+        setIsHovering(false);
       }
     };
     document.addEventListener("keydown", handleEsc);
     return () => document.removeEventListener("keydown", handleEsc);
-  }, [megaMenu]);
+  }, [isExpanded, isHovering]);
+
+  // Handle mouse enter only for the More button
+  const handleMoreButtonMouseEnter = () => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+    }
+    setIsHovering(true);
+    setIsExpanded(true);
+  };
+
+  // Handle mouse leave from the More button and secondary nav area
+  const handleMoreAreaMouseLeave = () => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+    }
+    setIsHovering(false);
+    hoverTimeoutRef.current = setTimeout(() => {
+      setIsExpanded(false);
+    }, 300); // Increased delay to allow moving to secondary nav
+  };
+
+  // Toggle function for click interaction
+  const handleToggleExpanded = () => {
+    setIsExpanded(!isExpanded);
+    setIsHovering(!isExpanded); // Sync hover state with click state
+  };
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (hoverTimeoutRef.current) {
+        clearTimeout(hoverTimeoutRef.current);
+      }
+    };
+  }, []);
 
   return (
     <>
       <header
-        className={`sticky top-0 z-40 w-full bg-white/95 border-b border-border transition-all duration-300 ${
-          isScrolled ? "shadow-md backdrop-blur-sm" : ""
-        }`}
+        className={`site-header sticky top-0 z-40 w-full bg-white/80 backdrop-blur-sm border-b border-border transition-all duration-300 ${isExpanded ? "is-expanded" : ""}`}
       >
-        <div className="container mx-auto px-3 md:px-4">
-          {/* Main Row */}
-          <div
-            className={`flex items-center justify-between transition-all duration-300 ${
-              isScrolled ? "py-2" : "py-3"
-            }`}
-          >
-            {/* Logo */}
-            <Link href="/" className="flex flex-col items-start gap-0 flex-shrink-0">
+        <div className="container mx-auto px-3 md:px-4 py-2">
+          {/* Primary Row */}
+          <div className="flex items-center justify-between">
+            {/* Logo with Brand Text */}
+            <Link
+              href="/"
+              className="flex flex-col items-start gap-0 flex-shrink-0"
+              data-testid="link-home-logo"
+            >
               <div className="flex items-center gap-2 sm:gap-3">
                 <img
                   src="/JanmaSethu Logo.png"
                   alt="JanmaSethu Logo"
-                  className={`object-contain transition-all duration-300 ${
-                    isScrolled ? "w-8 h-8 sm:w-10 sm:h-10" : "w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14"
-                  }`}
+                  className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 object-contain"
                 />
                 <div className="flex items-baseline gap-1">
-                  <span
-                    className={`text-black font-bold font-serif transition-all duration-300 ${
-                      isScrolled ? "text-base sm:text-lg" : "text-base sm:text-lg md:text-xl"
-                    }`}
-                  >
+                  <span className="text-black font-bold text-base sm:text-lg md:text-xl lg:text-1xl font-serif mt-2 sm:mt-3">
                     Janma
                   </span>
-                  <span
-                    className={`font-bold font-serif transition-all duration-300 ${
-                      isScrolled ? "text-base sm:text-lg" : "text-base sm:text-lg md:text-xl"
-                    }`}
-                    style={{ color: "#60c4b8" }}
-                  >
+                  <span className="font-bold text-base sm:text-lg md:text-xl lg:text-1xl font-serif mt-2 sm:mt-3" style={{ color: '#60c4b8' }}>
                     Sethu
                   </span>
                 </div>
               </div>
-              {!isScrolled && (
-                <p className="text-[0.6rem] sm:text-[0.65rem] md:text-xs text-muted-foreground font-small text-left w-full pl-0 sm:pl-2 -mt-2 sm:-mt-3 transition-opacity duration-300">
-                  Connecting Care & Parenthood
-                </p>
-              )}
+              <p className="text-[0.6rem] sm:text-[0.65rem] md:text-xs text-muted-foreground font-small text-left w-full pl-0 sm:pl-2 -mt-2 sm:-mt-3">
+                Connecting Care & Parenthood
+              </p>
             </Link>
 
-            {/* Desktop Primary Navigation */}
-            <PrimaryNav
-              items={primaryNavItems}
-              onMoreClick={megaMenu.toggle}
-              isMoreOpen={megaMenu.isOpen}
-            />
-
-            {/* Right Side Actions */}
-            <div className="flex items-center space-x-2 md:space-x-3 flex-shrink-0">
-              {/* Search Button - Desktop/Tablet */}
-              <div className="hidden md:block">
-                <NavSearchButton onClick={searchPanel.open} />
-              </div>
-
-              {/* Search Icon - Mobile */}
-              <Button
-                variant="ghost"
-                size="sm"
-                className="md:hidden p-2"
-                onClick={searchPanel.open}
-                aria-label="Search"
+            {/* Desktop Navigation - Primary Row */}
+            <div className="hidden lg:flex items-center justify-center flex-grow">
+              <nav
+                className="nav-primary flex items-center justify-center space-x-6 xl:space-x-12"
+                role="navigation"
+                aria-label="Main navigation"
               >
-                <Search className="w-5 h-5" />
-              </Button>
+                {primaryNavItems.map(({ key, href }) => (
+                  <Link
+                    key={href}
+                    href={href}
+                    className={`font-semibold text-sm tracking-wide transition-all duration-200 px-3 py-2 rounded-md ${
+                      location === href
+                        ? "text-primary bg-primary/10"
+                        : "text-foreground hover:text-primary hover:bg-primary/5"
+                    }`}
+                    data-testid={`link-nav-${key.replace("nav_", "")}`}
+                  >
+                    {t(key)}
+                  </Link>
+                ))}
 
-              {/* CTA */}
-              <div className="hidden sm:block">
-                <NavCTA />
+                {/* Expand/Collapse Button */}
+                <div
+                  onMouseEnter={handleMoreButtonMouseEnter}
+                  onMouseLeave={handleMoreAreaMouseLeave}
+                >
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={handleToggleExpanded}
+                    className={`px-3 py-2 rounded-md text-sm font-semibold transition-all duration-200 hover:bg-primary/5 hover:scale-105 ${
+                      isExpanded
+                        ? "bg-primary/10 text-primary"
+                        : "hover:text-primary"
+                    }`}
+                    aria-expanded={isExpanded}
+                    aria-controls="header-secondary-row"
+                    data-testid="button-nav-toggle"
+                  >
+                    <span className="mr-2">
+                      {isExpanded ? t("nav_less") : t("nav_more")}
+                    </span>
+                    <ChevronDown
+                      className={`w-3 h-3 chevron transition-transform duration-300 ease-in-out ${isExpanded ? "rotate-180" : ""}`}
+                    />
+                  </Button>
+                </div>
+              </nav>
+            </div>
+
+            {/* Search & Language & Mobile Menu */}
+            <div className="flex items-center space-x-2 md:space-x-4 flex-shrink-0">
+              {/* Search */}
+              <div className="hidden md:block relative">
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    const formData = new FormData(e.target as HTMLFormElement);
+                    const searchTerm = formData.get("search") as string;
+                    if (searchTerm.trim()) {
+                      window.location.href = `/knowledge?search=${encodeURIComponent(searchTerm.trim())}`;
+                    }
+                  }}
+                >
+                  <Input
+                    type="search"
+                    name="search"
+                    placeholder={t("search_placeholder")}
+                    className="pl-9 pr-3 py-1.5 text-sm rounded-full border-border bg-background/50 focus:ring-ring w-40 lg:w-56"
+                    data-testid="input-search"
+                  />
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-3.5 h-3.5 pointer-events-none" />
+                </form>
               </div>
 
-              {/* Language Switcher - Only on Sakhi Try page */}
-              {typeof window !== "undefined" && window.location.pathname === "/sakhi/try" && (
-                <LanguageSwitcher />
+              {/* Language Switcher - Only shown on Try Sakhi page */}
+              {location === "/sakhi/try" && (
+                <div>
+                  <LanguageSwitcher />
+                </div>
               )}
 
               {/* Mobile Menu Button */}
@@ -190,44 +208,67 @@ const Header = () => {
                 variant="ghost"
                 size="sm"
                 className="lg:hidden p-2"
-                onClick={mobileDrawer.open}
+                onClick={() => setMobileMenuOpen(true)}
                 aria-label="Toggle menu"
+                data-testid="button-mobile-menu"
               >
-                <Menu className="w-5 h-5" />
+                <Menu className="text-xl" />
               </Button>
             </div>
           </div>
 
-          {/* Tablet Pills Row */}
-          <TabletPills
-            items={primaryNavItems}
-            onMoreClick={megaMenu.toggle}
-            isMoreOpen={megaMenu.isOpen}
-          />
+          {/* Secondary Row - Expandable */}
+          <div
+            id="header-secondary-row"
+            className={`nav-secondary hidden lg:block overflow-hidden transition-all duration-400 ease-in-out ${
+              isExpanded
+                ? "max-h-24 opacity-100 pointer-events-auto transform translate-y-0"
+                : "max-h-0 opacity-0 pointer-events-none transform -translate-y-2"
+            }`}
+            onMouseEnter={() => {
+              if (hoverTimeoutRef.current) {
+                clearTimeout(hoverTimeoutRef.current);
+              }
+              setIsHovering(true);
+            }}
+            onMouseLeave={handleMoreAreaMouseLeave}
+          >
+            <nav
+              className="flex items-center justify-between w-full max-w-6xl mx-auto pt-2 pb-3 px-8"
+              role="navigation"
+              aria-label="Secondary navigation"
+            >
+              {secondaryNavItems.map(({ key, href }, index) => (
+                <Link
+                  key={href}
+                  href={href}
+                  className={`font-semibold text-sm tracking-wide transition-all duration-300 px-3 py-2 flex-1 text-center transform hover:scale-105 hover:-translate-y-1 ${
+                    location === href
+                      ? "text-primary"
+                      : "text-foreground hover:text-primary"
+                  }`}
+                  style={{
+                    animationDelay: `${index * 50}ms`,
+                    animation: isExpanded
+                      ? "slideInUp 0.3s ease-out forwards"
+                      : "",
+                  }}
+                  data-testid={`link-nav-secondary-${key.replace("nav_", "")}`}
+                >
+                  {t(key)}
+                </Link>
+              ))}
+            </nav>
+          </div>
         </div>
-
-        {/* Desktop Mega Menu */}
-        <MegaMenu
-          isOpen={megaMenu.isOpen}
-          onClose={megaMenu.close}
-          sections={megaMenuSections}
-        />
       </header>
 
-      {/* Mobile Drawer */}
-      <MobileDrawer
-        isOpen={mobileDrawer.isOpen}
-        onClose={mobileDrawer.close}
-        quickLinks={mobileQuickLinks}
-        sections={megaMenuSections}
-        onSearchClick={() => {
-          mobileDrawer.close();
-          searchPanel.open();
-        }}
+      {/* Mobile Menu */}
+      <MobileMenu
+        isOpen={mobileMenuOpen}
+        onClose={() => setMobileMenuOpen(false)}
+        navItems={allNavItems}
       />
-
-      {/* Search Panel */}
-      <SearchPanel isOpen={searchPanel.isOpen} onClose={searchPanel.close} />
     </>
   );
 };

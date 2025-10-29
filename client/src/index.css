@@ -19,30 +19,30 @@
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
-/* Hide scrollbar for tablet pills */
-.hide-scrollbar {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+.nav-secondary {
+  /* Add invisible padding to create a larger hover area */
+  position: relative;
 }
 
-.hide-scrollbar::-webkit-scrollbar {
-  display: none;
+.nav-secondary::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background: transparent;
 }
 
-/* Animations for new header components */
-@keyframes fadeIn {
+.chevron {
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Enhanced navigation link animations */
+@keyframes slideInUp {
   from {
     opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(10px);
   }
   to {
     opacity: 1;
@@ -50,33 +50,30 @@
   }
 }
 
-@keyframes slideInFromLeft {
-  from {
-    transform: translateX(-100%);
-  }
-  to {
-    transform: translateX(0);
-  }
+/* Navigation link hover effects for secondary nav - same as primary */
+.nav-secondary a {
+  position: relative;
+  overflow: hidden;
 }
 
-@keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: translate(-50%, -10px) scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: translate(-50%, 0) scale(1);
-  }
+.nav-secondary a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #8B5CF6, #EC4899);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
 }
 
-/* Respect reduced motion preferences */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
+.nav-secondary a:hover::after {
+  width: 80%;
+}
+
+.nav-secondary a[aria-current="page"]::after {
+  width: 80%;
 }
 
 /* Privacy Badge - Modern & Classic Design */
