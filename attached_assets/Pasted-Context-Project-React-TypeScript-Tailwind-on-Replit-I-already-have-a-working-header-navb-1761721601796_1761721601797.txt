@@ -1,0 +1,93 @@
+Context
+- Project: React + TypeScript + Tailwind on Replit.
+- I already have a working header/navbar, colors, spacing tokens, and routes.
+- Important: Do NOT change brand colors, typography scale, page layouts, or existing content. Keep spacing/alignment consistent with my current design system. Respect light/dark themes automatically.
+
+Goal
+Replace the current header with a responsive, accessible, and performant navigation system:
+- Desktop: single-row header + “More” mega-menu.
+- Tablet: compact header + horizontal pill scroller.
+- Mobile: drawer (slide-in) with quick links + sections.
+- Sticky behavior: shrink on scroll.
+- Search: command-style panel (modal) with debounced results.
+- A11y, keyboard support, safe areas, no layout shift, and minimal code surface touching.
+
+Create (files/structure)
+- Place components under `src/components/header/`:
+  - `Header.tsx` (top-level container, sticky logic, theme-aware)
+  - `PrimaryNav.tsx` (Home, Knowledge Hub, Treatments, Sakhi, More trigger)
+  - `MegaMenu.tsx` (desktop only; 3–4 columns; Life Stages, Success Stories, Blogs, Experts, Investors, About, Contact)
+  - `TabletPills.tsx` (tablet horizontal pill scroller with scroll-snap)
+  - `MobileDrawer.tsx` (slide-in drawer with sections & chevrons)
+  - `SearchPanel.tsx` (centered modal/panel for search)
+  - `NavCTA.tsx` (right-side CTA: “Book Consultation”)
+  - `NavSearchButton.tsx` (icon button to open SearchPanel)
+  - `types.ts` (shared types/props)
+  - `useStickyHeader.ts` (custom hook for shrink-on-scroll)
+  - `useDisclosure.ts` (open/close state; accessible; focus restore)
+
+Behavior (details)
+1) Desktop (≥1024px)
+   - Single compact bar (64–72px high). Logo left, primary links center, utilities (Search, CTA) right.
+   - “More” opens a **mega-menu**: 3–4 columns with headings + 3–5 links each; short helper text under Blogs/Experts.
+   - Hover/focus/click should open; keep it open while pointer moves across the panel; close on Escape or blur.
+   - On scroll down: header shrinks to ~56px and tagline hides; on scroll up: expand again. No layout shift.
+
+2) Tablet (768–1023px)
+   - Row 1: logo, search icon, menu icon (if needed), CTA.
+   - Row 2 (when menu expanded OR as always-visible slot): **horizontal pill scroller** of top categories (Home, Knowledge Hub, Treatments, Sakhi). “More” opens a small grid panel (not the full mega-menu).
+   - Pill scroller uses **scroll-snap** and is keyboard-scrollable.
+
+3) Mobile (≤767px)
+   - Keep slide-in **drawer**:
+     - Top “Quick Links” section: Knowledge Hub, Treatments, Sakhi, Book Consultation (CTA).
+     - Sections with chevrons: Life Stages, Success Stories, Blogs, Experts, Investors (tap to reveal sublinks).
+     - Search field pinned near the top of the drawer.
+   - Drawer traps focus; Esc closes; return focus to trigger; respects **safe-area insets**.
+   - Provide bottom padding so it does not clash with a chat FAB.
+
+4) Search (all breakpoints)
+   - Clicking the search icon opens a **command-style panel**:
+     - Input at top; show recent queries and suggested categories.
+     - Debounced async results (wire placeholder function; I’ll connect data later).
+     - Keyboard shortcuts: `/` to focus, `Esc` to close; arrow keys cycle results; Enter navigates.
+     - No layout shift behind it; body scroll lock while open.
+
+5) Micro-interactions
+   - Link hover: subtle underline grow + color shift (use theme tokens).
+   - Menu open/close: 150–220ms fade/slide; respect `prefers-reduced-motion`.
+   - Mega-menu elevation: small shadow + 8–12px radius; pointer travel shouldn’t close it prematurely.
+
+Accessibility
+- All triggers have `aria-expanded`, `aria-controls`, `aria-haspopup`.
+- Drawer and search panel are true modals with focus trap and accessible labelling.
+- Visible focus ring on all interactive elements.
+- Hit targets ≥44px on touch.
+- Keyboard: Tab/Shift+Tab sensible; arrow keys for menu lists; Esc closes panels.
+
+Performance
+- No layout shift: precompute/lock header heights; transitions should not cause reflow of surrounding content.
+- Lazy-mount mega-menu and search panel on first open; unmount on close.
+- Keep icon count minimal; inline critical icons only.
+- Use `clamp()` for fluid spacing/sizes; avoid heavy backdrops.
+
+Integration
+- Replace the current header import with the new `Header` component in the app shell (e.g., `App.tsx` or `Layout.tsx`).
+- Reuse existing routes/links; do not rename or remove any routes.
+- CTA should link to my existing consultation/enquiry route (use placeholder if missing).
+- Keep my existing brand colors, fonts, and spacing tokens; do not introduce new hex colors.
+
+Testing & Acceptance
+- Desktop: single-row header, “More” mega-menu works (hover/focus/click), search panel opens with `/`, sticky shrink on scroll works, CTA visible.
+- Tablet: two-row layout with pill scroller; “More” small grid; search panel working.
+- Mobile: drawer with quick links + sections; search field; chevrons expand/collapse; no overlap with chat FAB; safe-area respected.
+- A11y: screen-reader labels present; keyboard nav works across menus, drawer, and search; Esc closes modals.
+- Performance: no CLS on navigation/hover; minimal main-thread work; smooth transitions.
+- No regressions: existing pages and styles remain unchanged.
+
+Deliverables
+- All components in `src/components/header/*` plus minimal edits to integrate header into the layout.
+- Light comments explaining state management and where to connect real search data.
+- Zero unrelated code changes.
+
+Please implement exactly as described. If a small deviation is required by the current codebase, keep the same UX and note the change with a brief comment.
