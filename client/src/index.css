@@ -1290,28 +1290,31 @@ textarea:focus-visible {
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
+  /* Tablet view - ensure scrollable with first stage visible */
+  .journey-timeline-mobile {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .overflow-x-auto {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+
   .journey-stage {
+    flex-shrink: 0;
     min-width: 160px;
     max-width: 160px;
   }
 }
 
 @media (min-width: 1024px) {
+  /* Desktop - fully centered with all stages visible */
   .journey-stage {
     min-width: 180px;
     max-width: 180px;
   }
-}
 
-/* Tablet alignment */
-@media (min-width: 768px) and (max-width: 1023px) {
-  .journey-timeline-mobile {
-    justify-content: center !important;
-  }
-}
-
-/* Desktop alignment - centered */
-@media (min-width: 1024px) {
   .journey-timeline-mobile {
     justify-content: center !important;
   }

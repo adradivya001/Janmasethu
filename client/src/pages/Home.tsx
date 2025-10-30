@@ -302,9 +302,9 @@ const Home = () => {
           </div>
 
           {/* Journey Timeline */}
-          <div className="relative overflow-x-auto pb-8 px-4 md:px-8 lg:px-12">
+          <div className="relative overflow-x-auto pb-8 px-4 md:px-6 lg:px-12">
             {/* Centered and aligned timeline for all screens */}
-            <div className="flex items-center justify-start md:justify-center gap-4 md:gap-6 lg:gap-8 min-w-max md:min-w-0 w-full mx-auto py-8">
+            <div className="flex items-center justify-start lg:justify-center gap-4 md:gap-6 lg:gap-8 min-w-max lg:min-w-0 w-full mx-auto py-8">
               {/* Stage 1: Thinking of Parenthood */}
               <Dialog>
                 <DialogTrigger asChild>
@@ -869,8 +869,8 @@ const Home = () => {
             </div>
           </div>
 
-          {/* Scroll indicator for mobile */}
-          <div className="flex justify-center mt-4 md:hidden">
+          {/* Scroll indicator for mobile and tablet */}
+          <div className="flex justify-center mt-4 lg:hidden">
             <div className="flex gap-2 items-center text-xs text-muted-foreground">
               <ArrowRight className="w-3 h-3 animate-bounce" style={{ animationDirection: 'alternate' }} />
               <span>Swipe to see more</span>
