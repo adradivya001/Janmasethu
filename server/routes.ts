@@ -172,9 +172,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const { username, password } = req.body;
 
       if (!username || !password) {
-        return res.status(400).json({ 
-          success: false, 
-          error: "Username and password are required" 
+        return res.status(400).json({
+          success: false,
+          error: "Username and password are required"
         });
       }
 
@@ -200,9 +200,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       if (!webhookResponse.ok) {
         console.error('❌ Webhook failed:', webhookResponse.statusText);
-        return res.status(401).json({ 
-          success: false, 
-          error: 'Login failed. Please check your credentials.' 
+        return res.status(401).json({
+          success: false,
+          error: 'Login failed. Please check your credentials.'
         });
       }
 
@@ -210,11 +210,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
       console.log('✅ n8n response:', responseData);
 
       // Check if login was successful based on n8n response
-      // Expected response formats: 
+      // Expected response formats:
       // - [{ "success": true }] (array format)
       // - { "success": true } (object format)
       let isSuccess = false;
-      
+
       if (Array.isArray(responseData)) {
         // Handle array format: [{ "success": true }]
         if (responseData.length > 0 && responseData[0].success === true) {
@@ -230,23 +230,23 @@ export async function registerRoutes(app: Express): Promise<Server> {
       console.log('🔍 Login success status:', isSuccess);
 
       if (isSuccess) {
-        return res.json({ 
-          success: true, 
+        return res.json({
+          success: true,
           username,
-          message: 'Login successful' 
+          message: 'Login successful'
         });
       } else {
-        return res.status(401).json({ 
-          success: false, 
-          error: 'Login failed. Please check your credentials.' 
+        return res.status(401).json({
+          success: false,
+          error: 'Login failed. Please check your credentials.'
         });
       }
 
     } catch (error) {
       console.error("❌ Error in clinic login:", error);
-      res.status(500).json({ 
-        success: false, 
-        error: "Login failed. Please check your credentials." 
+      res.status(500).json({
+        success: false,
+        error: "Login failed. Please check your credentials."
       });
     }
   });
@@ -263,7 +263,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // FETCH action - get all leads
       if (action === "fetch") {
         const { rows } = await query(
-          `SELECT lead_id, full_name, email, phone, age, location, interest, source, priority, status, created_at 
+          `SELECT lead_id, full_name, email, phone, age, location, interest, source, priority, status, created_at
            FROM leads ORDER BY created_at DESC`
         );
         console.log('✅ Fetched leads:', rows.length);
@@ -290,7 +290,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
         console.log('📤 Calling n8n webhook (insert):', webhookPayload);
 
-        const webhookResponse = await fetch('https://n8n.ottobon.in/webhook/lead_details', {
+        const webhookResponse = await fetch('https://n8nottobon.duckdns.org/webhook/lead_details', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -308,7 +308,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         // Store in database
         await query(`
           INSERT INTO leads (
-            lead_id, full_name, email, phone, age, location, 
+            lead_id, full_name, email, phone, age, location,
             interest, source, priority, status, created_at
           ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, NOW())
           ON CONFLICT (lead_id) DO NOTHING
@@ -350,7 +350,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
         console.log('📤 Calling n8n webhook (update):', webhookPayload);
 
-        const webhookResponse = await fetch('https://n8n.ottobon.in/webhook/lead_details', {
+        const webhookResponse = await fetch('https://n8nottobon.duckdns.org/webhook/lead_details', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -402,7 +402,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  
+
 
   // =========================
   // DOCTOR API ENDPOINTS
