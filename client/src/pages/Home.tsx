@@ -34,6 +34,13 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "../components/ui/accordion";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "../components/ui/dialog";
 import { useLanguage } from "../i18n/LanguageProvider";
 import { Card, CardContent } from "../components/ui/card";
 import { Button } from "../components/ui/button";
@@ -298,24 +305,97 @@ const Home = () => {
           <div className="relative overflow-x-auto pb-8">
             <div className="journey-timeline-mobile flex items-center justify-center gap-3 md:gap-4 max-w-4xl mx-auto px-4 md:px-6 py-8">
               {/* Stage 1: Thinking of Parenthood */}
-              <div
-                className="flex flex-col items-center group cursor-pointer transition-all duration-500 ease-out journey-stage"
-                data-testid="journey-stage-thinking"
-                style={{ '--stage-index': 0 } as React.CSSProperties}
-              >
-                <div className="relative">
-                  <div className="absolute inset-0 w-12 h-12 md:w-14 md:h-14 bg-green-400 rounded-full blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
-                  <div className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-green-100 to-green-200 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg group-hover:shadow-2xl relative z-10">
-                    <span className="text-xl md:text-2xl group-hover:scale-125 transition-transform duration-500">🌱</span>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <div
+                    className="flex flex-col items-center group cursor-pointer transition-all duration-500 ease-out journey-stage"
+                    data-testid="journey-stage-thinking"
+                    style={{ '--stage-index': 0 } as React.CSSProperties}
+                  >
+                    <div className="relative">
+                      <div className="absolute inset-0 w-12 h-12 md:w-14 md:h-14 bg-green-400 rounded-full blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
+                      <div className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-green-100 to-green-200 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg group-hover:shadow-2xl relative z-10">
+                        <span className="text-xl md:text-2xl group-hover:scale-125 transition-transform duration-500">🌱</span>
+                      </div>
+                    </div>
+                    <h3 className="text-xs md:text-sm font-bold text-foreground text-center mb-2 group-hover:text-green-700 transition-colors duration-300">
+                      {t("journey_stage_1_title")}
+                    </h3>
+                    <p className="text-xs text-muted-foreground text-center max-w-[100px] md:max-w-[110px] group-hover:text-green-600 transition-colors duration-300">
+                      {t("journey_stage_1_desc")}
+                    </p>
                   </div>
-                </div>
-                <h3 className="text-xs md:text-sm font-bold text-foreground text-center mb-2 group-hover:text-green-700 transition-colors duration-300">
-                  {t("journey_stage_1_title")}
-                </h3>
-                <p className="text-xs text-muted-foreground text-center max-w-[100px] md:max-w-[110px] group-hover:text-green-600 transition-colors duration-300">
-                  {t("journey_stage_1_desc")}
-                </p>
-              </div>
+                </DialogTrigger>
+                <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+                  <DialogHeader>
+                    <DialogTitle className="flex items-center gap-3 text-2xl">
+                      <span className="text-3xl">🌱</span>
+                      Thinking of Parenthood
+                    </DialogTitle>
+                  </DialogHeader>
+                  <div className="space-y-6 mt-4">
+                    <div className="bg-green-50 p-4 rounded-lg">
+                      <h4 className="font-semibold text-green-900 mb-2">How You Might Feel:</h4>
+                      <p className="text-green-800">Hopeful, but also anxious and uncertain. "Are we really ready for this?"</p>
+                    </div>
+                    
+                    <div>
+                      <h4 className="font-semibold text-foreground mb-3 flex items-center gap-2">
+                        <Heart className="w-5 h-5 text-pink-500" />
+                        Common Worries:
+                      </h4>
+                      <ul className="space-y-2">
+                        <li className="flex items-start gap-2">
+                          <span className="text-green-600 mt-1">•</span>
+                          <span className="text-muted-foreground">Everyone keeps asking when we're going to have a baby, and the pressure is a lot</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-green-600 mt-1">•</span>
+                          <span className="text-muted-foreground">Worried about finances - can we actually afford a child right now?</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-green-600 mt-1">•</span>
+                          <span className="text-muted-foreground">Confused about what to eat or what lifestyle changes to make</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-green-600 mt-1">•</span>
+                          <span className="text-muted-foreground">Hard to know what's true with so many different "facts" and stories</span>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div className="bg-purple-50 p-4 rounded-lg">
+                      <h4 className="font-semibold text-purple-900 mb-3 flex items-center gap-2">
+                        <MessageCircle className="w-5 h-5 text-purple-600" />
+                        How Sakhi Supports You:
+                      </h4>
+                      <ul className="space-y-2">
+                        <li className="flex items-start gap-2">
+                          <CheckCircle className="w-4 h-4 text-purple-600 mt-1 flex-shrink-0" />
+                          <span className="text-purple-800 text-sm">Safe space to ask early questions like "What should we think about before trying?"</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <CheckCircle className="w-4 h-4 text-purple-600 mt-1 flex-shrink-0" />
+                          <span className="text-purple-800 text-sm">Clear, local info on food, age, and health from trusted sources</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <CheckCircle className="w-4 h-4 text-purple-600 mt-1 flex-shrink-0" />
+                          <span className="text-purple-800 text-sm">Simple checklists for financial planning</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <CheckCircle className="w-4 h-4 text-purple-600 mt-1 flex-shrink-0" />
+                          <span className="text-purple-800 text-sm">Articles and guidance that make you feel less alone</span>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <Button onClick={() => setLocation("/sakhi")} className="w-full gradient-button text-white">
+                      Talk to Sakhi About This Stage
+                      <ArrowRight className="ml-2 w-4 h-4" />
+                    </Button>
+                  </div>
+                </DialogContent>
+              </Dialog>
 
               {/* Connection Line 1 with animated gradient */}
               <div className="w-10 md:w-12 mx-1 md:mx-2 relative h-2 group flex-shrink-0">
@@ -324,24 +404,93 @@ const Home = () => {
               </div>
 
               {/* Stage 2: Trying Naturally */}
-              <div
-                className="flex flex-col items-center group cursor-pointer transition-all duration-500 ease-out journey-stage"
-                data-testid="journey-stage-trying"
-                style={{ '--stage-index': 1 } as React.CSSProperties}
-              >
-                <div className="relative">
-                  <div className="absolute inset-0 w-12 h-12 md:w-14 md:h-14 bg-pink-400 rounded-full blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
-                  <div className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-pink-100 to-pink-200 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg group-hover:shadow-2xl relative z-10">
-                    <span className="text-xl md:text-2xl group-hover:scale-125 transition-transform duration-500">💖</span>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <div
+                    className="flex flex-col items-center group cursor-pointer transition-all duration-500 ease-out journey-stage"
+                    data-testid="journey-stage-trying"
+                    style={{ '--stage-index': 1 } as React.CSSProperties}
+                  >
+                    <div className="relative">
+                      <div className="absolute inset-0 w-12 h-12 md:w-14 md:h-14 bg-pink-400 rounded-full blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
+                      <div className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-pink-100 to-pink-200 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg group-hover:shadow-2xl relative z-10">
+                        <span className="text-xl md:text-2xl group-hover:scale-125 transition-transform duration-500">💖</span>
+                      </div>
+                    </div>
+                    <h3 className="text-xs md:text-sm font-bold text-foreground text-center mb-2 group-hover:text-pink-700 transition-colors duration-300">
+                      {t("journey_stage_2_title")}
+                    </h3>
+                    <p className="text-xs text-muted-foreground text-center max-w-[100px] md:max-w-[110px] group-hover:text-pink-600 transition-colors duration-300">
+                      {t("journey_stage_2_desc")}
+                    </p>
                   </div>
-                </div>
-                <h3 className="text-xs md:text-sm font-bold text-foreground text-center mb-2 group-hover:text-pink-700 transition-colors duration-300">
-                  {t("journey_stage_2_title")}
-                </h3>
-                <p className="text-xs text-muted-foreground text-center max-w-[100px] md:max-w-[110px] group-hover:text-pink-600 transition-colors duration-300">
-                  {t("journey_stage_2_desc")}
-                </p>
-              </div>
+                </DialogTrigger>
+                <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+                  <DialogHeader>
+                    <DialogTitle className="flex items-center gap-3 text-2xl">
+                      <span className="text-3xl">💖</span>
+                      Trying Naturally
+                    </DialogTitle>
+                  </DialogHeader>
+                  <div className="space-y-6 mt-4">
+                    <div className="bg-pink-50 p-4 rounded-lg">
+                      <h4 className="font-semibold text-pink-900 mb-2">How You Might Feel:</h4>
+                      <p className="text-pink-800">Optimistic at first, but with each month that passes, more and more anxious.</p>
+                    </div>
+                    
+                    <div>
+                      <h4 className="font-semibold text-foreground mb-3 flex items-center gap-2">
+                        <Heart className="w-5 h-5 text-pink-500" />
+                        Common Worries:
+                      </h4>
+                      <ul className="space-y-2">
+                        <li className="flex items-start gap-2">
+                          <span className="text-pink-600 mt-1">•</span>
+                          <span className="text-muted-foreground">Tracking my cycle is confusing and stressful</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-pink-600 mt-1">•</span>
+                          <span className="text-muted-foreground">The internet is full of conflicting advice - who do I believe?</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-pink-600 mt-1">•</span>
+                          <span className="text-muted-foreground">The pressure builds up every single month</span>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div className="bg-purple-50 p-4 rounded-lg">
+                      <h4 className="font-semibold text-purple-900 mb-3 flex items-center gap-2">
+                        <MessageCircle className="w-5 h-5 text-purple-600" />
+                        How Sakhi Supports You:
+                      </h4>
+                      <ul className="space-y-2">
+                        <li className="flex items-start gap-2">
+                          <CheckCircle className="w-4 h-4 text-purple-600 mt-1 flex-shrink-0" />
+                          <span className="text-purple-800 text-sm">Simple cycle tracking with helpful tips along the way</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <CheckCircle className="w-4 h-4 text-purple-600 mt-1 flex-shrink-0" />
+                          <span className="text-purple-800 text-sm">Gentle reminders about healthy habits</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <CheckCircle className="w-4 h-4 text-purple-600 mt-1 flex-shrink-0" />
+                          <span className="text-purple-800 text-sm">Helps turn vague worries into clear questions</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <CheckCircle className="w-4 h-4 text-purple-600 mt-1 flex-shrink-0" />
+                          <span className="text-purple-800 text-sm">Quick tips to manage stress and stay calm</span>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <Button onClick={() => setLocation("/sakhi")} className="w-full gradient-button text-white">
+                      Talk to Sakhi About This Stage
+                      <ArrowRight className="ml-2 w-4 h-4" />
+                    </Button>
+                  </div>
+                </DialogContent>
+              </Dialog>
 
               {/* Connection Line 2 with animated gradient */}
               <div className="w-10 md:w-12 mx-1 md:mx-2 relative h-2 group flex-shrink-0">
@@ -350,24 +499,97 @@ const Home = () => {
               </div>
 
               {/* Stage 3: Exploring Options */}
-              <div
-                className="flex flex-col items-center group cursor-pointer transition-all duration-500 ease-out journey-stage"
-                data-testid="journey-stage-exploring"
-                style={{ '--stage-index': 2 } as React.CSSProperties}
-              >
-                <div className="relative">
-                  <div className="absolute inset-0 w-12 h-12 md:w-14 md:h-14 bg-blue-400 rounded-full blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
-                  <div className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg group-hover:shadow-2xl relative z-10">
-                    <span className="text-xl md:text-2xl group-hover:scale-125 transition-transform duration-500">🔬</span>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <div
+                    className="flex flex-col items-center group cursor-pointer transition-all duration-500 ease-out journey-stage"
+                    data-testid="journey-stage-exploring"
+                    style={{ '--stage-index': 2 } as React.CSSProperties}
+                  >
+                    <div className="relative">
+                      <div className="absolute inset-0 w-12 h-12 md:w-14 md:h-14 bg-blue-400 rounded-full blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
+                      <div className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg group-hover:shadow-2xl relative z-10">
+                        <span className="text-xl md:text-2xl group-hover:scale-125 transition-transform duration-500">🔬</span>
+                      </div>
+                    </div>
+                    <h3 className="text-xs md:text-sm font-bold text-foreground text-center mb-2 group-hover:text-blue-700 transition-colors duration-300">
+                      {t("journey_stage_3_title")}
+                    </h3>
+                    <p className="text-xs text-muted-foreground text-center max-w-[100px] md:max-w-[110px] group-hover:text-blue-600 transition-colors duration-300">
+                      {t("journey_stage_3_desc")}
+                    </p>
                   </div>
-                </div>
-                <h3 className="text-xs md:text-sm font-bold text-foreground text-center mb-2 group-hover:text-blue-700 transition-colors duration-300">
-                  {t("journey_stage_3_title")}
-                </h3>
-                <p className="text-xs text-muted-foreground text-center max-w-[100px] md:max-w-[110px] group-hover:text-blue-600 transition-colors duration-300">
-                  {t("journey_stage_3_desc")}
-                </p>
-              </div>
+                </DialogTrigger>
+                <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+                  <DialogHeader>
+                    <DialogTitle className="flex items-center gap-3 text-2xl">
+                      <span className="text-3xl">🔬</span>
+                      Exploring Options (IUI, IVF, Donor)
+                    </DialogTitle>
+                  </DialogHeader>
+                  <div className="space-y-6 mt-4">
+                    <div className="bg-blue-50 p-4 rounded-lg">
+                      <h4 className="font-semibold text-blue-900 mb-2">How You Might Feel:</h4>
+                      <p className="text-blue-800">Completely overwhelmed. Sometimes ashamed, and tired of making so many decisions.</p>
+                    </div>
+                    
+                    <div>
+                      <h4 className="font-semibold text-foreground mb-3 flex items-center gap-2">
+                        <Heart className="w-5 h-5 text-blue-500" />
+                        Common Worries:
+                      </h4>
+                      <ul className="space-y-2">
+                        <li className="flex items-start gap-2">
+                          <span className="text-blue-600 mt-1">•</span>
+                          <span className="text-muted-foreground">When is the "right time" to see a specialist? Have we waited too long?</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-blue-600 mt-1">•</span>
+                          <span className="text-muted-foreground">Lost trying to understand IUI, IVF, donors - what do these mean for us?</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-blue-600 mt-1">•</span>
+                          <span className="text-muted-foreground">Clinics seem so complicated, no idea what to expect</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-blue-600 mt-1">•</span>
+                          <span className="text-muted-foreground">This is all so expensive - the costs are scary</span>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div className="bg-purple-50 p-4 rounded-lg">
+                      <h4 className="font-semibold text-purple-900 mb-3 flex items-center gap-2">
+                        <MessageCircle className="w-5 h-5 text-purple-600" />
+                        How Sakhi Supports You:
+                      </h4>
+                      <ul className="space-y-2">
+                        <li className="flex items-start gap-2">
+                          <CheckCircle className="w-4 h-4 text-purple-600 mt-1 flex-shrink-0" />
+                          <span className="text-purple-800 text-sm">Checklist of "What to ask my doctor" so you feel prepared</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <CheckCircle className="w-4 h-4 text-purple-600 mt-1 flex-shrink-0" />
+                          <span className="text-purple-800 text-sm">Short, simple videos from real doctors explaining procedures</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <CheckCircle className="w-4 h-4 text-purple-600 mt-1 flex-shrink-0" />
+                          <span className="text-purple-800 text-sm">Safe place to organize and keep all test reports</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <CheckCircle className="w-4 h-4 text-purple-600 mt-1 flex-shrink-0" />
+                          <span className="text-purple-800 text-sm">Clear info about costs, success rates, and local processes</span>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <Button onClick={() => setLocation("/sakhi")} className="w-full gradient-button text-white">
+                      Talk to Sakhi About This Stage
+                      <ArrowRight className="ml-2 w-4 h-4" />
+                    </Button>
+                  </div>
+                </DialogContent>
+              </Dialog>
 
               {/* Connection Line 3 with animated gradient */}
               <div className="w-10 md:w-12 mx-1 md:mx-2 relative h-2 group flex-shrink-0">
@@ -376,24 +598,93 @@ const Home = () => {
               </div>
 
               {/* Stage 4: Pregnancy */}
-              <div
-                className="flex flex-col items-center group cursor-pointer transition-all duration-500 ease-out journey-stage"
-                data-testid="journey-stage-pregnancy"
-                style={{ '--stage-index': 3 } as React.CSSProperties}
-              >
-                <div className="relative">
-                  <div className="absolute inset-0 w-12 h-12 md:w-14 md:h-14 bg-purple-400 rounded-full blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
-                  <div className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-purple-100 to-purple-200 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg group-hover:shadow-2xl relative z-10">
-                    <span className="text-xl md:text-2xl group-hover:scale-125 transition-transform duration-500">🤰</span>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <div
+                    className="flex flex-col items-center group cursor-pointer transition-all duration-500 ease-out journey-stage"
+                    data-testid="journey-stage-pregnancy"
+                    style={{ '--stage-index': 3 } as React.CSSProperties}
+                  >
+                    <div className="relative">
+                      <div className="absolute inset-0 w-12 h-12 md:w-14 md:h-14 bg-purple-400 rounded-full blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
+                      <div className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-purple-100 to-purple-200 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg group-hover:shadow-2xl relative z-10">
+                        <span className="text-xl md:text-2xl group-hover:scale-125 transition-transform duration-500">🤰</span>
+                      </div>
+                    </div>
+                    <h3 className="text-xs md:text-sm font-bold text-foreground text-center mb-2 group-hover:text-purple-700 transition-colors duration-300">
+                      {t("journey_stage_4_title")}
+                    </h3>
+                    <p className="text-xs text-muted-foreground text-center max-w-[100px] md:max-w-[110px] group-hover:text-purple-600 transition-colors duration-300">
+                      {t("journey_stage_4_desc")}
+                    </p>
                   </div>
-                </div>
-                <h3 className="text-xs md:text-sm font-bold text-foreground text-center mb-2 group-hover:text-purple-700 transition-colors duration-300">
-                  {t("journey_stage_4_title")}
-                </h3>
-                <p className="text-xs text-muted-foreground text-center max-w-[100px] md:max-w-[110px] group-hover:text-purple-600 transition-colors duration-300">
-                  {t("journey_stage_4_desc")}
-                </p>
-              </div>
+                </DialogTrigger>
+                <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+                  <DialogHeader>
+                    <DialogTitle className="flex items-center gap-3 text-2xl">
+                      <span className="text-3xl">🤰</span>
+                      Pregnancy
+                    </DialogTitle>
+                  </DialogHeader>
+                  <div className="space-y-6 mt-4">
+                    <div className="bg-purple-50 p-4 rounded-lg">
+                      <h4 className="font-semibold text-purple-900 mb-2">How You Might Feel:</h4>
+                      <p className="text-purple-800">So relieved and excited, but now you have a whole new set of anxieties.</p>
+                    </div>
+                    
+                    <div>
+                      <h4 className="font-semibold text-foreground mb-3 flex items-center gap-2">
+                        <Heart className="w-5 h-5 text-purple-500" />
+                        Common Worries:
+                      </h4>
+                      <ul className="space-y-2">
+                        <li className="flex items-start gap-2">
+                          <span className="text-purple-600 mt-1">•</span>
+                          <span className="text-muted-foreground">Hard to find information for my specific week of pregnancy</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-purple-600 mt-1">•</span>
+                          <span className="text-muted-foreground">Family says one thing, doctor says another - it's confusing!</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-purple-600 mt-1">•</span>
+                          <span className="text-muted-foreground">Need to plan and budget for hospital delivery</span>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div className="bg-purple-50 p-4 rounded-lg">
+                      <h4 className="font-semibold text-purple-900 mb-3 flex items-center gap-2">
+                        <MessageCircle className="w-5 h-5 text-purple-600" />
+                        How Sakhi Supports You:
+                      </h4>
+                      <ul className="space-y-2">
+                        <li className="flex items-start gap-2">
+                          <CheckCircle className="w-4 h-4 text-purple-600 mt-1 flex-shrink-0" />
+                          <span className="text-purple-800 text-sm">Timeline of your pregnancy with helpful info for each week</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <CheckCircle className="w-4 h-4 text-purple-600 mt-1 flex-shrink-0" />
+                          <span className="text-purple-800 text-sm">Simple nutrition checklists for each trimester</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <CheckCircle className="w-4 h-4 text-purple-600 mt-1 flex-shrink-0" />
+                          <span className="text-purple-800 text-sm">Videos on what to expect in the coming months</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <CheckCircle className="w-4 h-4 text-purple-600 mt-1 flex-shrink-0" />
+                          <span className="text-purple-800 text-sm">Helps prepare for doctor visits with suggested questions</span>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <Button onClick={() => setLocation("/sakhi")} className="w-full gradient-button text-white">
+                      Talk to Sakhi About This Stage
+                      <ArrowRight className="ml-2 w-4 h-4" />
+                    </Button>
+                  </div>
+                </DialogContent>
+              </Dialog>
 
               {/* Connection Line 4 with animated gradient */}
               <div className="w-10 md:w-12 mx-1 md:mx-2 relative h-2 group flex-shrink-0">
@@ -402,24 +693,93 @@ const Home = () => {
               </div>
 
               {/* Stage 5: Post-Delivery */}
-              <div
-                className="flex flex-col items-center group cursor-pointer transition-all duration-500 ease-out journey-stage"
-                data-testid="journey-stage-postdelivery"
-                style={{ '--stage-index': 4 } as React.CSSProperties}
-              >
-                <div className="relative">
-                  <div className="absolute inset-0 w-12 h-12 md:w-14 md:h-14 bg-orange-400 rounded-full blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
-                  <div className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-orange-100 to-orange-200 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg group-hover:shadow-2xl relative z-10">
-                    <span className="text-xl md:text-2xl group-hover:scale-125 transition-transform duration-500">👶</span>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <div
+                    className="flex flex-col items-center group cursor-pointer transition-all duration-500 ease-out journey-stage"
+                    data-testid="journey-stage-postdelivery"
+                    style={{ '--stage-index': 4 } as React.CSSProperties}
+                  >
+                    <div className="relative">
+                      <div className="absolute inset-0 w-12 h-12 md:w-14 md:h-14 bg-orange-400 rounded-full blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
+                      <div className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-orange-100 to-orange-200 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg group-hover:shadow-2xl relative z-10">
+                        <span className="text-xl md:text-2xl group-hover:scale-125 transition-transform duration-500">👶</span>
+                      </div>
+                    </div>
+                    <h3 className="text-xs md:text-sm font-bold text-foreground text-center mb-2 group-hover:text-orange-700 transition-colors duration-300">
+                      {t("journey_stage_5_title")}
+                    </h3>
+                    <p className="text-xs text-muted-foreground text-center max-w-[100px] md:max-w-[110px] group-hover:text-orange-600 transition-colors duration-300">
+                      {t("journey_stage_5_desc")}
+                    </p>
                   </div>
-                </div>
-                <h3 className="text-xs md:text-sm font-bold text-foreground text-center mb-2 group-hover:text-orange-700 transition-colors duration-300">
-                  {t("journey_stage_5_title")}
-                </h3>
-                <p className="text-xs text-muted-foreground text-center max-w-[100px] md:max-w-[110px] group-hover:text-orange-600 transition-colors duration-300">
-                  {t("journey_stage_5_desc")}
-                </p>
-              </div>
+                </DialogTrigger>
+                <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+                  <DialogHeader>
+                    <DialogTitle className="flex items-center gap-3 text-2xl">
+                      <span className="text-3xl">👶</span>
+                      Post-Delivery & New Parent
+                    </DialogTitle>
+                  </DialogHeader>
+                  <div className="space-y-6 mt-4">
+                    <div className="bg-orange-50 p-4 rounded-lg">
+                      <h4 className="font-semibold text-orange-900 mb-2">How You Might Feel:</h4>
+                      <p className="text-orange-800">Full of joy, but also completely exhausted and overwhelmed.</p>
+                    </div>
+                    
+                    <div>
+                      <h4 className="font-semibold text-foreground mb-3 flex items-center gap-2">
+                        <Heart className="w-5 h-5 text-orange-500" />
+                        Common Worries:
+                      </h4>
+                      <ul className="space-y-2">
+                        <li className="flex items-start gap-2">
+                          <span className="text-orange-600 mt-1">•</span>
+                          <span className="text-muted-foreground">Everyone focuses on the baby, but I'm worried about my own recovery</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-orange-600 mt-1">•</span>
+                          <span className="text-muted-foreground">Hearing so many myths and facts - don't know what's right for baby care</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-orange-600 mt-1">•</span>
+                          <span className="text-muted-foreground">Feeling a bit down and weepy, scared to admit "post-partum blues"</span>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div className="bg-purple-50 p-4 rounded-lg">
+                      <h4 className="font-semibold text-purple-900 mb-3 flex items-center gap-2">
+                        <MessageCircle className="w-5 h-5 text-purple-600" />
+                        How Sakhi Supports You:
+                      </h4>
+                      <ul className="space-y-2">
+                        <li className="flex items-start gap-2">
+                          <CheckCircle className="w-4 h-4 text-purple-600 mt-1 flex-shrink-0" />
+                          <span className="text-purple-800 text-sm">Post-delivery checklist for your recovery and baby's basic needs</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <CheckCircle className="w-4 h-4 text-purple-600 mt-1 flex-shrink-0" />
+                          <span className="text-purple-800 text-sm">Connects you to mental health support resources</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <CheckCircle className="w-4 h-4 text-purple-600 mt-1 flex-shrink-0" />
+                          <span className="text-purple-800 text-sm">Reminders for baby's vaccination schedule</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <CheckCircle className="w-4 h-4 text-purple-600 mt-1 flex-shrink-0" />
+                          <span className="text-purple-800 text-sm">Keep asking questions about newborn care anytime</span>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <Button onClick={() => setLocation("/sakhi")} className="w-full gradient-button text-white">
+                      Talk to Sakhi About This Stage
+                      <ArrowRight className="ml-2 w-4 h-4" />
+                    </Button>
+                  </div>
+                </DialogContent>
+              </Dialog>
             </div>
           </div>
 
