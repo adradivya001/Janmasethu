@@ -210,12 +210,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
       console.log('✅ n8n response:', responseData);
 
       // Check if login was successful based on n8n response
-      // Expected response format: [{ "success": true }] or [{ "success": false }]
+      // Expected response formats: 
+      // - [{ "success": true }] (array format)
+      // - { "success": true } (object format)
       let isSuccess = false;
       
-      if (Array.isArray(responseData) && responseData.length > 0) {
-        const firstItem = responseData[0];
-        if (firstItem.success === true) {
+      if (Array.isArray(responseData)) {
+        // Handle array format: [{ "success": true }]
+        if (responseData.length > 0 && responseData[0].success === true) {
+          isSuccess = true;
+        }
+      } else if (typeof responseData === 'object' && responseData !== null) {
+        // Handle object format: { "success": true }
+        if (responseData.success === true) {
           isSuccess = true;
         }
       }
