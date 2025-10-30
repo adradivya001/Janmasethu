@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Baby, Stethoscope, X, Check, ChevronRight, MousePointer2 } from "lucide-react";
+import { Baby, Stethoscope, Check } from "lucide-react";
 import { Card, CardContent } from "./ui/card";
-import { Button } from "./ui/button";
 import { useLanguage } from "../i18n/LanguageProvider";
 
 interface ContentData {
@@ -29,8 +28,6 @@ type CardType = "patients" | "clinics";
 const WhoWeServe = () => {
   const { lang } = useLanguage();
   const [data, setData] = useState<WhoWeServeData | null>(null);
-  const [selectedCard, setSelectedCard] = useState<CardType | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Load data
   useEffect(() => {
@@ -47,43 +44,6 @@ const WhoWeServe = () => {
     loadData();
   }, []);
 
-  // Handle card click
-  const handleCardClick = (cardType: CardType) => {
-    setSelectedCard(cardType);
-    setIsModalOpen(true);
-  };
-
-  // Handle modal close
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setSelectedCard(null);
-  };
-
-  // Handle ESC key
-  useEffect(() => {
-    const handleEscKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape" && isModalOpen) {
-        closeModal();
-      }
-    };
-
-    document.addEventListener("keydown", handleEscKey);
-    return () => document.removeEventListener("keydown", handleEscKey);
-  }, [isModalOpen]);
-
-  // Prevent body scroll when modal is open
-  useEffect(() => {
-    if (isModalOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
-
-    return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, [isModalOpen]);
-
   if (!data) {
     return <div>Loading...</div>;
   }
@@ -92,165 +52,110 @@ const WhoWeServe = () => {
     return data[cardType][lang as Language];
   };
 
-  const selectedContent = selectedCard ? getCardContent(selectedCard) : null;
-
   return (
-    <>
-      <section className="py-16">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-foreground font-serif mb-4">
-            {lang === "en" && "Who We Serve"}
-            {lang === "hi" && "हम किसकी सेवा करते हैं"}
-            {lang === "te" && "ఎవరికోసం మేము సేవలందిస్తున్నాం"}
-          </h2>
-        </div>
+    <section className="py-16">
+      <div className="text-center mb-12">
+        <h2 className="text-4xl font-bold text-foreground font-serif mb-4">
+          {lang === "en" && "Who We Serve"}
+          {lang === "hi" && "हम किसकी सेवा करते हैं"}
+          {lang === "te" && "ఎవరికోసం మేము సేవలందిస్తున్నాం"}
+        </h2>
+      </div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {/* Patients Card */}
-          <Card
-            className="rounded-3xl p-8 card-shadow hover:shadow-2xl transition-all duration-500 group backdrop-blur-sm bg-gradient-to-br from-white to-purple-50/30 cursor-pointer transform hover:scale-105 border-2 border-transparent hover:border-purple-200 relative overflow-hidden"
-            onClick={() => handleCardClick("patients")}
-            onKeyDown={(e) => e.key === "Enter" && handleCardClick("patients")}
-            tabIndex={0}
-            role="button"
-            aria-label={`Open ${getCardContent("patients").title} details`}
-          >
-            {/* Click indicator */}
-            <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
-                <MousePointer2 className="w-4 h-4 text-purple-600" />
-              </div>
-            </div>
-            
-            <div className="w-16 h-16 bg-gradient-to-br from-purple-100 to-pink-100 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-md">
-              <Baby className="text-purple-600 text-2xl" />
-            </div>
-            <h3 className="text-2xl font-bold text-foreground font-serif mb-4 group-hover:text-purple-600 transition-colors">
-              {getCardContent("patients").title}
-            </h3>
-            <p className="text-muted-foreground mb-4">
-              {getCardContent("patients").about}
-            </p>
-            
-            {/* Call to action */}
-            <div className="flex items-center justify-between mt-6">
-              <span className="text-sm text-purple-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                {lang === "en" && "Click to learn more"}
-                {lang === "hi" && "अधिक जानने के लिए क्लिक करें"}
-                {lang === "te" && "మరింత తెలుసుకోవడానికి క్లిక్ చేయండి"}
-              </span>
-              <ChevronRight className="w-5 h-5 text-purple-600 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
-            </div>
-          </Card>
-
-          {/* Clinics Card */}
-          <Card
-            className="rounded-3xl p-8 card-shadow hover:shadow-2xl transition-all duration-500 group backdrop-blur-sm bg-gradient-to-br from-white to-blue-50/30 cursor-pointer transform hover:scale-105 border-2 border-transparent hover:border-blue-200 relative overflow-hidden"
-            onClick={() => handleCardClick("clinics")}
-            onKeyDown={(e) => e.key === "Enter" && handleCardClick("clinics")}
-            tabIndex={0}
-            role="button"
-            aria-label={`Open ${getCardContent("clinics").title} details`}
-          >
-            {/* Click indicator */}
-            <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                <MousePointer2 className="w-4 h-4 text-blue-600" />
-              </div>
-            </div>
-            
-            <div className="w-16 h-16 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-md">
-              <Stethoscope className="text-blue-600 text-2xl" />
-            </div>
-            <h3 className="text-2xl font-bold text-foreground font-serif mb-4 group-hover:text-blue-600 transition-colors">
-              {getCardContent("clinics").title}
-            </h3>
-            <p className="text-muted-foreground mb-4">
-              {getCardContent("clinics").about}
-            </p>
-            
-            {/* Call to action */}
-            <div className="flex items-center justify-between mt-6">
-              <span className="text-sm text-blue-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                {lang === "en" && "Click to learn more"}
-                {lang === "hi" && "अधिक जानने के लिए क्लिक करें"}
-                {lang === "te" && "మరింత తెలుసుకోవడానికి క్లిక్ చేయండి"}
-              </span>
-              <ChevronRight className="w-5 h-5 text-blue-600 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
-            </div>
-          </Card>
-        </div>
-      </section>
-
-      {/* Modal */}
-      {isModalOpen && selectedContent && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4"
-          onClick={closeModal}
-        >
-          {/* Backdrop with blur */}
-          <div className="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
-
-          {/* Modal Content */}
-          <div
-            className="relative bg-white rounded-3xl p-8 max-w-md w-full mx-4 transform transition-all duration-300 scale-100"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Close Button */}
-            <button
-              onClick={closeModal}
-              className="absolute top-4 right-4 p-2 text-gray-400 hover:text-gray-600 transition-colors"
-              aria-label="Close modal"
-            >
-              <X className="w-5 h-5" />
-            </button>
-
-            {/* Modal Header */}
-            <div className="mb-6">
-              <div className="flex items-center space-x-4 mb-4">
-                <div className={`w-16 h-16 ${selectedCard === "patients" ? "bg-gradient-to-br from-purple-100 to-pink-100" : "bg-gradient-to-br from-blue-100 to-cyan-100"} rounded-xl flex items-center justify-center`}>
-                  {selectedCard === "patients" ? (
-                    <Baby className="text-purple-600 text-2xl" />
-                  ) : (
-                    <Stethoscope className="text-blue-600 text-2xl" />
-                  )}
+      <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        {/* Patients Card */}
+        <div className="flip-card h-[400px]" style={{ perspective: '1000px' }}>
+          <div className="flip-card-inner relative w-full h-full transition-transform duration-700" style={{ transformStyle: 'preserve-3d' }}>
+            {/* Front */}
+            <Card className="flip-card-front absolute w-full h-full rounded-3xl p-8 card-shadow backdrop-blur-sm bg-gradient-to-br from-white to-purple-50/30 border-2 border-transparent" style={{ backfaceVisibility: 'hidden' }}>
+              <CardContent className="p-0 h-full flex flex-col justify-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-purple-100 to-pink-100 rounded-2xl flex items-center justify-center mb-6 shadow-md">
+                  <Baby className="text-purple-600 text-2xl" />
                 </div>
-                <h3 className="text-2xl font-bold text-foreground font-serif">
-                  {selectedContent.title}
+                <h3 className="text-2xl font-bold text-foreground font-serif mb-4">
+                  {getCardContent("patients").title}
                 </h3>
-              </div>
-              <p className="text-muted-foreground text-base leading-relaxed">{selectedContent.about}</p>
-            </div>
+                <p className="text-muted-foreground mb-4">
+                  {getCardContent("patients").about}
+                </p>
+              </CardContent>
+            </Card>
 
-            {/* Bullet Points */}
-            <div className="space-y-3">
-              {selectedContent.bullets.map((bullet, index) => (
-                <div key={index} className="flex items-start space-x-3">
-                  <div className="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center mt-0.5 flex-shrink-0">
-                    <Check className="w-3 h-3 text-green-600" />
+            {/* Back */}
+            <Card className="flip-card-back absolute w-full h-full rounded-3xl p-8 card-shadow backdrop-blur-sm bg-gradient-to-br from-purple-50 to-pink-50 border-2 border-purple-200" style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}>
+              <CardContent className="p-0 h-full overflow-y-auto">
+                <div className="flex items-center space-x-4 mb-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-purple-100 to-pink-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Baby className="text-purple-600 text-xl" />
                   </div>
-                  <span className="text-muted-foreground text-sm leading-relaxed">
-                    {bullet}
-                  </span>
+                  <h3 className="text-xl font-bold text-foreground font-serif">
+                    {getCardContent("patients").title}
+                  </h3>
                 </div>
-              ))}
-            </div>
-
-            {/* Action Button */}
-            <div className="mt-8">
-              <Button
-                className="w-full gradient-button text-white rounded-full font-semibold"
-                onClick={closeModal}
-              >
-                {lang === "en" && "Got it"}
-                {lang === "hi" && "समझ गया"}
-                {lang === "te" && "అర్థమైంది"}
-              </Button>
-            </div>
+                <div className="space-y-3">
+                  {getCardContent("patients").bullets.map((bullet, index) => (
+                    <div key={index} className="flex items-start space-x-3">
+                      <div className="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center mt-0.5 flex-shrink-0">
+                        <Check className="w-3 h-3 text-green-600" />
+                      </div>
+                      <span className="text-muted-foreground text-sm leading-relaxed">
+                        {bullet}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
-      )}
-    </>
+
+        {/* Clinics Card */}
+        <div className="flip-card h-[400px]" style={{ perspective: '1000px' }}>
+          <div className="flip-card-inner relative w-full h-full transition-transform duration-700" style={{ transformStyle: 'preserve-3d' }}>
+            {/* Front */}
+            <Card className="flip-card-front absolute w-full h-full rounded-3xl p-8 card-shadow backdrop-blur-sm bg-gradient-to-br from-white to-blue-50/30 border-2 border-transparent" style={{ backfaceVisibility: 'hidden' }}>
+              <CardContent className="p-0 h-full flex flex-col justify-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-2xl flex items-center justify-center mb-6 shadow-md">
+                  <Stethoscope className="text-blue-600 text-2xl" />
+                </div>
+                <h3 className="text-2xl font-bold text-foreground font-serif mb-4">
+                  {getCardContent("clinics").title}
+                </h3>
+                <p className="text-muted-foreground mb-4">
+                  {getCardContent("clinics").about}
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Back */}
+            <Card className="flip-card-back absolute w-full h-full rounded-3xl p-8 card-shadow backdrop-blur-sm bg-gradient-to-br from-blue-50 to-cyan-50 border-2 border-blue-200" style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}>
+              <CardContent className="p-0 h-full overflow-y-auto">
+                <div className="flex items-center space-x-4 mb-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Stethoscope className="text-blue-600 text-xl" />
+                  </div>
+                  <h3 className="text-xl font-bold text-foreground font-serif">
+                    {getCardContent("clinics").title}
+                  </h3>
+                </div>
+                <div className="space-y-3">
+                  {getCardContent("clinics").bullets.map((bullet, index) => (
+                    <div key={index} className="flex items-start space-x-3">
+                      <div className="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center mt-0.5 flex-shrink-0">
+                        <Check className="w-3 h-3 text-green-600" />
+                      </div>
+                      <span className="text-muted-foreground text-sm leading-relaxed">
+                        {bullet}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 };
 

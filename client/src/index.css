@@ -156,6 +156,22 @@
     transform: scale(1.02);
   }
 
+/* Flip card animations */
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-inner {
+  transition: transform 0.7s;
+  transform-style: preserve-3d;
+}
+
+.flip-card-front,
+.flip-card-back {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
 :root {
   --background: hsl(221, 83%, 97%);
   --foreground: hsl(220, 14%, 11%);
