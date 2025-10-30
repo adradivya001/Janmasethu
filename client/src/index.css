@@ -1267,6 +1267,41 @@ textarea:focus-visible {
   }
 }
 
+/* Journey Timeline Responsive Alignment */
+@media (max-width: 767px) {
+  /* Ensure first stage is visible on mobile */
+  .journey-timeline-mobile {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Smooth scrolling for touch devices */
+  .overflow-x-auto {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+
+  /* Stage spacing on mobile */
+  .journey-stage {
+    flex-shrink: 0;
+    min-width: 110px;
+  }
+}
+
+/* Tablet alignment */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .journey-timeline-mobile {
+    justify-content: center !important;
+  }
+}
+
+/* Desktop alignment - centered */
+@media (min-width: 1024px) {
+  .journey-timeline-mobile {
+    justify-content: center !important;
+  }
+}
+
 /* Responsive adjustments for mini player */
 @media (max-width: 640px) {
   .floating-mini-player > div {

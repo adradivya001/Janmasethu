@@ -302,9 +302,9 @@ const Home = () => {
           </div>
 
           {/* Journey Timeline */}
-          <div className="relative overflow-x-auto pb-8">
-            {/* Adjusted for mobile visibility of the first stage */}
-            <div className="journey-timeline-mobile flex items-center justify-start gap-3 md:gap-4 max-w-4xl mx-auto px-4 md:px-6 py-8">
+          <div className="relative overflow-x-auto pb-8 px-4">
+            {/* Centered and aligned timeline for all screens */}
+            <div className="flex items-center justify-start md:justify-center gap-3 md:gap-4 min-w-max md:min-w-0 max-w-4xl mx-auto py-8">
               {/* Stage 1: Thinking of Parenthood */}
               <Dialog>
                 <DialogTrigger asChild>
