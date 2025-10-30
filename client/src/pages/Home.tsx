@@ -296,7 +296,7 @@ const Home = () => {
 
           {/* Journey Timeline */}
           <div className="relative overflow-x-auto pb-8">
-            <div className="journey-timeline-mobile flex items-center justify-between min-w-[800px] px-12 py-8">
+            <div className="journey-timeline-mobile flex items-center justify-center gap-4 max-w-5xl mx-auto px-6 py-8">
               {/* Stage 1: Thinking of Parenthood */}
               <div
                 className="flex flex-col items-center group cursor-pointer transition-all duration-500 ease-out journey-stage"
@@ -318,7 +318,7 @@ const Home = () => {
               </div>
 
               {/* Connection Line 1 with animated gradient */}
-              <div className="flex-1 mx-4 min-w-[40px] relative h-2 group">
+              <div className="w-16 mx-2 relative h-2 group flex-shrink-0">
                 <div className="absolute inset-0 bg-gradient-to-r from-green-200 to-pink-200 rounded-full transition-all duration-700"></div>
                 <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-pink-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
               </div>
@@ -344,7 +344,7 @@ const Home = () => {
               </div>
 
               {/* Connection Line 2 with animated gradient */}
-              <div className="flex-1 mx-4 min-w-[40px] relative h-2 group">
+              <div className="w-16 mx-2 relative h-2 group flex-shrink-0">
                 <div className="absolute inset-0 bg-gradient-to-r from-pink-200 to-blue-200 rounded-full transition-all duration-700"></div>
                 <div className="absolute inset-0 bg-gradient-to-r from-pink-400 to-blue-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
               </div>
@@ -370,7 +370,7 @@ const Home = () => {
               </div>
 
               {/* Connection Line 3 with animated gradient */}
-              <div className="flex-1 mx-4 min-w-[40px] relative h-2 group">
+              <div className="w-16 mx-2 relative h-2 group flex-shrink-0">
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-200 to-purple-200 rounded-full transition-all duration-700"></div>
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
               </div>
@@ -396,7 +396,7 @@ const Home = () => {
               </div>
 
               {/* Connection Line 4 with animated gradient */}
-              <div className="flex-1 mx-4 min-w-[40px] relative h-2 group">
+              <div className="w-16 mx-2 relative h-2 group flex-shrink-0">
                 <div className="absolute inset-0 bg-gradient-to-r from-purple-200 to-orange-200 rounded-full transition-all duration-700"></div>
                 <div className="absolute inset-0 bg-gradient-to-r from-purple-400 to-orange-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
               </div>
