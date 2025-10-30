@@ -182,15 +182,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       // Call n8n webhook for authentication
       const webhookPayload = {
-        body: {
-          username,
-          password
-        }
+        username,
+        password
       };
 
       console.log('📤 Calling n8n webhook for clinic login:', webhookPayload);
 
-      const webhookResponse = await fetch('https://n8nottobon.duckdns.org/webhook-test/clinic_details', {
+      const webhookResponse = await fetch('https://n8nottobon.duckdns.org/webhook/clinic_details', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -204,7 +202,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         console.error('❌ Webhook failed:', webhookResponse.statusText);
         return res.status(401).json({ 
           success: false, 
-          error: 'Invalid credentials' 
+          error: 'Login failed. Please check your credentials.' 
         });
       }
 
@@ -212,20 +210,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
       console.log('✅ n8n response:', responseData);
 
       // Check if login was successful based on n8n response
+      // Expected response format: [{ "success": true }] or [{ "success": false }]
       let isSuccess = false;
       
-      if (Array.isArray(responseData)) {
-        if (responseData.length > 0) {
-          const firstItem = responseData[0];
-          if (firstItem.success === true) {
-            isSuccess = true;
-          } else if (firstItem.username && firstItem.password && 
-                     firstItem.username !== "false" && firstItem.password !== "false") {
-            isSuccess = true;
-          }
-        }
-      } else if (typeof responseData === 'object' && responseData !== null) {
-        if (responseData.success === true) {
+      if (Array.isArray(responseData) && responseData.length > 0) {
+        const firstItem = responseData[0];
+        if (firstItem.success === true) {
           isSuccess = true;
         }
       }
@@ -241,7 +231,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       } else {
         return res.status(401).json({ 
           success: false, 
-          error: 'Invalid credentials' 
+          error: 'Login failed. Please check your credentials.' 
         });
       }
 
@@ -249,7 +239,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       console.error("❌ Error in clinic login:", error);
       res.status(500).json({ 
         success: false, 
-        error: "An error occurred during login" 
+        error: "Login failed. Please check your credentials." 
       });
     }
   });
