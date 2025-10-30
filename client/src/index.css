@@ -1284,7 +1284,22 @@ textarea:focus-visible {
   /* Stage spacing on mobile */
   .journey-stage {
     flex-shrink: 0;
-    min-width: 110px;
+    min-width: 140px;
+    max-width: 140px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .journey-stage {
+    min-width: 160px;
+    max-width: 160px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .journey-stage {
+    min-width: 180px;
+    max-width: 180px;
   }
 }
 

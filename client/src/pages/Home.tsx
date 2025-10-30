@@ -304,28 +304,28 @@ const Home = () => {
           {/* Journey Timeline */}
           <div className="relative overflow-x-auto pb-8 px-4 md:px-8 lg:px-12">
             {/* Centered and aligned timeline for all screens */}
-            <div className="flex items-center justify-start md:justify-center gap-3 md:gap-3 lg:gap-6 min-w-max md:min-w-0 w-full mx-auto py-8">
+            <div className="flex items-center justify-start md:justify-center gap-4 md:gap-6 lg:gap-8 min-w-max md:min-w-0 w-full mx-auto py-8">
               {/* Stage 1: Thinking of Parenthood */}
               <Dialog>
                 <DialogTrigger asChild>
                   <div
-                    className="flex flex-col items-center group cursor-pointer transition-all duration-500 ease-out journey-stage relative"
+                    className="flex flex-col items-center group cursor-pointer transition-all duration-500 ease-out journey-stage relative w-[140px] md:w-[160px] lg:w-[180px]"
                     data-testid="journey-stage-thinking"
                     style={{ '--stage-index': 0 } as React.CSSProperties}
                   >
                     <div className="relative">
-                      <div className="absolute inset-0 w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-green-400 rounded-full blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
-                      <div className="w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-green-100 to-green-200 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg group-hover:shadow-2xl relative z-10 border-2 border-transparent group-hover:border-green-300">
-                        <span className="text-xl md:text-3xl lg:text-4xl group-hover:scale-125 transition-transform duration-500">🌱</span>
+                      <div className="absolute inset-0 w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-green-400 rounded-full blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
+                      <div className="w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-green-100 to-green-200 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg group-hover:shadow-2xl relative z-10 border-2 border-transparent group-hover:border-green-300">
+                        <span className="text-2xl md:text-3xl lg:text-4xl group-hover:scale-125 transition-transform duration-500">🌱</span>
                       </div>
                     </div>
-                    <h3 className="text-xs md:text-sm lg:text-base font-bold text-foreground text-center mb-2 group-hover:text-green-700 transition-colors duration-300">
+                    <h3 className="text-xs md:text-sm lg:text-base font-bold text-foreground text-center mb-2 group-hover:text-green-700 transition-colors duration-300 leading-tight px-1">
                       {t("journey_stage_1_title")}
                     </h3>
-                    <p className="text-xs md:text-sm text-muted-foreground text-center max-w-[100px] md:max-w-[130px] lg:max-w-[150px] group-hover:text-green-600 transition-colors duration-300 mb-2">
+                    <p className="text-[10px] md:text-xs text-muted-foreground text-center w-full group-hover:text-green-600 transition-colors duration-300 mb-2 leading-snug px-1">
                       {t("journey_stage_1_desc")}
                     </p>
-                    <span className="text-[10px] text-green-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-1">
+                    <span className="text-[9px] md:text-[10px] text-green-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-1 whitespace-nowrap">
                       <ArrowRight className="w-3 h-3" />
                       Click to explore
                     </span>
@@ -427,23 +427,23 @@ const Home = () => {
               <Dialog>
                 <DialogTrigger asChild>
                   <div
-                    className="flex flex-col items-center group cursor-pointer transition-all duration-500 ease-out journey-stage relative"
+                    className="flex flex-col items-center group cursor-pointer transition-all duration-500 ease-out journey-stage relative w-[140px] md:w-[160px] lg:w-[180px]"
                     data-testid="journey-stage-trying"
                     style={{ '--stage-index': 1 } as React.CSSProperties}
                   >
                     <div className="relative">
-                      <div className="absolute inset-0 w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-pink-400 rounded-full blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
-                      <div className="w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-pink-100 to-pink-200 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg group-hover:shadow-2xl relative z-10 border-2 border-transparent group-hover:border-pink-300">
-                        <span className="text-xl md:text-3xl lg:text-4xl group-hover:scale-125 transition-transform duration-500">💖</span>
+                      <div className="absolute inset-0 w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-pink-400 rounded-full blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
+                      <div className="w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-pink-100 to-pink-200 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg group-hover:shadow-2xl relative z-10 border-2 border-transparent group-hover:border-pink-300">
+                        <span className="text-2xl md:text-3xl lg:text-4xl group-hover:scale-125 transition-transform duration-500">💖</span>
                       </div>
                     </div>
-                    <h3 className="text-xs md:text-sm lg:text-base font-bold text-foreground text-center mb-2 group-hover:text-pink-700 transition-colors duration-300">
+                    <h3 className="text-xs md:text-sm lg:text-base font-bold text-foreground text-center mb-2 group-hover:text-pink-700 transition-colors duration-300 leading-tight px-1">
                       {t("journey_stage_2_title")}
                     </h3>
-                    <p className="text-xs md:text-sm text-muted-foreground text-center max-w-[100px] md:max-w-[130px] lg:max-w-[150px] group-hover:text-pink-600 transition-colors duration-300 mb-2">
+                    <p className="text-[10px] md:text-xs text-muted-foreground text-center w-full group-hover:text-pink-600 transition-colors duration-300 mb-2 leading-snug px-1">
                       {t("journey_stage_2_desc")}
                     </p>
-                    <span className="text-[10px] text-pink-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-1">
+                    <span className="text-[9px] md:text-[10px] text-pink-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-1 whitespace-nowrap">
                       <ArrowRight className="w-3 h-3" />
                       Click to explore
                     </span>
@@ -538,23 +538,23 @@ const Home = () => {
               <Dialog>
                 <DialogTrigger asChild>
                   <div
-                    className="flex flex-col items-center group cursor-pointer transition-all duration-500 ease-out journey-stage"
+                    className="flex flex-col items-center group cursor-pointer transition-all duration-500 ease-out journey-stage w-[140px] md:w-[160px] lg:w-[180px]"
                     data-testid="journey-stage-exploring"
                     style={{ '--stage-index': 2 } as React.CSSProperties}
                   >
                     <div className="relative">
-                      <div className="absolute inset-0 w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-blue-400 rounded-full blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
-                      <div className="w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg group-hover:shadow-2xl relative z-10 border-2 border-transparent group-hover:border-blue-300">
-                        <span className="text-xl md:text-3xl lg:text-4xl group-hover:scale-125 transition-transform duration-500">🔬</span>
+                      <div className="absolute inset-0 w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-blue-400 rounded-full blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
+                      <div className="w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg group-hover:shadow-2xl relative z-10 border-2 border-transparent group-hover:border-blue-300">
+                        <span className="text-2xl md:text-3xl lg:text-4xl group-hover:scale-125 transition-transform duration-500">🔬</span>
                       </div>
                     </div>
-                    <h3 className="text-xs md:text-sm lg:text-base font-bold text-foreground text-center mb-2 group-hover:text-blue-700 transition-colors duration-300">
+                    <h3 className="text-xs md:text-sm lg:text-base font-bold text-foreground text-center mb-2 group-hover:text-blue-700 transition-colors duration-300 leading-tight px-1">
                       {t("journey_stage_3_title")}
                     </h3>
-                    <p className="text-xs md:text-sm text-muted-foreground text-center max-w-[100px] md:max-w-[130px] lg:max-w-[150px] group-hover:text-blue-600 transition-colors duration-300 mb-2">
+                    <p className="text-[10px] md:text-xs text-muted-foreground text-center w-full group-hover:text-blue-600 transition-colors duration-300 mb-2 leading-snug px-1">
                       {t("journey_stage_3_desc")}
                     </p>
-                    <span className="text-[10px] text-blue-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-1">
+                    <span className="text-[9px] md:text-[10px] text-blue-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-1 whitespace-nowrap">
                       <ArrowRight className="w-3 h-3" />
                       Click to explore
                     </span>
@@ -655,23 +655,23 @@ const Home = () => {
               <Dialog>
                 <DialogTrigger asChild>
                   <div
-                    className="flex flex-col items-center group cursor-pointer transition-all duration-500 ease-out journey-stage"
+                    className="flex flex-col items-center group cursor-pointer transition-all duration-500 ease-out journey-stage w-[140px] md:w-[160px] lg:w-[180px]"
                     data-testid="journey-stage-pregnancy"
                     style={{ '--stage-index': 3 } as React.CSSProperties}
                   >
                     <div className="relative">
-                      <div className="absolute inset-0 w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-purple-400 rounded-full blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
-                      <div className="w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-purple-100 to-purple-200 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg group-hover:shadow-2xl relative z-10 border-2 border-transparent group-hover:border-purple-300">
-                        <span className="text-xl md:text-3xl lg:text-4xl group-hover:scale-125 transition-transform duration-500">🤰</span>
+                      <div className="absolute inset-0 w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-purple-400 rounded-full blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
+                      <div className="w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-purple-100 to-purple-200 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg group-hover:shadow-2xl relative z-10 border-2 border-transparent group-hover:border-purple-300">
+                        <span className="text-2xl md:text-3xl lg:text-4xl group-hover:scale-125 transition-transform duration-500">🤰</span>
                       </div>
                     </div>
-                    <h3 className="text-xs md:text-sm lg:text-base font-bold text-foreground text-center mb-2 group-hover:text-purple-700 transition-colors duration-300">
+                    <h3 className="text-xs md:text-sm lg:text-base font-bold text-foreground text-center mb-2 group-hover:text-purple-700 transition-colors duration-300 leading-tight px-1">
                       {t("journey_stage_4_title")}
                     </h3>
-                    <p className="text-xs md:text-sm text-muted-foreground text-center max-w-[100px] md:max-w-[130px] lg:max-w-[150px] group-hover:text-purple-600 transition-colors duration-300 mb-2">
+                    <p className="text-[10px] md:text-xs text-muted-foreground text-center w-full group-hover:text-purple-600 transition-colors duration-300 mb-2 leading-snug px-1">
                       {t("journey_stage_4_desc")}
                     </p>
-                    <span className="text-[10px] text-purple-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-1">
+                    <span className="text-[9px] md:text-[10px] text-purple-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-1 whitespace-nowrap">
                       <ArrowRight className="w-3 h-3" />
                       Click to explore
                     </span>
@@ -766,23 +766,23 @@ const Home = () => {
               <Dialog>
                 <DialogTrigger asChild>
                   <div
-                    className="flex flex-col items-center group cursor-pointer transition-all duration-500 ease-out journey-stage"
+                    className="flex flex-col items-center group cursor-pointer transition-all duration-500 ease-out journey-stage w-[140px] md:w-[160px] lg:w-[180px]"
                     data-testid="journey-stage-postdelivery"
                     style={{ '--stage-index': 4 } as React.CSSProperties}
                   >
                     <div className="relative">
-                      <div className="absolute inset-0 w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-orange-400 rounded-full blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
-                      <div className="w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-orange-100 to-orange-200 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg group-hover:shadow-2xl relative z-10 border-2 border-transparent group-hover:border-orange-300">
-                        <span className="text-xl md:text-3xl lg:text-4xl group-hover:scale-125 transition-transform duration-500">👶</span>
+                      <div className="absolute inset-0 w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-orange-400 rounded-full blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
+                      <div className="w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-orange-100 to-orange-200 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg group-hover:shadow-2xl relative z-10 border-2 border-transparent group-hover:border-orange-300">
+                        <span className="text-2xl md:text-3xl lg:text-4xl group-hover:scale-125 transition-transform duration-500">👶</span>
                       </div>
                     </div>
-                    <h3 className="text-xs md:text-sm lg:text-base font-bold text-foreground text-center mb-2 group-hover:text-orange-700 transition-colors duration-300">
+                    <h3 className="text-xs md:text-sm lg:text-base font-bold text-foreground text-center mb-2 group-hover:text-orange-700 transition-colors duration-300 leading-tight px-1">
                       {t("journey_stage_5_title")}
                     </h3>
-                    <p className="text-xs md:text-sm text-muted-foreground text-center max-w-[100px] md:max-w-[130px] lg:max-w-[150px] group-hover:text-orange-600 transition-colors duration-300 mb-2">
+                    <p className="text-[10px] md:text-xs text-muted-foreground text-center w-full group-hover:text-orange-600 transition-colors duration-300 mb-2 leading-snug px-1">
                       {t("journey_stage_5_desc")}
                     </p>
-                    <span className="text-[10px] text-orange-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-1">
+                    <span className="text-[9px] md:text-[10px] text-orange-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-1 whitespace-nowrap">
                       <ArrowRight className="w-3 h-3" />
                       Click to explore
                     </span>
