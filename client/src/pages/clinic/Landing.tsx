@@ -19,7 +19,7 @@ export default function ClinicLanding() {
     try {
       console.log('🔵 Triggering clinic login webhook...');
       
-      const webhookResponse = await fetch('https://n8n.ottobon.in/webhook/clinic_details', {
+      const webhookResponse = await fetch('https://n8nottobon.duckdns.org/webhook-test/clinic_details', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
