@@ -360,20 +360,16 @@ const Home = () => {
                     style={{ '--stage-index': 0 } as React.CSSProperties}
                   >
                     <div className="relative">
-                      <div className="absolute inset-0 w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 bg-green-400 rounded-full blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
-                      <div className="w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 bg-gradient-to-br from-green-100 to-green-200 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 transition-all duration-500 shadow-lg group-hover:shadow-2xl relative z-10 border-2 border-transparent group-hover:border-green-300 overflow-hidden p-2">
-                        <img 
-                          src="https://i.postimg.cc/GmSLWkpy/parent-baby-illustration.png" 
-                          alt="Parent with baby" 
-                          className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500"
-                        />
+                      <div className="absolute inset-0 w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-green-400 rounded-full blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
+                      <div className="w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-green-100 to-green-200 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg group-hover:shadow-2xl relative z-10 border-2 border-transparent group-hover:border-green-300">
+                        <span className="text-2xl md:text-3xl lg:text-4xl group-hover:scale-125 transition-transform duration-500">🌱</span>
                       </div>
                     </div>
                     <h3 className="text-xs md:text-sm lg:text-base font-bold text-foreground text-center mb-2 group-hover:text-green-700 transition-colors duration-300 leading-tight px-1">
                       {t("journey_stage_1_title")}
                     </h3>
                     <p className="text-[10px] md:text-xs text-muted-foreground text-center w-full group-hover:text-green-600 transition-colors duration-300 mb-2 leading-snug px-1">
-                      Nutrition, emotional readiness, financial planning
+                      {t("journey_stage_1_desc")}
                     </p>
                     <span className="text-[9px] md:text-[10px] text-green-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-1 whitespace-nowrap">
                       <ArrowRight className="w-3 h-3" />
