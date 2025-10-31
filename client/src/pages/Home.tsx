@@ -109,7 +109,7 @@ const Home = () => {
           <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
             <video
               id="hero-video"
-              className="absolute top-0 left-0 w-full h-full object-cover"
+              className="absolute top-0 left-0 w-full h-full object-cover cursor-pointer"
               autoPlay
               loop
               muted
@@ -118,6 +118,16 @@ const Home = () => {
               poster="/babyFeet.jpg"
               webkit-playsinline="true"
               x5-playsinline="true"
+              onClick={(e) => {
+                const video = e.currentTarget;
+                if (video.paused) {
+                  video.play();
+                  setIsVideoPlaying(true);
+                } else {
+                  video.pause();
+                  setIsVideoPlaying(false);
+                }
+              }}
               onLoadStart={() => console.log("Video loading started...")}
               onLoadedData={() => console.log("Video data loaded")}
               onCanPlay={() => console.log("Video can play")}
@@ -129,7 +139,8 @@ const Home = () => {
             
             {/* Play/Pause Button */}
             <button
-              onClick={() => {
+              onClick={(e) => {
+                e.stopPropagation(); // Prevent triggering video click
                 const video = document.getElementById('hero-video') as HTMLVideoElement;
                 if (video) {
                   if (video.paused) {
