@@ -122,15 +122,16 @@ const Blog = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {items.map((post, index) => (
             <Link key={post.slug} href={`/blog/${post.slug}`} className="group">
-              <Card className="rounded-3xl p-6 card-shadow hover:shadow-xl transition-all duration-300 h-full" data-testid={`card-blog-post-${index}`}>
+              <Card className="rounded-3xl overflow-hidden card-shadow hover:shadow-xl transition-all duration-300 h-full" data-testid={`card-blog-post-${index}`}>
                 <CardContent className="p-0">
-                  <div className="rounded-xl w-full h-48 overflow-hidden mb-4">
+                  <div className="w-full h-48 overflow-hidden">
                     <img
                       src={post.image_url || imgAt(index)}
                       alt={post.title}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                   </div>
+                  <div className="p-6">
                   <h3 className="text-lg font-bold text-foreground font-serif mb-2" data-testid={`text-post-title-${index}`}>
                     {post.title}
                   </h3>
@@ -142,6 +143,7 @@ const Blog = () => {
                   <div className="flex items-center justify-between text-xs text-muted-foreground">
                     <span>Editorial Team</span>
                     {post.created_at && <span>{new Date(post.created_at).toLocaleDateString()}</span>}
+                  </div>
                   </div>
                 </CardContent>
               </Card>
