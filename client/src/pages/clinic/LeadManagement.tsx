@@ -124,6 +124,7 @@ export default function LeadManagement() {
     if (newLead.name && newLead.email && newLead.phone) {
       try {
         console.log('🔵 Creating new lead...');
+        setIsLoading(true);
         
         const payload = {
           action: "insert",
@@ -140,13 +141,20 @@ export default function LeadManagement() {
 
         console.log('📤 Sending to backend API:', payload);
 
+        // Add timeout to the fetch request
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
+
         const response = await fetch('/api/leads', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify(payload)
+          body: JSON.stringify(payload),
+          signal: controller.signal
         });
+
+        clearTimeout(timeoutId);
 
         if (response.ok) {
           const responseData = await response.json();
@@ -171,11 +179,17 @@ export default function LeadManagement() {
         } else {
           const errorData = await response.json().catch(() => ({ error: 'Unknown error' }));
           console.error('❌ Lead creation failed:', errorData);
-          alert(`Failed to create lead: ${errorData.error || response.statusText}`);
+          alert(`Failed to create lead: ${errorData.error || response.statusText}\n\nPlease check your database connection.`);
         }
-      } catch (error) {
+      } catch (error: any) {
         console.error('❌ Error during lead creation:', error);
-        alert('An error occurred while creating the lead. Please try again.');
+        if (error.name === 'AbortError') {
+          alert('Request timed out. The database may be unavailable. Please check your connection and try again.');
+        } else {
+          alert('An error occurred while creating the lead. Please try again.');
+        }
+      } finally {
+        setIsLoading(false);
       }
     }
   };
@@ -189,6 +203,7 @@ export default function LeadManagement() {
 
     try {
       console.log('🔵 Updating lead:', editingLead.lead_id);
+      setIsLoading(true);
 
       const payload = {
         action: "update",
@@ -204,13 +219,20 @@ export default function LeadManagement() {
         priority: editingLead.priority
       };
 
+      // Add timeout to the fetch request
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
+
       const response = await fetch('/api/leads', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(payload),
+        signal: controller.signal
       });
+
+      clearTimeout(timeoutId);
 
       if (response.ok) {
         const updatedLead = await response.json();
@@ -225,11 +247,17 @@ export default function LeadManagement() {
       } else {
         const errorData = await response.json().catch(() => ({ error: 'Unknown error' }));
         console.error('❌ Lead update failed:', errorData);
-        alert(`Failed to update lead: ${errorData.error || response.statusText}`);
+        alert(`Failed to update lead: ${errorData.error || response.statusText}\n\nPlease check your database connection.`);
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('❌ Error during lead update:', error);
-      alert('An error occurred while updating the lead. Please try again.');
+      if (error.name === 'AbortError') {
+        alert('Request timed out. The database may be unavailable. Please check your connection and try again.');
+      } else {
+        alert('An error occurred while updating the lead. Please try again.');
+      }
+    } finally {
+      setIsLoading(false);
     }
   };
 
