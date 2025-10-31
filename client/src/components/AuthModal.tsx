@@ -47,96 +47,12 @@ export default function AuthModal({
 
     try {
       if (isSignUp) {
-        // Sign up - send to backend webhook
-        console.log("=== SIGNUP WEBHOOK REQUEST ===");
-        console.log("URL:", "https://n8nottobon.duckdns.org/webhook/sakhi_start");
-        console.log("Method: POST");
-        console.log("Payload:", {
-          Name: formData.fullName,
-          Email: formData.email,
-          Password: "***hidden***"
-        });
-
-        const response = await fetch("https://n8nottobon.duckdns.org/webhook/sakhi_start", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            Name: formData.fullName,
-            Email: formData.email,
-            Password: formData.password,
-          }),
-        });
-
-        console.log("=== WEBHOOK RESPONSE ===");
-        console.log("Status:", response.status);
-        console.log("Status Text:", response.statusText);
-        console.log("OK:", response.ok);
-        console.log("Headers:", Object.fromEntries(response.headers.entries()));
-
-        // Try to get the response text first for debugging
-        const responseText = await response.text();
-        console.log("Raw response body:", responseText);
-
-        if (!response.ok) {
-          setIsLoading(false);
-          console.error("❌ Webhook failed with status:", response.status);
-          console.error("Response body:", responseText);
-          toast({
-            title: "Signup Failed",
-            description: `Server returned status ${response.status}. Please try again.`,
-            variant: "destructive",
-          });
-          throw new Error(`Signup failed with status ${response.status}`);
-        }
-
-        // Parse the JSON response
-        let data;
-        try {
-          data = JSON.parse(responseText);
-          console.log("✅ Parsed JSON response:", data);
-        } catch (parseError) {
-          console.error("❌ Failed to parse JSON:", parseError);
-          console.error("Response was:", responseText);
-          setIsLoading(false);
-          toast({
-            title: "Signup Failed",
-            description: "Invalid response from server. Please try again.",
-            variant: "destructive",
-          });
-          throw new Error("Invalid JSON response");
-        }
-
-        // Handle the response format: [{ message: "Signup Successful", user: { userId, name, email } }]
-        const responseData = Array.isArray(data) ? data[0] : data;
-        console.log("Response data after array check:", responseData);
-
-        // Validate response
-        if (!responseData || !responseData.user || !responseData.user.userId) {
-          console.error("❌ Invalid response structure:", {
-            hasResponseData: !!responseData,
-            hasUser: responseData?.user !== undefined,
-            hasUserId: responseData?.user?.userId !== undefined,
-            actualStructure: responseData
-          });
-          setIsLoading(false);
-          toast({
-            title: "Signup Failed",
-            description: "Invalid response from server. Please try again.",
-            variant: "destructive",
-          });
-          throw new Error("Invalid signup response structure");
-        }
-
-        const userData = responseData.user;
-        const uniqueId = userData.userId;
-
-        console.log("✅ Signup successful! User ID:", uniqueId);
+        // Sign up - static demonstration
+        const uniqueId = `user_${Date.now()}`;
 
         // Store data in localStorage
-        localStorage.setItem('userName', userData.name);
-        localStorage.setItem('userEmail', userData.email);
+        localStorage.setItem('userName', formData.fullName);
+        localStorage.setItem('userEmail', formData.email);
         localStorage.setItem('userId', uniqueId);
 
         // Store userId in state
@@ -154,73 +70,38 @@ export default function AuthModal({
 
         return;
       } else {
-        // Login - Call the login webhook with full error handling
-        const response = await fetch(
-          "https://n8n.ottobon.in/webhook/sakhi/login",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              email: formData.email,
-              password: formData.password,
-            }),
-          },
-        );
+        // Login - static demonstration
+        const loginUserId = `user_${Date.now()}`;
 
-        // Get response as text since n8n returns text format
-        const responseText = await response.text();
-        console.log("Login webhook response:", responseText);
-
-        // Check if response starts with "True:" (successful login)
-        if (responseText.startsWith("True:")) {
-          // Extract user ID from response (format: "True: <user_id>")
-          const loginUserId = responseText.replace("True:", "").trim() || `user_${Date.now()}`;
-
-          // Store username/email in localStorage
-          localStorage.setItem('userEmail', formData.email);
-          localStorage.setItem('userId', loginUserId);
-          // If fullName is available, store it too
-          if (formData.fullName) {
-            localStorage.setItem('userName', formData.fullName);
-          }
-
-          // Close modal
-          onClose();
-
-          // Show success message
-          toast({
-            title: "Login successful",
-            description: "Welcome back to JanmaSethu!",
-          });
-
-          // Navigate to Sakhi (existing user flow)
-          onAuthSuccess(false, undefined, loginUserId);
-        } else {
-          // Login failed - False response or any other response
-          setLoginError("Either your email or password is wrong. Please try again.");
-
-          toast({
-            title: "Login Failed",
-            description: "Invalid email or password. Please check your credentials and try again.",
-            variant: "destructive",
-          });
+        // Store username/email in localStorage
+        localStorage.setItem('userEmail', formData.email);
+        localStorage.setItem('userId', loginUserId);
+        if (formData.fullName) {
+          localStorage.setItem('userName', formData.fullName);
         }
+
+        // Close modal
+        onClose();
+
+        // Show success message
+        toast({
+          title: "Login successful",
+          description: "Welcome back to JanmaSethu!",
+        });
+
+        // Navigate to Sakhi (existing user flow)
+        setIsLoading(false);
+        onAuthSuccess(false, undefined, loginUserId);
       }
     } catch (error) {
       console.error("Authentication error:", error);
 
-      // Network or unexpected error
       toast({
-        title: isSignUp ? "Signup Failed" : "Connection Error",
-        description: isSignUp 
-          ? "Unable to create account. Please try again."
-          : "Unable to connect to the server. Please check your internet connection and try again.",
+        title: isSignUp ? "Signup Failed" : "Login Failed",
+        description: "Unable to process your request. Please try again.",
         variant: "destructive",
       });
 
-      // Always reset loading state on error
       setIsLoading(false);
     }
   };
