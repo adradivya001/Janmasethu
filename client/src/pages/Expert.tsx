@@ -47,22 +47,14 @@ export default function Expert() {
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
             <Card className="rounded-3xl overflow-hidden">
-              <CardContent className="p-0">
-                <img
-                  src={doc.image_url || fallbackImg}
-                  alt={doc.name}
-                  className="w-full h-64 object-cover"
-                  onError={(e) => { (e.currentTarget as HTMLImageElement).src = fallbackImg; }}
-                />
-                <div className="p-6">
-                  <h1 className="text-3xl font-bold font-serif text-foreground">{doc.name}</h1>
-                  {doc.designation && (
-                    <p className="text-muted-foreground mt-1">{doc.designation}</p>
-                  )}
+              <CardContent className="p-6">
+                <h1 className="text-3xl font-bold font-serif text-foreground">{doc.name}</h1>
+                {doc.designation && (
+                  <p className="text-muted-foreground mt-1">{doc.designation}</p>
+                )}
 
-                  <div className="prose max-w-none mt-6"
-                       dangerouslySetInnerHTML={{ __html: doc.about_html || "" }} />
-                </div>
+                <div className="prose max-w-none mt-6"
+                     dangerouslySetInnerHTML={{ __html: doc.about_html || "" }} />
               </CardContent>
             </Card>
           </div>
