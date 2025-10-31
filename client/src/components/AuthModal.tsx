@@ -47,45 +47,26 @@ export default function AuthModal({
 
     try {
       if (isSignUp) {
-        const response = await fetch("https://n8nottobon.duckdns.org/webhook/sakhi_start", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            Email: formData.email,
-            Password: formData.password,
-            Name: formData.fullName,
-          }),
+        // Sign up - static demonstration
+        const uniqueId = `user_${Date.now()}`;
+
+        // Store data in localStorage
+        localStorage.setItem('userName', formData.fullName);
+        localStorage.setItem('userEmail', formData.email);
+        localStorage.setItem('userId', uniqueId);
+
+        // Store userId in state
+        setUserId(uniqueId);
+
+        // Show success toast
+        toast({
+          title: "Account created!",
+          description: "Please tell us about yourself.",
         });
 
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const data = await response.json();
-
-        if (data && data.message === "Signup Successful" && data.user && data.user.userId) {
-          // Store data in localStorage
-          localStorage.setItem('userName', data.user.name);
-          localStorage.setItem('userEmail', data.user.email);
-          localStorage.setItem('userId', data.user.userId);
-
-          // Store userId in state
-          setUserId(data.user.userId);
-
-          // Show success toast
-          toast({
-            title: "Account created!",
-            description: "Please tell us about yourself.",
-          });
-
-          // Set loading to false and show relationship form
-          setIsLoading(false);
-          setShowRelationship(true);
-        } else {
-          throw new Error("Signup was not successful as expected.");
-        }
+        // Set loading to false and show relationship form
+        setIsLoading(false);
+        setShowRelationship(true);
 
         return;
       } else {
