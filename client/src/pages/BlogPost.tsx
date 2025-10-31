@@ -135,13 +135,6 @@ const BlogPost = () => {
         <div className="lg:col-span-2">
           <Card className="rounded-3xl p-8 card-shadow">
             <CardContent className="p-0">
-              {hero && (
-                <img
-                  src={hero}
-                  alt={post.title}
-                  className="rounded-xl mb-6 w-full"
-                />
-              )}
               <div
                 className="prose prose-lg max-w-none"
                 data-testid="section-post-content"
