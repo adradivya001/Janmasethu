@@ -69,10 +69,9 @@ export default function Experts() {
               <Link key={d.slug} href={`/experts/${d.slug}`}>
                 <Card className={`rounded-3xl overflow-hidden cursor-pointer group hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border-2 border-purple-200/60 bg-gradient-to-br ${cardGradient}`}>
                   <CardContent className="p-0">
-                    {/* Image Container with Gradient Border */}
+                    {/* Image Container */}
                     <div className="relative">
-                      <div className="absolute inset-0 bg-gradient-to-br from-purple-400/30 via-pink-400/30 to-blue-400/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
-                      <div className="w-full h-64 bg-gradient-to-b from-purple-100/60 via-white/80 to-pink-50/40 flex items-center justify-center overflow-hidden relative">
+                      <div className="w-full h-64 bg-white flex items-center justify-center overflow-hidden relative">
                         <img
                           src={d.image_url || fallbackImg}
                           alt={d.name}
