@@ -30,9 +30,16 @@ const MobileMenu = ({ isOpen, onClose, navItems }: MobileMenuProps) => {
           {/* Header Section */}
           <div className="px-6 py-5 border-b border-gray-100 bg-gradient-to-r from-purple-50 to-pink-50">
             <div className="flex items-center justify-between">
-              <div>
-                <h2 className="text-lg font-bold text-gray-900">JanmaSethu</h2>
-                <p className="text-sm text-gray-600 mt-0.5">Your Fertility Journey</p>
+              <div className="flex items-center gap-3">
+                <img 
+                  src="/JanmaSethu Logo.png" 
+                  alt="JanmaSethu Logo" 
+                  className="w-12 h-12 object-contain"
+                />
+                <div>
+                  <h2 className="text-lg font-bold text-gray-900">JanmaSethu</h2>
+                  <p className="text-sm text-gray-600 mt-0.5">Your Fertility Journey</p>
+                </div>
               </div>
               <Button
                 variant="ghost"
