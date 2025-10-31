@@ -60,13 +60,15 @@ export default function Experts() {
             <Link key={d.slug} href={`/experts/${d.slug}`}>
               <Card className="rounded-3xl overflow-hidden cursor-pointer group hover:shadow-xl transition-all">
                 <CardContent className="p-0">
-                  <img
-                    src={d.image_url || fallbackImg}
-                    alt={d.name}
-                    className="w-full h-48 object-cover"
-                    loading="lazy"
-                    onError={(e) => { (e.currentTarget as HTMLImageElement).src = fallbackImg; }}
-                  />
+                  <div className="w-full h-56 bg-gradient-to-b from-purple-50 to-white flex items-center justify-center overflow-hidden">
+                    <img
+                      src={d.image_url || fallbackImg}
+                      alt={d.name}
+                      className="w-full h-full object-contain"
+                      loading="lazy"
+                      onError={(e) => { (e.currentTarget as HTMLImageElement).src = fallbackImg; }}
+                    />
+                  </div>
                   <div className="p-5">
                     <h3 className="text-xl font-semibold text-foreground">{d.name}</h3>
                     {d.designation && (
