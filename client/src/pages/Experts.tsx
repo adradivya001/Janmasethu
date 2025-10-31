@@ -56,57 +56,67 @@ export default function Experts() {
 
       {!loading && !error && doctors.length > 0 && (
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {doctors.map((d) => (
-            <Link key={d.slug} href={`/experts/${d.slug}`}>
-              <Card className="rounded-3xl overflow-hidden cursor-pointer group hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border-2 border-purple-100/50 bg-white">
-                <CardContent className="p-0">
-                  {/* Image Container with Gradient Border */}
-                  <div className="relative">
-                    <div className="absolute inset-0 bg-gradient-to-br from-purple-400/20 via-pink-400/20 to-blue-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    <div className="w-full h-64 bg-gradient-to-b from-purple-50 via-white to-purple-50/30 flex items-center justify-center overflow-hidden relative">
-                      <img
-                        src={d.image_url || fallbackImg}
-                        alt={d.name}
-                        className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
-                        loading="lazy"
-                        onError={(e) => { (e.currentTarget as HTMLImageElement).src = fallbackImg; }}
-                      />
+          {doctors.map((d, index) => {
+            // Cycle through gradient variations for visual variety
+            const gradients = [
+              'from-purple-50 via-pink-50 to-blue-50',
+              'from-blue-50 via-purple-50 to-pink-50',
+              'from-pink-50 via-blue-50 to-purple-50'
+            ];
+            const cardGradient = gradients[index % gradients.length];
+            
+            return (
+              <Link key={d.slug} href={`/experts/${d.slug}`}>
+                <Card className={`rounded-3xl overflow-hidden cursor-pointer group hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border-2 border-purple-200/60 bg-gradient-to-br ${cardGradient}`}>
+                  <CardContent className="p-0">
+                    {/* Image Container with Gradient Border */}
+                    <div className="relative">
+                      <div className="absolute inset-0 bg-gradient-to-br from-purple-400/30 via-pink-400/30 to-blue-400/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
+                      <div className="w-full h-64 bg-gradient-to-b from-purple-100/60 via-white/80 to-pink-50/40 flex items-center justify-center overflow-hidden relative">
+                        <img
+                          src={d.image_url || fallbackImg}
+                          alt={d.name}
+                          className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                          loading="lazy"
+                          onError={(e) => { (e.currentTarget as HTMLImageElement).src = fallbackImg; }}
+                        />
+                      </div>
                     </div>
-                  </div>
-                  
-                  {/* Content Section */}
-                  <div className="p-6 bg-gradient-to-b from-white to-purple-50/20">
-                    <h3 className="text-xl font-bold text-gray-900 font-serif group-hover:text-purple-700 transition-colors">
-                      {d.name}
-                    </h3>
-                    {d.designation && (
-                      <p className="text-sm text-gray-600 mt-2 line-clamp-2 min-h-[2.5rem]">
-                        {d.designation}
-                      </p>
-                    )}
                     
-                    {/* View Profile Button */}
-                    <div className="mt-5 flex items-center justify-between">
-                      <Button 
-                        variant="default" 
-                        className="rounded-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white shadow-lg group-hover:shadow-xl transition-all"
-                      >
-                        View Profile
-                        <svg 
-                          className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" 
-                          fill="none" 
-                          stroke="currentColor" 
-                          viewBox="0 0 24 24"
+                    {/* Content Section with Gradient */}
+                    <div className="p-6 bg-gradient-to-br from-white/95 via-purple-50/60 to-pink-50/50 backdrop-blur-sm">
+                      <h3 className="text-xl font-bold text-gray-900 font-serif group-hover:text-purple-700 transition-colors">
+                        {d.name}
+                      </h3>
+                      {d.designation && (
+                        <p className="text-sm text-gray-700 mt-2 line-clamp-2 min-h-[2.5rem]">
+                          {d.designation}
+                        </p>
+                      )}
+                      
+                      {/* View Profile Button */}
+                      <div className="mt-5 flex items-center justify-between">
+                        <Button 
+                          variant="default" 
+                          className="rounded-full bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 hover:from-purple-700 hover:via-pink-700 hover:to-purple-700 text-white shadow-lg group-hover:shadow-2xl group-hover:shadow-purple-500/50 transition-all"
                         >
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                        </svg>
-                      </Button>
+                          View Profile
+                          <svg 
+                            className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" 
+                            fill="none" 
+                            stroke="currentColor" 
+                            viewBox="0 0 24 24"
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          </svg>
+                        </Button>
+                      </div>
                     </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </Link>
-          ))}
+                  </CardContent>
+                </Card>
+              </Link>
+            );
+          })}
         </div>
       )}
     </div>
