@@ -361,8 +361,12 @@ const Home = () => {
                   >
                     <div className="relative">
                       <div className="absolute inset-0 w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-green-400 rounded-full blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
-                      <div className="w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-green-100 to-green-200 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg group-hover:shadow-2xl relative z-10 border-2 border-transparent group-hover:border-green-300">
-                        <span className="text-2xl md:text-3xl lg:text-4xl group-hover:scale-125 transition-transform duration-500">🌱</span>
+                      <div className="w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-green-100 to-green-200 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg group-hover:shadow-2xl relative z-10 border-2 border-transparent group-hover:border-green-300 overflow-hidden">
+                        <img 
+                          src="/thinking of parenthood.png" 
+                          alt="Thinking of Parenthood" 
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        />
                       </div>
                     </div>
                     <h3 className="text-xs md:text-sm lg:text-base font-bold text-foreground text-center mb-2 group-hover:text-green-700 transition-colors duration-300 leading-tight px-1">
