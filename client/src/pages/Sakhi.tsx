@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {
   Heart,
   ArrowRight,
@@ -7,21 +7,15 @@ import {
   Clock,
   Users,
   MessageCircle,
-  CheckCircle,
 } from "lucide-react";
 import { useLanguage } from "../i18n/LanguageProvider";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { useToast } from "@/hooks/use-toast";
 import ChatInterface from "@/components/ChatInterface";
-import AuthModal from "@/components/AuthModal";
-import OnboardingQuestions from "@/components/OnboardingQuestions";
 
 const Sakhi = () => {
   const { t } = useLanguage();
   const [, setLocation] = useLocation();
-  const [showAuthModal, setShowAuthModal] = useState(false);
-  const [showOnboarding, setShowOnboarding] = useState(false);
 
   // Scroll to top when component mounts
   useEffect(() => {
@@ -29,60 +23,9 @@ const Sakhi = () => {
   }, []);
 
   const handleTrySakhiClick = () => {
-    // Always show auth modal for static demonstration
-    setShowAuthModal(true);
+    // Redirect directly to /sakhi/try
+    setLocation("/sakhi/try");
   };
-
-  const [userRelationship, setUserRelationship] = useState<string>("");
-  const [userId, setUserId] = useState<string>("");
-
-  const handleAuthSuccess = (isNewUser: boolean, relationship?: string, userId?: string) => {
-    console.log("=== handleAuthSuccess called ===");
-    console.log("isNewUser:", isNewUser);
-    console.log("relationship:", relationship);
-    console.log("userId:", userId);
-    
-    if (isNewUser) {
-      // New user - show onboarding questions
-      console.log("New user detected - preparing to show onboarding questions");
-      
-      const finalRelationship = relationship || "herself";
-      const finalUserId = userId || "";
-      
-      console.log("Setting relationship:", finalRelationship);
-      console.log("Setting userId:", finalUserId);
-      
-      // Set the user data immediately
-      setUserRelationship(finalRelationship);
-      setUserId(finalUserId);
-      
-      // Close auth modal
-      setShowAuthModal(false);
-      
-      // Open onboarding modal after auth modal closes
-      setTimeout(() => {
-        console.log("Opening onboarding modal...");
-        setShowOnboarding(true);
-      }, 300);
-      
-    } else {
-      // Existing user - redirect to /sakhi/try
-      console.log("Existing user - redirecting to /sakhi/try");
-      
-      setShowAuthModal(false);
-      
-      toast({
-        title: "Welcome back!",
-        description: "You're all set to continue your journey.",
-      });
-      
-      setTimeout(() => {
-        setLocation("/sakhi/try");
-      }, 500);
-    }
-  };
-  
-  const { toast } = useToast();
 
   const sakhiFeatures = [
     {
@@ -526,20 +469,7 @@ const Sakhi = () => {
 
       </div>
 
-      {/* Auth Modal */}
-      <AuthModal
-        open={showAuthModal}
-        onClose={() => setShowAuthModal(false)}
-        onAuthSuccess={handleAuthSuccess}
-      />
-
-      {/* Onboarding Questions Modal */}
-      <OnboardingQuestions
-        open={showOnboarding}
-        onClose={() => setShowOnboarding(false)}
-        relationship={userRelationship}
-        userId={userId}
-      />
+      
     </>
   );
 };
