@@ -47,72 +47,28 @@ export default function AuthModal({
 
     try {
       if (isSignUp) {
-        // Validate form data
-        if (!formData.fullName || !formData.email || !formData.password) {
-          toast({
-            title: "Required Fields",
-            description: "Please fill in all fields to create an account.",
-            variant: "destructive",
-          });
-          setIsLoading(false);
-          return;
-        }
+        // Sign up - static demonstration
+        const uniqueId = `user_${Date.now()}`;
 
-        console.log('🔵 Triggering signup webhook...');
-        
-        // Prepare payload in the required format
-        const signupPayload = {
-          Name: formData.fullName,
-          Email: formData.email,
-          Password: formData.password
-        };
+        // Store data in localStorage
+        localStorage.setItem('userName', formData.fullName);
+        localStorage.setItem('userEmail', formData.email);
+        localStorage.setItem('userId', uniqueId);
 
-        console.log('📤 Sending signup data:', signupPayload);
+        // Store userId in state
+        setUserId(uniqueId);
 
-        // Call the signup webhook
-        const webhookResponse = await fetch('https://n8nottobon.duckdns.org/webhook/sakhi_start', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(signupPayload)
+        // Show success toast
+        toast({
+          title: "Account created!",
+          description: "Please tell us about yourself.",
         });
 
-        console.log('🔵 Webhook response status:', webhookResponse.status, webhookResponse.statusText);
+        // Set loading to false and show relationship form
+        setIsLoading(false);
+        setShowRelationship(true);
 
-        if (!webhookResponse.ok) {
-          throw new Error(`Signup failed with status ${webhookResponse.status}`);
-        }
-
-        const responseData = await webhookResponse.json();
-        console.log('✅ Signup response:', responseData);
-
-        // Check if signup was successful
-        if (Array.isArray(responseData) && responseData.length > 0 && responseData[0].message === "Signup Successful") {
-          const userData = responseData[0].user;
-          
-          // Store data in localStorage
-          localStorage.setItem('userName', userData.name);
-          localStorage.setItem('userEmail', userData.email);
-          localStorage.setItem('userId', userData.userId);
-
-          // Store userId in state
-          setUserId(userData.userId);
-
-          // Show success toast
-          toast({
-            title: "Account created!",
-            description: "Please tell us about yourself.",
-          });
-
-          // Set loading to false and show relationship form
-          setIsLoading(false);
-          setShowRelationship(true);
-
-          return;
-        } else {
-          throw new Error('Signup response format unexpected');
-        }
+        return;
       } else {
         // Login - static demonstration
         const loginUserId = `user_${Date.now()}`;
@@ -140,11 +96,9 @@ export default function AuthModal({
     } catch (error) {
       console.error("Authentication error:", error);
 
-      const errorMessage = error instanceof Error ? error.message : "Unable to process your request. Please try again.";
-      
       toast({
         title: isSignUp ? "Signup Failed" : "Login Failed",
-        description: errorMessage,
+        description: "Unable to process your request. Please try again.",
         variant: "destructive",
       });
 
