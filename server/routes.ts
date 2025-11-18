@@ -193,7 +193,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // CLINIC API ENDPOINTS
   // =========================
 
-  // Clinic login endpoint
+  // Clinic login endpoint (static - for development)
   app.post("/api/clinic/login", async (req, res) => {
     try {
       const { username, password } = req.body;
@@ -205,75 +205,28 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
       }
 
-      console.log('🔵 Processing clinic login for:', username);
+      console.log('🔵 Processing static clinic login for:', username);
 
-      // Call n8n webhook for authentication
-      const webhookPayload = {
-        username,
-        password
-      };
+      // Static authentication (hardcoded credentials)
+      const validCredentials = [
+        { username: 'admin', password: 'admin123' },
+        { username: 'clinic', password: 'clinic123' },
+        { username: 'demo', password: 'demo123' }
+      ];
 
-      console.log('📤 Calling n8n webhook for clinic login:', webhookPayload);
+      const isValid = validCredentials.some(
+        cred => cred.username === username && cred.password === password
+      );
 
-      const webhookResponse = await fetch('https://n8nottobon.duckdns.org/webhook/clinic_details', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(webhookPayload)
-      });
-
-      console.log('🔵 Webhook response status:', webhookResponse.status);
-
-      if (!webhookResponse.ok) {
-        console.error('❌ Webhook failed:', webhookResponse.statusText);
-        return res.status(401).json({
-          success: false,
-          error: 'Invalid credentials'
-        });
-      }
-
-      const responseData = await webhookResponse.json();
-      console.log('✅ n8n response:', responseData);
-
-      // Check if login was successful based on n8n response
-      // Expected response formats:
-      // Success: { "success": true } OR [{ "success": true }]
-      // Failure: [{ "user_id": null, "username": "false", "password": "false" }]
-      let isSuccess = false;
-
-      if (Array.isArray(responseData)) {
-        // Handle array format
-        if (responseData.length > 0) {
-          const firstItem = responseData[0];
-
-          // Check for success field
-          if (firstItem.success === true) {
-            isSuccess = true;
-          }
-          // Check if username or password are "false" (failure indicator)
-          else if (firstItem.username === "false" || firstItem.password === "false") {
-            isSuccess = false;
-          }
-        }
-      } else if (responseData && typeof responseData === 'object') {
-        // Handle object format: { "success": true }
-        if ('success' in responseData && responseData.success === true) {
-          isSuccess = true;
-        }
-      }
-
-      console.log('🔍 Login success status:', isSuccess);
-      console.log('🔍 Response data type:', Array.isArray(responseData) ? 'array' : typeof responseData);
-      console.log('🔍 Response data:', JSON.stringify(responseData));
-
-      if (isSuccess) {
+      if (isValid) {
+        console.log('✅ Login successful for:', username);
         return res.json({
           success: true,
           username,
           message: 'Login successful'
         });
       } else {
+        console.log('❌ Invalid credentials for:', username);
         return res.status(401).json({
           success: false,
           error: 'Invalid credentials'
@@ -284,7 +237,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       console.error("❌ Error in clinic login:", error);
       res.status(500).json({
         success: false,
-        error: "Login failed. Please check your credentials."
+        error: "Login failed. Please try again."
       });
     }
   });
