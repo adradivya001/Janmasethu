@@ -104,12 +104,12 @@ const Home = () => {
   return (
     <>
       {/* Responsive Video Section */}
-      <section className="w-full py-4 px-2 sm:px-4 lg:py-0 lg:px-0">
-        <div className="relative w-full mx-auto overflow-hidden rounded-2xl md:rounded-3xl lg:rounded-none group">
-          <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
+      <section className="w-full py-4 px-2 sm:px-4 lg:py-8 lg:px-8">
+        <div className="relative w-full mx-auto overflow-hidden rounded-2xl md:rounded-3xl lg:max-w-5xl group">
+          <div className="relative w-full lg:h-[500px]" style={{ paddingBottom: "56.25%" }}>
             <video
               id="hero-video"
-              className="absolute top-0 left-0 w-full h-full object-cover cursor-pointer"
+              className="absolute top-0 left-0 w-full h-full object-cover cursor-pointer lg:object-contain lg:bg-black"
               autoPlay
               loop
               muted
