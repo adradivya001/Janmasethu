@@ -21,11 +21,10 @@ const Header = () => {
     { key: "nav_knowledge", href: "/knowledge", priority: 2 },
     { key: "nav_treatments", href: "/treatments", priority: 3 },
     { key: "nav_sakhi", href: "/sakhi", priority: 4 },
-    { key: "nav_life", href: "/life-stages", priority: 5 },
-    { key: "nav_success", href: "/success-stories", priority: 6 },
-    { key: "nav_blog", href: "/blog", priority: 7 },
-    { key: "nav_experts", href: "/experts", priority: 8 },
-    { key: "nav_investors", href: "/investors", priority: 10 },
+    { key: "nav_success", href: "/success-stories", priority: 5 },
+    { key: "nav_blog", href: "/blog", priority: 6 },
+    { key: "nav_experts", href: "/experts", priority: 7 },
+    { key: "nav_investors", href: "/investors", priority: 8 },
   ];
 
   // Split navigation into primary (first 4) and secondary (remaining)

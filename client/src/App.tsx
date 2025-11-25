@@ -9,8 +9,6 @@ import Knowledge from "./pages/Knowledge";
 import Article from "./pages/Article";
 import Treatments from "./pages/Treatments";
 import Treatment from "./pages/Treatment";
-import LifeStages from "./pages/LifeStages";
-import LifeStage from "./pages/LifeStage";
 import SuccessStories from "./pages/SuccessStories";
 import Story from "./pages/Story";
 import Blog from "./pages/Blog";
@@ -51,8 +49,6 @@ function Router() {
             <Route path="/knowledge/:slug" component={Article} />
             <Route path="/treatments" component={Treatments} />
             <Route path="/treatments/:slug" component={Treatment} />
-            <Route path="/life-stages" component={LifeStages} />
-            <Route path="/life-stages/:slug" component={LifeStage} />
             <Route path="/success-stories" component={SuccessStories} />
             <Route path="/success-stories/:slug" component={Story} />
             <Route path="/blog" component={Blog} />

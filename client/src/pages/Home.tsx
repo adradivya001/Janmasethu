@@ -136,7 +136,7 @@ const Home = () => {
               <source src="/Janmasethu1.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
-            
+
             {/* Play/Pause Button */}
             <button
               onClick={(e) => {
@@ -834,7 +834,7 @@ const Home = () => {
                   >
                     <div className="relative">
                       <div className="absolute inset-0 w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-orange-400 rounded-full blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
-                      <div className="w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-orange-100 to-orange-200 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg group-hover:shadow-2xl relative z-10 border-2 border-transparent group-hover:border-orange-300 overflow-hidden">
+                      <div className="w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-orange-100 to-orange-200 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg group-hover:shadow-2xl relative z-10 border-2 border-transparent hover:border-orange-300 overflow-hidden">
                         <img 
                           src="/Post-delivery.png" 
                           alt="Post-Delivery & New Parent" 
@@ -1245,7 +1245,7 @@ const Home = () => {
           </div>
         </section>
 
-        
+
 
         {/* Treatments Overview Section */}
         <section className="py-16">
