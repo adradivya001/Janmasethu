@@ -1102,15 +1102,15 @@ const Home = () => {
                 </div>
                 
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground font-serif mb-4">
-                  {lang === "en" && "Evidence-Based Information for Your Journey"}
-                  {lang === "hi" && "आपकी यात्रा के लिए साक्ष्य-आधारित जानकारी"}
-                  {lang === "te" && "మీ ప్రయాణం కోసం సాక్ష్యాధారిత సమాచారం"}
+                  {lang === "en" && "Your Trusted Guide to Parenthood"}
+                  {lang === "hi" && "माता-पिता बनने के लिए आपका विश्वसनीय मार्गदर्शक"}
+                  {lang === "te" && "మాతృత్వానికి మీ విశ్వసనీయ మార్గదర్శి"}
                 </h2>
                 
                 <p className="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto">
-                  {lang === "en" && "Clear, doctor-verified articles organized by what matters to you - from medical facts to nutrition tips, financial planning to emotional support."}
-                  {lang === "hi" && "स्पष्ट, डॉक्टर-सत्यापित लेख जो आपके लिए महत्वपूर्ण विषयों के अनुसार व्यवस्थित हैं - चिकित्सा तथ्यों से लेकर पोषण युक्तियों, वित्तीय योजना से लेकर भावनात्मक समर्थन तक।"}
-                  {lang === "te" && "స్పష్టమైన, డాక్టర్-ధృవీకరించబడిన వ్యాసాలు మీకు ముఖ్యమైన విషయాల ఆధారంగా నిర్వహించబడ్డాయి - వైద్య వాస్తవాల నుండి పోషకాహార చిట్కాలు, ఆర్థిక ప్రణాళిక నుండి భావోద్వేగ మద్దతు వరకు."}
+                  {lang === "en" && "Expert-verified articles covering every aspect of your fertility and pregnancy journey. Browse through different perspectives - medical, emotional, financial, and nutritional - to find the information you need."}
+                  {lang === "hi" && "विशेषज्ञ-सत्यापित लेख जो आपकी प्रजनन और गर्भावस्था यात्रा के हर पहलू को कवर करते हैं। विभिन्न दृष्टिकोणों - चिकित्सा, भावनात्मक, वित्तीय और पोषण - के माध्यम से ब्राउज़ करें और जरूरी जानकारी प्राप्त करें।"}
+                  {lang === "te" && "మీ సంతానోత్పత్తి మరియు గర్భధారణ ప్రయాణంలోని ప్రతి అంశాన్ని కవర్ చేసే నిపుణుల-ధృవీకరించబడిన వ్యాసాలు. వైద్యం, భావోద్వేగం, ఆర్థికం మరియు పోషకాహారం వంటి వివిధ దృక్పథాల ద్వారా బ్రౌజ్ చేసి మీకు అవసరమైన సమాచారాన్ని కనుగొనండి."}
                 </p>
               </div>
 
