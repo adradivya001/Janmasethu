@@ -141,13 +141,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
   };
 
   // --- Scrape endpoint (GET for external schedulers, secured with requireKey)
-  app.get("/api/dev/scrape/medcy", requireKey, async (req, res) => {
+  app.get("/api/dev/scrape/medcy", requireKey, async (_req, res) => {
     try {
-      const max = Number(req.query.max ?? "30");
-      const out = await runMedcyScrape({ max: isNaN(max) ? 30 : max });
-      res.json({ ok: true, ...out });
-    } catch (e: any) {
-      res.status(500).json({ ok: false, error: e.message });
+      const { scrapeMedcy } = await import("./scraper/medcy");
+      await scrapeMedcy();
+      res.json({ ok: true, message: "Scrape completed" });
+    } catch (error: any) {
+      res.status(500).json({ ok: false, error: error.message });
     }
   });
 
@@ -169,7 +169,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const { rows } = await query(
         "SELECT id, about_html FROM public.scraped_doctors WHERE source_site = 'medcyivf.in'"
       );
-      
+
       let updated = 0;
       for (const row of rows) {
         const cleaned = stripAppointment(row.about_html || "");
