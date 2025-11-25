@@ -1436,56 +1436,51 @@ const Home = () => {
             >
               {t("treatments_overview_title")}
             </h2>
-            <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
-              {lang === "en" && "Explore different fertility treatment options to find the right path for you"}
-              {lang === "hi" && "सही रास्ता खोजने के लिए विभिन्न प्रजनन उपचार विकल्पों का अन्वेषण करें"}
-              {lang === "te" && "మీకు సరైన మార్గాన్ని కనుగొనడానికి వివిధ సంతానోత్పత్తి చికిత్స ఎంపికలను అన్వేషించండి"}
-            </p>
           </div>
 
           {/* Horizontal scrollable container */}
           <div className="relative -mx-4 md:mx-0">
-            <div className="overflow-x-auto scrollbar-hide py-6 px-4 md:px-0">
-              <div className="flex gap-6 md:gap-8 min-w-min lg:grid lg:grid-cols-5 lg:gap-6">
+            <div className="overflow-x-auto scrollbar-hide py-8 px-6 md:px-4">
+              <div className="flex gap-6 md:gap-8 min-w-min">
                 {getTreatmentCards().map((treatment, index) => (
                   <Link
                     key={treatment.slug}
                     href={`/treatments/${treatment.slug}`}
-                    className="group flex-shrink-0 lg:flex-shrink"
+                    className="group flex-shrink-0"
                   >
                     <Card
-                      className="w-[280px] sm:w-[320px] md:w-[340px] lg:w-full rounded-3xl p-6 card-shadow hover:shadow-2xl transition-all duration-500 text-center flex flex-col cursor-pointer transform hover:scale-105 border-2 border-transparent hover:border-purple-200 relative overflow-hidden bg-gradient-to-br from-white to-purple-50/30 h-full"
+                      className="w-[280px] sm:w-[320px] md:w-[340px] lg:w-[360px] rounded-3xl p-8 card-shadow hover:shadow-2xl transition-all duration-500 flex flex-col cursor-pointer transform hover:scale-105 border-2 border-transparent hover:border-purple-200 relative overflow-hidden bg-gradient-to-br from-white to-purple-50/30 h-full"
                       data-testid={`card-treatment-${index}`}
                     >
-                      <CardContent className="p-0 flex flex-col h-full justify-center">
-                        {/* Click indicator */}
-                        <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          <div className="w-6 h-6 bg-purple-100 rounded-full flex items-center justify-center">
-                            <ArrowRight className="w-3 h-3 text-purple-600" />
-                          </div>
-                        </div>
-
+                      <CardContent className="p-0 flex flex-col h-full">
                         <div
-                          className={`w-16 h-16 ${treatment.bgColor} rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-md`}
+                          className={`w-16 h-16 ${treatment.bgColor} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-md`}
                         >
                           <treatment.icon
-                            className={`${treatment.iconColor} text-2xl`}
+                            className={`${treatment.iconColor} w-8 h-8`}
                           />
                         </div>
                         <h3
-                          className="text-xl font-bold text-foreground font-serif mb-4 group-hover:text-purple-600 transition-colors"
+                          className="text-2xl font-bold text-foreground font-serif mb-4 group-hover:text-purple-600 transition-colors"
                           data-testid={`text-treatment-name-${index}`}
                         >
                           {treatment.name}
                         </h3>
+                        <p
+                          className="text-muted-foreground flex-grow mb-6"
+                          data-testid={`text-treatment-desc-${index}`}
+                        >
+                          {treatment.description}
+                        </p>
 
                         {/* Call to action */}
-                        <div className="flex items-center justify-center mt-auto">
+                        <div className="flex items-center justify-between mt-auto">
                           <span className="text-sm text-purple-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                             {lang === "en" && "Learn more"}
                             {lang === "hi" && "और जानें"}
                             {lang === "te" && "మరింత తెలుసుకోండి"}
                           </span>
+                          <ArrowRight className="w-5 h-5 text-purple-600 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
                         </div>
                       </CardContent>
                     </Card>
@@ -1494,8 +1489,8 @@ const Home = () => {
               </div>
             </div>
 
-            {/* Scroll indicator for mobile */}
-            <div className="flex justify-center mt-4 lg:hidden">
+            {/* Scroll indicator for mobile, tablet, and laptop */}
+            <div className="flex justify-center mt-4 xl:hidden">
               <div className="flex gap-2 items-center text-xs text-muted-foreground">
                 <ArrowRight className="w-3 h-3 animate-bounce" style={{ animationDirection: 'alternate' }} />
                 <span>Swipe to see more</span>
