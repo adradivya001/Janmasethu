@@ -141,11 +141,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
   };
 
   // --- Scrape endpoint (GET for external schedulers, secured with requireKey)
-  app.get("/api/dev/scrape/medcy", requireKey, async (_req, res) => {
+  app.get("/api/dev/scrape/medcy", requireKey, async (req, res) => {
     try {
-      const { scrapeMedcy } = await import("./scraper/medcy");
-      await scrapeMedcy();
-      res.json({ ok: true, message: "Scrape completed" });
+      const { runMedcyScrape } = await import("./scraper/medcy");
+      const max = Number(req.query.max ?? "8");
+      const out = await runMedcyScrape({ max: isNaN(max) ? 8 : max });
+      res.json({ ok: true, ...out });
     } catch (error: any) {
       res.status(500).json({ ok: false, error: error.message });
     }
