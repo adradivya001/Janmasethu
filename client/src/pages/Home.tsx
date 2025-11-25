@@ -1436,6 +1436,11 @@ const Home = () => {
             >
               {t("treatments_overview_title")}
             </h2>
+            <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
+              {lang === "en" && "Explore different fertility treatment options to find the right path for you"}
+              {lang === "hi" && "सही रास्ता खोजने के लिए विभिन्न प्रजनन उपचार विकल्पों का अन्वेषण करें"}
+              {lang === "te" && "మీకు సరైన మార్గాన్ని కనుగొనడానికి వివిధ సంతానోత్పత్తి చికిత్స ఎంపికలను అన్వేషించండి"}
+            </p>
           </div>
 
           {/* Horizontal scrollable container */}
