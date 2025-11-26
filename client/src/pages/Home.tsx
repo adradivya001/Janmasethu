@@ -1,6 +1,5 @@
 import { Link, useLocation } from "wouter";
-import React, { useState } from "react";
-import { LoadingScreen } from "../components/LoadingScreen";
+import React from "react";
 import {
   ArrowRight,
   Heart,
@@ -55,19 +54,9 @@ const Home = () => {
   const { t, lang } = useLanguage();
   const [, setLocation] = useLocation();
   const [isVideoPlaying, setIsVideoPlaying] = React.useState(true);
-  const [isLoading, setIsLoading] = useState(true);
-  const [showContent, setShowContent] = useState(false);
 
   const featuredArticles = articles.slice(0, 4);
   const featuredStories = stories.slice(0, 3);
-
-  const handleLoadingComplete = () => {
-    setIsLoading(false);
-    // Slight delay before showing content for smooth transition
-    setTimeout(() => {
-      setShowContent(true);
-    }, 100);
-  };
 
   const getTreatmentCards = () => [
     {
@@ -114,9 +103,6 @@ const Home = () => {
 
   return (
     <>
-      {isLoading && <LoadingScreen onLoadingComplete={handleLoadingComplete} />}
-      
-      <div className={`${showContent ? 'animate-pageContentFadeIn' : 'opacity-0'}`}>
       {/* Responsive Video Section */}
       <section className="w-full py-4 px-2 sm:px-4 lg:py-0 lg:px-0 pt-20 md:pt-24">
         <div className="relative w-full mx-auto overflow-hidden rounded-2xl md:rounded-3xl lg:rounded-none group transition-all duration-700 ease-in-out">
@@ -1505,7 +1491,6 @@ const Home = () => {
             </Card>
           </div>
         </section>
-      </div>
       </div>
     </>
   );
