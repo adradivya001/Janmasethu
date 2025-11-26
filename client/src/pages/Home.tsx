@@ -1,6 +1,5 @@
 import { Link, useLocation } from "wouter";
 import React from "react";
-import LoadingScreen from "../components/LoadingScreen";
 import {
   ArrowRight,
   Heart,
@@ -55,44 +54,9 @@ const Home = () => {
   const { t, lang } = useLanguage();
   const [, setLocation] = useLocation();
   const [isVideoPlaying, setIsVideoPlaying] = React.useState(true);
-  const [showLoading, setShowLoading] = React.useState(true);
-  const [pageLoaded, setPageLoaded] = React.useState(false);
 
   const featuredArticles = articles.slice(0, 4);
   const featuredStories = stories.slice(0, 3);
-
-  // Handle loading completion
-  const handleLoadingComplete = () => {
-    setShowLoading(false);
-    setPageLoaded(true);
-  };
-
-  // Intersection Observer for scroll animations
-  React.useEffect(() => {
-    if (!pageLoaded) return;
-
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -100px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, observerOptions);
-
-    // Observe all animated elements
-    const animatedElements = document.querySelectorAll(
-      '.scroll-fade-in, .scroll-slide-left, .scroll-slide-right, .scroll-scale-up, .text-reveal'
-    );
-
-    animatedElements.forEach((el) => observer.observe(el));
-
-    return () => observer.disconnect();
-  }, [pageLoaded]);
 
   const getTreatmentCards = () => [
     {
@@ -139,13 +103,8 @@ const Home = () => {
 
   return (
     <>
-      {/* Loading Screen */}
-      {showLoading && <LoadingScreen onLoadingComplete={handleLoadingComplete} />}
-
-      {/* Main Content - Hidden until loading completes */}
-      <div className={`transition-opacity duration-500 ${pageLoaded ? 'opacity-100' : 'opacity-0'}`}>
       {/* Responsive Video Section */}
-      <section className="w-full py-4 px-2 sm:px-4 lg:py-0 lg:px-0 pt-20 md:pt-24 scroll-fade-in">
+      <section className="w-full py-4 px-2 sm:px-4 lg:py-0 lg:px-0 pt-20 md:pt-24">
         <div className="relative w-full mx-auto overflow-hidden rounded-2xl md:rounded-3xl lg:rounded-none group transition-all duration-700 ease-in-out">
           <div className="relative w-full" style={{ paddingBottom: "45%" }}>
             <video
@@ -218,7 +177,7 @@ const Home = () => {
         {/* Hero Section */}
         <section className="text-center py-16 relative">
           {/* Trust Badge - Centered at top */}
-          <div className="flex justify-center mb-8 scroll-fade-in">
+          <div className="flex justify-center mb-8">
             <div className="inline-flex items-center space-x-2 bg-white rounded-full px-4 py-2 card-shadow">
               <CheckCircle className="w-4 h-4 text-green-500" />
               <span
@@ -232,7 +191,7 @@ const Home = () => {
 
           {/* Hero Title - On its own line below */}
           <h1
-            className="text-4xl md:text-5xl lg:text-6xl font-bold gradient-text font-serif mb-6 leading-relaxed text-reveal"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold gradient-text font-serif mb-6 leading-relaxed"
             data-testid="text-hero-title"
           >
             <span dangerouslySetInnerHTML={{ __html: t("hero_title") }} />
@@ -240,14 +199,14 @@ const Home = () => {
 
           {/* Hero Subtitle */}
           <p
-            className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto scroll-fade-in stagger-1"
+            className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto"
             data-testid="text-hero-subtitle"
           >
             {t("hero_sub")}
           </p>
 
           {/* Animated Line Morphing Effect */}
-          <div className="relative mb-8 scroll-scale-up stagger-2">
+          <div className="relative mb-8">
             <svg
               className="w-full h-24 mx-auto animated-line"
               viewBox="0 0 400 100"
@@ -324,7 +283,7 @@ const Home = () => {
           </div>
 
           {/* CTA Buttons - Mobile Responsive */}
-          <div className="flex flex-col gap-4 items-center max-w-md mx-auto px-4 sm:max-w-none sm:flex-row sm:justify-center sm:gap-6 scroll-fade-in stagger-3">
+          <div className="flex flex-col gap-4 items-center max-w-md mx-auto px-4 sm:max-w-none sm:flex-row sm:justify-center sm:gap-6">
             <Link href="/sakhi" className="w-full sm:w-auto">
               <Button
                 className="gradient-button text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full font-semibold text-base sm:text-lg hover:shadow-lg transition-all duration-300 group overflow-hidden relative w-full sm:w-auto min-w-0 sm:min-w-[200px]"
@@ -368,7 +327,7 @@ const Home = () => {
         <WhoWeServe />
 
         {/* Parenthood Journey Strip */}
-        <section className="py-16 bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50 rounded-3xl mx-4 relative overflow-hidden scroll-fade-in">
+        <section className="py-16 bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50 rounded-3xl mx-4 relative overflow-hidden">
           {/* Animated background patterns */}
           <div className="absolute inset-0 opacity-5">
             <div className="absolute top-10 left-10 w-32 h-32 bg-purple-400 rounded-full blur-3xl animate-pulse"></div>
@@ -987,7 +946,7 @@ const Home = () => {
           </section>
 
         {/* Sakhi Preview Section */}
-        <section className="py-16 scroll-fade-in">
+        <section className="py-16">
           <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-3xl p-8 md:p-12">
             <div className="sakhi-preview-mobile grid lg:grid-cols-2 gap-12 items-center">
               <div className="mobile-text-center lg:text-left">
@@ -1128,7 +1087,7 @@ const Home = () => {
         </section>
 
         {/* Knowledge Hub Introduction Section */}
-        <section className="py-16 scroll-slide-right">
+        <section className="py-16">
           <div className="bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50 rounded-3xl p-8 md:p-12">
             <div className="max-w-6xl mx-auto">
               {/* Section Header */}
@@ -1307,7 +1266,7 @@ const Home = () => {
 
 
         {/* Treatments Overview Section */}
-        <section className="py-16 scroll-slide-left">
+        <section className="py-16">
           <div className="text-center mb-12">
             <h2
               className="text-4xl font-bold text-foreground font-serif mb-4"
@@ -1379,7 +1338,7 @@ const Home = () => {
         </section>
 
         {/* FAQ Section */}
-        <section className="py-4 scroll-fade-in">
+        <section className="py-4">
           <div className="text-center mb-3">
             <h2
               className="text-xl md:text-2xl font-bold text-foreground font-serif mb-1"
@@ -1532,7 +1491,6 @@ const Home = () => {
             </Card>
           </div>
         </section>
-      </div>
       </div>
     </>
   );
