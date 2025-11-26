@@ -54,6 +54,16 @@ const Home = () => {
   const { t, lang } = useLanguage();
   const [, setLocation] = useLocation();
   const [isVideoPlaying, setIsVideoPlaying] = React.useState(true);
+  const [isLoading, setIsLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    // Simulate loading time
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000); // Adjust loading time as needed
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const featuredArticles = articles.slice(0, 4);
   const featuredStories = stories.slice(0, 3);
@@ -100,6 +110,18 @@ const Home = () => {
       bgColor: "bg-cyan-100",
     },
   ];
+
+  if (isLoading) {
+    return (
+      <div className="fixed inset-0 flex items-center justify-center bg-gradient-to-br from-purple-600 to-pink-500 z-50">
+        <img
+          src="/logo.png" // Assuming your logo is in the public folder
+          alt="Logo"
+          className="w-48 h-48 animate-bounce" // Adjust size and animation as needed
+        />
+      </div>
+    );
+  }
 
   return (
     <>
@@ -156,10 +178,10 @@ const Home = () => {
               aria-label={isVideoPlaying ? "Pause video" : "Play video"}
             >
               {isVideoPlaying ? (
-                <svg 
-                  className="w-5 h-5 sm:w-6 sm:h-6 text-purple-600" 
-                  fill="none" 
-                  stroke="currentColor" 
+                <svg
+                  className="w-5 h-5 sm:w-6 sm:h-6 text-purple-600"
+                  fill="none"
+                  stroke="currentColor"
                   viewBox="0 0 24 24"
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 9v6m4-6v6" />
@@ -362,9 +384,9 @@ const Home = () => {
                     <div className="relative">
                       <div className="absolute inset-0 w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-green-400 rounded-full blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
                       <div className="w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-green-100 to-green-200 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg group-hover:shadow-2xl relative z-10 border-2 border-transparent group-hover:border-green-300 overflow-hidden">
-                        <img 
-                          src="/thinking of parenthood.png" 
-                          alt="Thinking of Parenthood" 
+                        <img
+                          src="/thinking of parenthood.png"
+                          alt="Thinking of Parenthood"
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                         />
                       </div>
@@ -484,9 +506,9 @@ const Home = () => {
                     <div className="relative">
                       <div className="absolute inset-0 w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-pink-400 rounded-full blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
                       <div className="w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-pink-100 to-pink-200 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg group-hover:shadow-2xl relative z-10 border-2 border-transparent group-hover:border-pink-300 overflow-hidden">
-                        <img 
-                          src="/Trying naturally.png" 
-                          alt="Trying Naturally" 
+                        <img
+                          src="/Trying naturally.png"
+                          alt="Trying Naturally"
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                         />
                       </div>
@@ -599,9 +621,9 @@ const Home = () => {
                     <div className="relative">
                       <div className="absolute inset-0 w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-blue-400 rounded-full blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
                       <div className="w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg group-hover:shadow-2xl relative z-10 border-2 border-transparent group-hover:border-blue-300 overflow-hidden">
-                        <img 
-                          src="/Exploring option.png" 
-                          alt="Exploring Options" 
+                        <img
+                          src="/Exploring option.png"
+                          alt="Exploring Options"
                           className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500"
                         />
                       </div>
@@ -720,9 +742,9 @@ const Home = () => {
                     <div className="relative">
                       <div className="absolute inset-0 w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-purple-400 rounded-full blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
                       <div className="w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-purple-100 to-purple-200 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg group-hover:shadow-2xl relative z-10 border-2 border-transparent group-hover:border-purple-300 overflow-hidden">
-                        <img 
-                          src="/Pregnancy.png" 
-                          alt="Pregnancy" 
+                        <img
+                          src="/Pregnancy.png"
+                          alt="Pregnancy"
                           className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500"
                         />
                       </div>
@@ -835,9 +857,9 @@ const Home = () => {
                     <div className="relative">
                       <div className="absolute inset-0 w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-orange-400 rounded-full blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
                       <div className="w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-orange-100 to-orange-200 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg group-hover:shadow-2xl relative z-10 border-2 border-transparent hover:border-orange-300 overflow-hidden">
-                        <img 
-                          src="/Post-delivery.png" 
-                          alt="Post-Delivery & New Parent" 
+                        <img
+                          src="/Post-delivery.png"
+                          alt="Post-Delivery & New Parent"
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                         />
                       </div>
@@ -1100,13 +1122,13 @@ const Home = () => {
                     {lang === "te" && "జ్ఞాన కేంద్రం"}
                   </span>
                 </div>
-                
+
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground font-serif mb-4">
                   {lang === "en" && "Your Trusted Guide to Parenthood"}
                   {lang === "hi" && "माता-पिता बनने के लिए आपका विश्वसनीय मार्गदर्शक"}
                   {lang === "te" && "మాతృత్వానికి మీ విశ్వసనీయ మార్గదర్శి"}
                 </h2>
-                
+
                 <p className="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto">
                   {lang === "en" && "Expert-verified articles covering every aspect of your fertility and pregnancy journey. Browse through different perspectives - medical, emotional, financial, and nutritional - to find the information you need."}
                   {lang === "hi" && "विशेषज्ञ-सत्यापित लेख जो आपकी प्रजनन और गर्भावस्था यात्रा के हर पहलू को कवर करते हैं। विभिन्न दृष्टिकोणों - चिकित्सा, भावनात्मक, वित्तीय और पोषण - के माध्यम से ब्राउज़ करें और जरूरी जानकारी प्राप्त करें।"}
@@ -1227,7 +1249,7 @@ const Home = () => {
                           </h3>
                           <p className="text-sm text-muted-foreground mb-3">
                             {lang === "en" && "India-specific food guides, safe eating practices, and lifestyle tips for preconception through postpartum"}
-                            {lang === "hi" && "भारत-विशिष्ट खाद्य गाइड, सुरक्षित खाने की प्रथाएं और गर्भधारण से प्रसवोत्तर तक जीवनशैली युक्तियां"}
+                            {lang === "hi" && "भारत-विशिष्ट खाद्य गाइड, सुरक्षित खाने की प्रथाएं और जीवनशैली युक्तियां"}
                             {lang === "te" && "భారత-నిర్దిష్ట ఆహార మార్గదర్శకాలు, సురక్షిత తినే పద్ధతులు మరియు గర్భధారణ నుండి ప్రసవానంతర వరకు జీవనశైలి చిట్కాలు"}
                           </p>
                           <div className="flex items-center text-orange-600 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
@@ -1260,9 +1282,6 @@ const Home = () => {
             </div>
           </div>
         </section>
-
-        
-
 
 
         {/* Treatments Overview Section */}
