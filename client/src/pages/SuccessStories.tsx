@@ -1,16 +1,14 @@
 import { Link } from "wouter";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { MapPin, Heart } from "lucide-react";
 import { useLanguage } from "../i18n/LanguageProvider";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { stories } from "@/data/stories";
-import StorySubmissionForm from "@/components/StorySubmissionForm";
 
 const SuccessStories = () => {
   const { t, lang } = useLanguage();
-  const [isFormOpen, setIsFormOpen] = useState(false);
 
   // Scroll to top when component mounts
   useEffect(() => {
@@ -32,9 +30,7 @@ const SuccessStories = () => {
   };
 
   return (
-    <>
-      <StorySubmissionForm open={isFormOpen} onOpenChange={setIsFormOpen} />
-      <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8">
       {/* Page Header */}
       <div className="text-center mb-16">
         <h1
@@ -152,13 +148,14 @@ const SuccessStories = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button
-                onClick={() => setIsFormOpen(true)}
-                className="gradient-button-secondary text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
-                data-testid="button-share-story"
-              >
-                {t("share_story_button")}
-              </Button>
+              <Link href="/contact">
+                <Button
+                  className="gradient-button-secondary text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300"
+                  data-testid="button-share-story"
+                >
+                  {t("share_story_button")}
+                </Button>
+              </Link>
               
               <div className="text-sm text-muted-foreground flex items-center gap-2">
                 <div className="flex -space-x-2">
@@ -172,8 +169,7 @@ const SuccessStories = () => {
           </div>
         </div>
       </section>
-      </div>
-    </>
+    </div>
   );
 };
 
