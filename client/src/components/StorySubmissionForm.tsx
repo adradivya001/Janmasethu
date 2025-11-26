@@ -46,6 +46,7 @@ const outcomes = [
 export default function StorySubmissionForm({ open, onClose }: StorySubmissionFormProps) {
   const { toast } = useToast();
   const [showConfetti, setShowConfetti] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
   const [storyData, setStoryData] = useState<StoryData>({
     isAnonymous: false,
     name: "",
@@ -96,13 +97,12 @@ export default function StorySubmissionForm({ open, onClose }: StorySubmissionFo
     }
 
     setShowConfetti(true);
+    setShowSuccess(true);
+    
     setTimeout(() => {
-      toast({
-        title: "Story Published! 💝",
-        description: "Your journey will inspire others.",
-      });
       onClose();
       setShowConfetti(false);
+      setShowSuccess(false);
       // Reset form
       setStoryData({
         isAnonymous: false,
@@ -118,7 +118,13 @@ export default function StorySubmissionForm({ open, onClose }: StorySubmissionFo
         messageToOthers: "",
         uploadedImage: null,
       });
-    }, 2000);
+    }, 4000);
+  };
+
+  const handleClose = () => {
+    if (!showSuccess) {
+      onClose();
+    }
   };
 
   const toggleEmotion = (emotion: string) => {
@@ -140,7 +146,7 @@ export default function StorySubmissionForm({ open, onClose }: StorySubmissionFo
   };
 
   return (
-    <Dialog open={open} onOpenChange={onClose}>
+    <Dialog open={open} onOpenChange={handleClose}>
       <DialogContent className="sm:max-w-3xl max-w-[95vw] w-full max-h-[95vh] sm:max-h-[90vh] overflow-y-auto p-0 bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 border-0 rounded-3xl">
         {/* Confetti Effect */}
         {showConfetti && (
@@ -169,28 +175,63 @@ export default function StorySubmissionForm({ open, onClose }: StorySubmissionFo
           </div>
         )}
 
-        {/* Header */}
-        <DialogHeader className="px-6 sm:px-8 pt-6 sm:pt-8 pb-4 border-b border-pink-100 sticky top-0 bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 z-10">
-          <div className="flex items-center justify-between">
-            <DialogTitle className="text-2xl sm:text-3xl font-serif bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 bg-clip-text text-transparent">
-              Share Your Journey
-            </DialogTitle>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={onClose}
-              className="rounded-full hover:bg-pink-100"
-            >
-              <X className="w-5 h-5" />
-            </Button>
-          </div>
-          <p className="text-sm text-muted-foreground">
-            Your story can guide, heal, and bring hope to another family. 🌸
-          </p>
-        </DialogHeader>
+        {showSuccess ? (
+          /* Success Message */
+          <div className="flex flex-col items-center justify-center min-h-[60vh] px-6 sm:px-8 py-12 text-center">
+            <div className="mb-8 animate-fadeIn">
+              <div className="w-24 h-24 sm:w-32 sm:h-32 mx-auto bg-gradient-to-br from-pink-400 via-purple-400 to-blue-400 rounded-full flex items-center justify-center mb-6 animate-pulse">
+                <Heart className="w-12 h-12 sm:w-16 sm:h-16 text-white fill-white" />
+              </div>
+              
+              <h2 className="text-3xl sm:text-4xl font-serif bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 bg-clip-text text-transparent mb-4">
+                Thank You for Sharing! 💝
+              </h2>
+              
+              <p className="text-lg sm:text-xl text-gray-700 max-w-2xl mx-auto mb-4">
+                Your story has been published and will inspire countless families on their journey.
+              </p>
+              
+              <p className="text-base text-gray-600 max-w-xl mx-auto">
+                Your courage in sharing will bring hope, comfort, and guidance to others who need it most.
+              </p>
+            </div>
 
-        {/* Form Container */}
-        <form onSubmit={handleSubmit} className="px-4 sm:px-8 py-6 space-y-8">
+            <div className="flex flex-wrap gap-3 justify-center items-center text-sm text-gray-500">
+              <div className="flex items-center gap-2">
+                <Sparkles className="w-5 h-5 text-purple-500" />
+                <span>Story Published</span>
+              </div>
+              <div className="w-1 h-1 bg-gray-400 rounded-full"></div>
+              <div className="flex items-center gap-2">
+                <Heart className="w-5 h-5 text-pink-500" />
+                <span>Helping Others</span>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <>
+            {/* Header */}
+            <DialogHeader className="px-6 sm:px-8 pt-6 sm:pt-8 pb-4 border-b border-pink-100 sticky top-0 bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 z-10">
+              <div className="flex items-center justify-between">
+                <DialogTitle className="text-2xl sm:text-3xl font-serif bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 bg-clip-text text-transparent">
+                  Share Your Journey
+                </DialogTitle>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={handleClose}
+                  className="rounded-full hover:bg-pink-100"
+                >
+                  <X className="w-5 h-5" />
+                </Button>
+              </div>
+              <p className="text-sm text-muted-foreground">
+                Your story can guide, heal, and bring hope to another family. 🌸
+              </p>
+            </DialogHeader>
+
+            {/* Form Container */}
+            <form onSubmit={handleSubmit} className="px-4 sm:px-8 py-6 space-y-8">
           {/* Welcome Message */}
           <div className="flex gap-3 items-start animate-fadeIn">
             <div className="w-10 h-10 rounded-full bg-gradient-to-br from-pink-400 to-purple-400 flex items-center justify-center flex-shrink-0">
@@ -506,16 +547,64 @@ export default function StorySubmissionForm({ open, onClose }: StorySubmissionFo
             </div>
           </div>
 
+          {/* Final Review Section */}
+          <div className="space-y-4 animate-fadeIn">
+            <h3 className="text-lg font-semibold text-purple-700 flex items-center gap-2">
+              <Sparkles className="w-5 h-5" />
+              Review & Publish
+            </h3>
+
+            <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-6 space-y-4 border-2 border-purple-100">
+              <div className="flex items-start gap-3">
+                <Heart className="w-6 h-6 text-pink-500 flex-shrink-0 mt-1" />
+                <div className="flex-1">
+                  <h4 className="font-semibold text-gray-800 mb-2">Your Story Preview</h4>
+                  <div className="space-y-3 text-sm text-gray-700">
+                    <div>
+                      <span className="font-medium">Shared as:</span>{" "}
+                      {storyData.isAnonymous ? "Anonymous" : storyData.name || "Not specified"}
+                    </div>
+                    <div>
+                      <span className="font-medium">Location:</span> {storyData.location || "Not specified"}
+                    </div>
+                    <div>
+                      <span className="font-medium">Journey Duration:</span> {storyData.duration || "Not specified"}
+                    </div>
+                    <div>
+                      <span className="font-medium">Emotions:</span>{" "}
+                      {storyData.emotions.length > 0 ? storyData.emotions.join(", ") : "None selected"}
+                    </div>
+                    <div>
+                      <span className="font-medium">Treatments:</span>{" "}
+                      {storyData.treatments.length > 0 ? storyData.treatments.join(", ") : "None selected"}
+                    </div>
+                    <div>
+                      <span className="font-medium">Current Status:</span> {storyData.outcome || "Not specified"}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="pt-3 border-t border-purple-200">
+                <p className="text-xs text-gray-600 italic">
+                  By publishing, you agree to share your story to help and inspire others on their fertility journey.
+                </p>
+              </div>
+            </div>
+          </div>
+
           {/* Submit Button */}
           <div className="flex justify-center pt-4 pb-2">
             <Button
               type="submit"
               className="gradient-button text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 text-base sm:text-lg"
             >
-              Publish My Story 💝
+              Review & Publish My Story 💝
             </Button>
           </div>
-        </form>
+            </form>
+          </>
+        )}
       </DialogContent>
     </Dialog>
   );
