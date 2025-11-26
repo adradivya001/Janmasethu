@@ -172,56 +172,114 @@
   backface-visibility: hidden;
 }
 
-:root {
-  --background: hsl(221, 83%, 97%);
-  --foreground: hsl(220, 14%, 11%);
-  --card: hsl(0, 0%, 100%);
-  --card-foreground: hsl(220, 14%, 11%);
-  --popover: hsl(0, 0%, 100%);
-  --popover-foreground: hsl(220, 14%, 11%);
-  --primary: hsl(253, 82%, 66%);
-  --primary-foreground: hsl(0, 0%, 100%);
-  --secondary: hsl(210, 40%, 96%);
-  --secondary-foreground: hsl(220, 9%, 46%);
-  --muted: hsl(210, 40%, 96%);
-  --muted-foreground: hsl(220, 9%, 46%);
-  --accent: hsl(210, 40%, 96%);
-  --accent-foreground: hsl(220, 9%, 46%);
-  --destructive: hsl(0, 84%, 60%);
-  --destructive-foreground: hsl(0, 0%, 100%);
-  --border: hsl(220, 13%, 91%);
-  --input: hsl(220, 13%, 91%);
-  --ring: hsl(253, 82%, 66%);
-  --chart-1: hsl(253, 82%, 66%);
-  --chart-2: hsl(159, 78%, 36%);
-  --chart-3: hsl(42, 93%, 56%);
-  --chart-4: hsl(147, 79%, 42%);
-  --chart-5: hsl(341, 75%, 51%);
-  --sidebar: hsl(180, 7%, 97%);
-  --sidebar-foreground: hsl(220, 14%, 11%);
-  --sidebar-primary: hsl(253, 82%, 66%);
-  --sidebar-primary-foreground: hsl(0, 0%, 100%);
-  --sidebar-accent: hsl(210, 40%, 96%);
-  --sidebar-accent-foreground: hsl(220, 9%, 46%);
-  --sidebar-border: hsl(220, 13%, 91%);
-  --sidebar-ring: hsl(253, 82%, 66%);
-  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
-  --font-serif: 'Georgia', 'Times New Roman', serif;
-  --font-mono: 'Menlo', monospace;
-  --radius: 1.5rem;
-  --shadow-2xs: 0px 2px 0px 0px hsl(253, 82%, 66%, 0.00);
-  --shadow-xs: 0px 2px 0px 0px hsl(253, 82%, 66%, 0.00);
-  --shadow-sm: 0px 2px 0px 0px hsl(253, 82%, 66%, 0.00), 0px 1px 2px -1px hsl(253, 82%, 66%, 0.00);
-  --shadow: 0px 2px 0px 0px hsl(253, 82%, 66%, 0.00), 0px 1px 2px -1px hsl(253, 82%, 66%, 0.00);
-  --shadow-md: 0px 2px 0px 0px hsl(253, 82%, 66%, 0.00), 0px 2px 4px -1px hsl(253, 82%, 66%, 0.00);
-  --shadow-lg: 0px 2px 0px 0px hsl(253, 82%, 66%, 0.00), 0px 4px 6px -1px hsl(253, 82%, 66%, 0.00);
-  --shadow-xl: 0px 2px 0px 0px hsl(253, 82%, 66%, 0.00), 0px 8px 10px -1px hsl(253, 82%, 66%, 0.00);
-  --shadow-2xl: 0px 2px 0px 0px hsl(253, 82%, 66%, 0.00);
-  --tracking-normal: 0em;
-  --spacing: 0.25rem;
-}
-
 @layer base {
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slide-in-right {
+    from {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slide-in-left {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.6s ease-out;
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.6s ease-out;
+  }
+
+  .animate-slide-in-right {
+    animation: slide-in-right 0.5s ease-out;
+  }
+
+  .animate-slide-in-left {
+    animation: slide-in-left 0.5s ease-out;
+  }
+
+  :root {
+    --background: hsl(221, 83%, 97%);
+    --foreground: hsl(220, 14%, 11%);
+    --card: hsl(0, 0%, 100%);
+    --card-foreground: hsl(220, 14%, 11%);
+    --popover: hsl(0, 0%, 100%);
+    --popover-foreground: hsl(220, 14%, 11%);
+    --primary: hsl(253, 82%, 66%);
+    --primary-foreground: hsl(0, 0%, 100%);
+    --secondary: hsl(210, 40%, 96%);
+    --secondary-foreground: hsl(220, 9%, 46%);
+    --muted: hsl(210, 40%, 96%);
+    --muted-foreground: hsl(220, 9%, 46%);
+    --accent: hsl(210, 40%, 96%);
+    --accent-foreground: hsl(220, 9%, 46%);
+    --destructive: hsl(0, 84%, 60%);
+    --destructive-foreground: hsl(0, 0%, 100%);
+    --border: hsl(220, 13%, 91%);
+    --input: hsl(220, 13%, 91%);
+    --ring: hsl(253, 82%, 66%);
+    --chart-1: hsl(253, 82%, 66%);
+    --chart-2: hsl(159, 78%, 36%);
+    --chart-3: hsl(42, 93%, 56%);
+    --chart-4: hsl(147, 79%, 42%);
+    --chart-5: hsl(341, 75%, 51%);
+    --sidebar: hsl(180, 7%, 97%);
+    --sidebar-foreground: hsl(220, 14%, 11%);
+    --sidebar-primary: hsl(253, 82%, 66%);
+    --sidebar-primary-foreground: hsl(0, 0%, 100%);
+    --sidebar-accent: hsl(210, 40%, 96%);
+    --sidebar-accent-foreground: hsl(220, 9%, 46%);
+    --sidebar-border: hsl(220, 13%, 91%);
+    --sidebar-ring: hsl(253, 82%, 66%);
+    --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    --font-serif: 'Georgia', 'Times New Roman', serif;
+    --font-mono: 'Menlo', monospace;
+    --radius: 1.5rem;
+    --shadow-2xs: 0px 2px 0px 0px hsl(253, 82%, 66%, 0.00);
+    --shadow-xs: 0px 2px 0px 0px hsl(253, 82%, 66%, 0.00);
+    --shadow-sm: 0px 2px 0px 0px hsl(253, 82%, 66%, 0.00), 0px 1px 2px -1px hsl(253, 82%, 66%, 0.00);
+    --shadow: 0px 2px 0px 0px hsl(253, 82%, 66%, 0.00), 0px 1px 2px -1px hsl(253, 82%, 66%, 0.00);
+    --shadow-md: 0px 2px 0px 0px hsl(253, 82%, 66%, 0.00), 0px 2px 4px -1px hsl(253, 82%, 66%, 0.00);
+    --shadow-lg: 0px 2px 0px 0px hsl(253, 82%, 66%, 0.00), 0px 4px 6px -1px hsl(253, 82%, 66%, 0.00);
+    --shadow-xl: 0px 2px 0px 0px hsl(253, 82%, 66%, 0.00), 0px 8px 10px -1px hsl(253, 82%, 66%, 0.00);
+    --shadow-2xl: 0px 2px 0px 0px hsl(253, 82%, 66%, 0.00);
+    --tracking-normal: 0em;
+    --spacing: 0.25rem;
+  }
+
   * {
     @apply border-border;
   }
@@ -1375,7 +1433,7 @@ textarea:focus-visible {
   #hero-video {
     animation: videoFadeIn 1s ease-in-out;
   }
-  
+
   /* Maintain 16:9 aspect ratio within hero section on desktop */
   .lg\:rounded-none {
     max-height: calc(100vh - 200px);
@@ -1761,7 +1819,7 @@ textarea:focus-visible {
     font-size: 0.7rem;
     line-height: 1.4;
   }
-  
+
   .faq-accordion-trigger {
     padding: 0.4rem 0.6rem;
   }
