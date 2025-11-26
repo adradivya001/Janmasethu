@@ -112,8 +112,8 @@ const StorySubmissionForm = ({ open, onOpenChange }: StorySubmissionFormProps) =
   if (submitted) {
     return (
       <Dialog open={open} onOpenChange={onOpenChange}>
-        <DialogContent className="max-w-md">
-          <div className="text-center py-12 px-4">
+        <DialogContent className="max-w-md w-full h-full sm:h-auto sm:rounded-3xl rounded-none">
+          <div className="text-center py-8 sm:py-12 px-4 sm:px-6">
             <div className="relative mb-6">
               <div className="absolute inset-0 bg-gradient-to-r from-pink-400/20 via-purple-400/20 to-orange-400/20 blur-3xl animate-pulse"></div>
               <CheckCircle className="w-24 h-24 text-green-500 mx-auto relative animate-bounce" />
@@ -142,23 +142,23 @@ const StorySubmissionForm = ({ open, onOpenChange }: StorySubmissionFormProps) =
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto sm:max-w-2xl w-full h-full sm:h-auto sm:max-h-[90vh] sm:rounded-3xl rounded-none p-0 sm:p-6">
         {/* Header */}
-        <div className="text-center mb-6 pt-6">
-          <div className="relative mb-4">
+        <div className="text-center mb-4 sm:mb-6 pt-4 sm:pt-6 px-4 sm:px-0">
+          <div className="relative mb-3 sm:mb-4">
             <div className="absolute inset-0 bg-gradient-to-r from-pink-400/20 via-purple-400/20 to-orange-400/20 blur-2xl"></div>
-            <Heart className="w-16 h-16 text-pink-500 mx-auto relative animate-pulse" />
+            <Heart className="w-12 h-12 sm:w-16 sm:h-16 text-pink-500 mx-auto relative animate-pulse" />
           </div>
-          <h2 className="text-3xl font-bold text-foreground font-serif mb-2 animate-fade-in">
+          <h2 className="text-2xl sm:text-3xl font-bold text-foreground font-serif mb-2 animate-fade-in">
             Share Your Journey
           </h2>
-          <p className="text-muted-foreground animate-fade-in-up">
+          <p className="text-sm sm:text-base text-muted-foreground animate-fade-in-up px-2">
             Your experience can bring hope, courage, and clarity to others on the same path.
           </p>
         </div>
 
         {/* Progress Bar */}
-        <div className="mb-6">
+        <div className="mb-4 sm:mb-6 px-4 sm:px-0">
           <Progress value={progress} className="h-2" />
           <p className="text-xs text-muted-foreground text-center mt-2">
             Step {step} of {totalSteps}
@@ -166,10 +166,10 @@ const StorySubmissionForm = ({ open, onOpenChange }: StorySubmissionFormProps) =
         </div>
 
         {/* Form Steps */}
-        <div className={`transition-all duration-500 ${direction === 'forward' ? 'animate-slide-in-right' : 'animate-slide-in-left'}`}>
+        <div className={`transition-all duration-500 px-4 sm:px-0 ${direction === 'forward' ? 'animate-slide-in-right' : 'animate-slide-in-left'}`}>
           {/* Step 1: About You */}
           {step === 1 && (
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               <h3 className="text-xl font-bold text-foreground font-serif mb-4">About You</h3>
               
               <div className="space-y-2">
@@ -237,7 +237,7 @@ const StorySubmissionForm = ({ open, onOpenChange }: StorySubmissionFormProps) =
 
           {/* Step 2: Your Journey */}
           {step === 2 && (
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               <h3 className="text-xl font-bold text-foreground font-serif mb-4">Tell us about your journey</h3>
               
               <div className="space-y-2">
@@ -289,7 +289,7 @@ const StorySubmissionForm = ({ open, onOpenChange }: StorySubmissionFormProps) =
 
           {/* Step 3: Emotional Experience */}
           {step === 3 && (
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               <h3 className="text-xl font-bold text-foreground font-serif mb-4">What emotions did you go through?</h3>
               
               <div className="space-y-2">
@@ -326,7 +326,7 @@ const StorySubmissionForm = ({ open, onOpenChange }: StorySubmissionFormProps) =
 
           {/* Step 4: The Outcome */}
           {step === 4 && (
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               <h3 className="text-xl font-bold text-foreground font-serif mb-4">Where did your journey lead you?</h3>
               
               <div className="space-y-2">
@@ -363,7 +363,7 @@ const StorySubmissionForm = ({ open, onOpenChange }: StorySubmissionFormProps) =
 
           {/* Step 5: Add Photos */}
           {step === 5 && (
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               <h3 className="text-xl font-bold text-foreground font-serif mb-4">Add Photos (Optional)</h3>
               
               <div className="border-2 border-dashed border-muted-foreground/25 rounded-lg p-8 text-center hover:border-pink-400 transition-colors">
@@ -408,7 +408,7 @@ const StorySubmissionForm = ({ open, onOpenChange }: StorySubmissionFormProps) =
 
           {/* Step 6: Review & Submit */}
           {step === 6 && (
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               <h3 className="text-xl font-bold text-foreground font-serif mb-4">Review Your Story</h3>
               
               <Card className="rounded-3xl p-6 bg-gradient-to-br from-pink-50/50 to-purple-50/50">
@@ -460,12 +460,12 @@ const StorySubmissionForm = ({ open, onOpenChange }: StorySubmissionFormProps) =
         </div>
 
         {/* Navigation Buttons */}
-        <div className="flex justify-between pt-6 border-t">
+        <div className="flex justify-between pt-4 sm:pt-6 border-t px-4 sm:px-0 pb-4 sm:pb-0 safe-area-padding-bottom">
           {step > 1 && (
             <Button
               variant="outline"
               onClick={handleBack}
-              className="rounded-full"
+              className="rounded-full min-h-[48px] px-4 sm:px-6"
             >
               <ArrowLeft className="w-4 h-4 mr-2" />
               Back
@@ -476,7 +476,7 @@ const StorySubmissionForm = ({ open, onOpenChange }: StorySubmissionFormProps) =
             {step < totalSteps ? (
               <Button
                 onClick={handleNext}
-                className="gradient-button-secondary text-white rounded-full hover:scale-105 transition-transform"
+                className="gradient-button-secondary text-white rounded-full hover:scale-105 transition-transform min-h-[48px] px-6 sm:px-8"
               >
                 Next
                 <ArrowRight className="w-4 h-4 ml-2" />
@@ -484,7 +484,7 @@ const StorySubmissionForm = ({ open, onOpenChange }: StorySubmissionFormProps) =
             ) : (
               <Button
                 onClick={handleSubmit}
-                className="gradient-button-secondary text-white rounded-full hover:scale-105 transition-transform"
+                className="gradient-button-secondary text-white rounded-full hover:scale-105 transition-transform min-h-[48px] px-6 sm:px-8"
               >
                 <Sparkles className="w-4 h-4 mr-2" />
                 Submit Story
