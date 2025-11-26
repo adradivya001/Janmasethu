@@ -1,0 +1,204 @@
+1️⃣ HERO SECTION — EMOTIONAL START (Journal Feel)
+🌈 Background
+
+Soft pastel gradient (light pink → lavender → baby blue)
+
+Faint doodle elements (heart, flower, sparkle)
+
+Slight paper texture overlay (5–10% opacity)
+
+📝 Header Content
+
+Share Your Journey
+Your story can guide, heal, and bring hope to another family.
+
+🌿 CTA Button
+
+Start Sharing → Opens the conversational journal flow
+Animation: button expands subtly on hover + soft glow
+
+💬 2️⃣ THE MAIN EXPERIENCE — “CONVERSATIONAL JOURNAL”
+
+This is the MAIN highlight.
+A chat-style assistant guides the user step-by-step, but the design feels like a personal diary.
+
+💗 Chat Window Style
+
+Rounded rectangle (like a diary page)
+
+Light beige/paper background
+
+Soft shadows (very light, warm tone)
+
+Message bubbles with rounded corners
+
+Assistant bubble: lavender or soft pink
+
+User bubble: white with pastel outline
+
+Smooth typing animation: “…” before each question
+
+✨ 3️⃣ FLOW — EXACT CHAT SEQUENCE
+
+Below is the exact step-by-step flow you can implement.
+
+💬 Message 1 (Assistant)
+
+“Hi, I’m here to help you share your journey.
+Take your time — this is your safe space.”
+🫶 Message fade-in + typewriter animation
+
+Button choices appear:
+
+Begin Writing
+
+STEP 1 — About You (Journal Style)
+💬 Assistant
+
+“Before we begin, how would you like to share your story?”
+
+Options as chips (pastel):
+
+With my name
+
+Anonymous
+
+If named:
+Assistant asks:
+“Beautiful. What should I call you?”
+— name input appears like a handwritten text box.
+
+Next:
+“Where are you from?”
+— Location input
+
+Next:
+“How long have you been on this journey?”
+— Dropdown (1 year, 2–3 years, etc.)
+
+STEP 2 — Your Challenge (Diary Writing Prompt)
+💬 Assistant
+
+“Tell me about the challenges you faced when your journey began.”
+Small hint text under the input:
+Write freely — there are no right or wrong answers.
+
+Input:
+A lined notebook-style textarea (very soft grey lines)
+
+STEP 3 — Your Emotions (Soft Chips + Chat)
+💬 Assistant
+
+“What emotions were a big part of your journey?”
+
+Chips appear with soft pop animation:
+
+Hope
+
+Fear
+
+Anxiety
+
+Confusion
+
+Strength
+
+Faith
+
+Gratitude
+
+Pain
+
+Relief
+
+Love
+
+Assistant (after selection)
+
+“Would you like to describe how you felt during those moments?”
+
+Textarea appears.
+
+STEP 4 — The Path You Took
+💬 Assistant
+
+“What path or treatments did you explore?”
+
+Checkbox list appears:
+
+IVF
+
+IUI
+
+PCOS care
+
+Endometriosis treatment
+
+Male infertility
+
+Genetic testing
+
+Adoption
+
+Surrogacy
+
+Still exploring
+
+STEP 5 — Outcome
+💬 Assistant
+
+“Where has your journey led you so far?”
+
+Selection + Optional textarea
+
+Conceived
+
+Still trying
+
+Considering alternative options
+
+Adopted
+
+Chose to pause
+
+Processing emotionally
+
+STEP 6 — Message to Others (Emotional Journal Page)
+
+The assistant softens tone.
+
+💬 Assistant
+
+“Would you like to leave a message for another family who might be reading your story?”
+
+Textarea appears like a heartfelt note.
+Small doodle of sparkles or a feather pen on the right side.
+
+🎨 4️⃣ JOURNAL PREVIEW MODE (Very Emotional)
+
+After the chat flow ends → show the story in a diary-style preview.
+
+📖 Layout
+
+A two-page open diary
+
+Left page: Title + Date + Name/Anonymous
+
+Right page: The Story
+
+Soft page-turn animation when clicking “Next” or “Edit Section”
+
+💝 5️⃣ FINAL SUBMISSION SCREEN
+
+Big pastel heart icon glowing gently.
+
+Text:
+
+Thank you for trusting us with your journey.
+Your story will bring strength to another family.
+
+Button:
+Publish My Story (Primary Gradient)
+Edit Story (Ghost button)
+
+Confetti: soft, pastel, slow — not aggressive.
