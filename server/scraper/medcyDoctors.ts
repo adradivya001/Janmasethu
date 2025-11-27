@@ -3,7 +3,6 @@ import { fetch } from "undici";
 import * as cheerio from "cheerio";
 import { XMLParser } from "fast-xml-parser";
 import { createHash } from "crypto";
-import { query } from "../db";
 
 const SOURCE = "medcyivf.in";
 const AGENT = "JanmaSethuBot/1.0 (+contact: your-email@example.com)";
@@ -263,35 +262,25 @@ async function scrapeDoctor(url: string): Promise<Doctor> {
 
 async function upsertDoctor(d: Doctor) {
   const h = sha((d.about_html || "") + "|" + (d.name || "") + "|" + (d.designation || ""));
+  const { pool } = await import("../db");
 
-  await query(
-    `
-    INSERT INTO public.scraped_doctors
-      (source_site, slug, name, designation, specialties, qualifications, experience_years, languages, location, image_url, profile_url, about_html, content_hash, last_scraped_at, last_changed_at)
-    VALUES
-      ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,NOW(),NOW())
+  await pool.query(
+    `INSERT INTO sakhi_scraped_doctors
+    (source_site, slug, name, designation, specialties, qualifications, experience_years, languages, location, image_url, profile_url, about_html, content_hash, created_at, last_scraped_at)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, NOW(), NOW())
     ON CONFLICT (source_site, slug) DO UPDATE
-    SET
-      name = EXCLUDED.name,
-      designation = EXCLUDED.designation,
-      specialties = EXCLUDED.specialties,
-      qualifications = EXCLUDED.qualifications,
-      experience_years = EXCLUDED.experience_years,
-      languages = EXCLUDED.languages,
-      location = EXCLUDED.location,
-      image_url = EXCLUDED.image_url,
-      profile_url = EXCLUDED.profile_url,
-      last_scraped_at = NOW(),
-      about_html = CASE
-        WHEN public.scraped_doctors.content_hash IS DISTINCT FROM EXCLUDED.content_hash
-        THEN EXCLUDED.about_html ELSE public.scraped_doctors.about_html END,
-      content_hash = CASE
-        WHEN public.scraped_doctors.content_hash IS DISTINCT FROM EXCLUDED.content_hash
-        THEN EXCLUDED.content_hash ELSE public.scraped_doctors.content_hash END,
-      last_changed_at = CASE
-        WHEN public.scraped_doctors.content_hash IS DISTINCT FROM EXCLUDED.content_hash
-        THEN NOW() ELSE public.scraped_doctors.last_changed_at END
-    `,
+    SET name = EXCLUDED.name,
+        designation = EXCLUDED.designation,
+        specialties = EXCLUDED.specialties,
+        qualifications = EXCLUDED.qualifications,
+        experience_years = EXCLUDED.experience_years,
+        languages = EXCLUDED.languages,
+        location = EXCLUDED.location,
+        image_url = EXCLUDED.image_url,
+        profile_url = EXCLUDED.profile_url,
+        about_html = EXCLUDED.about_html,
+        content_hash = EXCLUDED.content_hash,
+        last_scraped_at = NOW()`,
     [
       d.source_site,
       d.slug,
@@ -305,7 +294,7 @@ async function upsertDoctor(d: Doctor) {
       d.image_url,
       d.profile_url,
       d.about_html,
-      h,
+      h
     ]
   );
 }

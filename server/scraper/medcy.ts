@@ -2,8 +2,6 @@
 import { fetch } from "undici";
 import * as cheerio from "cheerio";
 import { createHash } from "crypto";
-import { query } from "../db";
-import { supabase } from "../supabaseClient";
 
 type ScrapedPost = {
   title: string;
@@ -127,27 +125,30 @@ export async function collectPostUrls(startUrl = "https://medcyivf.in/blog/", ma
 /** Upsert into sakhi_scraped_blogs by source_url */
 async function upsert(post: ScrapedPost) {
   const content_hash = hash(post.content_html);
+  const { pool } = await import("../db");
 
-  const blogRow = {
-    title: post.title,
-    slug: post.slug,
-    excerpt: post.excerpt,
-    content_html: post.content_html,
-    image_url: post.image_url,
-    source_url: post.source_url,
-    content_hash,
-    last_scraped_at: new Date().toISOString(),
-    last_changed_at: new Date().toISOString(),
-  };
-
-  const { error } = await supabase
-    .from("sakhi_scraped_blogs")
-    .upsert(blogRow, { onConflict: "source_url" });
-
-  if (error) {
-    console.error("Supabase upsert error:", error);
-    throw new Error(error.message);
-  }
+  await pool.query(
+    `INSERT INTO sakhi_scraped_blogs
+    (source_site, slug, title, excerpt, image_url, content_html, source_url, content_hash, created_at, last_scraped_at)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, NOW(), NOW())
+    ON CONFLICT (source_url) DO UPDATE
+    SET title = EXCLUDED.title,
+        excerpt = EXCLUDED.excerpt,
+        image_url = EXCLUDED.image_url,
+        content_html = EXCLUDED.content_html,
+        content_hash = EXCLUDED.content_hash,
+        last_scraped_at = NOW()`,
+    [
+      'medcyivf.in',
+      post.slug,
+      post.title,
+      post.excerpt,
+      post.image_url,
+      post.content_html,
+      post.source_url,
+      content_hash
+    ]
+  );
 }
 
 /** Main entry: crawl listing → scrape each post → upsert */
