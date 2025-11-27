@@ -209,32 +209,34 @@ const Header = () => {
             }}
             onMouseLeave={handleMoreAreaMouseLeave}
           >
-            <nav
-              className="flex items-center justify-between w-full max-w-6xl mx-auto pt-2 pb-3 px-8"
-              role="navigation"
-              aria-label="Secondary navigation"
-            >
-              {secondaryNavItems.map(({ key, href }, index) => (
-                <Link
-                  key={href}
-                  href={href}
-                  className={`font-semibold text-sm tracking-wide transition-all duration-300 px-3 py-2 flex-1 text-center transform hover:scale-105 hover:-translate-y-1 ${
-                    location === href
-                      ? "text-primary"
-                      : "text-foreground hover:text-primary"
-                  }`}
-                  style={{
-                    animationDelay: `${index * 50}ms`,
-                    animation: isExpanded
-                      ? "slideInUp 0.3s ease-out forwards"
-                      : "",
-                  }}
-                  data-testid={`link-nav-secondary-${key.replace("nav_", "")}`}
-                >
-                  {t(key)}
-                </Link>
-              ))}
-            </nav>
+            <div className="flex items-center justify-end w-full">
+              <nav
+                className="flex items-center justify-end gap-3 xl:gap-5 pt-2 pb-3"
+                role="navigation"
+                aria-label="Secondary navigation"
+              >
+                {secondaryNavItems.map(({ key, href }, index) => (
+                  <Link
+                    key={href}
+                    href={href}
+                    className={`font-semibold text-sm tracking-wide transition-all duration-300 px-3 py-2 rounded-md whitespace-nowrap transform hover:scale-105 ${
+                      location === href
+                        ? "text-primary bg-primary/10"
+                        : "text-foreground hover:text-primary hover:bg-primary/5"
+                    }`}
+                    style={{
+                      animationDelay: `${index * 50}ms`,
+                      animation: isExpanded
+                        ? "slideInUp 0.3s ease-out forwards"
+                        : "",
+                    }}
+                    data-testid={`link-nav-secondary-${key.replace("nav_", "")}`}
+                  >
+                    {t(key)}
+                  </Link>
+                ))}
+              </nav>
+            </div>
           </div>
         </div>
       </header>
