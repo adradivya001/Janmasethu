@@ -158,6 +158,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // --- Scrape doctors endpoint (alternative route)
+  app.get("/api/scrape/doctors", async (req, res) => {
+    if (req.query.key !== process.env.SCRAPE_KEY) {
+      return res.status(401).json({ error: "Invalid key" });
+    }
+
+    try {
+      const result = await runMedcyDoctorsScrape();
+      res.json({ success: true, inserted: result });
+    } catch (e: any) {
+      res.status(500).json({ error: e.message });
+    }
+  });
+
   // --- DEV: strip appointment forms from existing database records (run once)
   app.post("/api/dev/doctors/strip-appointment", requireKey, async (req, res) => {
     try {
