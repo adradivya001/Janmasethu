@@ -120,9 +120,9 @@ const Header = () => {
             </Link>
 
             {/* Desktop Navigation - Primary Row */}
-            <div className="hidden lg:flex items-center justify-center flex-grow px-4">
+            <div className="hidden lg:flex items-center justify-center flex-grow px-8">
               <nav
-                className="nav-primary flex items-center justify-center gap-8 xl:gap-10"
+                className="nav-primary flex items-center justify-center gap-1 xl:gap-2"
                 role="navigation"
                 aria-label="Main navigation"
               >
@@ -130,7 +130,7 @@ const Header = () => {
                   <Link
                     key={href}
                     href={href}
-                    className={`font-semibold text-sm tracking-wide transition-all duration-200 px-4 py-2 rounded-md whitespace-nowrap ${
+                    className={`font-semibold text-sm tracking-wide transition-all duration-200 px-6 py-2 rounded-md whitespace-nowrap ${
                       location === href
                         ? "text-primary bg-primary/10"
                         : "text-foreground hover:text-primary hover:bg-primary/5"
@@ -150,7 +150,7 @@ const Header = () => {
                     variant="ghost"
                     size="sm"
                     onClick={handleToggleExpanded}
-                    className={`px-4 py-2 rounded-md text-sm font-semibold transition-all duration-200 hover:bg-primary/5 hover:scale-105 whitespace-nowrap ${
+                    className={`px-6 py-2 rounded-md text-sm font-semibold transition-all duration-200 hover:bg-primary/5 hover:scale-105 whitespace-nowrap ${
                       isExpanded
                         ? "bg-primary/10 text-primary"
                         : "hover:text-primary"
@@ -210,7 +210,7 @@ const Header = () => {
             onMouseLeave={handleMoreAreaMouseLeave}
           >
             <nav
-              className="flex items-center justify-center gap-8 xl:gap-10 w-full max-w-6xl mx-auto pt-2 pb-3 px-8"
+              className="flex items-center justify-center gap-1 xl:gap-2 w-full max-w-6xl mx-auto pt-2 pb-3 px-8"
               role="navigation"
               aria-label="Secondary navigation"
             >
@@ -218,7 +218,7 @@ const Header = () => {
                 <Link
                   key={href}
                   href={href}
-                  className={`font-semibold text-sm tracking-wide transition-all duration-300 px-4 py-2 text-center transform hover:scale-105 hover:-translate-y-1 whitespace-nowrap ${
+                  className={`font-semibold text-sm tracking-wide transition-all duration-300 px-6 py-2 text-center transform hover:scale-105 hover:-translate-y-1 whitespace-nowrap ${
                     location === href
                       ? "text-primary"
                       : "text-foreground hover:text-primary"
