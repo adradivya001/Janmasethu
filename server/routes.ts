@@ -32,36 +32,30 @@ export async function registerRoutes(app: Express): Promise<Server> {
     res.json({ hasSsl: !!opts.ssl, rejectUnauthorized: opts.ssl?.rejectUnauthorized ?? null });
   });
 
-  // --- DEBUG: inspect DATABASE_URL environment variable
+  // --- DEBUG: inspect Supabase environment variables
   app.get("/api/health/db/env", (_req, res) => {
-    const url = process.env.DATABASE_URL || "";
-    try {
-      const u = new URL(url);
-      res.json({
-        has_DATABASE_URL: !!url,
-        protocol: u.protocol.replace(":", ""),
-        host: u.hostname,
-        port: u.port,
-        db: u.pathname.replace("/", ""),
-        user: u.username,
-      });
-    } catch {
-      res.json({ has_DATABASE_URL: !!url, raw: url || "(empty)" });
-    }
+    res.json({
+      has_SUPABASE_URL: !!process.env.SUPABASE_URL,
+      has_SUPABASE_ANON_KEY: !!process.env.SUPABASE_ANON_KEY,
+    });
   });
 
   // --- DEBUG: what DB am I connected to?
   app.get("/api/health/db/info", async (_req, res) => {
     try {
-      const { rows } = await query(`
-        SELECT current_database() AS db,
-               current_user AS usr,
-               current_schema() AS sch
-      `);
-      res.json(rows[0]);
+      const { error } = await supabase
+        .from("sakhi_scraped_blogs")
+        .select("id")
+        .limit(1);
+
+      if (error) {
+        return res.status(500).json({ ok: false, error: error.message });
+      }
+
+      res.json({ ok: true, via: "supabase" });
     } catch (e: any) {
       console.error("GET /api/health/db/info error:", e);
-      res.status(500).json({ error: e.message });
+      res.status(500).json({ ok: false, error: e.message });
     }
   });
 
