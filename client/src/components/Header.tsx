@@ -120,9 +120,9 @@ const Header = () => {
             </Link>
 
             {/* Desktop Navigation - Primary Row */}
-            <div className="hidden lg:flex items-center justify-center flex-grow">
+            <div className="hidden lg:flex items-center justify-end flex-grow">
               <nav
-                className="nav-primary flex items-center justify-center gap-6 xl:gap-8"
+                className="nav-primary flex items-center justify-end gap-3 xl:gap-5"
                 role="navigation"
                 aria-label="Main navigation"
               >
@@ -130,7 +130,7 @@ const Header = () => {
                   <Link
                     key={href}
                     href={href}
-                    className={`font-semibold text-sm tracking-wide transition-all duration-200 px-4 py-2 rounded-md whitespace-nowrap ${
+                    className={`font-semibold text-sm tracking-wide transition-all duration-200 px-3 py-2 rounded-md whitespace-nowrap ${
                       location === href
                         ? "text-primary bg-primary/10"
                         : "text-foreground hover:text-primary hover:bg-primary/5"
@@ -150,7 +150,7 @@ const Header = () => {
                     variant="ghost"
                     size="sm"
                     onClick={handleToggleExpanded}
-                    className={`px-4 py-2 rounded-md text-sm font-semibold transition-all duration-200 hover:bg-primary/5 hover:scale-105 whitespace-nowrap ${
+                    className={`px-3 py-2 rounded-md text-sm font-semibold transition-all duration-200 hover:bg-primary/5 hover:scale-105 whitespace-nowrap ${
                       isExpanded
                         ? "bg-primary/10 text-primary"
                         : "hover:text-primary"
@@ -159,7 +159,7 @@ const Header = () => {
                     aria-controls="header-secondary-row"
                     data-testid="button-nav-toggle"
                   >
-                    <span className="mr-2">
+                    <span className="mr-1.5">
                       {isExpanded ? t("nav_less") : t("nav_more")}
                     </span>
                     <ChevronDown
@@ -210,7 +210,7 @@ const Header = () => {
             onMouseLeave={handleMoreAreaMouseLeave}
           >
             <nav
-              className="flex items-center justify-center gap-6 xl:gap-8 w-full max-w-6xl mx-auto pt-2 pb-3"
+              className="flex items-center justify-center gap-4 xl:gap-6 w-full max-w-6xl mx-auto pt-2 pb-3"
               role="navigation"
               aria-label="Secondary navigation"
             >
@@ -218,7 +218,7 @@ const Header = () => {
                 <Link
                   key={href}
                   href={href}
-                  className={`font-semibold text-sm tracking-wide transition-all duration-300 px-4 py-2 text-center transform hover:scale-105 hover:-translate-y-1 whitespace-nowrap ${
+                  className={`font-semibold text-sm tracking-wide transition-all duration-300 px-3 py-2 text-center transform hover:scale-105 hover:-translate-y-1 whitespace-nowrap ${
                     location === href
                       ? "text-primary"
                       : "text-foreground hover:text-primary"
