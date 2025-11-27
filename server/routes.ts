@@ -4,6 +4,7 @@ import { db } from "@db";
 import { createServer, type Server } from "http";
 import { query } from "./db";
 import { runMedcyDoctorsScrape } from "./scraper/medcyDoctors";
+import { supabase } from "./supabaseClient";
 
 // Dev key for scraping - use environment variable in production
 const DEV_SCRAPE_KEY = process.env.DEV_SCRAPE_KEY || "dev-scrape-2025";
@@ -516,16 +517,24 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const limit = Math.min(parseInt(String(req.query.limit || "24"), 10), 100);
       const offset = Math.max(parseInt(String(req.query.offset || "0"), 10), 0);
 
-      const { rows } = await query(
-        `
-        SELECT slug, title, COALESCE(excerpt, '') AS excerpt, image_url, created_at
-        FROM public.scraped_blogs
-        ORDER BY id DESC
-        LIMIT $1 OFFSET $2
-        `,
-        [limit, offset]
-      );
-      res.json(rows);
+      const { data, error } = await supabase
+        .from("sakhi_scraped_blogs")
+        .select("slug, title, excerpt, image_url, created_at")
+        .order("created_at", { ascending: false })
+        .range(offset, offset + limit - 1);
+
+      if (error) {
+        console.error("Supabase error /api/blogs:", error);
+        return res.status(500).json({ error: error.message });
+      }
+
+      // Map data to match expected format (ensure excerpt is never null)
+      const blogs = (data ?? []).map(blog => ({
+        ...blog,
+        excerpt: blog.excerpt || ''
+      }));
+
+      res.json(blogs);
     } catch (e: any) {
       console.error("GET /api/blogs error:", e);
       res.status(500).json({ error: e.message });
