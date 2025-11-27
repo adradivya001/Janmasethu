@@ -49,6 +49,7 @@ export default function StorySubmissionForm({ open, onClose }: StorySubmissionFo
   const [showConfetti, setShowConfetti] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [consentAccepted, setConsentAccepted] = useState(false);
   const [storyData, setStoryData] = useState<StoryData>({
     isAnonymous: false,
     name: "",
@@ -98,6 +99,7 @@ export default function StorySubmissionForm({ open, onClose }: StorySubmissionFo
       return;
     }
 
+    setConsentAccepted(false);
     setShowPreview(true);
   };
 
@@ -109,6 +111,7 @@ export default function StorySubmissionForm({ open, onClose }: StorySubmissionFo
       setShowConfetti(false);
       setShowSuccess(false);
       setShowPreview(false);
+      setConsentAccepted(false);
       onClose();
       
       // Reset form
@@ -150,6 +153,7 @@ export default function StorySubmissionForm({ open, onClose }: StorySubmissionFo
   const handleClose = () => {
     setShowPreview(false);
     setShowSuccess(false);
+    setConsentAccepted(false);
     onClose();
   };
 
@@ -322,6 +326,37 @@ export default function StorySubmissionForm({ open, onClose }: StorySubmissionFo
                 </div>
               </div>
 
+              {/* Consent Agreement Section */}
+              <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-3xl p-6 border-2 border-blue-200">
+                <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-blue-600" />
+                  Consent / Release
+                </h3>
+                
+                <div className="bg-white rounded-2xl p-5 mb-4 border border-blue-100">
+                  <h4 className="font-semibold text-gray-800 mb-3">Publication & Media Release</h4>
+                  <p className="text-sm text-gray-700 leading-relaxed mb-3">
+                    I confirm I am the person described (or have permission). I grant JanmaSethu the right to publish my story, photos, and videos on janmasethu.com and related channels.
+                  </p>
+                  <p className="text-sm text-gray-600 italic">
+                    I understand I can request edits or removal later.
+                  </p>
+                </div>
+
+                <div className="flex items-start gap-3 bg-white rounded-2xl p-4 border border-blue-100">
+                  <input
+                    type="checkbox"
+                    id="consent-checkbox"
+                    checked={consentAccepted}
+                    onChange={(e) => setConsentAccepted(e.target.checked)}
+                    className="mt-1 w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500 cursor-pointer"
+                  />
+                  <label htmlFor="consent-checkbox" className="text-sm text-gray-700 leading-relaxed cursor-pointer">
+                    I have read and agree to the consent and release terms above. I authorize JanmaSethu to publish my story.
+                  </label>
+                </div>
+              </div>
+
               {/* Action Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4 pb-2">
                 <Button
@@ -334,7 +369,8 @@ export default function StorySubmissionForm({ open, onClose }: StorySubmissionFo
                 </Button>
                 <Button
                   onClick={handlePublish}
-                  className="gradient-button text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 text-base sm:text-lg"
+                  disabled={!consentAccepted}
+                  className="gradient-button text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 text-base sm:text-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none"
                 >
                   Publish My Story 💝
                 </Button>
