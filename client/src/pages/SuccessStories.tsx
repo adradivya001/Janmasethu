@@ -5,12 +5,50 @@ import { useLanguage } from "../i18n/LanguageProvider";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { stories } from "@/data/stories";
+import { stories as fallbackStories } from "@/data/stories";
 import StorySubmissionForm from "@/components/StorySubmissionForm";
+
+interface BackendStory {
+  id: number;
+  name: string;
+  location: string;
+  duration: string;
+  challenges: string;
+  emotions: string[];
+  emotion_details?: string;
+  treatments: string[];
+  outcome: string;
+  outcome_details?: string;
+  message_to_others?: string;
+  image_url?: string;
+  is_anonymous: boolean;
+  created_at: string;
+}
 
 const SuccessStories = () => {
   const { t, lang } = useLanguage();
   const [showStoryForm, setShowStoryForm] = useState(false);
+  const [backendStories, setBackendStories] = useState<BackendStory[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch stories from backend
+  useEffect(() => {
+    const fetchStories = async () => {
+      try {
+        const response = await fetch('https://zainab-sanguineous-niels.ngrok-free.dev/api/stories');
+        if (response.ok) {
+          const data = await response.json();
+          setBackendStories(data);
+        }
+      } catch (error) {
+        console.error('Error fetching stories:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchStories();
+  }, []);
 
   // Scroll to top when component mounts
   useEffect(() => {
@@ -48,7 +86,67 @@ const SuccessStories = () => {
 
       {/* Stories Grid */}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-        {stories.map((story, index) => (
+        {loading && (
+          <div className="col-span-full text-center py-12">
+            <p className="text-muted-foreground">Loading stories...</p>
+          </div>
+        )}
+        
+        {/* Display backend stories */}
+        {backendStories.map((story, index) => (
+          <Card
+            key={`backend-${story.id}`}
+            className="rounded-3xl p-6 card-shadow hover:shadow-2xl transition-all duration-500 h-full cursor-pointer transform hover:scale-105 border-2 border-transparent hover:border-pink-200 relative overflow-hidden bg-gradient-to-br from-white to-pink-50/30"
+            data-testid={`card-backend-story-${index}`}
+          >
+            <CardContent className="p-0 flex flex-col h-full">
+              <div className="absolute top-4 right-4">
+                <div className="w-8 h-8 bg-pink-100 rounded-full flex items-center justify-center">
+                  <Heart className="w-4 h-4 text-pink-600" />
+                </div>
+              </div>
+
+              {story.image_url && (
+                <img
+                  src={story.image_url}
+                  alt={story.name}
+                  className="rounded-xl w-full h-32 object-cover mb-4"
+                />
+              )}
+
+              <div className="flex flex-wrap gap-2 mb-3">
+                <Badge variant="secondary" className="text-xs">
+                  {story.duration}
+                </Badge>
+                {story.treatments.length > 0 && (
+                  <Badge variant="outline" className="text-xs">
+                    {story.treatments[0]}
+                  </Badge>
+                )}
+              </div>
+
+              <h3 className="text-lg font-bold text-foreground font-serif mb-2">
+                {story.is_anonymous ? 'Anonymous' : story.name}'s Journey
+              </h3>
+              <p className="text-sm text-muted-foreground mb-4 flex-grow line-clamp-3">
+                {story.challenges}
+              </p>
+
+              <div className="flex items-center justify-between mt-auto">
+                <div className="flex items-center text-xs text-muted-foreground">
+                  <MapPin className="w-3 h-3 mr-1" />
+                  <span>{story.location}</span>
+                </div>
+                <div className="flex items-center text-xs text-muted-foreground space-x-2">
+                  <span>{story.outcome}</span>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+
+        {/* Display fallback stories */}
+        {fallbackStories.map((story, index) => (
           <Link
             key={story.slug}
             href={`/success-stories/${story.slug}`}
@@ -164,7 +262,7 @@ const SuccessStories = () => {
                   <div className="w-8 h-8 bg-gradient-to-br from-purple-400 to-blue-400 rounded-full border-2 border-white"></div>
                   <div className="w-8 h-8 bg-gradient-to-br from-blue-400 to-green-400 rounded-full border-2 border-white"></div>
                 </div>
-                <span>Join {stories.length}+ families who shared</span>
+                <span>Join {backendStories.length + fallbackStories.length}+ families who shared</span>
               </div>
             </div>
           </div>

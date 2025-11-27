@@ -513,6 +513,80 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // =========================
+  // STORIES API ENDPOINTS
+  // =========================
+
+  // Get all stories
+  app.get("/api/stories", async (_req, res) => {
+    try {
+      const { data, error } = await supabase
+        .from("sakhi_success_stories")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+      if (error) {
+        console.error("Supabase error /api/stories:", error);
+        return res.status(500).json({ error: error.message });
+      }
+
+      res.json(data ?? []);
+    } catch (e: any) {
+      console.error("GET /api/stories error:", e);
+      res.status(500).json({ error: e.message });
+    }
+  });
+
+  // Submit a new story
+  app.post("/api/stories", async (req, res) => {
+    try {
+      const {
+        name,
+        location,
+        duration,
+        challenges,
+        emotions,
+        emotion_details,
+        treatments,
+        outcome,
+        outcome_details,
+        message_to_others,
+        image_url,
+        is_anonymous,
+      } = req.body;
+
+      const { data, error } = await supabase
+        .from("sakhi_success_stories")
+        .insert([
+          {
+            name,
+            location,
+            duration,
+            challenges,
+            emotions,
+            emotion_details,
+            treatments,
+            outcome,
+            outcome_details,
+            message_to_others,
+            image_url,
+            is_anonymous,
+          },
+        ])
+        .select();
+
+      if (error) {
+        console.error("Supabase error /api/stories POST:", error);
+        return res.status(500).json({ error: error.message });
+      }
+
+      res.json({ success: true, story: data[0] });
+    } catch (e: any) {
+      console.error("POST /api/stories error:", e);
+      res.status(500).json({ error: e.message });
+    }
+  });
+
+  // =========================
   // BLOG API ENDPOINTS
   // =========================
 

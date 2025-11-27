@@ -103,33 +103,68 @@ export default function StorySubmissionForm({ open, onClose }: StorySubmissionFo
     setShowPreview(true);
   };
 
-  const handlePublish = () => {
-    setShowConfetti(true);
-    setShowSuccess(true);
-    
-    setTimeout(() => {
-      setShowConfetti(false);
-      setShowSuccess(false);
-      setShowPreview(false);
-      setConsentAccepted(false);
-      onClose();
-      
-      // Reset form
-      setStoryData({
-        isAnonymous: false,
-        name: "",
-        location: "",
-        duration: "",
-        challenges: "",
-        emotions: [],
-        emotionDetails: "",
-        treatments: [],
-        outcome: "",
-        outcomeDetails: "",
-        messageToOthers: "",
-        uploadedImage: null,
+  const handlePublish = async () => {
+    try {
+      // Submit story to backend
+      const response = await fetch('https://zainab-sanguineous-niels.ngrok-free.dev/api/stories', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: storyData.isAnonymous ? 'Anonymous' : storyData.name,
+          location: storyData.location,
+          duration: storyData.duration,
+          challenges: storyData.challenges,
+          emotions: storyData.emotions,
+          emotion_details: storyData.emotionDetails,
+          treatments: storyData.treatments,
+          outcome: storyData.outcome,
+          outcome_details: storyData.outcomeDetails,
+          message_to_others: storyData.messageToOthers,
+          image_url: storyData.uploadedImage,
+          is_anonymous: storyData.isAnonymous,
+        }),
       });
-    }, 4000);
+
+      if (!response.ok) {
+        throw new Error('Failed to submit story');
+      }
+
+      setShowConfetti(true);
+      setShowSuccess(true);
+      
+      setTimeout(() => {
+        setShowConfetti(false);
+        setShowSuccess(false);
+        setShowPreview(false);
+        setConsentAccepted(false);
+        onClose();
+        
+        // Reset form
+        setStoryData({
+          isAnonymous: false,
+          name: "",
+          location: "",
+          duration: "",
+          challenges: "",
+          emotions: [],
+          emotionDetails: "",
+          treatments: [],
+          outcome: "",
+          outcomeDetails: "",
+          messageToOthers: "",
+          uploadedImage: null,
+        });
+      }, 4000);
+    } catch (error) {
+      console.error('Error submitting story:', error);
+      toast({
+        title: "Submission Failed",
+        description: "Failed to submit your story. Please try again.",
+        variant: "destructive",
+      });
+    }
   };
 
   const toggleEmotion = (emotion: string) => {
