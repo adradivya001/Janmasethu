@@ -120,9 +120,9 @@ const Header = () => {
             </Link>
 
             {/* Desktop Navigation - Primary Row */}
-            <div className="hidden lg:flex items-center justify-center flex-grow px-12">
+            <div className="hidden lg:flex items-center justify-center flex-grow">
               <nav
-                className="nav-primary flex items-center justify-center gap-4 xl:gap-6"
+                className="nav-primary flex items-center justify-center gap-6 xl:gap-8"
                 role="navigation"
                 aria-label="Main navigation"
               >
@@ -210,7 +210,7 @@ const Header = () => {
             onMouseLeave={handleMoreAreaMouseLeave}
           >
             <nav
-              className="flex items-center justify-center gap-4 xl:gap-6 w-full max-w-6xl mx-auto pt-2 pb-3 px-12"
+              className="flex items-center justify-center gap-6 xl:gap-8 w-full max-w-6xl mx-auto pt-2 pb-3"
               role="navigation"
               aria-label="Secondary navigation"
             >
