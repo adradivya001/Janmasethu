@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "wouter";
-import { Search, Menu, ChevronDown } from "lucide-react";
+import { Menu, ChevronDown } from "lucide-react";
 import { useLanguage } from "../i18n/LanguageProvider";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -170,31 +170,8 @@ const Header = () => {
               </nav>
             </div>
 
-            {/* Search & Language & Mobile Menu */}
+            {/* Language & Mobile Menu */}
             <div className="flex items-center space-x-2 md:space-x-4 flex-shrink-0">
-              {/* Search */}
-              <div className="hidden md:block relative">
-                <form
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    const formData = new FormData(e.target as HTMLFormElement);
-                    const searchTerm = formData.get("search") as string;
-                    if (searchTerm.trim()) {
-                      window.location.href = `/knowledge?search=${encodeURIComponent(searchTerm.trim())}`;
-                    }
-                  }}
-                >
-                  <Input
-                    type="search"
-                    name="search"
-                    placeholder={t("search_placeholder")}
-                    className="pl-9 pr-3 py-1.5 text-sm rounded-full border-border bg-background/50 focus:ring-ring w-40 lg:w-56"
-                    data-testid="input-search"
-                  />
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-3.5 h-3.5 pointer-events-none" />
-                </form>
-              </div>
-
               {/* Language Switcher - Only shown on Try Sakhi page */}
               {location === "/sakhi/try" && (
                 <div>
