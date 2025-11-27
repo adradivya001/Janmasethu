@@ -122,7 +122,7 @@ const Header = () => {
             {/* Desktop Navigation - Primary Row */}
             <div className="hidden lg:flex items-center justify-center flex-grow">
               <nav
-                className="nav-primary flex items-center justify-center space-x-6 xl:space-x-12"
+                className="nav-primary flex items-center justify-between w-full max-w-6xl mx-auto px-8"
                 role="navigation"
                 aria-label="Main navigation"
               >
@@ -130,7 +130,7 @@ const Header = () => {
                   <Link
                     key={href}
                     href={href}
-                    className={`font-semibold text-sm tracking-wide transition-all duration-200 px-3 py-2 rounded-md ${
+                    className={`font-semibold text-sm tracking-wide transition-all duration-200 px-3 py-2 rounded-md flex-1 text-center ${
                       location === href
                         ? "text-primary bg-primary/10"
                         : "text-foreground hover:text-primary hover:bg-primary/5"
@@ -143,6 +143,7 @@ const Header = () => {
 
                 {/* Expand/Collapse Button */}
                 <div
+                  className="flex-1 text-center"
                   onMouseEnter={handleMoreButtonMouseEnter}
                   onMouseLeave={handleMoreAreaMouseLeave}
                 >
