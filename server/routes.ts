@@ -137,6 +137,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
     return res.status(403).json({ ok: false, error: "forbidden" });
   };
 
+  // Helper to check scrape key (returns boolean for inline checks)
+  function checkScrapeKey(req: any, res: any): boolean {
+    const key = req.query.key;
+    if (!key || key !== process.env.SCRAPE_KEY) {
+      res.status(401).json({ error: "unauthorized" });
+      return false;
+    }
+    return true;
+  }
+
   // --- Scrape endpoint (GET for external schedulers, secured with requireKey)
   app.get("/api/dev/scrape/medcy", requireKey, async (req, res) => {
     try {
@@ -174,7 +184,31 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // --- NEW: Scrape doctors using axios/cheerio approach
+  // MANUAL / CRON: scrape doctors from Medcy
+  app.get("/api/scrape/doctors", async (req, res) => {
+    if (!checkScrapeKey(req, res)) return;
+    try {
+      const max = req.query.max ? Number(req.query.max) : undefined;
+      const result = await scrapeAndStoreDoctors(max);
+      res.json(result);
+    } catch (e: any) {
+      res.status(500).json({ error: e.message });
+    }
+  });
+
+  // MANUAL / CRON: scrape blogs from Medcy
+  app.get("/api/scrape/blogs", async (req, res) => {
+    if (!checkScrapeKey(req, res)) return;
+    try {
+      const max = req.query.max ? Number(req.query.max) : undefined;
+      const result = await scrapeAndStoreBlogs(max);
+      res.json(result);
+    } catch (e: any) {
+      res.status(500).json({ error: e.message });
+    }
+  });
+
+  // Alternative route: Scrape doctors using axios/cheerio approach
   app.get("/api/scrape/doctors-v2", requireKey, async (req, res) => {
     try {
       const limit = req.query.limit ? parseInt(req.query.limit as string) : undefined;
@@ -185,36 +219,27 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // --- NEW: Scrape blogs using axios/cheerio approach
-  app.get("/api/scrape/blogs", requireKey, async (req, res) => {
+  // POST endpoint: Manual trigger for doctor scraping
+  app.post("/api/scrape/doctors", async (req, res) => {
+    if (!checkScrapeKey(req, res)) return;
     try {
-      const max = req.query.max ? parseInt(req.query.max as string) : undefined;
-      const result = await scrapeAndStoreBlogs(max);
+      const { max } = req.body;
+      const result = await scrapeAndStoreDoctors(max);
       res.json(result);
     } catch (e: any) {
-      res.status(500).json({ success: false, error: e.message });
+      res.status(500).json({ error: e.message });
     }
   });
 
-  // --- NEW: Manual trigger for doctor scraping (POST)
-  app.post("/api/scrape/doctors", requireKey, async (req, res) => {
-    try {
-      const { limit } = req.body;
-      const result = await scrapeAndStoreDoctors(limit);
-      res.json(result);
-    } catch (e: any) {
-      res.status(500).json({ success: false, error: e.message });
-    }
-  });
-
-  // --- NEW: Manual trigger for blog scraping (POST)
-  app.post("/api/scrape/blogs", requireKey, async (req, res) => {
+  // POST endpoint: Manual trigger for blog scraping
+  app.post("/api/scrape/blogs", async (req, res) => {
+    if (!checkScrapeKey(req, res)) return;
     try {
       const { max } = req.body;
       const result = await scrapeAndStoreBlogs(max);
       res.json(result);
     } catch (e: any) {
-      res.status(500).json({ success: false, error: e.message });
+      res.status(500).json({ error: e.message });
     }
   });
 
