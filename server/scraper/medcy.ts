@@ -1,172 +1,92 @@
 // server/scraper/medcy.ts
-import { fetch } from "undici";
+import axios from "axios";
 import * as cheerio from "cheerio";
-import { createHash } from "crypto";
+import crypto from "crypto";
+import { supabase } from "../supabaseClient";
 
-type ScrapedPost = {
-  title: string;
-  slug: string;
-  excerpt: string | null;
-  content_html: string;
-  image_url: string | null;
-  source_url: string;
-};
+const MEDCY_BLOG = "https://medcyivf.in/blog/";
 
-const SLEEP_MS = 1200; // be polite to their server
-
-const sleep = (ms: number) => new Promise(r => setTimeout(r, ms));
-
-function hash(html: string) {
-  return createHash("sha256").update(html.trim()).digest("hex");
+function hashContent(html: string) {
+  return crypto.createHash("sha256").update(html || "").digest("hex");
 }
 
-function isMedcyPostUrl(url: string) {
-  try {
-    const u = new URL(url);
-    // must be on medcyivf.in
-    if (!/\.?medcyivf\.in$/i.test(u.hostname)) return false;
-    // path must be like /blog/<slug>/ (one segment after /blog), not /blog/ itself
-    const parts = u.pathname.split("/").filter(Boolean);
-    const i = parts.indexOf("blog");
-    return i >= 0 && parts.length === i + 2; // exactly /blog/<slug>
-  } catch {
-    return false;
-  }
-}
+async function getBlogUrls(max?: number): Promise<string[]> {
+  const res = await axios.get(MEDCY_BLOG);
+  const $ = cheerio.load(res.data);
 
-function getSlugFromUrl(url: string) {
-  try {
-    const u = new URL(url);
-    const parts = u.pathname.split("/").filter(Boolean);
-    return parts[parts.length - 1]; // last segment
-  } catch {
-    return url;
-  }
-}
+  const urls: string[] = [];
 
-async function getHtml(url: string): Promise<string> {
-  const r = await fetch(url, {
-    headers: {
-      "user-agent":
-        "Mozilla/5.0 (compatible; JanmaSethuScraper/1.0; +https://example.com)",
-      "accept": "text/html,application/xhtml+xml",
-    },
+  $(".post-title a, h2.entry-title a").each((_, el) => {
+    const href = $(el).attr("href");
+    if (href) urls.push(href.split("#")[0]);
   });
-  if (!r.ok) throw new Error(`HTTP ${r.status} for ${url}`);
-  return await r.text();
+
+  return max ? urls.slice(0, max) : urls;
 }
 
-/** Extracts a single post page into ScrapedPost */
-export async function scrapePost(postUrl: string): Promise<ScrapedPost> {
-  const html = await getHtml(postUrl);
-  const $ = cheerio.load(html);
+async function scrapeBlog(url: string) {
+  const res = await axios.get(url);
+  const $ = cheerio.load(res.data);
 
-  // Common WordPress selectors (try several fallbacks)
-  const title =
-    $("h1.entry-title").first().text().trim() ||
-    $('meta[property="og:title"]').attr("content") ||
-    $("title").text().trim();
+  const title = $("h1.entry-title").first().text().trim();
+  const excerpt = $("meta[name='description']").attr("content") || "";
 
-  // main content
-  const content =
-    $(".entry-content").first() ||
-    $(".post-content").first() ||
-    $(".single-post .content").first() ||
-    $("article").first();
-
-  // featured/og image
-  const ogImg =
-    $('meta[property="og:image"]').attr("content") ||
-    $('meta[name="twitter:image"]').attr("content") ||
-    content.find("img").first().attr("src") ||
-    null;
-
-  // Build a short excerpt (first paragraph text)
-  const firstP =
-    content.find("p").first().text().trim() ||
-    $("p").first().text().trim() ||
+  const image_url =
+    $(".post-thumb img").attr("src") ||
+    $(".wp-post-image").attr("src") ||
     "";
-  const excerpt = firstP ? firstP.slice(0, 240) : null;
 
-  // Clean up content HTML (optional minimal)
-  // Remove script/style
-  content.find("script, style, noscript").remove();
-  const content_html = content.html() || "";
+  const content_html = $(".entry-content").html() || "";
 
-  const slug = getSlugFromUrl(postUrl);
+  const slug = url.replace(MEDCY_BLOG, "").replace(/^\/+|\/+$/g, "");
+  const content_hash = hashContent(content_html + title + excerpt);
 
   return {
-    title,
+    source_site: "medcyivf.in",
     slug,
+    title,
     excerpt,
     content_html,
-    image_url: ogImg || null,
-    source_url: postUrl,
+    image_url,
+    source_url: url,
+    content_hash,
+    last_scraped_at: new Date().toISOString(),
   };
 }
 
-/** Crawls the listing pages and returns a list of post URLs (deduped) */
-export async function collectPostUrls(startUrl = "https://medcyivf.in/blog/", max = 12): Promise<string[]> {
-  const html = await getHtml(startUrl);
-  const $ = cheerio.load(html);
-
-  const urls = new Set<string>();
-
-  $("a").each((_i, a) => {
-    const href = $(a).attr("href");
-    if (href && href.startsWith("http") && isMedcyPostUrl(href)) {
-      urls.add(href.split("#")[0]);
-    }
-  });
-
-  return Array.from(urls).slice(0, max);
-}
-
-/** Upsert into sakhi_scraped_blogs by source_url */
-async function upsert(post: ScrapedPost) {
-  const content_hash = hash(post.content_html);
-  const { pool } = await import("../db");
-
-  await pool.query(
-    `INSERT INTO sakhi_scraped_blogs
-    (source_site, slug, title, excerpt, image_url, content_html, source_url, content_hash, created_at, last_scraped_at)
-    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, NOW(), NOW())
-    ON CONFLICT (source_url) DO UPDATE
-    SET title = EXCLUDED.title,
-        excerpt = EXCLUDED.excerpt,
-        image_url = EXCLUDED.image_url,
-        content_html = EXCLUDED.content_html,
-        content_hash = EXCLUDED.content_hash,
-        last_scraped_at = NOW()`,
-    [
-      'medcyivf.in',
-      post.slug,
-      post.title,
-      post.excerpt,
-      post.image_url,
-      post.content_html,
-      post.source_url,
-      content_hash
-    ]
-  );
-}
-
-/** Main entry: crawl listing → scrape each post → upsert */
-export async function runMedcyScrape({ max = 8 }: { max?: number } = {}) {
-  const list = await collectPostUrls("https://medcyivf.in/blog/", max);
+export async function scrapeAndStoreBlogs(max?: number) {
+  const urls = await getBlogUrls(max);
   const results: { url: string; ok: boolean; error?: string }[] = [];
 
-  for (const url of list) {
+  for (const url of urls) {
     try {
-      const post = await scrapePost(url);
-      await upsert(post);
-      results.push({ url, ok: true });
+      const blog = await scrapeBlog(url);
+
+      const { error } = await supabase
+        .from("sakhi_scraped_blogs")
+        .upsert(blog, {
+          onConflict: "source_site,slug",
+        });
+
+      if (error) {
+        console.error("DB error for", url, error.message);
+        results.push({ url, ok: false, error: error.message });
+      } else {
+        results.push({ url, ok: true });
+      }
+
+      await new Promise((r) => setTimeout(r, 800));
     } catch (e: any) {
-      console.error(`Failed to scrape ${url}:`, e.message);
-      results.push({ url, ok: false, error: e.message || String(e) });
+      console.error("Scrape error for", url, e.message);
+      results.push({ url, ok: false, error: e.message });
     }
-    await sleep(SLEEP_MS);
   }
 
-  return { count: results.length, results };
+  return {
+    success: true,
+    inserted: {
+      count: results.filter((r) => r.ok).length,
+      results,
+    },
+  };
 }
