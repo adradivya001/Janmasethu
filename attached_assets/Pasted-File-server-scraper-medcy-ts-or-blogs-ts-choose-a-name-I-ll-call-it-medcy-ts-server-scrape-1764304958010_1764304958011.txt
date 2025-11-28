@@ -1,0 +1,94 @@
+File: server/scraper/medcy.ts (or blogs.ts – choose a name, I’ll call it medcy.ts)
+
+// server/scraper/medcy.ts
+import axios from "axios";
+import * as cheerio from "cheerio";
+import crypto from "crypto";
+import { supabase } from "../supabaseClient";
+
+const MEDCY_BLOG = "https://medcyivf.in/blog/";
+
+function hashContent(html: string) {
+  return crypto.createHash("sha256").update(html || "").digest("hex");
+}
+
+async function getBlogUrls(max?: number): Promise<string[]> {
+  const res = await axios.get(MEDCY_BLOG);
+  const $ = cheerio.load(res.data);
+
+  const urls: string[] = [];
+
+  $(".post-title a, h2.entry-title a").each((_, el) => {
+    const href = $(el).attr("href");
+    if (href) urls.push(href.split("#")[0]);
+  });
+
+  return max ? urls.slice(0, max) : urls;
+}
+
+async function scrapeBlog(url: string) {
+  const res = await axios.get(url);
+  const $ = cheerio.load(res.data);
+
+  const title = $("h1.entry-title").first().text().trim();
+  const excerpt = $("meta[name='description']").attr("content") || "";
+
+  const image_url =
+    $(".post-thumb img").attr("src") ||
+    $(".wp-post-image").attr("src") ||
+    "";
+
+  const content_html = $(".entry-content").html() || "";
+
+  const slug = url.replace(MEDCY_BLOG, "").replace(/^\/+|\/+$/g, "");
+  const content_hash = hashContent(content_html + title + excerpt);
+
+  return {
+    source_site: "medcyivf.in",
+    slug,
+    title,
+    excerpt,
+    content_html,
+    image_url,
+    source_url: url,
+    content_hash,
+    last_scraped_at: new Date().toISOString(),
+  };
+}
+
+export async function scrapeAndStoreBlogs(max?: number) {
+  const urls = await getBlogUrls(max);
+  const results: { url: string; ok: boolean; error?: string }[] = [];
+
+  for (const url of urls) {
+    try {
+      const blog = await scrapeBlog(url);
+
+      const { error } = await supabase
+        .from("sakhi_scraped_blogs")
+        .upsert(blog, {
+          onConflict: "source_site,slug",
+        });
+
+      if (error) {
+        console.error("DB error for", url, error.message);
+        results.push({ url, ok: false, error: error.message });
+      } else {
+        results.push({ url, ok: true });
+      }
+
+      await new Promise((r) => setTimeout(r, 800));
+    } catch (e: any) {
+      console.error("Scrape error for", url, e.message);
+      results.push({ url, ok: false, error: e.message });
+    }
+  }
+
+  return {
+    success: true,
+    inserted: {
+      count: results.filter((r) => r.ok).length,
+      results,
+    },
+  };
+}
