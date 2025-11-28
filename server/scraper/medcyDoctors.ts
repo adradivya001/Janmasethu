@@ -262,41 +262,33 @@ async function scrapeDoctor(url: string): Promise<Doctor> {
 
 async function upsertDoctor(d: Doctor) {
   const h = sha((d.about_html || "") + "|" + (d.name || "") + "|" + (d.designation || ""));
-  const { pool } = await import("../db");
+  const { supabase } = await import("../supabaseClient");
 
-  await pool.query(
-    `INSERT INTO sakhi_scraped_doctors
-    (source_site, slug, name, designation, specialties, qualifications, experience_years, languages, location, image_url, profile_url, about_html, content_hash, created_at, last_scraped_at)
-    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, NOW(), NOW())
-    ON CONFLICT (source_site, slug) DO UPDATE
-    SET name = EXCLUDED.name,
-        designation = EXCLUDED.designation,
-        specialties = EXCLUDED.specialties,
-        qualifications = EXCLUDED.qualifications,
-        experience_years = EXCLUDED.experience_years,
-        languages = EXCLUDED.languages,
-        location = EXCLUDED.location,
-        image_url = EXCLUDED.image_url,
-        profile_url = EXCLUDED.profile_url,
-        about_html = EXCLUDED.about_html,
-        content_hash = EXCLUDED.content_hash,
-        last_scraped_at = NOW()`,
-    [
-      d.source_site,
-      d.slug,
-      d.name,
-      d.designation,
-      d.specialties,
-      d.qualifications,
-      d.experience_years,
-      d.languages,
-      d.location,
-      d.image_url,
-      d.profile_url,
-      d.about_html,
-      h
-    ]
-  );
+  const { error } = await supabase
+    .from("sakhi_scraped_doctors")
+    .upsert(
+      {
+        source_site: d.source_site,
+        slug: d.slug,
+        name: d.name,
+        designation: d.designation,
+        specialties: d.specialties,
+        qualifications: d.qualifications,
+        experience_years: d.experience_years,
+        languages: d.languages,
+        location: d.location,
+        image_url: d.image_url,
+        profile_url: d.profile_url,
+        about_html: d.about_html,
+        content_hash: h,
+        last_scraped_at: new Date().toISOString(),
+      },
+      { onConflict: "source_site,slug" }
+    );
+
+  if (error) {
+    throw new Error(`Supabase upsert failed: ${error.message}`);
+  }
 }
 
 export async function runMedcyDoctorsScrape({ max = 50 }: { max?: number } = {}) {
