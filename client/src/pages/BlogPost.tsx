@@ -132,20 +132,18 @@ const BlogPost = () => {
       </Card>
 
       {/* Post Content */}
-      <div className="grid lg:grid-cols-3 gap-8">
-        <div className="lg:col-span-2">
-          <Card className="rounded-3xl p-8 card-shadow">
-            <CardContent className="p-0">
-              <div
-                className="prose prose-lg max-w-none"
-                data-testid="section-post-content"
-                dangerouslySetInnerHTML={{ __html: post.content_html }}
-              />
-            </CardContent>
-          </Card>
-        </div>
+      <div className="max-w-4xl mx-auto">
+        <Card className="rounded-3xl p-8 md:p-12 card-shadow mb-8">
+          <CardContent className="p-0">
+            <div
+              className="prose prose-lg max-w-none"
+              data-testid="section-post-content"
+              dangerouslySetInnerHTML={{ __html: post.content_html }}
+            />
+          </CardContent>
+        </Card>
 
-        {/* Sidebar */}
+        {/* Author, Tags, and Source - Below Content */}
         <div className="space-y-6">
           <Card className="rounded-3xl p-6 card-shadow">
             <CardContent className="p-0">
@@ -188,7 +186,7 @@ const BlogPost = () => {
                   href={post.source_url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-600 underline break-all"
+                  className="text-blue-600 hover:text-blue-800 underline break-all text-sm"
                 >
                   {post.source_url}
                 </a>
