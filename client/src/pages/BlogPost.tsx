@@ -44,7 +44,8 @@ const BlogPost = () => {
           return;
         }
         if (!r.ok) throw new Error(await r.text());
-        setPost(await r.json());
+        const response = await r.json();
+        setPost(response.blog);
         setErr(null);
       } catch (e: any) {
         setErr(e.message || "Failed to load");
