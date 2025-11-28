@@ -722,15 +722,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       const { data, error } = await supabase
         .from("sakhi_scraped_blogs")
-        .select("id, slug, title, excerpt, content_html, source_url, created_at")
+        .select("*")
         .eq("slug", slug)
         .single();
 
-      if (error || !data) {
+      if (error) {
+        return res.status(500).json({ error: error.message });
+      }
+
+      if (!data) {
         return res.status(404).json({ error: "Not found" });
       }
 
-      res.json(data);
+      res.json({ blog: data });
     } catch (e: any) {
       console.error("GET /api/blogs/:slug error:", e);
       res.status(500).json({ error: e.message });
