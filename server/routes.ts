@@ -2,7 +2,6 @@
 import type { Express } from "express";
 import { db } from "@db";
 import { createServer, type Server } from "http";
-import { query } from "./db";
 import { runMedcyDoctorsScrape } from "./scraper/medcyDoctors";
 import { scrapeAndStoreDoctors } from "./scraper/doctors";
 import { scrapeAndStoreBlogs } from "./scraper/medcy";
@@ -16,22 +15,32 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // API ROUTES (prefix with /api)
   // =========================
 
-  // Health check to verify DB connectivity
+  // Health check to verify DB connectivity via Supabase
   app.get("/api/health/db", async (_req, res) => {
     try {
-      const r = await query<{ now: string }>("SELECT NOW() as now");
-      res.json({ ok: true, now: r.rows[0].now });
+      const { data, error } = await supabase
+        .from("sakhi_scraped_blogs")
+        .select("id")
+        .limit(1);
+      
+      if (error) {
+        return res.status(500).json({ ok: false, error: error.message });
+      }
+      
+      res.json({ ok: true, connection: "supabase", timestamp: new Date().toISOString() });
     } catch (e: any) {
       console.error("DB error:", e);
       res.status(500).json({ ok: false, error: e.message });
     }
   });
 
-  // --- DEBUG: confirm SSL options on the pool
+  // --- DEBUG: Supabase connection info
   app.get("/api/health/db/ssl", (_req, res) => {
-    // @ts-ignore access internal
-    const opts = (pool as any).options || {};
-    res.json({ hasSsl: !!opts.ssl, rejectUnauthorized: opts.ssl?.rejectUnauthorized ?? null });
+    res.json({ 
+      connection: "supabase",
+      ssl: "managed by Supabase",
+      url: process.env.SUPABASE_URL ? "configured" : "missing"
+    });
   });
 
   // --- DEBUG: inspect Supabase environment variables
@@ -61,44 +70,27 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // --- DEBUG: list public tables
+  // --- DEBUG: list public tables (using Supabase RPC or direct query)
   app.get("/api/health/db/tables", async (_req, res) => {
     try {
-      const { rows } = await query(
-        `SELECT table_schema, table_name
-         FROM information_schema.tables
-         WHERE table_schema = 'public'
-         ORDER BY table_name;`
-      );
-      res.json(rows);
+      // Note: Supabase client doesn't directly support information_schema queries
+      // This endpoint is deprecated - use Supabase dashboard instead
+      res.json({ 
+        message: "Use Supabase dashboard to view tables",
+        tables: ["sakhi_scraped_blogs", "sakhi_scraped_doctors", "sakhi_success_stories"]
+      });
     } catch (e: any) {
       console.error("GET /api/health/db/tables error:", e);
       res.status(500).json({ error: e.message });
     }
   });
 
-  // --- ONE-TIME: create the table in *this* DB if missing
+  // --- Deprecated: Tables should be created via Supabase dashboard/migrations
   app.post("/api/dev/create-scraped-table", async (_req, res) => {
-    try {
-      await query(`
-        CREATE SCHEMA IF NOT EXISTS public;
-        CREATE TABLE IF NOT EXISTS public.scraped_blogs (
-          id SERIAL PRIMARY KEY,
-          title TEXT NOT NULL,
-          slug TEXT UNIQUE NOT NULL,
-          excerpt TEXT,
-          content_html TEXT,
-          source_url TEXT,
-          image_url TEXT,
-          created_at TIMESTAMP DEFAULT NOW()
-        );
-        CREATE INDEX IF NOT EXISTS idx_scraped_blogs_slug ON public.scraped_blogs(slug);
-      `);
-      res.json({ ok: true });
-    } catch (e: any) {
-      console.error("POST /api/dev/create-scraped-table error:", e);
-      res.status(500).json({ ok: false, error: e.message });
-    }
+    res.status(410).json({ 
+      ok: false, 
+      error: "This endpoint is deprecated. Create tables via Supabase dashboard or migrations." 
+    });
   });
 
   // --- ONE-TIME: create the leads table
