@@ -86,9 +86,9 @@ const BlogPost = () => {
     post.image_url || fallbackImages[post.slug.length % fallbackImages.length];
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="w-full py-8">
       {/* Back Navigation */}
-      <div className="mb-8">
+      <div className="mb-8 px-4">
         <Link href="/blog">
           <Button
             variant="ghost"
@@ -102,7 +102,7 @@ const BlogPost = () => {
       </div>
 
       {/* Post Header */}
-      <Card className="rounded-3xl p-8 md:p-12 card-shadow mb-8">
+      <Card className="rounded-none p-8 md:p-12 card-shadow mb-8">
         <CardContent className="p-0">
           <div className="flex flex-wrap gap-2 mb-6">
             <Badge variant="secondary">Article</Badge>
@@ -132,17 +132,17 @@ const BlogPost = () => {
       </Card>
 
       {/* Post Content */}
-      <div className="max-w-4xl mx-auto">
+      <div className="w-full">
         <div className="mb-12">
           <div
-            className="prose prose-lg prose-headings:font-serif prose-headings:text-foreground prose-p:text-muted-foreground prose-p:leading-relaxed prose-a:text-purple-600 prose-a:no-underline hover:prose-a:underline prose-img:rounded-2xl prose-img:shadow-lg max-w-none"
+            className="prose prose-lg prose-headings:font-serif prose-headings:text-foreground prose-p:text-muted-foreground prose-p:leading-relaxed prose-a:text-purple-600 prose-a:no-underline hover:prose-a:underline prose-img:rounded-2xl prose-img:shadow-lg max-w-none w-full"
             data-testid="section-post-content"
             dangerouslySetInnerHTML={{ __html: post.content_html }}
           />
         </div>
 
         {/* Author, Tags, and Source - Below Content */}
-        <div className="border-t border-border pt-8 mt-12 space-y-8">
+        <div className="border-t border-border pt-8 mt-12 space-y-8 px-4 md:px-8">
           <div>
             <h3 className="text-lg font-bold text-foreground font-serif mb-3">
               About the Author
