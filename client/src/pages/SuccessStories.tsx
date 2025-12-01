@@ -18,13 +18,17 @@ const SuccessStories = () => {
   useEffect(() => {
     const fetchStories = async () => {
       try {
-        const response = await fetch("https://zainab-sanguineous-niels.ngrok-free.dev/api/success-stories");
+        const response = await fetch("https://zainab-sanguineous-niels.ngrok-free.dev/api/success-stories", {
+          headers: {
+            "ngrok-skip-browser-warning": "true"
+          }
+        });
         if (!response.ok) {
           throw new Error("Failed to fetch stories");
         }
         const data = await response.json();
-        console.log("✅ Fetched stories from backend:", data.length);
-        setBackendStories(data);
+        console.log("✅ Fetched stories from backend:", data);
+        setBackendStories(Array.isArray(data) ? data : []);
       } catch (error) {
         console.error("❌ Failed to fetch stories from backend:", error);
         setBackendStories([]);
@@ -36,11 +40,17 @@ const SuccessStories = () => {
     fetchStories();
   }, []);
 
-  // Handle new story submission - receives the new story from form and adds it to grid
-  const handleStorySubmitted = (newStory: any) => {
-    if (!newStory) return;
+  // Handle new story submission - receives normalized data from POST response
+  const handleStorySubmitted = (responseData: any) => {
+    if (!responseData || !responseData.data) {
+      console.error("❌ No data in response");
+      return;
+    }
+    
+    const newStory = responseData.data;
     console.log("✅ Story submitted successfully, adding to grid:", newStory);
-    // Immediately add the new story to the grid (prepend for newest first)
+    
+    // Immediately prepend the new story to the grid
     setBackendStories(prev => [newStory, ...prev]);
   };
 
@@ -92,10 +102,12 @@ const SuccessStories = () => {
 
       {/* Stories Grid */}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-        {stories.map((story, index) => (
+        {stories.map((story, index) => {
+          const storySlug = story.slug || `story-${index}`;
+          return (
           <Link
-            key={story.id || story.slug || `story-${index}`}
-            href={`/success-stories/${story.slug}`}
+            key={storySlug}
+            href={`/success-stories/${storySlug}`}
             className="group h-full"
           >
             <Card
@@ -167,7 +179,8 @@ const SuccessStories = () => {
               </CardContent>
             </Card>
           </Link>
-        ))}
+          );
+        })}
       </div>
 
       {/* Support Section */}

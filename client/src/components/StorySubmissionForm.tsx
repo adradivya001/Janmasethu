@@ -149,10 +149,6 @@ export default function StorySubmissionForm({ open, onClose, onSubmitted }: Stor
       const responseData = await response.json();
       console.log("📥 Response data:", responseData);
 
-      // Extract the story from response
-      const newStory = responseData.story || responseData.data || responseData;
-      console.log("✅ Story submitted successfully:", newStory);
-
       // Show success animation
       setShowConfetti(true);
       setShowSuccess(true);
@@ -163,8 +159,8 @@ export default function StorySubmissionForm({ open, onClose, onSubmitted }: Stor
         setShowPreview(false);
         setConsentAccepted(false);
         
-        // Notify parent component to update grid immediately
-        onSubmitted?.(newStory);
+        // Pass the complete response data to parent
+        onSubmitted?.(responseData);
         
         onClose();
         
