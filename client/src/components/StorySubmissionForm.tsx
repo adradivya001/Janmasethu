@@ -106,13 +106,37 @@ export default function StorySubmissionForm({ open, onClose, onSubmitted }: Stor
 
   const handlePublish = async () => {
     try {
+      // Build payload matching backend schema exactly
+      const payload = {
+        isAnonymous: String(storyData.isAnonymous),
+        name: storyData.isAnonymous ? "Anonymous" : storyData.name,
+        city: storyData.location,
+        duration: storyData.duration,
+        challenges: storyData.challenges,
+        emotions: storyData.emotions,
+        emotionDetails: storyData.emotionDetails || "",
+        treatments: storyData.treatments,
+        outcome: storyData.outcome,
+        outcomeDetails: storyData.outcomeDetails || "",
+        messageToOthers: storyData.messageToOthers || "",
+        uploadedImage: storyData.uploadedImage,
+        consent_accepted: true,
+        title: storyData.isAnonymous ? "Anonymous" : storyData.name,
+        summary: storyData.challenges,
+        stage: storyData.outcome,
+        language: "English",
+        slug: (storyData.isAnonymous ? "anonymous" : storyData.name.toLowerCase().replace(/\s+/g, '-')) + '-' + Date.now()
+      };
+
+      console.log("Sending payload:", JSON.stringify(payload, null, 2));
+
       // Submit story to backend
       const response = await fetch("/api/success-stories", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(storyData),
+        body: JSON.stringify(payload),
       });
 
       if (!response.ok) {
@@ -120,7 +144,8 @@ export default function StorySubmissionForm({ open, onClose, onSubmitted }: Stor
         throw new Error(result.error || "Failed to submit story");
       }
 
-      const { data } = await response.json();
+      const responseData = await response.json();
+      const data = responseData.story || responseData.data || responseData;
       console.log("Story submitted:", data);
 
       // Show success animation

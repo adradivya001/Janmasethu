@@ -294,8 +294,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
       const {
+        isAnonymous,
         name,
-        location,
+        city,
         duration,
         challenges,
         emotions,
@@ -305,14 +306,21 @@ export async function registerRoutes(app: Express): Promise<Server> {
         outcomeDetails,
         messageToOthers,
         uploadedImage,
-        isAnonymous
+        consent_accepted,
+        title,
+        summary,
+        stage,
+        language,
+        slug
       } = req.body;
+
+      console.log("📥 Received story submission:", { name, city, isAnonymous });
 
       // Map frontend data to exact database schema column names
       const storyData = {
-        share_with_name: isAnonymous ? "Anonymous" : (name || "Anonymous"),
-        name: isAnonymous ? null : name,
-        city: location || null,
+        share_with_name: isAnonymous === "true" || isAnonymous === true ? "Anonymous" : (name || "Anonymous"),
+        name: isAnonymous === "true" || isAnonymous === true ? null : name,
+        city: city || null,
         duration: duration,
         challenges: challenges,
         emotions: emotions,
@@ -322,7 +330,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
         outcome_description: outcomeDetails || null,
         message_of_hope: messageToOthers || null,
         image_url: uploadedImage || null,
-        consent_accepted: true,
+        consent_accepted: consent_accepted || true,
+        title: title || name || "Anonymous",
+        summary: summary || challenges,
+        stage: stage || outcome,
+        language: language || "English",
+        slug: slug || `story-${Date.now()}`,
         created_at: new Date().toISOString()
       };
 
