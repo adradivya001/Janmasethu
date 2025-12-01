@@ -259,7 +259,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.options("/api/success-stories", (_req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, ngrok-skip-browser-warning');
     res.status(204).send();
   });
 
@@ -269,7 +269,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Set CORS headers
       res.setHeader('Access-Control-Allow-Origin', '*');
       res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
-      res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+      res.setHeader('Access-Control-Allow-Headers', 'Content-Type, ngrok-skip-browser-warning');
 
       console.log("📖 Fetching stories from memory:", inMemoryStories.length);
       res.json(inMemoryStories);
@@ -285,7 +285,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Set CORS headers
       res.setHeader('Access-Control-Allow-Origin', '*');
       res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
-      res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+      res.setHeader('Access-Control-Allow-Headers', 'Content-Type, ngrok-skip-browser-warning');
 
       const {
         isAnonymous,
