@@ -18,7 +18,9 @@ const SuccessStories = () => {
   useEffect(() => {
     const fetchStories = async () => {
       try {
-        const response = await fetch("https://zainab-sanguineous-niels.ngrok-free.dev/api/success-stories");
+        const response = await fetch(
+          "https://zainab-sanguineous-niels.ngrok-free.dev/api/success-stories",
+        );
         if (response.ok) {
           const data = await response.json();
           setBackendStories(data);
@@ -161,20 +163,20 @@ const SuccessStories = () => {
             <div className="absolute bottom-10 right-10 w-32 h-32 bg-purple-300 rounded-full blur-xl"></div>
             <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-orange-300 rounded-full blur-lg"></div>
           </div>
-          
+
           <div className="relative z-10">
             <div className="bg-white/80 backdrop-blur-sm rounded-full w-24 h-24 flex items-center justify-center mx-auto mb-6">
               <Heart className="w-12 h-12 text-pink-500" />
             </div>
-            
+
             <h2 className="text-3xl md:text-4xl font-bold text-foreground font-serif mb-4">
               {t("share_story_title")}
             </h2>
-            
+
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed">
               {t("share_story_description")}
             </p>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button
                 onClick={() => setShowStoryForm(true)}
@@ -183,7 +185,7 @@ const SuccessStories = () => {
               >
                 {t("share_story_button")}
               </Button>
-              
+
               <div className="text-sm text-muted-foreground flex items-center gap-2">
                 <div className="flex -space-x-2">
                   <div className="w-8 h-8 bg-gradient-to-br from-pink-400 to-purple-400 rounded-full border-2 border-white"></div>
@@ -198,9 +200,9 @@ const SuccessStories = () => {
       </section>
 
       {/* Story Submission Form */}
-      <StorySubmissionForm 
-        open={showStoryForm} 
-        onClose={() => setShowStoryForm(false)} 
+      <StorySubmissionForm
+        open={showStoryForm}
+        onClose={() => setShowStoryForm(false)}
       />
     </div>
   );
