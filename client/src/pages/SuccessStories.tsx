@@ -39,8 +39,6 @@ const SuccessStories = () => {
   // Handle new story submission
   const handleStorySubmitted = (story: any) => {
     if (!story) return;
-    // Here, you would typically POST the new story to your backend
-    // For now, we'll just prepend it to the frontend state
     fetch("https://zainab-sanguineous-niels.ngrok-free.dev/api/success-stories", {
       method: "POST",
       headers: {
@@ -49,18 +47,19 @@ const SuccessStories = () => {
       body: JSON.stringify(story),
     })
       .then(response => response.json())
-      .then(newStory => {
-        setBackendStories(prev => [newStory, ...prev]);
+      .then(data => {
+        if (data.ok && data.story) {
+          setBackendStories(prev => [data.story, ...prev]);
+        }
       })
       .catch(error => {
         console.error("Error submitting story:", error);
-        // Optionally, provide user feedback about the submission failure
       });
   };
 
-
-  // Combine static stories with backend stories
-  const stories = [...staticStories, ...backendStories];
+  // Only use backend stories (which are stored in memory on server)
+  // Backend stories from API take precedence, static stories are fallback
+  const stories = backendStories.length > 0 ? backendStories : staticStories;
 
   // Scroll to top when component mounts
   useEffect(() => {
@@ -109,7 +108,7 @@ const SuccessStories = () => {
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
         {stories.map((story, index) => (
           <Link
-            key={story.slug}
+            key={story.id || story.slug || `story-${index}`}
             href={`/success-stories/${story.slug}`}
             className="group h-full"
           >
