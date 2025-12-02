@@ -10,35 +10,52 @@ import { stories as staticStories } from '@/data/stories';
 const Story = () => {
   const { slug } = useParams();
   const { t } = useLanguage();
-  const [backendStories, setBackendStories] = useState<any[]>([]);
+  const [story, setStory] = useState<any>(null);
+  const [allStories, setAllStories] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Fetch backend stories
+  // Fetch all stories and current story
   useEffect(() => {
     const fetchStories = async () => {
       try {
+        // First try to find in static stories
+        const staticStory = staticStories.find(s => s.slug === slug);
+        
+        // Fetch backend stories
         const response = await fetch("https://zainab-sanguineous-niels.ngrok-free.dev/api/success-stories", {
           headers: {
             "ngrok-skip-browser-warning": "true"
           }
         });
+        
         if (response.ok) {
-          const data = await response.json();
-          setBackendStories(Array.isArray(data) ? data : []);
+          const backendStories = await response.json();
+          const backendData = Array.isArray(backendStories) ? backendStories : [];
+          
+          // Combine all stories
+          setAllStories([...backendData, ...staticStories]);
+          
+          // Find the current story (prefer backend over static)
+          const backendStory = backendData.find((s: any) => s.slug === slug);
+          setStory(backendStory || staticStory || null);
+        } else {
+          // If backend fails, use static stories
+          setAllStories(staticStories);
+          setStory(staticStory || null);
         }
       } catch (error) {
         console.error("Error fetching backend stories:", error);
+        // Fallback to static stories on error
+        const staticStory = staticStories.find(s => s.slug === slug);
+        setAllStories(staticStories);
+        setStory(staticStory || null);
       } finally {
         setLoading(false);
       }
     };
 
     fetchStories();
-  }, []);
-
-  // Combine static and backend stories
-  const allStories = [...staticStories, ...backendStories];
-  const story = allStories.find(s => s.slug === slug);
+  }, [slug]);
 
   // Scroll to top when component mounts
   useEffect(() => {
@@ -163,37 +180,45 @@ const Story = () => {
                     </div>
                   ))
                 ) : (
-                  // Backend story - display available content
+                  // Backend story - display longStory if available, otherwise show structured content
                   <div className="mb-8" data-testid="section-story-content-0">
                     <h2 className="text-xl font-bold text-foreground font-serif mb-4">
                       Their Story
                     </h2>
-                    <div className="space-y-4">
-                      {story.challenges && (
-                        <div>
-                          <h3 className="font-semibold text-foreground mb-2">Challenges</h3>
-                          <p className="text-muted-foreground leading-relaxed">{story.challenges}</p>
-                        </div>
-                      )}
-                      {story.emotion_details && (
-                        <div>
-                          <h3 className="font-semibold text-foreground mb-2">How They Felt</h3>
-                          <p className="text-muted-foreground leading-relaxed">{story.emotion_details}</p>
-                        </div>
-                      )}
-                      {story.outcome_description && (
-                        <div>
-                          <h3 className="font-semibold text-foreground mb-2">Outcome</h3>
-                          <p className="text-muted-foreground leading-relaxed">{story.outcome_description}</p>
-                        </div>
-                      )}
-                      {story.message_of_hope && (
-                        <div className="bg-gradient-to-br from-pink-50 to-purple-50 rounded-2xl p-4 border-l-4 border-pink-400">
-                          <h3 className="font-semibold text-foreground mb-2">Message of Hope</h3>
-                          <p className="text-muted-foreground leading-relaxed italic">"{story.message_of_hope}"</p>
-                        </div>
-                      )}
-                    </div>
+                    {story.longStory ? (
+                      // Display the full narrative from longStory
+                      <div className="text-muted-foreground leading-relaxed whitespace-pre-line">
+                        {getField(story.longStory)}
+                      </div>
+                    ) : (
+                      // Fallback to structured content if longStory not available
+                      <div className="space-y-4">
+                        {story.challenges && (
+                          <div>
+                            <h3 className="font-semibold text-foreground mb-2">Challenges</h3>
+                            <p className="text-muted-foreground leading-relaxed">{story.challenges}</p>
+                          </div>
+                        )}
+                        {story.emotion_details && (
+                          <div>
+                            <h3 className="font-semibold text-foreground mb-2">How They Felt</h3>
+                            <p className="text-muted-foreground leading-relaxed">{story.emotion_details}</p>
+                          </div>
+                        )}
+                        {story.outcome_description && (
+                          <div>
+                            <h3 className="font-semibold text-foreground mb-2">Outcome</h3>
+                            <p className="text-muted-foreground leading-relaxed">{story.outcome_description}</p>
+                          </div>
+                        )}
+                        {story.message_of_hope && (
+                          <div className="bg-gradient-to-br from-pink-50 to-purple-50 rounded-2xl p-4 border-l-4 border-pink-400">
+                            <h3 className="font-semibold text-foreground mb-2">Message of Hope</h3>
+                            <p className="text-muted-foreground leading-relaxed italic">"{story.message_of_hope}"</p>
+                          </div>
+                        )}
+                      </div>
+                    )}
                   </div>
                 )}
               </div>
