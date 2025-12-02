@@ -18,20 +18,17 @@ const SuccessStories = () => {
   useEffect(() => {
     const fetchStories = async () => {
       try {
-        const response = await fetch("https://zainab-sanguineous-niels.ngrok-free.dev/api/success-stories", {
-          headers: {
-            "ngrok-skip-browser-warning": "true"
-          }
-        });
-        if (!response.ok) {
-          throw new Error("Failed to fetch stories");
+        const response = await fetch(
+          "https://zainab-sanguineous-niels.ngrok-free.dev/api/success-stories",
+        );
+        if (response.ok) {
+          const data = await response.json();
+          setBackendStories(data);
+        } else {
+          console.error("Failed to fetch stories from backend");
         }
-        const data = await response.json();
-        console.log("✅ Fetched stories from backend:", data);
-        setBackendStories(Array.isArray(data) ? data : []);
       } catch (error) {
-        console.error("❌ Failed to fetch stories from backend:", error);
-        setBackendStories([]);
+        console.error("Error fetching stories:", error);
       } finally {
         setLoading(false);
       }
@@ -40,22 +37,8 @@ const SuccessStories = () => {
     fetchStories();
   }, []);
 
-  // Handle new story submission - receives normalized data from POST response
-  const handleStorySubmitted = (responseData: any) => {
-    if (!responseData || !responseData.data) {
-      console.error("❌ No data in response");
-      return;
-    }
-    
-    const newStory = responseData.data;
-    console.log("✅ Story submitted successfully, adding to grid:", newStory);
-    
-    // Immediately prepend the new story to the grid
-    setBackendStories(prev => [newStory, ...prev]);
-  };
-
-  // Combine backend stories with static stories (backend stories first)
-  const stories = [...backendStories, ...staticStories];
+  // Combine static stories with backend stories
+  const stories = [...staticStories, ...backendStories];
 
   // Scroll to top when component mounts
   useEffect(() => {
@@ -76,15 +59,6 @@ const SuccessStories = () => {
     return images[index % images.length];
   };
 
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        {/* You can add a loading spinner here */}
-        <p>Loading stories...</p>
-      </div>
-    );
-  }
-
   return (
     <div className="container mx-auto px-4 py-8">
       {/* Page Header */}
@@ -102,12 +76,10 @@ const SuccessStories = () => {
 
       {/* Stories Grid */}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-        {stories.map((story, index) => {
-          const storySlug = story.slug || `story-${index}`;
-          return (
+        {stories.map((story, index) => (
           <Link
-            key={storySlug}
-            href={`/success-stories/${storySlug}`}
+            key={story.slug}
+            href={`/success-stories/${story.slug}`}
             className="group h-full"
           >
             <Card
@@ -124,7 +96,7 @@ const SuccessStories = () => {
 
                 <img
                   src={getStoryImage(index)}
-                  alt={story.title?.[lang] || "Story Image"}
+                  alt={story.title[lang]}
                   className="rounded-xl w-full h-32 object-cover mb-4 group-hover:shadow-lg transition-shadow"
                 />
 
@@ -134,9 +106,9 @@ const SuccessStories = () => {
                     className="text-xs group-hover:shadow-sm transition-shadow"
                     data-testid={`badge-story-stage-${index}`}
                   >
-                    {story.stage?.[lang] || "Unknown Stage"}
+                    {story.stage[lang]}
                   </Badge>
-                  {story.treatment?.[lang] && (
+                  {story.treatment && (
                     <Badge
                       variant="outline"
                       className="text-xs group-hover:shadow-sm transition-shadow"
@@ -151,25 +123,25 @@ const SuccessStories = () => {
                   className="text-lg font-bold text-foreground font-serif mb-2 group-hover:text-pink-600 transition-colors"
                   data-testid={`text-story-title-${index}`}
                 >
-                  {story.title?.[lang] || "Untitled Story"}
+                  {story.title[lang]}
                 </h3>
                 <p
                   className="text-sm text-muted-foreground mb-4 flex-grow group-hover:text-pink-700 transition-colors"
                   data-testid={`text-story-summary-${index}`}
                 >
-                  {story.summary?.[lang] || "No summary available."}
+                  {story.summary[lang]}
                 </p>
 
                 <div className="flex items-center justify-between mt-auto">
                   <div className="flex items-center text-xs text-muted-foreground">
                     <MapPin className="w-3 h-3 mr-1" />
                     <span data-testid={`text-story-city-${index}`}>
-                      {story.city?.[lang] || "Unknown City"}
+                      {story.city[lang]}
                     </span>
                   </div>
                   <div className="flex items-center text-xs text-muted-foreground space-x-2">
                     <span data-testid={`text-story-language-${index}`}>
-                      {story.language?.[lang] || "Unknown Language"}
+                      {story.language[lang]}
                     </span>
                     <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-pink-600 font-medium">
                       • Read story
@@ -179,8 +151,7 @@ const SuccessStories = () => {
               </CardContent>
             </Card>
           </Link>
-          );
-        })}
+        ))}
       </div>
 
       {/* Support Section */}
@@ -232,7 +203,6 @@ const SuccessStories = () => {
       <StorySubmissionForm
         open={showStoryForm}
         onClose={() => setShowStoryForm(false)}
-        onSubmitted={handleStorySubmitted}
       />
     </div>
   );

@@ -272,9 +272,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.setHeader('Access-Control-Allow-Headers', 'Content-Type, ngrok-skip-browser-warning');
 
       console.log("📖 Fetching stories from memory:", inMemoryStories.length);
-      if (inMemoryStories.length > 0) {
-        console.log("📝 Story slugs:", inMemoryStories.map(s => s.slug).join(", "));
-      }
       res.json(inMemoryStories);
     } catch (e: any) {
       console.error("GET /api/success-stories error:", e);
