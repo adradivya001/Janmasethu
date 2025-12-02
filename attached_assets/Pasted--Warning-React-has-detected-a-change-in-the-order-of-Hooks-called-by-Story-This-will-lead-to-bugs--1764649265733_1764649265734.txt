@@ -1,0 +1,26 @@
+ Warning: React has detected a change in the order of Hooks called by Story. This will lead to bugs and errors if not fixed. For more information, read the Rules of Hooks: https://reactjs.org/link/rules-of-hooks
+
+   Previous render            Next render
+   ------------------------------------------------------
+1. useContext                 useContext
+2. useContext                 useContext
+3. useState                   useState
+4. useState                   useState
+5. useEffect                  useEffect
+6. useEffect                  useEffect
+7. undefined                  useContext
+   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+    at Story (https://b62e9dcc-0da8-4a8f-adb3-4fd9d0a60fc4-00-fu4ypmc9mz9u.janeway.replit.dev/src/pages/Story.tsx:28:20)
+    at Route (https://b62e9dcc-0da8-4a8f-adb3-4fd9d0a60fc4-00-fu4ypmc9mz9u.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=d96cd972:323:16)
+    at Switch (https://b62e9dcc-0da8-4a8f-adb3-4fd9d0a60fc4-00-fu4ypmc9mz9u.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=d96cd972:379:17)
+    at main
+    at div
+    at Layout (https://b62e9dcc-0da8-4a8f-adb3-4fd9d0a60fc4-00-fu4ypmc9mz9u.janeway.replit.dev/src/components/Layout.tsx:19:19)
+    at Route (https://b62e9dcc-0da8-4a8f-adb3-4fd9d0a60fc4-00-fu4ypmc9mz9u.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=d96cd972:323:16)
+    at Switch (https://b62e9dcc-0da8-4a8f-adb3-4fd9d0a60fc4-00-fu4ypmc9mz9u.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=d96cd972:379:17)
+    at Router
+    at Provider (https://b62e9dcc-0da8-4a8f-adb3-4fd9d0a60fc4-00-fu4ypmc9mz9u.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-JDJFDWVX.js?v=d96cd972:51:15)
+    at TooltipProvider (https://b62e9dcc-0da8-4a8f-adb3-4fd9d0a60fc4-00-fu4ypmc9mz9u.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@radix-ui_react-tooltip.js?v=d96cd972:2241:5)
+    at LanguageProvider (https://b62e9dcc-0da8-4a8f-adb3-4fd9d0a60fc4-00-fu4ypmc9mz9u.janeway.replit.dev/src/i18n/LanguageProvider.tsx:30:36)
+    at App
