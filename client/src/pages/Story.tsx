@@ -6,8 +6,8 @@ import { ArrowLeft, Calendar, MapPin, Heart, Languages } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageProvider";
 
 export default function Story() {
-  const { language } = useLanguage();
   const [, params] = useRoute("/success-stories/:slug");
+  const { language } = useLanguage();
   const [story, setStory] = useState<any>(null);
   const [allStories, setAllStories] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
