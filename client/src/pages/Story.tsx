@@ -9,7 +9,7 @@ import { stories as staticStories } from '@/data/stories';
 
 const Story = () => {
   const { slug } = useParams();
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const [story, setStory] = useState<any>(null);
   const [allStories, setAllStories] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -18,9 +18,6 @@ const Story = () => {
   useEffect(() => {
     const fetchStories = async () => {
       try {
-        // First try to find in static stories
-        const staticStory = staticStories.find(s => s.slug === slug);
-        
         // Fetch backend stories
         const response = await fetch("https://zainab-sanguineous-niels.ngrok-free.dev/api/success-stories", {
           headers: {
@@ -32,22 +29,24 @@ const Story = () => {
           const backendStories = await response.json();
           const backendData = Array.isArray(backendStories) ? backendStories : [];
           
-          // Combine all stories
-          setAllStories([...backendData, ...staticStories]);
+          // Combine all stories (backend first)
+          const combined = [...backendData, ...staticStories];
+          setAllStories(combined);
           
-          // Find the current story (prefer backend over static)
-          const backendStory = backendData.find((s: any) => s.slug === slug);
-          setStory(backendStory || staticStory || null);
+          // Find the current story by slug
+          const foundStory = combined.find((s: any) => s.slug === slug);
+          setStory(foundStory || null);
         } else {
           // If backend fails, use static stories
           setAllStories(staticStories);
+          const staticStory = staticStories.find(s => s.slug === slug);
           setStory(staticStory || null);
         }
       } catch (error) {
         console.error("Error fetching backend stories:", error);
         // Fallback to static stories on error
-        const staticStory = staticStories.find(s => s.slug === slug);
         setAllStories(staticStories);
+        const staticStory = staticStories.find(s => s.slug === slug);
         setStory(staticStory || null);
       } finally {
         setLoading(false);
@@ -61,6 +60,13 @@ const Story = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [slug]);
+
+  // Helper to get multilingual field (handles both static and backend stories)
+  const getField = (field: any) => {
+    if (!field) return '';
+    if (typeof field === 'string') return field;
+    return field[lang] || field['en'] || '';
+  };
 
   if (loading) {
     return (
@@ -92,15 +98,6 @@ const Story = () => {
       </div>
     );
   }
-
-  const { lang } = useLanguage();
-  
-  // Helper to get multilingual field (handles both static and backend stories)
-  const getField = (field: any) => {
-    if (!field) return '';
-    if (typeof field === 'string') return field;
-    return field[lang] || field['en'] || '';
-  };
 
   const getStoryImage = () => {
     const images = [
@@ -180,13 +177,13 @@ const Story = () => {
                     </div>
                   ))
                 ) : (
-                  // Backend story - display longStory if available, otherwise show structured content
+                  // Backend story - display longStory (full narrative)
                   <div className="mb-8" data-testid="section-story-content-0">
                     <h2 className="text-xl font-bold text-foreground font-serif mb-4">
                       Their Story
                     </h2>
                     {story.longStory ? (
-                      // Display the full narrative from longStory
+                      // Display the full 3-4 paragraph narrative from longStory
                       <div className="text-muted-foreground leading-relaxed whitespace-pre-line">
                         {getField(story.longStory)}
                       </div>

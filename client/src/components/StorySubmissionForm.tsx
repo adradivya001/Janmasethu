@@ -224,6 +224,7 @@ export default function StorySubmissionForm({ open, onClose, onSubmitted }: Stor
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "ngrok-skip-browser-warning": "true"
         },
         body: JSON.stringify(payload),
       });
@@ -248,8 +249,12 @@ export default function StorySubmissionForm({ open, onClose, onSubmitted }: Stor
         setShowPreview(false);
         setConsentAccepted(false);
         
-        // Pass the complete response data to parent
-        onSubmitted?.(responseData);
+        // Pass response.data to parent (this gets prepended to the grid)
+        if (responseData.data) {
+          onSubmitted?.(responseData);
+        } else {
+          onSubmitted?.(responseData);
+        }
         
         onClose();
         
