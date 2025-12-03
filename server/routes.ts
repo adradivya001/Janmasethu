@@ -609,6 +609,200 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // KNOWLEDGE HUB API ENDPOINTS
   // =========================
 
+  // CORS preflight for knowledge endpoints
+  app.options("/api/knowledge/*", (_req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Accept, ngrok-skip-browser-warning');
+    res.status(204).send();
+  });
+
+  // Get life stages
+  app.get("/api/knowledge/life-stages", async (_req, res) => {
+    try {
+      res.setHeader('Access-Control-Allow-Origin', '*');
+      res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
+      res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Accept');
+
+      res.json([
+        { id: "ttc", name: "Trying to Conceive", description: "Pre-conception and fertility planning", sort_order: 1 },
+        { id: "pregnancy", name: "Pregnancy", description: "Expecting mothers", sort_order: 2 },
+        { id: "postpartum", name: "Postpartum", description: "After delivery", sort_order: 3 },
+        { id: "newborn", name: "Newborn", description: "0-12 months", sort_order: 4 },
+        { id: "early-years", name: "Early Years", description: "1-5 years", sort_order: 5 }
+      ]);
+    } catch (e: any) {
+      console.error("GET /api/knowledge/life-stages error:", e);
+      res.status(500).json({ error: e.message });
+    }
+  });
+
+  // Get perspectives
+  app.get("/api/knowledge/perspectives", async (_req, res) => {
+    try {
+      res.setHeader('Access-Control-Allow-Origin', '*');
+      res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
+      res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Accept');
+
+      res.json([
+        { id: "medical", name: "Medical", description: "Clinical and health information", sort_order: 1 },
+        { id: "social", name: "Social", description: "Community and emotional support", sort_order: 2 },
+        { id: "financial", name: "Financial", description: "Costs and schemes", sort_order: 3 },
+        { id: "nutrition", name: "Nutrition", description: "Diet and nutrition", sort_order: 4 }
+      ]);
+    } catch (e: any) {
+      console.error("GET /api/knowledge/perspectives error:", e);
+      res.status(500).json({ error: e.message });
+    }
+  });
+
+  // Get articles with filtering
+  app.get("/api/knowledge/articles", async (req, res) => {
+    try {
+      res.setHeader('Access-Control-Allow-Origin', '*');
+      res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
+      res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Accept');
+
+      const { lifeStage, perspective, search, page = '1', perPage = '20' } = req.query;
+
+      // Mock articles data - replace with real database queries
+      const allArticles = [
+        {
+          id: "1",
+          slug: "ivf-10-min",
+          title: "IVF in 10 Minutes: Steps, Choices, and Costs",
+          summary: "Overview from testing to transfer, with typical ranges.",
+          topic: "Fertility Treatments",
+          section: "IVF",
+          lens: "medical",
+          life_stage: "ttc",
+          read_time_minutes: 6,
+          published_at: new Date().toISOString()
+        },
+        {
+          id: "2",
+          slug: "first-trimester-scan",
+          title: "First‑Trimester Scan: What It Checks",
+          summary: "What the 12‑week scan looks for and what to expect.",
+          topic: "Prenatal Care",
+          section: "Scans",
+          lens: "medical",
+          life_stage: "pregnancy",
+          read_time_minutes: 5,
+          published_at: new Date().toISOString()
+        },
+        {
+          id: "3",
+          slug: "pmmvy-jsy-application-guide",
+          title: "PMMVY & JSY: How to Apply",
+          summary: "Eligibility, documents, and step‑by‑step process.",
+          topic: "Government Schemes",
+          section: "Financial Support",
+          lens: "financial",
+          life_stage: "pregnancy",
+          read_time_minutes: 7,
+          published_at: new Date().toISOString()
+        },
+        {
+          id: "4",
+          slug: "safe-pregnancy-foods-india",
+          title: "Safe Foods in Pregnancy: Eat / Limit / Avoid",
+          summary: "Simple India‑aware table for home and outside.",
+          topic: "Nutrition",
+          section: "Diet",
+          lens: "nutrition",
+          life_stage: "pregnancy",
+          read_time_minutes: 8,
+          published_at: new Date().toISOString()
+        }
+      ];
+
+      // Filter articles
+      let filtered = allArticles;
+
+      if (lifeStage) {
+        filtered = filtered.filter(a => a.life_stage === lifeStage);
+      }
+
+      if (perspective) {
+        filtered = filtered.filter(a => a.lens === perspective);
+      }
+
+      if (search) {
+        const searchLower = (search as string).toLowerCase();
+        filtered = filtered.filter(a => 
+          a.title.toLowerCase().includes(searchLower) ||
+          a.summary.toLowerCase().includes(searchLower)
+        );
+      }
+
+      // Pagination
+      const pageNum = parseInt(page as string, 10);
+      const perPageNum = parseInt(perPage as string, 10);
+      const start = (pageNum - 1) * perPageNum;
+      const end = start + perPageNum;
+      const paginatedArticles = filtered.slice(start, end);
+
+      res.json({
+        query: search || '',
+        filters: {
+          life_stage: lifeStage,
+          perspective: perspective
+        },
+        pagination: {
+          page: pageNum,
+          per_page: perPageNum,
+          total: filtered.length,
+          has_more: end < filtered.length
+        },
+        items: paginatedArticles
+      });
+    } catch (e: any) {
+      console.error("GET /api/knowledge/articles error:", e);
+      res.status(500).json({ error: e.message });
+    }
+  });
+
+  // Get article by slug
+  app.get("/api/knowledge/articles/:slug", async (req, res) => {
+    try {
+      res.setHeader('Access-Control-Allow-Origin', '*');
+      res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
+      res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Accept');
+
+      const { slug } = req.params;
+
+      // Mock article detail - replace with real database query
+      const articles: any = {
+        "ivf-10-min": {
+          id: "1",
+          slug: "ivf-10-min",
+          title: "IVF in 10 Minutes: Steps, Choices, and Costs",
+          summary: "Overview from testing to transfer, with typical ranges.",
+          content: {}, // Article content would go here
+          topic: "Fertility Treatments",
+          section: "IVF",
+          lens: "medical",
+          life_stage: "ttc",
+          read_time_minutes: 6,
+          published_at: new Date().toISOString(),
+          updated_at: new Date().toISOString()
+        }
+      };
+
+      const article = articles[slug];
+      
+      if (!article) {
+        return res.status(404).json({ error: "Article not found" });
+      }
+
+      res.json(article);
+    } catch (e: any) {
+      console.error("GET /api/knowledge/articles/:slug error:", e);
+      res.status(500).json({ error: e.message });
+    }
+  });
+
   // Get bundled knowledge hub data
   app.get("/api/knowledge", async (_req, res) => {
     try {

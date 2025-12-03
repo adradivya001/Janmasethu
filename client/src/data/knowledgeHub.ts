@@ -52,8 +52,8 @@ export interface ArticleData {
   sections: ArticleSection[];
 }
 
-// Ngrok API Base URL - update this with your actual ngrok domain
-const NGROK_API_BASE = 'https://zainab-sanguineous-niels.ngrok-free.dev';
+// API Base URL - using local backend
+const NGROK_API_BASE = window.location.origin;
 
 // API Response Types
 export interface LifeStage {
