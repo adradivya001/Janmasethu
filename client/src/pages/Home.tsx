@@ -105,7 +105,7 @@ const Home = () => {
     <>
       {/* Responsive Video Section */}
       <section className="w-full py-4 px-2 sm:px-4 lg:py-0 lg:px-0 pt-20 md:pt-24">
-        <div className="relative w-full mx-auto overflow-hidden rounded-2xl md:rounded-3xl lg:rounded-none group transition-all duration-700 ease-in-out bg-black">
+        <div className="relative w-full mx-auto overflow-hidden rounded-2xl md:rounded-3xl lg:rounded-none group transition-all duration-700 ease-in-out bg-pink-100">
           <div className="relative w-full" style={{ paddingBottom: "45%" }}>
             <video
               id="hero-video"
