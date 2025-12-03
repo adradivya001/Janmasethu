@@ -605,6 +605,32 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // BLOG API ENDPOINTS
   // =========================
 
+  // =========================
+  // KNOWLEDGE HUB API ENDPOINTS
+  // =========================
+
+  // Get bundled knowledge hub data
+  app.get("/api/knowledge", async (_req, res) => {
+    try {
+      res.setHeader('Access-Control-Allow-Origin', '*');
+      res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
+      res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Accept');
+
+      // Return empty bundled data structure for now
+      // This can be expanded to return actual data from your database
+      res.json({
+        items: []
+      });
+    } catch (e: any) {
+      console.error("GET /api/knowledge error:", e);
+      res.status(500).json({ error: e.message });
+    }
+  });
+
+  // =========================
+  // BLOG API ENDPOINTS
+  // =========================
+
   // 1) List blogs for the card grid
   app.get("/api/blogs", async (req, res) => {
     try {

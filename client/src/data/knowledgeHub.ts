@@ -242,31 +242,14 @@ export async function fetchAllArticlesMetadata(): Promise<ArticleMetadata[]> {
   }
 }
 
-// API Base URL
-const API_BASE_URL = 'https://zainab-sanguineous-niels.ngrok-free.dev/api/knowledge';
-
-// Fetch article by slug from backend
+// Fetch article by slug from backend (reuses fetchArticleBySlug)
 export const fetchArticleData = async (slug: string): Promise<ArticleData | null> => {
   try {
-    const response = await fetch(`${API_BASE_URL}/articles/${slug}`, {
-      headers: {
-        'Accept': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
-      }
-    });
-
-    if (!response.ok) {
-      if (response.status === 404) {
-        console.error(`Article not found: ${slug}`);
-        return null;
-      }
-      const errorData = await response.json();
-      console.error('API error:', errorData.error);
-      return null;
-    }
-
-    const data = await response.json();
-    return data;
+    const article = await fetchArticleBySlug(slug);
+    if (!article) return null;
+    
+    // Transform API response to ArticleData format if needed
+    return article as any;
   } catch (error) {
     console.error('Error fetching article:', error);
     return null;
@@ -292,19 +275,19 @@ export const fetchBundledData = async (filters?: {
     if (filters?.search) params.append('search', filters.search);
 
     const url = params.toString()
-      ? `${API_BASE_URL}?${params.toString()}`
-      : API_BASE_URL;
+      ? `${NGROK_API_BASE}/api/knowledge?${params.toString()}`
+      : `${NGROK_API_BASE}/api/knowledge`;
 
     const response = await fetch(url, {
       headers: {
-        'Accept': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
+        'Accept': 'application/json'
       }
     });
 
     if (!response.ok) {
-      const errorData = await response.json();
-      console.error('API error:', errorData.error);
+      console.error('API error:', response.status, response.statusText);
+      const text = await response.text();
+      console.error('Response body:', text);
       return null;
     }
 
