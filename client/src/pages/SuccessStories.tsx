@@ -95,9 +95,19 @@ const SuccessStories = () => {
         >
           {t("success_preview_title")}
         </h1>
-        <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+        <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-6">
           {t("success_preview_description")}
         </p>
+        
+        {/* Share Story Button */}
+        <Button
+          onClick={() => setShowStoryForm(true)}
+          className="gradient-button-secondary text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300"
+          data-testid="button-share-story-top"
+        >
+          <Heart className="w-5 h-5 mr-2" />
+          {t("share_story_button")}
+        </Button>
       </div>
 
       {/* Stories Grid */}
