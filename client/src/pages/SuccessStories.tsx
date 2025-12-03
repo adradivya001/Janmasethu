@@ -102,7 +102,7 @@ const SuccessStories = () => {
         {/* Share Story Button */}
         <Button
           onClick={() => setShowStoryForm(true)}
-          className="gradient-button-secondary text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300"
+          className="bg-gradient-to-r from-pink-500 via-purple-500 to-pink-500 hover:from-pink-600 hover:via-purple-600 hover:to-pink-600 text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300"
           data-testid="button-share-story-top"
         >
           <Heart className="w-5 h-5 mr-2" />
@@ -219,7 +219,7 @@ const SuccessStories = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button
                 onClick={() => setShowStoryForm(true)}
-                className="gradient-button-secondary text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300"
+                className="bg-gradient-to-r from-pink-500 via-purple-500 to-pink-500 hover:from-pink-600 hover:via-purple-600 hover:to-pink-600 text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300"
                 data-testid="button-share-story"
               >
                 {t("share_story_button")}
