@@ -14,6 +14,22 @@ const DEV_SCRAPE_KEY = process.env.DEV_SCRAPE_KEY || "dev-scrape-2025";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // =========================
+  // GLOBAL CORS MIDDLEWARE
+  // =========================
+  app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Accept, ngrok-skip-browser-warning, x-api-key');
+    
+    // Handle preflight requests
+    if (req.method === 'OPTIONS') {
+      return res.status(204).send();
+    }
+    
+    next();
+  });
+
+  // =========================
   // API ROUTES (prefix with /api)
   // =========================
 
@@ -610,6 +626,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // =========================
   // KNOWLEDGE HUB API ENDPOINTS
   // =========================
+
+  // Handle CORS preflight for knowledge endpoints
+  app.options("/api/knowledge/*", (_req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Accept, ngrok-skip-browser-warning');
+    res.status(204).send();
+  });
 
   // Get all articles
   app.get("/api/knowledge/articles", async (req, res) => {
