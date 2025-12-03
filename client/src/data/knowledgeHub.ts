@@ -276,8 +276,94 @@ export const fetchArticleData = async (slug: string): Promise<ArticleData | null
     const article = await fetchArticleBySlug(slug);
     if (!article) return null;
     
-    // Transform API response to ArticleData format if needed
-    return article as any;
+    // Transform API response to ArticleData format
+    // Backend returns: { id, slug, title, summary, content, topic, section, lens, life_stage, read_time_minutes, published_at }
+    // Frontend expects: { slug, title, overview, metadata, sections }
+    
+    const transformedArticle: ArticleData = {
+      slug: article.slug,
+      title: {
+        en: article.title,
+        hi: article.title,
+        te: article.title
+      },
+      overview: {
+        en: article.summary,
+        hi: article.summary,
+        te: article.summary
+      },
+      metadata: {
+        readTime: {
+          en: `${article.read_time_minutes || 5} min read`,
+          hi: `${article.read_time_minutes || 5} मिनट पढ़ें`,
+          te: `${article.read_time_minutes || 5} నిమిషాలు చదవండి`
+        },
+        reviewer: {
+          en: 'Reviewed by Medical Expert',
+          hi: 'चिकित्सा विशेषज्ञ द्वारा समीक्षित',
+          te: 'వైద్య నిపుణులచే సమీక్షించబడింది'
+        },
+        sources: article.content?.sources || []
+      },
+      sections: []
+    };
+
+    // Parse content if it exists
+    if (article.content) {
+      // If content is a structured object with sections
+      if (Array.isArray(article.content.sections)) {
+        transformedArticle.sections = article.content.sections;
+      } 
+      // If content is just text, create a single section
+      else if (typeof article.content === 'string') {
+        transformedArticle.sections = [{
+          id: 'main-content',
+          title: { en: '', hi: '', te: '' },
+          content: [{
+            type: 'paragraph' as ArticleContentType,
+            text: {
+              en: article.content,
+              hi: article.content,
+              te: article.content
+            }
+          }]
+        }];
+      }
+      // If content is an object with text/body
+      else if (article.content.body || article.content.text) {
+        const contentText = article.content.body || article.content.text;
+        transformedArticle.sections = [{
+          id: 'main-content',
+          title: { en: '', hi: '', te: '' },
+          content: [{
+            type: 'paragraph' as ArticleContentType,
+            text: {
+              en: contentText,
+              hi: contentText,
+              te: contentText
+            }
+          }]
+        }];
+      }
+    }
+
+    // If no sections were created, add a default one with the summary
+    if (transformedArticle.sections.length === 0) {
+      transformedArticle.sections = [{
+        id: 'overview',
+        title: { en: 'Overview', hi: 'अवलोकन', te: 'అవలోకనం' },
+        content: [{
+          type: 'paragraph' as ArticleContentType,
+          text: {
+            en: article.summary,
+            hi: article.summary,
+            te: article.summary
+          }
+        }]
+      }];
+    }
+
+    return transformedArticle;
   } catch (error) {
     console.error('Error fetching article:', error);
     return null;
