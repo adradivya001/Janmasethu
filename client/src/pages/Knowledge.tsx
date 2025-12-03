@@ -53,16 +53,34 @@ const Knowledge = () => {
   const [searching, setSearching] = useState(false);
   const [searchError, setSearchError] = useState<string | null>(null);
 
-  // Load articles from backend API
+  // Load articles from ngrok API
   useEffect(() => {
     const loadArticles = async () => {
       setLoading(true);
       try {
-        // Fetch articles from backend API
-        const articles = await fetchAllArticlesMetadata();
+        // Check for URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const searchParam = urlParams.get('search');
+        const lensParam = urlParams.get('lens');
+        const stageParam = urlParams.get('stage');
+        
+        if (searchParam) {
+          setSearchTerm(searchParam);
+        }
+        
+        if (lensParam && ['medical', 'social', 'financial', 'nutrition'].includes(lensParam)) {
+          setSelectedLens(lensParam as Lens);
+        }
+        
+        if (stageParam && ['ttc', 'pregnancy', 'postpartum', 'newborn', 'early-years'].includes(stageParam)) {
+          setSelectedStage(stageParam as Stage);
+        }
+
+        // Fetch articles from ngrok API
+        const articlesData = await fetchAllArticlesMetadata();
         
         // Transform backend data to match frontend structure
-        const transformedArticles = articles.map(article => ({
+        const transformedArticles = articlesData.map(article => ({
           slug: article.slug,
           title: {
             en: article.title,
@@ -88,29 +106,11 @@ const Knowledge = () => {
         
         setJsonArticles(transformedArticles);
       } catch (error) {
-        console.error('Error loading articles from backend:', error);
+        console.error('Error loading articles from ngrok API:', error);
       } finally {
         setLoading(false);
       }
     };
-
-    // Check for search parameter in URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const searchParam = urlParams.get('search');
-    const lensParam = urlParams.get('lens');
-    const stageParam = urlParams.get('stage');
-    
-    if (searchParam) {
-      setSearchTerm(searchParam);
-    }
-    
-    if (lensParam && ['medical', 'social', 'financial', 'nutrition'].includes(lensParam)) {
-      setSelectedLens(lensParam as Lens);
-    }
-    
-    if (stageParam && ['ttc', 'pregnancy', 'postpartum', 'newborn', 'early-years'].includes(stageParam)) {
-      setSelectedStage(stageParam as Stage);
-    }
 
     loadArticles();
   }, []);
@@ -265,7 +265,7 @@ const Knowledge = () => {
     const newUrl = params.toString() ? `/knowledge?${params.toString()}` : '/knowledge';
     window.history.replaceState({}, '', newUrl);
     
-    // If no search term and no filters, just clear webhook results to show local articles
+    // If no search term and no filters, just clear results to show all articles
     if (!searchTerm && !selectedLens && !selectedStage) {
       setWebhookResults(null);
       setSearching(false);
@@ -273,19 +273,55 @@ const Knowledge = () => {
     }
     
     try {
-      // Use local filtering instead of webhook
-      console.log('Performing local search and filtering');
-      setWebhookResults(null); // Clear webhook results
-      setSearchError(null);
-      
-      // Local search will be handled by the filteredArticles useMemo
-      toast({
-        title: "Search Complete",
-        description: `Found ${filteredArticles.length} articles`,
+      // Map frontend filters to API parameters
+      const lifeStageMap: Record<string, string> = {
+        'ttc': 'ttc',
+        'pregnancy': 'pregnancy',
+        'postpartum': 'postpartum',
+        'newborn': 'newborn',
+        'early-years': 'early-years'
+      };
+
+      const perspectiveMap: Record<string, string> = {
+        'medical': 'medical',
+        'social': 'social',
+        'financial': 'financial',
+        'nutrition': 'nutrition'
+      };
+
+      // Fetch from ngrok API with filters
+      const response = await fetchArticles({
+        search: searchTerm || undefined,
+        lifeStage: selectedStage ? lifeStageMap[selectedStage] : undefined,
+        perspective: selectedLens ? perspectiveMap[selectedLens] : undefined
       });
+
+      // Transform to webhook format for compatibility
+      setWebhookResults({
+        query: searchTerm || '',
+        filters: {
+          lenses: selectedLens ? [selectedLens] : [],
+          stages: selectedStage ? [selectedStage] : []
+        },
+        pagination: response.pagination,
+        items: response.items.map(item => ({
+          id: item.id,
+          slug: item.slug,
+          title: item.title,
+          summary: item.summary,
+          topic: item.topic,
+          section: item.section,
+          lens: item.lens,
+          life_stage: item.life_stage,
+          published_at: item.published_at
+        }))
+      });
+
+      console.log(`Found ${response.items.length} articles from ngrok API`);
     } catch (error) {
       console.error('Error during search:', error);
-      setSearchError('Search failed');
+      setSearchError('Search failed. Please try again.');
+      setWebhookResults(null);
     } finally {
       setSearching(false);
     }
