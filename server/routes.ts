@@ -609,18 +609,117 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // KNOWLEDGE HUB API ENDPOINTS
   // =========================
 
-  // Get bundled knowledge hub data
-  app.get("/api/knowledge", async (_req, res) => {
+  // Import file system to read JSON files
+  const fs = require('fs').promises;
+  const path = require('path');
+
+  // Get all articles
+  app.get("/api/knowledge/articles", async (req, res) => {
     try {
       res.setHeader('Access-Control-Allow-Origin', '*');
       res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
-      res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Accept');
+      res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Accept, ngrok-skip-browser-warning');
 
-      // Return empty bundled data structure for now
-      // This can be expanded to return actual data from your database
+      const { search, lifeStage, perspective, page = '1', perPage = '20' } = req.query;
+      
+      // Read all JSON files from KnowledgeHub directory
+      const knowledgeHubDir = path.join(process.cwd(), 'client', 'public', 'KnowledgeHub');
+      const files = await fs.readdir(knowledgeHubDir);
+      const jsonFiles = files.filter((f: string) => f.endsWith('.json'));
+      
+      let articles = [];
+      for (const file of jsonFiles) {
+        const content = await fs.readFile(path.join(knowledgeHubDir, file), 'utf-8');
+        const articleData = JSON.parse(content);
+        
+        // Extract metadata from the article
+        const article = {
+          id: articleData.slug || file.replace('.json', ''),
+          slug: articleData.slug || file.replace('.json', ''),
+          title: articleData.title?.en || '',
+          summary: articleData.overview?.en || '',
+          topic: 'General',
+          section: 'Knowledge Hub',
+          lens: 'medical', // You might want to extract this from article metadata
+          life_stage: 'pregnancy', // You might want to extract this from article metadata
+          read_time_minutes: parseInt(articleData.metadata?.readTime?.en?.replace(/\D/g, '') || '5'),
+          published_at: new Date().toISOString()
+        };
+        
+        // Apply filters
+        let include = true;
+        if (search && !article.title.toLowerCase().includes(search.toString().toLowerCase()) && 
+            !article.summary.toLowerCase().includes(search.toString().toLowerCase())) {
+          include = false;
+        }
+        
+        if (include) {
+          articles.push(article);
+        }
+      }
+
+      // Pagination
+      const pageNum = parseInt(page.toString());
+      const perPageNum = parseInt(perPage.toString());
+      const startIndex = (pageNum - 1) * perPageNum;
+      const endIndex = startIndex + perPageNum;
+      const paginatedArticles = articles.slice(startIndex, endIndex);
+
       res.json({
-        items: []
+        query: search || '',
+        filters: {
+          life_stage: lifeStage,
+          perspective: perspective
+        },
+        pagination: {
+          page: pageNum,
+          per_page: perPageNum,
+          total: articles.length,
+          has_more: endIndex < articles.length
+        },
+        items: paginatedArticles
       });
+    } catch (e: any) {
+      console.error("GET /api/knowledge/articles error:", e);
+      res.status(500).json({ error: e.message });
+    }
+  });
+
+  // Get single article by slug
+  app.get("/api/knowledge/articles/:slug", async (req, res) => {
+    try {
+      res.setHeader('Access-Control-Allow-Origin', '*');
+      res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
+      res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Accept, ngrok-skip-browser-warning');
+
+      const { slug } = req.params;
+      const filePath = path.join(process.cwd(), 'client', 'public', 'KnowledgeHub', `${slug}.json`);
+      
+      const content = await fs.readFile(filePath, 'utf-8');
+      const articleData = JSON.parse(content);
+      
+      res.json(articleData);
+    } catch (e: any) {
+      if (e.code === 'ENOENT') {
+        res.status(404).json({ error: 'Article not found' });
+      } else {
+        console.error("GET /api/knowledge/articles/:slug error:", e);
+        res.status(500).json({ error: e.message });
+      }
+    }
+  });
+
+  // Get bundled knowledge hub data
+  app.get("/api/knowledge", async (req, res) => {
+    try {
+      res.setHeader('Access-Control-Allow-Origin', '*');
+      res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
+      res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Accept, ngrok-skip-browser-warning');
+
+      // Forward to articles endpoint
+      const articlesResponse = await fetch(`http://localhost:5000/api/knowledge/articles?${new URLSearchParams(req.query as any)}`);
+      const data = await articlesResponse.json();
+      res.json(data);
     } catch (e: any) {
       console.error("GET /api/knowledge error:", e);
       res.status(500).json({ error: e.message });
