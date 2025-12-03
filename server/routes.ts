@@ -738,10 +738,65 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
       res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Accept, ngrok-skip-browser-warning');
 
-      // Forward to articles endpoint
-      const articlesResponse = await fetch(`http://localhost:5000/api/knowledge/articles?${new URLSearchParams(req.query as any)}`);
-      const data = await articlesResponse.json();
-      res.json(data);
+      const { search, lifeStage, perspective, page = '1', perPage = '20' } = req.query;
+
+      // Read all JSON files from KnowledgeHub directory
+      const knowledgeHubDir = path.join(process.cwd(), 'client', 'public', 'KnowledgeHub');
+      const files = await fs.readdir(knowledgeHubDir);
+      const jsonFiles = files.filter((f: string) => f.endsWith('.json'));
+
+      let articles = [];
+      for (const file of jsonFiles) {
+        const content = await fs.readFile(path.join(knowledgeHubDir, file), 'utf-8');
+        const articleData = JSON.parse(content);
+
+        // Extract metadata from the article
+        const article = {
+          id: articleData.slug || file.replace('.json', ''),
+          slug: articleData.slug || file.replace('.json', ''),
+          title: articleData.title?.en || '',
+          summary: articleData.overview?.en || '',
+          topic: 'General',
+          section: 'Knowledge Hub',
+          lens: 'medical',
+          life_stage: 'pregnancy',
+          read_time_minutes: parseInt(articleData.metadata?.readTime?.en?.replace(/\D/g, '') || '5'),
+          published_at: new Date().toISOString()
+        };
+
+        // Apply filters
+        let include = true;
+        if (search && !article.title.toLowerCase().includes(search.toString().toLowerCase()) &&
+            !article.summary.toLowerCase().includes(search.toString().toLowerCase())) {
+          include = false;
+        }
+
+        if (include) {
+          articles.push(article);
+        }
+      }
+
+      // Pagination
+      const pageNum = parseInt(page.toString());
+      const perPageNum = parseInt(perPage.toString());
+      const startIndex = (pageNum - 1) * perPageNum;
+      const endIndex = startIndex + perPageNum;
+      const paginatedArticles = articles.slice(startIndex, endIndex);
+
+      res.json({
+        query: search || '',
+        filters: {
+          life_stage: lifeStage,
+          perspective: perspective
+        },
+        pagination: {
+          page: pageNum,
+          per_page: perPageNum,
+          total: articles.length,
+          has_more: endIndex < articles.length
+        },
+        items: paginatedArticles
+      });
     } catch (e: any) {
       console.error("GET /api/knowledge error:", e);
       res.status(500).json({ error: e.message });
