@@ -53,7 +53,7 @@ export interface ArticleData {
 }
 
 // Ngrok API Base URL - update this with your actual ngrok domain
-const NGROK_API_BASE = 'https://your-ngrok-url.ngrok-free.app';
+const NGROK_API_BASE = 'https://zainab-sanguineous-niels.ngrok-free.dev';
 
 // API Response Types
 export interface LifeStage {
@@ -115,7 +115,6 @@ export interface ArticlesResponse {
 export async function fetchLifeStages(): Promise<LifeStage[]> {
   try {
     const response = await fetch(`${NGROK_API_BASE}/api/knowledge/life-stages`, {
-      method: 'GET',
       headers: {
         'Accept': 'application/json'
       }
@@ -136,7 +135,6 @@ export async function fetchLifeStages(): Promise<LifeStage[]> {
 export async function fetchPerspectives(): Promise<Perspective[]> {
   try {
     const response = await fetch(`${NGROK_API_BASE}/api/knowledge/perspectives`, {
-      method: 'GET',
       headers: {
         'Accept': 'application/json'
       }
@@ -173,7 +171,6 @@ export async function fetchArticles(params?: {
     const url = `${NGROK_API_BASE}/api/knowledge/articles${queryParams.toString() ? '?' + queryParams.toString() : ''}`;
 
     const response = await fetch(url, {
-      method: 'GET',
       headers: {
         'Accept': 'application/json'
       }
@@ -203,7 +200,6 @@ export async function fetchArticles(params?: {
 export async function fetchArticleBySlug(slug: string): Promise<ArticleDetailResponse | null> {
   try {
     const response = await fetch(`${NGROK_API_BASE}/api/knowledge/articles/${encodeURIComponent(slug)}`, {
-      method: 'GET',
       headers: {
         'Accept': 'application/json'
       }
@@ -228,7 +224,6 @@ export async function fetchArticleBySlug(slug: string): Promise<ArticleDetailRes
 export async function fetchAllArticlesMetadata(): Promise<ArticleMetadata[]> {
   try {
     const response = await fetch(`${NGROK_API_BASE}/api/knowledge`, {
-      method: 'GET',
       headers: {
         'Accept': 'application/json'
       }
