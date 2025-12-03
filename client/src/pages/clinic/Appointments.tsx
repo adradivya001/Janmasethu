@@ -99,7 +99,7 @@ export default function Appointments() {
     if (newAppointment.patientName && newAppointment.date && newAppointment.time && newAppointment.type) {
       try {
         setIsLoading(true);
-        console.log('🔵 Triggering appointment webhook...');
+        console.log('🔵 Creating appointment locally...');
 
         // Generate appointment ID locally
         const appointmentId = `A${Date.now()}`;
@@ -117,26 +117,22 @@ export default function Appointments() {
           notes: newAppointment.notes
         };
 
-          setAppointments([newAppointmentData, ...appointments]);
+        setAppointments([newAppointmentData, ...appointments]);
 
-          // Reset form
-          setNewAppointment({
-            patientName: "",
-            patientId: "",
-            phone: "",
-            date: "",
-            time: "",
-            type: "",
-            doctor: "Dr. Rao",
-            notes: ""
-          });
-          setIsModalOpen(false);
-        } else {
-          console.error('❌ Appointment creation failed:', webhookResponse.statusText);
-          alert('Failed to create appointment. Please try again.');
-        }
+        // Reset form
+        setNewAppointment({
+          patientName: "",
+          patientId: "",
+          phone: "",
+          date: "",
+          time: "",
+          type: "",
+          doctor: "Dr. Rao",
+          notes: ""
+        });
+        setIsModalOpen(false);
       } catch (error) {
-        console.error('❌ Error triggering appointment webhook:', error);
+        console.error('❌ Error creating appointment:', error);
         alert('An error occurred while creating the appointment. Please try again.');
       } finally {
         setIsLoading(false);
