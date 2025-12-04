@@ -150,9 +150,15 @@ const Knowledge = () => {
 
   // Show webhook results if available, otherwise show JSON articles
   const displayArticles = useMemo(() => {
-    if (webhookResults && webhookResults.items && webhookResults.items.length > 0) {
+    console.log('displayArticles recalculating:', {
+      hasWebhookResults: !!webhookResults,
+      webhookItemsCount: webhookResults?.items?.length || 0,
+      jsonArticlesCount: jsonArticles.length
+    });
+
+    if (webhookResults && webhookResults.items) {
       // Use webhook results - prioritize webhook data
-      console.log('Using webhook results:', webhookResults.items);
+      console.log('Using webhook results:', webhookResults.items.length);
       return webhookResults.items.map((article, index) => {
         console.log(`Webhook article ${index}:`, {
           title: article.title,
@@ -226,7 +232,13 @@ const Knowledge = () => {
 
   // For webhook results, use them directly since API already filtered
   const filteredArticles = useMemo(() => {
-    if (webhookResults && webhookResults.items && webhookResults.items.length > 0) {
+    console.log('filteredArticles recalculating:', {
+      hasWebhookResults: !!webhookResults,
+      webhookItemsCount: webhookResults?.items?.length || 0,
+      displayArticlesCount: displayArticles.length
+    });
+
+    if (webhookResults && webhookResults.items) {
       console.log('Displaying webhook articles directly:', displayArticles.length);
       // Log each article title and summary for debugging
       displayArticles.forEach((article, i) => {
