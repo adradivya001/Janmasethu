@@ -155,8 +155,8 @@ export async function fetchPerspectives(): Promise<Perspective[]> {
 }
 
 export async function fetchArticles(params?: {
-  lifeStage?: string;
-  perspective?: string;
+  lifeStage?: number;
+  perspective?: number;
   search?: string;
   page?: number;
   perPage?: number;
@@ -164,8 +164,8 @@ export async function fetchArticles(params?: {
   try {
     const queryParams = new URLSearchParams();
 
-    if (params?.lifeStage) queryParams.set('lifeStage', params.lifeStage);
-    if (params?.perspective) queryParams.set('perspective', params.perspective);
+    if (params?.lifeStage) queryParams.set('lifeStage', params.lifeStage.toString());
+    if (params?.perspective) queryParams.set('perspective', params.perspective.toString());
     if (params?.search) queryParams.set('search', params.search);
     if (params?.page) queryParams.set('page', params.page.toString());
     if (params?.perPage) queryParams.set('perPage', params.perPage.toString());

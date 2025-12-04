@@ -246,6 +246,23 @@ const Knowledge = () => {
     });
   }, [displayArticles, webhookResults, searchTerm, selectedLens, selectedStage]);
 
+  // Map frontend lens values to backend perspective IDs
+  const lensToIdMap: Record<Lens, number> = {
+    'medical': 1,
+    'social': 2,  // Emotional in backend
+    'nutrition': 3,
+    'financial': 4
+  };
+
+  // Map frontend stage values to backend life stage IDs
+  const stageToIdMap: Record<Stage, number> = {
+    'ttc': 1,           // Fertility
+    'pregnancy': 2,
+    'postpartum': 3,
+    'newborn': 4,       // Newborn Care
+    'early-years': 5    // Early Parenting
+  };
+
   const lensOptions: Array<{value: Lens; label: string; icon: string; color: string}> = [
     { value: 'medical', label: t('lens_medical'), icon: 'fas fa-stethoscope', color: 'bg-blue-100 text-blue-600' },
     { value: 'social', label: t('lens_social'), icon: 'fas fa-users', color: 'bg-pink-100 text-pink-600' },
@@ -283,27 +300,11 @@ const Knowledge = () => {
     }
     
     try {
-      // Map frontend filters to API parameters
-      const lifeStageMap: Record<string, string> = {
-        'ttc': 'ttc',
-        'pregnancy': 'pregnancy',
-        'postpartum': 'postpartum',
-        'newborn': 'newborn',
-        'early-years': 'early-years'
-      };
-
-      const perspectiveMap: Record<string, string> = {
-        'medical': 'medical',
-        'social': 'social',
-        'financial': 'financial',
-        'nutrition': 'nutrition'
-      };
-
-      // Fetch from ngrok API with filters
+      // Fetch from ngrok API with numeric IDs
       const response = await fetchArticles({
         search: searchTerm || undefined,
-        lifeStage: selectedStage ? lifeStageMap[selectedStage] : undefined,
-        perspective: selectedLens ? perspectiveMap[selectedLens] : undefined
+        lifeStage: selectedStage ? stageToIdMap[selectedStage] : undefined,
+        perspective: selectedLens ? lensToIdMap[selectedLens] : undefined
       });
 
       // Transform to webhook format for compatibility
