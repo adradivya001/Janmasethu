@@ -232,13 +232,19 @@ const Knowledge = () => {
       displayArticles.forEach((article, i) => {
         console.log(`Article ${i}: "${article.title}" - "${article.summary}"`);
       });
-      return displayArticles; // Webhook already filtered, use as-is
+      return displayArticles; // Webhook already filtered, use as-is - no local filtering
     }
     
-    // Apply local filters only for JSON articles
+    // Apply local filters only for JSON articles when no webhook results
+    if (!searchTerm && !selectedLens && !selectedStage) {
+      // No filters applied, show all local articles
+      return displayArticles;
+    }
+    
     return displayArticles.filter(article => {
-      const matchesSearch = article.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           article.summary.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesSearch = !searchTerm || 
+        article.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        article.summary.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesLens = !selectedLens || article.lens.includes(selectedLens);
       const matchesStage = !selectedStage || article.stage.includes(selectedStage);
       
