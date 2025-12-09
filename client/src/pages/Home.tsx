@@ -42,13 +42,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../components/ui/dialog";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "../components/ui/carousel";
 import { useLanguage } from "../i18n/LanguageProvider";
 import { Card, CardContent } from "../components/ui/card";
 import { Button } from "../components/ui/button";
@@ -56,28 +49,14 @@ import { Input } from "../components/ui/input";
 import { articles } from "../data/articles";
 import { stories } from "../data/stories";
 import WhoWeServe from "../components/WhoWeServe";
-import Autoplay from "embla-carousel-autoplay";
 
 const Home = () => {
   const { t, lang } = useLanguage();
   const [, setLocation] = useLocation();
+  const [isVideoPlaying, setIsVideoPlaying] = React.useState(true);
 
   const featuredArticles = articles.slice(0, 4);
   const featuredStories = stories.slice(0, 3);
-
-  const plugin = React.useRef(
-    Autoplay({ delay: 3000, stopOnInteraction: false })
-  );
-
-  const slides = [
-    "/JS slides/1.png",
-    "/JS slides/2.png",
-    "/JS slides/3.png",
-    "/JS slides/4.png",
-    "/JS slides/5.png",
-    "/JS slides/6.png",
-    "/JS slides/7.png",
-  ];
 
   const getTreatmentCards = () => [
     {
@@ -124,36 +103,71 @@ const Home = () => {
 
   return (
     <>
-      {/* Responsive Carousel Section */}
+      {/* Responsive Video Section */}
       <section className="w-full py-4 px-2 sm:px-4 lg:py-0 lg:px-0 pt-20 md:pt-24">
-        <div className="relative w-full mx-auto overflow-hidden rounded-2xl md:rounded-3xl lg:rounded-none transition-all duration-700 ease-in-out">
+        <div className="relative w-full mx-auto overflow-hidden rounded-2xl md:rounded-3xl lg:rounded-none group transition-all duration-700 ease-in-out bg-pink-100">
           <div className="relative w-full" style={{ paddingBottom: "45%" }}>
-            <div className="absolute top-0 left-0 w-full h-full">
-              <Carousel
-                plugins={[plugin.current]}
-                className="w-full h-full"
-                opts={{
-                  align: "start",
-                  loop: true,
-                }}
-              >
-                <CarouselContent className="h-full">
-                  {slides.map((slide, index) => (
-                    <CarouselItem key={index} className="h-full">
-                      <div className="relative w-full h-full">
-                        <img
-                          src={slide}
-                          alt={`Slide ${index + 1}`}
-                          className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-                        />
-                      </div>
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-                <CarouselPrevious className="left-2 sm:left-4 bg-white/90 hover:bg-white border-none shadow-lg" />
-                <CarouselNext className="right-2 sm:right-4 bg-white/90 hover:bg-white border-none shadow-lg" />
-              </Carousel>
-            </div>
+            <video
+              id="hero-video"
+              className="absolute top-0 left-0 w-full h-full object-cover cursor-pointer transition-all duration-500 ease-in-out"
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="auto"
+              webkit-playsinline="true"
+              x5-playsinline="true"
+              onClick={(e) => {
+                const video = e.currentTarget;
+                if (video.paused) {
+                  video.play();
+                  setIsVideoPlaying(true);
+                } else {
+                  video.pause();
+                  setIsVideoPlaying(false);
+                }
+              }}
+              onLoadStart={() => console.log("Video loading started...")}
+              onLoadedData={() => console.log("Video data loaded")}
+              onCanPlay={() => console.log("Video can play")}
+              onPlay={() => console.log("Video started playing")}
+            >
+              <source src="/Videoooooooooooo.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+
+            {/* Play/Pause Button */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation(); // Prevent triggering video click
+                const video = document.getElementById('hero-video') as HTMLVideoElement;
+                if (video) {
+                  if (video.paused) {
+                    video.play();
+                    setIsVideoPlaying(true);
+                  } else {
+                    video.pause();
+                    setIsVideoPlaying(false);
+                  }
+                }
+              }}
+              className="absolute top-3 right-3 w-10 h-10 sm:w-12 sm:h-12 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 z-10 backdrop-blur-sm"
+              aria-label={isVideoPlaying ? "Pause video" : "Play video"}
+            >
+              {isVideoPlaying ? (
+                <svg 
+                  className="w-5 h-5 sm:w-6 sm:h-6 text-purple-600" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 9v6m4-6v6" />
+                  <circle cx="12" cy="12" r="10" strokeWidth={2} />
+                </svg>
+              ) : (
+                <PlayCircle className="w-5 h-5 sm:w-6 sm:h-6 text-purple-600" />
+              )}
+            </button>
           </div>
         </div>
       </section>
