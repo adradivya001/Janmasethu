@@ -62,13 +62,18 @@ const SuccessStories = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  const getStoryImage = (story: any) => {
-    // If user uploaded an image, use it
-    if (story.uploadedImage) {
-      return story.uploadedImage;
-    }
-    // Otherwise, use the default ShareStory.png
-    return "/ShareStory.png";
+  const getStoryImage = (index: number) => {
+    const images = [
+      "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300",
+      "https://images.unsplash.com/photo-1566004100631-35d015d6a491?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300",
+      "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300",
+      "https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300",
+      "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300",
+      "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300",
+      "https://images.unsplash.com/photo-1609220136736-443140cffec6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300",
+      "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300",
+    ];
+    return images[index % images.length];
   };
 
   if (loading) {
@@ -128,7 +133,7 @@ const SuccessStories = () => {
                 </div>
 
                 <img
-                  src={getStoryImage(story)}
+                  src={getStoryImage(index)}
                   alt={story.title?.[lang] || "Story Image"}
                   className="rounded-xl w-full h-32 object-cover mb-4 group-hover:shadow-lg transition-shadow"
                 />
