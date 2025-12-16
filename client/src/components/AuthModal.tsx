@@ -11,6 +11,14 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { registerUser, loginUser } from "@/utils/api";
 
 interface AuthModalProps {
   open: boolean;
@@ -33,6 +41,10 @@ export default function AuthModal({
     fullName: "",
     email: "",
     password: "",
+    phoneNumber: "",
+    gender: "",
+    location: "",
+    language: "en",
   });
   const [relationship, setRelationship] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -48,82 +60,104 @@ export default function AuthModal({
     try {
       if (isSignUp) {
         console.log("Starting signup process...");
-        
-        const payload = {
-          Name: formData.fullName,
-          Email: formData.email,
-          Password: formData.password,
-        };
-        
-        console.log("Sending payload:", payload);
 
-        let response;
-        let data;
-        let webhookSuccess = false;
-
-        try {
-          // Generate user ID locally
-          const userId = `user_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-          
-          // Store user data locally
-          localStorage.setItem('userName', name);
-          localStorage.setItem('userEmail', email);
-          localStorage.setItem('userId', userId);
-          setUserId(userId);
-          
-          console.log("Signup successful, user data stored locally");
-          webhookSuccess = true;
-        } catch (error) {
-          console.error("Error during signup:", error);
+        // Validate required fields
+        if (!formData.fullName || !formData.email || !formData.password) {
+          toast({
+            title: "Required Fields",
+            description: "Please fill in all required fields.",
+            variant: "destructive",
+          });
+          setIsLoading(false);
+          return;
         }
 
-        // If webhook failed, create fallback user data
-        if (!webhookSuccess) {
+        try {
+          const response = await registerUser({
+            name: formData.fullName,
+            email: formData.email,
+            password: formData.password,
+            phone_number: formData.phoneNumber || null,
+            preferred_language: formData.language,
+            gender: formData.gender || null,
+            location: formData.location || null,
+          });
+
+          console.log("Registration successful:", response);
+
+          // Store user data from backend response
+          localStorage.setItem("userId", response.user_id);
+          localStorage.setItem("userName", response.user.name);
+          localStorage.setItem("userEmail", response.user.email);
+          if (formData.language) {
+            localStorage.setItem("userLanguage", formData.language);
+          }
+          setUserId(response.user_id);
+
+          toast({
+            title: "Account created!",
+            description: "Please tell us about yourself.",
+          });
+
+          setIsLoading(false);
+          setShowRelationship(true);
+          return;
+        } catch (error) {
+          console.error("Registration API error:", error);
+          
+          // Fallback to local storage if API fails
           console.log("Using fallback signup flow...");
           const fallbackUserId = `user_${Date.now()}_${Math.random().toString(36).substring(7)}`;
-          
-          localStorage.setItem('userName', formData.fullName);
-          localStorage.setItem('userEmail', formData.email);
-          localStorage.setItem('userId', fallbackUserId);
+
+          localStorage.setItem("userName", formData.fullName);
+          localStorage.setItem("userEmail", formData.email);
+          localStorage.setItem("userId", fallbackUserId);
+          if (formData.language) {
+            localStorage.setItem("userLanguage", formData.language);
+          }
           setUserId(fallbackUserId);
 
           toast({
             title: "Account created!",
             description: "Please tell us about yourself.",
           });
-        } else {
-          toast({
-            title: "Account created!",
-            description: "Please tell us about yourself.",
-          });
-        }
 
-        setIsLoading(false);
-        setShowRelationship(true);
-        return;
+          setIsLoading(false);
+          setShowRelationship(true);
+          return;
+        }
       } else {
-        // Login - static demonstration
-        const loginUserId = `user_${Date.now()}`;
+        // Login flow
+        try {
+          const response = await loginUser({
+            email: formData.email,
+            password: formData.password,
+          });
 
-        // Store username/email in localStorage
-        localStorage.setItem('userEmail', formData.email);
-        localStorage.setItem('userId', loginUserId);
-        if (formData.fullName) {
-          localStorage.setItem('userName', formData.fullName);
+          console.log("Login successful:", response);
+
+          // Store user data from backend response
+          localStorage.setItem("userId", response.user_id);
+          localStorage.setItem("userName", response.user.name);
+          localStorage.setItem("userEmail", response.user.email);
+          if (response.user.preferred_language) {
+            localStorage.setItem("userLanguage", response.user.preferred_language);
+          }
+
+          onClose();
+
+          toast({
+            title: "Login successful",
+            description: "Welcome back to JanmaSethu!",
+          });
+
+          setIsLoading(false);
+          onAuthSuccess(false, undefined, response.user_id);
+        } catch (error) {
+          console.error("Login API error:", error);
+          setLoginError((error as Error).message || "Invalid email or password");
+          setIsLoading(false);
         }
-
-        // Close modal
-        onClose();
-
-        // Show success message
-        toast({
-          title: "Login successful",
-          description: "Welcome back to JanmaSethu!",
-        });
-
-        // Navigate to Sakhi (existing user flow)
-        setIsLoading(false);
-        onAuthSuccess(false, undefined, loginUserId);
       }
     } catch (error) {
       console.error("Authentication error:", error);
@@ -153,7 +187,7 @@ export default function AuthModal({
     console.log("User ID:", userId);
 
     // Store relationship in localStorage for persistence
-    localStorage.setItem('userRelationship', relationship);
+    localStorage.setItem("userRelationship", relationship);
 
     // Call onAuthSuccess to trigger onboarding flow
     console.log("Calling onAuthSuccess with isNewUser=true");
@@ -324,7 +358,7 @@ export default function AuthModal({
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md">
+      <DialogContent className="sm:max-w-md max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold text-center">
             {isSignUp ? "Create Account" : "Sign In"}
@@ -338,22 +372,92 @@ export default function AuthModal({
 
         <form onSubmit={handleSubmit} className="space-y-4 mt-4">
           {isSignUp && (
-            <div className="space-y-2">
-              <Label htmlFor="fullName">Full Name</Label>
-              <Input
-                id="fullName"
-                type="text"
-                placeholder="Enter your full name"
-                value={formData.fullName}
-                onChange={(e) =>
-                  setFormData({ ...formData, fullName: e.target.value })
-                }
-              />
-            </div>
+            <>
+              <div className="space-y-2">
+                <Label htmlFor="fullName">Full Name *</Label>
+                <Input
+                  id="fullName"
+                  type="text"
+                  placeholder="Enter your full name"
+                  value={formData.fullName}
+                  onChange={(e) =>
+                    setFormData({ ...formData, fullName: e.target.value })
+                  }
+                  required
+                  data-testid="input-fullname"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="phoneNumber">Phone Number</Label>
+                <Input
+                  id="phoneNumber"
+                  type="tel"
+                  placeholder="Enter your phone number (optional)"
+                  value={formData.phoneNumber}
+                  onChange={(e) =>
+                    setFormData({ ...formData, phoneNumber: e.target.value })
+                  }
+                  data-testid="input-phone"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="gender">Gender</Label>
+                <Select
+                  value={formData.gender}
+                  onValueChange={(value) =>
+                    setFormData({ ...formData, gender: value })
+                  }
+                >
+                  <SelectTrigger data-testid="select-gender">
+                    <SelectValue placeholder="Select gender" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Male">Male</SelectItem>
+                    <SelectItem value="Female">Female</SelectItem>
+                    <SelectItem value="Other">Other</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="location">City/Town</Label>
+                <Input
+                  id="location"
+                  type="text"
+                  placeholder="Enter your city or town"
+                  value={formData.location}
+                  onChange={(e) =>
+                    setFormData({ ...formData, location: e.target.value })
+                  }
+                  data-testid="input-location"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="language">Preferred Language</Label>
+                <Select
+                  value={formData.language}
+                  onValueChange={(value) =>
+                    setFormData({ ...formData, language: value })
+                  }
+                >
+                  <SelectTrigger data-testid="select-language">
+                    <SelectValue placeholder="Select language" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="en">English</SelectItem>
+                    <SelectItem value="hi">Hindi</SelectItem>
+                    <SelectItem value="te">Telugu</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </>
           )}
 
           <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
+            <Label htmlFor="email">Email *</Label>
             <Input
               id="email"
               type="email"
@@ -362,11 +466,13 @@ export default function AuthModal({
               onChange={(e) =>
                 setFormData({ ...formData, email: e.target.value })
               }
+              required
+              data-testid="input-email"
             />
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="password">Password</Label>
+            <Label htmlFor="password">Password *</Label>
             <Input
               id="password"
               type="password"
@@ -374,8 +480,10 @@ export default function AuthModal({
               value={formData.password}
               onChange={(e) => {
                 setFormData({ ...formData, password: e.target.value });
-                setLoginError(""); // Clear error when user types
+                setLoginError("");
               }}
+              required
+              data-testid="input-password"
             />
           </div>
 
@@ -389,6 +497,7 @@ export default function AuthModal({
             type="submit"
             className="w-full gradient-button text-white"
             disabled={isLoading}
+            data-testid="button-submit-auth"
           >
             {isLoading
               ? isSignUp
@@ -404,10 +513,19 @@ export default function AuthModal({
               type="button"
               onClick={() => {
                 setIsSignUp(!isSignUp);
-                setFormData({ fullName: "", email: "", password: "" });
-                setLoginError(""); // Clear error when switching modes
+                setFormData({
+                  fullName: "",
+                  email: "",
+                  password: "",
+                  phoneNumber: "",
+                  gender: "",
+                  location: "",
+                  language: "en",
+                });
+                setLoginError("");
               }}
               className="text-primary hover:underline font-medium"
+              data-testid="button-toggle-auth-mode"
             >
               {isSignUp
                 ? "Already have an account? Sign in"

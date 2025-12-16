@@ -1,0 +1,475 @@
+Sakhi Webapp - Frontend Integration Guide (Replit)
+IMPORTANT
+
+This guide is for the Webapp ONLY. The webapp requires users to register/login first, then they can chat directly. Unlike WhatsApp, there's NO basic onboarding via chat (name/gender/location).
+
+Backend API Base URL
+const API_BASE_URL = 'http://localhost:8000';  // Update with your backend URL
+Webapp User Flow
+1. User opens webapp
+   ↓
+2. Show Login/Signup page (NOT chat)
+   ↓
+3. User registers or logs in
+   ↓
+4. [OPTIONAL] User completes Parent Profile Onboarding
+   ↓
+5. User can chat with Sakhi
+1. Registration Flow (Required First Step)
+Endpoint: POST /user/register
+When to call: User clicks "Sign Up" button
+
+Collect from user:
+
+Name
+Email
+Password
+Phone Number (optional)
+Preferred Language (dropdown: "en", "hi", "te", etc.)
+Gender (dropdown: "Male", "Female", "Other")
+Location (text input: City/Town)
+async function registerUser(formData) {
+  const response = await fetch(`${API_BASE_URL}/user/register`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      name: formData.name,
+      email: formData.email,
+      password: formData.password,
+      phone_number: formData.phoneNumber || null,
+      role: "USER",
+      preferred_language: formData.language || "en",
+      user_relation: null,  // Set later in parent profile
+    }),
+  });
+  const data = await response.json();
+  
+  if (response.ok) {
+    // IMPORTANT: Save user_id to state/localStorage
+    localStorage.setItem('user_id', data.user_id);
+    localStorage.setItem('user_name', data.user.name);
+    return data;
+  } else {
+    throw new Error(data.detail || 'Registration failed');
+  }
+}
+Registration Form Example:
+
+function SignupForm() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+    phoneNumber: '',
+    language: 'en',
+    gender: '',
+    location: '',
+  });
+  async function handleSubmit(e) {
+    e.preventDefault();
+    
+    try {
+      const response = await registerUser(formData);
+      // Redirect to dashboard or chat
+      router.push('/dashboard');
+    } catch (error) {
+      alert(error.message);
+    }
+  }
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        placeholder="Full Name"
+        value={formData.name}
+        onChange={(e) => setFormData({...formData, name: e.target.value})}
+        required
+      />
+      <input
+        type="email"
+        placeholder="Email"
+        value={formData.email}
+        onChange={(e) => setFormData({...formData, email: e.target.value})}
+        required
+      />
+      <input
+        type="password"
+        placeholder="Password"
+        value={formData.password}
+        onChange={(e) => setFormData({...formData, password: e.target.value})}
+        required
+      />
+      <input
+        type="tel"
+        placeholder="Phone Number (optional)"
+        value={formData.phoneNumber}
+        onChange={(e) => setFormData({...formData, phoneNumber: e.target.value})}
+      />
+      <select
+        value={formData.gender}
+        onChange={(e) => setFormData({...formData, gender: e.target.value})}
+        required
+      >
+        <option value="">Select Gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select>
+      <input
+        type="text"
+        placeholder="City/Town"
+        value={formData.location}
+        onChange={(e) => setFormData({...formData, location: e.target.value})}
+        required
+      />
+      <select
+        value={formData.language}
+        onChange={(e) => setFormData({...formData, language: e.target.value})}
+      >
+        <option value="en">English</option>
+        <option value="hi">Hindi</option>
+        <option value="te">Telugu</option>
+      </select>
+      <button type="submit">Sign Up</button>
+    </form>
+  );
+}
+NOTE
+
+After successful registration, you get a 
+user_id
+. Store it in localStorage or state management (Redux/Context). You'll need it for ALL subsequent API calls.
+
+2. Login Flow (Returning Users)
+Endpoint: POST /user/login
+When to call: User clicks "Login" button with existing credentials
+
+async function loginUser(email, password) {
+  const response = await fetch(`${API_BASE_URL}/user/login`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      email: email,
+      password: password,
+    }),
+  });
+  const data = await response.json();
+  
+  if (response.ok) {
+    // Save user_id to state/localStorage
+    localStorage.setItem('user_id', data.user_id);
+    localStorage.setItem('user_name', data.user.name);
+    return data;
+  } else {
+    throw new Error(data.detail || 'Login failed');
+  }
+}
+Request Example:
+
+{
+  "email": "priya@example.com",
+  "password": "securepass123"
+}
+Response Example (Success):
+
+{
+  "status": "success",
+  "user_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+  "user": {
+    "user_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "name": "Priya Sharma",
+    "email": "priya@example.com",
+    "phone_number": "9876543210",
+    "role": "USER",
+    "preferred_language": "en",
+    "gender": "Female",
+    "location": "Hyderabad"
+  }
+}
+Response Example (Failed):
+
+{
+  "detail": "Invalid email or password"
+}
+Login Form Example:
+
+function LoginForm() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setError('');
+    
+    try {
+      const response = await loginUser(email, password);
+      // Redirect to dashboard or chat
+      router.push('/dashboard');
+    } catch (error) {
+      setError(error.message);
+    }
+  }
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        required
+      />
+      <input
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        required
+      />
+      {error && <p className="error">{error}</p>}
+      <button type="submit">Login</button>
+      <a href="/signup">Don't have an account? Sign up</a>
+    </form>
+  );
+}
+Authentication Check
+// Use this on protected routes
+function useAuth() {
+  const userId = localStorage.getItem('user_id');
+  const router = useRouter();
+  useEffect(() => {
+    if (!userId) {
+      router.push('/login');
+    }
+  }, [userId]);
+  return userId;
+}
+// In your protected components
+function ChatPage() {
+  const userId = useAuth();  // Redirects to login if not authenticated
+  
+  return <ChatInterface userId={userId} />;
+}
+3. Parent Profile Onboarding (Optional)
+When to show: After registration, ask user if they want to complete a parent profile questionnaire.
+
+Show this UI:
+
+"Tell us about your relationship to help personalize your experience"
+[Button: I'm trying to conceive myself]  → relationship_type: "herself"
+[Button: My partner is trying]           → relationship_type: "himself"
+[Button: My daughter is trying]          → relationship_type: "mother"
+[Button: My son's partner is trying]     → relationship_type: "mother_in_law"
+[Button: Skip for now]                   → Go to chat directly
+If user selects a relationship type, start the wizard:
+Endpoint: POST /onboarding/step
+
+function ParentProfileWizard({ userId, relationshipType }) {
+  const [parentProfileId] = useState(generateUUID());
+  const [currentStep, setCurrentStep] = useState(1);
+  const [answers, setAnswers] = useState({});
+  const [question, setQuestion] = useState(null);
+  const [totalSteps, setTotalSteps] = useState(0);
+  async function loadQuestion() {
+    const response = await fetch(`${API_BASE_URL}/onboarding/step`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        parent_profile_id: parentProfileId,
+        relationship_type: relationshipType,
+        current_step: currentStep,
+        answers_json: answers,
+      }),
+    });
+    const data = await response.json();
+    if (data.completed) {
+      // Save to database
+      await saveProfile(data);
+      // Redirect to chat
+      router.push('/chat');
+    } else {
+      setQuestion(data.question);
+      setTotalSteps(data.total_steps);
+    }
+  }
+  async function handleAnswer(answer) {
+    // Save answer
+    const newAnswers = {
+      ...answers,
+      [question.field_name]: answer,
+    };
+    setAnswers(newAnswers);
+    setCurrentStep(currentStep + 1);
+  }
+  useEffect(() => {
+    loadQuestion();
+  }, [currentStep]);
+  return (
+    <div>
+      <h2>Question {currentStep} of {totalSteps}</h2>
+      {question && (
+        <QuestionRenderer
+          question={question}
+          onAnswer={handleAnswer}
+          onBack={() => setCurrentStep(currentStep - 1)}
+        />
+      )}
+    </div>
+  );
+}
+Save completed profile:
+async function saveProfile(completionData) {
+  await fetch(`${API_BASE_URL}/onboarding/complete`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      parent_profile_id: completionData.parent_profile_id,
+      user_id: userId,
+      relationship_type: completionData.relationship_type,
+      answers_json: completionData.answers_json,
+    }),
+  });
+}
+4. Chat Interface (Main Feature)
+When to show: After user is logged in (has user_id)
+
+Endpoint: POST /sakhi/chat
+
+async function sendMessage(userId, message) {
+  const response = await fetch(`${API_BASE_URL}/sakhi/chat`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      user_id: userId,
+      message: message,
+      language: 'en',
+    }),
+  });
+  const data = await response.json();
+  return data;
+}
+Chat Component:
+function ChatInterface() {
+  const userId = localStorage.getItem('user_id');
+  const [messages, setMessages] = useState([]);
+  const [input, setInput] = useState('');
+  async function handleSend() {
+    if (!input.trim()) return;
+    // Add user message to UI
+    setMessages([...messages, { sender: 'user', text: input }]);
+    setInput('');
+    // Send to backend
+    const response = await sendMessage(userId, input);
+    // Add Sakhi's reply
+    setMessages((prev) => [
+      ...prev,
+      {
+        sender: 'sakhi',
+        text: response.reply,
+        youtubeLink: response.youtube_link,
+        infographic: response.infographic_url,
+      },
+    ]);
+  }
+  return (
+    <div className="chat-container">
+      <div className="messages">
+        {messages.map((msg, i) => (
+          <div key={i} className={msg.sender}>
+            <p>{msg.text}</p>
+            {msg.youtubeLink && (
+              <a href={msg.youtubeLink} target="_blank">
+                Watch Video 🎥
+              </a>
+            )}
+            {msg.infographic && (
+              <img src={msg.infographic} alt="Info" />
+            )}
+          </div>
+        ))}
+      </div>
+      
+      <div className="input-box">
+        <input
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          onKeyPress={(e) => e.key === 'Enter' && handleSend()}
+          placeholder="Ask Sakhi anything..."
+        />
+        <button onClick={handleSend}>Send</button>
+      </div>
+    </div>
+  );
+}
+Chat Response Types:
+Medical Question:
+
+{
+  "reply": "IVF stands for In Vitro Fertilization...",
+  "mode": "medical",
+  "language": "en",
+  "youtube_link": "https://youtube.com/...",
+  "infographic_url": "https://example.com/image.png",
+  "route": "openai_rag"
+}
+General Chat:
+
+{
+  "reply": "I'm here to support you!",
+  "mode": "general",
+  "language": "en",
+  "route": "slm_direct"
+}
+5. Complete Integration Checklist
+Step 1: Auth (REQUIRED)
+ Create signup form with name, email, password, gender, location, language
+ Call POST /user/register
+ Store 
+user_id
+ in localStorage
+ Redirect to dashboard/chat
+Step 2: Parent Profile (OPTIONAL)
+ Show relationship type selector after signup
+ If user selects a type, start wizard
+ Call POST /onboarding/step for each question
+ When completed: true, call POST /onboarding/complete
+ Redirect to chat
+Step 3: Chat (MAIN FEATURE)
+ Create chat UI
+ Call POST /sakhi/chat with user_id
+ Display replies
+ Show YouTube links and infographics when available
+6. Key Differences from WhatsApp
+WhatsApp Flow	Webapp Flow
+User sends first message	User must signup first
+Backend asks for name/gender/location via chat	Frontend collects in signup form
+phone_number used for chat	
+user_id
+ used for chat
+Basic onboarding happens in chat	Basic info collected during registration
+7. Quick Start Example
+// App.js
+function App() {
+  const [userId, setUserId] = useState(null);
+  const [showOnboarding, setShowOnboarding] = useState(false);
+  useEffect(() => {
+    const storedUserId = localStorage.getItem('user_id');
+    if (storedUserId) {
+      setUserId(storedUserId);
+    }
+  }, []);
+  if (!userId) {
+    return <SignupPage onSuccess={(id) => setUserId(id)} />;
+  }
+  if (showOnboarding) {
+    return <ParentProfileWizard userId={userId} />;
+  }
+  return <ChatInterface userId={userId} />;
+}
+Summary: API Endpoints for Webapp
+Action	Endpoint	Required Fields
+Register	POST /user/register	name, email, password, gender, location
+Login	POST /user/login	email, password
+Start onboarding	POST /onboarding/step	parent_profile_id, relationship_type, current_step, answers_json
+Save profile	POST /onboarding/complete	user_id, relationship_type, answers_json
+Send chat	POST /sakhi/chat	user_id, message
+The webapp flow: Login/Signup → Optional parent profile → Chat directly!
