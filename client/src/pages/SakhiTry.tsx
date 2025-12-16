@@ -38,10 +38,81 @@ interface PreviewContent {
   description: string;
   videoUrl?: string;
   imageUrl?: string;
+  infographicUrl?: string;
   tips: string[];
   resources: { title: string; description: string; }[];
   keyPoints: string[];
+  replyText?: string;
+  followUpQuestions?: string[];
 }
+
+// Helper function to parse follow-up questions from backend reply
+const parseFollowUpQuestions = (reply: string): { mainText: string; followUps: string[] } => {
+  // Look for "Follow ups :" or "Follow-ups:" pattern (case insensitive)
+  const followUpPatterns = [
+    /follow\s*ups?\s*:\s*/i,
+    /follow-ups?\s*:\s*/i,
+    /suggested\s*questions?\s*:\s*/i
+  ];
+  
+  let splitIndex = -1;
+  for (const pattern of followUpPatterns) {
+    const match = reply.match(pattern);
+    if (match && match.index !== undefined) {
+      splitIndex = match.index;
+      break;
+    }
+  }
+  
+  if (splitIndex === -1) {
+    return { mainText: reply.trim(), followUps: [] };
+  }
+  
+  const mainText = reply.substring(0, splitIndex).trim();
+  const followUpSection = reply.substring(splitIndex);
+  
+  // Extract questions - they're typically separated by newlines or "?"
+  const followUpText = followUpSection.replace(/follow\s*-?ups?\s*:\s*/i, '').trim();
+  const questions = followUpText
+    .split(/[\n\r]+/)
+    .map(q => q.trim())
+    .filter(q => q.length > 0 && q.endsWith('?'));
+  
+  return { mainText, followUps: questions };
+};
+
+// Helper function to convert YouTube URL to embed format
+const getYouTubeEmbedUrl = (url: string): string => {
+  if (!url) return '';
+  
+  // Already an embed URL
+  if (url.includes('/embed/')) {
+    return url;
+  }
+  
+  // Extract video ID from various YouTube URL formats
+  let videoId = '';
+  
+  // youtu.be/VIDEO_ID format
+  const shortMatch = url.match(/youtu\.be\/([a-zA-Z0-9_-]+)/);
+  if (shortMatch) {
+    videoId = shortMatch[1];
+  }
+  
+  // youtube.com/watch?v=VIDEO_ID format
+  const watchMatch = url.match(/[?&]v=([a-zA-Z0-9_-]+)/);
+  if (watchMatch) {
+    videoId = watchMatch[1];
+  }
+  
+  if (videoId) {
+    // Remove any extra parameters from video ID
+    videoId = videoId.split('?')[0].split('&')[0];
+    return `https://www.youtube.com/embed/${videoId}`;
+  }
+  
+  return url;
+};
 
 // Language Switcher component
 const LanguageSwitcher = () => {
@@ -436,10 +507,11 @@ const SakhiTry = () => {
     return contentTemplates[category as keyof typeof contentTemplates][language as keyof typeof contentTemplates.anxiety] || contentTemplates.anxiety.en;
   };
 
-  const sendMessage = async () => {
-    if (!inputText.trim()) return;
+  // Function to send a message (can be called with text directly or uses inputText)
+  const sendMessageWithText = async (messageText: string) => {
+    if (!messageText.trim()) return;
 
-    const userQuestion = inputText.trim();
+    const userQuestion = messageText.trim();
     const detectedLanguage = detectScript(userQuestion);
     
     // Add user message to chat immediately
@@ -472,23 +544,36 @@ const SakhiTry = () => {
       console.log('✅ Backend response:', response);
 
       const botResponseText = response.reply || "I'm here to support you.";
+      
+      // Parse follow-up questions from the reply
+      const { mainText, followUps } = parseFollowUpQuestions(botResponseText);
 
-      // Generate preview content based on the question
-      const preview = generatePreviewContent(userQuestion, sakhiLang);
-      setPreviewContent(preview);
+      // Convert YouTube URL to embed format
+      const embedUrl = response.youtube_link ? getYouTubeEmbedUrl(response.youtube_link) : undefined;
 
-      // Add bot response to chat with optional YouTube link and infographic
+      // Create preview content from backend response
+      const backendPreview: PreviewContent = {
+        title: response.mode ? `${response.mode.charAt(0).toUpperCase() + response.mode.slice(1)} Information` : "Sakhi Response",
+        description: "",
+        videoUrl: embedUrl,
+        infographicUrl: response.infographic_url,
+        replyText: mainText,
+        followUpQuestions: followUps,
+        tips: [],
+        resources: [],
+        keyPoints: []
+      };
+      
+      setPreviewContent(backendPreview);
+
+      // Add bot response to chat (show only main text without follow-ups)
       const botMessage: Message = {
         id: (Date.now() + 1).toString(),
-        text: botResponseText,
+        text: mainText,
         isUser: false,
         timestamp: new Date(),
         language: detectedLanguage,
-        previewContent: {
-          ...preview,
-          videoUrl: response.youtube_link || preview.videoUrl,
-          imageUrl: response.infographic_url || preview.imageUrl,
-        }
+        previewContent: backendPreview
       };
 
       setMessages(prev => [...prev, botMessage]);
@@ -511,6 +596,11 @@ const SakhiTry = () => {
       };
       setMessages(prev => [...prev, errorMessage]);
     }
+  };
+
+  // Wrapper function that uses inputText state
+  const sendMessage = () => {
+    sendMessageWithText(inputText);
   };
 
   const quickPrompts = [
@@ -774,6 +864,7 @@ const SakhiTry = () => {
               <Button
                 onClick={sendMessage}
                 className="rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 h-11 w-11 shadow-md hover:shadow-lg transition-all"
+                data-testid="button-send"
               >
                 <Send className="w-4 h-4" />
               </Button>
@@ -803,6 +894,10 @@ const SakhiTry = () => {
               playerPosition={playerPosition}
               onMouseDown={handleMouseDown}
               isDragging={isDragging}
+              onFollowUpClick={(question) => {
+                // Directly send the follow-up question
+                sendMessageWithText(question);
+              }}
             />
           </div>
         </div>
@@ -834,9 +929,10 @@ interface PreviewPanelProps {
   playerPosition: { x: number; y: number };
   onMouseDown: (e: React.MouseEvent) => void;
   isDragging: boolean;
+  onFollowUpClick?: (question: string) => void;
 }
 
-const PreviewPanel = ({ previewContent, isVideoPlaying, setIsVideoPlaying, isMuted, setIsMuted, translations: t, showFloating, setShowFloating, playerPosition, onMouseDown, isDragging }: PreviewPanelProps) => {
+const PreviewPanel = ({ previewContent, isVideoPlaying, setIsVideoPlaying, isMuted, setIsMuted, translations: t, showFloating, setShowFloating, playerPosition, onMouseDown, isDragging, onFollowUpClick }: PreviewPanelProps) => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -886,147 +982,182 @@ const PreviewPanel = ({ previewContent, isVideoPlaying, setIsVideoPlaying, isMut
   return (
     <div className="h-full bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm">
       <div className="p-6 lg:p-8 space-y-6 lg:space-y-8">
-        {/* Header */}
-        <div className="border-b border-gray-100 pb-6">
-          <h1 className="text-3xl font-bold text-gray-900 mb-3">{previewContent.title}</h1>
-          <p className="text-gray-600 leading-relaxed">{previewContent.description}</p>
+        
+        {/* Main Content Grid: Video/Reply on left, Infographic on right */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          
+          {/* Left Column: Video + Reply + Follow-ups */}
+          <div className="lg:col-span-2 space-y-6">
+            
+            {/* Embedded YouTube Video */}
+            {previewContent.videoUrl && (
+              <div className="relative bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl overflow-hidden border border-purple-100">
+                <div className="aspect-video">
+                  <iframe
+                    width="100%"
+                    height="100%"
+                    src={previewContent.videoUrl}
+                    title="YouTube video player"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                    className="w-full h-full"
+                  ></iframe>
+                </div>
+              </div>
+            )}
+
+            {/* Reply Text */}
+            {previewContent.replyText && (
+              <Card className="border border-gray-100 shadow-sm">
+                <CardContent className="p-6">
+                  <div className="flex items-start space-x-3">
+                    <div className="w-10 h-10 bg-gradient-to-br from-purple-100 to-pink-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                      <Bot className="w-5 h-5 text-purple-600" />
+                    </div>
+                    <div className="flex-1">
+                      <p className="text-gray-800 leading-relaxed text-base whitespace-pre-line">
+                        {previewContent.replyText}
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+
+            {/* Follow-up Question Buttons */}
+            {previewContent.followUpQuestions && previewContent.followUpQuestions.length > 0 && (
+              <Card className="border border-purple-100 shadow-sm bg-gradient-to-br from-purple-50/50 to-pink-50/50">
+                <CardHeader className="pb-3">
+                  <CardTitle className="flex items-center space-x-2 text-lg">
+                    <MessageCircle className="w-5 h-5 text-purple-500" />
+                    <span>Continue the conversation</span>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-3">
+                  {previewContent.followUpQuestions.map((question, index) => (
+                    <button
+                      key={index}
+                      onClick={() => onFollowUpClick?.(question)}
+                      className="w-full text-left p-4 bg-white hover:bg-purple-50 rounded-xl border border-purple-200 hover:border-purple-300 transition-all duration-200 group shadow-sm hover:shadow-md"
+                      data-testid={`button-followup-${index}`}
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className="text-gray-700 group-hover:text-purple-700 font-medium">
+                          {question}
+                        </span>
+                        <Send className="w-4 h-4 text-purple-400 group-hover:text-purple-600 opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </div>
+                    </button>
+                  ))}
+                </CardContent>
+              </Card>
+            )}
+          </div>
+
+          {/* Right Column: Infographic Image */}
+          <div className="lg:col-span-1">
+            {previewContent.infographicUrl && (
+              <Card className="border border-gray-100 shadow-sm sticky top-20">
+                <CardHeader className="pb-3">
+                  <CardTitle className="flex items-center space-x-2 text-lg">
+                    <Heart className="w-5 h-5 text-pink-500" />
+                    <span>Visual Guide</span>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="p-4">
+                  <div className="rounded-xl overflow-hidden border border-gray-100">
+                    <img
+                      src={previewContent.infographicUrl}
+                      alt="Infographic"
+                      className="w-full h-auto object-contain"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.style.display = 'none';
+                      }}
+                    />
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+
+            {/* Show placeholder if no infographic */}
+            {!previewContent.infographicUrl && (
+              <Card className="border border-gray-100 shadow-sm bg-gradient-to-br from-gray-50 to-white">
+                <CardContent className="p-8 text-center">
+                  <div className="w-16 h-16 bg-gradient-to-br from-purple-100 to-pink-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                    <Shield className="w-8 h-8 text-purple-600" />
+                  </div>
+                  <h4 className="font-semibold text-gray-700 mb-2">Trusted Information</h4>
+                  <p className="text-sm text-gray-500">
+                    All responses are backed by verified medical sources
+                  </p>
+                </CardContent>
+              </Card>
+            )}
+          </div>
         </div>
 
-        {/* Mobile: Floating Mini Player - Draggable */}
-        {isMobile && showFloating && previewContent && (
-          <div 
-            className="fixed z-[9999] floating-mini-player safe-area-padding-bottom pointer-events-auto"
-            style={{
-              left: playerPosition.x || 'auto',
-              top: playerPosition.y || 'auto',
-              right: playerPosition.x ? 'auto' : '1rem',
-              bottom: playerPosition.y ? 'auto' : '1rem',
-              cursor: isDragging ? 'grabbing' : 'grab'
-            }}
-          >
-            <div className="relative bg-black rounded-2xl overflow-hidden shadow-2xl" style={{ width: '420px', maxWidth: 'calc(100vw - 2rem)' }}>
-              <div 
-                onMouseDown={onMouseDown}
-                className="absolute top-0 left-0 right-0 h-10 z-10 cursor-grab active:cursor-grabbing bg-gradient-to-b from-black/60 to-transparent flex items-center justify-between px-3"
-              >
-                <div className="flex items-center space-x-2 text-white text-xs font-medium">
-                  <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
-                  <span>Drag to move</span>
+        {/* Legacy sections - only show if they have content */}
+        {previewContent.keyPoints && previewContent.keyPoints.length > 0 && (
+          <Card className="border border-gray-100 shadow-sm">
+            <CardHeader className="pb-4">
+              <CardTitle className="flex items-center space-x-2 text-xl">
+                <Heart className="w-6 h-6 text-pink-500" />
+                <span>{t.keyPoints}</span>
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              {previewContent.keyPoints.map((point, index) => (
+                <div key={index} className="flex items-start space-x-3">
+                  <div className="w-2 h-2 bg-purple-500 rounded-full mt-2 flex-shrink-0" />
+                  <p className="text-gray-700 leading-relaxed">{point}</p>
                 </div>
-                <button
-                  onClick={() => setShowFloating(false)}
-                  className="bg-black/70 hover:bg-black/90 text-white rounded-full p-1.5 transition-all duration-200"
-                  aria-label="Close mini player"
-                >
-                  <X className="w-4 h-4" />
-                </button>
-              </div>
-              <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
-                <iframe
-                  className="absolute top-0 left-0 w-full h-full"
-                  src={previewContent.videoUrl || "https://www.youtube.com/embed/jq_MxKVlDCU?si=D-TE7Ewsb1CCUJfS&start=10&enablejsapi=1&autoplay=1"}
-                  title="YouTube video player (mini)"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  referrerPolicy="strict-origin-when-cross-origin"
-                  allowFullScreen
-                ></iframe>
-              </div>
-            </div>
-          </div>
+              ))}
+            </CardContent>
+          </Card>
         )}
 
-        {/* Desktop/Tablet: Full-screen Video */}
-        {!isMobile && (
-          <div className="relative bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl overflow-hidden border border-purple-100">
-            <div className="aspect-video">
-              <iframe
-                width="100%"
-                height="100%"
-                src={previewContent.videoUrl || "https://www.youtube.com/embed/jq_MxKVlDCU?si=D-TE7Ewsb1CCUJfS&start=10"}
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
-                allowFullScreen
-                className="w-full h-full"
-              ></iframe>
-            </div>
-          </div>
+        {previewContent.tips && previewContent.tips.length > 0 && (
+          <Card className="border border-gray-100 shadow-sm">
+            <CardHeader className="pb-4">
+              <CardTitle className="flex items-center space-x-2 text-xl">
+                <Shield className="w-6 h-6 text-green-500" />
+                <span>{t.practicalTips}</span>
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              {previewContent.tips.map((tip, index) => (
+                <div key={index} className="p-4 bg-green-50 rounded-xl border-l-4 border-green-400">
+                  <p className="text-gray-700 leading-relaxed">{tip}</p>
+                </div>
+              ))}
+            </CardContent>
+          </Card>
         )}
 
-        {/* Key Points */}
-        <Card className="border border-gray-100 shadow-sm">
-          <CardHeader className="pb-4">
-            <CardTitle className="flex items-center space-x-2 text-xl">
-              <Heart className="w-6 h-6 text-pink-500" />
-              <span>{t.keyPoints}</span>
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            {previewContent.keyPoints.map((point, index) => (
-              <div key={index} className="flex items-start space-x-3">
-                <div className="w-2 h-2 bg-purple-500 rounded-full mt-2 flex-shrink-0" />
-                <p className="text-gray-700 leading-relaxed">{point}</p>
-              </div>
-            ))}
-          </CardContent>
-        </Card>
-
-        {/* Practical Tips */}
-        <Card className="border border-gray-100 shadow-sm">
-          <CardHeader className="pb-4">
-            <CardTitle className="flex items-center space-x-2 text-xl">
-              <Shield className="w-6 h-6 text-green-500" />
-              <span>{t.practicalTips}</span>
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            {previewContent.tips.map((tip, index) => (
-              <div key={index} className="p-4 bg-green-50 rounded-xl border-l-4 border-green-400">
-                <p className="text-gray-700 leading-relaxed">{tip}</p>
-              </div>
-            ))}
-          </CardContent>
-        </Card>
-
-        {/* Resources */}
-        <Card className="border border-gray-100 shadow-sm">
-          <CardHeader className="pb-4">
-            <CardTitle className="flex items-center space-x-2 text-xl">
-              <Users className="w-6 h-6 text-blue-500" />
-              <span>{t.additionalResources}</span>
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-3">
-            {previewContent.resources.map((resource, index) => (
-              <div key={index} className="p-4 border border-gray-200 rounded-xl hover:bg-purple-50/50 hover:border-purple-200 transition-all cursor-pointer">
-                <h4 className="font-semibold text-gray-900 mb-1.5">{resource.title}</h4>
-                <p className="text-sm text-gray-600 leading-relaxed mb-3">{resource.description}</p>
-                <Badge variant="secondary" className="bg-purple-100 text-purple-700 hover:bg-purple-200">
-                  {t.learnMore}
-                </Badge>
-              </div>
-            ))}
-          </CardContent>
-        </Card>
-
-        {/* Emergency Notice */}
-        <Card className="border-orange-200 bg-orange-50 shadow-sm">
-          <CardContent className="p-5">
-            <div className="flex items-start space-x-3">
-              <Shield className="w-6 h-6 text-orange-600 mt-1 flex-shrink-0" />
-              <div>
-                <h4 className="font-semibold text-orange-900 mb-2">
-                  {t.importantNotice}
-                </h4>
-                <p className="text-sm text-orange-800 leading-relaxed">
-                  {t.emergencyText}
-                </p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+        {previewContent.resources && previewContent.resources.length > 0 && (
+          <Card className="border border-gray-100 shadow-sm">
+            <CardHeader className="pb-4">
+              <CardTitle className="flex items-center space-x-2 text-xl">
+                <Users className="w-6 h-6 text-blue-500" />
+                <span>{t.additionalResources}</span>
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              {previewContent.resources.map((resource, index) => (
+                <div key={index} className="p-4 border border-gray-200 rounded-xl hover:bg-purple-50/50 hover:border-purple-200 transition-all cursor-pointer">
+                  <h4 className="font-semibold text-gray-900 mb-1.5">{resource.title}</h4>
+                  <p className="text-sm text-gray-600 leading-relaxed mb-3">{resource.description}</p>
+                  <Badge variant="secondary" className="bg-purple-100 text-purple-700 hover:bg-purple-200">
+                    {t.learnMore}
+                  </Badge>
+                </div>
+              ))}
+            </CardContent>
+          </Card>
+        )}
       </div>
     </div>
   );
