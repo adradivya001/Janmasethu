@@ -307,7 +307,10 @@ const SakhiTry = () => {
   }, [isDragging, dragOffset]);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    // Use setTimeout to ensure DOM has updated before scrolling
+    setTimeout(() => {
+      messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, 100);
   };
 
   useEffect(() => {
@@ -745,12 +748,13 @@ const SakhiTry = () => {
         </div>
 
         {/* Chat Panel */}
-        <div className={`fixed top-20 left-0 h-[calc(100vh-5rem)] bg-white shadow-2xl transition-all duration-300 ease-in-out z-30 ${
+        <div className={`fixed top-20 left-0 bg-white shadow-2xl transition-all duration-300 ease-in-out z-30 ${
           isChatOpen ? 'w-full md:w-[420px]' : 'w-0'
-        } overflow-hidden border-r border-gray-100 flex flex-col`}>
+        } overflow-hidden border-r border-gray-100 flex flex-col`}
+        style={{ height: 'calc(100vh - 5rem)' }}>
 
           {/* Messages Area */}
-          <div className="flex-1 overflow-y-auto p-4 lg:p-6 space-y-4 lg:space-y-5 pt-6 pb-4">
+          <div className="flex-1 overflow-y-auto p-4 lg:p-6 space-y-4 lg:space-y-5 pt-6 pb-24" style={{ minHeight: 0 }}>
             {messages.length === 0 && (
               <div className="text-center py-8 px-4">
                 <div className="w-16 h-16 bg-gradient-to-br from-purple-100 to-pink-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
