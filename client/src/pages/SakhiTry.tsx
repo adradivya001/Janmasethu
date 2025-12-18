@@ -236,6 +236,7 @@ const SakhiTry = () => {
   const [inputText, setInputText] = useState('');
   const [previewContent, setPreviewContent] = useState<PreviewContent | null>(null);
   const [lastUserMessage, setLastUserMessage] = useState<string>('');
+  const [isLoading, setIsLoading] = useState(false);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -311,6 +312,7 @@ const SakhiTry = () => {
     setMessages(prev => [...prev, newMessage]);
     setLastUserMessage(userQuestion);
     setInputText('');
+    setIsLoading(true);
 
     console.log('🔵 Send button clicked - sending to backend API:', userQuestion);
 
@@ -376,6 +378,7 @@ const SakhiTry = () => {
       };
 
       setMessages(prev => [...prev, botMessage]);
+      setIsLoading(false);
       
     } catch (error) {
       console.error('❌ Error calling backend API:', error);
@@ -394,6 +397,7 @@ const SakhiTry = () => {
         language: detectedLanguage
       };
       setMessages(prev => [...prev, errorMessage]);
+      setIsLoading(false);
     }
   };
 
@@ -648,6 +652,29 @@ const SakhiTry = () => {
                 </div>
               </div>
             ))}
+            
+            {/* Loading Indicator - shows below user message while waiting for response */}
+            {isLoading && (
+              <div className="flex justify-start px-1">
+                <div className="max-w-[95%] lg:max-w-[80%]">
+                  <div className="flex items-start space-x-3">
+                    <div className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 shadow-sm bg-gradient-to-br from-purple-100 to-pink-100 text-purple-600">
+                      <Bot className="w-5 h-5" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="px-4 py-3 rounded-2xl bg-white border border-gray-100 shadow-md inline-flex items-center space-x-1">
+                        <div className="flex space-x-1">
+                          <div className="w-2 h-2 bg-purple-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                          <div className="w-2 h-2 bg-purple-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                          <div className="w-2 h-2 bg-purple-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+            
             <div ref={messagesEndRef} />
           </div>
 
