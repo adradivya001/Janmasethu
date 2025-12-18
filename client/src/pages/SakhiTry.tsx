@@ -802,6 +802,22 @@ const SakhiTry = () => {
                         </p>
                       </div>
 
+                      {/* Bot Response Card - Shows full reply in chat */}
+                      {!message.isUser && message.previewContent?.replyText && (
+                        <div className="mt-3 px-4 py-4 bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl border border-purple-100 shadow-sm hover:shadow-md transition-shadow">
+                          <div className="flex items-start space-x-3">
+                            <div className="w-8 h-8 bg-gradient-to-br from-purple-200 to-pink-200 rounded-lg flex items-center justify-center flex-shrink-0">
+                              <Heart className="w-4 h-4 text-purple-600" />
+                            </div>
+                            <div className="flex-1">
+                              <p className="text-xs text-gray-600 font-semibold mb-1.5">Response</p>
+                              <p className="text-sm text-gray-800 leading-relaxed line-clamp-3">{message.previewContent.replyText}</p>
+                              <p className="text-xs text-purple-600 mt-2 font-medium cursor-pointer hover:text-purple-700">View Full Response →</p>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
                       {/* Mobile Preview Content */}
                       {!message.isUser && message.previewContent && (
                         <div className="md:hidden mt-4 bg-white rounded-2xl shadow-xl border border-purple-100 p-5 space-y-5 hover:shadow-2xl transition-shadow duration-300 w-[95%] max-w-full">
