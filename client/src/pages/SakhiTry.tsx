@@ -709,12 +709,12 @@ const SakhiTry = () => {
         </div>
 
         {/* Chat Panel */}
-        <div className={`fixed top-12 left-0 h-[calc(100vh-3rem)] bg-white shadow-2xl transition-all duration-300 ease-in-out z-30 ${
+        <div className={`fixed top-20 left-0 h-[calc(100vh-5rem)] bg-white shadow-2xl transition-all duration-300 ease-in-out z-30 ${
           isChatOpen ? 'w-full md:w-[420px]' : 'w-0'
-        } overflow-hidden border-r border-gray-100`}>
+        } overflow-hidden border-r border-gray-100 flex flex-col`}>
 
           {/* Messages Area */}
-          <div className="flex-1 overflow-y-auto p-4 lg:p-6 space-y-4 lg:space-y-5 h-[calc(100%-100px)] pt-6">
+          <div className="flex-1 overflow-y-auto p-4 lg:p-6 space-y-4 lg:space-y-5 pt-6 pb-4">
             {messages.length === 0 && (
               <div className="text-center py-8 px-4">
                 <div className="w-16 h-16 bg-gradient-to-br from-purple-100 to-pink-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
@@ -852,14 +852,15 @@ const SakhiTry = () => {
           </div>
 
           {/* Input Area */}
-          <div className="p-4 lg:p-6 border-t border-gray-100 bg-white absolute bottom-0 left-0 right-0">
-            <div className="flex space-x-3 mb-3">
+          <div className="p-4 lg:p-6 border-t border-gray-100 bg-white flex-shrink-0">
+            <div className="flex space-x-3">
               <Input
                 value={inputText}
                 onChange={(e) => setInputText(e.target.value)}
                 placeholder={t.typeMessage}
                 className="flex-1 rounded-xl border-gray-200 focus:border-purple-300 focus:ring-purple-200 text-sm h-11"
                 onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
+                data-testid="input-message"
               />
               <Button
                 onClick={sendMessage}
@@ -868,13 +869,6 @@ const SakhiTry = () => {
               >
                 <Send className="w-4 h-4" />
               </Button>
-            </div>
-            <div className="privacy-badge">
-              <div className="privacy-badge-text">
-                <Shield className="privacy-badge-icon" />
-                <div className="privacy-badge-dot" />
-                <span>End-to-end encrypted • Your data stays on your device</span>
-              </div>
             </div>
           </div>
         </div>
