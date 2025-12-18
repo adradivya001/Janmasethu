@@ -7,7 +7,6 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { detectScript } from '@/utils/language';
 import { sendChatMessage } from '@/utils/api';
-import LoadingMessage from '@/components/LoadingMessage';
 
 // Scoped Language Context for SakhiTry page only
 interface SakhiLanguageContextType {
@@ -239,7 +238,6 @@ const SakhiTry = () => {
   const [lastUserMessage, setLastUserMessage] = useState<string>('');
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
-  const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const [showFloating, setShowFloating] = useState(true);
   
@@ -313,7 +311,6 @@ const SakhiTry = () => {
     setMessages(prev => [...prev, newMessage]);
     setLastUserMessage(userQuestion);
     setInputText('');
-    setIsLoading(true);
 
     console.log('🔵 Send button clicked - sending to backend API:', userQuestion);
 
@@ -322,7 +319,6 @@ const SakhiTry = () => {
       console.log('🔵 Sending POST request to backend /sakhi/chat');
       
       const response = await sendChatMessage(userId, userQuestion, sakhiLang);
-      setIsLoading(false);
 
       console.log('📤 Sent to backend:', { 
         message: userQuestion, 
@@ -382,7 +378,6 @@ const SakhiTry = () => {
       setMessages(prev => [...prev, botMessage]);
       
     } catch (error) {
-      setIsLoading(false);
       console.error('❌ Error calling backend API:', error);
       console.error('❌ Error details:', {
         name: (error as Error).name,
@@ -544,7 +539,6 @@ const SakhiTry = () => {
               </div>
             )}
 
-            {isLoading && <LoadingMessage />}
             {messages.map((message) => (
               <div key={message.id} className={`flex ${message.isUser ? 'justify-end sakhi-message-user' : 'justify-start sakhi-message-bot'} px-1`}>
                 <div className={`max-w-[95%] lg:max-w-[80%] ${message.isUser ? 'order-2' : 'order-1'}`}>
