@@ -44,6 +44,7 @@ interface PreviewContent {
   keyPoints: string[];
   replyText?: string;
   followUpQuestions?: string[];
+  intent?: string;
 }
 
 // Helper function to parse follow-up questions from backend reply
@@ -561,7 +562,8 @@ const SakhiTry = () => {
         followUpQuestions: followUps,
         tips: [],
         resources: [],
-        keyPoints: []
+        keyPoints: [],
+        intent: response.intent
       };
       
       setPreviewContent(backendPreview);
@@ -977,11 +979,30 @@ const PreviewPanel = ({ previewContent, isVideoPlaying, setIsVideoPlaying, isMut
     <div className="h-full bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm">
       <div className="p-6 lg:p-8 space-y-6 lg:space-y-8">
         
-        {/* Main Content Grid: Video/Reply on left, Infographic on right */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Main Content Grid: Intent (left), Video/Reply (middle), Infographic (right) */}
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
           
-          {/* Left Column: Video + Reply + Follow-ups */}
-          <div className="lg:col-span-2 space-y-6">
+          {/* Left Column: Intent (Mobile: hidden, Desktop: sticky) */}
+          {previewContent.intent && (
+            <div className="hidden md:block lg:col-span-1">
+              <Card className="border border-blue-100 shadow-sm bg-gradient-to-br from-blue-50 to-blue-50/50 sticky top-20">
+                <CardHeader className="pb-3">
+                  <CardTitle className="flex items-center space-x-2 text-base">
+                    <MessageCircle className="w-5 h-5 text-blue-600" />
+                    <span className="text-blue-900">Context</span>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="text-sm">
+                  <p className="text-blue-900 leading-relaxed">
+                    {previewContent.intent}
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+          )}
+          
+          {/* Middle Column: Video + Reply + Follow-ups */}
+          <div className={`space-y-6 ${previewContent.intent ? 'md:col-span-2 lg:col-span-2' : 'lg:col-span-2'}`}>
             
             {/* Embedded YouTube Video */}
             {previewContent.videoUrl && (
@@ -1051,7 +1072,7 @@ const PreviewPanel = ({ previewContent, isVideoPlaying, setIsVideoPlaying, isMut
           </div>
 
           {/* Right Column: Infographic Image */}
-          <div className="lg:col-span-1">
+          <div className={`${previewContent.intent ? 'md:col-span-1 lg:col-span-1' : 'lg:col-span-1'}`}>
             {previewContent.infographicUrl && (
               <Card className="border border-gray-100 shadow-sm sticky top-20">
                 <CardHeader className="pb-3">
@@ -1092,6 +1113,21 @@ const PreviewPanel = ({ previewContent, isVideoPlaying, setIsVideoPlaying, isMut
             )}
           </div>
         </div>
+
+        {/* Mobile Intent Display - Shows at top on mobile/tablet only */}
+        {previewContent.intent && (
+          <div className="md:hidden bg-gradient-to-br from-blue-50 to-blue-50/50 rounded-xl border border-blue-100 p-4">
+            <div className="flex items-start space-x-3">
+              <MessageCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+              <div>
+                <h4 className="font-semibold text-blue-900 text-sm mb-2">Context</h4>
+                <p className="text-blue-800 text-sm leading-relaxed">
+                  {previewContent.intent}
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Legacy sections - only show if they have content */}
         {previewContent.keyPoints && previewContent.keyPoints.length > 0 && (

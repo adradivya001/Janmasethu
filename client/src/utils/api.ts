@@ -54,6 +54,7 @@ export interface ChatResponse {
   youtube_link?: string;
   infographic_url?: string;
   route?: string;
+  intent?: string;
 }
 
 export interface OnboardingStepRequest {
