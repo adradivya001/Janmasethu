@@ -802,6 +802,13 @@ const SakhiTry = () => {
                         </p>
                       </div>
 
+                      {/* Show full reply text below intent for bot messages */}
+                      {!message.isUser && message.previewContent?.replyText && (
+                        <div className="mt-3 bg-gray-50 border border-gray-200 rounded-2xl p-3.5 shadow-sm">
+                          <p className="text-xs text-gray-700 leading-relaxed whitespace-pre-line">{message.previewContent.replyText}</p>
+                        </div>
+                      )}
+
                       {/* Mobile Preview Content */}
                       {!message.isUser && message.previewContent && (
                         <div className="md:hidden mt-4 bg-white rounded-2xl shadow-xl border border-purple-100 p-5 space-y-5 hover:shadow-2xl transition-shadow duration-300 w-[95%] max-w-full">
