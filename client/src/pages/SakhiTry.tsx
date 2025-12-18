@@ -643,9 +643,9 @@ const SakhiTry = () => {
   };
 
   const quickPrompts = [
-    { en: "I'm feeling anxious about tomorrow's scan", hi: "कल के स्कैन को लेकर चिंतित हूं", te: "రేపటి స్కాన్ గురించి ఆందోళన అనిపిస్తోంది" },
-    { en: "The two-week wait is driving me crazy", hi: "दो सप्ताह का इंतज़ार मुझे परेशान कर रहा है", te: "రెండు వారాల వేచిచూపు నన్ను వేధిస్తోంది" },
-    { en: "How can I support my partner through this?", hi: "इसमें अपने साथी का समर्थन कैसे करूं?", te: "దీనిలో నా భాగస్వామికి ఎలా మద్దతు ఇవ్వాలి?" }
+    { en: "Does age really affect our chances?", hi: "क्या उम्र वाकई हमारी संभावनाओं को प्रभावित करती है?", te: "వయస్సు నిజంగా మా సంభావ్యతలను ప్రభావితం చేస్తుందా?" },
+    { en: "Healthy routines during pregnancy", hi: "गर्भावस्था के दौरान स्वस्थ दिनचर्या", te: "గర్భధారణ సమయంలో ఆరోగ్యకరమైన దినచర్య" },
+    { en: "Explain me the IVF journey?", hi: "मुझे IVF यात्रा समझाएं", te: "IVF ప్రయాణాన్ని నాకు వివరించండి" }
   ];
 
   const currentPrompts = quickPrompts.map(p => p[sakhiLang]);
