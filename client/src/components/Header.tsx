@@ -102,7 +102,7 @@ const Header = () => {
               <img
                 src="/new js logo without background.svg"
                 alt="JanmaSethu Logo"
-                className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 object-contain"
+                className="h-10 sm:h-12 md:h-12 lg:h-12 w-auto max-w-[180px] sm:max-w-[200px] md:max-w-[220px] lg:max-w-[200px] object-contain"
               />
             </Link>
 
