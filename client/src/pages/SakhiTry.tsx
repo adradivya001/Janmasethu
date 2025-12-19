@@ -566,85 +566,111 @@ const SakhiTry = () => {
                         </p>
                       </div>
 
-                      {/* Mobile Preview Content */}
+                      {/* Mobile Preview Content - Same layout as desktop PreviewPanel */}
                       {!message.isUser && message.previewContent && (
-                        <div className="md:hidden mt-4 bg-white rounded-2xl shadow-xl border border-purple-100 p-5 space-y-5 hover:shadow-2xl transition-shadow duration-300 w-[95%] max-w-full">
-                          <div className="border-b border-gray-100 pb-4">
-                            <h3 className="text-lg font-bold text-gray-900 mb-1.5">{message.previewContent.title}</h3>
-                            <p className="text-sm text-gray-600 leading-relaxed">{message.previewContent.description}</p>
-                          </div>
-
-                          <div className="relative bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl overflow-hidden border border-purple-100">
-                            <div className="aspect-video">
-                              <iframe
-                                width="100%"
-                                height="100%"
-                                src={message.previewContent.videoUrl || "https://www.youtube.com/embed/jq_MxKVlDCU?si=D-TE7Ewsb1CCUJfS&start=10"}
-                                title="YouTube video player"
-                                frameBorder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                referrerPolicy="strict-origin-when-cross-origin"
-                                allowFullScreen
-                                className="w-full h-full"
-                              ></iframe>
-                            </div>
-                          </div>
-
-                          <div>
-                            <h4 className="font-bold text-gray-900 text-sm mb-3 flex items-center">
-                              <Heart className="w-4 h-4 text-pink-500 mr-2" />
-                              {t.keyPoints}
-                            </h4>
-                            <div className="space-y-2.5">
-                              {message.previewContent.keyPoints.map((point, index) => (
-                                <div key={index} className="flex items-start space-x-2.5">
-                                  <div className="w-1.5 h-1.5 bg-purple-500 rounded-full mt-2 flex-shrink-0" />
-                                  <p className="text-xs text-gray-700 leading-relaxed">{point}</p>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-
-                          <div>
-                            <h4 className="font-bold text-gray-900 text-sm mb-3 flex items-center">
-                              <Shield className="w-4 h-4 text-green-500 mr-2" />
-                              {t.practicalTips}
-                            </h4>
-                            <div className="space-y-2.5">
-                              {message.previewContent.tips.map((tip, index) => (
-                                <div key={index} className="p-3 bg-green-50 rounded-lg border-l-3 border-green-400">
-                                  <p className="text-xs text-gray-700 leading-relaxed">{tip}</p>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-
-                          <div>
-                            <h4 className="font-bold text-gray-900 text-sm mb-3 flex items-center">
-                              <Users className="w-4 h-4 text-blue-500 mr-2" />
-                              {t.additionalResources}
-                            </h4>
-                            <div className="space-y-2.5">
-                              {message.previewContent.resources.map((resource, index) => (
-                                <div key={index} className="p-3 border border-gray-200 rounded-lg hover:border-purple-200 hover:bg-purple-50/30 transition-all">
-                                  <h5 className="font-semibold text-gray-900 text-xs mb-1">{resource.title}</h5>
-                                  <p className="text-xs text-gray-600 leading-relaxed">{resource.description}</p>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-
-                          <div className="border border-orange-200 bg-orange-50 rounded-lg p-4">
-                            <div className="flex items-start space-x-2.5">
-                              <Shield className="w-4 h-4 text-orange-600 mt-0.5 flex-shrink-0" />
-                              <div>
-                                <h5 className="font-semibold text-orange-900 text-xs mb-1.5">{t.importantNotice}</h5>
-                                <p className="text-xs text-orange-800 leading-relaxed">
-                                  {t.emergencyText}
-                                </p>
+                        <div className="md:hidden mt-4 bg-white rounded-2xl shadow-xl border border-purple-100 p-4 space-y-4 hover:shadow-2xl transition-shadow duration-300 w-full max-w-full">
+                          
+                          {/* 1. Embedded YouTube Video (Regular Videos Only) */}
+                          {message.previewContent.videoUrl && (
+                            <div className="relative bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl overflow-hidden border border-purple-100">
+                              <div className="aspect-video">
+                                <iframe
+                                  width="100%"
+                                  height="100%"
+                                  src={message.previewContent.videoUrl}
+                                  title="YouTube video player"
+                                  frameBorder="0"
+                                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                  referrerPolicy="strict-origin-when-cross-origin"
+                                  allowFullScreen
+                                  className="w-full h-full"
+                                ></iframe>
                               </div>
                             </div>
-                          </div>
+                          )}
+
+                          {/* 2. Reply Text */}
+                          {message.previewContent.replyText && (
+                            <div className="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                              <div className="flex items-start space-x-3">
+                                <div className="w-8 h-8 bg-gradient-to-br from-purple-100 to-pink-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                  <Bot className="w-4 h-4 text-purple-600" />
+                                </div>
+                                <div className="flex-1">
+                                  <p className="text-sm text-gray-800 leading-relaxed whitespace-pre-line">
+                                    {message.previewContent.replyText}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          )}
+
+                          {/* 3. Infographic Image */}
+                          {message.previewContent.infographicUrl && (
+                            <div className="rounded-xl overflow-hidden border border-gray-100 shadow-sm">
+                              <img
+                                src={message.previewContent.infographicUrl}
+                                alt="Infographic"
+                                className="w-full h-auto object-contain"
+                                onError={(e) => {
+                                  const target = e.target as HTMLImageElement;
+                                  target.style.display = 'none';
+                                }}
+                              />
+                            </div>
+                          )}
+
+                          {/* 4. YouTube Shorts / Instagram Links - As clickable button */}
+                          {message.previewContent.shortsUrl && (
+                            <div className="bg-gradient-to-br from-blue-50/50 to-purple-50/50 rounded-xl p-4 border border-blue-100">
+                              <div className="flex items-center justify-between">
+                                <div className="flex items-center space-x-3">
+                                  <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <Play className="w-4 h-4 text-blue-600" />
+                                  </div>
+                                  <span className="text-sm text-gray-700 font-medium">
+                                    {message.previewContent.shortsUrl.includes('instagram') ? 'View on Instagram' : 'Watch on YouTube'}
+                                  </span>
+                                </div>
+                                <a
+                                  href={message.previewContent.shortsUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="px-3 py-1.5 bg-blue-500 hover:bg-blue-600 text-white text-sm rounded-lg transition-colors"
+                                >
+                                  Open
+                                </a>
+                              </div>
+                            </div>
+                          )}
+
+                          {/* 5. Follow-up Question Buttons */}
+                          {message.previewContent.followUpQuestions && message.previewContent.followUpQuestions.length > 0 && (
+                            <div className="bg-gradient-to-br from-purple-50/50 to-pink-50/50 rounded-xl p-4 border border-purple-100">
+                              <h4 className="flex items-center space-x-2 text-sm font-semibold text-gray-900 mb-3">
+                                <MessageCircle className="w-4 h-4 text-purple-500" />
+                                <span>Continue the conversation</span>
+                              </h4>
+                              <div className="space-y-2">
+                                {message.previewContent.followUpQuestions.map((question, index) => (
+                                  <button
+                                    key={index}
+                                    onClick={() => {
+                                      setInputText(question);
+                                    }}
+                                    className="w-full text-left p-3 bg-white hover:bg-purple-50 rounded-lg border border-purple-200 hover:border-purple-300 transition-all duration-200 group shadow-sm"
+                                  >
+                                    <div className="flex items-center justify-between">
+                                      <span className="text-xs text-gray-700 group-hover:text-purple-700 font-medium">
+                                        {question}
+                                      </span>
+                                      <Send className="w-3 h-3 text-purple-400 group-hover:text-purple-600 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0 ml-2" />
+                                    </div>
+                                  </button>
+                                ))}
+                              </div>
+                            </div>
+                          )}
                         </div>
                       )}
                     </div>
