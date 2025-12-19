@@ -700,8 +700,8 @@ const SakhiTry = () => {
           </div>
         </div>
 
-        {/* Main Content Area - Now contains only the PreviewPanel which will render the mini-player */}
-        <div className={`transition-all duration-300 pt-12 ${isChatOpen ? 'md:ml-[420px]' : 'ml-0'}`}>
+        {/* Main Content Area - Hidden on mobile, only shows on desktop */}
+        <div className={`hidden md:block transition-all duration-300 pt-12 ${isChatOpen ? 'md:ml-[420px]' : 'ml-0'}`}>
           <div className="container mx-auto px-4 py-8 lg:px-8 lg:py-12">
             <PreviewPanel
               previewContent={previewContent}
