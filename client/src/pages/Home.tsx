@@ -445,7 +445,7 @@ const Home = () => {
                   </div>
                 </DialogTrigger>
                 {/* Changed DialogContent to be full-screen on mobile */}
-                <DialogContent className="sm:max-w-2xl sm:max-h-[80vh] max-h-screen max-w-screen h-screen m-0 p-0 overflow-y-auto bg-gradient-to-br from-white via-green-50/30 to-purple-50/30">
+                <DialogContent className="sm:max-w-2xl max-w-[90vw] max-h-[60vh] sm:max-h-[80vh] overflow-y-auto p-0 bg-gradient-to-br from-white via-green-50/30 to-purple-50/30 rounded-2xl">
                   <DialogHeader className="border-b border-green-100 pb-4 px-6 pt-6">
                     <DialogTitle className="flex items-center gap-3 text-2xl md:text-3xl font-serif">
                       <div className="w-12 h-12 bg-gradient-to-br from-green-100 to-green-200 rounded-full flex items-center justify-center shadow-lg">
@@ -566,7 +566,7 @@ const Home = () => {
                     </span>
                   </div>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-2xl sm:max-h-[80vh] max-h-screen max-w-screen h-screen m-0 p-0 overflow-y-auto bg-gradient-to-br from-white via-pink-50/30 to-purple-50/30">
+                <DialogContent className="sm:max-w-2xl max-w-[90vw] max-h-[60vh] sm:max-h-[80vh] overflow-y-auto p-0 bg-gradient-to-br from-white via-pink-50/30 to-purple-50/30 rounded-2xl">
                   <DialogHeader className="border-b border-pink-100 pb-4 px-6 pt-6">
                     <DialogTitle className="flex items-center gap-3 text-2xl md:text-3xl font-serif">
                       <div className="w-12 h-12 bg-gradient-to-br from-pink-100 to-pink-200 rounded-full flex items-center justify-center shadow-lg">
@@ -681,7 +681,7 @@ const Home = () => {
                     </span>
                   </div>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-2xl sm:max-h-[80vh] max-h-screen max-w-screen h-screen m-0 p-0 overflow-y-auto bg-gradient-to-br from-white via-blue-50/30 to-purple-50/30">
+                <DialogContent className="sm:max-w-2xl max-w-[90vw] max-h-[60vh] sm:max-h-[80vh] overflow-y-auto p-0 bg-gradient-to-br from-white via-blue-50/30 to-purple-50/30 rounded-2xl">
                   <DialogHeader className="border-b border-blue-100 pb-4 px-6 pt-6">
                     <DialogTitle className="flex items-center gap-3 text-2xl md:text-3xl font-serif">
                       <div className="w-12 h-12 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full flex items-center justify-center shadow-lg">
@@ -802,7 +802,7 @@ const Home = () => {
                     </span>
                   </div>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-2xl sm:max-h-[80vh] max-h-screen max-w-screen h-screen m-0 p-0 overflow-y-auto bg-gradient-to-br from-white via-purple-50/30 to-pink-50/30">
+                <DialogContent className="sm:max-w-2xl max-w-[90vw] max-h-[60vh] sm:max-h-[80vh] overflow-y-auto p-0 bg-gradient-to-br from-white via-purple-50/30 to-pink-50/30 rounded-2xl">
                   <DialogHeader className="border-b border-purple-100 pb-4 px-6 pt-6">
                     <DialogTitle className="flex items-center gap-3 text-2xl md:text-3xl font-serif">
                       <div className="w-12 h-12 bg-gradient-to-br from-purple-100 to-purple-200 rounded-full flex items-center justify-center shadow-lg">
@@ -917,7 +917,7 @@ const Home = () => {
                     </span>
                   </div>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-2xl sm:max-h-[80vh] max-h-screen max-w-screen h-screen m-0 p-0 overflow-y-auto bg-gradient-to-br from-white via-orange-50/30 to-purple-50/30">
+                <DialogContent className="sm:max-w-2xl max-w-[90vw] max-h-[60vh] sm:max-h-[80vh] overflow-y-auto p-0 bg-gradient-to-br from-white via-orange-50/30 to-purple-50/30 rounded-2xl">
                   <DialogHeader className="border-b border-orange-100 pb-4 px-6 pt-6">
                     <DialogTitle className="flex items-center gap-3 text-2xl md:text-3xl font-serif">
                       <div className="w-12 h-12 bg-gradient-to-br from-orange-100 to-orange-200 rounded-full flex items-center justify-center shadow-lg">
