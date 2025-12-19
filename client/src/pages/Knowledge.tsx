@@ -1,11 +1,18 @@
 import { useState, useMemo, useEffect } from 'react';
 import { Link } from 'wouter';
-import { Search, Filter } from 'lucide-react';
+import { Search, Filter, ChevronDown } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageProvider';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { articles, type Lens, type Stage } from '@/data/articles';
 import { fetchArticles } from '@/data/knowledgeHub';
 
@@ -412,112 +419,140 @@ const Knowledge = () => {
 
       {/* Search and Filters */}
       <div className="mb-8">
-        <div className="flex flex-col md:flex-row gap-4 mb-6">
+        <div className="flex flex-col lg:flex-row gap-3 items-stretch lg:items-center">
+          {/* Search Input */}
           <div className="relative flex-1">
             <form onSubmit={(e) => {
               e.preventDefault();
               handleSearch();
-            }}>
-              <Input
-                type="search"
-                placeholder="Search articles..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10 pr-4 rounded-full"
-                data-testid="input-search-articles"
-              />
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4 pointer-events-none" />
+            }} className="flex gap-2">
+              <div className="relative flex-1">
+                <Input
+                  type="search"
+                  placeholder="Search articles..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="pl-10 pr-4 rounded-full h-11"
+                  data-testid="input-search-articles"
+                />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4 pointer-events-none" />
+              </div>
             </form>
           </div>
-          <Button 
-            className="rounded-full px-6"
-            data-testid="button-search"
-            onClick={handleSearch}
-          >
-            Search
-          </Button>
-          {(webhookResults || selectedLens || selectedStage || searchTerm) && (
-            <Button 
-              variant="outline"
-              className="rounded-full px-6"
-              onClick={() => {
-                console.log('🧹 Clear All clicked');
-                setSearchTerm('');
-                setSelectedLens(null);
-                setSelectedStage(null);
-                setWebhookResults(null);
-                setSearchError(null);
-                // Clear URL parameters
-                window.history.replaceState({}, '', '/knowledge');
+
+          {/* Filter Dropdowns */}
+          <div className="flex flex-wrap sm:flex-nowrap gap-2">
+            {/* Lens Filter Dropdown */}
+            <Select
+              value={selectedLens || "all"}
+              onValueChange={(value) => {
+                if (value === "all") {
+                  setSelectedLens(null);
+                  setWebhookResults(null);
+                } else {
+                  setSelectedLens(value as Lens);
+                }
               }}
             >
-              Clear All
-            </Button>
-          )}
-        </div>
+              <SelectTrigger className="w-full sm:w-[160px] rounded-full h-11" data-testid="select-filter-lens">
+                <Filter className="w-4 h-4 mr-2 text-muted-foreground" />
+                <SelectValue placeholder="Filter by Lens" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Lenses</SelectItem>
+                {lensOptions.map(({ value, label }) => (
+                  <SelectItem key={value} value={value}>{label}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
 
-        {/* Lens Filters */}
-        <div className="mb-4">
-          <h3 className="text-lg font-semibold text-foreground mb-3">Filter by Lens</h3>
-          <div className="flex flex-wrap gap-2">
-            <Button
-              variant={selectedLens === null ? "default" : "outline"}
-              onClick={handleLensAll}
-              className="rounded-full"
-              data-testid="button-filter-all-lens"
+            {/* Stage Filter Dropdown */}
+            <Select
+              value={selectedStage || "all"}
+              onValueChange={(value) => {
+                if (value === "all") {
+                  setSelectedStage(null);
+                  setWebhookResults(null);
+                } else {
+                  setSelectedStage(value as Stage);
+                }
+              }}
             >
-              All
+              <SelectTrigger className="w-full sm:w-[180px] rounded-full h-11" data-testid="select-filter-stage">
+                <Filter className="w-4 h-4 mr-2 text-muted-foreground" />
+                <SelectValue placeholder="Filter by Stage" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Stages</SelectItem>
+                {stageOptions.map(({ value, label }) => (
+                  <SelectItem key={value} value={value}>{label}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+
+            {/* Search Button */}
+            <Button 
+              className="rounded-full px-6 h-11 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600"
+              data-testid="button-search"
+              onClick={handleSearch}
+            >
+              Search
             </Button>
-            {lensOptions.map(({ value, label, icon, color }) => (
-              <Button
-                key={value}
-                variant={selectedLens === value ? "default" : "outline"}
-                onClick={() => setSelectedLens(selectedLens === value ? null : value)}
-                className="rounded-full flex items-center space-x-2"
-                data-testid={`button-filter-lens-${value}`}
+
+            {/* Clear All Button */}
+            {(webhookResults || selectedLens || selectedStage || searchTerm) && (
+              <Button 
+                variant="outline"
+                className="rounded-full px-4 h-11"
+                onClick={() => {
+                  console.log('🧹 Clear All clicked');
+                  setSearchTerm('');
+                  setSelectedLens(null);
+                  setSelectedStage(null);
+                  setWebhookResults(null);
+                  setSearchError(null);
+                  window.history.replaceState({}, '', '/knowledge');
+                }}
               >
-                <i className={`${icon} text-sm`}></i>
-                <span>{label}</span>
+                Clear
               </Button>
-            ))}
+            )}
           </div>
         </div>
 
-        {/* Stage Filters */}
-        <div className="mb-6">
-          <h3 className="text-lg font-semibold text-foreground mb-3">Filter by Life Stage</h3>
-          <div className="flex flex-wrap gap-2">
-            <Button
-              variant={selectedStage === null ? "default" : "outline"}
-              onClick={handleStageAll}
-              className="rounded-full"
-              data-testid="button-filter-all-stage"
-            >
-              All
-            </Button>
-            {stageOptions.map(({ value, label }) => (
-              <Button
-                key={value}
-                variant={selectedStage === value ? "default" : "outline"}
-                onClick={() => setSelectedStage(selectedStage === value ? null : value)}
-                className="rounded-full"
-                data-testid={`button-filter-stage-${value}`}
+        {/* Active Filters Display */}
+        {(selectedLens || selectedStage) && (
+          <div className="flex flex-wrap gap-2 mt-4">
+            {selectedLens && (
+              <Badge 
+                variant="secondary" 
+                className="px-3 py-1 rounded-full cursor-pointer hover:bg-purple-100"
+                onClick={() => setSelectedLens(null)}
               >
-                {label}
-              </Button>
-            ))}
+                {lensOptions.find(l => l.value === selectedLens)?.label} ✕
+              </Badge>
+            )}
+            {selectedStage && (
+              <Badge 
+                variant="secondary" 
+                className="px-3 py-1 rounded-full cursor-pointer hover:bg-purple-100"
+                onClick={() => setSelectedStage(null)}
+              >
+                {stageOptions.find(s => s.value === selectedStage)?.label} ✕
+              </Badge>
+            )}
           </div>
-        </div>
+        )}
 
         {/* Results count and error */}
         {webhookResults && (
-          <div className="mb-4 text-sm text-muted-foreground">
+          <div className="mt-4 text-sm text-muted-foreground">
             Found {webhookResults.pagination.total} articles
           </div>
         )}
         
         {searchError && (
-          <div className="mb-4 text-sm text-red-600 bg-red-50 p-3 rounded-lg">
+          <div className="mt-4 text-sm text-red-600 bg-red-50 p-3 rounded-lg">
             {searchError}
           </div>
         )}
