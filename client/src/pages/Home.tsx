@@ -115,87 +115,86 @@ const Home = () => {
   return (
     <>
       {/* Responsive Carousel Section */}
-      <section className="w-full py-4 px-2 sm:px-4 lg:py-0 lg:px-0 pt-20 md:pt-24">
-        <div className="relative w-full mx-auto overflow-hidden rounded-2xl md:rounded-3xl lg:rounded-none transition-all duration-700 ease-in-out">
-          <div className="relative w-full" style={{ paddingBottom: "45%" }}>
-            <div className="absolute top-0 left-0 w-full h-full">
-              <Carousel
-                plugins={[plugin.current]}
-                className="w-full h-full"
-                opts={{
-                  align: "center",
-                  loop: true,
-                }}
-              >
-                <CarouselContent className="h-full">
-                  <CarouselItem className="h-full">
-                    <div className="relative w-full h-full flex items-center justify-center bg-gradient-to-br from-purple-50 to-pink-50">
-                      <img
-                        src="/JS slides/1.png"
-                        alt="Slide 1"
-                        className="max-w-full max-h-full w-auto h-auto object-contain"
-                      />
-                    </div>
-                  </CarouselItem>
-                  <CarouselItem className="h-full">
-                    <div className="relative w-full h-full flex items-center justify-center bg-gradient-to-br from-purple-50 to-pink-50">
-                      <img
-                        src="/JS slides/2.png"
-                        alt="Slide 2"
-                        className="max-w-full max-h-full w-auto h-auto object-contain"
-                      />
-                    </div>
-                  </CarouselItem>
-                  <CarouselItem className="h-full">
-                    <div className="relative w-full h-full flex items-center justify-center bg-gradient-to-br from-purple-50 to-pink-50">
-                      <img
-                        src="/JS slides/3.png"
-                        alt="Slide 3"
-                        className="max-w-full max-h-full w-auto h-auto object-contain"
-                      />
-                    </div>
-                  </CarouselItem>
-                  <CarouselItem className="h-full">
-                    <div className="relative w-full h-full flex items-center justify-center bg-gradient-to-br from-purple-50 to-pink-50">
-                      <img
-                        src="/JS slides/4.png"
-                        alt="Slide 4"
-                        className="max-w-full max-h-full w-auto h-auto object-contain"
-                      />
-                    </div>
-                  </CarouselItem>
-                  <CarouselItem className="h-full">
-                    <div className="relative w-full h-full flex items-center justify-center bg-gradient-to-br from-purple-50 to-pink-50">
-                      <img
-                        src="/JS slides/5.png"
-                        alt="Slide 5"
-                        className="max-w-full max-h-full w-auto h-auto object-contain"
-                      />
-                    </div>
-                  </CarouselItem>
-                  <CarouselItem className="h-full">
-                    <div className="relative w-full h-full flex items-center justify-center bg-gradient-to-br from-purple-50 to-pink-50">
-                      <img
-                        src="/JS slides/6.png"
-                        alt="Slide 6"
-                        className="max-w-full max-h-full w-auto h-auto object-contain"
-                      />
-                    </div>
-                  </CarouselItem>
-                  <CarouselItem className="h-full">
-                    <div className="relative w-full h-full flex items-center justify-center bg-gradient-to-br from-purple-50 to-pink-50">
-                      <img
-                        src="/JS slides/7.png"
-                        alt="Slide 7"
-                        className="max-w-full max-h-full w-auto h-auto object-contain"
-                      />
-                    </div>
-                  </CarouselItem>
-                </CarouselContent>
-                <CarouselPrevious className="left-2 sm:left-4 bg-white/90 hover:bg-white border-none shadow-lg" />
-                <CarouselNext className="right-2 sm:right-4 bg-white/90 hover:bg-white border-none shadow-lg" />
-              </Carousel>
-            </div>
+      <section className="w-full pt-16 md:pt-20 lg:pt-0">
+        <div className="relative w-full mx-auto overflow-hidden lg:rounded-none transition-all duration-700 ease-in-out">
+          {/* Mobile: Better height for carousel */}
+          <div className="relative w-full h-[45vh] sm:h-[40vh] md:h-[45vh] lg:h-auto lg:aspect-[16/7]">
+            <Carousel
+              plugins={[plugin.current]}
+              className="w-full h-full"
+              opts={{
+                align: "center",
+                loop: true,
+              }}
+            >
+              <CarouselContent className="h-full">
+                <CarouselItem className="h-full">
+                  <div className="relative w-full h-full flex items-center justify-center bg-gradient-to-br from-purple-50 to-pink-50">
+                    <img
+                      src="/JS slides/1.png"
+                      alt="Slide 1"
+                      className="w-full h-full object-cover sm:object-contain"
+                    />
+                  </div>
+                </CarouselItem>
+                <CarouselItem className="h-full">
+                  <div className="relative w-full h-full flex items-center justify-center bg-gradient-to-br from-purple-50 to-pink-50">
+                    <img
+                      src="/JS slides/2.png"
+                      alt="Slide 2"
+                      className="w-full h-full object-cover sm:object-contain"
+                    />
+                  </div>
+                </CarouselItem>
+                <CarouselItem className="h-full">
+                  <div className="relative w-full h-full flex items-center justify-center bg-gradient-to-br from-purple-50 to-pink-50">
+                    <img
+                      src="/JS slides/3.png"
+                      alt="Slide 3"
+                      className="w-full h-full object-cover sm:object-contain"
+                    />
+                  </div>
+                </CarouselItem>
+                <CarouselItem className="h-full">
+                  <div className="relative w-full h-full flex items-center justify-center bg-gradient-to-br from-purple-50 to-pink-50">
+                    <img
+                      src="/JS slides/4.png"
+                      alt="Slide 4"
+                      className="w-full h-full object-cover sm:object-contain"
+                    />
+                  </div>
+                </CarouselItem>
+                <CarouselItem className="h-full">
+                  <div className="relative w-full h-full flex items-center justify-center bg-gradient-to-br from-purple-50 to-pink-50">
+                    <img
+                      src="/JS slides/5.png"
+                      alt="Slide 5"
+                      className="w-full h-full object-cover sm:object-contain"
+                    />
+                  </div>
+                </CarouselItem>
+                <CarouselItem className="h-full">
+                  <div className="relative w-full h-full flex items-center justify-center bg-gradient-to-br from-purple-50 to-pink-50">
+                    <img
+                      src="/JS slides/6.png"
+                      alt="Slide 6"
+                      className="w-full h-full object-cover sm:object-contain"
+                    />
+                  </div>
+                </CarouselItem>
+                <CarouselItem className="h-full">
+                  <div className="relative w-full h-full flex items-center justify-center bg-gradient-to-br from-purple-50 to-pink-50">
+                    <img
+                      src="/JS slides/7.png"
+                      alt="Slide 7"
+                      className="w-full h-full object-cover sm:object-contain"
+                    />
+                  </div>
+                </CarouselItem>
+              </CarouselContent>
+              <CarouselPrevious className="left-2 sm:left-4 bg-white/90 hover:bg-white border-none shadow-lg w-8 h-8 sm:w-10 sm:h-10" />
+              <CarouselNext className="right-2 sm:right-4 bg-white/90 hover:bg-white border-none shadow-lg w-8 h-8 sm:w-10 sm:h-10" />
+            </Carousel>
           </div>
         </div>
       </section>
