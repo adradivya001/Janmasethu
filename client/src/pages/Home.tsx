@@ -192,8 +192,8 @@ const Home = () => {
                   </div>
                 </CarouselItem>
               </CarouselContent>
-              <CarouselPrevious className="left-2 sm:left-4 bg-transparent hover:bg-white/30 border-none shadow-none w-10 h-10 sm:w-12 sm:h-12 top-1/2 -translate-y-1/2 [&>svg]:w-6 [&>svg]:h-6 [&>svg]:text-gray-600" />
-              <CarouselNext className="right-2 sm:right-4 bg-transparent hover:bg-white/30 border-none shadow-none w-10 h-10 sm:w-12 sm:h-12 top-1/2 -translate-y-1/2 [&>svg]:w-6 [&>svg]:h-6 [&>svg]:text-gray-600" />
+              <CarouselPrevious className="!left-2 sm:!left-4 bg-transparent hover:bg-white/30 border-none shadow-none w-10 h-10 sm:w-12 sm:h-12 !top-[50%] !-translate-y-[50%] [&>svg]:w-6 [&>svg]:h-6 [&>svg]:text-gray-600" />
+              <CarouselNext className="!right-2 sm:!right-4 bg-transparent hover:bg-white/30 border-none shadow-none w-10 h-10 sm:w-12 sm:h-12 !top-[50%] !-translate-y-[50%] [&>svg]:w-6 [&>svg]:h-6 [&>svg]:text-gray-600" />
             </Carousel>
           </div>
         </div>
