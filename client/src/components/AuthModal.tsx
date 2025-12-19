@@ -202,7 +202,7 @@ export default function AuthModal({
   if (showRelationship) {
     return (
       <Dialog open={open} onOpenChange={onClose}>
-        <DialogContent className="sm:max-w-md max-h-[80vh]">
+        <DialogContent className="sm:max-w-md max-w-[90vw] max-h-[60vh] sm:max-h-[80vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle className="text-2xl font-bold text-center">
               Tell us about yourself
@@ -212,121 +212,81 @@ export default function AuthModal({
             </DialogDescription>
           </DialogHeader>
 
-          <div className="space-y-6 mt-4 overflow-y-auto max-h-[50vh] pr-2">
+          <div className="space-y-6 mt-4 pr-2">
             <div className="space-y-4">
               <Label className="text-base font-semibold">
                 Please select your relation to the patient
               </Label>
 
               <RadioGroup value={relationship} onValueChange={setRelationship}>
-                <div className="flex items-center space-x-3 p-3 rounded-lg border hover:bg-accent transition-colors">
-                  <RadioGroupItem
-                    value="herself"
-                    id="herself"
-                    className="shrink-0"
-                  />
-                  <Label
-                    htmlFor="herself"
-                    className="cursor-pointer flex-1 font-normal"
-                  >
+                <div className="flex items-center gap-3 p-3 rounded-lg border hover:bg-accent transition-colors">
+                  <div className="flex-shrink-0 w-5 h-5 flex items-center justify-center">
+                    <RadioGroupItem value="herself" id="herself" />
+                  </div>
+                  <Label htmlFor="herself" className="cursor-pointer flex-1 font-normal">
                     Herself
                   </Label>
                 </div>
 
-                <div className="flex items-center space-x-3 p-3 rounded-lg border hover:bg-accent transition-colors">
-                  <RadioGroupItem
-                    value="himself"
-                    id="himself"
-                    className="shrink-0"
-                  />
-                  <Label
-                    htmlFor="himself"
-                    className="cursor-pointer flex-1 font-normal"
-                  >
+                <div className="flex items-center gap-3 p-3 rounded-lg border hover:bg-accent transition-colors">
+                  <div className="flex-shrink-0 w-5 h-5 flex items-center justify-center">
+                    <RadioGroupItem value="himself" id="himself" />
+                  </div>
+                  <Label htmlFor="himself" className="cursor-pointer flex-1 font-normal">
                     Himself
                   </Label>
                 </div>
 
-                <div className="flex items-center space-x-3 p-3 rounded-lg border hover:bg-accent transition-colors">
-                  <RadioGroupItem
-                    value="mother"
-                    id="mother"
-                    className="shrink-0"
-                  />
-                  <Label
-                    htmlFor="mother"
-                    className="cursor-pointer flex-1 font-normal"
-                  >
+                <div className="flex items-center gap-3 p-3 rounded-lg border hover:bg-accent transition-colors">
+                  <div className="flex-shrink-0 w-5 h-5 flex items-center justify-center">
+                    <RadioGroupItem value="mother" id="mother" />
+                  </div>
+                  <Label htmlFor="mother" className="cursor-pointer flex-1 font-normal">
                     Mother
                   </Label>
                 </div>
 
-                <div className="flex items-center space-x-3 p-3 rounded-lg border hover:bg-accent transition-colors">
-                  <RadioGroupItem
-                    value="father"
-                    id="father"
-                    className="shrink-0"
-                  />
-                  <Label
-                    htmlFor="father"
-                    className="cursor-pointer flex-1 font-normal"
-                  >
+                <div className="flex items-center gap-3 p-3 rounded-lg border hover:bg-accent transition-colors">
+                  <div className="flex-shrink-0 w-5 h-5 flex items-center justify-center">
+                    <RadioGroupItem value="father" id="father" />
+                  </div>
+                  <Label htmlFor="father" className="cursor-pointer flex-1 font-normal">
                     Father
                   </Label>
                 </div>
 
-                <div className="flex items-center space-x-3 p-3 rounded-lg border hover:bg-accent transition-colors">
-                  <RadioGroupItem
-                    value="mother-in-law"
-                    id="mother-in-law"
-                    className="shrink-0"
-                  />
-                  <Label
-                    htmlFor="mother-in-law"
-                    className="cursor-pointer flex-1 font-normal"
-                  >
+                <div className="flex items-center gap-3 p-3 rounded-lg border hover:bg-accent transition-colors">
+                  <div className="flex-shrink-0 w-5 h-5 flex items-center justify-center">
+                    <RadioGroupItem value="mother-in-law" id="mother-in-law" />
+                  </div>
+                  <Label htmlFor="mother-in-law" className="cursor-pointer flex-1 font-normal">
                     Mother-in-law
                   </Label>
                 </div>
 
-                <div className="flex items-center space-x-3 p-3 rounded-lg border hover:bg-accent transition-colors">
-                  <RadioGroupItem
-                    value="father-in-law"
-                    id="father-in-law"
-                    className="shrink-0"
-                  />
-                  <Label
-                    htmlFor="father-in-law"
-                    className="cursor-pointer flex-1 font-normal"
-                  >
+                <div className="flex items-center gap-3 p-3 rounded-lg border hover:bg-accent transition-colors">
+                  <div className="flex-shrink-0 w-5 h-5 flex items-center justify-center">
+                    <RadioGroupItem value="father-in-law" id="father-in-law" />
+                  </div>
+                  <Label htmlFor="father-in-law" className="cursor-pointer flex-1 font-normal">
                     Father-in-law
                   </Label>
                 </div>
 
-                <div className="flex items-center space-x-3 p-3 rounded-lg border hover:bg-accent transition-colors">
-                  <RadioGroupItem
-                    value="sibling"
-                    id="sibling"
-                    className="shrink-0"
-                  />
-                  <Label
-                    htmlFor="sibling"
-                    className="cursor-pointer flex-1 font-normal"
-                  >
+                <div className="flex items-center gap-3 p-3 rounded-lg border hover:bg-accent transition-colors">
+                  <div className="flex-shrink-0 w-5 h-5 flex items-center justify-center">
+                    <RadioGroupItem value="sibling" id="sibling" />
+                  </div>
+                  <Label htmlFor="sibling" className="cursor-pointer flex-1 font-normal">
                     Sibling
                   </Label>
                 </div>
 
-                <div className="flex items-center space-x-3 p-3 rounded-lg border hover:bg-accent transition-colors">
-                  <RadioGroupItem
-                    value="other"
-                    id="other"
-                    className="shrink-0"
-                  />
-                  <Label
-                    htmlFor="other"
-                    className="cursor-pointer flex-1 font-normal"
-                  >
+                <div className="flex items-center gap-3 p-3 rounded-lg border hover:bg-accent transition-colors">
+                  <div className="flex-shrink-0 w-5 h-5 flex items-center justify-center">
+                    <RadioGroupItem value="other" id="other" />
+                  </div>
+                  <Label htmlFor="other" className="cursor-pointer flex-1 font-normal">
                     Other family member
                   </Label>
                 </div>
@@ -358,7 +318,7 @@ export default function AuthModal({
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md max-h-[90vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-md max-w-[90vw] max-h-[60vh] sm:max-h-[80vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold text-center">
             Welcome to JanmaSethu

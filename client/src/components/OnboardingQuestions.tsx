@@ -305,7 +305,7 @@ export default function OnboardingQuestions({ open, onClose, relationship = "her
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-2xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-2xl max-w-[90vw] max-h-[60vh] sm:max-h-[80vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold">
             Help us personalize your experience
@@ -368,12 +368,10 @@ export default function OnboardingQuestions({ open, onClose, relationship = "her
                   }
                 >
                   {currentQuestion.options?.map((option, index) => (
-                    <div key={index} className="flex items-center space-x-3 mb-3 p-3 rounded-lg border hover:bg-accent transition-colors">
-                      <RadioGroupItem
-                        value={option}
-                        id={`option-${index}`}
-                        className="shrink-0"
-                      />
+                    <div key={index} className="flex items-center gap-3 mb-3 p-3 rounded-lg border hover:bg-accent transition-colors">
+                      <div className="flex-shrink-0 w-5 h-5 flex items-center justify-center">
+                        <RadioGroupItem value={option} id={`option-${index}`} />
+                      </div>
                       <Label htmlFor={`option-${index}`} className="cursor-pointer flex-1">
                         {option}
                       </Label>
