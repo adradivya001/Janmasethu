@@ -32,7 +32,7 @@ const MobileMenu = ({ isOpen, onClose, navItems }: MobileMenuProps) => {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <img 
-                  src="/new js logo without background.svg" 
+                  src="/JanmaSethu Logo.png" 
                   alt="JanmaSethu Logo" 
                   className="w-12 h-12 object-contain"
                 />
