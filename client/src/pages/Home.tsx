@@ -448,8 +448,8 @@ const Home = () => {
                 <DialogContent className="sm:max-w-2xl max-w-[90vw] max-h-[60vh] sm:max-h-[80vh] overflow-y-auto p-0 bg-gradient-to-br from-white via-green-50/30 to-purple-50/30 rounded-2xl">
                   <DialogHeader className="border-b border-green-100 pb-4 px-6 pt-6">
                     <DialogTitle className="flex items-center gap-3 text-2xl md:text-3xl font-serif">
-                      <div className="w-12 h-12 bg-gradient-to-br from-green-100 to-green-200 rounded-full flex items-center justify-center shadow-lg">
-                        <span className="text-3xl">🌱</span>
+                      <div className="w-12 h-12 bg-gradient-to-br from-green-100 to-green-200 rounded-full flex items-center justify-center shadow-lg overflow-hidden">
+                        <img src="/thinking of parenthood.png" alt="Thinking of Parenthood" className="w-full h-full object-cover" />
                       </div>
                       <span className="bg-gradient-to-r from-green-600 to-green-800 bg-clip-text text-transparent">Thinking of Parenthood</span>
                     </DialogTitle>
@@ -569,8 +569,8 @@ const Home = () => {
                 <DialogContent className="sm:max-w-2xl max-w-[90vw] max-h-[60vh] sm:max-h-[80vh] overflow-y-auto p-0 bg-gradient-to-br from-white via-pink-50/30 to-purple-50/30 rounded-2xl">
                   <DialogHeader className="border-b border-pink-100 pb-4 px-6 pt-6">
                     <DialogTitle className="flex items-center gap-3 text-2xl md:text-3xl font-serif">
-                      <div className="w-12 h-12 bg-gradient-to-br from-pink-100 to-pink-200 rounded-full flex items-center justify-center shadow-lg">
-                        <span className="text-3xl">💖</span>
+                      <div className="w-12 h-12 bg-gradient-to-br from-pink-100 to-pink-200 rounded-full flex items-center justify-center shadow-lg overflow-hidden">
+                        <img src="/Trying naturally.png" alt="Trying Naturally" className="w-full h-full object-cover" />
                       </div>
                       <span className="bg-gradient-to-r from-pink-600 to-pink-800 bg-clip-text text-transparent">Trying Naturally</span>
                     </DialogTitle>
@@ -684,8 +684,8 @@ const Home = () => {
                 <DialogContent className="sm:max-w-2xl max-w-[90vw] max-h-[60vh] sm:max-h-[80vh] overflow-y-auto p-0 bg-gradient-to-br from-white via-blue-50/30 to-purple-50/30 rounded-2xl">
                   <DialogHeader className="border-b border-blue-100 pb-4 px-6 pt-6">
                     <DialogTitle className="flex items-center gap-3 text-2xl md:text-3xl font-serif">
-                      <div className="w-12 h-12 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full flex items-center justify-center shadow-lg">
-                        <span className="text-3xl">🔬</span>
+                      <div className="w-12 h-12 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full flex items-center justify-center shadow-lg overflow-hidden">
+                        <img src="/Exploring option.png" alt="Exploring Options" className="w-full h-full object-contain" />
                       </div>
                       <span className="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">Exploring Options (IUI, IVF, Donor)</span>
                     </DialogTitle>
@@ -805,8 +805,8 @@ const Home = () => {
                 <DialogContent className="sm:max-w-2xl max-w-[90vw] max-h-[60vh] sm:max-h-[80vh] overflow-y-auto p-0 bg-gradient-to-br from-white via-purple-50/30 to-pink-50/30 rounded-2xl">
                   <DialogHeader className="border-b border-purple-100 pb-4 px-6 pt-6">
                     <DialogTitle className="flex items-center gap-3 text-2xl md:text-3xl font-serif">
-                      <div className="w-12 h-12 bg-gradient-to-br from-purple-100 to-purple-200 rounded-full flex items-center justify-center shadow-lg">
-                        <span className="text-3xl">🤰</span>
+                      <div className="w-12 h-12 bg-gradient-to-br from-purple-100 to-purple-200 rounded-full flex items-center justify-center shadow-lg overflow-hidden">
+                        <img src="/Pregnancy.png" alt="Pregnancy" className="w-full h-full object-contain" />
                       </div>
                       <span className="bg-gradient-to-r from-purple-600 to-purple-800 bg-clip-text text-transparent">Pregnancy</span>
                     </DialogTitle>
@@ -920,8 +920,8 @@ const Home = () => {
                 <DialogContent className="sm:max-w-2xl max-w-[90vw] max-h-[60vh] sm:max-h-[80vh] overflow-y-auto p-0 bg-gradient-to-br from-white via-orange-50/30 to-purple-50/30 rounded-2xl">
                   <DialogHeader className="border-b border-orange-100 pb-4 px-6 pt-6">
                     <DialogTitle className="flex items-center gap-3 text-2xl md:text-3xl font-serif">
-                      <div className="w-12 h-12 bg-gradient-to-br from-orange-100 to-orange-200 rounded-full flex items-center justify-center shadow-lg">
-                        <span className="text-3xl">👶</span>
+                      <div className="w-12 h-12 bg-gradient-to-br from-orange-100 to-orange-200 rounded-full flex items-center justify-center shadow-lg overflow-hidden">
+                        <img src="/New baby.png" alt="New Baby" className="w-full h-full object-contain" />
                       </div>
                       <span className="bg-gradient-to-r from-orange-600 to-orange-800 bg-clip-text text-transparent">Post-Delivery & New Parent</span>
                     </DialogTitle>
