@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect } from 'react';
 import { Link } from 'wouter';
-import { Search, Filter, ChevronDown } from 'lucide-react';
+import { Search, Filter, ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageProvider';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -15,6 +15,8 @@ import {
 } from "@/components/ui/select";
 import { articles, type Lens, type Stage } from '@/data/articles';
 import { fetchArticles } from '@/data/knowledgeHub';
+
+const ARTICLES_PER_PAGE = 15;
 
 interface WebhookArticle {
   id: string;
@@ -48,6 +50,7 @@ const Knowledge = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedLens, setSelectedLens] = useState<Lens | null>(null);
   const [selectedStage, setSelectedStage] = useState<Stage | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
   const [jsonArticles, setJsonArticles] = useState<Array<{
     slug: string;
     title: { en: string; hi: string; te: string };
@@ -279,6 +282,17 @@ const Knowledge = () => {
       return matchesSearch && matchesLens && matchesStage;
     });
   }, [displayArticles, webhookResults, searchTerm, selectedLens, selectedStage]);
+
+  // Pagination calculations
+  const totalPages = Math.ceil(filteredArticles.length / ARTICLES_PER_PAGE);
+  const startIndex = (currentPage - 1) * ARTICLES_PER_PAGE;
+  const endIndex = startIndex + ARTICLES_PER_PAGE;
+  const paginatedArticles = filteredArticles.slice(startIndex, endIndex);
+
+  // Reset to page 1 when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchTerm, selectedLens, selectedStage, webhookResults]);
 
   // Map frontend lens values to backend perspective IDs
   const lensToIdMap: Record<Lens, number> = {
@@ -583,7 +597,7 @@ const Knowledge = () => {
         </div>
       ) : (
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredArticles.map((article, index) => (
+          {paginatedArticles.map((article, index) => (
             <Link key={article.key || `article-${article.slug}-${index}`} href={`/knowledge/${article.slug}`} className="group h-full">
               <Card className="rounded-3xl p-6 card-shadow hover:shadow-2xl transition-all duration-500 h-full cursor-pointer transform hover:scale-105 border-2 border-transparent hover:border-purple-200 relative overflow-hidden bg-gradient-to-br from-white to-purple-50/30" data-testid={`card-article-${index}`}>
                 <CardContent className="p-0">
@@ -624,6 +638,93 @@ const Knowledge = () => {
               </Card>
             </Link>
           ))}
+        </div>
+      )}
+
+      {/* Pagination Controls */}
+      {totalPages > 1 && !loading && !searching && (
+        <div className="flex items-center justify-center gap-2 mt-12 mb-8">
+          {/* Previous Button */}
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => {
+              setCurrentPage(prev => Math.max(1, prev - 1));
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            disabled={currentPage === 1}
+            className="rounded-full px-4"
+            data-testid="button-prev-page"
+          >
+            <ChevronLeft className="w-4 h-4 mr-1" />
+            Previous
+          </Button>
+
+          {/* Page Numbers */}
+          <div className="flex items-center gap-1">
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => {
+              // Show first page, last page, current page, and pages around current
+              const showPage = page === 1 || 
+                page === totalPages || 
+                Math.abs(page - currentPage) <= 1;
+              
+              const showEllipsis = (page === 2 && currentPage > 3) || 
+                (page === totalPages - 1 && currentPage < totalPages - 2);
+
+              if (!showPage && !showEllipsis) return null;
+
+              if (showEllipsis && !showPage) {
+                return (
+                  <span key={`ellipsis-${page}`} className="px-2 text-muted-foreground">
+                    ...
+                  </span>
+                );
+              }
+
+              return (
+                <Button
+                  key={page}
+                  variant={currentPage === page ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => {
+                    setCurrentPage(page);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                  className={`rounded-full w-10 h-10 ${
+                    currentPage === page 
+                      ? 'bg-gradient-to-r from-purple-500 to-pink-500' 
+                      : ''
+                  }`}
+                  data-testid={`button-page-${page}`}
+                >
+                  {page}
+                </Button>
+              );
+            })}
+          </div>
+
+          {/* Next Button */}
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => {
+              setCurrentPage(prev => Math.min(totalPages, prev + 1));
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            disabled={currentPage === totalPages}
+            className="rounded-full px-4"
+            data-testid="button-next-page"
+          >
+            Next
+            <ChevronRight className="w-4 h-4 ml-1" />
+          </Button>
+        </div>
+      )}
+
+      {/* Page Info */}
+      {totalPages > 1 && !loading && !searching && (
+        <div className="text-center text-sm text-muted-foreground mb-8">
+          Showing {startIndex + 1}-{Math.min(endIndex, filteredArticles.length)} of {filteredArticles.length} articles
         </div>
       )}
 
