@@ -771,9 +771,9 @@ const PreviewPanel = ({ previewContent, isVideoPlaying, setIsVideoPlaying, isMut
   // Show loading animation when waiting for response
   if (isLoading) {
     return (
-      <div className="h-full min-h-[400px] bg-gradient-to-br from-gray-50 to-white rounded-2xl border border-gray-100 flex items-center justify-center p-8 lg:p-12">
-        <div className="text-center flex flex-col items-center justify-center">
-          <div className="mb-8 relative" style={{ width: '115px', height: '185px' }}>
+      <div className="h-full min-h-[500px] flex items-center justify-center">
+        <div className="flex flex-col items-center justify-center">
+          <div className="mb-6" style={{ width: '115px', height: '185px' }}>
             <style>{`
               .sakhi-timer {
                 display: grid;
@@ -900,8 +900,7 @@ const PreviewPanel = ({ previewContent, isVideoPlaying, setIsVideoPlaying, isMut
               <div id="d15"></div>
             </div>
           </div>
-          <h3 className="text-xl font-bold text-gray-800 mb-2">Sakhi is thinking...</h3>
-          <p className="text-gray-500 text-sm">Preparing personalized response for you</p>
+          <h3 className="text-xl font-bold bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent">Sakhi is thinking...</h3>
         </div>
       </div>
     );
