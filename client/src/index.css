@@ -725,8 +725,12 @@
 /* Desktop dialog enhancements */
 @media (min-width: 768px) {
   [role="dialog"] {
-    min-width: 500px !important;
-    max-width: 600px !important;
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 9999 !important;
+    max-width: 90vw !important;
   }
 
   [data-state="open"][data-radix-dialog-overlay] {
