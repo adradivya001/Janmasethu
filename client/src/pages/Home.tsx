@@ -39,6 +39,7 @@ import {
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -454,6 +455,9 @@ const Home = () => {
                       </div>
                       <span className="bg-gradient-to-r from-green-600 to-green-800 bg-clip-text text-transparent">Thinking of Parenthood</span>
                     </DialogTitle>
+                    <DialogDescription className="sr-only">
+                      Information about the Thinking of Parenthood stage of your journey
+                    </DialogDescription>
                     <div className="flex items-center justify-center gap-1 text-xs text-gray-400 mt-2 animate-bounce">
                       <ChevronDown className="w-4 h-4" />
                       <span>Scroll for more</span>
@@ -579,6 +583,9 @@ const Home = () => {
                       </div>
                       <span className="bg-gradient-to-r from-pink-600 to-pink-800 bg-clip-text text-transparent">Trying Naturally</span>
                     </DialogTitle>
+                    <DialogDescription className="sr-only">
+                      Information about the Trying Naturally stage of your journey
+                    </DialogDescription>
                     <div className="flex items-center justify-center gap-1 text-xs text-gray-400 mt-2 animate-bounce">
                       <ChevronDown className="w-4 h-4" />
                       <span>Scroll for more</span>
@@ -698,6 +705,9 @@ const Home = () => {
                       </div>
                       <span className="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">Exploring Options (IUI, IVF, Donor)</span>
                     </DialogTitle>
+                    <DialogDescription className="sr-only">
+                      Information about exploring fertility treatment options
+                    </DialogDescription>
                     <div className="flex items-center justify-center gap-1 text-xs text-gray-400 mt-2 animate-bounce">
                       <ChevronDown className="w-4 h-4" />
                       <span>Scroll for more</span>
@@ -823,6 +833,9 @@ const Home = () => {
                       </div>
                       <span className="bg-gradient-to-r from-purple-600 to-purple-800 bg-clip-text text-transparent">Pregnancy</span>
                     </DialogTitle>
+                    <DialogDescription className="sr-only">
+                      Information about the Pregnancy stage of your journey
+                    </DialogDescription>
                     <div className="flex items-center justify-center gap-1 text-xs text-gray-400 mt-2 animate-bounce">
                       <ChevronDown className="w-4 h-4" />
                       <span>Scroll for more</span>
@@ -942,6 +955,9 @@ const Home = () => {
                       </div>
                       <span className="bg-gradient-to-r from-orange-600 to-orange-800 bg-clip-text text-transparent">Post-Delivery & New Parent</span>
                     </DialogTitle>
+                    <DialogDescription className="sr-only">
+                      Information about post-delivery care and new parent support
+                    </DialogDescription>
                     <div className="flex items-center justify-center gap-1 text-xs text-gray-400 mt-2 animate-bounce">
                       <ChevronDown className="w-4 h-4" />
                       <span>Scroll for more</span>
