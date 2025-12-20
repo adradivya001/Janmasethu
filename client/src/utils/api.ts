@@ -1,4 +1,4 @@
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://uncollectively-unfutile-deandrea.ngrok-free.dev';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://72.61.228.9:8100';
 
 export interface RegisterUserData {
   name: string;
