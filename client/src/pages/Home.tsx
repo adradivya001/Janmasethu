@@ -360,7 +360,7 @@ const Home = () => {
                 <ArrowRight className="absolute right-3 sm:right-4 w-4 h-4 sm:w-5 sm:h-5 opacity-0 transform translate-x-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 z-10" />
               </Button>
             </Link>
-            <Link href="/clinic" className="w-full sm:w-auto">
+            <a href="http://72.61.228.9:4500" className="w-full sm:w-auto" target="_blank" rel="noopener noreferrer">
               <Button
                 variant="outline"
                 className="bg-white/90 backdrop-blur-sm text-foreground px-6 py-3 sm:px-8 sm:py-4 rounded-full font-semibold text-base sm:text-lg border-2 border-white/30 hover:border-purple-200 hover:shadow-lg transition-all duration-300 group overflow-hidden relative w-full sm:w-auto min-w-0 sm:min-w-[200px]"
@@ -371,7 +371,7 @@ const Home = () => {
                 </span>
                 <ArrowRight className="absolute right-3 sm:right-4 w-4 h-4 sm:w-5 sm:h-5 opacity-0 transform translate-x-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 z-10" />
               </Button>
-            </Link>
+            </a>
           </div>
 
           {/* Hero Background Image */}
