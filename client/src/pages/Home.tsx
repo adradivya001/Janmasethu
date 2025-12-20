@@ -394,7 +394,7 @@ const Home = () => {
         {/* Parenthood Journey Strip */}
         <section className="py-16 bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50 rounded-3xl mx-4 relative overflow-hidden">
           {/* Animated background patterns */}
-          <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0 opacity-5 pointer-events-none">
             <div className="absolute top-10 left-10 w-32 h-32 bg-purple-400 rounded-full blur-3xl animate-pulse"></div>
             <div className="absolute bottom-10 right-10 w-40 h-40 bg-pink-400 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
             <div className="absolute top-1/2 left-1/2 w-36 h-36 bg-orange-400 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
@@ -413,7 +413,7 @@ const Home = () => {
           </div>
 
           {/* Journey Timeline */}
-          <div className="relative overflow-x-auto pb-8 px-4 md:px-6 lg:px-8 xl:px-12">
+          <div className="relative overflow-x-auto pb-8 px-4 md:px-6 lg:px-8 xl:px-12 z-10">
             {/* Responsive timeline - scrollable on mobile/tablet, centered on desktop */}
             <div className="flex items-center justify-start xl:justify-center gap-4 md:gap-5 lg:gap-6 xl:gap-8 min-w-max xl:min-w-0 w-full mx-auto py-8 pl-2 md:pl-4 lg:pl-6">
               {/* Stage 1: Thinking of Parenthood */}
