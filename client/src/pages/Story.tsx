@@ -19,9 +19,9 @@ const Story = () => {
     const fetchStories = async () => {
       try {
         // Fetch backend stories
-        const response = await fetch("https://zainab-sanguineous-niels.ngrok-free.dev/api/success-stories", {
+        const response = await fetch("http://72.61.228.9:8100/api/success-stories", {
           headers: {
-            "ngrok-skip-browser-warning": "true"
+            "Content-Type": "application/json"
           }
         });
         

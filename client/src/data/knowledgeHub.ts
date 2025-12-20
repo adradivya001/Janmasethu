@@ -52,8 +52,8 @@ export interface ArticleData {
   sections: ArticleSection[];
 }
 
-// Ngrok API Base URL - update this with your actual ngrok domain
-const NGROK_API_BASE = 'https://zainab-sanguineous-niels.ngrok-free.dev';
+// API Base URL
+const API_BASE = 'http://72.61.228.9:8100';
 
 // API Response Types
 export interface LifeStage {
@@ -114,10 +114,9 @@ export interface ArticlesResponse {
 // API Functions
 export async function fetchLifeStages(): Promise<LifeStage[]> {
   try {
-    const response = await fetch(`${NGROK_API_BASE}/api/knowledge/life-stages`, {
+    const response = await fetch(`${API_BASE}/api/knowledge/life-stages`, {
       headers: {
-        'Accept': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
+        'Accept': 'application/json'
       }
     });
 
@@ -135,10 +134,9 @@ export async function fetchLifeStages(): Promise<LifeStage[]> {
 
 export async function fetchPerspectives(): Promise<Perspective[]> {
   try {
-    const response = await fetch(`${NGROK_API_BASE}/api/knowledge/perspectives`, {
+    const response = await fetch(`${API_BASE}/api/knowledge/perspectives`, {
       headers: {
-        'Accept': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
+        'Accept': 'application/json'
       }
     });
 
@@ -170,14 +168,13 @@ export async function fetchArticles(params?: {
     if (params?.page) queryParams.set('page', params.page.toString());
     if (params?.perPage) queryParams.set('perPage', params.perPage.toString());
 
-    const url = `${NGROK_API_BASE}/api/knowledge/articles${queryParams.toString() ? '?' + queryParams.toString() : ''}`;
+    const url = `${API_BASE}/api/knowledge/articles${queryParams.toString() ? '?' + queryParams.toString() : ''}`;
 
     console.log('Fetching articles from:', url);
 
     const response = await fetch(url, {
       headers: {
-        'Accept': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
+        'Accept': 'application/json'
       }
     });
 
@@ -247,10 +244,9 @@ export async function fetchArticles(params?: {
 
 export async function fetchArticleBySlug(slug: string): Promise<ArticleDetailResponse | null> {
   try {
-    const response = await fetch(`${NGROK_API_BASE}/api/knowledge/articles/${encodeURIComponent(slug)}`, {
+    const response = await fetch(`${API_BASE}/api/knowledge/articles/${encodeURIComponent(slug)}`, {
       headers: {
-        'Accept': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
+        'Accept': 'application/json'
       }
     });
 

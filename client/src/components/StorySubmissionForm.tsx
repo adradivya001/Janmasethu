@@ -220,11 +220,11 @@ export default function StorySubmissionForm({ open, onClose, onSubmitted }: Stor
       console.log("📤 Sending payload to ngrok:", JSON.stringify(payload, null, 2));
 
       // Submit story to external backend via ngrok
-      const response = await fetch("https://zainab-sanguineous-niels.ngrok-free.dev/api/success-stories", {
+      const response = await fetch("http://72.61.228.9:8100/api/success-stories", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "ngrok-skip-browser-warning": "true"
+          "Accept": "application/json"
         },
         body: JSON.stringify(payload),
       });
