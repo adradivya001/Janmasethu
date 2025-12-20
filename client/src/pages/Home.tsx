@@ -419,8 +419,9 @@ const Home = () => {
               {/* Stage 1: Thinking of Parenthood */}
               <Dialog>
                 <DialogTrigger asChild>
-                  <div
-                    className="flex flex-col items-center group cursor-pointer transition-all duration-500 ease-out journey-stage relative w-[140px] md:w-[160px] lg:w-[180px]"
+                  <button
+                    type="button"
+                    className="flex flex-col items-center group cursor-pointer transition-all duration-500 ease-out journey-stage relative w-[140px] md:w-[160px] lg:w-[180px] bg-transparent border-none outline-none"
                     data-testid="journey-stage-thinking"
                     style={{ '--stage-index': 0 } as React.CSSProperties}
                   >
@@ -444,7 +445,7 @@ const Home = () => {
                       <ArrowRight className="w-3 h-3" />
                       Click to explore
                     </span>
-                  </div>
+                  </button>
                 </DialogTrigger>
                 {/* Changed DialogContent to be full-screen on mobile */}
                 <DialogContent className="sm:max-w-2xl max-w-[90vw] max-h-[60vh] sm:max-h-[80vh] overflow-y-auto p-0 bg-gradient-to-br from-white via-green-50/30 to-purple-50/30 rounded-2xl relative">
@@ -548,8 +549,9 @@ const Home = () => {
               {/* Stage 2: Trying Naturally */}
               <Dialog>
                 <DialogTrigger asChild>
-                  <div
-                    className="flex flex-col items-center group cursor-pointer transition-all duration-500 ease-out journey-stage relative w-[140px] md:w-[160px] lg:w-[180px]"
+                  <button
+                    type="button"
+                    className="flex flex-col items-center group cursor-pointer transition-all duration-500 ease-out journey-stage relative w-[140px] md:w-[160px] lg:w-[180px] bg-transparent border-none outline-none"
                     data-testid="journey-stage-trying"
                     style={{ '--stage-index': 1 } as React.CSSProperties}
                   >
@@ -573,7 +575,7 @@ const Home = () => {
                       <ArrowRight className="w-3 h-3" />
                       Click to explore
                     </span>
-                  </div>
+                  </button>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-2xl max-w-[90vw] max-h-[60vh] sm:max-h-[80vh] overflow-y-auto p-0 bg-gradient-to-br from-white via-pink-50/30 to-purple-50/30 rounded-2xl relative">
                   <DialogHeader className="border-b border-pink-100 pb-4 px-6 pt-6">
@@ -670,8 +672,9 @@ const Home = () => {
               {/* Stage 3: Exploring Options */}
               <Dialog>
                 <DialogTrigger asChild>
-                  <div
-                    className="flex flex-col items-center group cursor-pointer transition-all duration-500 ease-out journey-stage w-[140px] md:w-[160px] lg:w-[180px]"
+                  <button
+                    type="button"
+                    className="flex flex-col items-center group cursor-pointer transition-all duration-500 ease-out journey-stage w-[140px] md:w-[160px] lg:w-[180px] bg-transparent border-none outline-none"
                     data-testid="journey-stage-exploring"
                     style={{ '--stage-index': 2 } as React.CSSProperties}
                   >
@@ -695,7 +698,7 @@ const Home = () => {
                       <ArrowRight className="w-3 h-3" />
                       Click to explore
                     </span>
-                  </div>
+                  </button>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-2xl max-w-[90vw] max-h-[60vh] sm:max-h-[80vh] overflow-y-auto p-0 bg-gradient-to-br from-white via-blue-50/30 to-purple-50/30 rounded-2xl relative">
                   <DialogHeader className="border-b border-blue-100 pb-4 px-6 pt-6">
@@ -798,8 +801,9 @@ const Home = () => {
               {/* Stage 4: Pregnancy */}
               <Dialog>
                 <DialogTrigger asChild>
-                  <div
-                    className="flex flex-col items-center group cursor-pointer transition-all duration-500 ease-out journey-stage w-[140px] md:w-[160px] lg:w-[180px]"
+                  <button
+                    type="button"
+                    className="flex flex-col items-center group cursor-pointer transition-all duration-500 ease-out journey-stage w-[140px] md:w-[160px] lg:w-[180px] bg-transparent border-none outline-none"
                     data-testid="journey-stage-pregnancy"
                     style={{ '--stage-index': 3 } as React.CSSProperties}
                   >
@@ -823,7 +827,7 @@ const Home = () => {
                       <ArrowRight className="w-3 h-3" />
                       Click to explore
                     </span>
-                  </div>
+                  </button>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-2xl max-w-[90vw] max-h-[60vh] sm:max-h-[80vh] overflow-y-auto p-0 bg-gradient-to-br from-white via-purple-50/30 to-pink-50/30 rounded-2xl relative">
                   <DialogHeader className="border-b border-purple-100 pb-4 px-6 pt-6">
@@ -920,8 +924,9 @@ const Home = () => {
               {/* Stage 5: Post-Delivery */}
               <Dialog>
                 <DialogTrigger asChild>
-                  <div
-                    className="flex flex-col items-center group cursor-pointer transition-all duration-500 ease-out journey-stage w-[140px] md:w-[160px] lg:w-[180px]"
+                  <button
+                    type="button"
+                    className="flex flex-col items-center group cursor-pointer transition-all duration-500 ease-out journey-stage w-[140px] md:w-[160px] lg:w-[180px] bg-transparent border-none outline-none"
                     data-testid="journey-stage-postdelivery"
                     style={{ '--stage-index': 4 } as React.CSSProperties}
                   >
@@ -945,7 +950,7 @@ const Home = () => {
                       <ArrowRight className="w-3 h-3" />
                       Click to explore
                     </span>
-                  </div>
+                  </button>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-2xl max-w-[90vw] max-h-[60vh] sm:max-h-[80vh] overflow-y-auto p-0 bg-gradient-to-br from-white via-orange-50/30 to-purple-50/30 rounded-2xl relative">
                   <DialogHeader className="border-b border-orange-100 pb-4 px-6 pt-6">
