@@ -1,0 +1,361 @@
+The source list for the Content Security Policy directive 'default-src' contains an invalid source: ''unsafe-dynamic''. It will be ignored.Understand this error
+12The Content-Security-Policy directive 'default-src' contains 'report-uri' as a source expression. Did you want to add it as a directive and forget a semicolon?Understand this error
+12The source list for Content Security Policy directive 'default-src' contains a source with an invalid path: '/api/4509669501698048/security/?sentry_key=7eb3d90eb4660416caf507087367e67e'. The query component, including the '?', will be ignored.Understand this error
+42605816003b0097.js:2 [Coframe] Replit Enterprise watcher loaded
+The source list for the Content Security Policy directive 'default-src' contains an invalid source: ''unsafe-dynamic''. It will be ignored.Understand this error
+The Content-Security-Policy directive 'default-src' contains 'report-uri' as a source expression. Did you want to add it as a directive and forget a semicolon?Understand this error
+The source list for Content Security Policy directive 'default-src' contains a source with an invalid path: '/api/4509669501698048/security/?sentry_key=7eb3d90eb4660416caf507087367e67e'. The query component, including the '?', will be ignored.Understand this error
+JanmaSethu:1 The source list for the Content Security Policy directive 'default-src' contains an invalid source: ''unsafe-dynamic''. It will be ignored.Understand this error
+JanmaSethu:1 The Content-Security-Policy directive 'default-src' contains 'report-uri' as a source expression. Did you want to add it as a directive and forget a semicolon?Understand this error
+JanmaSethu:1 The source list for Content Security Policy directive 'default-src' contains a source with an invalid path: '/api/4509669501698048/security/?sentry_key=7eb3d90eb4660416caf507087367e67e'. The query component, including the '?', will be ignored.Understand this error
+42605816003b0097.js:2 
+      /////////////////////
+   ///////////////////////////
+  ////////@@@@@@@//////////////
+  ////////@@@@@@@//////////////
+  ////////@@@@@@@//////////////        Curious and driven?
+  ///////////////@@@@@@@///////        Work with us!
+  ///////////////@@@@@@@///////
+  ///////////////@@@@@@@///////        https://join.replit.com/hack.with.us
+  ////////@@@@@@@//////////////
+  ////////@@@@@@@//////////////
+  ////////@@@@@@#//////////////
+   ///////////////////////////
+      /////////////////////
+      
+42605816003b0097.js:2 Download the Apollo DevTools for a better development experience: https://chrome.google.com/webstore/detail/apollo-client-developer-t/jdkknkkbebbapilgoeccciglkfbmbnfm
+42605816003b0097.js:2 [LaunchDarkly] LaunchDarkly client initialized
+JanmaSethu:1 Banner not shown: beforeinstallpromptevent.preventDefault() called. The page must call beforeinstallpromptevent.prompt() to show the banner.
+42605816003b0097.js:2 [ai-chat] Creating connection with chat proxy enabled
+(anonymous) @ 42605816003b0097.js:2
+(anonymous) @ ef07303ebc0b5c28.js:2
+uV @ ed1e693c96a75807.js:2
+iH @ ed1e693c96a75807.js:2
+(anonymous) @ ed1e693c96a75807.js:2
+C @ ed1e693c96a75807.js:2
+M @ ed1e693c96a75807.js:2Understand this warning
+42605816003b0097.js:2 Cache data may be lost when replacing the dealContext field of a Org object.
+
+This could cause additional (usually avoidable) network requests to fetch data that were otherwise cached.
+
+To address this problem (which is not a bug in Apollo Client), either ensure all objects of type OrgDealContext have an ID or a custom merge function, or define a custom merge function for the Org.dealContext field, so InMemoryCache can safely merge these objects:
+
+  existing: {"__typename":"OrgDealContext","dealType":"default","salesContactEmail":null}
+  incoming: {"__typename":"OrgDealContext","dealType":"default"}
+
+For more information about these options, please refer to the documentation:
+
+  * Ensuring entity objects have IDs: https://go.apollo.dev/c/generating-unique-identifiers
+  * Defining custom merge functions: https://go.apollo.dev/c/merging-non-normalized-objects
+
+(anonymous) @ 42605816003b0097.js:2
+(anonymous) @ d14f6496c34568f9.js:2
+(anonymous) @ c0d535a4cdd3b764.js:2
+(anonymous) @ c0d535a4cdd3b764.js:2
+(anonymous) @ c0d535a4cdd3b764.js:2
+e.writeToStore @ c0d535a4cdd3b764.js:2
+r.write @ c0d535a4cdd3b764.js:2
+e.writeQuery @ c0d535a4cdd3b764.js:2
+(anonymous) @ c0d535a4cdd3b764.js:2
+c @ c0d535a4cdd3b764.js:2
+r.batch @ c0d535a4cdd3b764.js:2
+r.performTransaction @ c0d535a4cdd3b764.js:2
+e.markResult @ c0d535a4cdd3b764.js:2
+(anonymous) @ c0d535a4cdd3b764.js:2
+t @ c0d535a4cdd3b764.js:2
+(anonymous) @ c0d535a4cdd3b764.js:2
+then @ c0d535a4cdd3b764.js:2
+(anonymous) @ c0d535a4cdd3b764.js:2
+m @ 5cae048afe4aacb8.js:2
+_ @ 5cae048afe4aacb8.js:2
+t.next @ 5cae048afe4aacb8.js:2
+(anonymous) @ c0d535a4cdd3b764.js:2
+V @ c0d535a4cdd3b764.js:2
+next @ c0d535a4cdd3b764.js:2
+m @ 5cae048afe4aacb8.js:2
+_ @ 5cae048afe4aacb8.js:2
+t.next @ 5cae048afe4aacb8.js:2
+(anonymous) @ c0d535a4cdd3b764.js:2
+v @ c0d535a4cdd3b764.js:2
+next @ c0d535a4cdd3b764.js:2
+m @ 5cae048afe4aacb8.js:2
+_ @ 5cae048afe4aacb8.js:2
+t.next @ 5cae048afe4aacb8.js:2
+m @ 5cae048afe4aacb8.js:2
+_ @ 5cae048afe4aacb8.js:2
+t.next @ 5cae048afe4aacb8.js:2
+onNext @ c0d535a4cdd3b764.js:2
+m @ 5cae048afe4aacb8.js:2
+_ @ 5cae048afe4aacb8.js:2
+t.next @ 5cae048afe4aacb8.js:2
+next @ c0d535a4cdd3b764.js:2
+m @ 5cae048afe4aacb8.js:2
+_ @ 5cae048afe4aacb8.js:2
+t.next @ 5cae048afe4aacb8.js:2
+(anonymous) @ c0d535a4cdd3b764.js:2
+(anonymous) @ c0d535a4cdd3b764.js:2
+next @ c0d535a4cdd3b764.js:2
+m @ 5cae048afe4aacb8.js:2
+_ @ 5cae048afe4aacb8.js:2
+t.next @ 5cae048afe4aacb8.js:2
+(anonymous) @ c0d535a4cdd3b764.js:2
+Promise.then
+(anonymous) @ c0d535a4cdd3b764.js:2
+e @ 5cae048afe4aacb8.js:2
+i.subscribe @ 5cae048afe4aacb8.js:2
+e.consumeQueue @ c0d535a4cdd3b764.js:2
+(anonymous) @ c0d535a4cdd3b764.js:2
+e @ 5cae048afe4aacb8.js:2
+i.subscribe @ 5cae048afe4aacb8.js:2
+(anonymous) @ c0d535a4cdd3b764.js:2
+e @ 5cae048afe4aacb8.js:2
+i.subscribe @ 5cae048afe4aacb8.js:2
+e.try @ c0d535a4cdd3b764.js:2
+e.start @ c0d535a4cdd3b764.js:2
+r.request @ c0d535a4cdd3b764.js:2
+(anonymous) @ c0d535a4cdd3b764.js:2
+(anonymous) @ c0d535a4cdd3b764.js:2
+(anonymous) @ c0d535a4cdd3b764.js:2
+Promise.then
+(anonymous) @ c0d535a4cdd3b764.js:2
+e @ 5cae048afe4aacb8.js:2
+i.subscribe @ 5cae048afe4aacb8.js:2
+(anonymous) @ c0d535a4cdd3b764.js:2
+Promise.then
+(anonymous) @ c0d535a4cdd3b764.js:2
+e @ 5cae048afe4aacb8.js:2
+i.subscribe @ 5cae048afe4aacb8.js:2
+complete @ c0d535a4cdd3b764.js:2
+r.start @ c0d535a4cdd3b764.js:2
+r @ c0d535a4cdd3b764.js:2
+e.getObservableFromLink @ c0d535a4cdd3b764.js:2
+e.getResultsFromLink @ c0d535a4cdd3b764.js:2
+g @ c0d535a4cdd3b764.js:2
+e.fetchQueryByPolicy @ c0d535a4cdd3b764.js:2
+g @ c0d535a4cdd3b764.js:2
+e.fetchConcastWithInfo @ c0d535a4cdd3b764.js:2
+r.fetch @ c0d535a4cdd3b764.js:2
+r.reobserveAsConcast @ c0d535a4cdd3b764.js:2
+r.reobserve @ c0d535a4cdd3b764.js:2
+(anonymous) @ c0d535a4cdd3b764.js:2
+e @ 5cae048afe4aacb8.js:2
+i.subscribe @ 5cae048afe4aacb8.js:2
+(anonymous) @ d14f6496c34568f9.js:2
+aC @ ed1e693c96a75807.js:2
+uV @ ed1e693c96a75807.js:2
+iH @ ed1e693c96a75807.js:2
+iT @ ed1e693c96a75807.js:2
+r6 @ ed1e693c96a75807.js:2
+(anonymous) @ ed1e693c96a75807.js:2
+iB @ ed1e693c96a75807.js:2
+i_ @ ed1e693c96a75807.js:2
+C @ ed1e693c96a75807.js:2
+M @ ed1e693c96a75807.js:2Understand this warning
+ed1e693c96a75807.js:2 Error while parsing the 'sandbox' attribute: 'allow-downloads-without-user-activation' is an invalid sandbox flag.
+z @ ed1e693c96a75807.js:2
+(anonymous) @ ed1e693c96a75807.js:2
+iA @ ed1e693c96a75807.js:2
+iV @ ed1e693c96a75807.js:2
+iU @ ed1e693c96a75807.js:2
+i_ @ ed1e693c96a75807.js:2
+C @ ed1e693c96a75807.js:2
+M @ ed1e693c96a75807.js:2Understand this error
+ed1e693c96a75807.js:2 Unrecognized feature: 'ambient-light-sensor'.
+z @ ed1e693c96a75807.js:2
+(anonymous) @ ed1e693c96a75807.js:2
+iA @ ed1e693c96a75807.js:2
+iV @ ed1e693c96a75807.js:2
+iU @ ed1e693c96a75807.js:2
+i_ @ ed1e693c96a75807.js:2
+C @ ed1e693c96a75807.js:2
+M @ ed1e693c96a75807.js:2Understand this warning
+ed1e693c96a75807.js:2 Unrecognized feature: 'battery'.
+z @ ed1e693c96a75807.js:2
+(anonymous) @ ed1e693c96a75807.js:2
+iA @ ed1e693c96a75807.js:2
+iV @ ed1e693c96a75807.js:2
+iU @ ed1e693c96a75807.js:2
+i_ @ ed1e693c96a75807.js:2
+C @ ed1e693c96a75807.js:2
+M @ ed1e693c96a75807.js:2Understand this warning
+ed1e693c96a75807.js:2 Unrecognized feature: 'execution-while-not-rendered'.
+z @ ed1e693c96a75807.js:2
+(anonymous) @ ed1e693c96a75807.js:2
+iA @ ed1e693c96a75807.js:2
+iV @ ed1e693c96a75807.js:2
+iU @ ed1e693c96a75807.js:2
+i_ @ ed1e693c96a75807.js:2
+C @ ed1e693c96a75807.js:2
+M @ ed1e693c96a75807.js:2Understand this warning
+ed1e693c96a75807.js:2 Unrecognized feature: 'execution-while-out-of-viewport'.
+z @ ed1e693c96a75807.js:2
+(anonymous) @ ed1e693c96a75807.js:2
+iA @ ed1e693c96a75807.js:2
+iV @ ed1e693c96a75807.js:2
+iU @ ed1e693c96a75807.js:2
+i_ @ ed1e693c96a75807.js:2
+C @ ed1e693c96a75807.js:2
+M @ ed1e693c96a75807.js:2Understand this warning
+ed1e693c96a75807.js:2 Unrecognized feature: 'layout-animations'.
+z @ ed1e693c96a75807.js:2
+(anonymous) @ ed1e693c96a75807.js:2
+iA @ ed1e693c96a75807.js:2
+iV @ ed1e693c96a75807.js:2
+iU @ ed1e693c96a75807.js:2
+i_ @ ed1e693c96a75807.js:2
+C @ ed1e693c96a75807.js:2
+M @ ed1e693c96a75807.js:2Understand this warning
+ed1e693c96a75807.js:2 Unrecognized feature: 'legacy-image-formats'.
+z @ ed1e693c96a75807.js:2
+(anonymous) @ ed1e693c96a75807.js:2
+iA @ ed1e693c96a75807.js:2
+iV @ ed1e693c96a75807.js:2
+iU @ ed1e693c96a75807.js:2
+i_ @ ed1e693c96a75807.js:2
+C @ ed1e693c96a75807.js:2
+M @ ed1e693c96a75807.js:2Understand this warning
+ed1e693c96a75807.js:2 Unrecognized feature: 'navigation-override'.
+z @ ed1e693c96a75807.js:2
+(anonymous) @ ed1e693c96a75807.js:2
+iA @ ed1e693c96a75807.js:2
+iV @ ed1e693c96a75807.js:2
+iU @ ed1e693c96a75807.js:2
+i_ @ ed1e693c96a75807.js:2
+C @ ed1e693c96a75807.js:2
+M @ ed1e693c96a75807.js:2Understand this warning
+ed1e693c96a75807.js:2 Unrecognized feature: 'oversized-images'.
+z @ ed1e693c96a75807.js:2
+(anonymous) @ ed1e693c96a75807.js:2
+iA @ ed1e693c96a75807.js:2
+iV @ ed1e693c96a75807.js:2
+iU @ ed1e693c96a75807.js:2
+i_ @ ed1e693c96a75807.js:2
+C @ ed1e693c96a75807.js:2
+M @ ed1e693c96a75807.js:2Understand this warning
+ed1e693c96a75807.js:2 Unrecognized feature: 'publickey-credentials'.
+z @ ed1e693c96a75807.js:2
+(anonymous) @ ed1e693c96a75807.js:2
+iA @ ed1e693c96a75807.js:2
+iV @ ed1e693c96a75807.js:2
+iU @ ed1e693c96a75807.js:2
+i_ @ ed1e693c96a75807.js:2
+C @ ed1e693c96a75807.js:2
+M @ ed1e693c96a75807.js:2Understand this warning
+ed1e693c96a75807.js:2 Unrecognized feature: 'speaker-selection'.
+z @ ed1e693c96a75807.js:2
+(anonymous) @ ed1e693c96a75807.js:2
+iA @ ed1e693c96a75807.js:2
+iV @ ed1e693c96a75807.js:2
+iU @ ed1e693c96a75807.js:2
+i_ @ ed1e693c96a75807.js:2
+C @ ed1e693c96a75807.js:2
+M @ ed1e693c96a75807.js:2Understand this warning
+ed1e693c96a75807.js:2 Unrecognized feature: 'unoptimized-images'.
+z @ ed1e693c96a75807.js:2
+(anonymous) @ ed1e693c96a75807.js:2
+iA @ ed1e693c96a75807.js:2
+iV @ ed1e693c96a75807.js:2
+iU @ ed1e693c96a75807.js:2
+i_ @ ed1e693c96a75807.js:2
+C @ ed1e693c96a75807.js:2
+M @ ed1e693c96a75807.js:2Understand this warning
+ed1e693c96a75807.js:2 Unrecognized feature: 'unsized-media'.
+z @ ed1e693c96a75807.js:2
+(anonymous) @ ed1e693c96a75807.js:2
+iA @ ed1e693c96a75807.js:2
+iV @ ed1e693c96a75807.js:2
+iU @ ed1e693c96a75807.js:2
+i_ @ ed1e693c96a75807.js:2
+C @ ed1e693c96a75807.js:2
+M @ ed1e693c96a75807.js:2Understand this warning
+ed1e693c96a75807.js:2 Unrecognized feature: 'pointer-lock'.
+z @ ed1e693c96a75807.js:2
+(anonymous) @ ed1e693c96a75807.js:2
+iA @ ed1e693c96a75807.js:2
+iV @ ed1e693c96a75807.js:2
+iU @ ed1e693c96a75807.js:2
+i_ @ ed1e693c96a75807.js:2
+C @ ed1e693c96a75807.js:2
+M @ ed1e693c96a75807.js:2Understand this warning
+ed1e693c96a75807.js:2 Allow attribute will take precedence over 'allowfullscreen'.
+z @ ed1e693c96a75807.js:2
+(anonymous) @ ed1e693c96a75807.js:2
+iA @ ed1e693c96a75807.js:2
+iV @ ed1e693c96a75807.js:2
+iU @ ed1e693c96a75807.js:2
+i_ @ ed1e693c96a75807.js:2
+C @ ed1e693c96a75807.js:2
+M @ ed1e693c96a75807.js:2Understand this warning
+ed1e693c96a75807.js:2 Allow attribute will take precedence over 'allowpaymentrequest'.
+z @ ed1e693c96a75807.js:2
+(anonymous) @ ed1e693c96a75807.js:2
+iA @ ed1e693c96a75807.js:2
+iV @ ed1e693c96a75807.js:2
+iU @ ed1e693c96a75807.js:2
+i_ @ ed1e693c96a75807.js:2
+C @ ed1e693c96a75807.js:2
+M @ ed1e693c96a75807.js:2Understand this warning
+42605816003b0097.js:2  GET https://dotdevproxy.janeway.replit.dev/__reachability net::ERR_NAME_NOT_RESOLVED
+(anonymous) @ 42605816003b0097.js:2
+(anonymous) @ 7397cb901c13e8b4.js:2
+(anonymous) @ af94d8c8148f0061.js:2
+t @ d14f6496c34568f9.js:2
+s @ d14f6496c34568f9.js:2
+(anonymous) @ d14f6496c34568f9.js:2
+(anonymous) @ d14f6496c34568f9.js:2
+e @ 7397cb901c13e8b4.js:2
+(anonymous) @ 7397cb901c13e8b4.js:2
+(anonymous) @ af94d8c8148f0061.js:2
+t @ d14f6496c34568f9.js:2
+s @ d14f6496c34568f9.js:2
+Promise.then
+t @ d14f6496c34568f9.js:2
+s @ d14f6496c34568f9.js:2
+Promise.then
+t @ d14f6496c34568f9.js:2
+s @ d14f6496c34568f9.js:2
+Promise.then
+t @ d14f6496c34568f9.js:2
+s @ d14f6496c34568f9.js:2Understand this error
+42605816003b0097.js:2  GET https://dotdevproxy.janeway.replit.dev/__reachability net::ERR_NAME_NOT_RESOLVED
+(anonymous) @ 42605816003b0097.js:2
+(anonymous) @ 7397cb901c13e8b4.js:2
+(anonymous) @ af94d8c8148f0061.js:2
+t @ d14f6496c34568f9.js:2
+s @ d14f6496c34568f9.js:2
+(anonymous) @ d14f6496c34568f9.js:2
+(anonymous) @ d14f6496c34568f9.js:2
+e @ 7397cb901c13e8b4.js:2
+(anonymous) @ 7397cb901c13e8b4.js:2
+(anonymous) @ af94d8c8148f0061.js:2
+t @ d14f6496c34568f9.js:2
+s @ d14f6496c34568f9.js:2
+Promise.then
+t @ d14f6496c34568f9.js:2
+s @ d14f6496c34568f9.js:2
+(anonymous) @ d14f6496c34568f9.js:2
+(anonymous) @ d14f6496c34568f9.js:2
+s @ 7397cb901c13e8b4.js:2
+(anonymous) @ 7397cb901c13e8b4.js:2
+(anonymous) @ af94d8c8148f0061.js:2
+t @ d14f6496c34568f9.js:2
+u @ d14f6496c34568f9.js:2
+Promise.then
+t @ d14f6496c34568f9.js:2
+s @ d14f6496c34568f9.js:2
+(anonymous) @ d14f6496c34568f9.js:2
+(anonymous) @ d14f6496c34568f9.js:2
+e @ 7397cb901c13e8b4.js:2
+(anonymous) @ 7397cb901c13e8b4.js:2
+(anonymous) @ af94d8c8148f0061.js:2
+t @ d14f6496c34568f9.js:2
+s @ d14f6496c34568f9.js:2
+Promise.then
+t @ d14f6496c34568f9.js:2
+s @ d14f6496c34568f9.js:2
+Promise.then
+t @ d14f6496c34568f9.js:2
+s @ d14f6496c34568f9.js:2
+Promise.then
+t @ d14f6496c34568f9.js:2
+s @ d14f6496c34568f9.js:2Understand this error
