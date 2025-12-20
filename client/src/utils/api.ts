@@ -1,4 +1,4 @@
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://72.61.228.9:8100';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://uncollectively-unfutile-deandrea.ngrok-free.dev';
 
 export interface RegisterUserData {
   name: string;
@@ -92,7 +92,7 @@ export async function registerUser(data: RegisterUserData): Promise<RegisterResp
     method: 'POST',
     headers: { 
       'Content-Type': 'application/json',
-      'Accept': 'application/json'
+      'ngrok-skip-browser-warning': 'true'
     },
     body: JSON.stringify({
       name: data.name,
@@ -121,7 +121,7 @@ export async function loginUser(data: LoginUserData): Promise<LoginResponse> {
     method: 'POST',
     headers: { 
       'Content-Type': 'application/json',
-      'Accept': 'application/json'
+      'ngrok-skip-browser-warning': 'true'
     },
     body: JSON.stringify({
       email: data.email,
@@ -143,7 +143,7 @@ export async function sendChatMessage(userId: string, message: string, language:
     method: 'POST',
     headers: { 
       'Content-Type': 'application/json',
-      'Accept': 'application/json'
+      'ngrok-skip-browser-warning': 'true'
     },
     body: JSON.stringify({
       user_id: userId,
@@ -164,7 +164,7 @@ export async function getOnboardingStep(data: OnboardingStepRequest): Promise<On
     method: 'POST',
     headers: { 
       'Content-Type': 'application/json',
-      'Accept': 'application/json'
+      'ngrok-skip-browser-warning': 'true'
     },
     body: JSON.stringify({
       parent_profile_id: data.parent_profile_id,
@@ -186,7 +186,7 @@ export async function completeOnboarding(data: OnboardingCompleteRequest): Promi
     method: 'POST',
     headers: { 
       'Content-Type': 'application/json',
-      'Accept': 'application/json'
+      'ngrok-skip-browser-warning': 'true'
     },
     body: JSON.stringify({
       parent_profile_id: data.parent_profile_id,

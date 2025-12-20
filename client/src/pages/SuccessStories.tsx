@@ -18,9 +18,9 @@ const SuccessStories = () => {
   useEffect(() => {
     const fetchStories = async () => {
       try {
-        const response = await fetch("http://72.61.228.9:8100/api/success-stories", {
+        const response = await fetch("https://zainab-sanguineous-niels.ngrok-free.dev/api/success-stories", {
           headers: {
-            "Content-Type": "application/json"
+            "ngrok-skip-browser-warning": "true"
           }
         });
         if (!response.ok) {
