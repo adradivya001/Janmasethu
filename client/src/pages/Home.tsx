@@ -185,10 +185,10 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Main Content Container */}
-      <div className="container mx-auto px-4 py-6 md:py-8">
-        {/* Hero Section - Properly separated from carousel on large screens */}
-        <section className="text-center py-6 md:py-8 lg:py-10 relative bg-white/80 lg:bg-gradient-to-br lg:from-white lg:via-purple-50/50 lg:to-pink-50/50 lg:rounded-3xl lg:shadow-sm lg:border lg:border-purple-100/30">
+      {/* Main Content Container - Complete separation from carousel on large screens */}
+      <div className="container mx-auto px-4 py-6 md:py-8 lg:mt-20 xl:mt-24">
+        {/* Hero Section */}
+        <section className="text-center py-6 md:py-8 lg:py-10 relative overflow-hidden lg:rounded-3xl lg:bg-gradient-to-br lg:from-white lg:via-purple-50/50 lg:to-pink-50/50">
           {/* Trust Badge - Centered at top */}
           <div className="flex justify-center mb-3 md:mb-6">
             <div className="inline-flex items-center space-x-2 bg-white rounded-full px-4 py-2 card-shadow">
@@ -322,8 +322,8 @@ const Home = () => {
             </a>
           </div>
 
-          {/* Hero Background Image */}
-          <div className="absolute inset-0 -z-10">
+          {/* Hero Background Image - Hidden on large screens for clean separation */}
+          <div className="absolute inset-0 -z-10 lg:hidden">
             <div className="relative w-full h-full">
               <img
                 src="/babyFeet.jpg"
