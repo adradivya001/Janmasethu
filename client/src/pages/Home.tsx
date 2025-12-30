@@ -139,7 +139,7 @@ const Home = () => {
       <section className="w-full md:mb-16 lg:mb-20">
         <div className="relative w-full mx-auto transition-all duration-700 ease-in-out">
           {/* Carousel Container - Fixed heights for consistent layout */}
-          <div className="relative w-full h-[200px] sm:h-[250px] md:h-[220px] lg:h-[240px] xl:h-[260px] 2xl:h-[280px]">
+          <div className="relative w-full h-[200px] sm:h-[250px] md:h-[130px] lg:h-[150px] xl:h-[170px]">
             <Carousel
               plugins={[plugin.current]}
               className="w-full h-full"
@@ -167,7 +167,7 @@ const Home = () => {
               <CarouselNext className="hidden md:flex !right-4 bg-transparent hover:bg-white/30 border-none shadow-none w-12 h-12 !top-[50%] !-translate-y-[50%] [&>svg]:w-6 [&>svg]:h-6 [&>svg]:text-gray-600" />
             </Carousel>
             {/* Pagination Bar Indicator - Positioned below carousel container on large screens */}
-            <div className="absolute bottom-3 md:-bottom-10 lg:-bottom-12 xl:-bottom-14 left-1/2 -translate-x-1/2 flex gap-1.5 z-20">
+            <div className="absolute bottom-3 md:-bottom-10 lg:-bottom-12 left-1/2 -translate-x-1/2 flex gap-1.5 z-20">
               {Array.from({ length: totalSlides }).map((_, index) => (
                 <button
                   key={index}
@@ -186,7 +186,7 @@ const Home = () => {
       </section>
 
       {/* Main Content Container - COMPLETE separation from carousel on large screens */}
-      <div className="container mx-auto px-4 py-6 md:mt-20 lg:mt-24 xl:mt-28">
+      <div className="container mx-auto px-4 py-6 md:mt-[220px] lg:mt-[260px] xl:mt-[300px]">
         {/* Hero Section */}
         <section className="text-center py-6 md:py-8 lg:py-10 relative overflow-hidden lg:rounded-3xl">
           {/* Trust Badge - Centered at top */}
