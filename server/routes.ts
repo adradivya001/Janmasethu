@@ -650,6 +650,71 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
 
   // =========================
+  // SAKHI CLINIC LEADS API ENDPOINT
+  // =========================
+
+  // Submit a new lead to sakhi_clinic_leads table
+  app.post("/api/clinic-leads", async (req, res) => {
+    try {
+      const { name, phone, age, gender, problemType, source } = req.body;
+
+      if (!name || !phone || !age || !gender || !problemType || !source) {
+        return res.status(400).json({ 
+          ok: false, 
+          error: "All fields are required: name, phone, age, gender, problemType, source" 
+        });
+      }
+
+      console.log("📥 Received clinic lead submission:", { name, phone, problemType });
+
+      const { data, error } = await supabase
+        .from("sakhi_clinic_leads")
+        .insert([{
+          name: name,
+          phone: phone,
+          age: parseInt(age),
+          gender: gender,
+          problem_type: problemType,
+          source: source,
+          created_at: new Date().toISOString()
+        }])
+        .select()
+        .single();
+
+      if (error) {
+        console.error("❌ Supabase error inserting clinic lead:", error);
+        return res.status(500).json({ ok: false, error: error.message });
+      }
+
+      console.log("✅ Clinic lead stored successfully:", data.id);
+      res.json({ ok: true, data });
+    } catch (e: any) {
+      console.error("POST /api/clinic-leads error:", e);
+      res.status(500).json({ ok: false, error: e.message });
+    }
+  });
+
+  // Get all clinic leads
+  app.get("/api/clinic-leads", async (_req, res) => {
+    try {
+      const { data, error } = await supabase
+        .from("sakhi_clinic_leads")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+      if (error) {
+        console.error("❌ Supabase error fetching clinic leads:", error);
+        return res.status(500).json({ ok: false, error: error.message });
+      }
+
+      res.json({ ok: true, data: data ?? [] });
+    } catch (e: any) {
+      console.error("GET /api/clinic-leads error:", e);
+      res.status(500).json({ ok: false, error: e.message });
+    }
+  });
+
+  // =========================
   // SAKHI API PROXY ENDPOINTS (to avoid mixed content errors)
   // =========================
   

@@ -89,15 +89,19 @@ const LeadSubmissionForm = ({ open, onClose, onSubmitted }: LeadSubmissionFormPr
     setIsSubmitting(true);
 
     try {
-      const leadWithTimestamp = {
-        ...formData,
-        submittedAt: new Date().toISOString(),
-        id: Date.now().toString(),
-      };
+      const response = await fetch("/api/clinic-leads", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
-      const existingLeads = JSON.parse(localStorage.getItem("janmasethu_leads") || "[]");
-      existingLeads.push(leadWithTimestamp);
-      localStorage.setItem("janmasethu_leads", JSON.stringify(existingLeads));
+      const result = await response.json();
+
+      if (!response.ok || !result.ok) {
+        throw new Error(result.error || "Failed to submit");
+      }
 
       toast({
         title: "Thank you!",
@@ -121,7 +125,7 @@ const LeadSubmissionForm = ({ open, onClose, onSubmitted }: LeadSubmissionFormPr
       console.error("Failed to save lead:", error);
       toast({
         title: "Error",
-        description: "Failed to save the lead. Please try again.",
+        description: "Something went wrong. Please try again.",
         variant: "destructive",
       });
     } finally {
