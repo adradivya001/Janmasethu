@@ -10,15 +10,14 @@ const Footer = () => {
         <div className="grid md:grid-cols-4 gap-4 md:gap-6">
           {/* Brand */}
           <div>
-            <div className="flex items-center space-x-2 mb-1 md:mb-2">
+            <div className="flex flex-col items-center md:items-start mb-2 md:mb-4">
               <img 
-                src="/JanmaSethu Logo.png" 
+                src="/new JS logo BR.svg" 
                 alt="Janma Sethu Logo" 
-                className="w-8 h-8 sm:w-10 sm:h-10 object-contain"
+                className="h-16 md:h-20 w-auto object-contain scale-x-125 scale-y-110 origin-center md:origin-left mix-blend-multiply"
               />
-              <h3 className="text-base font-bold text-foreground font-serif">Janma Sethu</h3>
             </div>
-            <p className="text-muted-foreground text-xs">{t('brand_tag')}</p>
+            <p className="text-muted-foreground text-xs text-center md:text-left">{t('brand_tag')}</p>
           </div>
 
           {/* Quick Links */}
