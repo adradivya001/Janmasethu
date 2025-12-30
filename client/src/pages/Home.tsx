@@ -169,16 +169,16 @@ const Home = () => {
           </div>
 
           {/* Pagination Indicators - Dedicated block BELOW the carousel images in the document flow */}
-          <div className="w-full py-10 md:py-14 lg:py-20 bg-white flex justify-center items-center">
-            <div className="flex justify-center gap-3 md:gap-4">
+          <div className="w-full py-4 md:py-6 lg:py-8 bg-white flex justify-center items-center">
+            <div className="flex justify-center gap-2 md:gap-3">
               {Array.from({ length: totalSlides }).map((_, index) => (
                 <button
                   key={index}
                   onClick={() => carouselApi?.scrollTo(index)}
-                  className={`h-2.5 rounded-full transition-all duration-300 shadow-sm ${
+                  className={`h-1.5 rounded-full transition-all duration-300 shadow-sm ${
                     currentSlide === index
-                      ? "bg-purple-600 w-12 md:w-20"
-                      : "bg-gray-200 hover:bg-gray-300 w-4 md:w-6"
+                      ? "bg-purple-600 w-6 md:w-8"
+                      : "bg-gray-200 hover:bg-gray-300 w-2 md:w-3"
                   }`}
                   aria-label={`Go to slide ${index + 1}`}
                 />
@@ -189,7 +189,7 @@ const Home = () => {
       </section>
 
       {/* Main Content Container - Ample margin-top to ensure complete separation across all viewports */}
-      <div className="container mx-auto px-4 py-8 mt-12 md:mt-24 lg:mt-32 xl:mt-40">
+      <div className="container mx-auto px-4 py-8 mt-4 md:mt-8 lg:mt-12 xl:mt-16">
         {/* Hero Section */}
         <section className="text-center py-6 md:py-12 lg:py-20 relative overflow-hidden lg:rounded-[3rem] lg:bg-gradient-to-br lg:from-white lg:via-purple-50/50 lg:to-pink-50/50">
           {/* Trust Badge - Centered at top */}
