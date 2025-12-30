@@ -108,7 +108,7 @@ const Header = () => {
               <img
                 src="/new JS logo BR.svg"
                 alt="JanmaSethu Logo"
-                className="h-10 sm:h-12 md:h-14 lg:h-16 w-auto scale-x-125 scale-y-90 object-contain mix-blend-multiply origin-left"
+                className="h-12 sm:h-14 md:h-16 lg:h-20 w-auto scale-x-150 scale-y-110 object-contain mix-blend-multiply origin-left"
               />
             </Link>
 
