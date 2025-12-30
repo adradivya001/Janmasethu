@@ -49,23 +49,20 @@ const Footer = () => {
               <Link href="/blog" className="block text-muted-foreground hover:text-primary text-xs" data-testid="link-footer-blog">
                 {t('nav_blog')}
               </Link>
-              <Link href="/privacy" className="block text-muted-foreground hover:text-primary text-xs" data-testid="link-footer-privacy">
-                {t('footer_privacy')}
-              </Link>
             </div>
           </div>
 
-          {/* Legal */}
-          <div>
-            <h4 className="font-semibold text-foreground text-sm mb-1 md:mb-2">Legal</h4>
+          {/* Contact & Disclaimer */}
+          <div className="md:col-span-1">
+            <h4 className="font-semibold text-foreground text-sm mb-1 md:mb-2">Contact</h4>
             <div className="space-y-1">
-              <Link href="/sources" className="block text-muted-foreground hover:text-primary text-xs" data-testid="link-footer-sources">
-                {t('footer_sources')}
-              </Link>
               <Link href="/contact" className="block text-muted-foreground hover:text-primary text-xs" data-testid="link-footer-contact">
                 {t('footer_contact')}
               </Link>
-              <p className="text-xs text-muted-foreground mt-1 md:mt-2" data-testid="text-disclaimer">
+              <Link href="/sources" className="block text-muted-foreground hover:text-primary text-xs" data-testid="link-footer-sources">
+                {t('footer_sources')}
+              </Link>
+              <p className="text-xs text-muted-foreground mt-1 md:mt-2 leading-tight" data-testid="text-disclaimer">
                 {t('footer_disclaimer')}
               </p>
             </div>
