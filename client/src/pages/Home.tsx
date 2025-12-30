@@ -150,7 +150,7 @@ const Home = () => {
               }}
             >
               <CarouselContent className="h-full">
-                {[1, 2, 3, 4, 5, 6, 7].map((num) => (
+                {[1, 2, 3, 4, 5, 6].map((num) => (
                   <CarouselItem key={num} className="h-full">
                     <div className="relative w-full h-full flex items-center justify-center">
                       <img
@@ -161,6 +161,15 @@ const Home = () => {
                     </div>
                   </CarouselItem>
                 ))}
+                <CarouselItem key={7} className="h-full">
+                  <div className="relative w-full h-full flex items-center justify-center">
+                    <img
+                      src="/JS slides/7 new.png"
+                      alt="Slide 7"
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                </CarouselItem>
               </CarouselContent>
               {/* Navigation Arrows - Safely positioned */}
               <CarouselPrevious className="hidden md:flex !left-6 bg-white/30 hover:bg-white/50 backdrop-blur-sm border-none shadow-lg w-12 h-12 !top-[50%] !-translate-y-[50%]" />
