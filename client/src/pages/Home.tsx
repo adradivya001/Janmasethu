@@ -135,11 +135,11 @@ const Home = () => {
 
   return (
     <>
-      {/* Responsive Carousel Section - With bottom spacing on large screens */}
-      <section className="w-full lg:pb-12 xl:pb-16 2xl:pb-20">
-        <div className="relative w-full mx-auto transition-all duration-700 ease-in-out">
-          {/* Carousel Container - Fixed heights for consistent layout */}
-          <div className="relative w-full h-[200px] sm:h-[280px] md:h-[350px] lg:h-[400px] xl:h-[450px] 2xl:h-[500px]">
+      {/* Responsive Carousel Section - Using explicit vertical flow to prevent any overlap or collision */}
+      <section className="w-full relative bg-white border-b border-gray-50 overflow-hidden">
+        <div className="w-full flex flex-col">
+          {/* Carousel Container - Clean heights with overflow hidden */}
+          <div className="relative w-full h-[220px] sm:h-[320px] md:h-[400px] lg:h-[480px] xl:h-[550px] 2xl:h-[600px] overflow-hidden bg-gray-50">
             <Carousel
               plugins={[plugin.current]}
               className="w-full h-full"
@@ -152,30 +152,33 @@ const Home = () => {
               <CarouselContent className="h-full">
                 {[1, 2, 3, 4, 5, 6, 7].map((num) => (
                   <CarouselItem key={num} className="h-full">
-                    <div className="relative w-full h-full flex items-center justify-center bg-gradient-to-br from-purple-50 to-pink-50">
+                    <div className="relative w-full h-full flex items-center justify-center">
                       <img
                         src={`/JS slides/${num}.png`}
                         alt={`Slide ${num}`}
-                        className="w-full h-full object-contain lg:object-cover"
+                        className="w-full h-full object-contain md:object-cover"
                       />
                     </div>
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              {/* Arrows hidden on mobile, visible on md+ */}
-              <CarouselPrevious className="hidden md:flex !left-4 bg-transparent hover:bg-white/30 border-none shadow-none w-12 h-12 !top-[50%] !-translate-y-[50%] [&>svg]:w-6 [&>svg]:h-6 [&>svg]:text-gray-600" />
-              <CarouselNext className="hidden md:flex !right-4 bg-transparent hover:bg-white/30 border-none shadow-none w-12 h-12 !top-[50%] !-translate-y-[50%] [&>svg]:w-6 [&>svg]:h-6 [&>svg]:text-gray-600" />
+              {/* Navigation Arrows - Safely positioned */}
+              <CarouselPrevious className="hidden md:flex !left-6 bg-white/30 hover:bg-white/50 backdrop-blur-sm border-none shadow-lg w-12 h-12 !top-[50%] !-translate-y-[50%]" />
+              <CarouselNext className="hidden md:flex !right-6 bg-white/30 hover:bg-white/50 backdrop-blur-sm border-none shadow-lg w-12 h-12 !top-[50%] !-translate-y-[50%]" />
             </Carousel>
-            {/* Pagination Bar Indicator - Positioned at bottom of carousel container */}
-            <div className="absolute bottom-3 md:bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 z-20">
+          </div>
+
+          {/* Pagination Indicators - Dedicated block BELOW the carousel images in the document flow */}
+          <div className="w-full py-10 md:py-14 lg:py-20 bg-white flex justify-center items-center">
+            <div className="flex justify-center gap-3 md:gap-4">
               {Array.from({ length: totalSlides }).map((_, index) => (
                 <button
                   key={index}
                   onClick={() => carouselApi?.scrollTo(index)}
-                  className={`h-1.5 rounded-full transition-all duration-300 shadow-sm ${
+                  className={`h-2.5 rounded-full transition-all duration-300 shadow-sm ${
                     currentSlide === index
-                      ? "bg-purple-600 w-6 md:w-8"
-                      : "bg-white/80 hover:bg-white w-3 md:w-4"
+                      ? "bg-purple-600 w-12 md:w-20"
+                      : "bg-gray-200 hover:bg-gray-300 w-4 md:w-6"
                   }`}
                   aria-label={`Go to slide ${index + 1}`}
                 />
@@ -185,8 +188,8 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Main Content Container - Complete separation from carousel on large screens */}
-      <div className="container mx-auto px-4 py-6 md:py-8 lg:mt-32 xl:mt-40 2xl:mt-48">
+      {/* Main Content Container - Ample margin-top to ensure complete separation across all viewports */}
+      <div className="container mx-auto px-4 py-8 mt-12 md:mt-24 lg:mt-32 xl:mt-40">
         {/* Hero Section */}
         <section className="text-center py-6 md:py-12 lg:py-20 relative overflow-hidden lg:rounded-[3rem] lg:bg-gradient-to-br lg:from-white lg:via-purple-50/50 lg:to-pink-50/50">
           {/* Trust Badge - Centered at top */}
