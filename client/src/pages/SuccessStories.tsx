@@ -132,7 +132,7 @@ const SuccessStories = () => {
                 </div>
 
                 <img
-                  src={getStoryImage(story)}
+                  src="/New ShareStory.png"
                   alt={story.title?.[lang] || "Story Image"}
                   className="rounded-xl w-full h-32 object-cover mb-4 group-hover:shadow-lg transition-shadow"
                 />
