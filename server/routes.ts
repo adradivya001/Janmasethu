@@ -672,11 +672,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
         .insert([{
           name: name,
           phone: phone,
-          age: parseInt(age),
+          age: age,
           gender: gender,
-          problem_type: problemType,
-          source: source,
-          created_at: new Date().toISOString()
+          problem: problemType,
+          source: source
         }])
         .select()
         .single();
