@@ -169,7 +169,7 @@ const Home = () => {
           </div>
 
           {/* Pagination Indicators - Dedicated block BELOW the carousel images in the document flow */}
-          <div className="w-full py-2 md:py-3 lg:py-4 bg-transparent flex justify-center items-center">
+          <div className="w-full py-2 md:py-3 lg:py-4 bg-[#fdf2f8] flex justify-center items-center">
             <div className="flex justify-center gap-2 md:gap-3">
               {Array.from({ length: totalSlides }).map((_, index) => (
                 <button
