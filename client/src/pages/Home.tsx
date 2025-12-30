@@ -139,7 +139,7 @@ const Home = () => {
       <section className="w-full relative bg-white border-b border-gray-50 overflow-hidden">
         <div className="w-full flex flex-col">
           {/* Carousel Container - Clean heights with overflow hidden */}
-          <div className="relative w-full h-[220px] sm:h-[320px] md:h-[400px] lg:h-[480px] xl:h-[550px] 2xl:h-[600px] overflow-hidden bg-gray-50">
+          <div className="relative w-full h-[220px] sm:h-[320px] md:h-[400px] lg:h-[500px] xl:h-[600px] 2xl:h-[700px] overflow-hidden bg-gray-50">
             <Carousel
               plugins={[plugin.current]}
               className="w-full h-full"
@@ -156,7 +156,7 @@ const Home = () => {
                       <img
                         src={`/JS slides/${num}.png`}
                         alt={`Slide ${num}`}
-                        className="w-full h-full object-contain md:object-cover"
+                        className="w-full h-full object-contain"
                       />
                     </div>
                   </CarouselItem>
