@@ -170,7 +170,7 @@ export async function fetchArticles(params?: {
     if (params?.page) queryParams.set('page', params.page.toString());
     if (params?.perPage) queryParams.set('perPage', params.perPage.toString());
 
-    const url = `${NGROK_API_BASE}/api/knowledge/articles${queryParams.toString() ? '?' + queryParams.toString() : ''}`;
+    const url = `${NGROK_API_BASE}/api/knowledge-hub/${queryParams.toString() ? '?' + queryParams.toString() : ''}`;
 
     console.log('Fetching articles from:', url);
 
@@ -247,7 +247,7 @@ export async function fetchArticles(params?: {
 
 export async function fetchArticleBySlug(slug: string): Promise<ArticleDetailResponse | null> {
   try {
-    const response = await fetch(`${NGROK_API_BASE}/api/knowledge/articles/${encodeURIComponent(slug)}`, {
+    const response = await fetch(`${NGROK_API_BASE}/api/knowledge-hub/${encodeURIComponent(slug)}`, {
       headers: {
         'Accept': 'application/json',
         'ngrok-skip-browser-warning': 'true'
