@@ -19,7 +19,7 @@ const Story = () => {
     const fetchStories = async () => {
       try {
         // Fetch backend stories
-        const response = await fetch(`https://uncollectively-unfutile-deandrea.ngrok-free.dev/stories/`, {
+        const response = await fetch(`http://72.61.228.9:8100/stories/`, {
           headers: {
             "ngrok-skip-browser-warning": "true"
           }
