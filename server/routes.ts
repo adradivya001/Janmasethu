@@ -693,6 +693,56 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Proxy: Knowledge Hub
+  app.get("/api/proxy/knowledge-hub/*", async (req, res) => {
+    try {
+      const path = req.params[0];
+      const queryString = new URL(req.url, `http://${req.headers.host}`).search;
+      const targetUrl = `http://72.61.228.9:8100/api/knowledge-hub/${path}${queryString}`;
+      
+      const response = await fetch(targetUrl, {
+        headers: { 'ngrok-skip-browser-warning': 'true' }
+      });
+      const data = await response.json();
+      res.status(response.status).json(data);
+    } catch (error) {
+      console.error("Proxy knowledge-hub error:", error);
+      res.status(500).json({ error: "Failed to connect to backend server" });
+    }
+  });
+
+  // Proxy: Success Stories
+  app.get("/api/proxy/stories", async (req, res) => {
+    try {
+      const response = await fetch("http://72.61.228.9:8100/stories/", {
+        headers: { 'ngrok-skip-browser-warning': 'true' }
+      });
+      const data = await response.json();
+      res.status(response.status).json(data);
+    } catch (error) {
+      console.error("Proxy stories error:", error);
+      res.status(500).json({ error: "Failed to connect to backend server" });
+    }
+  });
+
+  app.post("/api/proxy/stories/draft", async (req, res) => {
+    try {
+      const response = await fetch("http://72.61.228.9:8100/stories/draft", {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json',
+          'ngrok-skip-browser-warning': 'true'
+        },
+        body: JSON.stringify(req.body),
+      });
+      const data = await response.json();
+      res.status(response.status).json(data);
+    } catch (error) {
+      console.error("Proxy stories draft error:", error);
+      res.status(500).json({ error: "Failed to connect to backend server" });
+    }
+  });
+
   // Get all clinic leads
   app.get("/api/clinic-leads", async (_req, res) => {
     try {

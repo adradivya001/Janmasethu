@@ -18,7 +18,7 @@ const SuccessStories = () => {
   useEffect(() => {
     const fetchStories = async () => {
       try {
-        const response = await fetch("http://72.61.228.9:8100/stories/", {
+        const response = await fetch("/api/proxy/stories", {
           headers: {
             "ngrok-skip-browser-warning": "true"
           }

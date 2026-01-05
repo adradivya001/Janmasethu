@@ -52,8 +52,8 @@ export interface ArticleData {
   sections: ArticleSection[];
 }
 
-// IP-based API Base URL
-const NGROK_API_BASE = 'http://72.61.228.9:8100';
+// Use proxy to avoid Mixed Content errors
+const NGROK_API_BASE = '/api/proxy/knowledge-hub';
 
 // API Response Types
 export interface LifeStage {
@@ -114,7 +114,7 @@ export interface ArticlesResponse {
 // API Functions
 export async function fetchLifeStages(): Promise<LifeStage[]> {
   try {
-    const response = await fetch(`${NGROK_API_BASE}/api/knowledge/life-stages`, {
+    const response = await fetch(`${NGROK_API_BASE}/life-stages`, {
       headers: {
         'Accept': 'application/json',
         'ngrok-skip-browser-warning': 'true'
@@ -135,7 +135,7 @@ export async function fetchLifeStages(): Promise<LifeStage[]> {
 
 export async function fetchPerspectives(): Promise<Perspective[]> {
   try {
-    const response = await fetch(`${NGROK_API_BASE}/api/knowledge/perspectives`, {
+    const response = await fetch(`${NGROK_API_BASE}/perspectives`, {
       headers: {
         'Accept': 'application/json',
         'ngrok-skip-browser-warning': 'true'
@@ -170,7 +170,7 @@ export async function fetchArticles(params?: {
     if (params?.page) queryParams.set('page', params.page.toString());
     if (params?.perPage) queryParams.set('perPage', params.perPage.toString());
 
-    const url = `${NGROK_API_BASE}/api/knowledge-hub/${queryParams.toString() ? '?' + queryParams.toString() : ''}`;
+    const url = `${NGROK_API_BASE}/${queryParams.toString() ? '?' + queryParams.toString() : ''}`;
 
     console.log('Fetching articles from:', url);
 
@@ -247,7 +247,7 @@ export async function fetchArticles(params?: {
 
 export async function fetchArticleBySlug(slug: string): Promise<ArticleDetailResponse | null> {
   try {
-    const response = await fetch(`${NGROK_API_BASE}/api/knowledge-hub/${encodeURIComponent(slug)}`, {
+    const response = await fetch(`${NGROK_API_BASE}/${encodeURIComponent(slug)}`, {
       headers: {
         'Accept': 'application/json',
         'ngrok-skip-browser-warning': 'true'
