@@ -722,7 +722,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Proxy: Success Stories
   app.get("/api/proxy/stories", async (req, res) => {
     try {
-      const targetUrl = "http://72.61.228.9:8100/stories/";
+      // Pass lang parameter to backend
+      const lang = req.query.lang || 'en';
+      const targetUrl = `http://72.61.228.9:8100/stories/?lang=${lang}`;
       const response = await fetch(targetUrl, {
         headers: { 'ngrok-skip-browser-warning': 'true' }
       });

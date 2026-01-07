@@ -160,6 +160,7 @@ export async function fetchArticles(params?: {
   search?: string;
   page?: number;
   perPage?: number;
+  lang?: string;
 }): Promise<ArticlesResponse> {
   try {
     const queryParams = new URLSearchParams();
@@ -169,6 +170,8 @@ export async function fetchArticles(params?: {
     if (params?.search) queryParams.set('search', params.search);
     if (params?.page) queryParams.set('page', params.page.toString());
     if (params?.perPage) queryParams.set('perPage', params.perPage.toString());
+    // Add language parameter - default to 'en' if not specified
+    queryParams.set('lang', params?.lang || 'en');
 
     const url = `${NGROK_API_BASE}/${queryParams.toString() ? '?' + queryParams.toString() : ''}`;
 
@@ -245,9 +248,9 @@ export async function fetchArticles(params?: {
   }
 }
 
-export async function fetchArticleBySlug(slug: string): Promise<ArticleDetailResponse | null> {
+export async function fetchArticleBySlug(slug: string, lang: string = 'en'): Promise<ArticleDetailResponse | null> {
   try {
-    const response = await fetch(`${NGROK_API_BASE}/${encodeURIComponent(slug)}`, {
+    const response = await fetch(`${NGROK_API_BASE}/${encodeURIComponent(slug)}?lang=${lang}`, {
       headers: {
         'Accept': 'application/json',
         'ngrok-skip-browser-warning': 'true'
@@ -271,9 +274,9 @@ export async function fetchArticleBySlug(slug: string): Promise<ArticleDetailRes
 }
 
 // Fetch article by slug from backend (reuses fetchArticleBySlug)
-export const fetchArticleData = async (slug: string): Promise<ArticleData | null> => {
+export const fetchArticleData = async (slug: string, lang: string = 'en'): Promise<ArticleData | null> => {
   try {
-    const article = await fetchArticleBySlug(slug);
+    const article = await fetchArticleBySlug(slug, lang);
     if (!article) return null;
 
     // Transform API response to ArticleData format

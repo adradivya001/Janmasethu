@@ -14,11 +14,12 @@ const SuccessStories = () => {
   const [backendStories, setBackendStories] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Fetch stories from backend
+  // Fetch stories from backend - re-fetch when language changes
   useEffect(() => {
     const fetchStories = async () => {
       try {
-        const response = await fetch("/api/proxy/stories", {
+        // Pass language parameter to get localized content
+        const response = await fetch(`/api/proxy/stories?lang=${lang}`, {
           headers: {
             "ngrok-skip-browser-warning": "true"
           }
@@ -38,7 +39,7 @@ const SuccessStories = () => {
     };
 
     fetchStories();
-  }, []);
+  }, [lang]); // Re-fetch when language changes
 
   // Handle new story submission - receives normalized data from POST response
   const handleStorySubmitted = (responseData: any) => {

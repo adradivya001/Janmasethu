@@ -86,8 +86,8 @@ const Knowledge = () => {
           setSelectedStage(stageParam as Stage);
         }
 
-        // Fetch articles from ngrok API using the correct endpoint
-        const response = await fetchArticles({ perPage: 100 });
+        // Fetch articles from ngrok API using the correct endpoint with language parameter
+        const response = await fetchArticles({ perPage: 100, lang });
         
         console.log('Articles API response:', response);
         
@@ -133,7 +133,7 @@ const Knowledge = () => {
     };
 
     loadArticles();
-  }, []);
+  }, [lang]); // Re-fetch when language changes
 
   // Auto-trigger search when filters change
   useEffect(() => {
@@ -371,11 +371,12 @@ const Knowledge = () => {
     }
     
     try {
-      // Fetch from API with numeric IDs
+      // Fetch from API with numeric IDs and language parameter
       const response = await fetchArticles({
         search: searchTerm || undefined,
         lifeStage: selectedStage ? stageToIdMap[selectedStage] : undefined,
-        perspective: selectedLens ? lensToIdMap[selectedLens] : undefined
+        perspective: selectedLens ? lensToIdMap[selectedLens] : undefined,
+        lang
       });
 
       console.log('✅ API returned:', {

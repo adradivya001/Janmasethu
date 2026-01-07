@@ -14,12 +14,12 @@ const Story = () => {
   const [allStories, setAllStories] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Fetch all stories and current story
+  // Fetch all stories and current story - re-fetch when language changes
   useEffect(() => {
     const fetchStories = async () => {
       try {
-        // Fetch backend stories
-        const response = await fetch("/api/proxy/stories", {
+        // Fetch backend stories with language parameter
+        const response = await fetch(`/api/proxy/stories?lang=${lang}`, {
           headers: {
             "ngrok-skip-browser-warning": "true"
           }
@@ -55,7 +55,7 @@ const Story = () => {
     };
 
     fetchStories();
-  }, [slug]);
+  }, [slug, lang]); // Re-fetch when language changes
 
   // Scroll to top when component mounts
   useEffect(() => {
