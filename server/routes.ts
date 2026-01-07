@@ -742,9 +742,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.post("/api/proxy/stories/draft", async (req, res) => {
+  app.post("/api/proxy/stories", async (req, res) => {
     try {
-      const targetUrl = "http://72.61.228.9:8100/stories/draft";
+      const targetUrl = "http://72.61.228.9:8100/stories/";
       const response = await fetch(targetUrl, {
         method: 'POST',
         headers: { 
@@ -760,11 +760,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
         res.status(response.status).json(data);
       } else {
         const text = await response.text();
-        console.error(`Proxy stories draft error: Non-JSON response from ${targetUrl}`, text);
+        console.error(`Proxy stories post error: Non-JSON response from ${targetUrl}`, text);
         res.status(response.status).send(text);
       }
     } catch (error) {
-      console.error("Proxy stories draft error:", error);
+      console.error("Proxy stories post error:", error);
       res.status(500).json({ error: "Failed to connect to backend server" });
     }
   });

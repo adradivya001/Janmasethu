@@ -220,7 +220,7 @@ export default function StorySubmissionForm({ open, onClose, onSubmitted }: Stor
       console.log("📤 Sending payload to ngrok:", JSON.stringify(payload, null, 2));
 
       // Submit story to external backend via proxy
-      const response = await fetch("/api/proxy/stories/draft", {
+      const response = await fetch("/api/proxy/stories", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
