@@ -67,9 +67,11 @@ const MobileMenu = ({ isOpen, onClose, navItems }: MobileMenuProps) => {
                 const Icon = navInfo.icon;
                 
                 return (
-                  <Link 
+                  <a 
                     key={href}
                     href={href} 
+                    target={href.startsWith("http") ? "_blank" : undefined}
+                    rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
                     className="group block"
                     onClick={onClose}
                     data-testid={`link-mobile-${key.replace('nav_', '')}`}
