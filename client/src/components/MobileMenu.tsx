@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 interface MobileMenuProps {
   isOpen: boolean;
   onClose: () => void;
-  navItems: Array<{ key: string; href: string }>;
+  navItems: Array<{ key: string; href: string; isExternal?: boolean }>;
 }
 
 const navIcons: Record<string, { icon: any; color: string; description: string }> = {
@@ -62,9 +62,50 @@ const MobileMenu = ({ isOpen, onClose, navItems }: MobileMenuProps) => {
           {/* Navigation Links */}
           <nav className="flex-1 overflow-y-auto py-3 px-3" role="navigation" aria-label="Mobile navigation">
             <div className="space-y-1">
-              {navItems.map(({ key, href }, index) => {
+              {navItems.map(({ key, href, isExternal }, index) => {
                 const navInfo = navIcons[key] || { icon: ChevronRight, color: 'from-gray-500 to-gray-600', description: '' };
                 const Icon = navInfo.icon;
+                
+                const content = (
+                  <div 
+                    className="flex items-center gap-3 px-3 py-3 rounded-xl text-gray-700 hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 transition-all duration-200"
+                    style={{
+                      animation: isOpen ? `slideInLeft 0.3s ease-out ${index * 0.05}s forwards` : '',
+                      opacity: isOpen ? 1 : 0,
+                    }}
+                  >
+                    <div className={`p-2.5 rounded-xl bg-gradient-to-r ${navInfo.color} shadow-md group-hover:scale-110 transition-transform duration-200`}>
+                      <Icon className="w-5 h-5 text-white" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <span className="font-semibold text-[15px] text-gray-800 group-hover:text-purple-700 transition-colors block">
+                        {t(key)}
+                      </span>
+                      {navInfo.description && (
+                        <span className="text-xs text-gray-500 block truncate">
+                          {navInfo.description}
+                        </span>
+                      )}
+                    </div>
+                    <ChevronRight className="w-4 h-4 text-gray-300 group-hover:text-purple-500 group-hover:translate-x-1 transition-all duration-200 flex-shrink-0" />
+                  </div>
+                );
+
+                if (isExternal) {
+                  return (
+                    <a
+                      key={href}
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group block"
+                      onClick={onClose}
+                      data-testid={`link-mobile-${key.replace('nav_', '')}`}
+                    >
+                      {content}
+                    </a>
+                  );
+                }
                 
                 return (
                   <Link 
@@ -74,28 +115,7 @@ const MobileMenu = ({ isOpen, onClose, navItems }: MobileMenuProps) => {
                     onClick={onClose}
                     data-testid={`link-mobile-${key.replace('nav_', '')}`}
                   >
-                    <div 
-                      className="flex items-center gap-3 px-3 py-3 rounded-xl text-gray-700 hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 transition-all duration-200"
-                      style={{
-                        animation: isOpen ? `slideInLeft 0.3s ease-out ${index * 0.05}s forwards` : '',
-                        opacity: isOpen ? 1 : 0,
-                      }}
-                    >
-                      <div className={`p-2.5 rounded-xl bg-gradient-to-r ${navInfo.color} shadow-md group-hover:scale-110 transition-transform duration-200`}>
-                        <Icon className="w-5 h-5 text-white" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <span className="font-semibold text-[15px] text-gray-800 group-hover:text-purple-700 transition-colors block">
-                          {t(key)}
-                        </span>
-                        {navInfo.description && (
-                          <span className="text-xs text-gray-500 block truncate">
-                            {navInfo.description}
-                          </span>
-                        )}
-                      </div>
-                      <ChevronRight className="w-4 h-4 text-gray-300 group-hover:text-purple-500 group-hover:translate-x-1 transition-all duration-200 flex-shrink-0" />
-                    </div>
+                    {content}
                   </Link>
                 );
               })}

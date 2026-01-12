@@ -45,8 +45,6 @@ function Router() {
         <Layout>
           <Switch>
             <Route path="/" component={Home} />
-            <Route path="/knowledge-hub" component={Knowledge} />
-            <Route path="/knowledge-hub/:slug" component={Article} />
             <Route path="/treatments" component={Treatments} />
             <Route path="/treatments/:slug" component={Treatment} />
             <Route path="/success-stories" component={SuccessStories} />

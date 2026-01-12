@@ -18,7 +18,7 @@ const Header = () => {
   // Navigation configuration with priority for two-row layout
   const navConfig = [
     { key: "nav_home", href: "/", priority: 1 },
-    { key: "nav_knowledge", href: "/knowledge-hub", priority: 2 },
+    { key: "nav_knowledge", href: "http://72.61.228.9:8100/", priority: 2, isExternal: true },
     { key: "nav_treatments", href: "/treatments", priority: 3 },
     { key: "nav_sakhi", href: "/sakhi", priority: 4 },
     { key: "nav_success", href: "/success-stories", priority: 5, icon: Trophy, description: "Read inspiring journeys" },
@@ -38,10 +38,11 @@ const Header = () => {
   }>;
 
   // Mobile menu gets all items
-  const allNavItems = navConfig.map(({ key, href }) => ({
+  const allNavItems = navConfig.map(({ key, href, isExternal }) => ({
     key,
     href,
     label: t(key),
+    isExternal,
   }));
 
   // Handle ESC key to collapse when focus is in secondary nav
@@ -119,20 +120,43 @@ const Header = () => {
                 role="navigation"
                 aria-label="Main navigation"
               >
-                {primaryNavItems.map(({ key, href }) => (
-                  <Link
-                    key={href}
-                    href={href}
-                    className={`font-semibold text-sm tracking-wide transition-all duration-200 px-3 py-2 rounded-md flex-1 text-center ${
+                {primaryNavItems.map(({ key, href, isExternal }) => {
+                  const content = (
+                    <span className={`font-semibold text-sm tracking-wide transition-all duration-200 px-3 py-2 rounded-md flex-1 text-center ${
                       location === href
                         ? "text-primary bg-primary/10"
                         : "text-foreground hover:text-primary hover:bg-primary/5"
-                    }`}
-                    data-testid={`link-nav-${key.replace("nav_", "")}`}
-                  >
-                    {t(key)}
-                  </Link>
-                ))}
+                    }`}>
+                      {t(key)}
+                    </span>
+                  );
+
+                  if (isExternal) {
+                    return (
+                      <a
+                        key={href}
+                        href={href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 text-center"
+                        data-testid={`link-nav-${key.replace("nav_", "")}`}
+                      >
+                        {content}
+                      </a>
+                    );
+                  }
+
+                  return (
+                    <Link
+                      key={href}
+                      href={href}
+                      className="flex-1 text-center"
+                      data-testid={`link-nav-${key.replace("nav_", "")}`}
+                    >
+                      {content}
+                    </Link>
+                  );
+                })}
 
                 {/* More Dropdown Button */}
                 <div
