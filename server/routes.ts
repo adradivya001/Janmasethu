@@ -776,7 +776,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const path = (req.params as any)[0];
       const queryString = new URL(req.url, `http://${req.headers.host}`).search;
-      const targetUrl = `https://zainab-sanguineous-niels.ngrok-free.dev/api/knowledge-hub/${path}${queryString}`;
+      const targetUrl = `https://uncollectively-unfutile-deandrea.ngrok-free.dev/api/knowledge-hub/${path}${queryString}`;
 
       const response = await fetch(targetUrl, {
         headers: { "ngrok-skip-browser-warning": "true" },
