@@ -3,11 +3,13 @@ import { Link } from "wouter";
 import { fetchDoctors, type DoctorCard } from "@/lib/api";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { useJourney } from "@/contexts/JourneyContext";
 
 const fallbackImg =
   "https://images.unsplash.com/photo-1580281657527-47f249e8f0d1?auto=format&fit=crop&w=800&q=60"; // neutral doctor-like image
 
 export default function Experts() {
+  const { journey } = useJourney();
   const [loading, setLoading] = useState(true);
   const [doctors, setDoctors] = useState<DoctorCard[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -29,9 +31,20 @@ export default function Experts() {
     <div className="container mx-auto px-4 py-10">
       <div className="text-center mb-10">
         <h1 className="text-4xl md:text-5xl font-bold font-serif text-foreground">Our Experts</h1>
-        <p className="text-muted-foreground mt-3">
+        <p className="text-muted-foreground mt-3 mb-6">
           Meet fertility specialists from Medcy IVF.
         </p>
+
+        {/* Journey Banner */}
+        {journey && journey.stage !== 'TTC' && (
+          <div className="bg-purple-50 border border-purple-200 rounded-2xl p-4 mx-auto max-w-xl inline-block animate-fadeIn">
+            <p className="text-purple-800 text-sm">
+              {journey.stage === 'PREGNANT'
+                ? 'Note: These specialists primarily focus on fertility treatments. Consult your obstetrician for pregnancy care.'
+                : 'Note: These specialists primarily focus on fertility treatments.'}
+            </p>
+          </div>
+        )}
       </div>
 
       {loading && (
@@ -64,7 +77,7 @@ export default function Experts() {
               'from-pink-50 via-blue-50 to-purple-50'
             ];
             const cardGradient = gradients[index % gradients.length];
-            
+
             return (
               <Link key={d.slug} href={`/experts/${d.slug}`}>
                 <Card className={`rounded-3xl overflow-hidden cursor-pointer group hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border-2 border-purple-200/60 bg-gradient-to-br ${cardGradient}`}>
@@ -81,7 +94,7 @@ export default function Experts() {
                         />
                       </div>
                     </div>
-                    
+
                     {/* Content Section with Gradient */}
                     <div className="p-6 bg-gradient-to-br from-white/95 via-purple-50/60 to-pink-50/50 backdrop-blur-sm">
                       <h3 className="text-xl font-bold text-gray-900 font-serif group-hover:text-purple-700 transition-colors">
@@ -92,18 +105,18 @@ export default function Experts() {
                           {d.designation}
                         </p>
                       )}
-                      
+
                       {/* View Profile Button */}
                       <div className="mt-5 flex items-center justify-between">
-                        <Button 
-                          variant="default" 
+                        <Button
+                          variant="default"
                           className="rounded-full bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 hover:from-purple-700 hover:via-pink-700 hover:to-purple-700 text-white shadow-lg group-hover:shadow-2xl group-hover:shadow-purple-500/50 transition-all"
                         >
                           View Profile
-                          <svg 
-                            className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" 
-                            fill="none" 
-                            stroke="currentColor" 
+                          <svg
+                            className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform"
+                            fill="none"
+                            stroke="currentColor"
                             viewBox="0 0 24 24"
                           >
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

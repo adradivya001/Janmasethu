@@ -30,6 +30,7 @@ export interface RegisterResponse {
     preferred_language: string;
     gender?: string;
     location?: string;
+    user_relation?: string;
   };
 }
 
@@ -45,6 +46,7 @@ export interface LoginResponse {
     preferred_language: string;
     gender?: string;
     location?: string;
+    user_relation?: string;
   };
 }
 
@@ -206,6 +208,30 @@ export async function completeOnboarding(data: OnboardingCompleteRequest): Promi
   }
 
   console.log('✅ Onboarding completed successfully');
+}
+
+export interface JourneyRequest {
+  user_id: string;
+  stage: string;       // 'TTC', 'PREGNANT', 'PARENT'
+  date?: string;       // ISO date string
+  date_type?: string;  // 'LMP', 'DUE_DATE', 'BIRTH_DATE'
+}
+
+export async function saveUserJourney(data: JourneyRequest): Promise<void> {
+  console.log('📤 Saving user journey:', data);
+  const response = await fetch(`${API_BASE_URL}/user/journey`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  });
+
+  if (!response.ok) {
+    const result = await response.json();
+    console.error('❌ Failed to save journey:', result);
+    // Don't throw error to avoid blocking UI, just log it
+  } else {
+    console.log('✅ Journey saved successfully');
+  }
 }
 
 export { API_BASE_URL };

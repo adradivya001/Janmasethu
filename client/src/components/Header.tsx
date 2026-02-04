@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "wouter";
-import { Menu, ChevronDown, Trophy, BookOpen, Users, TrendingUp } from "lucide-react";
+import { Menu, ChevronDown, Trophy, BookOpen, Users, TrendingUp, Calculator } from "lucide-react";
 import { useLanguage } from "../i18n/LanguageProvider";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -21,6 +21,7 @@ const Header = () => {
     { key: "nav_knowledge", href: "/knowledge-hub", priority: 2 },
     { key: "nav_treatments", href: "/treatments", priority: 3 },
     { key: "nav_sakhi", href: "/sakhi", priority: 4 },
+    { key: "nav_tools", href: "/tools", priority: 4.5, icon: Calculator, description: "Calculators & Trackers" },
     { key: "nav_success", href: "/success-stories", priority: 5, icon: Trophy, description: "Read inspiring journeys" },
     { key: "nav_blog", href: "/blog", priority: 6, icon: BookOpen, description: "Latest articles & insights" },
     { key: "nav_experts", href: "/experts", priority: 7, icon: Users, description: "Meet our specialists" },
@@ -123,11 +124,10 @@ const Header = () => {
                   <Link
                     key={href}
                     href={href}
-                    className={`font-semibold text-sm tracking-wide transition-all duration-200 px-3 py-2 rounded-md flex-1 text-center ${
-                      location === href
-                        ? "text-primary bg-primary/10"
-                        : "text-foreground hover:text-primary hover:bg-primary/5"
-                    }`}
+                    className={`font-semibold text-sm tracking-wide transition-all duration-200 px-3 py-2 rounded-md flex-1 text-center ${location === href
+                      ? "text-primary bg-primary/10"
+                      : "text-foreground hover:text-primary hover:bg-primary/5"
+                      }`}
                     data-testid={`link-nav-${key.replace("nav_", "")}`}
                   >
                     {t(key)}
@@ -144,11 +144,10 @@ const Header = () => {
                     variant="ghost"
                     size="sm"
                     onClick={handleToggleExpanded}
-                    className={`px-3 py-2 rounded-md text-sm font-semibold transition-all duration-200 hover:bg-primary/5 hover:scale-105 ${
-                      isExpanded
-                        ? "bg-primary/10 text-primary"
-                        : "hover:text-primary"
-                    }`}
+                    className={`px-3 py-2 rounded-md text-sm font-semibold transition-all duration-200 hover:bg-primary/5 hover:scale-105 ${isExpanded
+                      ? "bg-primary/10 text-primary"
+                      : "hover:text-primary"
+                      }`}
                     aria-expanded={isExpanded}
                     aria-controls="header-dropdown-menu"
                     data-testid="button-nav-toggle"
@@ -164,11 +163,10 @@ const Header = () => {
                   {/* Dropdown Menu */}
                   <div
                     id="header-dropdown-menu"
-                    className={`absolute top-full right-0 mt-2 w-72 bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden transition-all duration-300 ease-out z-50 ${
-                      isExpanded
-                        ? "opacity-100 translate-y-0 pointer-events-auto"
-                        : "opacity-0 -translate-y-2 pointer-events-none"
-                    }`}
+                    className={`absolute top-full right-0 mt-2 w-72 bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden transition-all duration-300 ease-out z-50 ${isExpanded
+                      ? "opacity-100 translate-y-0 pointer-events-auto"
+                      : "opacity-0 -translate-y-2 pointer-events-none"
+                      }`}
                     onMouseEnter={() => {
                       if (hoverTimeoutRef.current) {
                         clearTimeout(hoverTimeoutRef.current);
@@ -182,11 +180,10 @@ const Header = () => {
                         <Link
                           key={href}
                           href={href}
-                          className={`flex items-start gap-3 p-3 rounded-xl transition-all duration-200 group hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 ${
-                            location === href
-                              ? "bg-gradient-to-r from-purple-100 to-pink-100"
-                              : ""
-                          }`}
+                          className={`flex items-start gap-3 p-3 rounded-xl transition-all duration-200 group hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 ${location === href
+                            ? "bg-gradient-to-r from-purple-100 to-pink-100"
+                            : ""
+                            }`}
                           style={{
                             animationDelay: `${index * 50}ms`,
                             animation: isExpanded ? "fadeInUp 0.3s ease-out forwards" : "",
@@ -194,17 +191,15 @@ const Header = () => {
                           data-testid={`link-nav-dropdown-${key.replace("nav_", "")}`}
                           onClick={() => setIsExpanded(false)}
                         >
-                          <div className={`p-2 rounded-lg transition-all duration-200 ${
-                            location === href 
-                              ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white" 
-                              : "bg-gray-100 text-gray-600 group-hover:bg-gradient-to-r group-hover:from-purple-500 group-hover:to-pink-500 group-hover:text-white"
-                          }`}>
+                          <div className={`p-2 rounded-lg transition-all duration-200 ${location === href
+                            ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white"
+                            : "bg-gray-100 text-gray-600 group-hover:bg-gradient-to-r group-hover:from-purple-500 group-hover:to-pink-500 group-hover:text-white"
+                            }`}>
                             <Icon className="w-4 h-4" />
                           </div>
                           <div className="flex-1">
-                            <div className={`font-semibold text-sm transition-colors ${
-                              location === href ? "text-purple-600" : "text-foreground group-hover:text-purple-600"
-                            }`}>
+                            <div className={`font-semibold text-sm transition-colors ${location === href ? "text-purple-600" : "text-foreground group-hover:text-purple-600"
+                              }`}>
                               {t(key)}
                             </div>
                             <div className="text-xs text-muted-foreground mt-0.5">

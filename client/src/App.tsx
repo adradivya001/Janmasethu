@@ -1,6 +1,8 @@
 import { Switch, Route } from "wouter";
 import { LanguageProvider } from "./i18n/LanguageProvider";
 import { TooltipProvider } from "./components/ui/tooltip";
+import { JourneyProvider } from "./contexts/JourneyContext";
+import { JourneySelector } from "./components/JourneySelector";
 import Layout from "./components/Layout";
 
 // Pages
@@ -18,6 +20,11 @@ import Expert from "./pages/Expert";
 import Sakhi from "./pages/Sakhi";
 import SakhiTry from "./pages/SakhiTry";
 import Investors from "./pages/Investors";
+import Tools from "./pages/Tools";
+import OvulationCalculator from "./components/tools/OvulationCalculator";
+import DueDateCalculator from "./components/tools/DueDateCalculator";
+import PregnancyWeekByWeek from "./components/tools/PregnancyWeekByWeek";
+import VaccinationScheduler from "./components/tools/VaccinationScheduler";
 import NotFound from "./pages/not-found";
 
 // Clinic Pages
@@ -57,6 +64,11 @@ function Router() {
             <Route path="/experts/:slug" component={Expert} />
             <Route path="/sakhi" component={Sakhi} />
             <Route path="/investors" component={Investors} />
+            <Route path="/tools" component={Tools} />
+            <Route path="/tools/ovulation-calculator" component={OvulationCalculator} />
+            <Route path="/tools/due-date-calculator" component={DueDateCalculator} />
+            <Route path="/tools/pregnancy-week-by-week" component={PregnancyWeekByWeek} />
+            <Route path="/tools/vaccination-scheduler" component={VaccinationScheduler} />
             {/* Catch-all route to redirect to home instead of 404 */}
             <Route path="/:rest*" component={Home} />
           </Switch>
@@ -70,7 +82,10 @@ function App() {
   return (
     <LanguageProvider>
       <TooltipProvider>
-        <Router />
+        <JourneyProvider>
+          <JourneySelector />
+          <Router />
+        </JourneyProvider>
       </TooltipProvider>
     </LanguageProvider>
   );

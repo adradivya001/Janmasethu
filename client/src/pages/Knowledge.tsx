@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect } from 'react';
 import { Link } from 'wouter';
-import { Search, Filter, ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Search, Filter, ChevronDown, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageProvider';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -14,7 +14,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { articles, type Lens, type Stage } from '@/data/articles';
-import { fetchArticles } from '@/data/knowledgeHub';
+import { fetchArticles, fetchRecommendations, type ArticleMetadata } from '@/data/knowledgeHub';
+import { useJourney } from '../contexts/JourneyContext';
 
 const ARTICLES_PER_PAGE = 15;
 
@@ -52,6 +53,7 @@ const Knowledge = () => {
   const [contentLang, setContentLang] = useState<'en' | 'te'>(() => {
     return (localStorage.getItem('knowledge_lang') as 'en' | 'te') || 'en';
   });
+  const { journey, isLoading: isJourneyLoading } = useJourney();
 
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedLens, setSelectedLens] = useState<Lens | null>(null);
@@ -63,6 +65,8 @@ const Knowledge = () => {
     overview: { en: string; hi: string; te: string };
     readTime: { en: string; hi: string; te: string };
     reviewer: { en: string; hi: string; te: string };
+    lens: Lens[];
+    stage: Stage[];
   }>>([]);
   const [webhookResults, setWebhookResults] = useState<WebhookResponse | null>(null);
   const [loading, setLoading] = useState(false); // Start with false for instant skeleton display
@@ -73,7 +77,36 @@ const Knowledge = () => {
   const handleLanguageChange = (newLang: 'en' | 'te') => {
     setContentLang(newLang);
     localStorage.setItem('knowledge_lang', newLang);
+    localStorage.setItem('knowledge_lang', newLang);
   };
+
+  // Sync Journey to Filters
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const hasUrlParams = urlParams.get('stage') || urlParams.get('search') || urlParams.get('lens');
+
+    if (!hasUrlParams && !isJourneyLoading && journey) {
+      let targetStage: Stage | null = null;
+      if (journey.stage === 'TTC') targetStage = 'ttc';
+      else if (journey.stage === 'PREGNANT') targetStage = 'pregnancy';
+      else if (journey.stage === 'PARENT') {
+        if (journey.date) {
+          const dob = new Date(journey.date);
+          const diffDays = (Date.now() - dob.getTime()) / (1000 * 60 * 60 * 24);
+          if (diffDays < 90) targetStage = 'newborn'; // Approx 3 months
+          else targetStage = 'early-years';
+        } else {
+          targetStage = 'newborn';
+        }
+      }
+
+      if (targetStage && targetStage !== selectedStage) {
+        console.log('Personalizing Knowledge Hub for:', targetStage);
+        setSelectedStage(targetStage);
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [journey, isJourneyLoading]);
 
   // Load articles from ngrok API
   useEffect(() => {
@@ -135,7 +168,9 @@ const Knowledge = () => {
             en: 'Reviewed by Expert',
             hi: 'विशेषज्ञ द्वारा समीक्षित',
             te: 'నిపుణులచే సమీక్షించబడింది'
-          }
+          },
+          lens: article.lens ? [article.lens.toLowerCase() as Lens] : [],
+          stage: article.life_stage ? [article.life_stage.toLowerCase() as Stage] : []
         }));
 
         console.log('Transformed articles:', transformedArticles.length);
@@ -182,6 +217,74 @@ const Knowledge = () => {
     // Fallback cascade: requested lang -> english -> any available
     return content[langKey] || content.en || Object.values(content)[0] || '';
   };
+
+
+
+  {/* Recommended Articles based on Journey */ }
+  // Separate state for recommendations
+  const [recommendedItems, setRecommendedItems] = useState<any[]>([]);
+  const [loadingRecommendations, setLoadingRecommendations] = useState(false);
+
+  // Fetch recommendations from specific backend endpoint
+  useEffect(() => {
+    const loadRecommendations = async () => {
+      if (!journey) return;
+
+      setLoadingRecommendations(true);
+      try {
+        let targetStage = '';
+        if (journey.stage === 'TTC') targetStage = 'ttc';
+        else if (journey.stage === 'PREGNANT') targetStage = 'pregnancy';
+        else if (journey.stage === 'PARENT') {
+          // Simple logic for now, backend handles robust checking if needed
+          targetStage = 'parent';
+        }
+
+        if (!targetStage) return;
+
+        console.log('Fetching recommendations for stage:', targetStage);
+        // We import fetchRecommendations from ../data/knowledgeHub
+        // but need to ensure it's imported. I will assume it's available or add import if needed.
+        // Since I can't see imports, I'll assume I need to add it to the import list or it's part of the API object.
+        // Actually, I'll use the imported function.
+
+        const recs = await fetchRecommendations({
+          stage: targetStage,
+          lang: contentLang,
+          limit: 3
+        });
+
+        console.log('Received recommendations:', recs.length);
+
+        const transformedRecs = recs.map(article => ({
+          slug: article.slug,
+          title: getLocalizedContent(article.title),
+          // Handle missing/different summary fields
+          summary: getLocalizedContent(article.summary || (article as any).overview || ''),
+
+          // Backend returns strings or IDs, we map to Frontend LENS/STAGE types
+          lens: (article.lens ? [article.lens.toLowerCase()] : []) as Lens[],
+          stage: (article.life_stage ? [article.life_stage.toLowerCase()] : []) as Stage[],
+
+          // Default if missing
+          readMins: article.read_time_minutes || 5,
+          reviewedBy: 'Reviewed by Expert' // Valid placeholder
+        }));
+
+        setRecommendedItems(transformedRecs);
+
+      } catch (e) {
+        console.error("Error loading recommendations", e);
+      } finally {
+        setLoadingRecommendations(false);
+      }
+    };
+
+    loadRecommendations();
+  }, [journey, contentLang]);
+
+  // Use the fetched items
+  const recommendedArticles = recommendedItems;
 
   // Show webhook results if available, otherwise show JSON articles
   const displayArticles = useMemo(() => {
@@ -274,13 +377,23 @@ const Knowledge = () => {
       const articleMetaMap = new Map(articles.map(a => [a.slug, { lens: a.lens, stage: a.stage }]));
 
       return jsonArticles.map((article, index) => {
-        const meta = articleMetaMap.get(article.slug) || { lens: [], stage: [] };
+        const meta = articleMetaMap.get(article.slug);
+
+        // Prioritize backend tags, fallback to static meta
+        const finalLens = (article.lens && article.lens.length > 0)
+          ? article.lens
+          : (meta?.lens || []);
+
+        const finalStage = (article.stage && article.stage.length > 0)
+          ? article.stage
+          : (meta?.stage || []);
+
         return {
           slug: article.slug,
           title: getLocalizedContent(article.title),
           summary: getLocalizedContent(article.overview),
-          lens: meta.lens as Lens[],
-          stage: meta.stage as Stage[],
+          lens: finalLens as Lens[],
+          stage: finalStage as Stage[],
           readMins: parseInt(getLocalizedContent(article.readTime).replace(/\D/g, '')) || 5,
           reviewedBy: getLocalizedContent(article.reviewer),
           isLegacy: false,
@@ -528,35 +641,87 @@ const Knowledge = () => {
           </Button>
         )}
       </div>
-      {/* Active Filters */}
-      {(selectedLens || selectedStage) && (
-        <div className="flex flex-wrap gap-2 mt-4">
-          {selectedLens && (
-            <Badge
-              variant="secondary"
-              className="px-3 py-1 rounded-full cursor-pointer hover:bg-purple-100"
-              onClick={() => setSelectedLens(null)}
-            >
-              {lensOptions.find(l => l.value === selectedLens)?.label} ✕
-            </Badge>
-          )}
-          {selectedStage && (
-            <Badge
-              variant="secondary"
-              className="px-3 py-1 rounded-full cursor-pointer hover:bg-purple-100"
-              onClick={() => setSelectedStage(null)}
-            >
-              {stageOptions.find(s => s.value === selectedStage)?.label} ✕
-            </Badge>
-          )}
+
+      {/* Recommended Section (Visible unless searching) */}
+      {recommendedArticles.length > 0 && !searchTerm && (
+        <div className="mb-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
+          <div className="flex items-center gap-2 mb-6 justify-center md:justify-start">
+            <div className="bg-purple-100 p-2 rounded-full">
+              <Sparkles className="w-5 h-5 text-purple-600" />
+            </div>
+            <h2 className="text-2xl font-bold font-serif text-foreground">
+              {journey?.stage === 'TTC' && t('journey_stage_1_title')}
+              {journey?.stage === 'PREGNANT' && t('journey_stage_4_title')}
+              {journey?.stage === 'PARENT' && (journey.date ? 'Your Child' : t('journey_stage_5_title'))}
+              {' '}- Recommended for You
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6">
+            {recommendedArticles.map((article, index) => (
+              <Link key={`rec-${article.slug}`} href={`/knowledge-hub/${article.slug}?lang=${contentLang}`} className="group h-full">
+                <Card className="rounded-2xl p-5 card-shadow hover:shadow-xl transition-all duration-300 h-full cursor-pointer border-2 border-transparent hover:border-purple-200 bg-white">
+                  <CardContent className="p-0 flex flex-col h-full">
+                    <div className="flex flex-wrap gap-1 mb-3">
+                      {article.lens.slice(0, 2).map((lens: Lens) => (
+                        <Badge key={lens} variant="secondary" className="text-[10px] px-2 py-0.5 bg-purple-50 text-purple-700">
+                          {String(lens).charAt(0).toUpperCase() + String(lens).slice(1)}
+                        </Badge>
+                      ))}
+                    </div>
+                    <h3 className="text-base font-bold text-foreground font-serif mb-2 group-hover:text-purple-600 transition-colors line-clamp-2">
+                      {article.title}
+                    </h3>
+                    <p className="text-xs text-muted-foreground mb-3 line-clamp-2 flex-grow">
+                      {article.summary}
+                    </p>
+                    <div className="flex items-center text-xs text-purple-600 font-medium mt-auto">
+                      Read Article <ChevronRight className="w-3 h-3 ml-1" />
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
+          </div>
         </div>
       )}
 
-      {webhookResults && (
-        <div className="mt-4 text-sm text-muted-foreground">
-          Found {webhookResults.pagination.total} articles
-        </div>
-      )}
+
+      {/* All Articles / Explore Section */}
+      <div className="mb-6">
+        <h2 className="text-2xl font-bold font-serif text-foreground mb-4">
+          Explore Knowledge Hub
+        </h2>
+
+        {/* Active Filters Display */}
+        {(selectedLens || selectedStage) && (
+          <div className="flex flex-wrap gap-2 mb-4">
+            {selectedLens && (
+              <Badge
+                variant="secondary"
+                className="px-3 py-1 rounded-full cursor-pointer hover:bg-purple-100 border border-purple-200"
+                onClick={() => setSelectedLens(null)}
+              >
+                Lens: {lensOptions.find(l => l.value === selectedLens)?.label} <span className="ml-1">✕</span>
+              </Badge>
+            )}
+            {selectedStage && (
+              <Badge
+                variant="secondary"
+                className="px-3 py-1 rounded-full cursor-pointer hover:bg-purple-100 border border-purple-200"
+                onClick={() => setSelectedStage(null)}
+              >
+                Stage: {stageOptions.find(s => s.value === selectedStage)?.label} <span className="ml-1">✕</span>
+              </Badge>
+            )}
+          </div>
+        )}
+
+        {webhookResults && (
+          <div className="text-sm text-muted-foreground">
+            Found {webhookResults.pagination.total} articles
+          </div>
+        )}
+      </div>
 
       {searchError && (
         <div className="mt-4 text-sm text-red-600 bg-red-50 p-3 rounded-lg">

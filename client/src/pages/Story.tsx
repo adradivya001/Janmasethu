@@ -24,16 +24,16 @@ const Story = () => {
             "ngrok-skip-browser-warning": "true"
           }
         });
-        
+
         if (response.ok) {
           const backendStories = await response.json();
           const backendData = Array.isArray(backendStories) ? backendStories : [];
-          
+
           // Combine all stories (backend first)
           const normalizedBackend = backendData.map(normalizeStory);
           const combined = [...normalizedBackend, ...staticStories];
           setAllStories(combined);
-          
+
           // Find the current story by slug
           const foundStory = combined.find((s: any) => s.slug === slug);
           setStory(foundStory || null);
@@ -145,7 +145,7 @@ const Story = () => {
       'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=400',
       'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=400'
     ];
-    return images[Math.abs(story.slug.split('').reduce((a, b) => a + b.charCodeAt(0), 0)) % images.length];
+    return images[Math.abs(story.slug.split('').reduce((a: number, b: string) => a + b.charCodeAt(0), 0)) % images.length];
   };
 
   return (

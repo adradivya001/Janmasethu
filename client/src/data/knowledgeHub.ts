@@ -247,6 +247,45 @@ export async function fetchArticles(params?: {
   }
 }
 
+export async function fetchRecommendations(params: {
+  stage?: string;
+  lens?: string;
+  lang?: string;
+  limit?: number;
+}): Promise<ArticleMetadata[]> {
+  try {
+    const queryParams = new URLSearchParams();
+    if (params.stage) queryParams.set('stage', params.stage);
+    if (params.lens) queryParams.set('lens', params.lens);
+    if (params.lang) queryParams.set('lang', params.lang || 'en');
+    if (params.limit) queryParams.set('limit', params.limit.toString());
+
+    const url = `${NGROK_API_BASE}/recommendations?${queryParams.toString()}`;
+    console.log('Fetching recommendations from:', url);
+
+    const response = await fetch(url, {
+      headers: {
+        'Accept': 'application/json',
+        'ngrok-skip-browser-warning': 'true'
+      }
+    });
+
+    if (!response.ok) {
+      console.error('Failed to fetch recommendations:', response.status);
+      return [];
+    }
+
+    const data = await response.json();
+    if (Array.isArray(data)) {
+      return data;
+    }
+    return [];
+  } catch (error) {
+    console.error('Error fetching recommendations:', error);
+    return [];
+  }
+}
+
 export async function fetchArticleBySlug(slug: string, lang?: string): Promise<ArticleDetailResponse | null> {
   try {
     const url = `${NGROK_API_BASE}/${encodeURIComponent(slug)}${lang ? `?lang=${lang}` : ''}`;

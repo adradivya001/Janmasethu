@@ -7,12 +7,14 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { stories as staticStories } from "@/data/stories";
 import StorySubmissionForm from "@/components/StorySubmissionForm";
+import { useJourney } from "@/contexts/JourneyContext";
 
 const SuccessStories = () => {
   const { t, lang } = useLanguage();
   const [showStoryForm, setShowStoryForm] = useState(false);
   const [backendStories, setBackendStories] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const { journey } = useJourney();
 
   // Fetch stories from backend
   useEffect(() => {
@@ -46,10 +48,10 @@ const SuccessStories = () => {
       console.error("❌ No data in response");
       return;
     }
-    
+
     const newStory = responseData.data;
     console.log("✅ Story submitted successfully, adding to grid:", newStory);
-    
+
     // Immediately prepend the new story to the grid
     setBackendStories(prev => [newStory, ...prev]);
   };
@@ -122,6 +124,21 @@ const SuccessStories = () => {
     );
   }
 
+
+
+  // Filter stories based on journey
+  const recommendedStories = stories.filter(story => {
+    if (!journey) return true;
+    const s = story.stage ? (typeof story.stage === 'string' ? story.stage : (story.stage.en || "")).toLowerCase() : '';
+
+    if (journey.stage === 'TTC') return s.includes('ttc') || s.includes('ivf') || s.includes('iui') || s.includes('stimulation');
+    if (journey.stage === 'PREGNANT') return s.includes('pregnancy') || s.includes('vbac') || s.includes('preparation');
+    if (journey.stage === 'PARENT') return s.includes('postpartum') || s.includes('parenting');
+    return true;
+  });
+
+  const displayStories = recommendedStories.length > 0 ? recommendedStories : stories;
+
   return (
     <div className="container mx-auto px-4 py-8">
       {/* Page Header */}
@@ -135,97 +152,109 @@ const SuccessStories = () => {
         <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-6">
           {t("success_preview_description")}
         </p>
-        
+
+        {/* Journey Banner */}
+        {journey && recommendedStories.length > 0 && (
+          <div className="inline-flex items-center gap-2 bg-pink-50 text-pink-700 px-4 py-2 rounded-full mb-8 animate-fadeIn">
+            <Heart className="w-4 h-4 fill-current" />
+            <span className="text-sm font-medium">
+              Showing stories relevant to your <strong>{journey.stage === 'TTC' ? 'Fertility' : journey.stage === 'PREGNANT' ? 'Pregnancy' : 'Parenting'}</strong> journey
+            </span>
+          </div>
+        )}
+
         {/* Share Story Button */}
-        <Button
-          onClick={() => setShowStoryForm(true)}
-          className="bg-gradient-to-r from-pink-500 via-purple-500 to-pink-500 hover:from-pink-600 hover:via-purple-600 hover:to-pink-600 text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300"
-          data-testid="button-share-story-top"
-        >
-          <Heart className="w-5 h-5 mr-2" />
-          {t("share_story_button")}
-        </Button>
+        <div className="block">
+          <Button
+            onClick={() => setShowStoryForm(true)}
+            className="bg-gradient-to-r from-pink-500 via-purple-500 to-pink-500 hover:from-pink-600 hover:via-purple-600 hover:to-pink-600 text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300"
+            data-testid="button-share-story-top"
+          >
+            <Heart className="w-5 h-5 mr-2" />
+            {t("share_story_button")}
+          </Button>
+        </div>
       </div>
 
       {/* Stories Grid */}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-        {stories.map((story, index) => {
+        {displayStories.map((story, index) => {
           const storySlug = story.slug || `story-${index}`;
           return (
-          <Link
-            key={storySlug}
-            href={`/success-stories/${storySlug}`}
-            className="group h-full"
-          >
-            <Card
-              className="rounded-3xl p-6 card-shadow hover:shadow-2xl transition-all duration-500 h-full cursor-pointer transform hover:scale-105 border-2 border-transparent hover:border-pink-200 relative overflow-hidden bg-gradient-to-br from-white to-pink-50/30"
-              data-testid={`card-success-story-${index}`}
+            <Link
+              key={storySlug}
+              href={`/success-stories/${storySlug}`}
+              className="group h-full"
             >
-              <CardContent className="p-0 flex flex-col h-full">
-                {/* Click indicator */}
-                <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="w-8 h-8 bg-pink-100 rounded-full flex items-center justify-center">
-                    <Heart className="w-4 h-4 text-pink-600" />
+              <Card
+                className="rounded-3xl p-6 card-shadow hover:shadow-2xl transition-all duration-500 h-full cursor-pointer transform hover:scale-105 border-2 border-transparent hover:border-pink-200 relative overflow-hidden bg-gradient-to-br from-white to-pink-50/30"
+                data-testid={`card-success-story-${index}`}
+              >
+                <CardContent className="p-0 flex flex-col h-full">
+                  {/* Click indicator */}
+                  <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="w-8 h-8 bg-pink-100 rounded-full flex items-center justify-center">
+                      <Heart className="w-4 h-4 text-pink-600" />
+                    </div>
                   </div>
-                </div>
 
-                <img
-                  src="/New ShareStory.png"
-                  alt={story.title?.[lang] || "Story Image"}
-                  className="rounded-xl w-full h-32 object-cover mb-4 group-hover:shadow-lg transition-shadow"
-                />
+                  <img
+                    src="/New ShareStory.png"
+                    alt={story.title?.[lang] || "Story Image"}
+                    className="rounded-xl w-full h-32 object-cover mb-4 group-hover:shadow-lg transition-shadow"
+                  />
 
-                <div className="flex flex-wrap gap-2 mb-3">
-                  <Badge
-                    variant="secondary"
-                    className="text-xs group-hover:shadow-sm transition-shadow"
-                    data-testid={`badge-story-stage-${index}`}
-                  >
-                    {story.stage?.[lang] || "Unknown Stage"}
-                  </Badge>
-                  {story.treatment?.[lang] && (
+                  <div className="flex flex-wrap gap-2 mb-3">
                     <Badge
-                      variant="outline"
+                      variant="secondary"
                       className="text-xs group-hover:shadow-sm transition-shadow"
-                      data-testid={`badge-story-treatment-${index}`}
+                      data-testid={`badge-story-stage-${index}`}
                     >
-                      {story.treatment[lang]}
+                      {story.stage?.[lang] || "Unknown Stage"}
                     </Badge>
-                  )}
-                </div>
-
-                <h3
-                  className="text-lg font-bold text-foreground font-serif mb-2 group-hover:text-pink-600 transition-colors"
-                  data-testid={`text-story-title-${index}`}
-                >
-                  {story.title?.[lang] || "Untitled Story"}
-                </h3>
-                <p
-                  className="text-sm text-muted-foreground mb-4 flex-grow group-hover:text-pink-700 transition-colors"
-                  data-testid={`text-story-summary-${index}`}
-                >
-                  {story.summary?.[lang] || "No summary available."}
-                </p>
-
-                <div className="flex items-center justify-between mt-auto">
-                  <div className="flex items-center text-xs text-muted-foreground">
-                    <MapPin className="w-3 h-3 mr-1" />
-                    <span data-testid={`text-story-city-${index}`}>
-                      {story.city?.[lang] || "Unknown City"}
-                    </span>
+                    {story.treatment?.[lang] && (
+                      <Badge
+                        variant="outline"
+                        className="text-xs group-hover:shadow-sm transition-shadow"
+                        data-testid={`badge-story-treatment-${index}`}
+                      >
+                        {story.treatment[lang]}
+                      </Badge>
+                    )}
                   </div>
-                  <div className="flex items-center text-xs text-muted-foreground space-x-2">
-                    <span data-testid={`text-story-language-${index}`}>
-                      {story.language?.[lang] || "Unknown Language"}
-                    </span>
-                    <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-pink-600 font-medium">
-                      • Read story
-                    </span>
+
+                  <h3
+                    className="text-lg font-bold text-foreground font-serif mb-2 group-hover:text-pink-600 transition-colors"
+                    data-testid={`text-story-title-${index}`}
+                  >
+                    {story.title?.[lang] || "Untitled Story"}
+                  </h3>
+                  <p
+                    className="text-sm text-muted-foreground mb-4 flex-grow group-hover:text-pink-700 transition-colors"
+                    data-testid={`text-story-summary-${index}`}
+                  >
+                    {story.summary?.[lang] || "No summary available."}
+                  </p>
+
+                  <div className="flex items-center justify-between mt-auto">
+                    <div className="flex items-center text-xs text-muted-foreground">
+                      <MapPin className="w-3 h-3 mr-1" />
+                      <span data-testid={`text-story-city-${index}`}>
+                        {story.city?.[lang] || "Unknown City"}
+                      </span>
+                    </div>
+                    <div className="flex items-center text-xs text-muted-foreground space-x-2">
+                      <span data-testid={`text-story-language-${index}`}>
+                        {story.language?.[lang] || "Unknown Language"}
+                      </span>
+                      <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-pink-600 font-medium">
+                        • Read story
+                      </span>
+                    </div>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
-          </Link>
+                </CardContent>
+              </Card>
+            </Link>
           );
         })}
       </div>

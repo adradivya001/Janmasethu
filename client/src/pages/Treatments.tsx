@@ -2,12 +2,14 @@ import { Link } from 'wouter';
 import { useEffect, useState } from 'react';
 import { ArrowRight, CheckCircle, User, Syringe, Microscope, Dna, HeartHandshake, Snowflake, Clock } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageProvider';
+import { useJourney } from '@/contexts/JourneyContext';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { treatmentsList, fetchTreatmentData, getSummaryByLanguage, getContentByLanguage, normalizeTreatmentData, type TreatmentData, type Treatment } from '@/data/treatments';
 
 const Treatments = () => {
   const { t, lang } = useLanguage();
+  const { journey } = useJourney();
   const [treatmentsData, setTreatmentsData] = useState<Record<string, TreatmentData>>({});
   const [loading, setLoading] = useState(true);
 
@@ -59,9 +61,36 @@ const Treatments = () => {
         <h1 className="text-4xl md:text-5xl font-bold text-foreground font-serif mb-6" data-testid="text-treatments-title">
           {pageTitle[lang as keyof typeof pageTitle] || pageTitle.en}
         </h1>
-        <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+        <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8">
           {pageSubtitle[lang as keyof typeof pageSubtitle] || pageSubtitle.en}
         </p>
+
+        {/* Journey Context Banner */}
+        {journey && journey.stage !== 'TTC' && (
+          <div className="bg-purple-50 border border-purple-200 rounded-2xl p-6 mx-auto max-w-2xl animate-fadeIn">
+            <div className="flex items-start gap-4">
+              <div className="bg-purple-100 p-2 rounded-full">
+                <CheckCircle className="w-6 h-6 text-purple-600" />
+              </div>
+              <div className="text-left">
+                <h3 className="font-bold text-lg text-purple-900 mb-1">
+                  {journey.stage === 'PREGNANT' ? 'Congratulations on your pregnancy!' : 'Welcome to parenthood!'}
+                </h3>
+                <p className="text-purple-800 text-sm mb-3">
+                  {journey.stage === 'PREGNANT'
+                    ? 'The treatments below are focused on fertility. For pregnancy care guides, check the Knowledge Hub.'
+                    : 'The treatments below are focused on fertility. For parenting resources, check the Knowledge Hub.'}
+                </p>
+                <Link href={`/knowledge-hub?stage=${journey.stage.toLowerCase()}`}>
+                  <Button size="sm" className="bg-purple-600 hover:bg-purple-700 text-white border-none">
+                    Go to {journey.stage === 'PREGNANT' ? 'Pregnancy' : 'Parenting'} Hub
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Treatments Grid */}
@@ -71,8 +100,8 @@ const Treatments = () => {
             <Clock className="w-6 h-6 animate-spin" />
             <span className="text-lg">
               {lang === 'hi' ? 'लोड हो रहा है...' :
-               lang === 'te' ? 'లోడ్ అవుతోంది...' :
-               'Loading treatments...'}
+                lang === 'te' ? 'లోడ్ అవుతోంది...' :
+                  'Loading treatments...'}
             </span>
           </div>
         </div>
@@ -105,8 +134,8 @@ const Treatments = () => {
                     <div className="flex items-center justify-between mt-auto pt-2">
                       <span className="text-xs text-purple-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         {lang === 'hi' ? 'और जानें' :
-                         lang === 'te' ? 'మరింత తెలుసుకోండి' :
-                         'Learn More'}
+                          lang === 'te' ? 'మరింత తెలుసుకోండి' :
+                            'Learn More'}
                       </span>
                       <ArrowRight className="w-4 h-4 text-purple-600 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
                     </div>

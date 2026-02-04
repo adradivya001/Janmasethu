@@ -11,6 +11,7 @@ export const dict = {
     nav_success: "Success Stories",
     nav_blog: "Blogs",
     nav_experts: "Experts",
+    nav_tools: "Tools",
 
     nav_sakhi: "Sakhi",
     lang_label: "Language",

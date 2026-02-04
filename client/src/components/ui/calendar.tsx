@@ -49,6 +49,12 @@ function Calendar({
         day_range_middle:
           "aria-selected:bg-accent aria-selected:text-accent-foreground",
         day_hidden: "invisible",
+        caption_dropdowns: "flex justify-center gap-1",
+        dropdown: "appearance-none bg-transparent border-none p-1 font-medium cursor-pointer hover:bg-accent hover:text-accent-foreground rounded-md text-sm",
+        dropdown_month: "mr-1",
+        dropdown_year: "ml-1",
+        dropdown_icon: "",
+        vhidden: "sr-only", // Hide "Month:" and "Year:" labels
         ...classNames,
       }}
       components={{
@@ -58,6 +64,30 @@ function Calendar({
         IconRight: ({ className, ...props }) => (
           <ChevronRight className={cn("h-4 w-4", className)} {...props} />
         ),
+        Dropdown: (props) => {
+          const { value, onChange, children, style, className, ...other } = props;
+          const options = React.Children.toArray(children) as React.ReactElement<React.OptionHTMLAttributes<HTMLOptionElement>>[];
+          const selected = options.find((child) => child.props.value === value);
+          const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+            onChange?.(e);
+          };
+          return (
+            <div className="relative inline-flex items-center">
+              <select
+                className={cn("appearance-none bg-transparent font-medium cursor-pointer hover:bg-accent hover:text-accent-foreground rounded-md text-sm pr-4 pl-1 py-1 focus:outline-none focus:ring-1 focus:ring-ring", className)}
+                value={value}
+                onChange={handleChange}
+                style={style}
+                {...other}
+              >
+                {children}
+              </select>
+              <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none opacity-50">
+                <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+              </div>
+            </div>
+          );
+        },
       }}
       {...props}
     />

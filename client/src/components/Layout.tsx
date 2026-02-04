@@ -3,6 +3,7 @@ import Header from './Header';
 import Footer from './Footer';
 import FloatingWhatsApp from './FloatingWhatsApp';
 import LeadSubmissionForm from './LeadSubmissionForm';
+import { JourneyFloatingWidget } from './JourneyFloatingWidget';
 import { UserPlus } from 'lucide-react';
 
 interface LayoutProps {
@@ -26,6 +27,9 @@ const Layout = ({ children }: LayoutProps) => {
       </main>
 
       <Footer />
+
+      {/* Floating Journey Widget */}
+      <JourneyFloatingWidget />
 
       {/* Floating WhatsApp Button */}
       <FloatingWhatsApp />

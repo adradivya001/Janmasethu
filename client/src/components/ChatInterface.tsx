@@ -5,6 +5,7 @@ import { detectScript } from '@/utils/language';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { useJourney } from '@/contexts/JourneyContext';
 
 interface Message {
   id: string;
@@ -27,6 +28,38 @@ const ChatInterface = () => {
     { key: 'chat_p3', text: t('chat_p3') },
   ];
 
+  const { journey } = useJourney(); // Import useJourney
+
+  // Dynamic prompts based on journey stage
+  const getQuickPrompts = () => {
+    if (!journey) return quickPrompts;
+
+    if (journey.stage === 'TTC') {
+      return [
+        { key: 'ttc_1', text: "How do I track my ovulation?" },
+        { key: 'ttc_2', text: "Best diet for fertility?" },
+        { key: 'ttc_3', text: "When should I see a specialist?" }
+      ];
+    }
+    if (journey.stage === 'PREGNANT') {
+      return [
+        { key: 'preg_1', text: "Is it safe to eat spicy food?" },
+        { key: 'preg_2', text: "Common symptoms for my week?" },
+        { key: 'preg_3', text: "How to manage morning sickness?" }
+      ];
+    }
+    if (journey.stage === 'PARENT') {
+      return [
+        { key: 'par_1', text: "Baby is crying a lot" },
+        { key: 'par_2', text: "Vaccination schedule?" },
+        { key: 'par_3', text: "Postpartum diet tips" }
+      ];
+    }
+    return quickPrompts;
+  };
+
+  const dynamicPrompts = getQuickPrompts();
+
   // Auto-scroll to bottom when new messages arrive
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -39,10 +72,10 @@ const ChatInterface = () => {
     delay: number = 20
   ) => {
     let displayedText = '';
-    
+
     for (let i = 0; i < fullText.length; i++) {
       displayedText += fullText[i];
-      
+
       setMessages(prev =>
         prev.map(msg =>
           msg.id === botMessageId
@@ -50,7 +83,7 @@ const ChatInterface = () => {
             : msg
         )
       );
-      
+
       await new Promise(resolve => setTimeout(resolve, delay));
     }
 
@@ -82,13 +115,18 @@ const ChatInterface = () => {
     setInputText('');
 
     try {
-      // Send to backend API
+      // Send to backend API with journey context
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           text: text.trim(),
           lang: userLang,
+          context: {
+            stage: journey?.stage,
+            date: journey?.date,
+            date_type: journey?.stage === 'PREGNANT' ? 'LMP' : (journey?.stage === 'PARENT' ? 'DOB' : null)
+          }
         }),
       });
 
@@ -114,7 +152,7 @@ const ChatInterface = () => {
       await streamText(botMessageId, data.botResponse);
     } catch (error) {
       console.error('Chat error:', error);
-      
+
       // Show error message
       const errorMessage: Message = {
         id: (Date.now() + 2).toString(),
@@ -122,7 +160,7 @@ const ChatInterface = () => {
         isUser: false,
         lang: userLang,
       };
-      
+
       setMessages(prev => [...prev, errorMessage]);
     } finally {
       setIsLoading(false);
@@ -160,7 +198,7 @@ const ChatInterface = () => {
           </Button>
         </div>
       </CardHeader>
-      
+
       <CardContent className="p-0">
         {/* Chat Messages */}
         <div className="h-80 overflow-y-auto p-4 space-y-4" data-testid="container-chat-messages">
@@ -177,11 +215,10 @@ const ChatInterface = () => {
                   data-testid={`message-${message.isUser ? 'user' : 'bot'}-${message.id}`}
                 >
                   <div
-                    className={`max-w-xs px-4 py-2 rounded-2xl ${
-                      message.isUser
-                        ? 'bg-primary text-primary-foreground'
-                        : 'bg-muted text-muted-foreground'
-                    }`}
+                    className={`max-w-xs px-4 py-2 rounded-2xl ${message.isUser
+                      ? 'bg-primary text-primary-foreground'
+                      : 'bg-muted text-muted-foreground'
+                      }`}
                   >
                     {message.text}
                     {message.isStreaming && <span className="animate-pulse">▌</span>}
@@ -199,7 +236,7 @@ const ChatInterface = () => {
             {t('chat_quick')}:
           </p>
           <div className="flex flex-wrap gap-2 mb-4">
-            {quickPrompts.map(({ key, text }) => (
+            {dynamicPrompts.map(({ key, text }) => (
               <Button
                 key={key}
                 variant="outline"
