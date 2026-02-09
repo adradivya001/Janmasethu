@@ -890,10 +890,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // SAKHI API PROXY ENDPOINTS (to avoid mixed content errors)
   // =========================
 
-  const SAKHI_API_BASE = process.env.SAKHI_API_URL;
-  if (!SAKHI_API_BASE) {
-    console.error("Warning: SAKHI_API_URL environment variable is not set. Proxy requests may fail.");
-  }
+  const SAKHI_API_BASE = process.env.SAKHI_API_URL || "http://72.61.228.9:8100";
 
   // Proxy: User Login
   app.post("/api/proxy/user/login", async (req, res) => {

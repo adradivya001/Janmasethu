@@ -43,4 +43,4 @@ waitForPort = 5000
 
 [userenv.shared]
 VITE_API_URL = "http://72.61.228.9:8100"
-SAKHI_API_URL = "http://72.61.228.9:8100"
+SAKHI_API_URL = "http://72.61.228.9:8000"
