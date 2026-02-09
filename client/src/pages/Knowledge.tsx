@@ -251,7 +251,7 @@ const Knowledge = () => {
         const recs = await fetchRecommendations({
           stage: targetStage,
           lang: contentLang,
-          limit: 3
+          limit: 9 // Increased from 3 to 9
         });
 
         console.log('Received recommendations:', recs.length);
@@ -284,7 +284,8 @@ const Knowledge = () => {
   }, [journey, contentLang]);
 
   // Use the fetched items
-  const recommendedArticles = recommendedItems;
+  const [showAllRecs, setShowAllRecs] = useState(false);
+  const recommendedArticles = showAllRecs ? recommendedItems : recommendedItems.slice(0, 3);
 
   // Show webhook results if available, otherwise show JSON articles
   const displayArticles = useMemo(() => {
@@ -656,7 +657,7 @@ const Knowledge = () => {
               {' '}- Recommended for You
             </h2>
           </div>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-6 mb-6">
             {recommendedArticles.map((article, index) => (
               <Link key={`rec-${article.slug}`} href={`/knowledge-hub/${article.slug}?lang=${contentLang}`} className="group h-full">
                 <Card className="rounded-2xl p-5 card-shadow hover:shadow-xl transition-all duration-300 h-full cursor-pointer border-2 border-transparent hover:border-purple-200 bg-white">
@@ -682,6 +683,19 @@ const Knowledge = () => {
               </Link>
             ))}
           </div>
+
+          {recommendedItems.length > 3 && (
+            <div className="flex justify-center">
+              <Button
+                variant="outline"
+                onClick={() => setShowAllRecs(prev => !prev)}
+                className="rounded-full border-purple-200 text-purple-700 hover:bg-purple-50"
+              >
+                {showAllRecs ? 'Show Less' : 'Show More Recommended'}
+                {showAllRecs ? <ChevronDown className="ml-2 w-4 h-4 rotate-180" /> : <ChevronDown className="ml-2 w-4 h-4" />}
+              </Button>
+            </div>
+          )}
         </div>
       )}
 

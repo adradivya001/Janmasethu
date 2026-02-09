@@ -890,7 +890,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // SAKHI API PROXY ENDPOINTS (to avoid mixed content errors)
   // =========================
 
-  const SAKHI_API_BASE = process.env.SAKHI_API_URL || "http://72.61.228.9:8100";
+  const SAKHI_API_BASE = process.env.SAKHI_API_URL;
+  if (!SAKHI_API_BASE) {
+    console.error("Warning: SAKHI_API_URL environment variable is not set. Proxy requests may fail.");
+  }
 
   // Proxy: User Login
   app.post("/api/proxy/user/login", async (req, res) => {
@@ -973,6 +976,180 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error: any) {
       console.error("Proxy onboarding complete error:", error);
       res.status(500).json({ error: "Failed to connect to onboarding server" });
+    }
+  });
+
+  // Proxy: Tools - Vaccination Schedule
+  app.post("/api/proxy/tools/vaccination-schedule", async (req, res) => {
+    try {
+      const response = await fetch(`${SAKHI_API_BASE}/api/tools/vaccination-schedule`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(req.body),
+      });
+      const data = await response.json();
+      res.status(response.status).json(data);
+    } catch (error: any) {
+      console.error("Proxy vaccination-schedule error:", error);
+      res.status(500).json({ error: "Failed to connect to backend tools" });
+    }
+  });
+
+  // Proxy: Tools - Due Date
+  app.post("/api/proxy/tools/due-date", async (req, res) => {
+    try {
+      const response = await fetch(`${SAKHI_API_BASE}/api/tools/due-date`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(req.body),
+      });
+      const data = await response.json();
+      res.status(response.status).json(data);
+    } catch (error: any) {
+      console.error("Proxy due-date error:", error);
+      res.status(500).json({ error: "Failed to connect to backend tools" });
+    }
+  });
+
+  // Proxy: Tools - Ovulation
+  app.post("/api/proxy/tools/ovulation", async (req, res) => {
+    try {
+      const response = await fetch(`${SAKHI_API_BASE}/api/tools/ovulation`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(req.body),
+      });
+      const data = await response.json();
+      res.status(response.status).json(data);
+    } catch (error: any) {
+      console.error("Proxy ovulation error:", error);
+      res.status(500).json({ error: "Failed to connect to backend tools" });
+    }
+  });
+
+  // Proxy: Tools - Pregnancy Week (POST)
+  app.post("/api/proxy/tools/pregnancy-week", async (req, res) => {
+    try {
+      const response = await fetch(`${SAKHI_API_BASE}/api/tools/pregnancy-week`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(req.body),
+      });
+      const data = await response.json();
+      res.status(response.status).json(data);
+    } catch (error: any) {
+      console.error("Proxy pregnancy-week error:", error);
+      res.status(500).json({ error: "Failed to connect to backend tools" });
+    }
+  });
+
+  // Proxy: Tools - Conception Calculator
+  app.post("/api/proxy/tools/conception-calculator", async (req, res) => {
+    try {
+      const response = await fetch(`${SAKHI_API_BASE}/api/tools/conception-calculator`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(req.body),
+      });
+      const data = await response.json();
+      res.status(response.status).json(data);
+    } catch (error: any) {
+      console.error("Proxy conception-calculator error:", error);
+      res.status(500).json({ error: "Failed to connect to backend tools" });
+    }
+  });
+
+  // Proxy: Tools - Am I Pregnant
+  app.post("/api/proxy/tools/am-i-pregnant", async (req, res) => {
+    try {
+      const response = await fetch(`${SAKHI_API_BASE}/api/tools/am-i-pregnant`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(req.body),
+      });
+      const data = await response.json();
+      res.status(response.status).json(data);
+    } catch (error: any) {
+      console.error("Proxy am-i-pregnant error:", error);
+      res.status(500).json({ error: "Failed to connect to backend tools" });
+    }
+  });
+
+  // Proxy: Tools - Baby Cost Calculator
+  app.post("/api/proxy/tools/baby-cost-calculator", async (req, res) => {
+    try {
+      const response = await fetch(`${SAKHI_API_BASE}/api/tools/baby-cost-calculator`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(req.body),
+      });
+      const data = await response.json();
+      res.status(response.status).json(data);
+    } catch (error: any) {
+      console.error("Proxy baby-cost-calculator error:", error);
+      res.status(500).json({ error: "Failed to connect to backend tools" });
+    }
+  });
+
+  // Proxy: Tools - Pregnancy Weeks (GET All)
+  app.get("/api/proxy/tools/pregnancy-weeks", async (req, res) => {
+    try {
+      const response = await fetch(`${SAKHI_API_BASE}/api/tools/pregnancy-weeks`, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      });
+      const data = await response.json();
+      res.status(response.status).json(data);
+    } catch (error: any) {
+      console.error("Proxy pregnancy-weeks error:", error);
+      res.status(500).json({ error: "Failed to connect to backend tools" });
+    }
+  });
+
+  // Proxy: Tools - Pregnancy Week Detail (GET)
+  app.get("/api/proxy/tools/pregnancy-week/:week", async (req, res) => {
+    try {
+      const { week } = req.params;
+      const response = await fetch(`${SAKHI_API_BASE}/api/tools/pregnancy-week/${week}`, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      });
+      const data = await response.json();
+      res.status(response.status).json(data);
+    } catch (error: any) {
+      console.error("Proxy pregnancy-week detail error:", error);
+      res.status(500).json({ error: "Failed to connect to backend tools" });
+    }
+  });
+
+  // Proxy: Tools - Safety Check
+  app.get("/api/proxy/tools/safety-check", async (req, res) => {
+    try {
+      const query = (req.query as any).q || "";
+      const response = await fetch(`${SAKHI_API_BASE}/api/tools/safety-check?q=${encodeURIComponent(query)}`, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      });
+      const data = await response.json();
+      res.status(response.status).json(data);
+    } catch (error: any) {
+      console.error("Proxy safety-check error:", error);
+      res.status(500).json({ error: "Failed to connect to backend tools" });
+    }
+  });
+
+  // Proxy: Tools - Readiness Checklist
+  app.get("/api/proxy/tools/readiness-checklist", async (req, res) => {
+    try {
+      const response = await fetch(`${SAKHI_API_BASE}/api/tools/readiness-checklist`, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      });
+      const data = await response.json();
+      res.status(response.status).json(data);
+    } catch (error: any) {
+      console.error("Proxy readiness-checklist error:", error);
+      res.status(500).json({ error: "Failed to connect to backend tools" });
     }
   });
 

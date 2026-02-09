@@ -26,6 +26,7 @@ import TreatmentsPreview from "../components/home/TreatmentsPreview";
 import FAQSection from "../components/home/FAQSection";
 import JourneyTimeline from "../components/home/JourneyTimeline";
 import JourneyDashboard from "../components/home/JourneyDashboard";
+import PopularTools from "../components/home/PopularTools";
 
 const Home = () => {
   const { t, lang } = useLanguage();
@@ -301,6 +302,9 @@ const Home = () => {
 
         {/* Parenthood Journey Strip - Visual Roadmap */}
         <JourneyTimeline />
+
+        {/* Popular Tools Section */}
+        <PopularTools />
 
         <FAQSection />
       </div>

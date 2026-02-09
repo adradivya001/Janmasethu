@@ -21,6 +21,9 @@ import Sakhi from "./pages/Sakhi";
 import SakhiTry from "./pages/SakhiTry";
 import Investors from "./pages/Investors";
 import Tools from "./pages/Tools";
+import AmIPregnant from "./components/tools/AmIPregnant";
+import BabyCostCalculator from "./components/tools/BabyCostCalculator";
+import ConceptionCalculator from "./components/tools/ConceptionDateCalculator";
 import OvulationCalculator from "./components/tools/OvulationCalculator";
 import DueDateCalculator from "./components/tools/DueDateCalculator";
 import PregnancyWeekByWeek from "./components/tools/PregnancyWeekByWeek";
@@ -65,6 +68,9 @@ function Router() {
             <Route path="/sakhi" component={Sakhi} />
             <Route path="/investors" component={Investors} />
             <Route path="/tools" component={Tools} />
+            <Route path="/tools/am-i-pregnant" component={AmIPregnant} />
+            <Route path="/tools/baby-cost-calculator" component={BabyCostCalculator} />
+            <Route path="/tools/conception-calculator" component={ConceptionCalculator} />
             <Route path="/tools/ovulation-calculator" component={OvulationCalculator} />
             <Route path="/tools/due-date-calculator" component={DueDateCalculator} />
             <Route path="/tools/pregnancy-week-by-week" component={PregnancyWeekByWeek} />

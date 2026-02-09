@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { ToolsLayout } from './ToolsLayout';
 import { Calendar } from '../ui/calendar';
@@ -6,34 +5,27 @@ import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 import { Label } from '../ui/label';
 import { Card } from '../ui/card';
-import { format, addDays, subDays, differenceInDays } from 'date-fns';
+import { format } from 'date-fns';
 import { Heart, Info } from 'lucide-react';
+import { calculateOvulation, OvulationResult } from '../../api/toolsApi';
 
 export default function OvulationCalculator() {
     const [lastPeriod, setLastPeriod] = useState<Date | undefined>(undefined);
     const [cycleLength, setCycleLength] = useState<number>(28);
-    const [result, setResult] = useState<{
-        ovulationDate: Date;
-        fertileWindowStart: Date;
-        fertileWindowEnd: Date;
-        nextPeriod: Date;
-    } | null>(null);
+    const [result, setResult] = useState<OvulationResult | null>(null);
+    const [loading, setLoading] = useState(false);
 
-    const calculate = () => {
+    const calculate = async () => {
         if (!lastPeriod) return;
-
-        // Logic: Ovulation occurs 14 days BEFORE the NEXT period starts
-        const nextPeriodDate = addDays(lastPeriod, cycleLength);
-        const ovulationDate = subDays(nextPeriodDate, 14);
-        const fertileWindowStart = subDays(ovulationDate, 5);
-        const fertileWindowEnd = ovulationDate; // Peak fertility is day of ovulation
-
-        setResult({
-            ovulationDate,
-            fertileWindowStart,
-            fertileWindowEnd,
-            nextPeriod: nextPeriodDate
-        });
+        setLoading(true);
+        try {
+            const data = await calculateOvulation(lastPeriod, cycleLength);
+            setResult(data);
+        } catch (error) {
+            console.error("Failed to calculate ovulation", error);
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -73,10 +65,10 @@ export default function OvulationCalculator() {
 
                     <Button
                         onClick={calculate}
-                        disabled={!lastPeriod}
+                        disabled={!lastPeriod || loading}
                         className="w-full bg-pink-600 hover:bg-pink-700"
                     >
-                        Calculate My Fertile Days
+                        {loading ? "Calculating..." : "Calculate My Fertile Days"}
                     </Button>
                 </div>
 
@@ -91,7 +83,7 @@ export default function OvulationCalculator() {
                                     <div>
                                         <h3 className="font-semibold text-lg text-pink-900">Most Fertile Window</h3>
                                         <p className="text-3xl font-bold text-pink-600 my-2">
-                                            {format(result.fertileWindowStart, 'MMM d')} - {format(result.fertileWindowEnd, 'MMM d')}
+                                            {format(new Date(result.fertileWindowStart), 'MMM d')} - {format(new Date(result.fertileWindowEnd), 'MMM d')}
                                         </p>
                                         <p className="text-sm text-pink-700">
                                             Having sex during these days gives you the best chance of conceiving.
@@ -103,11 +95,11 @@ export default function OvulationCalculator() {
                             <div className="grid grid-cols-2 gap-4">
                                 <div className="p-4 bg-gray-50 rounded-xl border border-gray-100">
                                     <div className="text-xs text-gray-500 uppercase font-semibold">Ovulation Date</div>
-                                    <div className="text-xl font-bold text-gray-800">{format(result.ovulationDate, 'MMM d, yyyy')}</div>
+                                    <div className="text-xl font-bold text-gray-800">{format(new Date(result.ovulationDate), 'MMM d, yyyy')}</div>
                                 </div>
                                 <div className="p-4 bg-gray-50 rounded-xl border border-gray-100">
                                     <div className="text-xs text-gray-500 uppercase font-semibold">Next Period</div>
-                                    <div className="text-xl font-bold text-gray-800">{format(result.nextPeriod, 'MMM d, yyyy')}</div>
+                                    <div className="text-xl font-bold text-gray-800">{format(new Date(result.nextPeriod), 'MMM d, yyyy')}</div>
                                 </div>
                             </div>
 

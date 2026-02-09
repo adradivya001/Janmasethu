@@ -7,6 +7,8 @@ interface JourneyContextType {
     clearJourney: () => void;
     showSelector: boolean;
     setShowSelector: (show: boolean) => void;
+    openSelector: (stage?: JourneyStage) => void; // New function
+    initialStage: JourneyStage | null; // New state
     isLoading: boolean;
 }
 
@@ -15,6 +17,7 @@ const JourneyContext = createContext<JourneyContextType | undefined>(undefined);
 export const JourneyProvider = ({ children }: { children: ReactNode }) => {
     const [journey, setJourneyState] = useState<JourneyData | null>(null);
     const [showSelector, setShowSelector] = useState(false);
+    const [initialStage, setInitialStage] = useState<JourneyStage | null>(null);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -43,6 +46,7 @@ export const JourneyProvider = ({ children }: { children: ReactNode }) => {
         setJourneyState(newData);
         localStorage.setItem(JOURNEY_STORAGE_KEY, JSON.stringify(newData));
         setShowSelector(false); // Close selector on success
+        setInitialStage(null); // Reset initial stage
 
         // Sync with backend if user is logged in
         const userId = localStorage.getItem('user_id');
@@ -76,10 +80,17 @@ export const JourneyProvider = ({ children }: { children: ReactNode }) => {
         setJourneyState(null);
         localStorage.removeItem(JOURNEY_STORAGE_KEY);
         setShowSelector(false);
+        setInitialStage(null);
+    };
+
+    const openSelector = (stage?: JourneyStage) => {
+        if (stage) setInitialStage(stage);
+        else setInitialStage(null);
+        setShowSelector(true);
     };
 
     return (
-        <JourneyContext.Provider value={{ journey, setJourney, clearJourney, showSelector, setShowSelector, isLoading }}>
+        <JourneyContext.Provider value={{ journey, setJourney, clearJourney, showSelector, setShowSelector, openSelector, initialStage, isLoading }}>
             {children}
         </JourneyContext.Provider>
     );

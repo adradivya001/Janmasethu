@@ -1,4 +1,4 @@
-export type ArticleContentType = 'paragraph' | 'subheading' | 'list';
+export type ArticleContentType = 'paragraph' | 'subheading' | 'list' | 'table';
 
 export interface ArticleContent {
   type: ArticleContentType;
@@ -12,6 +12,9 @@ export interface ArticleContent {
     hi: string;
     te: string;
   }>;
+  // For table content
+  headers?: string[];
+  rows?: string[][];
 }
 
 export interface ArticleSection {
@@ -50,6 +53,11 @@ export interface ArticleData {
     sources: string[];
   };
   sections: ArticleSection[];
+  // Recommendation logic fields
+  topic?: string;
+  section?: string;
+  lens?: string;
+  lifeStage?: string;
 }
 
 // Use proxy to avoid Mixed Content errors
@@ -347,7 +355,12 @@ export const fetchArticleData = async (slug: string, lang?: string): Promise<Art
         },
         sources: article.content?.sources || []
       },
-      sections: []
+      sections: [],
+      // Map fields for recommendations
+      topic: article.topic,
+      section: article.section,
+      lens: article.lens,
+      lifeStage: article.life_stage
     };
 
     // Parse content if it exists

@@ -426,7 +426,8 @@ export default function JourneyTimeline() {
                     <div className="w-10 md:w-12 lg:w-16 mx-1 md:mx-2 lg:mx-3 relative h-2 group flex-shrink-0">
                         <div className="absolute inset-0 bg-gradient-to-r from-blue-200 to-purple-200 rounded-full transition-all duration-700"></div>
                         <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                    </div>\n          {/* Stage 4: Pregnancy */}
+                    </div>
+                    {/* Stage 4: Pregnancy */}
                     <Dialog>
                         <DialogTrigger asChild>
                             <button

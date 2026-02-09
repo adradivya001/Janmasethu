@@ -1,26 +1,39 @@
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Search, ShieldCheck, ShieldAlert, CircleSlash, Info } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { SAFETY_ITEMS } from "@/data/tools_content";
+import { searchSafety, SafetyItem } from "../../api/toolsApi";
 
 const SafetyChecker = () => {
     const [query, setQuery] = useState("");
-    const [results, setResults] = useState(SAFETY_ITEMS);
+    const [results, setResults] = useState<SafetyItem[]>([]);
+    const [loading, setLoading] = useState(false);
+
+    // Simple debounce effect
+    useEffect(() => {
+        const fetchResults = async () => {
+            setLoading(true);
+            try {
+                const data = await searchSafety(query);
+                setResults(data);
+            } catch (error) {
+                console.error("Failed to search safety", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        const timer = setTimeout(() => {
+            fetchResults();
+        }, 300);
+
+        return () => clearTimeout(timer);
+    }, [query]);
+
 
     const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const val = e.target.value.toLowerCase();
-        setQuery(val);
-        if (!val) {
-            setResults(SAFETY_ITEMS);
-            return;
-        }
-        setResults(SAFETY_ITEMS.filter(item =>
-            item.name.toLowerCase().includes(val) ||
-            item.category.toLowerCase().includes(val)
-        ));
+        setQuery(e.target.value);
     };
 
     const getIcon = (status: string) => {
@@ -54,25 +67,29 @@ const SafetyChecker = () => {
             </CardHeader>
             <CardContent className="p-0">
                 <div className="max-h-[300px] overflow-y-auto divide-y divide-gray-100">
-                    {results.length > 0 ? results.map((item) => (
-                        <div key={item.id} className="p-4 hover:bg-gray-50 flex items-start gap-4 transition-colors">
-                            <div className={`mt-1 p-2 rounded-full ${getColor(item.status).split(' ')[0]}`}>
-                                {getIcon(item.status)}
-                            </div>
-                            <div>
-                                <h4 className="font-bold text-gray-800">{item.name}</h4>
-                                <div className="flex items-center gap-2 mt-1">
-                                    <Badge variant="outline" className="text-xs text-gray-500 border-gray-200">{item.category}</Badge>
-                                    <Badge className={`${getColor(item.status)} border px-2 py-0.5 text-xs font-semibold uppercase`}>
-                                        {item.status}
-                                    </Badge>
+                    {loading ? (
+                        <div className="p-8 text-center text-gray-400">Loading...</div>
+                    ) : results.length > 0 ? (
+                        results.map((item) => (
+                            <div key={item.id} className="p-4 hover:bg-gray-50 flex items-start gap-4 transition-colors">
+                                <div className={`mt-1 p-2 rounded-full ${getColor(item.status).split(' ')[0]}`}>
+                                    {getIcon(item.status)}
                                 </div>
-                                <p className="text-sm text-gray-600 mt-2 leading-relaxed">
-                                    {item.note}
-                                </p>
+                                <div>
+                                    <h4 className="font-bold text-gray-800">{item.name}</h4>
+                                    <div className="flex items-center gap-2 mt-1">
+                                        <Badge variant="outline" className="text-xs text-gray-500 border-gray-200">{item.category}</Badge>
+                                        <Badge className={`${getColor(item.status)} border px-2 py-0.5 text-xs font-semibold uppercase`}>
+                                            {item.status}
+                                        </Badge>
+                                    </div>
+                                    <p className="text-sm text-gray-600 mt-2 leading-relaxed">
+                                        {item.note}
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                    )) : (
+                        ))
+                    ) : (
                         <div className="p-8 text-center text-gray-500">
                             <Info className="w-8 h-8 mx-auto mb-2 text-gray-300" />
                             <p>No results found for "{query}".</p>

@@ -10,9 +10,16 @@ import { Baby, Heart, Calendar } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export function JourneySelector() {
-    const { showSelector, setShowSelector, setJourney, clearJourney } = useJourney();
+    const { showSelector, setShowSelector, setJourney, clearJourney, initialStage } = useJourney();
     const [selectedStage, setSelectedStage] = useState<JourneyStage | null>(null);
     const [date, setDate] = useState('');
+
+    // Sync initial stage from context when modal opens
+    React.useEffect(() => {
+        if (showSelector) {
+            setSelectedStage(initialStage);
+        }
+    }, [showSelector, initialStage]);
 
     const handleStageSelect = (stage: JourneyStage) => {
         setSelectedStage(stage);

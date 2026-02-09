@@ -4,47 +4,26 @@ import { ToolsLayout } from './ToolsLayout';
 import { Calendar } from '../ui/calendar';
 import { Button } from '../ui/button';
 import { Label } from '../ui/label';
-import { addWeeks, addMonths, addYears, format } from 'date-fns';
+import { format } from 'date-fns';
 import { Syringe, CheckCircle2, Clock } from 'lucide-react';
-import { Card } from '../ui/card';
-
-// Simplified IAP Schedule
-const VACCINES = [
-    { age: 'Birth', offset: { days: 0 }, items: ['BCG', 'OPV Zero dose', 'Hep-B Birth dose'] },
-    { age: '6 Weeks', offset: { weeks: 6 }, items: ['DTwP/DTaP-1', 'IPV-1', 'Hep-B-2', 'Hib-1', 'Rotavirus-1', 'PCV-1'] },
-    { age: '10 Weeks', offset: { weeks: 10 }, items: ['DTwP/DTaP-2', 'IPV-2', 'Hib-2', 'Rotavirus-2', 'PCV-2'] },
-    { age: '14 Weeks', offset: { weeks: 14 }, items: ['DTwP/DTaP-3', 'IPV-3', 'Hib-3', 'Rotavirus-3', 'PCV-3'] },
-    { age: '6 Months', offset: { months: 6 }, items: ['Influenza-1', 'Typhoid Conjugate Vaccine'] },
-    { age: '9 Months', offset: { months: 9 }, items: ['MMR-1', 'Meningococcal (Optional)'] },
-    { age: '12 Months', offset: { months: 12 }, items: ['Hep-A-1', 'Japanese Encephalitis-1 (Endemic areas)'] },
-    { age: '15 Months', offset: { months: 15 }, items: ['MMR-2', 'Varicella-1', 'PCV-Booster'] },
-    { age: '18 Months', offset: { months: 18 }, items: ['DTwP/DTaP-B1', 'IPV-B1', 'Hib-B1'] },
-    { age: '2 Years', offset: { years: 2 }, items: ['Typhoid Booster', 'Influenza (Annual)'] },
-    { age: '4-6 Years', offset: { years: 5 }, items: ['DTwP/DTaP-Booster-2', 'MMR-3', 'Varicella-2'] },
-];
+import { getVaccinationSchedule, VaccinationStage } from '../../api/toolsApi';
 
 export default function VaccinationScheduler() {
     const [dob, setDob] = useState<Date | undefined>(undefined);
-    const [schedule, setSchedule] = useState<any[] | null>(null);
+    const [schedule, setSchedule] = useState<VaccinationStage[] | null>(null);
+    const [loading, setLoading] = useState(false);
 
-    const generateSchedule = () => {
+    const generateSchedule = async () => {
         if (!dob) return;
-
-        const newSchedule = VACCINES.map(stage => {
-            let dueDate = dob;
-            if (stage.offset.days) dueDate = addWeeks(dob, 0); // essentially same day
-            if (stage.offset.weeks) dueDate = addWeeks(dob, stage.offset.weeks);
-            if (stage.offset.months) dueDate = addMonths(dob, stage.offset.months);
-            if (stage.offset.years) dueDate = addYears(dob, stage.offset.years);
-
-            return {
-                ...stage,
-                dueDate,
-                isPast: dueDate < new Date()
-            };
-        });
-
-        setSchedule(newSchedule);
+        setLoading(true);
+        try {
+            const data = await getVaccinationSchedule(dob);
+            setSchedule(data);
+        } catch (error) {
+            console.error("Failed to generate schedule", error);
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -69,10 +48,10 @@ export default function VaccinationScheduler() {
                             />
                             <Button
                                 onClick={generateSchedule}
-                                disabled={!dob}
+                                disabled={!dob || loading}
                                 className="w-full bg-blue-600 hover:bg-blue-700 py-6 text-lg font-semibold shadow-md active:scale-95 transition-all"
                             >
-                                Generate Schedule
+                                {loading ? "Generating..." : "Generate Schedule"}
                             </Button>
                         </div>
                     </div>
@@ -103,7 +82,7 @@ export default function VaccinationScheduler() {
                                                 <div>
                                                     <div className="font-bold text-lg text-gray-800">{slot.age}</div>
                                                     <div className={`text-sm font-medium ${slot.isPast ? 'text-green-700' : 'text-blue-600'}`}>
-                                                        Due: {format(slot.dueDate, 'MMMM d, yyyy')}
+                                                        Due: {format(new Date(slot.dueDate), 'MMMM d, yyyy')}
                                                     </div>
                                                 </div>
                                                 {slot.isPast ? (

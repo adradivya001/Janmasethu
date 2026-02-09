@@ -1,18 +1,34 @@
-
-import { useState, useEffect } from "react";
-import { CheckCircle, Circle, Trophy } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { CheckCircle2, Circle } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { TTC_READINESS_ITEMS } from "@/data/tools_content";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { getReadinessChecklist, ReadinessCategory } from "../../api/toolsApi";
 
 const STORAGE_KEY = "janmasethu_readiness_progress";
 
-const ReadinessChecklist = () => {
+export default function ReadinessChecklist() {
     const [checkedItems, setCheckedItems] = useState<Record<string, boolean>>({});
-    const [progress, setProgress] = useState(0);
+    const [checklistData, setChecklistData] = useState<ReadinessCategory[]>([]);
+    const [loading, setLoading] = useState(true);
 
-    // Load progress on mount
+    // Fetch checklist data from API on mount
+    useEffect(() => {
+        const fetchChecklist = async () => {
+            try {
+                const data = await getReadinessChecklist();
+                setChecklistData(data);
+            } catch (error) {
+                console.error("Failed to fetch readiness checklist", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchChecklist();
+    }, []);
+
+    // Load checked items from local storage on mount
     useEffect(() => {
         const stored = localStorage.getItem(STORAGE_KEY);
         if (stored) {
@@ -20,80 +36,95 @@ const ReadinessChecklist = () => {
         }
     }, []);
 
-    // Update progress calculation whenever checks change
+    // Save checked items to local storage whenever they change
     useEffect(() => {
-        const totalItems = TTC_READINESS_ITEMS.reduce((acc, cat) => acc + cat.items.length, 0);
-        const checkedCount = Object.values(checkedItems).filter(Boolean).length;
-        const newProgress = totalItems > 0 ? Math.round((checkedCount / totalItems) * 100) : 0;
-        setProgress(newProgress);
-
-        // Save to local storage
         localStorage.setItem(STORAGE_KEY, JSON.stringify(checkedItems));
     }, [checkedItems]);
 
     const toggleItem = (id: string) => {
-        setCheckedItems(prev => ({
+        setCheckedItems((prev) => ({
             ...prev,
-            [id]: !prev[id]
+            [id]: !prev[id],
         }));
     };
 
+    const calculateProgress = () => {
+        if (checklistData.length === 0) return 0;
+        const totalItems = checklistData.reduce((acc, cat) => acc + cat.items.length, 0);
+        const checkedCount = Object.values(checkedItems).filter(Boolean).length;
+        if (totalItems === 0) return 0;
+        return Math.round((checkedCount / totalItems) * 100);
+    };
+
+    if (loading) {
+        return <div className="p-8 text-center text-gray-400">Loading checklist...</div>;
+    }
+
     return (
-        <Card className="w-full card-shadow rounded-3xl overflow-hidden border-t-4 border-t-pink-400">
-            <CardHeader className="bg-pink-50 pb-8">
+        <Card className="w-full card-shadow rounded-3xl overflow-hidden border-t-4 border-t-pink-500">
+            <CardHeader className="bg-pink-50 pb-6">
                 <div className="flex justify-between items-start mb-4">
                     <div>
-                        <CardTitle className="text-xl font-bold text-pink-900">Pre-Pregnancy Readiness</CardTitle>
-                        <p className="text-sm text-pink-700 mt-1">Get your body and life ready for baby.</p>
-                    </div>
-                    <div className="bg-white p-2 rounded-full shadow-sm">
-                        <Trophy className={`w-6 h-6 ${progress === 100 ? "text-yellow-500" : "text-gray-300"}`} />
+                        <CardTitle className="text-xl font-bold text-pink-900 mb-1">Pre-Pregnancy Readiness</CardTitle>
+                        <CardDescription className="text-pink-700">Track your preparation journey</CardDescription>
                     </div>
                 </div>
-
                 <div className="space-y-2">
-                    <div className="flex justify-between text-xs font-semibold text-pink-800 uppercase tracking-wider">
-                        <span>Progress</span>
-                        <span>{progress}%</span>
+                    <div className="flex justify-between text-sm font-medium text-pink-800">
+                        <span>Your Progress</span>
+                        <span>{calculateProgress()}%</span>
                     </div>
-                    <Progress value={progress} className="h-2 bg-pink-200" />
+                    <Progress value={calculateProgress()} className="h-3 bg-pink-200 [&>div]:bg-pink-500" />
                 </div>
             </CardHeader>
-
             <CardContent className="p-0">
-                <Accordion type="single" collapsible className="w-full" defaultValue={TTC_READINESS_ITEMS[0].category}>
-                    {TTC_READINESS_ITEMS.map((category, index) => (
-                        <AccordionItem key={index} value={category.category} className="border-b border-gray-100 last:border-none">
-                            <AccordionTrigger className="px-6 py-4 hover:bg-gray-50 hover:no-underline">
-                                <span className="font-semibold text-gray-700">{category.category}</span>
-                            </AccordionTrigger>
-                            <AccordionContent className="px-6 pb-4 pt-1 bg-gray-50/50">
+                {checklistData.length > 0 && (
+                    <Tabs defaultValue={checklistData[0].category} className="w-full">
+                        <ScrollArea className="w-full border-b bg-gray-50/50">
+                            <TabsList className="w-full justify-start h-auto p-0 bg-transparent">
+                                {checklistData.map((category) => (
+                                    <TabsTrigger
+                                        key={category.category}
+                                        value={category.category}
+                                        className="px-6 py-4 rounded-none border-b-2 border-transparent data-[state=active]:border-pink-500 data-[state=active]:text-pink-700 data-[state=active]:bg-white"
+                                    >
+                                        {category.category}
+                                    </TabsTrigger>
+                                ))}
+                            </TabsList>
+                        </ScrollArea>
+                        {checklistData.map((category) => (
+                            <TabsContent key={category.category} value={category.category} className="p-4 m-0">
                                 <div className="space-y-3">
-                                    {category.items.map((item) => {
-                                        const isChecked = !!checkedItems[item.id];
-                                        return (
-                                            <div
-                                                key={item.id}
-                                                onClick={() => toggleItem(item.id)}
-                                                className="flex items-start gap-3 cursor-pointer group p-2 rounded-lg hover:bg-white transition-colors"
-                                            >
-                                                <div className={`mt-0.5 flex-shrink-0 transition-colors ${isChecked ? "text-green-500" : "text-gray-300 group-hover:text-pink-400"}`}>
-                                                    {isChecked ? <CheckCircle className="w-5 h-5 fill-current" /> : <Circle className="w-5 h-5" />}
-                                                </div>
-                                                <span className={`text-sm transition-all ${isChecked ? "text-gray-400 line-through" : "text-gray-700 font-medium"}`}>
-                                                    {item.text}
-                                                </span>
+                                    {category.items.map((item) => (
+                                        <div
+                                            key={item.id}
+                                            onClick={() => toggleItem(item.id)}
+                                            className={`flex items-center gap-4 p-4 rounded-xl cursor-pointer transition-all border ${checkedItems[item.id]
+                                                ? "bg-pink-50 border-pink-200"
+                                                : "bg-white border-gray-100 hover:border-pink-100 hover:shadow-sm"
+                                                }`}
+                                        >
+                                            <div className={`flex-shrink-0 transition-colors ${checkedItems[item.id] ? "text-pink-600" : "text-gray-300"
+                                                }`}>
+                                                {checkedItems[item.id] ? (
+                                                    <CheckCircle2 className="w-6 h-6 fill-pink-100" />
+                                                ) : (
+                                                    <Circle className="w-6 h-6" />
+                                                )}
                                             </div>
-                                        );
-                                    })}
+                                            <span className={`text-sm font-medium ${checkedItems[item.id] ? "text-pink-900 line-through opacity-70" : "text-gray-700"
+                                                }`}>
+                                                {item.text}
+                                            </span>
+                                        </div>
+                                    ))}
                                 </div>
-                            </AccordionContent>
-                        </AccordionItem>
-                    ))}
-                </Accordion>
+                            </TabsContent>
+                        ))}
+                    </Tabs>
+                )}
             </CardContent>
         </Card>
     );
-};
-
-export default ReadinessChecklist;
+}

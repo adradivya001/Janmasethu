@@ -1,48 +1,71 @@
-
 import React, { useState, useEffect } from 'react';
 import { ToolsLayout } from './ToolsLayout';
-import { Label } from '../ui/label';
-import { Input } from '../ui/input';
 import { Button } from '../ui/button';
-import { pregnancyWeeks, PregnancyWeek } from '../../data/pregnancyWeeks';
-import { ChevronLeft, ChevronRight, Ruler, Weight } from 'lucide-react';
-import { differenceInWeeks, addWeeks, subWeeks, format } from 'date-fns';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useJourney } from '../../contexts/JourneyContext';
+import { getPregnancyWeek, getAllPregnancyWeeks, PregnancyWeekData } from '../../api/toolsApi';
 
 export default function PregnancyWeekByWeek() {
     const { journey } = useJourney();
     const [currentWeek, setCurrentWeek] = useState<number>(4);
-    const [weekData, setWeekData] = useState<PregnancyWeek>(pregnancyWeeks[0]);
+    const [allWeeks, setAllWeeks] = useState<PregnancyWeekData[]>([]);
+    const [weekData, setWeekData] = useState<PregnancyWeekData | null>(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // If user has a pregnancy journey, auto-set the week
-        if (journey?.stage === 'PREGNANT' && journey.date) {
-            // journey.date is strictly typed as string in context, but logic assumes it's Due Date or LMP
-            // Simplified logic: If date is in future, it's Due Date. If past, it's LMP.
-            const date = new Date(journey.date);
-            const now = new Date();
-            let week = 4;
-
-            if (date > now) {
-                // It's a due date
-                const totalWeeks = 40;
-                const weeksLeft = differenceInWeeks(date, now);
-                week = totalWeeks - weeksLeft;
-            } else {
-                // It's LMP
-                week = differenceInWeeks(now, date);
+        // Fetch all weeks data on mount
+        const fetchWeeks = async () => {
+            try {
+                const data = await getAllPregnancyWeeks();
+                setAllWeeks(data);
+                // Default to first week if available
+                if (data.length > 0) setWeekData(data[0]);
+            } catch (error) {
+                console.error("Failed to fetch pregnancy weeks", error);
+            } finally {
+                setLoading(false);
             }
+        };
+        fetchWeeks();
+    }, []);
 
-            // Clamp between 4 and 40
-            week = Math.max(4, Math.min(40, week));
-            setCurrentWeek(week);
+    useEffect(() => {
+        // If user has a pregnancy journey, auto-set the week using backend calculation
+        const determineWeek = async () => {
+            if (journey?.stage === 'PREGNANT' && journey.date) {
+                try {
+                    // Assuming journey.date is what we used before (LMP or Due Date)
+                    // We need to know if it is LMP or Due Date. 
+                    // Previous logic guessed based on date > now.
+                    // Let's rely on the same logic in backend or pass explicit type if we knew it.
+                    // For now, pass 'LMP' or 'DUE_DATE' based on simple check or journey.date_type if available.
+                    // Journey context/type might not have date_type readily available in top level type? 
+                    // Let's assume we pass date and let backend or logic decide.
+                    // Actually my backend API requires 'type'.
+
+                    const dateObj = new Date(journey.date);
+                    const isFuture = dateObj > new Date();
+                    const type = (journey as any).date_type === 'DUE_DATE' || isFuture ? 'DUE_DATE' : 'LMP';
+
+                    const result = await getPregnancyWeek(dateObj, type);
+                    setCurrentWeek(result.currentWeek);
+                } catch (error) {
+                    console.error("Failed to calculate pregnancy week", error);
+                }
+            }
+        };
+
+        if (journey) {
+            determineWeek();
         }
     }, [journey]);
 
     useEffect(() => {
-        const data = pregnancyWeeks.find(w => w.week === currentWeek);
-        if (data) setWeekData(data);
-    }, [currentWeek]);
+        if (allWeeks.length > 0) {
+            const data = allWeeks.find(w => w.week === currentWeek);
+            if (data) setWeekData(data);
+        }
+    }, [currentWeek, allWeeks]);
 
     const nextWeek = () => {
         if (currentWeek < 40) setCurrentWeek(w => w + 1);
@@ -51,6 +74,14 @@ export default function PregnancyWeekByWeek() {
     const prevWeek = () => {
         if (currentWeek > 4) setCurrentWeek(w => w - 1);
     };
+
+    if (loading) {
+        return <ToolsLayout title="Pregnancy Week by Week" description="Loading..." category="PREGNANT"><div>Loading...</div></ToolsLayout>;
+    }
+
+    if (!weekData) {
+        return <ToolsLayout title="Pregnancy Week by Week" description="Error loading data." category="PREGNANT"><div>Error loading data.</div></ToolsLayout>;
+    }
 
     return (
         <ToolsLayout
@@ -120,7 +151,7 @@ export default function PregnancyWeekByWeek() {
                 <div className="w-full md:w-64 bg-gray-50 rounded-xl p-4 h-fit max-h-[600px] overflow-y-auto border border-gray-100 custom-scrollbar">
                     <h3 className="font-bold text-gray-700 mb-4 px-2">Jump to Week</h3>
                     <div className="space-y-2">
-                        {pregnancyWeeks.map((week) => (
+                        {allWeeks.map((week) => (
                             <button
                                 key={week.week}
                                 onClick={() => setCurrentWeek(week.week)}

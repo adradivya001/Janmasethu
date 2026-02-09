@@ -7,7 +7,7 @@ import { cn } from '../lib/utils';
 import { Button } from './ui/button';
 
 export function JourneyFloatingWidget() {
-    const { journey, setJourney, clearJourney, showSelector, setShowSelector } = useJourney();
+    const { journey, setJourney, clearJourney, showSelector, setShowSelector, openSelector } = useJourney();
     const [hoveredStage, setHoveredStage] = useState<JourneyStage | null>(null);
 
     // Don't show if the main modal is open
@@ -37,9 +37,8 @@ export function JourneyFloatingWidget() {
         // If clicking the already selected one, do nothing (removal is via hover button)
         if (journey?.stage === stage) return;
 
-        // Otherwise open selector for that stage (or just set it if we want to skip date)
-        // For now, let's open the selector to let them confirm date
-        setShowSelector(true);
+        // Otherwise open selector for that stage directly
+        openSelector(stage);
     };
 
     return (

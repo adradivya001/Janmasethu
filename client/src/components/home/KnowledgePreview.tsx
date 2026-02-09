@@ -3,9 +3,28 @@ import { useLanguage } from "../../i18n/LanguageProvider";
 import { Card, CardContent } from "../ui/card";
 import { Button } from "../ui/button";
 import { BookOpen, Stethoscope, Users, IndianRupee, Apple, ArrowRight } from "lucide-react";
+import { useJourney } from "../../contexts/JourneyContext";
 
 export default function KnowledgePreview() {
     const { t, lang } = useLanguage();
+    const { journey } = useJourney();
+
+    const getStageParam = () => {
+        if (!journey) return "";
+        if (journey.stage === 'TTC') return "&stage=ttc";
+        if (journey.stage === 'PREGNANT') return "&stage=pregnancy";
+        if (journey.stage === 'PARENT') {
+            if (journey.date) {
+                const dob = new Date(journey.date);
+                const diffDays = (Date.now() - dob.getTime()) / (1000 * 60 * 60 * 24);
+                return diffDays < 90 ? "&stage=newborn" : "&stage=early-years";
+            }
+            return "&stage=newborn"; // Default
+        }
+        return "";
+    };
+
+    const stageParam = getStageParam();
 
     return (
         <section className="py-16">
@@ -37,7 +56,7 @@ export default function KnowledgePreview() {
 
                     {/* What You'll Find */}
                     <div className="grid md:grid-cols-2 gap-6 mb-8">
-                        <Link href="/knowledge-hub?lens=medical" className="group">
+                        <Link href={`/knowledge-hub?lens=medical${stageParam}`} className="group">
                             <Card className="bg-white/80 backdrop-blur-sm border-none shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer transform hover:scale-105 border-2 border-transparent hover:border-blue-200 relative overflow-hidden h-full">
                                 <CardContent className="p-6">
                                     <div className="flex items-start space-x-4">
@@ -69,7 +88,7 @@ export default function KnowledgePreview() {
                             </Card>
                         </Link>
 
-                        <Link href="/knowledge-hub?lens=social" className="group">
+                        <Link href={`/knowledge-hub?lens=social${stageParam}`} className="group">
                             <Card className="bg-white/80 backdrop-blur-sm border-none shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer transform hover:scale-105 border-2 border-transparent hover:border-pink-200 relative overflow-hidden h-full">
                                 <CardContent className="p-6">
                                     <div className="flex items-start space-x-4">
@@ -101,7 +120,7 @@ export default function KnowledgePreview() {
                             </Card>
                         </Link>
 
-                        <Link href="/knowledge-hub?lens=financial" className="group">
+                        <Link href={`/knowledge-hub?lens=financial${stageParam}`} className="group">
                             <Card className="bg-white/80 backdrop-blur-sm border-none shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer transform hover:scale-105 border-2 border-transparent hover:border-green-200 relative overflow-hidden h-full">
                                 <CardContent className="p-6">
                                     <div className="flex items-start space-x-4">
@@ -133,7 +152,7 @@ export default function KnowledgePreview() {
                             </Card>
                         </Link>
 
-                        <Link href="/knowledge-hub?lens=nutrition" className="group">
+                        <Link href={`/knowledge-hub?lens=nutrition${stageParam}`} className="group">
                             <Card className="bg-white/80 backdrop-blur-sm border-none shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer transform hover:scale-105 border-2 border-transparent hover:border-orange-200 relative overflow-hidden h-full">
                                 <CardContent className="p-6">
                                     <div className="flex items-start space-x-4">

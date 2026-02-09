@@ -1,36 +1,29 @@
-
 import React, { useState } from 'react';
 import { ToolsLayout } from './ToolsLayout';
 import { Calendar } from '../ui/calendar';
 import { Button } from '../ui/button';
 import { Label } from '../ui/label';
-import { addDays, format, differenceInWeeks } from 'date-fns';
+import { format } from 'date-fns';
 import { Baby, CalendarRange } from 'lucide-react';
 import { Card } from '../ui/card';
+import { calculateDueDate, DueDateResult } from '../../api/toolsApi';
 
 export default function DueDateCalculator() {
     const [lmp, setLmp] = useState<Date | undefined>(undefined);
-    const [result, setResult] = useState<{
-        dueDate: Date;
-        weeksPregnant: number;
-        trimester: number;
-    } | null>(null);
+    const [result, setResult] = useState<DueDateResult | null>(null);
+    const [loading, setLoading] = useState(false);
 
-    const calculate = () => {
+    const calculate = async () => {
         if (!lmp) return;
-
-        const dueDate = addDays(lmp, 280); // 40 weeks
-        const weeksPregnant = differenceInWeeks(new Date(), lmp);
-
-        let trimester = 1;
-        if (weeksPregnant >= 13 && weeksPregnant < 27) trimester = 2;
-        if (weeksPregnant >= 27) trimester = 3;
-
-        setResult({
-            dueDate,
-            weeksPregnant: Math.max(0, weeksPregnant),
-            trimester
-        });
+        setLoading(true);
+        try {
+            const data = await calculateDueDate(lmp);
+            setResult(data);
+        } catch (error) {
+            console.error("Failed to calculate due date", error);
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -55,10 +48,10 @@ export default function DueDateCalculator() {
                     </div>
                     <Button
                         onClick={calculate}
-                        disabled={!lmp}
+                        disabled={!lmp || loading}
                         className="w-full bg-purple-600 hover:bg-purple-700"
                     >
-                        Calculate Due Date
+                        {loading ? "Calculating..." : "Calculate Due Date"}
                     </Button>
                 </div>
 
@@ -71,7 +64,7 @@ export default function DueDateCalculator() {
                                 </div>
                                 <h3 className="text-gray-500 font-medium uppercase tracking-wide text-sm">Your Estimated Due Date</h3>
                                 <div className="text-4xl md:text-5xl font-bold text-purple-700 my-4">
-                                    {format(result.dueDate, 'MMMM d, yyyy')}
+                                    {format(new Date(result.dueDate), 'MMMM d, yyyy')}
                                 </div>
                             </Card>
 

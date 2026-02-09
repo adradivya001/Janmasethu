@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'wouter';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../components/ui/card';
-import { Calendar, Baby, Heart, Syringe, Activity, Calculator, ArrowRight } from 'lucide-react';
+import { Calendar, Baby, Heart, Syringe, Activity, Calculator, ArrowRight, HelpCircle, IndianRupee } from 'lucide-react';
 import { Button } from '../components/ui/button';
 
 interface Tool {
@@ -17,6 +17,24 @@ interface Tool {
 
 const TOOLS: Tool[] = [
     {
+        id: 'am-i-pregnant',
+        title: 'Am I Pregnant?',
+        description: 'Take a quick assessment to check the likelihood of pregnancy.',
+        icon: HelpCircle,
+        href: '/tools/am-i-pregnant',
+        category: 'TTC',
+        color: 'text-purple-600 bg-purple-50'
+    },
+    {
+        id: 'baby-cost-calc',
+        title: 'Baby Cost Calculator',
+        description: 'Plan your finances with this detailed monthly and yearly cost estimator.',
+        icon: IndianRupee,
+        href: '/tools/baby-cost-calculator',
+        category: 'PARENT',
+        color: 'text-green-600 bg-green-50'
+    },
+    {
         id: 'ovulation-calc',
         title: 'Ovulation Calculator',
         description: 'Find your most fertile days to maximize your chances of conceiving.',
@@ -24,6 +42,15 @@ const TOOLS: Tool[] = [
         href: '/tools/ovulation-calculator',
         category: 'TTC',
         color: 'text-pink-500 bg-pink-50'
+    },
+    {
+        id: 'conception-calc',
+        title: 'Conception Date Calculator',
+        description: 'Estimate when conception likely happened based on your dates.',
+        icon: Calculator,
+        href: '/tools/conception-calculator',
+        category: 'PREGNANT',
+        color: 'text-rose-500 bg-rose-50'
     },
     {
         id: 'due-date-calc',
