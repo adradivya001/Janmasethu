@@ -9,6 +9,7 @@ import {
   MessageCircle,
   CheckCircle,
 } from "lucide-react";
+import { motion } from "framer-motion"; // Import framer-motion
 import { useLanguage } from "../i18n/LanguageProvider";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -122,22 +123,33 @@ const Sakhi = () => {
     <>
       <div className="container mx-auto px-4 py-6">
         {/* Hero Section */}
-        <section className="text-center py-12 relative">
-          <div className="max-w-4xl mx-auto">
-            <h1
+        <section className="text-center py-12 relative overflow-hidden">
+          <div className="max-w-4xl mx-auto relative z-10">
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
               className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground font-serif mb-6 leading-tight"
               data-testid="text-sakhi-hero-title"
               dangerouslySetInnerHTML={{ __html: t("sakhi_hero") }}
-            ></h1>
+            ></motion.h1>
 
-            <p
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
               className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto"
               data-testid="text-sakhi-hero-subtitle"
             >
               {t("sakhi_sub")}
-            </p>
+            </motion.p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+              className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+            >
               <Button
                 onClick={handleTrySakhiClick}
                 className="gradient-button text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-lg transition-all duration-300 inline-flex items-center"
@@ -155,16 +167,19 @@ const Sakhi = () => {
                   {t("sakhi_browse_knowledge")}
                 </Button>
               </Link>
-            </div>
+            </motion.div>
+          </div>
 
-            {/* Background Image */}
-            <div className="absolute inset-0 -z-10 opacity-10">
-              <img
-                src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080"
-                alt={t('alt_peaceful_meditation')}
-                className="w-full h-full object-cover rounded-3xl"
-              />
-            </div>
+          {/* Background Image */}
+          <div className="absolute inset-0 -z-10 opacity-10">
+            <motion.img
+              initial={{ scale: 1.1 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 10, ease: "easeOut" }}
+              src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080"
+              alt={t('alt_peaceful_meditation')}
+              className="w-full h-full object-cover rounded-3xl"
+            />
           </div>
         </section>
 
