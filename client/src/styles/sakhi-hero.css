@@ -1,0 +1,31 @@
+/* Image Blob Animation */
+.image-circle-wrapper {
+  /* Organic Blob Shape */
+  border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  border: none;
+  background: #fce7f3;
+  /* Light Pink Blob */
+  box-shadow: 20px 20px 60px rgba(0, 0, 0, 0.05);
+  transition: border-radius 0.5s ease-in-out;
+  /* animation: blob-morph 8s infinite alternate ease-in-out; <-- Removed as requested in original code */
+  aspect-ratio: 700/500;
+}
+
+@keyframes blob-morph {
+  0% {
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    transform: scale(0.98);
+  }
+
+  100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    transform: scale(1.02);
+  }
+}
+
+.image-circle-wrapper:hover {
+  border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
+}

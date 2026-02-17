@@ -3,10 +3,10 @@ import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import ClinicNavigation from "@/components/clinic/ClinicNavigation";
-import { 
-  Download, 
-  FileText, 
-  BarChart3, 
+import {
+  Download,
+  FileText,
+  BarChart3,
   TrendingUp,
   Calendar,
   Filter
@@ -44,7 +44,7 @@ export default function Reports() {
   return (
     <div className="flex h-screen bg-gray-50">
       <ClinicNavigation collapsed={collapsed} onCollapsedChange={setCollapsed} />
-      
+
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Header */}
         <header className="bg-white border-b border-gray-200 px-4 md:px-8 py-3 shadow-sm">
@@ -53,7 +53,7 @@ export default function Reports() {
               <h1 className="text-[28px] md:text-[32px] font-bold text-gray-900 leading-tight mb-2">Reports & Analytics</h1>
               <p className="text-sm md:text-base text-gray-600">Track performance and generate insights</p>
             </div>
-            
+
             <div className="flex gap-2">
               <Button variant="outline" size="sm" className="flex items-center gap-2">
                 <Download className="w-4 h-4" />
@@ -75,7 +75,7 @@ export default function Reports() {
               <CardContent className="p-3 md:p-4">
                 <label className="block text-xs md:text-sm font-medium text-gray-700 mb-2">Report Type</label>
                 <div className="relative">
-                  <select 
+                  <select
                     value={selectedReport}
                     onChange={(e) => setSelectedReport(e.target.value)}
                     className="w-full appearance-none cursor-pointer bg-gradient-to-r from-white to-purple-50/30 border-2 border-purple-200 rounded-2xl px-4 py-3 pr-10 text-sm font-medium text-gray-700 shadow-sm transition-all duration-200 hover:border-purple-300 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
@@ -101,7 +101,7 @@ export default function Reports() {
               <CardContent className="p-3 md:p-4">
                 <label className="block text-xs md:text-sm font-medium text-gray-700 mb-2">Time Period</label>
                 <div className="relative">
-                  <select 
+                  <select
                     value={selectedPeriod}
                     onChange={(e) => setSelectedPeriod(e.target.value)}
                     className="w-full appearance-none cursor-pointer bg-gradient-to-r from-white to-purple-50/30 border-2 border-purple-200 rounded-2xl px-4 py-3 pr-10 text-sm font-medium text-gray-700 shadow-sm transition-all duration-200 hover:border-purple-300 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
@@ -225,7 +225,6 @@ export default function Reports() {
                       outerRadius={80}
                       dataKey="value"
                       label={({ name, value }) => `${name}: ${value}%`}
-                      labelStyle={{ fontSize: '12px' }}
                     >
                       {treatmentData.map((entry, index) => (
                         <Cell key={`cell-${index}`} fill={entry.color} />

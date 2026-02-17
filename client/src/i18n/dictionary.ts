@@ -103,7 +103,6 @@ export const dict = {
     hero_sub:
       "Simple, source‑backed guides across fertility, pregnancy, birth and early parenting — made for India.",
     hero_subtitle: "Evidence-based guides for your parenting journey, organized by life stage and perspective",
-    trust_pill: "Trusted by families across India",
     cta_primary: "Meet Sakhi",
     cta_secondary: "For Clinics",
 
