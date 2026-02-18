@@ -56,6 +56,14 @@ const Sakhi = () => {
       setUserRelationship(finalRelationship);
       setUserId(finalUserId);
 
+      // Persist to localStorage
+      localStorage.setItem("userId", finalUserId);
+      localStorage.setItem("userRelationship", finalRelationship);
+      // We don't have the name directly here unless we pass it, but we can set a default if needed
+      if (!localStorage.getItem("userName")) {
+        localStorage.setItem("userName", "User");
+      }
+
       // Close auth modal
       setShowAuthModal(false);
 
@@ -75,6 +83,13 @@ const Sakhi = () => {
         title: "Welcome back!",
         description: "You're all set to continue your journey.",
       });
+
+      if (userId) localStorage.setItem("userId", userId);
+      if (relationship) localStorage.setItem("userRelationship", relationship);
+      // We assume userName might be set elsewhere or default to User
+      if (!localStorage.getItem("userName")) {
+        localStorage.setItem("userName", "User");
+      }
 
       setTimeout(() => {
         setLocation("/sakhi/try");

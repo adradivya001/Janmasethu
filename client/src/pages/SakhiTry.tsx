@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { detectScript } from '@/utils/language';
-import { sendChatMessage } from '@/utils/api';
+import { sendChatMessage, checkInstantAnswer } from '@/utils/api';
 
 // Scoped Language Context for SakhiTry page only
 interface SakhiLanguageContextType {
@@ -57,7 +57,7 @@ const parseFollowUpQuestions = (reply: string): { mainText: string; followUps: s
     /follow-ups?\s*:\s*/i,
     /suggested\s*questions?\s*:\s*/i
   ];
-  
+
   let splitIndex = -1;
   for (const pattern of followUpPatterns) {
     const match = reply.match(pattern);
@@ -66,21 +66,21 @@ const parseFollowUpQuestions = (reply: string): { mainText: string; followUps: s
       break;
     }
   }
-  
+
   if (splitIndex === -1) {
     return { mainText: reply.trim(), followUps: [] };
   }
-  
+
   const mainText = reply.substring(0, splitIndex).trim();
   const followUpSection = reply.substring(splitIndex);
-  
+
   // Extract questions - they're typically separated by newlines or "?"
   const followUpText = followUpSection.replace(/follow\s*-?ups?\s*:\s*/i, '').trim();
   const questions = followUpText
     .split(/[\n\r]+/)
     .map(q => q.trim())
     .filter(q => q.length > 0 && q.endsWith('?'));
-  
+
   return { mainText, followUps: questions };
 };
 
@@ -101,38 +101,38 @@ const isNonEmbeddableVideo = (url: string): boolean => {
 // Helper function to convert YouTube URL to embed format (only for regular videos)
 const getYouTubeEmbedUrl = (url: string): string | undefined => {
   if (!url) return undefined;
-  
+
   // Check if this is a Shorts or Instagram link - don't embed these
   if (isNonEmbeddableVideo(url)) {
     return undefined;
   }
-  
+
   // Already an embed URL
   if (url.includes('/embed/')) {
     return url;
   }
-  
+
   // Extract video ID from various YouTube URL formats
   let videoId = '';
-  
+
   // youtu.be/VIDEO_ID format (but not shorts)
   const shortMatch = url.match(/youtu\.be\/([a-zA-Z0-9_-]+)(?:[?&]|$)/);
   if (shortMatch) {
     videoId = shortMatch[1];
   }
-  
+
   // youtube.com/watch?v=VIDEO_ID format
   const watchMatch = url.match(/[?&]v=([a-zA-Z0-9_-]+)/);
   if (watchMatch) {
     videoId = watchMatch[1];
   }
-  
+
   if (videoId) {
     // Remove any extra parameters from video ID
     videoId = videoId.split('?')[0].split('&')[0];
     return `https://www.youtube.com/embed/${videoId}`;
   }
-  
+
   return undefined;
 };
 
@@ -161,25 +161,22 @@ const LanguageSwitcher = () => {
         <div className="absolute right-0 mt-2 w-28 bg-white rounded-xl shadow-xl py-2 z-50 border border-gray-100">
           <button
             onClick={() => handleLanguageChange('en')}
-            className={`block w-full px-4 py-2.5 text-left text-sm transition-colors ${
-              lang === 'en' ? 'bg-purple-50 text-purple-700 font-medium' : 'text-gray-700 hover:bg-gray-50'
-            }`}
+            className={`block w-full px-4 py-2.5 text-left text-sm transition-colors ${lang === 'en' ? 'bg-purple-50 text-purple-700 font-medium' : 'text-gray-700 hover:bg-gray-50'
+              }`}
           >
             English
           </button>
           <button
             onClick={() => handleLanguageChange('hi')}
-            className={`block w-full px-4 py-2.5 text-left text-sm transition-colors ${
-              lang === 'hi' ? 'bg-purple-50 text-purple-700 font-medium' : 'text-gray-700 hover:bg-gray-50'
-            }`}
+            className={`block w-full px-4 py-2.5 text-left text-sm transition-colors ${lang === 'hi' ? 'bg-purple-50 text-purple-700 font-medium' : 'text-gray-700 hover:bg-gray-50'
+              }`}
           >
             हिंदी
           </button>
           <button
             onClick={() => handleLanguageChange('te')}
-            className={`block w-full px-4 py-2.5 text-left text-sm transition-colors ${
-              lang === 'te' ? 'bg-purple-50 text-purple-700 font-medium' : 'text-gray-700 hover:bg-gray-50'
-            }`}
+            className={`block w-full px-4 py-2.5 text-left text-sm transition-colors ${lang === 'te' ? 'bg-purple-50 text-purple-700 font-medium' : 'text-gray-700 hover:bg-gray-50'
+              }`}
           >
             తెలుగు
           </button>
@@ -228,6 +225,13 @@ const SakhiTry = () => {
     // Retrieve username and userId from localStorage
     const storedUserName = localStorage.getItem('userName') || localStorage.getItem('userEmail') || 'Anonymous';
     const storedUserId = localStorage.getItem('userId') || '';
+
+    if (!storedUserId) {
+      // Redirect to login if userId is missing
+      window.location.href = "/sakhi";
+      return;
+    }
+
     setUserName(storedUserName);
     setUserId(storedUserId);
     console.log('📋 Retrieved from localStorage:', { userName: storedUserName, userId: storedUserId });
@@ -241,7 +245,7 @@ const SakhiTry = () => {
   const [isMuted, setIsMuted] = useState(true);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const [showFloating, setShowFloating] = useState(true);
-  
+
   // Drag state for mini player
   const [playerPosition, setPlayerPosition] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
@@ -299,7 +303,7 @@ const SakhiTry = () => {
 
     const userQuestion = messageText.trim();
     const detectedLanguage = detectScript(userQuestion);
-    
+
     // Add user message to chat immediately
     const newMessage: Message = {
       id: Date.now().toString(),
@@ -316,29 +320,74 @@ const SakhiTry = () => {
 
     console.log('🔵 Send button clicked - sending to backend API:', userQuestion);
 
+    // Check for instant answer first
+    try {
+      if (userId) {
+        const instantResult = await checkInstantAnswer(userId, userQuestion);
+
+        if (instantResult.found && instantResult.answer) {
+          console.log('⚡ Instant answer found:', instantResult.answer);
+
+          // Construct a bot response from the instant answer
+          const botResponseText = instantResult.answer;
+          const { mainText, followUps } = parseFollowUpQuestions(botResponseText);
+
+          const instantPreview: PreviewContent = {
+            title: "Instant Response",
+            description: "",
+            replyText: mainText,
+            followUpQuestions: followUps,
+            tips: [],
+            resources: [],
+            keyPoints: [],
+            intent: "Instant Reply"
+          };
+
+          setPreviewContent(instantPreview);
+
+          const botMessage: Message = {
+            id: (Date.now() + 1).toString(),
+            text: mainText,
+            isUser: false,
+            timestamp: new Date(),
+            language: detectedLanguage,
+            previewContent: instantPreview,
+            intent: "Instant Reply"
+          };
+
+          setMessages(prev => [...prev, botMessage]);
+          setIsLoading(false);
+          return; // Exit function, don't call backend
+        }
+      }
+    } catch (e) {
+      console.error('Error checking instant answer:', e);
+      // Continue to normal backend call if instant check fails
+    }
+
     // Call the backend API with the user's question
     try {
       console.log('🔵 Sending POST request to backend /sakhi/chat');
-      
+
       const response = await sendChatMessage(userId, userQuestion, sakhiLang);
 
-      console.log('📤 Sent to backend:', { 
-        message: userQuestion, 
-        language: sakhiLang, 
-        user_id: userId 
+      console.log('📤 Sent to backend:', {
+        message: userQuestion,
+        language: sakhiLang,
+        user_id: userId
       });
 
       console.log('✅ Backend response:', response);
 
       const botResponseText = response.reply || "I'm here to support you.";
-      
+
       // Parse follow-up questions from the reply
       const { mainText, followUps } = parseFollowUpQuestions(botResponseText);
 
       // Handle video URL - separate embeddable from non-embeddable
       let embedUrl: string | undefined;
       let shortsUrl: string | undefined;
-      
+
       if (response.youtube_link) {
         if (isNonEmbeddableVideo(response.youtube_link)) {
           // Shorts or Instagram link - show below infographic
@@ -363,7 +412,7 @@ const SakhiTry = () => {
         keyPoints: [],
         intent: response.intent
       };
-      
+
       setPreviewContent(backendPreview);
 
       // Add bot response to chat (show only intent, full content in preview)
@@ -379,7 +428,7 @@ const SakhiTry = () => {
 
       setMessages(prev => [...prev, botMessage]);
       setIsLoading(false);
-      
+
     } catch (error) {
       console.error('❌ Error calling backend API:', error);
       console.error('❌ Error details:', {
@@ -387,7 +436,7 @@ const SakhiTry = () => {
         message: (error as Error).message,
         stack: (error as Error).stack
       });
-      
+
       // Show error message to user
       const errorMessage: Message = {
         id: (Date.now() + 1).toString(),
@@ -495,7 +544,7 @@ const SakhiTry = () => {
 
                   const data = await response.json();
                   console.log('Webhook response:', data);
-                  
+
                   // After successful webhook call, redirect to sakhi page
                   window.location.href = "/sakhi";
                 } catch (error) {
@@ -512,10 +561,9 @@ const SakhiTry = () => {
         </div>
 
         {/* Chat Panel */}
-        <div className={`fixed top-20 left-0 bg-white shadow-2xl transition-all duration-300 ease-in-out z-30 ${
-          isChatOpen ? 'w-full md:w-[420px]' : 'w-0'
-        } overflow-hidden border-r border-gray-100 flex flex-col`}
-        style={{ height: 'calc(100vh - 5rem)' }}>
+        <div className={`fixed top-20 left-0 bg-white shadow-2xl transition-all duration-300 ease-in-out z-30 ${isChatOpen ? 'w-full md:w-[420px]' : 'w-0'
+          } overflow-hidden border-r border-gray-100 flex flex-col`}
+          style={{ height: 'calc(100vh - 5rem)' }}>
 
           {/* Messages Area */}
           <div className="flex-1 overflow-y-auto p-4 lg:p-6 space-y-4 lg:space-y-5 pt-6 pb-24" style={{ minHeight: 0 }}>
@@ -547,19 +595,17 @@ const SakhiTry = () => {
               <div key={message.id} className={`flex ${message.isUser ? 'justify-end sakhi-message-user' : 'justify-start sakhi-message-bot'} px-1`}>
                 <div className={`max-w-[95%] lg:max-w-[80%] ${message.isUser ? 'order-2' : 'order-1'}`}>
                   <div className={`flex items-start space-x-3 ${message.isUser ? 'flex-row-reverse space-x-reverse' : ''}`}>
-                    <div className={`w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 shadow-sm ${
-                      message.isUser 
-                        ? 'bg-gradient-to-br from-purple-500 to-pink-500 text-white' 
-                        : 'bg-gradient-to-br from-purple-100 to-pink-100 text-purple-600'
-                    }`}>
+                    <div className={`w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 shadow-sm ${message.isUser
+                      ? 'bg-gradient-to-br from-purple-500 to-pink-500 text-white'
+                      : 'bg-gradient-to-br from-purple-100 to-pink-100 text-purple-600'
+                      }`}>
                       {message.isUser ? <User className="w-4 h-4" /> : <Bot className="w-5 h-5" />}
                     </div>
                     <div className="flex-1">
-                      <div className={`px-4 py-3 rounded-2xl transition-all duration-200 hover:shadow-lg ${
-                        message.isUser
-                          ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-md hover:shadow-purple-300/50'
-                          : 'bg-white border border-gray-100 text-gray-800 shadow-md hover:shadow-gray-300/50'
-                      }`}>
+                      <div className={`px-4 py-3 rounded-2xl transition-all duration-200 hover:shadow-lg ${message.isUser
+                        ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-md hover:shadow-purple-300/50'
+                        : 'bg-white border border-gray-100 text-gray-800 shadow-md hover:shadow-gray-300/50'
+                        }`}>
                         <p className="text-sm leading-relaxed">{message.text}</p>
                         <p className={`text-xs mt-1.5 ${message.isUser ? 'text-white/80' : 'text-gray-400'}`}>
                           {message.timestamp.toLocaleTimeString()}
@@ -569,7 +615,7 @@ const SakhiTry = () => {
                       {/* Mobile Preview Content - Same layout as desktop PreviewPanel */}
                       {!message.isUser && message.previewContent && (
                         <div className="md:hidden mt-4 bg-white rounded-2xl shadow-xl border border-purple-100 p-4 space-y-4 hover:shadow-2xl transition-shadow duration-300 w-full max-w-full">
-                          
+
                           {/* 1. Embedded YouTube Video (Regular Videos Only) */}
                           {message.previewContent.videoUrl && (
                             <div className="relative bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl overflow-hidden border border-purple-100">
@@ -682,7 +728,7 @@ const SakhiTry = () => {
                 </div>
               </div>
             ))}
-            
+
             {/* Loading Indicator - shows below user message while waiting for response */}
             {isLoading && (
               <div className="flex justify-start px-1">
@@ -704,7 +750,7 @@ const SakhiTry = () => {
                 </div>
               </div>
             )}
-            
+
             <div ref={messagesEndRef} />
           </div>
 
@@ -792,7 +838,7 @@ const PreviewPanel = ({ previewContent, isVideoPlaying, setIsVideoPlaying, isMut
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
-    
+
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
@@ -973,10 +1019,10 @@ const PreviewPanel = ({ previewContent, isVideoPlaying, setIsVideoPlaying, isMut
   return (
     <div className="h-full bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm">
       <div className="p-6 lg:p-8 space-y-6 lg:space-y-8">
-        
+
         {/* Single Column Flow: Video → Reply → Infographic → Shorts/Instagram → Follow-ups */}
         <div className="space-y-6">
-            
+
           {/* 1. Embedded YouTube Video (Regular Videos Only) */}
           {previewContent.videoUrl && (
             <div className="relative bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl overflow-hidden border border-purple-100">

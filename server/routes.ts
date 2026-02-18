@@ -383,6 +383,65 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // =========================
+  // INSTANT FOLLOW-UP ANSWERS
+  // =========================
+
+  // In-memory cache for follow-up answers
+  const followUpCache = new Map<string, { question: string; answer: string }[]>();
+
+  // Webhook to receive follow-up answers from Sakhi Backend
+  app.post("/api/webhooks/sakhi-followups", async (req, res) => {
+    try {
+      const { user_id, payload } = req.body;
+
+      if (!user_id || !payload || !Array.isArray(payload)) {
+        return res.status(400).json({ error: "Invalid payload format" });
+      }
+
+      console.log(`📥 Received follow-up answers for user: ${user_id}`);
+      followUpCache.set(user_id, payload);
+
+      res.json({ ok: true, message: "Follow-up answers cached" });
+    } catch (e: any) {
+      console.error("POST /api/webhooks/sakhi-followups error:", e);
+      res.status(500).json({ ok: false, error: e.message });
+    }
+  });
+
+  // Endpoint to check for instant answers
+  app.post("/api/sakhi/check-instant-answer", async (req, res) => {
+    try {
+      const { user_id, message } = req.body;
+
+      if (!user_id || !message) {
+        return res.status(400).json({ error: "user_id and message are required" });
+      }
+
+      const cachedAnswers = followUpCache.get(user_id);
+
+      if (cachedAnswers) {
+        const normalizedMessage = message.trim().toLowerCase();
+
+        // Find a matching answer (case-insensitive partial match)
+        const match = cachedAnswers.find(item =>
+          item.question.toLowerCase().includes(normalizedMessage) ||
+          normalizedMessage.includes(item.question.toLowerCase())
+        );
+
+        if (match) {
+          console.log(`⚡ Instant answer found for user: ${user_id}`);
+          return res.json({ found: true, answer: match.answer });
+        }
+      }
+
+      res.json({ found: false });
+    } catch (e: any) {
+      console.error("POST /api/sakhi/check-instant-answer error:", e);
+      res.status(500).json({ ok: false, error: e.message });
+    }
+  });
+
+  // =========================
   // STORIES API ENDPOINTS (IN-MEMORY - NO DATABASE)
   // =========================
 
@@ -890,7 +949,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // SAKHI API PROXY ENDPOINTS (to avoid mixed content errors)
   // =========================
 
-  const SAKHI_API_BASE = process.env.SAKHI_API_URL || "http://72.61.228.9:8100";
+  const SAKHI_API_BASE = process.env.SAKHI_API_URL || "http://72.61.228.9:8000";
 
   // Proxy: User Login
   app.post("/api/proxy/user/login", async (req, res) => {
@@ -931,6 +990,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Proxy: Sakhi Chat
   app.post("/api/proxy/sakhi/chat", async (req, res) => {
     try {
+      console.log(`📡 Proxying chat to: ${SAKHI_API_BASE}/sakhi/chat`);
+      console.log(`📦 Request body:`, JSON.stringify(req.body));
+
       const response = await fetch(`${SAKHI_API_BASE}/sakhi/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
