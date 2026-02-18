@@ -90,7 +90,7 @@ export function WhyChooseSakhi({ onCtaClick }: WhyChooseSakhiProps) {
                             viewport={{ once: true }}
                             transition={{ delay: 0.3 }}
                         >
-                            Sakhi ✨
+                            Sakhi 🌸
                         </motion.div>
                         <motion.div
                             className="text-sm md:text-base font-semibold text-center opacity-80"

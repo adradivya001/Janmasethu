@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight, Flower2 } from 'lucide-react';
 
 export function ValueProposition() {
   return (
@@ -89,7 +89,7 @@ export function ValueProposition() {
                 transition={{ duration: 0.3 }}
               />
               <span className="relative flex items-center gap-2">
-                <Sparkles className="w-5 h-5" />
+                <Flower2 className="w-5 h-5" />
                 Start Talking to Sakhi
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </span>

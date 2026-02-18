@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { MessageCircle, Send } from 'lucide-react';
+import { Send, RotateCcw } from 'lucide-react';
 import { useState } from 'react';
 
 const demoMessages = [
@@ -10,19 +10,21 @@ const demoMessages = [
   {
     user: "The uncertainty of whether it will work",
     sakhi: "That uncertainty is one of the hardest parts. Many women share this exact feeling. Let's talk about ways to find moments of calm during this journey."
-  },
-  {
-    user: "How do others cope with this anxiety?",
-    sakhi: "Great question. Here are some approaches that help: breathing exercises before appointments, connecting with support groups, and journaling your feelings. Which resonates with you?"
   }
+];
+
+const QUICK_PROMPTS = [
+  "Does age really affect our chances?",
+  "Healthy routines during pregnancy",
+  "Explain me the IVF journey?"
 ];
 
 export function InteractiveDemo() {
   const [activeDemo, setActiveDemo] = useState(0);
 
   return (
-    <section className="py-16 md:py-24 bg-gradient-to-b from-purple-50 to-white">
-      <div className="max-w-5xl mx-auto px-6">
+    <section className="py-16 md:py-24 bg-[#FAFBFF]">
+      <div className="max-w-4xl mx-auto px-6">
         {/* Section Header */}
         <motion.div
           className="text-center mb-12"
@@ -31,131 +33,107 @@ export function InteractiveDemo() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 font-serif">
             Try Sakhi - Interactive Demo
           </h2>
           <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
-            See how Sakhi responds with empathy and guidance
+            Experience real-time support. Type a message below to start talking.
           </p>
         </motion.div>
 
-        {/* Demo Interface - Show Don't Tell */}
+        {/* Demo Interface */}
         <motion.div
-          className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100"
-          initial={{ opacity: 0, y: 40, scale: 0.95 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          className="bg-white rounded-[2rem] shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] overflow-hidden border border-gray-100 flex flex-col h-[700px]"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, type: "spring" }}
+          transition={{ duration: 0.6 }}
         >
-          {/* Chat Header */}
-          <motion.div 
-            className="bg-gradient-to-r from-purple-600 to-pink-500 p-6 text-white"
-            animate={{
-              backgroundPosition: ['0% center', '100% center', '0% center'],
-            }}
-            transition={{
-              duration: 10,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-            style={{ backgroundSize: '200% 100%' }}
-          >
-            <div className="flex items-center gap-3">
-              <motion.div 
-                className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center"
-                animate={{ 
-                  scale: [1, 1.1, 1],
-                  rotate: [0, 5, -5, 0]
-                }}
-                transition={{ 
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              >
-                <MessageCircle className="w-6 h-6" />
-              </motion.div>
-              <div>
-                <h3 className="font-semibold text-lg">Sakhi</h3>
-                <motion.div
-                  className="flex items-center gap-2"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.5 }}
-                >
-                  <motion.span
-                    className="w-2 h-2 bg-green-400 rounded-full"
-                    animate={{ scale: [1, 1.3, 1] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  />
-                  <p className="text-sm text-white/80">Your compassionate companion</p>
-                </motion.div>
-              </div>
+          {/* Header */}
+          <div className="px-8 py-6 border-b border-gray-50 flex items-center justify-between bg-white shrink-0">
+            <div>
+              <h3 className="text-xl font-bold text-gray-900">Sakhi — Conversation (Demo)</h3>
+              <p className="text-sm text-gray-500 mt-0.5">
+                Type in English/हिंदी/తెలుగు — reply mirrors your language.
+              </p>
             </div>
-          </motion.div>
+            <motion.button
+              onClick={() => setActiveDemo(0)}
+              className="p-2 text-gray-400 hover:text-gray-600 transition-colors"
+              whileHover={{ rotate: -180 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <RotateCcw className="w-5 h-5" />
+            </motion.button>
+          </div>
 
           {/* Chat Messages */}
-          <div className="p-6 md:p-8 space-y-6 min-h-[400px] bg-gray-50">
+          <div className="flex-1 p-8 space-y-6 overflow-y-auto bg-white relative">
+            {activeDemo === -1 && (
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <p className="text-gray-400 text-lg font-medium">Start a conversation with Sakhi...</p>
+              </div>
+            )}
+
             {demoMessages.slice(0, activeDemo + 1).map((msg, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.3 }}
+                initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                className="space-y-6"
               >
                 {/* User Message */}
-                <div className="flex justify-end mb-3">
-                  <div className="bg-purple-600 text-white px-5 py-3 rounded-2xl rounded-tr-sm max-w-[80%]">
-                    <p className="text-sm md:text-base">{msg.user}</p>
+                <div className="flex justify-end">
+                  <div className="bg-[#F3F4F6] text-gray-800 px-5 py-3 rounded-2xl rounded-tr-sm max-w-[85%]">
+                    <p className="text-sm md:text-base leading-relaxed">{msg.user}</p>
                   </div>
                 </div>
 
                 {/* Sakhi Response */}
                 <div className="flex justify-start">
-                  <div className="bg-white border border-gray-200 px-5 py-3 rounded-2xl rounded-tl-sm max-w-[80%] shadow-sm">
-                    <p className="text-sm md:text-base text-gray-800">{msg.sakhi}</p>
+                  <div className="bg-white border border-gray-100 shadow-sm text-gray-800 px-5 py-3 rounded-2xl rounded-tl-sm max-w-[85%]">
+                    <p className="text-sm md:text-base leading-relaxed">{msg.sakhi}</p>
                   </div>
                 </div>
               </motion.div>
             ))}
           </div>
 
-          {/* Demo Controls */}
-          <div className="p-6 bg-white border-t border-gray-200">
-            <div className="flex items-center justify-between">
-              <p className="text-sm text-gray-600">
-                {activeDemo < demoMessages.length - 1 ? 'Click to see more' : 'Demo complete'}
-              </p>
-              {activeDemo < demoMessages.length - 1 && (
-                <motion.button
-                  onClick={() => setActiveDemo(prev => Math.min(prev + 1, demoMessages.length - 1))}
-                  className="px-6 py-2 bg-purple-600 text-white rounded-full font-medium hover:bg-purple-700 transition-colors flex items-center gap-2"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Continue
-                  <Send className="w-4 h-4" />
-                </motion.button>
-              )}
+          {/* Demo Controls Area */}
+          <div className="px-8 py-6 bg-white border-t border-gray-50 shrink-0">
+            {/* Quick Prompts */}
+            <div className="mb-6">
+              <p className="text-sm font-semibold text-gray-900 mb-3">Quick prompts:</p>
+              <div className="flex flex-wrap gap-2">
+                {QUICK_PROMPTS.map((prompt) => (
+                  <motion.button
+                    key={prompt}
+                    className="px-5 py-2.5 bg-[#F0F5FF] text-[#1E40AF] rounded-full text-sm font-medium hover:bg-[#E0E9FF] transition-colors border border-transparent"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => setActiveDemo(prev => Math.min(prev + 1, demoMessages.length - 1))}
+                  >
+                    {prompt}
+                  </motion.button>
+                ))}
+              </div>
+            </div>
+
+            {/* Input Fake Field */}
+            <div className="relative flex items-center gap-3">
+              <div className="w-full px-6 py-4 bg-[#F9FAFB] border border-transparent rounded-full text-gray-400 text-sm md:text-base">
+                Type your message...
+              </div>
+              <motion.button
+                className="p-3.5 bg-gradient-to-tr from-pink-500 to-purple-600 text-white rounded-full shadow-lg"
+                whileHover={{ scale: 1.05, boxShadow: "0 8px 16px rgba(139, 92, 246, 0.3)" }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setActiveDemo(prev => Math.min(prev + 1, demoMessages.length - 1))}
+              >
+                <Send className="w-5 h-5" />
+              </motion.button>
             </div>
           </div>
-        </motion.div>
-
-        {/* CTA Below Demo */}
-        <motion.div
-          className="text-center mt-10"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.5 }}
-        >
-          <motion.button
-            className="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-500 text-white rounded-full font-semibold text-lg shadow-lg hover:shadow-xl"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            Start Your Real Conversation
-          </motion.button>
         </motion.div>
       </div>
     </section>

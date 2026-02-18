@@ -1,28 +1,34 @@
 import { motion } from 'motion/react';
-import { MessageSquare, Brain, Heart, Shield } from 'lucide-react';
+import { HeartHandshake, Flower2, ShieldCheck } from 'lucide-react';
+
+const MessageIcon = ({ className }: { className?: string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className={className}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M8.625 9.75a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 0 1 .778-.332 48.294 48.294 0 0 0 5.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" />
+  </svg>
+);
 
 export function HowSakhiWorks() {
   const steps = [
     {
-      icon: <MessageSquare className="w-8 h-8" />,
+      icon: <MessageIcon className="w-8 h-8" />,
       title: "Share Your Journey",
       description: "Start a conversation with Sakhi about your fertility journey, concerns, and questions in a safe space.",
       color: "from-pink-500 to-rose-500"
     },
     {
-      icon: <Brain className="w-8 h-8" />,
-      title: "AI-Powered Insights",
-      description: "Get personalized guidance based on culturally-aware AI that understands your unique context.",
+      icon: <HeartHandshake className="w-8 h-8" />,
+      title: "Empathetic Guidance",
+      description: "Get personalized guidance based on culturally-aware insights that understand your unique context.",
       color: "from-purple-500 to-indigo-500"
     },
     {
-      icon: <Heart className="w-8 h-8" />,
+      icon: <Flower2 className="w-8 h-8" />,
       title: "Emotional Support",
       description: "Receive compassionate support that addresses both your emotional and informational needs.",
       color: "from-blue-500 to-cyan-500"
     },
     {
-      icon: <Shield className="w-8 h-8" />,
+      icon: <ShieldCheck className="w-8 h-8" />,
       title: "Privacy First",
       description: "Your conversations are completely private and secure, with end-to-end encryption.",
       color: "from-violet-500 to-purple-500"
@@ -75,7 +81,7 @@ export function HowSakhiWorks() {
                 {/* Icon */}
                 <motion.div
                   className={`relative inline-flex p-4 bg-gradient-to-br ${step.color} text-white rounded-xl shadow-lg mb-6`}
-                  whileHover={{ 
+                  whileHover={{
                     scale: 1.1,
                     rotate: [0, -10, 10, -10, 0],
                   }}
@@ -117,7 +123,7 @@ export function HowSakhiWorks() {
         >
           <motion.button
             className="px-10 py-5 bg-gradient-to-r from-purple-600 to-pink-500 text-white rounded-full font-medium text-lg shadow-lg"
-            whileHover={{ 
+            whileHover={{
               scale: 1.05,
               boxShadow: "0 20px 40px rgba(139, 92, 246, 0.3)"
             }}
