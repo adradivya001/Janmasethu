@@ -51,7 +51,19 @@ export default function OnboardingQuestions({ open, onClose, relationship = "her
   const { toast } = useToast();
   const [currentStep, setCurrentStep] = useState(1);
   const [answers, setAnswers] = useState<Record<string, any>>({});
-  const [parentProfileId] = useState(() => crypto.randomUUID());
+  // Simple UUID generator fallback for non-secure contexts
+  const generateUUID = () => {
+    if (typeof crypto !== 'undefined' && crypto.randomUUID) {
+      return crypto.randomUUID();
+    }
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+      const r = Math.random() * 16 | 0;
+      const v = c === 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+  };
+
+  const [parentProfileId] = useState(() => generateUUID());
   const [question, setQuestion] = useState<Question | null>(null);
   const [totalSteps, setTotalSteps] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
