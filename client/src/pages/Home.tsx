@@ -126,17 +126,6 @@ const Home = () => {
         {/* Hero Section */}
         <section className="text-center py-6 md:py-12 lg:py-20 relative overflow-hidden lg:rounded-[3rem] lg:bg-gradient-to-br lg:from-white lg:via-purple-50/50 lg:to-pink-50/50">
           {/* Trust Badge - Centered at top */}
-          <div className="flex justify-center mb-3 md:mb-6">
-            <div className="inline-flex items-center space-x-2 bg-white rounded-full px-4 py-2 card-shadow">
-              <CheckCircle className="w-4 h-4 text-green-500" />
-              <span
-                className="text-sm font-medium text-foreground"
-                data-testid="text-trust-badge"
-              >
-                {t("trust_pill")}
-              </span>
-            </div>
-          </div>
 
           {/* Hero Title - On its own line below */}
           <h1

@@ -1,0 +1,13 @@
+
+> rest-express@1.0.0 check
+> tsc
+
+client/src/components/sakhi-web/FinalCTA.tsx(62,21): error TS17001: JSX elements cannot have multiple attributes with the same name.
+client/src/components/SeoUpdater.tsx(2,24): error TS2307: Cannot find module 'react-helmet' or its corresponding type declarations.
+client/src/components/SeoUpdater.tsx(3,30): error TS7016: Could not find a declaration file for module '../data/seoOverrides'. 'C:/Users/harin/Downloads/Janmasethu/client/src/data/seoOverrides.js' implicitly has an 'any' type.
+client/src/components/SeoUpdater.tsx(6,23): error TS7031: Binding element 'slug' implicitly has an 'any' type.
+client/src/pages/clinic/Reports.tsx(228,23): error TS2322: Type '{ children: Element[]; data: { name: string; value: number; color: string; }[]; cx: string; cy: string; outerRadius: number; dataKey: string; label: ({ name, value }: any) => string; labelStyle: { fontSize: string; }; }' is not assignable to type 'IntrinsicAttributes & IntrinsicClassAttributes<Pie> & Pick<Readonly<Props>, "string" | "label" | ... 484 more ... | "cornerRadius"> & InexactPartial<...> & InexactPartial<...>'.
+  Property 'labelStyle' does not exist on type 'IntrinsicAttributes & IntrinsicClassAttributes<Pie> & Pick<Readonly<Props>, "string" | "label" | ... 484 more ... | "cornerRadius"> & InexactPartial<...> & InexactPartial<...>'.
+server/db.ts(11,35): error TS2344: Type 'T' does not satisfy the constraint 'QueryResultRow'.
+server/storage.ts(45,7): error TS2322: Type 'string | undefined' is not assignable to type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
