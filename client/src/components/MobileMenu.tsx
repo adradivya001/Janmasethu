@@ -1,6 +1,6 @@
 
 import { Link } from 'wouter';
-import { X, ChevronRight, Home, BookOpen, Stethoscope, MessageCircle, Trophy, FileText, Users, TrendingUp, Heart } from 'lucide-react';
+import { X, ChevronRight, Home, BookOpen, Stethoscope, MessageCircle, Trophy, FileText, Users, TrendingUp, Heart, Calculator } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageProvider';
 import { Button } from '@/components/ui/button';
 
@@ -19,6 +19,7 @@ const navIcons: Record<string, { icon: any; color: string; description: string }
   'nav_blog': { icon: FileText, color: 'from-indigo-500 to-purple-500', description: 'Latest insights & tips' },
   'nav_experts': { icon: Users, color: 'from-cyan-500 to-blue-500', description: 'Meet our specialists' },
   'nav_investors': { icon: TrendingUp, color: 'from-green-500 to-emerald-500', description: 'Partner with us' },
+  'nav_tools': { icon: Calculator, color: 'from-blue-400 to-indigo-500', description: 'Calculators & Trackers' },
 };
 
 const MobileMenu = ({ isOpen, onClose, navItems }: MobileMenuProps) => {
@@ -28,15 +29,15 @@ const MobileMenu = ({ isOpen, onClose, navItems }: MobileMenuProps) => {
     <>
       {/* Backdrop */}
       {isOpen && (
-        <div 
-          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden transition-opacity duration-300"
+        <div
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 transition-opacity duration-300"
           onClick={onClose}
           data-testid="backdrop-mobile-menu"
         />
       )}
 
       {/* Menu */}
-      <div className={`mobile-menu fixed inset-y-0 left-0 z-50 w-[85%] max-w-sm bg-white shadow-2xl lg:hidden ${isOpen ? 'open' : ''}`}>
+      <div className={`mobile-menu fixed inset-y-0 left-0 z-50 w-[85%] max-w-sm bg-white shadow-2xl ${isOpen ? 'open' : ''}`}>
         <div className="flex flex-col h-full">
           {/* Header Section */}
           <div className="px-5 py-4 bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50 relative border-b border-gray-100">
@@ -51,9 +52,9 @@ const MobileMenu = ({ isOpen, onClose, navItems }: MobileMenuProps) => {
               <X className="w-5 h-5 text-gray-500" />
             </Button>
             <div className="flex flex-col items-center justify-center">
-              <img 
-                src="/new JS logo BR.svg" 
-                alt="JanmaSethu Logo" 
+              <img
+                src="/new JS logo BR.svg"
+                alt="JanmaSethu Logo"
                 className="h-28 w-auto object-contain scale-x-125 scale-y-110"
               />
             </div>
@@ -65,16 +66,16 @@ const MobileMenu = ({ isOpen, onClose, navItems }: MobileMenuProps) => {
               {navItems.map(({ key, href }, index) => {
                 const navInfo = navIcons[key] || { icon: ChevronRight, color: 'from-gray-500 to-gray-600', description: '' };
                 const Icon = navInfo.icon;
-                
+
                 return (
-                  <Link 
+                  <Link
                     key={href}
-                    href={href} 
+                    href={href}
                     className="group block"
                     onClick={onClose}
                     data-testid={`link-mobile-${key.replace('nav_', '')}`}
                   >
-                    <div 
+                    <div
                       className="flex items-center gap-3 px-3 py-3 rounded-xl text-gray-700 hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 transition-all duration-200"
                       style={{
                         animation: isOpen ? `slideInLeft 0.3s ease-out ${index * 0.05}s forwards` : '',

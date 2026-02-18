@@ -144,7 +144,7 @@ const SuccessStories = () => {
       {/* Page Header */}
       <div className="text-center mb-16">
         <h1
-          className="text-4xl md:text-5xl font-bold text-foreground font-serif mb-6"
+          className="text-4xl md:text-5xl font-bold text-foreground mb-6"
           data-testid="text-success-stories-title"
         >
           {t("success_preview_title")}
@@ -224,7 +224,7 @@ const SuccessStories = () => {
                   </div>
 
                   <h3
-                    className="text-lg font-bold text-foreground font-serif mb-2 group-hover:text-pink-600 transition-colors"
+                    className="text-lg font-bold text-foreground mb-2 group-hover:text-pink-600 transition-colors"
                     data-testid={`text-story-title-${index}`}
                   >
                     {story.title?.[lang] || "Untitled Story"}
@@ -274,7 +274,7 @@ const SuccessStories = () => {
               <Heart className="w-12 h-12 text-pink-500" />
             </div>
 
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground font-serif mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
               {t("share_story_title")}
             </h2>
 

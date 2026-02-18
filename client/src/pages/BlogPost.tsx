@@ -61,7 +61,7 @@ const BlogPost = () => {
       <div className="container mx-auto px-4 py-8">
         <Card className="max-w-2xl mx-auto rounded-3xl p-8 card-shadow">
           <CardContent>
-            <h1 className="text-2xl font-bold text-foreground font-serif mb-4">
+            <h1 className="text-2xl font-bold text-foreground mb-4">
               {err === "Not found" ? "Blog Post Not Found" : "Error"}
             </h1>
             <p className="text-muted-foreground mb-6">
@@ -108,7 +108,7 @@ const BlogPost = () => {
             <Badge variant="secondary">Article</Badge>
           </div>
 
-          <h1 className="text-3xl md:text-4xl font-bold text-foreground font-serif mb-6">
+          <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
             {post.title}
           </h1>
 
@@ -135,7 +135,7 @@ const BlogPost = () => {
       <div className="w-full">
         <div className="mb-12">
           <div
-            className="prose prose-lg prose-headings:font-serif prose-headings:text-foreground prose-p:text-muted-foreground prose-p:leading-relaxed prose-a:text-purple-600 prose-a:no-underline hover:prose-a:underline prose-img:rounded-2xl prose-img:shadow-lg max-w-none w-full"
+            className="prose prose-lg prose-headings:text-foreground prose-p:text-muted-foreground prose-p:leading-relaxed prose-a:text-purple-600 prose-a:no-underline hover:prose-a:underline prose-img:rounded-2xl prose-img:shadow-lg max-w-none w-full"
             data-testid="section-post-content"
             dangerouslySetInnerHTML={{ __html: post.content_html }}
           />
@@ -144,7 +144,7 @@ const BlogPost = () => {
         {/* Author, Tags, and Source - Below Content */}
         <div className="border-t border-border pt-8 mt-12 space-y-8 px-4 md:px-8">
           <div>
-            <h3 className="text-lg font-bold text-foreground font-serif mb-3">
+            <h3 className="text-lg font-bold text-foreground mb-3">
               About the Author
             </h3>
             <div className="space-y-1">
@@ -156,7 +156,7 @@ const BlogPost = () => {
           </div>
 
           <div>
-            <h3 className="text-lg font-bold text-foreground font-serif mb-3">
+            <h3 className="text-lg font-bold text-foreground mb-3">
               Tags
             </h3>
             <div className="flex flex-wrap gap-2">
@@ -172,7 +172,7 @@ const BlogPost = () => {
 
           {post.source_url && (
             <div>
-              <h3 className="text-lg font-bold text-foreground font-serif mb-3">
+              <h3 className="text-lg font-bold text-foreground mb-3">
                 Source
               </h3>
               <a

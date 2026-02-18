@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Checkbox } from "@/components/ui/checkbox";
+import HeartCheckbox from "@/components/HeartCheckbox";
 import { useToast } from "@/hooks/use-toast";
 import { useLocation } from "wouter";
 import { getOnboardingStep, completeOnboarding } from "@/utils/api";
@@ -346,7 +346,7 @@ export default function OnboardingQuestions({ open, onClose, relationship = "her
                   />
                   {currentQuestion.optional && (
                     <div className="flex items-center space-x-2">
-                      <Checkbox
+                      <HeartCheckbox
                         id="not-applicable"
                         checked={answers[currentQuestion.field] === "N/A"}
                         onCheckedChange={(checked) =>

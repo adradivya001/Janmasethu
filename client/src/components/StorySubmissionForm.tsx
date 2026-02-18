@@ -30,7 +30,7 @@ interface StoryData {
 }
 
 const emotions = [
-  "Hope", "Fear", "Anxiety", "Confusion", "Strength", 
+  "Hope", "Fear", "Anxiety", "Confusion", "Strength",
   "Faith", "Gratitude", "Pain", "Relief", "Love"
 ];
 
@@ -242,22 +242,22 @@ export default function StorySubmissionForm({ open, onClose, onSubmitted }: Stor
       // Show success animation
       setShowConfetti(true);
       setShowSuccess(true);
-      
+
       setTimeout(() => {
         setShowConfetti(false);
         setShowSuccess(false);
         setShowPreview(false);
         setConsentAccepted(false);
-        
+
         // Pass response.data to parent (this gets prepended to the grid)
         if (responseData.data) {
           onSubmitted?.(responseData);
         } else {
           onSubmitted?.(responseData);
         }
-        
+
         onClose();
-        
+
         // Reset form
         setStoryData({
           isAnonymous: false,
@@ -356,15 +356,15 @@ export default function StorySubmissionForm({ open, onClose, onSubmitted }: Stor
             <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
               <CheckCircle2 className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
             </div>
-            
-            <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-2 font-serif">
+
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-2">
               Thank You!
             </h2>
-            
+
             <p className="text-sm sm:text-base text-gray-600 mb-4 max-w-sm mx-auto leading-relaxed">
               Your story has been shared and will inspire other families on their journey.
             </p>
-            
+
             <div className="flex justify-center gap-3 mb-4">
               <div className="flex items-center gap-1.5 bg-green-50 text-green-700 px-3 py-1.5 rounded-full text-xs font-medium">
                 <CheckCircle2 className="w-3.5 h-3.5" />
@@ -375,7 +375,7 @@ export default function StorySubmissionForm({ open, onClose, onSubmitted }: Stor
                 Inspiring Others
               </div>
             </div>
-            
+
             <p className="text-xs text-gray-500">
               Your courage will light the way for others
             </p>
@@ -393,7 +393,7 @@ export default function StorySubmissionForm({ open, onClose, onSubmitted }: Stor
                 >
                   <ArrowLeft className="w-4 h-4" />
                 </Button>
-                <DialogTitle className="text-lg sm:text-xl font-serif bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 bg-clip-text text-transparent">
+                <DialogTitle className="text-lg sm:text-xl bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 bg-clip-text text-transparent">
                   Preview Story
                 </DialogTitle>
               </div>
@@ -487,7 +487,7 @@ export default function StorySubmissionForm({ open, onClose, onSubmitted }: Stor
                   <CheckCircle2 className="w-5 h-5 text-blue-600" />
                   Consent / Release
                 </h3>
-                
+
                 <div className="bg-white rounded-2xl p-5 mb-4 border border-blue-100">
                   <h4 className="font-semibold text-gray-800 mb-3">Publication & Media Release</h4>
                   <p className="text-sm text-gray-700 leading-relaxed mb-3">
@@ -537,7 +537,7 @@ export default function StorySubmissionForm({ open, onClose, onSubmitted }: Stor
             {/* Header */}
             <DialogHeader className="px-4 sm:px-6 pt-4 sm:pt-5 pb-3 border-b border-pink-100 sticky top-0 bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 z-10">
               <div className="flex items-center justify-between pr-8">
-                <DialogTitle className="text-lg sm:text-xl font-serif bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 bg-clip-text text-transparent">
+                <DialogTitle className="text-lg sm:text-xl bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 bg-clip-text text-transparent">
                   Share Your Journey
                 </DialogTitle>
               </div>
@@ -577,11 +577,10 @@ export default function StorySubmissionForm({ open, onClose, onSubmitted }: Stor
                         type="button"
                         onClick={() => setStoryData({ ...storyData, isAnonymous: false })}
                         variant="outline"
-                        className={`px-6 py-2 rounded-full border-2 transition-all duration-300 ${
-                          !storyData.isAnonymous 
-                            ? "bg-pink-100 border-pink-400 text-pink-700" 
+                        className={`px-6 py-2 rounded-full border-2 transition-all duration-300 ${!storyData.isAnonymous
+                            ? "bg-pink-100 border-pink-400 text-pink-700"
                             : "border-pink-300 hover:bg-pink-50 hover:border-pink-400"
-                        }`}
+                          }`}
                       >
                         With my name
                       </Button>
@@ -589,11 +588,10 @@ export default function StorySubmissionForm({ open, onClose, onSubmitted }: Stor
                         type="button"
                         onClick={() => setStoryData({ ...storyData, isAnonymous: true, name: "" })}
                         variant="outline"
-                        className={`px-6 py-2 rounded-full border-2 transition-all duration-300 ${
-                          storyData.isAnonymous 
-                            ? "bg-purple-100 border-purple-400 text-purple-700" 
+                        className={`px-6 py-2 rounded-full border-2 transition-all duration-300 ${storyData.isAnonymous
+                            ? "bg-purple-100 border-purple-400 text-purple-700"
                             : "border-purple-300 hover:bg-purple-50 hover:border-purple-400"
-                        }`}
+                          }`}
                       >
                         Anonymous
                       </Button>
@@ -697,11 +695,10 @@ export default function StorySubmissionForm({ open, onClose, onSubmitted }: Stor
                           key={emotion}
                           type="button"
                           onClick={() => toggleEmotion(emotion)}
-                          className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105 ${
-                            storyData.emotions.includes(emotion)
+                          className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105 ${storyData.emotions.includes(emotion)
                               ? "bg-gradient-to-r from-pink-400 to-purple-400 text-white shadow-md"
                               : "bg-white/80 text-gray-700 border-2 border-pink-200 hover:border-pink-300"
-                          }`}
+                            }`}
                           style={{
                             animation: `chipBounce 0.5s ease-out ${idx * 0.05}s backwards`,
                           }}
@@ -749,11 +746,10 @@ export default function StorySubmissionForm({ open, onClose, onSubmitted }: Stor
                           key={treatment}
                           type="button"
                           onClick={() => toggleTreatment(treatment)}
-                          className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105 ${
-                            storyData.treatments.includes(treatment)
+                          className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105 ${storyData.treatments.includes(treatment)
                               ? "bg-gradient-to-r from-blue-400 to-purple-400 text-white shadow-md"
                               : "bg-white/80 text-gray-700 border-2 border-blue-200 hover:border-blue-300"
-                          }`}
+                            }`}
                           style={{
                             animation: `chipBounce 0.5s ease-out ${idx * 0.05}s backwards`,
                           }}

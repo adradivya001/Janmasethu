@@ -12,6 +12,7 @@ import {
 import { useLanguage } from "../i18n/LanguageProvider";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import AnimatedButton from "@/components/AnimatedButton";
 import { useToast } from "@/hooks/use-toast";
 import ChatInterface from "@/components/ChatInterface";
 import AuthModal from "@/components/AuthModal";
@@ -125,7 +126,7 @@ const Sakhi = () => {
         <section className="text-center py-12 relative">
           <div className="max-w-4xl mx-auto">
             <h1
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground font-serif mb-6 leading-tight"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight"
               data-testid="text-sakhi-hero-title"
               dangerouslySetInnerHTML={{ __html: t("sakhi_hero") }}
             ></h1>
@@ -138,14 +139,13 @@ const Sakhi = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button
+              <AnimatedButton
                 onClick={handleTrySakhiClick}
-                className="gradient-button text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-lg transition-all duration-300 inline-flex items-center"
+                className="gradient-button text-white shadow-lg hover:shadow-xl transition-all duration-300"
                 data-testid="button-try-sakhi-hero"
               >
                 {t("sakhi_try")}
-                <ArrowRight className="ml-2 w-4 h-4" />
-              </Button>
+              </AnimatedButton>
               <Link href="/knowledge-hub">
                 <Button
                   variant="outline"
@@ -172,7 +172,7 @@ const Sakhi = () => {
         <section className="py-12">
           <div className="text-center mb-12">
             <h2
-              className="text-4xl font-bold text-foreground font-serif mb-4"
+              className="text-4xl font-bold text-foreground mb-4"
               data-testid="text-sakhi-how-title"
             >
               {t("sakhi_how_title")}
@@ -194,7 +194,7 @@ const Sakhi = () => {
                   <CardContent className="p-0 flex flex-col h-full">
                     <Icon className={`w-12 h-12 ${feature.color} mx-auto mb-4`} />
                     <h3
-                      className="text-lg font-bold text-foreground font-serif mb-2"
+                      className="text-lg font-bold text-foreground mb-2"
                       data-testid={`text-feature-title-${index}`}
                     >
                       {t(feature.title)}
@@ -214,7 +214,7 @@ const Sakhi = () => {
           {/* Detailed Help List */}
           <Card className="rounded-3xl p-8 card-shadow">
             <CardContent className="p-0">
-              <h3 className="text-2xl font-bold text-foreground font-serif mb-6 text-center">
+              <h3 className="text-2xl font-bold text-foreground mb-6 text-center">
                 {t("sakhi_specific_ways")}
               </h3>
               <div className="grid md:grid-cols-2 gap-6">
@@ -239,7 +239,7 @@ const Sakhi = () => {
         <section className="py-12">
           <div className="text-center mb-12">
             <h2
-              className="text-4xl md:text-5xl font-bold text-foreground font-serif mb-6"
+              className="text-4xl md:text-5xl font-bold text-foreground mb-6"
               data-testid="text-sakhi-try-title"
             >
               {t("sakhi_try_demo_title")}
@@ -326,7 +326,7 @@ const Sakhi = () => {
             <div className="space-y-4">
               <Card className="rounded-3xl p-6 card-shadow">
                 <CardHeader>
-                  <CardTitle className="text-lg font-bold text-foreground font-serif flex items-center">
+                  <CardTitle className="text-lg font-bold text-foreground flex items-center">
                     <MessageCircle className="w-5 h-5 mr-2 text-pink-500" />
                     {t("sakhi_scenarios_title")}
                   </CardTitle>
@@ -408,7 +408,7 @@ const Sakhi = () => {
 
               <Card className="rounded-3xl p-6 card-shadow">
                 <CardHeader>
-                  <CardTitle className="text-lg font-bold text-foreground font-serif">
+                  <CardTitle className="text-lg font-bold text-foreground">
                     {t("sakhi_how_it_works")}
                   </CardTitle>
                 </CardHeader>
@@ -450,7 +450,7 @@ const Sakhi = () => {
           <Card className="rounded-3xl p-6 card-shadow bg-gradient-to-br from-orange-50 to-red-50 border border-orange-200">
             <CardContent className="p-0 text-center">
               <Heart className="w-12 h-12 text-orange-600 mx-auto mb-4" />
-              <h3 className="text-xl font-bold text-foreground font-serif mb-4">
+              <h3 className="text-xl font-bold text-foreground mb-4">
                 {t("sakhi_help_notice_title")}
               </h3>
               <div className="max-w-3xl mx-auto text-muted-foreground space-y-3">
@@ -472,7 +472,7 @@ const Sakhi = () => {
 
           {/* Continue Exploring */}
           <div className="bg-white rounded-3xl p-6 card-shadow text-center mt-8">
-            <h2 className="text-2xl font-bold text-foreground font-serif mb-4">
+            <h2 className="text-2xl font-bold text-foreground mb-4">
               {t("sakhi_continue_journey")}
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
