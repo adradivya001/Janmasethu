@@ -6,11 +6,11 @@ import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
 import { Card, CardContent } from './ui/card';
-import { Baby, Heart, Calendar } from 'lucide-react';
+import { Baby, Heart } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export function JourneySelector() {
-    const { showSelector, setShowSelector, setJourney, clearJourney, initialStage } = useJourney();
+    const { showSelector, setShowSelector, setJourney, clearJourney, initialStage, dismissSelector } = useJourney();
     const [selectedStage, setSelectedStage] = useState<JourneyStage | null>(null);
     const [date, setDate] = useState('');
 
@@ -42,10 +42,10 @@ export function JourneySelector() {
     };
 
     return (
-        <Dialog open={showSelector} onOpenChange={setShowSelector}>
+        <Dialog open={showSelector} onOpenChange={(open) => open ? setShowSelector(true) : dismissSelector()}>
             <DialogContent className="sm:max-w-md">
                 <DialogHeader>
-                    <DialogTitle className="text-center text-xl font-bold text-gray-800">
+                    <DialogTitle className="text-center text-lg sm:text-xl font-bold text-gray-800 pr-6">
                         Current Stage of your Journey?
                     </DialogTitle>
                     <DialogDescription className="text-center">
@@ -93,14 +93,12 @@ export function JourneySelector() {
                                         ? 'Due Date or Last Period Date'
                                         : 'Baby\'s Date of Birth'}
                             </Label>
-                            <div className="relative">
+                            <div>
                                 <Input
                                     type="date"
                                     value={date}
                                     onChange={(e) => setDate(e.target.value)}
-                                    className="pl-10"
                                 />
-                                <Calendar className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
                             </div>
 
                             <div className="flex flex-col gap-2">

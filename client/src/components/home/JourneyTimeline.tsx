@@ -33,7 +33,7 @@ export default function JourneyTimeline() {
 
             <div className="text-center mb-12 relative z-10 px-4">
                 <h2
-                    className="text-3xl md:text-4xl font-bold text-foreground font-serif mb-4 animate-fadeInUp"
+                    className="text-3xl md:text-4xl font-bold text-pink-600 mb-4 animate-fadeInUp"
                     data-testid="text-journey-title"
                 >
                     {t("journey_title")}
@@ -80,7 +80,7 @@ export default function JourneyTimeline() {
                         </DialogTrigger>
                         <DialogContent className="sm:max-w-2xl max-w-[90vw] max-h-[60vh] sm:max-h-[80vh] overflow-y-auto p-0 bg-gradient-to-br from-white via-green-50/30 to-purple-50/30 rounded-2xl relative">
                             <DialogHeader className="border-b border-green-100 pb-4 px-6 pt-6">
-                                <DialogTitle className="flex items-center gap-3 text-2xl md:text-3xl font-serif">
+                                <DialogTitle className="flex items-center gap-3 text-2xl md:text-3xl">
                                     <div className="w-12 h-12 bg-gradient-to-br from-green-100 to-green-200 rounded-full flex items-center justify-center shadow-lg overflow-hidden">
                                         <img src="/thinking of parenthood.png" alt="Thinking of Parenthood" className="w-full h-full object-cover" />
                                     </div>
@@ -209,7 +209,7 @@ export default function JourneyTimeline() {
                         </DialogTrigger>
                         <DialogContent className="sm:max-w-2xl max-w-[90vw] max-h-[60vh] sm:max-h-[80vh] overflow-y-auto p-0 bg-gradient-to-br from-white via-pink-50/30 to-purple-50/30 rounded-2xl relative">
                             <DialogHeader className="border-b border-pink-100 pb-4 px-6 pt-6">
-                                <DialogTitle className="flex items-center gap-3 text-2xl md:text-3xl font-serif">
+                                <DialogTitle className="flex items-center gap-3 text-2xl md:text-3xl">
                                     <div className="w-12 h-12 bg-gradient-to-br from-pink-100 to-pink-200 rounded-full flex items-center justify-center shadow-lg overflow-hidden">
                                         <img src="/Trying naturally.png" alt="Trying Naturally" className="w-full h-full object-cover" />
                                     </div>
@@ -332,7 +332,7 @@ export default function JourneyTimeline() {
                         </DialogTrigger>
                         <DialogContent className="sm:max-w-2xl max-w-[90vw] max-h-[60vh] sm:max-h-[80vh] overflow-y-auto p-0 bg-gradient-to-br from-white via-blue-50/30 to-purple-50/30 rounded-2xl relative">
                             <DialogHeader className="border-b border-blue-100 pb-4 px-6 pt-6">
-                                <DialogTitle className="flex items-center gap-3 text-2xl md:text-3xl font-serif">
+                                <DialogTitle className="flex items-center gap-3 text-2xl md:text-3xl">
                                     <div className="w-12 h-12 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full flex items-center justify-center shadow-lg overflow-hidden">
                                         <img src="/Exploring option.png" alt="Exploring Options" className="w-full h-full object-contain" />
                                     </div>
@@ -460,7 +460,7 @@ export default function JourneyTimeline() {
                         </DialogTrigger>
                         <DialogContent className="sm:max-w-2xl max-w-[90vw] max-h-[60vh] sm:max-h-[80vh] overflow-y-auto p-0 bg-gradient-to-br from-white via-purple-50/30 to-pink-50/30 rounded-2xl relative">
                             <DialogHeader className="border-b border-purple-100 pb-4 px-6 pt-6">
-                                <DialogTitle className="flex items-center gap-3 text-2xl md:text-3xl font-serif">
+                                <DialogTitle className="flex items-center gap-3 text-2xl md:text-3xl">
                                     <div className="w-12 h-12 bg-gradient-to-br from-purple-100 to-purple-200 rounded-full flex items-center justify-center shadow-lg overflow-hidden">
                                         <img src="/Pregnancy.png" alt="Pregnancy" className="w-full h-full object-contain" />
                                     </div>
@@ -583,7 +583,7 @@ export default function JourneyTimeline() {
                         </DialogTrigger>
                         <DialogContent className="sm:max-w-2xl max-w-[90vw] max-h-[60vh] sm:max-h-[80vh] overflow-y-auto p-0 bg-gradient-to-br from-white via-orange-50/30 to-purple-50/30 rounded-2xl relative">
                             <DialogHeader className="border-b border-orange-100 pb-4 px-6 pt-6">
-                                <DialogTitle className="flex items-center gap-3 text-2xl md:text-3xl font-serif">
+                                <DialogTitle className="flex items-center gap-3 text-2xl md:text-3xl">
                                     <div className="w-12 h-12 bg-gradient-to-br from-orange-100 to-orange-200 rounded-full flex items-center justify-center shadow-lg overflow-hidden">
                                         <img src="/New baby.png" alt="New Baby" className="w-full h-full object-contain" />
                                     </div>

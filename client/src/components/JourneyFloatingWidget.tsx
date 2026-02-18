@@ -1,118 +1,193 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { useJourney } from '../contexts/JourneyContext';
 import { JourneyStage, JOURNEY_LABELS } from '../lib/journey';
-import { Baby, Heart, Calendar, X } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { X } from 'lucide-react';
+import { motion, AnimatePresence, useMotionValue, animate } from 'framer-motion';
 import { cn } from '../lib/utils';
-import { Button } from './ui/button';
 
-export function JourneyFloatingWidget() {
-    const { journey, setJourney, clearJourney, showSelector, setShowSelector, openSelector } = useJourney();
-    const [hoveredStage, setHoveredStage] = useState<JourneyStage | null>(null);
+// ─── Snap-to-edge hook ───
+function useSnapToEdge() {
+    const x = useMotionValue(0);
+    const y = useMotionValue(0);
+    const [side, setSide] = useState<'right' | 'left'>('right');
 
-    // Don't show if the main modal is open
-    if (showSelector) return null;
+    const snapToEdge = useCallback(() => {
+        const currentX = x.get();
+        const pillW = 52;
+        const screenW = window.innerWidth;
+        const centerX = screenW + currentX - pillW / 2;
 
-    const stages: JourneyStage[] = ['TTC', 'PREGNANT', 'PARENT'];
+        if (centerX < screenW / 2) {
+            animate(x, -(screenW - pillW), { type: "spring", stiffness: 300, damping: 30 });
+            setSide('left');
+        } else {
+            animate(x, 0, { type: "spring", stiffness: 300, damping: 30 });
+            setSide('right');
+        }
+    }, [x]);
 
-    const getIcon = (stage: JourneyStage) => {
-        switch (stage) {
-            case 'TTC': return <img src="/thinking of parenthood.png" alt="TTC" className="w-full h-full object-contain p-1 rounded-full" />;
-            case 'PREGNANT': return <img src="/Pregnancy.png" alt="Pregnant" className="w-full h-full object-contain p-1 rounded-full" />;
-            case 'PARENT': return <img src="/Post-delivery.png" alt="Parent" className="w-full h-full object-contain p-1 rounded-full" />;
+    return { x, y, side, snapToEdge };
+}
+
+
+// ─── Individual Pill Widget ───
+function StagePill({ stage, index }: { stage: JourneyStage; index: number }) {
+    const { journey, clearJourney, openSelector } = useJourney();
+    const [isExpanded, setIsExpanded] = useState(false);
+    const [openDir, setOpenDir] = useState<'down' | 'up'>('down');
+    const pillRef = useRef<HTMLDivElement>(null);
+    const topOffset = 28 + index * 7;
+    const { x, y, side, snapToEdge } = useSnapToEdge();
+    const isActive = journey?.stage === stage;
+
+    const config = {
+        TTC: {
+            icon: "/thinking of parenthood.png",
+            label: "Trying to Conceive",
+            gradient: "from-pink-400 to-rose-500",
+            activeBorder: "border-pink-300",
+            activeText: "text-pink-600",
+            activeBg: "bg-pink-50",
+        },
+        PREGNANT: {
+            icon: "/Pregnancy.png",
+            label: "Pregnant",
+            gradient: "from-purple-400 to-violet-500",
+            activeBorder: "border-purple-300",
+            activeText: "text-purple-600",
+            activeBg: "bg-purple-50",
+        },
+        PARENT: {
+            icon: "/Post-delivery.png",
+            label: "Parent",
+            gradient: "from-blue-400 to-indigo-500",
+            activeBorder: "border-blue-300",
+            activeText: "text-blue-600",
+            activeBg: "bg-blue-50",
+        },
+    }[stage];
+
+    const handleClick = () => {
+        if (isActive) {
+            // Check if near bottom of screen
+            if (pillRef.current) {
+                const rect = pillRef.current.getBoundingClientRect();
+                const spaceBelow = window.innerHeight - rect.bottom;
+                setOpenDir(spaceBelow < 200 ? 'up' : 'down');
+            }
+            setIsExpanded(true);
+        } else {
+            openSelector(stage);
         }
     };
 
-    const getColor = (stage: JourneyStage, isActive: boolean) => {
-        if (!isActive && journey) return 'bg-gray-100 text-gray-400 hover:bg-gray-200'; // Dim others if one is selected
-
-        switch (stage) {
-            case 'TTC': return 'bg-pink-500 hover:bg-pink-600 text-white';
-            case 'PREGNANT': return 'bg-purple-500 hover:bg-purple-600 text-white';
-            case 'PARENT': return 'bg-blue-500 hover:bg-blue-600 text-white';
-        }
-    };
-
-    const handleSelect = (stage: JourneyStage) => {
-        // If clicking the already selected one, do nothing (removal is via hover button)
-        if (journey?.stage === stage) return;
-
-        // Otherwise open selector for that stage directly
-        openSelector(stage);
-    };
+    const pillRounding = side === 'right' ? 'rounded-l-full' : 'rounded-r-full';
+    const pillPadding = side === 'right' ? 'pl-1 pr-0' : 'pr-1 pl-0';
 
     return (
-        <div className="fixed right-4 top-1/2 -translate-y-1/2 z-40 flex flex-col gap-4 items-end pointer-events-none">
-            {/* Wrapper to allow pointer events only on buttons */}
-            <div className="pointer-events-auto flex flex-col gap-4">
-                {stages.map((stage, index) => {
-                    const isActive = journey?.stage === stage;
+        <motion.div
+            ref={pillRef}
+            drag
+            dragMomentum={false}
+            dragElastic={0.05}
+            onDragEnd={snapToEdge}
+            style={{ x, y, touchAction: 'none', top: `${topOffset}%`, zIndex: 9991 + index }}
+            className="fixed right-0 cursor-grab active:cursor-grabbing"
+        >
+            {/* Collapsed Pill — always visible when not expanded */}
+            <button
+                onClick={handleClick}
+                className={cn(
+                    "group relative flex items-center transition-all duration-300",
+                    isExpanded && isActive && "pointer-events-none opacity-0"
+                )}
+            >
+                <div className={cn(
+                    "relative overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300",
+                    "bg-gradient-to-b", config.gradient,
+                    pillRounding,
+                    isActive && "ring-2 ring-white shadow-xl"
+                )}>
+                    <div className="absolute inset-0 bg-gradient-to-b from-white/20 via-transparent to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className={cn("relative flex items-center py-1", pillPadding)}>
+                        <div className={cn(
+                            "w-7 h-7 md:w-10 md:h-10 rounded-full overflow-hidden flex-shrink-0 bg-white/25 backdrop-blur-sm",
+                            isActive && "ring-2 ring-white/60"
+                        )}>
+                            <img src={config.icon} alt={stage} className="w-full h-full object-contain p-1" />
+                        </div>
+                        <div className="w-1.5 md:w-3 flex items-center justify-center">
+                            {isActive && <div className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />}
+                        </div>
+                    </div>
+                </div>
+            </button>
 
-                    return (
-                        <motion.div
-                            key={stage}
-                            initial={{ x: 50, opacity: 0 }}
-                            animate={{ x: 0, opacity: 1 }}
-                            transition={{ delay: index * 0.1 }}
-                            className="relative flex items-center justify-end group"
-                            onMouseEnter={() => setHoveredStage(stage)}
-                            onMouseLeave={() => setHoveredStage(null)}
-                        >
-                            {/* Remove Button (Only for Active, on Hover) */}
-                            <AnimatePresence>
-                                {isActive && hoveredStage === stage && (
-                                    <motion.div
-                                        initial={{ opacity: 0, x: 20, scale: 0.8 }}
-                                        animate={{ opacity: 1, x: -8, scale: 1 }}
-                                        exit={{ opacity: 0, x: 10, scale: 0.8 }}
-                                        className="absolute right-full mr-2 z-50 pointer-events-auto"
-                                    >
-                                        <Button
-                                            variant="destructive"
-                                            size="sm"
-                                            onClick={(e) => {
-                                                e.stopPropagation();
-                                                clearJourney();
-                                            }}
-                                            className="h-8 px-3 text-xs shadow-lg whitespace-nowrap rounded-full font-medium bg-red-500 hover:bg-red-600 border border-red-600"
-                                        >
-                                            Remove
-                                        </Button>
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
+            {/* Expanded Panel — positioned relative to pill */}
+            <AnimatePresence>
+                {isExpanded && isActive && (
+                    <motion.div
+                        key="expanded-panel"
+                        initial={{ scale: 0.8, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        exit={{ scale: 0.8, opacity: 0 }}
+                        transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                        onPointerDown={(e) => e.stopPropagation()}
+                        className="absolute"
+                        style={{
+                            // Horizontal: on right side, panel goes left; on left side, panel goes right
+                            ...(side === 'right' ? { right: 0 } : { left: 0 }),
+                            // Vertical: open down normally, open up if near bottom
+                            ...(openDir === 'down' ? { top: 0 } : { bottom: 0 }),
+                        }}
+                    >
+                        <div className={cn(
+                            "bg-white shadow-2xl border border-gray-200/80 overflow-hidden w-[180px]",
+                            "rounded-2xl"
+                        )}>
+                            <div className={cn("bg-gradient-to-r", config.gradient, "px-3 py-2.5 flex items-center gap-2")}>
+                                <div className="w-8 h-8 rounded-full bg-white/25 overflow-hidden flex-shrink-0">
+                                    <img src={config.icon} alt={stage} className="w-full h-full object-contain p-0.5" />
+                                </div>
+                                <span className="text-white font-bold text-xs flex-1">{config.label}</span>
+                                <button onClick={() => setIsExpanded(false)} className="text-white/70 hover:text-white">
+                                    <X className="w-3.5 h-3.5" />
+                                </button>
+                            </div>
+                            <div className="p-2.5 space-y-1.5">
+                                <p className="text-[10px] text-gray-400">Currently active journey stage</p>
+                                <button
+                                    onClick={() => { clearJourney(); setIsExpanded(false); }}
+                                    className="w-full text-xs font-semibold px-3 py-2 rounded-xl bg-red-50 text-red-500 hover:bg-red-100 transition-colors border border-red-100"
+                                >
+                                    Remove Personalization
+                                </button>
+                                <button
+                                    onClick={() => { openSelector(stage); setIsExpanded(false); }}
+                                    className={cn("w-full text-xs font-semibold px-3 py-2 rounded-xl transition-colors border", config.activeBg, config.activeText, config.activeBorder)}
+                                >
+                                    Change Stage
+                                </button>
+                            </div>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </motion.div>
+    );
+}
 
-                            {/* Label Tooltip (For inactive ones or when no selection) */}
-                            <AnimatePresence>
-                                {!isActive && hoveredStage === stage && (
-                                    <motion.div
-                                        initial={{ opacity: 0, x: 10 }}
-                                        animate={{ opacity: 1, x: -10 }}
-                                        exit={{ opacity: 0, x: 10 }}
-                                        className="absolute right-full mr-2 bg-white px-3 py-1.5 rounded-lg shadow-md border border-gray-100 text-xs font-semibold text-gray-700 whitespace-nowrap"
-                                    >
-                                        {JOURNEY_LABELS[stage]}
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
 
-                            {/* Main Circle Button */}
-                            <motion.button
-                                onClick={() => handleSelect(stage)}
-                                whileHover={{ scale: 1.1 }}
-                                whileTap={{ scale: 0.95 }}
-                                className={cn(
-                                    "h-16 w-16 rounded-full shadow-lg flex items-center justify-center transition-all duration-300 relative z-10",
-                                    getColor(stage, isActive),
-                                    isActive ? "h-20 w-20 ring-4 ring-white shadow-xl shadow-purple-500/20" : "opacity-80 hover:opacity-100"
-                                )}
-                            >
-                                {getIcon(stage)}
-                            </motion.button>
-                        </motion.div>
-                    );
-                })}
-            </div>
-        </div>
+// ─── Main Export ───
+export function JourneyFloatingWidget() {
+    const { showSelector } = useJourney();
+    if (showSelector) return null;
+    const stages: JourneyStage[] = ['TTC', 'PREGNANT', 'PARENT'];
+    return (
+        <>
+            {stages.map((stage, index) => (
+                <StagePill key={stage} stage={stage} index={index} />
+            ))}
+        </>
     );
 }

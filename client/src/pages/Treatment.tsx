@@ -58,8 +58,8 @@ const Treatment = () => {
             <Clock className="w-6 h-6 animate-spin" />
             <span className="text-lg">
               {lang === 'hi' ? 'लोड हो रहा है...' :
-               lang === 'te' ? 'లోడ్ అవుతోంది...' :
-               'Loading treatment information...'}
+                lang === 'te' ? 'లోడ్ అవుతోంది...' :
+                  'Loading treatment information...'}
             </span>
           </div>
         </div>
@@ -73,24 +73,24 @@ const Treatment = () => {
       <div className="container mx-auto px-4 py-8">
         <Card className="max-w-2xl mx-auto rounded-3xl p-8 card-shadow">
           <CardContent>
-            <h1 className="text-2xl font-bold text-foreground font-serif mb-4">
+            <h1 className="text-2xl font-bold text-foreground mb-4">
               {error ? error :
-               lang === 'hi' ? 'उपचार नहीं मिला' :
-               lang === 'te' ? 'చికిత్స కనుగొనబడలేదు' :
-               'Treatment Not Found'}
+                lang === 'hi' ? 'उपचार नहीं मिला' :
+                  lang === 'te' ? 'చికిత్స కనుగొనబడలేదు' :
+                    'Treatment Not Found'}
             </h1>
             <p className="text-muted-foreground mb-6">
               {error ? 'Please try again later.' :
-               lang === 'hi' ? 'आपके द्वारा खोजी जा रही उपचार जानकारी उपलब्ध नहीं है।' :
-               lang === 'te' ? 'మీరు వెతుకుతున్న చికిత్స సమాచారం అందుబాటులో లేదు।' :
-               'The treatment information you\'re looking for doesn\'t exist.'}
+                lang === 'hi' ? 'आपके द्वारा खोजी जा रही उपचार जानकारी उपलब्ध नहीं है।' :
+                  lang === 'te' ? 'మీరు వెతుకుతున్న చికిత్స సమాచారం అందుబాటులో లేదు।' :
+                    'The treatment information you\'re looking for doesn\'t exist.'}
             </p>
             <Link href="/treatments">
               <Button className="gradient-button text-white rounded-full">
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 {lang === 'hi' ? 'उपचारों पर वापस जाएं' :
-                 lang === 'te' ? 'చికిత్సలకు తిరిగి వెళ్ళండి' :
-                 'Back to Treatments'}
+                  lang === 'te' ? 'చికిత్సలకు తిరిగి వెళ్ళండి' :
+                    'Back to Treatments'}
               </Button>
             </Link>
           </CardContent>
@@ -115,7 +115,7 @@ const Treatment = () => {
   // Get localized content with safety checks
   const summary = getSummaryByLanguage(processedData.summary, langKey);
   const reviewedBy = processedData.reviewedBy;
-  
+
   // Handle sources - check if it's nested by language or a simple array
   let sources: string[] = [];
   if (processedData.sources) {
@@ -136,8 +136,8 @@ const Treatment = () => {
           <Button variant="ghost" className="rounded-full" data-testid="button-back-treatments">
             <ArrowLeft className="w-4 h-4 mr-2" />
             {lang === 'hi' ? 'उपचारों पर वापस जाएं' :
-             lang === 'te' ? 'చికిత్సలకు తిరిగి వెళ్ళండి' :
-             'Back to Treatments'}
+              lang === 'te' ? 'చికిత్సలకు తిరిగి వెళ్ళండి' :
+                'Back to Treatments'}
           </Button>
         </Link>
       </div>
@@ -145,7 +145,7 @@ const Treatment = () => {
       {/* Treatment Header */}
       <Card className="rounded-3xl p-8 md:p-12 card-shadow mb-8">
         <CardContent className="p-0">
-          <h1 className="text-3xl md:text-4xl font-bold text-foreground font-serif mb-6" data-testid="text-treatment-name">
+          <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-6" data-testid="text-treatment-name">
             {processedData.title || treatmentMetadata.title}
           </h1>
 
@@ -158,8 +158,8 @@ const Treatment = () => {
               <User className="w-4 h-4" />
               <span data-testid="text-treatment-reviewer">
                 {lang === 'hi' ? 'द्वारा समीक्षित' :
-                 lang === 'te' ? 'సమీక్షించినవారు' :
-                 'Reviewed by'} {reviewedBy}
+                  lang === 'te' ? 'సమీక్షించినవారు' :
+                    'Reviewed by'} {reviewedBy}
               </span>
             </div>
           </div>
@@ -171,11 +171,11 @@ const Treatment = () => {
         {/* Who Might Benefit */}
         <Card className="rounded-3xl p-6 card-shadow">
           <CardHeader className="pb-4">
-            <CardTitle className="text-xl font-bold text-foreground font-serif flex items-center">
+            <CardTitle className="text-xl font-bold text-foreground flex items-center">
               <Users className="w-6 h-6 mr-3 text-blue-600" />
               {lang === 'hi' ? 'कौन लाभ उठा सकता है' :
-               lang === 'te' ? 'ఎవరికి ఉపయోగపడుతుంది' :
-               'Who Might Benefit'}
+                lang === 'te' ? 'ఎవరికి ఉపయోగపడుతుంది' :
+                  'Who Might Benefit'}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -198,7 +198,7 @@ const Treatment = () => {
                 // Handle object format with language keys
                 if (benefitData && typeof benefitData === 'object') {
                   const items = getContentByLanguage(benefitData, langKey);
-                  
+
                   if (Array.isArray(items) && items.length > 0) {
                     return items.map((item, index) => (
                       <div key={index} className="flex items-start space-x-3">
@@ -218,11 +218,11 @@ const Treatment = () => {
         {/* Process Steps */}
         <Card className="rounded-3xl p-6 card-shadow">
           <CardHeader className="pb-4">
-            <CardTitle className="text-xl font-bold text-foreground font-serif flex items-center">
+            <CardTitle className="text-xl font-bold text-foreground flex items-center">
               <Zap className="w-6 h-6 mr-3 text-purple-600" />
               {lang === 'hi' ? 'प्रक्रिया के चरण' :
-               lang === 'te' ? 'ప్రక్రియ దశలు' :
-               'Process Steps'}
+                lang === 'te' ? 'ప్రక్రియ దశలు' :
+                  'Process Steps'}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -234,7 +234,7 @@ const Treatment = () => {
                   // Handle nested process steps structure
                   const langKey = lang === 'hi' ? 'Hindi' : lang === 'te' ? 'Telugu' : 'English';
                   const langSteps = (stepsData as any)[langKey] || (stepsData as any)[lang] || (stepsData as any).english || (stepsData as any).English;
-                  
+
                   if (langSteps && typeof langSteps === 'object') {
                     // Check if it's a nested structure with categories
                     const categories = Object.keys(langSteps);
@@ -254,7 +254,7 @@ const Treatment = () => {
                       });
                     }
                   }
-                  
+
                   // Fallback to simple array handling
                   const fallbackLangKey = lang === 'hi' ? 'hi' : lang === 'te' ? 'te' : 'en';
                   const steps = getContentByLanguage(stepsData, fallbackLangKey);
@@ -281,11 +281,11 @@ const Treatment = () => {
         {/* Risks & Considerations */}
         <Card className="rounded-3xl p-6 card-shadow">
           <CardHeader className="pb-4">
-            <CardTitle className="text-xl font-bold text-foreground font-serif flex items-center">
+            <CardTitle className="text-xl font-bold text-foreground flex items-center">
               <AlertTriangle className="w-6 h-6 mr-3 text-orange-600" />
               {lang === 'hi' ? 'जोखिम और विचारणीय बातें' :
-               lang === 'te' ? 'రిస్క్‌లు & పరిగణనలు' :
-               'Risks & Considerations'}
+                lang === 'te' ? 'రిస్క్‌లు & పరిగణనలు' :
+                  'Risks & Considerations'}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -306,7 +306,7 @@ const Treatment = () => {
 
                 if (risksData && typeof risksData === 'object') {
                   const items = getContentByLanguage(risksData, langKey);
-                  
+
                   if (Array.isArray(items) && items.length > 0) {
                     return items.map((risk, index) => (
                       <div key={index} className="flex items-start space-x-3">
@@ -326,11 +326,11 @@ const Treatment = () => {
         {/* Cost Considerations */}
         <Card className="rounded-3xl p-6 card-shadow">
           <CardHeader className="pb-4">
-            <CardTitle className="text-xl font-bold text-foreground font-serif flex items-center">
+            <CardTitle className="text-xl font-bold text-foreground flex items-center">
               <DollarSign className="w-6 h-6 mr-3 text-green-600" />
               {lang === 'hi' ? 'लागत संबंधी विचार' :
-               lang === 'te' ? 'ఖర్చు పరిగణనలు' :
-               'Cost Considerations'}
+                lang === 'te' ? 'ఖర్చు పరిగణనలు' :
+                  'Cost Considerations'}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -351,7 +351,7 @@ const Treatment = () => {
 
                 if (costData && typeof costData === 'object') {
                   const items = getContentByLanguage(costData, langKey);
-                  
+
                   if (Array.isArray(items) && items.length > 0) {
                     return items.map((cost, index) => (
                       <div key={index} className="flex items-start space-x-3">
@@ -371,11 +371,11 @@ const Treatment = () => {
         {/* Questions to Ask Your Doctor */}
         <Card className="rounded-3xl p-6 card-shadow">
           <CardHeader className="pb-4">
-            <CardTitle className="text-xl font-bold text-foreground font-serif flex items-center">
+            <CardTitle className="text-xl font-bold text-foreground flex items-center">
               <HelpCircle className="w-6 h-6 mr-3 text-blue-600" />
               {lang === 'hi' ? 'अपने डॉक्टर से पूछने योग्य सवाल' :
-               lang === 'te' ? 'మీ వైద్యుడిని అడగవలసిన ప్రశ్నలు' :
-               'Questions to Ask Your Doctor'}
+                lang === 'te' ? 'మీ వైద్యుడిని అడగవలసిన ప్రశ్నలు' :
+                  'Questions to Ask Your Doctor'}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -396,7 +396,7 @@ const Treatment = () => {
 
                 if (questionsData && typeof questionsData === 'object') {
                   const items = getContentByLanguage(questionsData, langKey);
-                  
+
                   if (Array.isArray(items) && items.length > 0) {
                     return items.map((question, index) => (
                       <div key={index} className="flex items-start space-x-3">
@@ -417,10 +417,10 @@ const Treatment = () => {
       {/* Sources */}
       <Card className="rounded-3xl p-6 card-shadow">
         <CardHeader className="pb-4">
-          <CardTitle className="text-lg font-bold text-foreground font-serif">
+          <CardTitle className="text-lg font-bold text-foreground">
             {lang === 'hi' ? 'स्रोत' :
-             lang === 'te' ? 'మూలాలు' :
-             'Sources'}
+              lang === 'te' ? 'మూలాలు' :
+                'Sources'}
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -432,8 +432,8 @@ const Treatment = () => {
             )) : (
               <span className="text-muted-foreground italic text-sm">
                 {lang === 'hi' ? 'स्रोत लोड हो रहे हैं...' :
-                 lang === 'te' ? 'మూలాలు లోడ్ అవుతున్నాయి...' :
-                 'Loading sources...'}
+                  lang === 'te' ? 'మూలాలు లోడ్ అవుతున్నాయి...' :
+                    'Loading sources...'}
               </span>
             )}
           </div>

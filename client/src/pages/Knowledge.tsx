@@ -520,7 +520,7 @@ const Knowledge = () => {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="text-center mb-12">
-        <h1 className="text-4xl md:text-5xl font-bold text-foreground font-serif mb-4" data-testid="text-knowledge-title">
+        <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4" data-testid="text-knowledge-title">
           {t('nav_knowledge')}
         </h1>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -650,7 +650,7 @@ const Knowledge = () => {
             <div className="bg-purple-100 p-2 rounded-full">
               <Sparkles className="w-5 h-5 text-purple-600" />
             </div>
-            <h2 className="text-2xl font-bold font-serif text-foreground">
+            <h2 className="text-2xl font-bold text-foreground">
               {journey?.stage === 'TTC' && t('journey_stage_1_title')}
               {journey?.stage === 'PREGNANT' && t('journey_stage_4_title')}
               {journey?.stage === 'PARENT' && (journey.date ? 'Your Child' : t('journey_stage_5_title'))}
@@ -669,7 +669,7 @@ const Knowledge = () => {
                         </Badge>
                       ))}
                     </div>
-                    <h3 className="text-base font-bold text-foreground font-serif mb-2 group-hover:text-purple-600 transition-colors line-clamp-2">
+                    <h3 className="text-base font-bold text-foreground mb-2 group-hover:text-purple-600 transition-colors line-clamp-2">
                       {article.title}
                     </h3>
                     <p className="text-xs text-muted-foreground mb-3 line-clamp-2 flex-grow">
@@ -702,7 +702,7 @@ const Knowledge = () => {
 
       {/* All Articles / Explore Section */}
       <div className="mb-6">
-        <h2 className="text-2xl font-bold font-serif text-foreground mb-4">
+        <h2 className="text-2xl font-bold text-foreground mb-4">
           Explore Knowledge Hub
         </h2>
 
@@ -774,7 +774,7 @@ const Knowledge = () => {
                       ))}
                     </div>
 
-                    <h3 className="text-lg font-bold text-foreground font-serif mb-2 group-hover:text-purple-600 transition-colors">
+                    <h3 className="text-lg font-bold text-foreground mb-2 group-hover:text-purple-600 transition-colors">
                       {article.title}
                     </h3>
                     <p className="text-sm text-muted-foreground mb-4 line-clamp-3">

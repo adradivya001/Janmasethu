@@ -58,7 +58,7 @@ const Treatments = () => {
     <div className="container mx-auto px-4 py-8">
       {/* Page Header */}
       <div className="text-center mb-16">
-        <h1 className="text-4xl md:text-5xl font-bold text-foreground font-serif mb-6" data-testid="text-treatments-title">
+        <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6" data-testid="text-treatments-title">
           {pageTitle[lang as keyof typeof pageTitle] || pageTitle.en}
         </h1>
         <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8">
@@ -123,7 +123,7 @@ const Treatments = () => {
                     <div className={`w-12 h-12 ${iconData.color.split(' ')[0]} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-sm`}>
                       <iconData.icon className={`${iconData.color.split(' ')[1]} w-6 h-6`} />
                     </div>
-                    <h3 className="text-lg font-bold text-foreground font-serif mb-3 group-hover:text-purple-600 transition-colors leading-tight">
+                    <h3 className="text-lg font-bold text-foreground mb-3 group-hover:text-purple-600 transition-colors leading-tight">
                       {treatmentData?.title || treatment.title}
                     </h3>
                     <p className="text-sm text-muted-foreground flex-grow mb-4 leading-relaxed">
@@ -151,7 +151,7 @@ const Treatments = () => {
       <section className="py-16">
         <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-3xl p-8 md:p-12">
           <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-foreground font-serif mb-4">
+            <h2 className="text-3xl font-bold text-foreground mb-4">
               {t('support_title')}
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">

@@ -47,13 +47,13 @@ export default function Expert() {
         <div className="max-w-4xl mx-auto">
           <Card className="rounded-3xl overflow-hidden">
             <CardContent className="p-6">
-              <h1 className="text-3xl font-bold font-serif text-foreground">{doc.name}</h1>
+              <h1 className="text-3xl font-bold text-foreground">{doc.name}</h1>
               {doc.designation && (
                 <p className="text-muted-foreground mt-1">{doc.designation}</p>
               )}
 
               <div className="prose max-w-none mt-6"
-                   dangerouslySetInnerHTML={{ __html: doc.about_html || "" }} />
+                dangerouslySetInnerHTML={{ __html: doc.about_html || "" }} />
             </CardContent>
           </Card>
         </div>

@@ -1,23 +1,158 @@
 import { useState } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
 import { loginUser, registerUser } from "@/utils/api";
-import { Loader2 } from "lucide-react";
+import { Loader2, X } from "lucide-react";
+import styled from 'styled-components';
 
 interface AuthModalProps {
     open: boolean;
     onClose: () => void;
     onAuthSuccess: (isNewUser: boolean, relationship?: string, userId?: string) => void;
+    defaultTab?: "login" | "register";
 }
 
-export default function AuthModal({ open, onClose, onAuthSuccess }: AuthModalProps) {
+const StyledWrapper = styled.div`
+  .form-box {
+    width: 100%;
+    /* max-width width handled by DialogContent usually, but we can set 100% here */
+    background: #f1f7fe;
+    overflow: hidden;
+    border-radius: 16px;
+    color: #010101;
+    position: relative; /* Ensure close button positions relative to this */
+  }
+
+  .form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 32px 24px 24px;
+    gap: 16px;
+    text-align: center;
+  }
+
+  /* Custom Close Button */
+  .close-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #666;
+    transition: all 0.2s;
+    z-index: 20;
+    padding: 6px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .close-btn:hover {
+    color: #000;
+    background: rgba(0,0,0,0.05);
+  }
+
+  /*Form text*/
+  .title {
+    font-weight: bold;
+    font-size: 1.6rem;
+    color: #1a1a1a;
+    margin-top: 8px; /* Extra space for close button visual balance */
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+  }
+
+  /*Inputs box*/
+  .form-container {
+    overflow: hidden;
+    border-radius: 8px;
+    background-color: #fff;
+    margin: 0.5rem 0 0.5rem;
+    width: 100%;
+    border: 1px solid #e5e7eb;
+  }
+
+  .input {
+    background: none;
+    border: 0;
+    outline: 0;
+    height: 48px;
+    width: 100%;
+    border-bottom: 1px solid #eee;
+    font-size: .95rem;
+    padding: 8px 15px;
+    transition: all 0.2s;
+  }
+  
+  .input:last-child {
+    border-bottom: none;
+  }
+
+  .input:focus {
+    background-color: #f9fafb;
+  }
+
+  .form-section {
+    padding: 16px;
+    font-size: .85rem;
+    background-color: #e0ecfb;
+    box-shadow: rgb(0 0 0 / 8%) 0 -1px;
+    text-align: center;
+  }
+
+  .form-section a {
+    font-weight: bold;
+    color: #0066ff;
+    transition: color .3s ease;
+    cursor: pointer;
+    margin-left: 4px;
+  }
+
+  .form-section a:hover {
+    color: #005ce6;
+    text-decoration: underline;
+  }
+
+  /*Button*/
+  .submit-btn {
+    background-color: #0066ff;
+    background: linear-gradient(135deg, #9333EA 0%, #EC4899 100%); /* Use brand gradient */
+    color: #fff;
+    border: 0;
+    border-radius: 24px;
+    padding: 12px 16px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 8px;
+  }
+
+  .submit-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(147, 51, 234, 0.3);
+  }
+  
+  .submit-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+`;
+
+export default function AuthModal({ open, onClose, onAuthSuccess, defaultTab = "login" }: AuthModalProps) {
     const { toast } = useToast();
     const [isLoading, setIsLoading] = useState(false);
-    const [activeTab, setActiveTab] = useState("login");
+    const [activeTab, setActiveTab] = useState(defaultTab);
 
     // Login State
     const [loginEmail, setLoginEmail] = useState("");
@@ -27,6 +162,10 @@ export default function AuthModal({ open, onClose, onAuthSuccess }: AuthModalPro
     const [registerName, setRegisterName] = useState("");
     const [registerEmail, setRegisterEmail] = useState("");
     const [registerPassword, setRegisterPassword] = useState("");
+
+    const switchTab = (tab: "login" | "register") => {
+        setActiveTab(tab);
+    };
 
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -83,108 +222,79 @@ export default function AuthModal({ open, onClose, onAuthSuccess }: AuthModalPro
         }
     };
 
+    const isLogin = activeTab === "login";
+
     return (
         <Dialog open={open} onOpenChange={onClose}>
-            <DialogContent className="sm:max-w-[425px]">
-                <DialogHeader>
-                    <DialogTitle className="text-2xl font-bold font-serif text-center">
-                        {activeTab === "login" ? "Welcome Back" : "Start Your Journey"}
-                    </DialogTitle>
-                    <DialogDescription className="text-center">
-                        {activeTab === "login"
-                            ? "Enter your details to access your account"
-                            : "Create an account to personalize your experience"}
-                    </DialogDescription>
-                </DialogHeader>
+            <DialogContent className="p-0 !border-none !bg-transparent !shadow-none sm:max-w-[380px] [&>button]:hidden">
+                <StyledWrapper>
+                    <div className="form-box">
+                        {/* Custom Close Button */}
+                        <button className="close-btn" onClick={onClose}>
+                            <X size={20} />
+                        </button>
 
-                <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full mt-4">
-                    <TabsList className="grid w-full grid-cols-2">
-                        <TabsTrigger value="login">Login</TabsTrigger>
-                        <TabsTrigger value="register">Sign Up</TabsTrigger>
-                    </TabsList>
+                        <form className="form" onSubmit={isLogin ? handleLogin : handleRegister}>
+                            <span className="title">
+                                {isLogin ? "Welcome Back" : "Start Your Journey"}
+                            </span>
+                            <span className="subtitle">
+                                {isLogin
+                                    ? "Enter your details to access your account"
+                                    : "Create an account to personalize your experience"}
+                            </span>
 
-                    <TabsContent value="login" className="space-y-4 pt-4">
-                        <form onSubmit={handleLogin} className="space-y-4">
-                            <div className="space-y-2">
-                                <Label htmlFor="email">Email</Label>
-                                <Input
-                                    id="email"
+                            <div className="form-container">
+                                {!isLogin && (
+                                    <input
+                                        type="text"
+                                        className="input"
+                                        placeholder="Full Name"
+                                        value={registerName}
+                                        onChange={(e) => setRegisterName(e.target.value)}
+                                        required
+                                    />
+                                )}
+                                <input
                                     type="email"
-                                    placeholder="name@example.com"
-                                    value={loginEmail}
-                                    onChange={(e) => setLoginEmail(e.target.value)}
+                                    className="input"
+                                    placeholder="Email"
+                                    value={isLogin ? loginEmail : registerEmail}
+                                    onChange={(e) => isLogin ? setLoginEmail(e.target.value) : setRegisterEmail(e.target.value)}
                                     required
                                 />
-                            </div>
-                            <div className="space-y-2">
-                                <Label htmlFor="password">Password</Label>
-                                <Input
-                                    id="password"
+                                <input
                                     type="password"
-                                    value={loginPassword}
-                                    onChange={(e) => setLoginPassword(e.target.value)}
+                                    className="input"
+                                    placeholder="Password"
+                                    value={isLogin ? loginPassword : registerPassword}
+                                    onChange={(e) => isLogin ? setLoginPassword(e.target.value) : setRegisterPassword(e.target.value)}
                                     required
                                 />
                             </div>
-                            <Button type="submit" className="w-full gradient-button text-white" disabled={isLoading}>
+
+                            <button className="submit-btn" disabled={isLoading}>
                                 {isLoading ? (
                                     <>
                                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                        Logging in...
+                                        {isLogin ? "Logging-in..." : "Creating Account..."}
                                     </>
                                 ) : (
-                                    "Login"
+                                    isLogin ? "Log In" : "Sign up"
                                 )}
-                            </Button>
+                            </button>
                         </form>
-                    </TabsContent>
 
-                    <TabsContent value="register" className="space-y-4 pt-4">
-                        <form onSubmit={handleRegister} className="space-y-4">
-                            <div className="space-y-2">
-                                <Label htmlFor="name">Full Name</Label>
-                                <Input
-                                    id="name"
-                                    placeholder="Jane Doe"
-                                    value={registerName}
-                                    onChange={(e) => setRegisterName(e.target.value)}
-                                    required
-                                />
-                            </div>
-                            <div className="space-y-2">
-                                <Label htmlFor="register-email">Email</Label>
-                                <Input
-                                    id="register-email"
-                                    type="email"
-                                    placeholder="name@example.com"
-                                    value={registerEmail}
-                                    onChange={(e) => setRegisterEmail(e.target.value)}
-                                    required
-                                />
-                            </div>
-                            <div className="space-y-2">
-                                <Label htmlFor="register-password">Password</Label>
-                                <Input
-                                    id="register-password"
-                                    type="password"
-                                    value={registerPassword}
-                                    onChange={(e) => setRegisterPassword(e.target.value)}
-                                    required
-                                />
-                            </div>
-                            <Button type="submit" className="w-full gradient-button text-white" disabled={isLoading}>
-                                {isLoading ? (
-                                    <>
-                                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                        Creating account...
-                                    </>
-                                ) : (
-                                    "Create Account"
-                                )}
-                            </Button>
-                        </form>
-                    </TabsContent>
-                </Tabs>
+                        <div className="form-section">
+                            <p>
+                                {isLogin ? "Don't have an account?" : "Have an account?"}
+                                <a onClick={() => switchTab(isLogin ? "register" : "login")}>
+                                    {isLogin ? "Sign up" : "Log in"}
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </StyledWrapper>
             </DialogContent>
         </Dialog>
     );

@@ -53,7 +53,7 @@ export default function TreatmentsPreview() {
         <section className="py-16">
             <div className="text-center mb-12">
                 <h2
-                    className="text-4xl font-bold text-foreground font-serif mb-4"
+                    className="text-4xl font-bold text-pink-600 mb-4"
                     data-testid="text-treatments-title"
                 >
                     {t("treatments_overview_title")}
@@ -83,7 +83,7 @@ export default function TreatmentsPreview() {
                                             />
                                         </div>
                                         <h3
-                                            className="text-2xl font-bold text-foreground font-serif mb-4 group-hover:text-purple-600 transition-colors"
+                                            className="text-2xl font-bold text-foreground mb-4 group-hover:text-purple-600 transition-colors"
                                             data-testid={`text-treatment-name-${index}`}
                                         >
                                             {treatment.name}

@@ -2,9 +2,9 @@ import { ReactNode, useState } from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import FloatingWhatsApp from './FloatingWhatsApp';
-import LeadSubmissionForm from './LeadSubmissionForm';
+import FloatingContact from './FloatingContact';
 import { JourneyFloatingWidget } from './JourneyFloatingWidget';
-import { UserPlus } from 'lucide-react';
+import LeadSubmissionForm from './LeadSubmissionForm';
 
 interface LayoutProps {
   children: ReactNode;
@@ -28,22 +28,10 @@ const Layout = ({ children }: LayoutProps) => {
 
       <Footer />
 
-      {/* Floating Journey Widget */}
+      {/* Separate Floating Widgets — each draggable independently */}
       <JourneyFloatingWidget />
-
-      {/* Floating WhatsApp Button */}
       <FloatingWhatsApp />
-
-      {/* Floating Contact Button */}
-      <button
-        onClick={() => setShowLeadForm(true)}
-        className="fixed bottom-6 left-4 md:left-6 z-50 w-12 h-12 bg-purple-600 hover:bg-purple-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center"
-        aria-label="Get in Touch"
-        data-testid="button-floating-add-lead"
-        title="Get in Touch"
-      >
-        <UserPlus className="w-5 h-5" />
-      </button>
+      <FloatingContact onOpenLeadForm={() => setShowLeadForm(true)} />
 
       {/* Lead Submission Form */}
       <LeadSubmissionForm

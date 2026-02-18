@@ -91,14 +91,14 @@ const Article = () => {
       // 1. Standard Markdown Headings
       if (cleanBlock.startsWith('### ')) {
         return (
-          <h3 key={index} className="text-xl font-bold text-gray-900 font-serif mt-8 mb-4">
+          <h3 key={index} className="text-xl font-bold text-gray-900 mt-8 mb-4">
             {formatInlineText(cleanBlock.replace('### ', ''))}
           </h3>
         );
       }
       if (cleanBlock.startsWith('## ')) {
         return (
-          <h2 key={index} className="text-2xl font-bold text-gray-900 font-serif mt-10 mb-6">
+          <h2 key={index} className="text-2xl font-bold text-gray-900 mt-10 mb-6">
             {formatInlineText(cleanBlock.replace('## ', ''))}
           </h2>
         );
@@ -108,7 +108,7 @@ const Article = () => {
       // Pattern: Starts with number + dot, no newlines inside, length acceptable for header
       if (/^\d+\.\s+/.test(cleanBlock) && cleanBlock.length < 100 && !cleanBlock.includes('\n')) {
         return (
-          <h3 key={index} className="text-xl font-bold text-gray-900 font-serif mt-8 mb-4">
+          <h3 key={index} className="text-xl font-bold text-gray-900 mt-8 mb-4">
             {formatInlineText(cleanBlock)}
           </h3>
         );
@@ -213,7 +213,7 @@ const Article = () => {
         const subheadingText = content.text?.[langKey] || content.text?.en || '';
         if (!subheadingText) return null;
         return (
-          <h3 className="text-2xl font-bold text-gray-900 font-serif mt-10 mb-4 tracking-tight flex items-baseline gap-2">
+          <h3 className="text-2xl font-bold text-gray-900 mt-10 mb-4 tracking-tight flex items-baseline gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-purple-500 transform -translate-y-1"></span>
             {subheadingText}
           </h3>
@@ -264,7 +264,7 @@ const Article = () => {
               <ArrowLeft className="w-6 h-6 text-purple-600" />
             </div>
           </div>
-          <h1 className="text-2xl font-bold text-gray-900 font-serif mb-2">
+          <h1 className="text-2xl font-bold text-gray-900 mb-2">
             {lang === 'te' ? 'వ్యాసం కనుగొనబడలేదు' : 'Article Not Found'}
           </h1>
           <p className="text-gray-500 mb-8">
@@ -337,7 +337,7 @@ const Article = () => {
                 </Badge>
               </div>
 
-              <h1 className="text-3xl md:text-5xl lg:text-5xl font-bold text-gray-900 font-serif leading-[1.2] mb-6 tracking-tight">
+              <h1 className="text-3xl md:text-5xl lg:text-5xl font-bold text-gray-900 leading-[1.2] mb-6 tracking-tight">
                 {getLocalizedContent(articleData.title)}
               </h1>
 
@@ -368,7 +368,7 @@ const Article = () => {
           {/* Content Section */}
           <div className="px-6 md:px-12 py-10">
             <div className="prose prose-lg prose-purple max-w-none 
-                            prose-headings:font-serif prose-headings:font-bold prose-headings:text-gray-900 
+                            prose-headings:font-bold prose-headings:text-gray-900 
                             prose-p:text-gray-700 prose-p:leading-8 
                             prose-strong:text-gray-900 prose-strong:font-semibold
                             prose-ul:list-none prose-ul:pl-0">
@@ -376,7 +376,7 @@ const Article = () => {
               {articleData.sections.map((section, index) => (
                 <div key={section.id} className="mb-12 last:mb-0 group">
                   {getLocalizedContent(section.title) && (
-                    <h2 className="text-3xl font-bold text-gray-900 font-serif mb-6 mt-8 pb-4 border-b border-gray-100">
+                    <h2 className="text-3xl font-bold text-gray-900 mb-6 mt-8 pb-4 border-b border-gray-100">
                       {getLocalizedContent(section.title)}
                     </h2>
                   )}
@@ -397,7 +397,7 @@ const Article = () => {
         {/* Recommendations Section */}
         {recommendations.length > 0 && (
           <div className="mt-16 md:mt-24 border-t border-gray-100 pt-16">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 font-serif mb-8 text-center">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-8 text-center">
               {lang === 'te' ? 'మీ కోసం సిఫార్సు చేయబడింది' : 'Recommended for You'}
             </h2>
             <div className="grid md:grid-cols-3 gap-6">
@@ -411,7 +411,7 @@ const Article = () => {
                         </Badge>
                         <span className="text-xs text-gray-400 flex items-center">{rec.read_time_minutes} min read</span>
                       </div>
-                      <h3 className="text-lg font-bold text-gray-900 font-serif mb-2 group-hover:text-purple-700 transition-colors">
+                      <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-purple-700 transition-colors">
                         {rec.title}
                       </h3>
                       <p className="text-gray-500 text-sm line-clamp-2 leading-relaxed">

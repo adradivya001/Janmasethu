@@ -99,12 +99,32 @@ export const dict = {
     experts_contact_us: "Contact Us",
 
     // Hero
-    hero_title: "Nurture Every <span>Journey to Parenthood</span>",
+    hero_title: "Where Parents Find <span>Support & Clarity</span>",
     hero_sub:
-      "Simple, source‑backed guides across fertility, pregnancy, birth and early parenting — made for India.",
+      "Your compassionate AI companion for every step of the fertility and parenting journey.",
     hero_subtitle: "Evidence-based guides for your parenting journey, organized by life stage and perspective",
+    trust_pill: "Trusted by 5,000+ parents",
     cta_primary: "Meet Sakhi",
     cta_secondary: "For Clinics",
+    cta_professional: "Healthcare Professional? Learn more",
+
+    // Provider Teaser (Home)
+    provider_teaser_title: "Are you a Fertility Specialist?",
+    provider_teaser_desc: "Partner with Janma Sethu to grow your practice and support your patients better.",
+    provider_teaser_cta: "For Clinics",
+
+    // Clinic Landing Page (/for-clinics)
+    clinic_hero_title: "Transform Your <span class='text-primary'>Clinic's Growth</span>",
+    clinic_hero_desc: "The intelligent CRM and patient support platform designed for modern fertility clinics.",
+    clinic_hero_cta: "Partner with Us",
+    clinic_login_cta: "Login to Portal",
+
+    // Header & Nav
+    nav_for_clinics: "For Clinics",
+
+    // Footer
+    footer_professional: "For Professionals",
+    footer_portal: "Clinic Portal",
 
     // What & Why - Updated to match blueprint
     who_title: "Who We Serve",
@@ -334,6 +354,23 @@ export const dict = {
     support_subtitle: "Get personalized guidance and emotional support throughout your journey",
     talk_sakhi_button: "Talk to Sakhi",
     find_experts_button: "Find Experts",
+
+    // Cinematic Hero
+    hero_phase1_sub: "You're not alone in this journey",
+    hero_phase1_main: "Trying. Waiting.",
+    hero_phase1_span: "Worried?",
+
+    hero_phase2_sub: "Calm within the chaos",
+    hero_phase2_main: "The path to parenthood",
+    hero_phase2_main_2: "can feel",
+    hero_phase2_span: "overwhelming.",
+
+    hero_phase3_sub: "Support at every step",
+    hero_phase3_main: "Care, Clarity &",
+    hero_phase3_span: "Compassion.",
+
+    hero_cta_sakhi: "Meet Sakhi",
+    hero_cta_register: "Register Now",
   },
   hi: {
     brand_tag: "आपका मां बनने का सफर यहाँ से शुरू होता है",
@@ -450,12 +487,32 @@ export const dict = {
     experts_trust_desc: "हमारी सभी सामग्री योग्य पेशेवरों द्वारा समीक्षित होती है ताकि सटीकता और प्रासंगिकता सुनिश्चित की जा सके। हालांकि, यह जानकारी केवल शैक्षिक उद्देश्यों के लिए है और पेशेवर चिकित्सा सलाह की जगह नहीं लेनी चाहिए।",
     experts_browse_knowledge: "नॉलेज हब ब्राउज़ करें",
     experts_contact_us: "हमसे संपर्क करें",
-    hero_title: "<span>मां बनने</span> का सफर।<br />हर कदम में आपके साथ।",
-    hero_sub: "भारतीय माँओं के लिए आसान और सच्ची जानकारी।",
+    hero_title: "माता-पिता को जहाँ मिले <span>सहारा और स्पष्टता</span>",
+    hero_sub: "प्रजनन और पालन-पोषण यात्रा के हर कदम के लिए आपका दयालु AI साथी।",
     hero_subtitle: "आपकी पेरेंटिंग यात्रा के लिए साक्ष्य-आधारित गाइड, जीवन के चरण और दृष्टिकोण के अनुसार व्यवस्थित।",
-    trust_pill: "हजारों परिवारों का भरोसा",
-    cta_primary: "सखी से बात करें",
+    trust_pill: "5,000+ माता-पिता का भरोसा",
+    cta_primary: "सखी से मिलें",
     cta_secondary: "डॉक्टर्स के लिए",
+    cta_professional: "स्वास्थ्य पेशेवर? और जानें",
+
+    // Provider Teaser (Home)
+    provider_teaser_title: "क्या आप एक प्रजनन विशेषज्ञ हैं?",
+    provider_teaser_desc: "अपने अभ्यास को बढ़ाने और अपने रोगियों को बेहतर समर्थन देने के लिए जन्म सेतु के साथ भागीदार बनें।",
+    provider_teaser_cta: "क्लिनिक के लिए",
+
+    // Clinic Landing Page (/for-clinics)
+    clinic_hero_title: "अपने <span class='text-primary'>क्लिनिक का विकास</span> परिवर्तन करें",
+    clinic_hero_desc: "आधुनिक प्रजनन क्लीनिकों के लिए डिज़ाइन किया गया बुद्धिमान CRM और रोगी सहायता प्लेटफ़ॉर्म।",
+    clinic_hero_cta: "हमारे साथ भागीदार बनें",
+    clinic_login_cta: "पोर्टल लॉगिन",
+
+    // Header & Nav
+    nav_for_clinics: "क्लिनिक के लिए",
+
+    // Footer
+    footer_professional: "पेशेवरों के लिए",
+    footer_portal: "क्लिनिक पोर्टल",
+
     who_title: "हम किसकी मदद करते हैं",
     who_body:
       "भारतीय परिवारों के लिए खास - डॉक्टरी सलाह, मन की बात, पैसों की जानकारी और खाने की चीज़ें। सखी दिन-रात आपके साथ है।",
@@ -666,6 +723,23 @@ export const dict = {
     support_subtitle: "अपनी यात्रा के दौरान व्यक्तिगत मार्गदर्शन और भावनात्मक समर्थन प्राप्त करें",
     talk_sakhi_button: "सखी से बात करें",
     find_experts_button: "विशेषज्ञ खोजें",
+
+    // Cinematic Hero
+    hero_phase1_sub: "आप इस सफर में अकेले नहीं हैं",
+    hero_phase1_main: "कोशिश कर रहे हैं. इंतजार कर रहे हैं.",
+    hero_phase1_span: "चिंतित हैं?",
+
+    hero_phase2_sub: "शोरगुल में शांति",
+    hero_phase2_main: "माता-पिता बनने की राह",
+    hero_phase2_main_2: "महसूस हो सकता है",
+    hero_phase2_span: "कठिन.",
+
+    hero_phase3_sub: "हर कदम पर साथ",
+    hero_phase3_main: "देखभाल, स्पष्टता और",
+    hero_phase3_span: "करुणा.",
+
+    hero_cta_sakhi: "सखी से मिलें",
+    hero_cta_register: "रजिस्टर करें",
   },
   te: {
     brand_tag: "మీ అమ్మ అవ్వాలని అనుకుంటున్న సఫరు ఇక్కడ మొదలవుతుంది",
@@ -783,12 +857,32 @@ export const dict = {
     experts_browse_knowledge: "నాలెడ్జ్ హబ్ బ్రౌజ్ చేయండి",
     experts_contact_us: "మాతో సంప్రదించండి",
     hero_title:
-      "<span>అమ్మ అవ్వాలని</span> అనుకుంటున్నారా?<br />మేము మీతో ఉన్నాం.",
-    hero_sub: "భారతీయ అమ్మలకు సింపుల్ మరియు నిజమైన ఇన్ఫో.",
+      "తల్లిదండ్రులకు <span>మద్దతు & స్పష్టత</span> లభించే చోటు",
+    hero_sub: "సంతానోత్పత్తి మరియు సంతాన సాఫల్య యాత్ర యొక్క ప్రతి అడుగులో మీ దయగల AI సహచరుడు.",
     hero_subtitle: "మీ పేరెంటింగ్ ప్రయాణం కోసం ఆధారాలతో కూడిన గైడ్‌లు, జీవిత దశ మరియు దృక్కోణం ద్వారా నిర్వహించబడ్డాయి.",
-    trust_pill: "వేలాది ఫ్యామిలీల నమ్మకం",
-    cta_primary: "సఖితో మాట్లాడండి",
+    trust_pill: "5,000+ తల్లిదండ్రుల నమ్మకం",
+    cta_primary: "సఖిని కలవండి",
     cta_secondary: "డాక్టర్లకు",
+    cta_professional: "ఆరోగ్య నిపుణుడా? మరింత తెలుసుకోండి",
+
+    // Provider Teaser (Home)
+    provider_teaser_title: "మీరు సంతానోత్పత్తి నిపుణుడా?",
+    provider_teaser_desc: "మీ ప్రాక్టీస్‌ను పెంచుకోవడానికి మరియు మీ రోగులకు మెరుగైన మద్దతు ఇవ్వడానికి జన్మ సేతుతో భాగస్వామ్యం అవ్వండి.",
+    provider_teaser_cta: "క్లినిక్ కోసం",
+
+    // Clinic Landing Page (/for-clinics)
+    clinic_hero_title: "మీ <span class='text-primary'>క్లినిక్ వృద్ధిని</span> మార్చండి",
+    clinic_hero_desc: "ఆధునిక సంతానోత్పత్తి క్లినిక్‌ల కోసం రూపొందించిన తెలివైన CRM మరియు రోగి మద్దతు ప్లాట్‌ఫారమ్.",
+    clinic_hero_cta: "మాతో భాగస్వామ్యం అవ్వండి",
+    clinic_login_cta: "పోర్టల్ లాగిన్",
+
+    // Header & Nav
+    nav_for_clinics: "క్లినిక్ కోసం",
+
+    // Footer
+    footer_professional: "నిపుణుల కోసం",
+    footer_portal: "క్లినిక్ పోర్టల్",
+
     who_title: "మేము ఎవరికి హెల్ప్ చేస్తాం",
     who_body:
       "ఇండియన్ ఫ్యామిలీలకు స్పెషల్ - డాక్టర్ సలహా, మనసు మాట, డబ్బుల విషయాలు మరియు తింటూండే విషయాలు. సఖి 24/7 మీతో ఉంటుంది.",
@@ -1004,5 +1098,22 @@ export const dict = {
     support_subtitle: "మీ ప్రయాణంలో వ్యక్తిగతీకరించిన మార్గదర్శకత్వం మరియు భావోద్వేగ మద్దతు పొందండి",
     talk_sakhi_button: "సఖితో మాట్లాడండి",
     find_experts_button: "నిపుణులను కనుగొనండి",
+
+    // Cinematic Hero
+    hero_phase1_sub: "మీరు ఈ ప్రయాణంలో ఒంటరిగా లేరు",
+    hero_phase1_main: "ప్రయత్నిస్తున్నారు. వేచిఉన్నారు.",
+    hero_phase1_span: "ఆందోళనలో ఉన్నారా?",
+
+    hero_phase2_sub: "గందరగోళంలో ప్రశాంతత",
+    hero_phase2_main: "మాతృత్వ ప్రయాణం",
+    hero_phase2_main_2: "కొన్ని సార్లు",
+    hero_phase2_span: "భారంగా అనిపించవచ్చు.",
+
+    hero_phase3_sub: "ప్రతి అడుగులో మద్దతు",
+    hero_phase3_main: "శ్రద్ధ, స్పష్టత &",
+    hero_phase3_span: "కరుణ.",
+
+    hero_cta_sakhi: "సఖిని కలవండి",
+    hero_cta_register: "రిజిస్టర్ చేసుకోండి",
   },
 } as const;

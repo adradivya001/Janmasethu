@@ -314,7 +314,7 @@ export default function JourneyDashboard() {
             <div className="bg-gradient-to-r from-purple-50 via-white to-pink-50 rounded-3xl p-6 border border-purple-100/50 shadow-sm">
                 <div className="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
                     <div>
-                        <h2 className="text-2xl font-bold text-gray-800">
+                        <h2 className="text-2xl font-bold text-pink-600">
                             {journey.stage === 'PREGNANT' ? 'Your Pregnancy Dashboard' :
                                 journey.stage === 'PARENT' ? 'Parenting Dashboard' : 'Your Journey Dashboard'}
                         </h2>
@@ -331,8 +331,8 @@ export default function JourneyDashboard() {
 
                 {/* Tools & Resources Strip */}
                 <div className="mt-8 border-t border-purple-100 pt-8">
-                    <h3 className="text-lg font-bold text-gray-800 mb-6 flex items-center gap-2">
-                        <Activity className="w-5 h-5 text-purple-600" />
+                    <h3 className="text-lg font-bold text-pink-600 mb-6 flex items-center gap-2">
+                        <Activity className="w-5 h-5 text-pink-500" />
                         Recommended Tools for You
                     </h3>
 
@@ -345,8 +345,8 @@ export default function JourneyDashboard() {
                 {articles.length > 0 && (
                     <div className="mt-8 border-t border-purple-100 pt-8">
                         <div className="flex items-center justify-between mb-6">
-                            <h3 className="text-lg font-bold text-gray-800 flex items-center gap-2">
-                                <BookOpen className="w-5 h-5 text-purple-600" />
+                            <h3 className="text-lg font-bold text-pink-600 flex items-center gap-2">
+                                <BookOpen className="w-5 h-5 text-pink-500" />
                                 Recommended Articles
                             </h3>
                             <Link href="/knowledge-hub">
@@ -364,7 +364,7 @@ export default function JourneyDashboard() {
                                             <div className="p-4 flex flex-col h-full">
                                                 <div className="flex flex-wrap gap-2 mb-3">
                                                     {(article.lens || []).slice(0, 1).map((lens: string) => (
-                                                        <span key={lens} className="text-[10px] uppercase font-bold px-2 py-0.5 rounded-full bg-purple-50 text-purple-600">
+                                                        <span key={lens} className="text-[10px] uppercase font-bold px-2 py-0.5 rounded-full bg-pink-50 text-pink-600">
                                                             {lens}
                                                         </span>
                                                     ))}
@@ -372,13 +372,13 @@ export default function JourneyDashboard() {
                                                         {article.read_time_minutes || 5} min read
                                                     </span>
                                                 </div>
-                                                <h4 className="font-bold text-gray-800 mb-2 line-clamp-2 group-hover:text-purple-700 transition-colors">
+                                                <h4 className="font-bold text-gray-800 mb-2 line-clamp-2 group-hover:text-pink-600 transition-colors overflow-hidden max-h-[3rem] leading-tight">
                                                     {article.title}
                                                 </h4>
-                                                <p className="text-xs text-gray-500 line-clamp-2 mb-4 flex-grow">
+                                                <p className="text-xs text-gray-500 line-clamp-2 mb-4 flex-grow overflow-hidden text-justify hyphens-auto max-h-[3rem]">
                                                     {article.summary}
                                                 </p>
-                                                <div className="mt-auto flex items-center text-xs font-medium text-purple-600">
+                                                <div className="mt-auto flex items-center text-xs font-medium text-pink-600">
                                                     Read Article <ArrowRight className="w-3 h-3 ml-1 opacity-0 group-hover:opacity-100 transition-opacity -translate-x-2 group-hover:translate-x-0" />
                                                 </div>
                                             </div>

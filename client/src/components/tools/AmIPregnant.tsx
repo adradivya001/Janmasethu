@@ -166,21 +166,21 @@ export default function AmIPregnant() {
                 ) : (
                     <div className="space-y-6 animate-in zoom-in-95 duration-500">
                         <Card className={`p-8 text-center border-t-8 shadow-lg ${result.result === 'VERY_LIKELY' ? 'border-t-green-500 bg-green-50/30' :
-                                result.result === 'POSSIBLY' ? 'border-t-yellow-500 bg-yellow-50/30' :
-                                    result.result === 'UNLIKELY' ? 'border-t-blue-500 bg-blue-50/30' :
-                                        'border-t-gray-500 bg-gray-50/30'
+                            result.result === 'POSSIBLY' ? 'border-t-yellow-500 bg-yellow-50/30' :
+                                result.result === 'UNLIKELY' ? 'border-t-blue-500 bg-blue-50/30' :
+                                    'border-t-gray-500 bg-gray-50/30'
                             }`}>
                             <div className="mb-6 flex justify-center">
                                 <Badge className={`text-lg px-4 py-1 ${result.result === 'VERY_LIKELY' ? 'bg-green-100 text-green-800 hover:bg-green-100' :
-                                        result.result === 'POSSIBLY' ? 'bg-yellow-100 text-yellow-800 hover:bg-yellow-100' :
-                                            result.result === 'UNLIKELY' ? 'bg-blue-100 text-blue-800 hover:bg-blue-100' :
-                                                'bg-gray-100 text-gray-800 hover:bg-gray-100'
+                                    result.result === 'POSSIBLY' ? 'bg-yellow-100 text-yellow-800 hover:bg-yellow-100' :
+                                        result.result === 'UNLIKELY' ? 'bg-blue-100 text-blue-800 hover:bg-blue-100' :
+                                            'bg-gray-100 text-gray-800 hover:bg-gray-100'
                                     }`}>
                                     {result.result.replace('_', ' ')}
                                 </Badge>
                             </div>
 
-                            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-serif">
+                            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
                                 {result.copy}
                             </h3>
 
