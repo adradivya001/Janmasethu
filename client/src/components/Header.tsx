@@ -52,7 +52,7 @@ const Header = () => {
     <>
       {/* Top Bar - Sticky */}
       <header
-        className={`site-header sticky top-0 z-50 w-full bg-white transition-all duration-300 ${isScrolled ? "shadow-md" : ""
+        className={`site-header sticky top-0 z-[60] w-full bg-white transition-all duration-300 ${isScrolled ? "shadow-md" : ""
           }`}
       >
         <div className="container mx-auto px-3 md:px-4 h-14 md:h-16">
@@ -147,7 +147,7 @@ const Header = () => {
         </div>
       </header>
 
-      {/* Secondary Nav Bar - Visible on non-home pages, scrolls with content */}
+      {/* Secondary Nav Bar - Non-sticky, hidden on homepage (CinematicHero has its own) */}
       {location !== "/" && (
         <div className="hidden md:block w-full bg-white py-0.5 border-b border-gray-100/50 shadow-sm relative z-40">
           <div className="container mx-auto px-3 md:px-4">
