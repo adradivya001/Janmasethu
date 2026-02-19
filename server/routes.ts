@@ -950,7 +950,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // =========================
 
   const SAKHI_API_BASE = process.env.SAKHI_API_URL || "http://72.61.228.9:8000";
-  const WEBAPP_API_BASE = process.env.WEBAPP_API_URL || SAKHI_API_BASE;
+  const WEBAPP_API_BASE = process.env.WEBAPP_API_URL || "http://72.61.228.9:8100";
 
   // Proxy: User Login
   app.post("/api/proxy/user/login", async (req, res) => {
