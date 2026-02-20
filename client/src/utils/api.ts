@@ -1,5 +1,5 @@
 // Use proxy routes to avoid mixed content errors (HTTPS -> HTTP)
-const API_BASE_URL = '/api/proxy';
+const API_BASE_URL = 'http://localhost:8101/api/proxy';
 
 export interface RegisterUserData {
   name: string;
