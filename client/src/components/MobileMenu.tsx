@@ -30,27 +30,17 @@ const MobileMenu = ({ isOpen, onClose, navItems }: MobileMenuProps) => {
       {/* Backdrop */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 transition-opacity duration-300"
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[55] transition-opacity duration-300"
           onClick={onClose}
           data-testid="backdrop-mobile-menu"
         />
       )}
 
       {/* Menu */}
-      <div className={`mobile-menu fixed inset-y-0 left-0 z-50 w-[85%] max-w-sm bg-white shadow-2xl ${isOpen ? 'open' : ''}`}>
-        <div className="flex flex-col h-full">
+      <div className={`mobile-menu fixed inset-y-0 left-0 z-[55] w-[85%] max-w-sm bg-white shadow-2xl ${isOpen ? 'open' : ''}`}>
+        <div className="flex flex-col h-full pt-14 md:pt-16">
           {/* Header Section */}
           <div className="px-5 py-4 bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50 relative border-b border-gray-100">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={onClose}
-              className="absolute top-2 right-2 p-2 hover:bg-black/5 rounded-full transition-colors"
-              aria-label="Close menu"
-              data-testid="button-close-menu"
-            >
-              <X className="w-5 h-5 text-gray-500" />
-            </Button>
             <div className="flex flex-col items-center justify-center">
               <img
                 src="/new JS logo BR.svg"

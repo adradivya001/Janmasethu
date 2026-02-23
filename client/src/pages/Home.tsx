@@ -81,44 +81,17 @@ const Home = () => {
           </ScrollReveal>
 
           {/* Dynamic Sections based on Journey Stage */}
-          {journey?.stage === 'TTC' ? (
-            <>
-              <ScrollReveal delay={0.3}>
-                <TreatmentsPreview />
-              </ScrollReveal>
-              <ScrollReveal delay={0.3}>
-                <SakhiPreview />
-              </ScrollReveal>
-              <ScrollReveal delay={0.3}>
-                <KnowledgePreview />
-              </ScrollReveal>
-            </>
-          ) : journey?.stage === 'PARENT' ? (
-            <>
-              <ScrollReveal delay={0.3}>
-                <KnowledgePreview />
-              </ScrollReveal>
-              <ScrollReveal delay={0.3}>
-                <SakhiPreview />
-              </ScrollReveal>
-              <ScrollReveal delay={0.3}>
-                <TreatmentsPreview />
-              </ScrollReveal>
-            </>
-          ) : (
-            // Default order for PREGNANT, None, or others
-            <>
-              <ScrollReveal delay={0.3}>
-                <SakhiPreview />
-              </ScrollReveal>
-              <ScrollReveal delay={0.3}>
-                <KnowledgePreview />
-              </ScrollReveal>
-              <ScrollReveal delay={0.3}>
-                <TreatmentsPreview />
-              </ScrollReveal>
-            </>
-          )}
+          <ScrollReveal delay={0.3}>
+            <SakhiPreview />
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.3}>
+            <KnowledgePreview />
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.3}>
+            <TreatmentsPreview />
+          </ScrollReveal>
 
           {/* Parenthood Journey Strip - Visual Roadmap */}
           <ScrollReveal>

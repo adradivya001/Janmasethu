@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { Link, useLocation } from "wouter";
 import { useLanguage } from "../../i18n/LanguageProvider";
 import { Card } from "../ui/card";
@@ -11,9 +12,27 @@ export default function SakhiPreview() {
     const { t } = useLanguage();
     const [, setLocation] = useLocation();
 
+    // Scroll animation refs & hooks
+    const sectionRef = useRef<HTMLElement>(null);
+    const { scrollYProgress } = useScroll({
+        target: sectionRef,
+        offset: ["start 85%", "center center"]
+    });
+
+    // Map scroll progress to horizontal translation (x-axis) and opacity
+    // Left side (text) slides in from the bottom-left
+    const leftSideX = useTransform(scrollYProgress, [0, 1], [-250, 0]);
+    const leftSideY = useTransform(scrollYProgress, [0, 1], [250, 0]);
+    const leftSideOpacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
+
+    // Right side (phone) slides in from the bottom-right
+    const rightSideX = useTransform(scrollYProgress, [0, 1], [250, 0]);
+    const rightSideY = useTransform(scrollYProgress, [0, 1], [250, 0]);
+    const rightSideOpacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
+
     return (
-        <section className="py-16">
-            <div className="bg-gradient-to-br from-pink-50 to-orange-50 rounded-3xl p-8 md:p-12">
+        <section ref={sectionRef} className="py-16 overflow-hidden">
+            <div className="bg-gradient-to-br from-pink-100 to-orange-100 rounded-[3rem] p-8 md:p-16 max-w-7xl mx-auto shadow-md ring-1 ring-black/5">
 
                 {/* === MOBILE LAYOUT === */}
                 <div className="lg:hidden flex flex-col items-center text-center">
@@ -70,9 +89,12 @@ export default function SakhiPreview() {
                     </AnimatedButton>
                 </div>
 
-                {/* === DESKTOP LAYOUT (unchanged) === */}
+                {/* === DESKTOP LAYOUT (Animated with Scroll) === */}
                 <div className="hidden lg:grid sakhi-preview-mobile grid-cols-2 gap-12 items-center">
-                    <div className="text-left">
+                    <motion.div
+                        className="text-left"
+                        style={{ x: leftSideX, y: leftSideY, opacity: leftSideOpacity }}
+                    >
                         <h2
                             className="text-4xl font-bold text-pink-600 mb-6"
                             data-testid="text-sakhi-hero"
@@ -118,12 +140,15 @@ export default function SakhiPreview() {
                                 {t("sakhi_try")}
                             </AnimatedButton>
                         </div>
-                    </div>
+                    </motion.div>
 
                     {/* Rotating Sakhi Image */}
-                    <div className="flex justify-center items-center perspective-1000">
+                    <motion.div
+                        className="flex justify-center items-center perspective-1000"
+                        style={{ x: rightSideX, y: rightSideY, opacity: rightSideOpacity }}
+                    >
                         <SakhiRotatingImage />
-                    </div>
+                    </motion.div>
                 </div>
 
             </div>
@@ -132,24 +157,11 @@ export default function SakhiPreview() {
 }
 
 function SakhiRotatingImage() {
-    const { scrollY } = useScroll();
-    const scrollVelocity = useVelocity(scrollY);
-    const smoothVelocity = useSpring(scrollVelocity, { damping: 50, stiffness: 400 });
-    // Map velocity to rotation: 
-    // Positive velocity (scrolling down) -> Positive rotation (Clockwise)
-    // Negative velocity (scrolling up) -> Negative rotation (Counter-Clockwise)
-    // Range: 1000px/s -> 45deg tilt? Or full spin?
-    // User said "circular turn". 
-    // Let's try a full 360 for high speed to make it visible.
-    // If not scrolling (vel=0), stays straight (0).
-    const rotate = useTransform(smoothVelocity, [-2000, 0, 2000], [-360, 0, 360], { clamp: false });
-
     return (
-        <motion.img
+        <img
             src="/Sakhi PH.svg"
             alt="Sakhi Preview"
-            style={{ rotate }}
-            className="w-full max-w-none object-contain drop-shadow-2xl"
+            className="w-full max-w-none object-contain drop-shadow-2xl scale-110 md:scale-125 lg:scale-150 transform-gpu"
         />
     );
 }

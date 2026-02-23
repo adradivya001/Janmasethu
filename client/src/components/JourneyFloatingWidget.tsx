@@ -36,34 +36,49 @@ function StagePill({ stage, index }: { stage: JourneyStage; index: number }) {
     const [isExpanded, setIsExpanded] = useState(false);
     const [openDir, setOpenDir] = useState<'down' | 'up'>('down');
     const pillRef = useRef<HTMLDivElement>(null);
-    const topOffset = 28 + index * 7;
+    const [isMobile, setIsMobile] = useState(false);
     const { x, y, side, snapToEdge } = useSnapToEdge();
     const isActive = journey?.stage === stage;
+
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth < 768);
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    const topOffset = isMobile ? 46 + index * 8 : 28 + index * 7;
 
     const config = {
         TTC: {
             icon: "/thinking of parenthood.png",
             label: "Trying to Conceive",
+            hoverLabel: "Conceive",
             gradient: "from-pink-400 to-rose-500",
             activeBorder: "border-pink-300",
             activeText: "text-pink-600",
             activeBg: "bg-pink-50",
+            glowColor: "rgba(244, 63, 94, 0.6)" // rose-500
         },
         PREGNANT: {
             icon: "/Pregnancy.png",
             label: "Pregnant",
+            hoverLabel: "Pregnant",
             gradient: "from-purple-400 to-violet-500",
             activeBorder: "border-purple-300",
             activeText: "text-purple-600",
             activeBg: "bg-purple-50",
+            glowColor: "rgba(139, 92, 246, 0.6)" // violet-500
         },
         PARENT: {
             icon: "/Post-delivery.png",
             label: "Parent",
+            hoverLabel: "Parent",
             gradient: "from-blue-400 to-indigo-500",
             activeBorder: "border-blue-300",
             activeText: "text-blue-600",
             activeBg: "bg-blue-50",
+            glowColor: "rgba(99, 102, 241, 0.6)" // indigo-500
         },
     }[stage];
 
@@ -81,7 +96,9 @@ function StagePill({ stage, index }: { stage: JourneyStage; index: number }) {
         }
     };
 
+    const sideClass = side === 'right' ? 'side-right' : 'side-left';
     const pillRounding = side === 'right' ? 'rounded-l-full' : 'rounded-r-full';
+    const flexDirection = side === 'right' ? 'flex-row' : 'flex-row-reverse';
     const pillPadding = side === 'right' ? 'pl-1 pr-0' : 'pr-1 pl-0';
 
     return (
@@ -97,27 +114,40 @@ function StagePill({ stage, index }: { stage: JourneyStage; index: number }) {
             {/* Collapsed Pill — always visible when not expanded */}
             <button
                 onClick={handleClick}
+                style={{ "--glow-color": config.glowColor } as React.CSSProperties}
                 className={cn(
-                    "group relative flex items-center transition-all duration-300",
+                    "group relative flex items-center transition-all duration-300 outline-none",
                     isExpanded && isActive && "pointer-events-none opacity-0"
                 )}
             >
                 <div className={cn(
-                    "relative overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300",
+                    "widget-pill widget-glow relative overflow-hidden shadow-lg border border-white/20",
                     "bg-gradient-to-b", config.gradient,
-                    pillRounding,
-                    isActive && "ring-2 ring-white shadow-xl"
+                    pillRounding, sideClass,
+                    isActive && "ring-2 ring-white"
                 )}>
+                    {/* Shimmer Sweep Elements */}
+                    <div className="widget-shimmer" />
                     <div className="absolute inset-0 bg-gradient-to-b from-white/20 via-transparent to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    <div className={cn("relative flex items-center py-1", pillPadding)}>
+
+                    <div className={cn("relative flex items-center py-1", pillPadding, flexDirection)}>
+                        {/* Icon */}
                         <div className={cn(
-                            "w-7 h-7 md:w-10 md:h-10 rounded-full overflow-hidden flex-shrink-0 bg-white/25 backdrop-blur-sm",
+                            "widget-icon w-7 h-7 md:w-10 md:h-10 rounded-full overflow-hidden flex-shrink-0 bg-white/25 backdrop-blur-sm shadow-inner",
                             isActive && "ring-2 ring-white/60"
                         )}>
                             <img src={config.icon} alt={stage} className="w-full h-full object-contain p-1" />
                         </div>
+
+                        <div className="widget-label-container flex items-center justify-center">
+                            <span className="text-white font-semibold text-[13px] md:text-[15px] leading-none tracking-normal drop-shadow-sm pb-[1px]">
+                                {config.hoverLabel}
+                            </span>
+                        </div>
+
+                        {/* Active Dot / Spacer */}
                         <div className="w-1.5 md:w-3 flex items-center justify-center">
-                            {isActive && <div className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />}
+                            {isActive && <div className="w-1 h-1 md:w-1.5 md:h-1.5 rounded-full bg-white animate-pulse" />}
                         </div>
                     </div>
                 </div>

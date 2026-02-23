@@ -4,11 +4,12 @@ import AnimatedButton from "../AnimatedButton";
 import { Link, useLocation } from "wouter";
 import { useLanguage } from "../../i18n/LanguageProvider";
 import NavButton from "../NavButton";
+import { cn } from "../../lib/utils";
 
 const CinematicHero = () => {
     const containerRef = useRef<HTMLDivElement>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
-    const { t } = useLanguage();
+    const { t, lang } = useLanguage();
     const [location] = useLocation();
 
     const navConfig = [
@@ -39,7 +40,7 @@ const CinematicHero = () => {
     // ... (Keep Image Logic) ...
     // --- Image Sequence Logic ---
     const [images, setImages] = useState<HTMLImageElement[]>([]);
-    const frameCount = 60;
+    const frameCount = 120;
 
     useEffect(() => {
         const loadedImages: HTMLImageElement[] = [];
@@ -47,7 +48,7 @@ const CinematicHero = () => {
         for (let i = 1; i <= frameCount; i++) {
             const img = new Image();
             const frameNumber = i.toString().padStart(3, '0');
-            img.src = `/Hero banner/ezgif-frame-${frameNumber}.jpg`;
+            img.src = `/lady hero banner/ezgif-frame-${frameNumber}.jpg`;
             loadedImages.push(img);
         }
         setImages(loadedImages);
@@ -167,9 +168,25 @@ const CinematicHero = () => {
     const opacityPhase3 = useTransform(smoothProgress, [0.65, 0.75, 1], [0, 1, 1]);
     const yPhase3 = useTransform(smoothProgress, [0.65, 0.8], [20, 0]);
 
+    const [isHidden, setIsHidden] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (!containerRef.current) return;
+            const rect = containerRef.current.getBoundingClientRect();
+            // Hide the fixed layer once the Cinematic Hero scroll region is scrolled past.
+            // This prevents it from bleeding into the sticky footer gap at the bottom of the page.
+            setIsHidden(rect.bottom <= 0);
+        };
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        handleScroll();
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
     return (
-        <div ref={containerRef} className="relative h-[300vh] md:h-[450vh] bg-[#FFF1EC] md:-mt-[48px]">
-            <div className="sticky top-[56px] md:top-[64px] h-[calc(100vh-56px)] md:h-[calc(100vh-64px)] w-full overflow-hidden">
+        <div className="bg-[#FFF1EC] md:-mt-[48px]">
+            {/* Fixed layer stays perfectly in place while the scroll container pushes the page */}
+            <div className={`fixed top-[56px] md:top-[64px] left-0 right-0 h-[calc(100vh-56px)] md:h-[calc(100vh-64px)] w-full overflow-hidden z-[15] ${isHidden ? 'hidden' : ''}`}>
 
                 {/* Embedded Secondary Nav - Moves with Hero */}
                 <div className="absolute top-0 left-0 right-0 z-40 hidden md:block">
@@ -197,7 +214,7 @@ const CinematicHero = () => {
                     {/* Fallback Image */}
                     <div
                         className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-100"
-                        style={{ backgroundImage: 'url("/Hero banner/ezgif-frame-001.jpg")' }}
+                        style={{ backgroundImage: 'url("/lady hero banner/ezgif-frame-001.jpg")' }}
                     />
 
                     <canvas
@@ -211,8 +228,8 @@ const CinematicHero = () => {
                 {/* Mobile: right-half only, beside the lady. Desktop: right-aligned as before */}
                 <div className="absolute inset-0 z-30 pointer-events-none">
                     {/* Mobile layout: text pinned to right half */}
-                    <div className="absolute top-3 right-2 left-[50%] bottom-auto md:hidden pointer-events-auto overflow-hidden">
-                        <div className="relative min-h-[120px] flex flex-col justify-center text-right">
+                    <div className="absolute top-5 right-2 left-[45%] bottom-auto md:hidden pointer-events-auto">
+                        <div className="relative min-h-[180px] flex flex-col justify-center text-right">
                             {/* Phase 1 */}
                             <motion.div
                                 style={{ opacity: opacityPhase1, y: yPhase1 }}
@@ -221,8 +238,8 @@ const CinematicHero = () => {
                                 <h2 className="text-[8px] font-bold tracking-[0.12em] text-black/70 mb-1 uppercase font-sans">
                                     {t('hero_phase1_sub')}
                                 </h2>
-                                <h1 className="text-sm font-bold font-display text-pink-600 leading-tight">
-                                    {t('hero_phase1_main')}<br />
+                                <h1 className={cn("font-aligin font-medium text-pink-600", lang === 'en' ? "text-xl leading-tight" : "text-lg leading-tight")}>
+                                    {t('hero_phase1_main')}{lang === 'en' ? <br /> : " "}
                                     <span className="text-pink-500">{t('hero_phase1_span')}</span>
                                 </h1>
                             </motion.div>
@@ -235,8 +252,8 @@ const CinematicHero = () => {
                                 <h2 className="text-[8px] font-bold tracking-[0.12em] text-black/70 mb-1 uppercase font-sans">
                                     {t('hero_phase2_sub')}
                                 </h2>
-                                <h1 className="text-sm font-bold font-display text-pink-600 leading-tight">
-                                    {t('hero_phase2_main')}<br />
+                                <h1 className={cn("font-aligin font-medium text-pink-600", lang === 'en' ? "text-xl leading-tight" : "text-lg leading-tight")}>
+                                    {t('hero_phase2_main')}{lang === 'en' ? <br /> : " "}
                                     {t('hero_phase2_main_2')} <span className="text-pink-500">{t('hero_phase2_span')}</span>
                                 </h1>
                             </motion.div>
@@ -249,8 +266,8 @@ const CinematicHero = () => {
                                 <h2 className="text-[8px] font-bold tracking-[0.12em] text-black/70 mb-1 uppercase font-sans">
                                     {t('hero_phase3_sub')}
                                 </h2>
-                                <h1 className="text-sm font-bold font-display text-pink-600 leading-tight">
-                                    {t('hero_phase3_main')}<br />
+                                <h1 className={cn("font-aligin font-medium text-pink-600", lang === 'en' ? "text-xl leading-tight" : "text-lg leading-tight")}>
+                                    {t('hero_phase3_main')}{lang === 'en' ? <br /> : " "}
                                     <span className="text-pink-500">{t('hero_phase3_span')}</span>
                                 </h1>
                             </motion.div>
@@ -283,8 +300,8 @@ const CinematicHero = () => {
                                     <h2 className="text-sm font-bold tracking-[0.2em] text-black mb-4 uppercase font-sans">
                                         {t('hero_phase1_sub')}
                                     </h2>
-                                    <h1 className="text-5xl lg:text-6xl font-bold font-display text-pink-600 mb-8 leading-[1.1]">
-                                        {t('hero_phase1_main')}<br />
+                                    <h1 className={cn("font-aligin font-medium text-pink-600 mb-8", lang === 'en' ? "text-5xl lg:text-7xl leading-[1.1]" : "text-4xl lg:text-5xl leading-tight")}>
+                                        {t('hero_phase1_main')}{lang === 'en' ? <br /> : " "}
                                         <span className="text-pink-500">{t('hero_phase1_span')}</span>
                                     </h1>
                                 </motion.div>
@@ -297,8 +314,8 @@ const CinematicHero = () => {
                                     <h2 className="text-sm font-bold tracking-[0.2em] text-black mb-4 uppercase font-sans">
                                         {t('hero_phase2_sub')}
                                     </h2>
-                                    <h1 className="text-5xl lg:text-6xl font-bold font-display text-pink-600 mb-10 leading-[1.1]">
-                                        {t('hero_phase2_main')}<br />
+                                    <h1 className={cn("font-aligin font-medium text-pink-600 mb-10", lang === 'en' ? "text-5xl lg:text-7xl leading-[1.1]" : "text-4xl lg:text-5xl leading-tight")}>
+                                        {t('hero_phase2_main')}{lang === 'en' ? <br /> : " "}
                                         {t('hero_phase2_main_2')} <span className="text-pink-500">{t('hero_phase2_span')}</span>
                                     </h1>
                                 </motion.div>
@@ -311,8 +328,8 @@ const CinematicHero = () => {
                                     <h2 className="text-sm font-bold tracking-[0.2em] text-black mb-4 uppercase font-sans">
                                         {t('hero_phase3_sub')}
                                     </h2>
-                                    <h1 className="text-5xl lg:text-6xl font-bold font-display text-pink-600 mb-8 leading-[1.1]">
-                                        {t('hero_phase3_main')}<br />
+                                    <h1 className={cn("font-aligin font-medium text-pink-600 mb-8", lang === 'en' ? "text-5xl lg:text-7xl leading-[1.1]" : "text-4xl lg:text-5xl leading-tight")}>
+                                        {t('hero_phase3_main')}{lang === 'en' ? <br /> : " "}
                                         <span className="text-pink-500">{t('hero_phase3_span')}</span>
                                     </h1>
                                 </motion.div>
@@ -335,6 +352,9 @@ const CinematicHero = () => {
                     </div>
                 </div>
             </div>
+
+            {/* Scroll Container (just height) - this triggers useScroll without scrolling the fixed hero */}
+            <div ref={containerRef} className="relative h-[300vh] md:h-[450vh] z-[1] pointer-events-none" />
         </div>
     );
 };

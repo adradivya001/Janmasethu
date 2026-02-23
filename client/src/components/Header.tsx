@@ -59,17 +59,17 @@ const Header = () => {
           <div className="flex items-center justify-between h-full relative">
 
             {/* Left: Burger Menu + Language Toggle */}
-            <div className="flex items-center gap-1.5 md:gap-4 relative z-[60]">
+            <div className="flex items-center gap-1 md:gap-4 relative z-[60]">
               <MenuSwitch
                 isOpen={mobileMenuOpen}
                 toggle={() => setMobileMenuOpen(!mobileMenuOpen)}
               />
 
               {/* Language Toggle - Compact capsule on mobile, full on desktop */}
-              <div className="bg-gray-50 p-0.5 md:p-1 rounded-full border border-gray-200 shadow-sm inline-flex h-7 md:h-9 items-center">
+              <div className="bg-gray-50 p-px md:p-1 rounded-full border border-gray-200 shadow-sm inline-flex h-5 sm:h-6 md:h-9 items-center">
                 <button
                   onClick={() => setLang('en')}
-                  className={`px-2 md:px-3 py-1 md:py-1.5 rounded-full text-[10px] md:text-xs font-semibold transition-all duration-200 ${lang === 'en'
+                  className={`px-1.5 sm:px-2 md:px-3 py-0.5 md:py-1.5 rounded-full text-[8px] sm:text-[9px] md:text-xs font-semibold transition-all duration-200 leading-none h-full flex items-center ${lang === 'en'
                     ? 'bg-purple-500 text-white shadow-sm'
                     : 'text-gray-500 hover:text-purple-600'
                     }`}
@@ -78,7 +78,7 @@ const Header = () => {
                 </button>
                 <button
                   onClick={() => setLang('te')}
-                  className={`px-2 md:px-3 py-1 md:py-1.5 rounded-full text-[10px] md:text-xs font-semibold transition-all duration-200 ${lang === 'te'
+                  className={`px-1.5 sm:px-2 md:px-3 py-0.5 md:py-1.5 rounded-full text-[8px] sm:text-[9px] md:text-xs font-semibold transition-all duration-200 leading-none h-full flex items-center ${lang === 'te'
                     ? 'bg-purple-500 text-white shadow-sm'
                     : 'text-gray-500 hover:text-purple-600'
                     }`}
@@ -128,15 +128,15 @@ const Header = () => {
               </div>
 
               {/* Mobile: Minimal text buttons with tap animations */}
-              <div className="flex md:hidden items-center gap-1">
+              <div className="flex md:hidden items-center gap-0.5 sm:gap-1">
                 <button
-                  className="px-2.5 py-1.5 text-[11px] font-semibold text-gray-600 rounded-full transition-all duration-200 hover:text-purple-600 hover:bg-purple-50 active:scale-90 active:bg-purple-100"
+                  className="px-1.5 sm:px-2 py-1 text-[9px] sm:text-[10px] font-semibold text-gray-600 rounded-full transition-all duration-200 hover:text-purple-600 hover:bg-purple-50 active:scale-90 active:bg-purple-100 whitespace-nowrap"
                   onClick={() => openAuth("login")}
                 >
                   Login
                 </button>
                 <button
-                  className="px-3 py-1.5 text-[11px] font-bold text-white bg-gradient-to-r from-purple-500 to-pink-500 rounded-full shadow-sm transition-all duration-200 hover:shadow-md hover:brightness-110 active:scale-90 active:shadow-none"
+                  className="px-2 sm:px-2.5 py-1 text-[9px] sm:text-[10px] font-bold text-white bg-gradient-to-r from-purple-500 to-pink-500 rounded-full shadow-sm transition-all duration-200 hover:shadow-md hover:brightness-110 active:scale-90 active:shadow-none whitespace-nowrap"
                   onClick={() => openAuth("register")}
                 >
                   Sign up

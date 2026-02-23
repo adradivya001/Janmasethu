@@ -33,10 +33,10 @@ export const JourneyProvider = ({ children }: { children: ReactNode }) => {
             if (stored) {
                 setJourneyState(JSON.parse(stored));
             } else {
-                // No journey found, set timer to show selector after 1 minute
+                // No journey found, set timer to show selector after 2 minutes
                 timerRef.current = setTimeout(() => {
                     setShowSelector(true);
-                }, 60000);
+                }, 120000);
             }
         } catch (e) {
             console.error('Failed to load journey from local storage', e);
@@ -53,11 +53,12 @@ export const JourneyProvider = ({ children }: { children: ReactNode }) => {
     useEffect(() => {
         // Only trigger if location has effectively changed
         if (prevLocation.current !== location) {
-            if (hasDismissed && !journey) {
+            const allowedPaths = ['/', '/knowledge-hub', '/sakhi', '/tools'];
+            if (hasDismissed && !journey && allowedPaths.includes(location)) {
                 // If user dismissed it previously and hasn't selected a journey,
-                // remind them when they navigate to a new page.
+                // remind them when they navigate to an allowed page.
                 setShowSelector(true);
-                setHasDismissed(false); // Reset dismissal flag so they can dismiss again on this new page
+                setHasDismissed(false); // Reset dismissal flag so they can dismiss again
             }
             prevLocation.current = location;
         }

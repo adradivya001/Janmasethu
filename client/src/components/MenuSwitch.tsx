@@ -2,37 +2,37 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface MenuSwitchProps {
-    isOpen: boolean;
-    toggle: () => void;
+  isOpen: boolean;
+  toggle: () => void;
 }
 
 const MenuSwitch: React.FC<MenuSwitchProps> = ({ isOpen, toggle }) => {
-    return (
-        <StyledWrapper>
-            <div id="menuToggle">
-                <input
-                    id="mobile-menu-checkbox"
-                    type="checkbox"
-                    checked={isOpen}
-                    onChange={toggle}
-                />
-                <label className="toggle" htmlFor="mobile-menu-checkbox">
-                    <div className="bar bar--top" />
-                    <div className="bar bar--middle" />
-                    <div className="bar bar--bottom" />
-                </label>
-            </div>
-        </StyledWrapper>
-    );
+  return (
+    <StyledWrapper>
+      <div id="menuToggle">
+        <input
+          id="mobile-menu-checkbox"
+          type="checkbox"
+          checked={isOpen}
+          onChange={toggle}
+        />
+        <label className="toggle" htmlFor="mobile-menu-checkbox">
+          <div className="bar bar--top" />
+          <div className="bar bar--middle" />
+          <div className="bar bar--bottom" />
+        </label>
+      </div>
+    </StyledWrapper>
+  );
 }
 
 const StyledWrapper = styled.div`
   /* Scale down the entire component for a minimal look */
-  transform: scale(0.6);
+  transform: scale(0.45);
   transform-origin: left center;
   /* Compensate for the layout space since transform doesn't affect flow */
-  width: 24px; 
-  height: 24px;
+  width: 18px; 
+  height: 18px;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -10,23 +10,14 @@ import { format } from 'date-fns';
 
 const Article = () => {
   const { slug } = useParams();
-  const { t } = useLanguage();
-
-  // Get language from URL query parameter, fallback to 'en'
-  const urlParams = new URLSearchParams(window.location.search);
-  const lang = (urlParams.get('lang') as 'en' | 'te') || 'en';
+  const { t, lang } = useLanguage();
 
   const [articleData, setArticleData] = useState<ArticleData | null>(null);
   const [recommendations, setRecommendations] = useState<ArticleMetadata[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const toggleLanguage = () => {
-    const newLang = lang === 'en' ? 'te' : 'en';
-    const params = new URLSearchParams(window.location.search);
-    params.set('lang', newLang);
-    window.location.search = params.toString();
-  };
+
 
   // Load article data from JSON
   useEffect(() => {
@@ -291,32 +282,7 @@ const Article = () => {
               <span className="hidden sm:inline font-medium">Back to Knowledge Hub</span>
             </Button>
           </Link>
-          <div className="flex items-center gap-2">
-            <div className="bg-gray-100 p-1 rounded-full border border-gray-200 shadow-sm inline-flex h-9 items-center">
-              <button
-                onClick={() => {
-                  if (lang !== 'en') toggleLanguage();
-                }}
-                className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-200 ${lang === 'en'
-                  ? 'bg-white text-purple-700 shadow-sm'
-                  : 'text-gray-500 hover:text-purple-600'
-                  }`}
-              >
-                Eng
-              </button>
-              <button
-                onClick={() => {
-                  if (lang !== 'te') toggleLanguage();
-                }}
-                className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-200 ${lang === 'te'
-                  ? 'bg-white text-purple-700 shadow-sm'
-                  : 'text-gray-500 hover:text-purple-600'
-                  }`}
-              >
-                తెలుగు
-              </button>
-            </div>
-          </div>
+
         </div>
       </div>
 

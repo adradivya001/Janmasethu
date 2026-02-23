@@ -48,11 +48,7 @@ interface WebhookResponse {
 }
 
 const Knowledge = () => {
-  const { t, lang: globalLang } = useLanguage(); // Rename global lang to avoid confusion
-  // Local state for knowledge hub content language, default to 'en' or persisted value
-  const [contentLang, setContentLang] = useState<'en' | 'te'>(() => {
-    return (localStorage.getItem('knowledge_lang') as 'en' | 'te') || 'en';
-  });
+  const { t, lang } = useLanguage();
   const { journey, isLoading: isJourneyLoading } = useJourney();
 
   const [searchTerm, setSearchTerm] = useState('');
@@ -72,13 +68,6 @@ const Knowledge = () => {
   const [loading, setLoading] = useState(false); // Start with false for instant skeleton display
   const [searching, setSearching] = useState(false);
   const [searchError, setSearchError] = useState<string | null>(null);
-
-  // Update content language and persist it
-  const handleLanguageChange = (newLang: 'en' | 'te') => {
-    setContentLang(newLang);
-    localStorage.setItem('knowledge_lang', newLang);
-    localStorage.setItem('knowledge_lang', newLang);
-  };
 
   // Sync Journey to Filters
   useEffect(() => {
@@ -134,7 +123,7 @@ const Knowledge = () => {
         // Fetch articles from API using the correct endpoint with local content language
         const response = await fetchArticles({
           perPage: 100,
-          lang: contentLang // Pass local content language
+          lang: lang as 'en' | 'te' // Pass local content language
         });
 
         console.log('Articles API response:', response);
@@ -183,7 +172,7 @@ const Knowledge = () => {
     };
 
     loadArticles();
-  }, [contentLang]); // Refetch when content language changes
+  }, [lang]); // Refetch when content language changes
 
   // Auto-trigger search when filters change
   useEffect(() => {
@@ -192,7 +181,7 @@ const Knowledge = () => {
       console.log('🔄 Filters changed, auto-triggering search');
       handleSearch();
     }
-  }, [selectedLens, selectedStage, contentLang]); // Refetch when filters or content language change
+  }, [selectedLens, selectedStage, lang]); // Refetch when filters or content language change
 
   // Auto-trigger search if URL has search parameters on mount
   useEffect(() => {
@@ -213,7 +202,7 @@ const Knowledge = () => {
     if (!content) return '';
     if (typeof content === 'string') return content;
 
-    const langKey = contentLang === 'te' ? 'te' : 'en';
+    const langKey = lang === 'te' ? 'te' : 'en';
     // Fallback cascade: requested lang -> english -> any available
     return content[langKey] || content.en || Object.values(content)[0] || '';
   };
@@ -250,7 +239,7 @@ const Knowledge = () => {
 
         const recs = await fetchRecommendations({
           stage: targetStage,
-          lang: contentLang,
+          lang: lang as 'en' | 'te',
           limit: 9 // Increased from 3 to 9
         });
 
@@ -281,7 +270,7 @@ const Knowledge = () => {
     };
 
     loadRecommendations();
-  }, [journey, contentLang]);
+  }, [journey, lang]);
 
   // Use the fetched items
   const [showAllRecs, setShowAllRecs] = useState(false);
@@ -403,7 +392,7 @@ const Knowledge = () => {
         };
       });
     }
-  }, [webhookResults, jsonArticles, contentLang, getLocalizedContent]);
+  }, [webhookResults, jsonArticles, lang, getLocalizedContent]);
 
   // ... filtering logic ...
   const filteredArticles = useMemo(() => {
@@ -483,7 +472,7 @@ const Knowledge = () => {
         search: searchTerm || undefined,
         lifeStage: selectedStage ? stageToIdMap[selectedStage] : undefined,
         perspective: selectedLens ? lensToIdMap[selectedLens] : undefined,
-        lang: contentLang // Pass local content language
+        lang: lang as 'en' | 'te' // Pass local content language
       });
 
       const webhookData = {
@@ -601,27 +590,7 @@ const Knowledge = () => {
           </Select>
         </div>
 
-        {/* Language Toggle */}
-        <div className="bg-white p-1 rounded-full border shadow-sm inline-flex h-10 items-center">
-          <button
-            onClick={() => handleLanguageChange('en')}
-            className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${contentLang === 'en'
-              ? 'bg-purple-100 text-purple-700'
-              : 'text-muted-foreground hover:text-purple-600'
-              }`}
-          >
-            Eng
-          </button>
-          <button
-            onClick={() => handleLanguageChange('te')}
-            className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${contentLang === 'te'
-              ? 'bg-purple-100 text-purple-700'
-              : 'text-muted-foreground hover:text-purple-600'
-              }`}
-          >
-            తెలుగు
-          </button>
-        </div>
+
 
         {/* Clear Filters Button */}
         {(webhookResults || selectedLens || selectedStage || searchTerm) && (
@@ -659,7 +628,7 @@ const Knowledge = () => {
           </div>
           <div className="grid md:grid-cols-3 gap-6 mb-6">
             {recommendedArticles.map((article, index) => (
-              <Link key={`rec-${article.slug}`} href={`/knowledge-hub/${article.slug}?lang=${contentLang}`} className="group h-full">
+              <Link key={`rec-${article.slug}`} href={`/knowledge-hub/${article.slug}?lang=${lang}`} className="group h-full">
                 <Card className="rounded-2xl p-5 card-shadow hover:shadow-xl transition-all duration-300 h-full cursor-pointer border-2 border-transparent hover:border-purple-200 bg-white">
                   <CardContent className="p-0 flex flex-col h-full">
                     <div className="flex flex-wrap gap-1 mb-3">
@@ -763,7 +732,7 @@ const Knowledge = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {paginatedArticles.map((article, index) => (
               // PASS CONTENT LANGUAGE CONFIG TO ARTICLE PAGE
-              <Link key={article.key || `article-${article.slug}-${index}`} href={`/knowledge-hub/${article.slug}?lang=${contentLang}`} className="group h-full">
+              <Link key={article.key || `article-${article.slug}-${index}`} href={`/knowledge-hub/${article.slug}?lang=${lang}`} className="group h-full">
                 <Card className="rounded-3xl p-6 card-shadow hover:shadow-2xl transition-all duration-500 h-full cursor-pointer transform hover:scale-105 border-2 border-transparent hover:border-purple-200 relative overflow-hidden bg-gradient-to-br from-white to-purple-50/30">
                   <CardContent className="p-0">
                     <div className="flex flex-wrap gap-1 mb-3">

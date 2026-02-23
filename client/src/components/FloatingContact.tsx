@@ -38,7 +38,9 @@ export default function FloatingContact({ onOpenLeadForm }: FloatingContactProps
         setIsExpanded(true);
     };
 
+    const sideClass = side === 'right' ? 'side-right' : 'side-left';
     const pillRounding = side === 'right' ? 'rounded-l-full' : 'rounded-r-full';
+    const flexDirection = side === 'right' ? 'flex-row' : 'flex-row-reverse';
     const pillPadding = side === 'right' ? 'pl-1 pr-0' : 'pr-1 pl-0';
 
     return (
@@ -54,20 +56,30 @@ export default function FloatingContact({ onOpenLeadForm }: FloatingContactProps
             {/* Collapsed Pill */}
             <button
                 onClick={handleExpand}
+                style={{ "--glow-color": "rgba(139, 92, 246, 0.6)" } as React.CSSProperties}
                 className={cn(
-                    "group relative flex items-center transition-all duration-300",
+                    "group relative flex items-center transition-all duration-300 outline-none",
                     isExpanded && "pointer-events-none opacity-0"
                 )}
             >
                 <div className={cn(
-                    "relative overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-b from-purple-500 to-indigo-600",
-                    pillRounding
+                    "widget-pill widget-glow relative overflow-hidden shadow-lg border border-white/20 bg-gradient-to-b from-purple-500 to-indigo-600",
+                    pillRounding, sideClass
                 )}>
+                    <div className="widget-shimmer" />
                     <div className="absolute inset-0 bg-gradient-to-b from-white/20 via-transparent to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    <div className={cn("relative flex items-center py-1", pillPadding)}>
-                        <div className="w-7 h-7 md:w-10 md:h-10 rounded-full overflow-hidden flex-shrink-0 bg-white/25 backdrop-blur-sm flex items-center justify-center">
+
+                    <div className={cn("relative flex items-center py-1", pillPadding, flexDirection)}>
+                        <div className="widget-icon w-7 h-7 md:w-10 md:h-10 rounded-full overflow-hidden flex-shrink-0 bg-white/25 backdrop-blur-sm flex items-center justify-center shadow-inner">
                             <UserPlus className="w-3.5 h-3.5 md:w-5 md:h-5 text-white" />
                         </div>
+
+                        <div className="widget-label-container flex items-center justify-center">
+                            <span className="text-white font-semibold text-[13px] md:text-[15px] leading-none tracking-normal drop-shadow-sm pb-[1px]">
+                                Contact
+                            </span>
+                        </div>
+
                         <div className="w-1.5 md:w-3" />
                     </div>
                 </div>
