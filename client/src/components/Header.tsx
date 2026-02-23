@@ -52,8 +52,9 @@ const Header = () => {
     <>
       {/* Top Bar - Sticky */}
       <header
-        className={`site-header sticky top-0 z-[60] w-full bg-white transition-all duration-300 ${isScrolled ? "shadow-md" : ""
-          }`}
+        className={`site-header sticky top-0 z-[60] w-full bg-white transition-all duration-300 ${
+          isScrolled ? "shadow-md" : ""
+        }`}
       >
         <div className="container mx-auto px-3 md:px-4 h-14 md:h-16">
           <div className="flex items-center justify-between h-full relative">

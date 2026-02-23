@@ -1,0 +1,8 @@
+[[ports]]
+localPort = 5000
+externalPort = 80
+
+[deployment]
+run = ["sh", "-c", "npm run start"]
+deploymentTarget = "cloudrun"
+publicDir = "dist/public"
