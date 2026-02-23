@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "5100:5100"
+    environment:
+      - NODE_ENV=production
+      - PORT=5100
+    # Load environment variables from .env file
+    env_file:
+      - .env
+    restart: always
