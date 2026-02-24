@@ -155,6 +155,28 @@ export async function sendChatMessage(userId: string, message: string, language:
   return await response.json();
 }
 
+export async function checkInstantAnswer(userId: string, message: string): Promise<{ found: boolean; answer?: string }> {
+  try {
+    const response = await fetch(`${API_BASE_URL}/sakhi/check-instant-answer`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        user_id: userId,
+        message: message,
+      }),
+    });
+
+    if (!response.ok) {
+      return { found: false };
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error('Error checking instant answer:', error);
+    return { found: false };
+  }
+}
+
 export async function getOnboardingStep(data: OnboardingStepRequest): Promise<OnboardingStepResponse> {
   const response = await fetch(`${API_BASE_URL}/onboarding/step`, {
     method: 'POST',

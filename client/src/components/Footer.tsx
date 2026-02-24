@@ -5,9 +5,9 @@ const Footer = () => {
   const { t } = useLanguage();
 
   return (
-    <footer className="bg-white/80 backdrop-blur-sm border-t border-border py-4 md:py-6">
+    <footer className="bg-white py-8 md:py-12 w-full">
       <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-4 gap-4 md:gap-6">
+        <div className="grid md:grid-cols-5 gap-4 md:gap-6">
           {/* Brand */}
           <div>
             <div className="flex flex-col items-center md:items-start mb-2 md:mb-4">
@@ -49,6 +49,16 @@ const Footer = () => {
               <Link href="/blog" className="block text-muted-foreground hover:text-primary text-xs" data-testid="link-footer-blog">
                 {t('nav_blog')}
               </Link>
+            </div>
+          </div>
+
+          {/* For Professionals */}
+          <div>
+            <h4 className="font-semibold text-foreground text-sm mb-1 md:mb-2">{t('footer_professional')}</h4>
+            <div className="space-y-1">
+              <a href="http://72.61.228.9:4500" target="_blank" rel="noopener noreferrer" className="block text-muted-foreground hover:text-primary text-xs">
+                {t('nav_for_clinics')}
+              </a>
             </div>
           </div>
 

@@ -30,7 +30,7 @@ export default function Experts() {
   return (
     <div className="container mx-auto px-4 py-10">
       <div className="text-center mb-10">
-        <h1 className="text-4xl md:text-5xl font-bold font-serif text-foreground">Our Experts</h1>
+        <h1 className="text-4xl md:text-5xl font-bold text-foreground">Our Experts</h1>
         <p className="text-muted-foreground mt-3 mb-6">
           Meet fertility specialists from Medcy IVF.
         </p>
@@ -97,7 +97,7 @@ export default function Experts() {
 
                     {/* Content Section with Gradient */}
                     <div className="p-6 bg-gradient-to-br from-white/95 via-purple-50/60 to-pink-50/50 backdrop-blur-sm">
-                      <h3 className="text-xl font-bold text-gray-900 font-serif group-hover:text-purple-700 transition-colors">
+                      <h3 className="text-xl font-bold text-gray-900 group-hover:text-purple-700 transition-colors">
                         {d.name}
                       </h3>
                       {d.designation && (

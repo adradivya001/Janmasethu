@@ -125,7 +125,7 @@ const Story = () => {
       <div className="container mx-auto px-4 py-8">
         <Card className="max-w-2xl mx-auto rounded-3xl p-8 card-shadow">
           <CardContent>
-            <h1 className="text-2xl font-bold text-foreground font-serif mb-4">Story Not Found</h1>
+            <h1 className="text-2xl font-bold text-foreground mb-4">Story Not Found</h1>
             <p className="text-muted-foreground mb-6">The success story you're looking for doesn't exist.</p>
             <Link href="/success-stories">
               <Button className="gradient-button text-white rounded-full">
@@ -177,7 +177,7 @@ const Story = () => {
             </Badge>
           </div>
 
-          <h1 className="text-3xl md:text-4xl font-bold text-foreground font-serif mb-6" data-testid="text-story-title">
+          <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-6" data-testid="text-story-title">
             {getField(story.title)}
           </h1>
 
@@ -208,7 +208,7 @@ const Story = () => {
                   // Static story with chapters
                   story.body.map((section: any, index: number) => (
                     <div key={index} className="mb-8" data-testid={`section-story-content-${index}`}>
-                      <h2 className="text-xl font-bold text-foreground font-serif mb-4">
+                      <h2 className="text-xl font-bold text-foreground mb-4">
                         Chapter {index + 1}
                       </h2>
                       <p className="text-muted-foreground leading-relaxed">
@@ -219,7 +219,7 @@ const Story = () => {
                 ) : (
                   // Backend story - display longStory (full narrative)
                   <div className="mb-8" data-testid="section-story-content-0">
-                    <h2 className="text-xl font-bold text-foreground font-serif mb-4">
+                    <h2 className="text-xl font-bold text-foreground mb-4">
                       Their Story
                     </h2>
                     {story.longStory ? (
@@ -268,7 +268,7 @@ const Story = () => {
           {/* Story Details */}
           <Card className="rounded-3xl p-6 card-shadow">
             <CardHeader>
-              <CardTitle className="text-lg font-bold text-foreground font-serif">Story Details</CardTitle>
+              <CardTitle className="text-lg font-bold text-foreground">Story Details</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
@@ -315,7 +315,7 @@ const Story = () => {
           {/* Related Stories */}
           <Card className="rounded-3xl p-6 card-shadow">
             <CardHeader>
-              <CardTitle className="text-lg font-bold text-foreground font-serif">Related Stories</CardTitle>
+              <CardTitle className="text-lg font-bold text-foreground">Related Stories</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
@@ -342,7 +342,7 @@ const Story = () => {
           <Card className="rounded-3xl p-6 card-shadow bg-gradient-to-br from-purple-50 to-pink-50">
             <CardContent className="p-0 text-center">
               <Heart className="w-12 h-12 text-pink-500 mx-auto mb-4" />
-              <h3 className="text-lg font-bold text-foreground font-serif mb-2">
+              <h3 className="text-lg font-bold text-foreground mb-2">
                 Need Support?
               </h3>
               <p className="text-sm text-muted-foreground mb-4">

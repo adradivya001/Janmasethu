@@ -58,7 +58,7 @@ const Blog = () => {
     <div className="container mx-auto px-4 py-8">
       {/* Page Header */}
       <div className="text-center mb-16">
-        <h1 className="text-4xl md:text-5xl font-bold text-foreground font-serif mb-6" data-testid="text-blog-title">
+        <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6" data-testid="text-blog-title">
           Blogs
         </h1>
         <p className="text-lg text-muted-foreground max-w-3xl mx-auto">{t("blog_subtitle")}</p>
@@ -67,7 +67,7 @@ const Blog = () => {
       {/* Featured Post */}
       {featured && (
         <div className="mb-16">
-          <h2 className="text-2xl font-bold text-foreground font-serif mb-6">{t("blog_featured_post")}</h2>
+          <h2 className="text-2xl font-bold text-foreground mb-6">{t("blog_featured_post")}</h2>
           <Link href={`/blog/${featured.slug}`}>
             <Card className="rounded-3xl p-8 card-shadow hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-purple-50 to-pink-50" data-testid="card-featured-post">
               <CardContent className="p-0">
@@ -76,7 +76,7 @@ const Blog = () => {
                     <div className="flex flex-wrap gap-2 mb-4">
                       <Badge variant="secondary" className="text-xs">Featured</Badge>
                     </div>
-                    <h3 className="text-2xl md:text-3xl font-bold text-foreground font-serif mb-4" data-testid="text-featured-post-title">
+                    <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4" data-testid="text-featured-post-title">
                       {featured.title}
                     </h3>
                     {featured.excerpt && (
@@ -113,7 +113,7 @@ const Blog = () => {
 
       {/* All Posts */}
       <div className="mb-8">
-        <h2 className="text-2xl font-bold text-foreground font-serif mb-6">{t("blog_all_posts")}</h2>
+        <h2 className="text-2xl font-bold text-foreground mb-6">{t("blog_all_posts")}</h2>
       </div>
 
       {items.length === 0 ? (
@@ -132,18 +132,18 @@ const Blog = () => {
                     />
                   </div>
                   <div className="p-6">
-                  <h3 className="text-lg font-bold text-foreground font-serif mb-2" data-testid={`text-post-title-${index}`}>
-                    {post.title}
-                  </h3>
-                  {post.excerpt && (
-                    <p className="text-sm text-muted-foreground mb-4 line-clamp-3" data-testid={`text-post-summary-${index}`}>
-                      {post.excerpt}
-                    </p>
-                  )}
-                  <div className="flex items-center justify-between text-xs text-muted-foreground">
-                    <span>Editorial Team</span>
-                    {post.created_at && <span>{new Date(post.created_at).toLocaleDateString()}</span>}
-                  </div>
+                    <h3 className="text-lg font-bold text-foreground mb-2" data-testid={`text-post-title-${index}`}>
+                      {post.title}
+                    </h3>
+                    {post.excerpt && (
+                      <p className="text-sm text-muted-foreground mb-4 line-clamp-3" data-testid={`text-post-summary-${index}`}>
+                        {post.excerpt}
+                      </p>
+                    )}
+                    <div className="flex items-center justify-between text-xs text-muted-foreground">
+                      <span>Editorial Team</span>
+                      {post.created_at && <span>{new Date(post.created_at).toLocaleDateString()}</span>}
+                    </div>
                   </div>
                 </CardContent>
               </Card>
@@ -155,7 +155,7 @@ const Blog = () => {
       {/* Newsletter CTA */}
       <section className="py-16">
         <div className="bg-white rounded-3xl p-8 md:p-12 card-shadow text-center">
-          <h2 className="text-3xl font-bold text-foreground font-serif mb-4">{t("blog_stay_updated")}</h2>
+          <h2 className="text-3xl font-bold text-foreground mb-4">{t("blog_stay_updated")}</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">{t("blog_updates_desc")}</p>
           <Link href="/contact">
             <Button className="gradient-button text-white px-8 py-4 rounded-full font-semibold">{t("blog_get_updates")}</Button>

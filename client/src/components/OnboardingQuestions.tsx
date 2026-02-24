@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Checkbox } from "@/components/ui/checkbox";
+import HeartCheckbox from "@/components/HeartCheckbox";
 import { useToast } from "@/hooks/use-toast";
 import { useLocation } from "wouter";
 import { getOnboardingStep, completeOnboarding } from "@/utils/api";
@@ -51,7 +51,16 @@ export default function OnboardingQuestions({ open, onClose, relationship = "her
   const { toast } = useToast();
   const [currentStep, setCurrentStep] = useState(1);
   const [answers, setAnswers] = useState<Record<string, any>>({});
-  const [parentProfileId] = useState(() => crypto.randomUUID());
+  const [parentProfileId] = useState(() => {
+    if (typeof crypto !== 'undefined' && crypto.randomUUID) {
+      return crypto.randomUUID();
+    }
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+      const r = Math.random() * 16 | 0;
+      const v = c === 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+  });
   const [question, setQuestion] = useState<Question | null>(null);
   const [totalSteps, setTotalSteps] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
@@ -346,7 +355,7 @@ export default function OnboardingQuestions({ open, onClose, relationship = "her
                   />
                   {currentQuestion.optional && (
                     <div className="flex items-center space-x-2">
-                      <Checkbox
+                      <HeartCheckbox
                         id="not-applicable"
                         checked={answers[currentQuestion.field] === "N/A"}
                         onCheckedChange={(checked) =>

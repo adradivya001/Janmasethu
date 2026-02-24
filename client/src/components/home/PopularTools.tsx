@@ -59,10 +59,10 @@ export default function PopularTools() {
     ];
 
     return (
-        <section className="py-16 bg-white border-t border-purple-50">
+        <section className="w-full bg-transparent pb-12">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-12">
-                    <h2 className="text-3xl md:text-4xl font-bold font-serif mb-4 text-gray-900">Popular Tools</h2>
+                    <h2 className="text-3xl md:text-4xl font-bold mb-4 text-pink-600">Popular Tools</h2>
                     <p className="text-gray-500 max-w-2xl mx-auto text-lg">
                         Essential calculators and trackers to guide you through every step of your parenthood journey.
                     </p>
@@ -72,10 +72,10 @@ export default function PopularTools() {
                     {tools.map((tool, index) => (
                         <Link key={index} href={tool.href}>
                             <div className="flex flex-col items-center group cursor-pointer">
-                                <div className={`w-20 h-20 rounded-2xl ${tool.color} flex items-center justify-center shadow-lg shadow-purple-900/5 transform transition-all duration-300 group-hover:scale-110 group-hover:rotate-1 group-hover:shadow-xl ring-4 ring-white`}>
+                                <div className={`w-20 h-20 rounded-2xl ${tool.color} flex items-center justify-center shadow-lg shadow-pink-900/5 transform transition-all duration-300 group-hover:scale-110 group-hover:rotate-1 group-hover:shadow-xl ring-4 ring-white`}>
                                     {tool.icon}
                                 </div>
-                                <h3 className="text-base font-bold text-gray-800 text-center mt-4 group-hover:text-purple-600 transition-colors">
+                                <h3 className="text-base font-bold text-gray-800 text-center mt-4 group-hover:text-pink-600 transition-colors">
                                     {tool.name}
                                 </h3>
                             </div>

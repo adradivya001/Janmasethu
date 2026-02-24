@@ -66,6 +66,7 @@ export default {
         sans: ["var(--font-sans)"],
         serif: ["var(--font-serif)"],
         mono: ["var(--font-mono)"],
+        aligin: ["'Aligin'", "Playfair Display", "serif"],
       },
       keyframes: {
         "accordion-down": {

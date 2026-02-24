@@ -86,7 +86,7 @@ export default function Tools() {
         <div className="min-h-screen bg-white">
             {/* Hero Section */}
             <div className="bg-gradient-to-b from-purple-50 to-white py-12 md:py-20 text-center px-4">
-                <h1 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4 font-serif">
+                <h1 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4">
                     Essential Tools for Your Journey
                 </h1>
                 <p className="text-lg text-gray-600 max-w-2xl mx-auto">

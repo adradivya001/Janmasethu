@@ -383,6 +383,65 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // =========================
+  // INSTANT FOLLOW-UP ANSWERS
+  // =========================
+
+  // In-memory cache for follow-up answers
+  const followUpCache = new Map<string, { question: string; answer: string }[]>();
+
+  // Webhook to receive follow-up answers from Sakhi Backend
+  app.post("/api/webhooks/sakhi-followups", async (req, res) => {
+    try {
+      const { user_id, payload } = req.body;
+
+      if (!user_id || !payload || !Array.isArray(payload)) {
+        return res.status(400).json({ error: "Invalid payload format" });
+      }
+
+      console.log(`📥 Received follow-up answers for user: ${user_id}`);
+      followUpCache.set(user_id, payload);
+
+      res.json({ ok: true, message: "Follow-up answers cached" });
+    } catch (e: any) {
+      console.error("POST /api/webhooks/sakhi-followups error:", e);
+      res.status(500).json({ ok: false, error: e.message });
+    }
+  });
+
+  // Endpoint to check for instant answers
+  app.post("/api/sakhi/check-instant-answer", async (req, res) => {
+    try {
+      const { user_id, message } = req.body;
+
+      if (!user_id || !message) {
+        return res.status(400).json({ error: "user_id and message are required" });
+      }
+
+      const cachedAnswers = followUpCache.get(user_id);
+
+      if (cachedAnswers) {
+        const normalizedMessage = message.trim().toLowerCase();
+
+        // Find a matching answer (case-insensitive partial match)
+        const match = cachedAnswers.find(item =>
+          item.question.toLowerCase().includes(normalizedMessage) ||
+          normalizedMessage.includes(item.question.toLowerCase())
+        );
+
+        if (match) {
+          console.log(`⚡ Instant answer found for user: ${user_id}`);
+          return res.json({ found: true, answer: match.answer });
+        }
+      }
+
+      res.json({ found: false });
+    } catch (e: any) {
+      console.error("POST /api/sakhi/check-instant-answer error:", e);
+      res.status(500).json({ ok: false, error: e.message });
+    }
+  });
+
+  // =========================
   // STORIES API ENDPOINTS (IN-MEMORY - NO DATABASE)
   // =========================
 
@@ -890,7 +949,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // SAKHI API PROXY ENDPOINTS (to avoid mixed content errors)
   // =========================
 
-  const SAKHI_API_BASE = process.env.SAKHI_API_URL || "http://72.61.228.9:8100";
+  const SAKHI_API_BASE = process.env.SAKHI_API_URL || "http://72.61.228.9:8000";
+  const WEBAPP_API_BASE = process.env.WEBAPP_API_URL || "http://72.61.228.9:8100";
 
   // Proxy: User Login
   app.post("/api/proxy/user/login", async (req, res) => {
@@ -931,6 +991,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Proxy: Sakhi Chat
   app.post("/api/proxy/sakhi/chat", async (req, res) => {
     try {
+      console.log(`📡 Proxying chat to: ${SAKHI_API_BASE}/sakhi/chat`);
+      console.log(`📦 Request body:`, JSON.stringify(req.body));
+
       const response = await fetch(`${SAKHI_API_BASE}/sakhi/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -979,7 +1042,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Proxy: Tools - Vaccination Schedule
   app.post("/api/proxy/tools/vaccination-schedule", async (req, res) => {
     try {
-      const response = await fetch(`${SAKHI_API_BASE}/api/tools/vaccination-schedule`, {
+      const response = await fetch(`${WEBAPP_API_BASE}/api/tools/vaccination-schedule`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(req.body),
@@ -995,7 +1058,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Proxy: Tools - Due Date
   app.post("/api/proxy/tools/due-date", async (req, res) => {
     try {
-      const response = await fetch(`${SAKHI_API_BASE}/api/tools/due-date`, {
+      const response = await fetch(`${WEBAPP_API_BASE}/api/tools/due-date`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(req.body),
@@ -1011,7 +1074,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Proxy: Tools - Ovulation
   app.post("/api/proxy/tools/ovulation", async (req, res) => {
     try {
-      const response = await fetch(`${SAKHI_API_BASE}/api/tools/ovulation`, {
+      const response = await fetch(`${WEBAPP_API_BASE}/api/tools/ovulation`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(req.body),
@@ -1027,7 +1090,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Proxy: Tools - Pregnancy Week (POST)
   app.post("/api/proxy/tools/pregnancy-week", async (req, res) => {
     try {
-      const response = await fetch(`${SAKHI_API_BASE}/api/tools/pregnancy-week`, {
+      const response = await fetch(`${WEBAPP_API_BASE}/api/tools/pregnancy-week`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(req.body),
@@ -1043,7 +1106,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Proxy: Tools - Conception Calculator
   app.post("/api/proxy/tools/conception-calculator", async (req, res) => {
     try {
-      const response = await fetch(`${SAKHI_API_BASE}/api/tools/conception-calculator`, {
+      const response = await fetch(`${WEBAPP_API_BASE}/api/tools/conception-calculator`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(req.body),
@@ -1059,7 +1122,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Proxy: Tools - Am I Pregnant
   app.post("/api/proxy/tools/am-i-pregnant", async (req, res) => {
     try {
-      const response = await fetch(`${SAKHI_API_BASE}/api/tools/am-i-pregnant`, {
+      const response = await fetch(`${WEBAPP_API_BASE}/api/tools/am-i-pregnant`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(req.body),
@@ -1075,7 +1138,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Proxy: Tools - Baby Cost Calculator
   app.post("/api/proxy/tools/baby-cost-calculator", async (req, res) => {
     try {
-      const response = await fetch(`${SAKHI_API_BASE}/api/tools/baby-cost-calculator`, {
+      const response = await fetch(`${WEBAPP_API_BASE}/api/tools/baby-cost-calculator`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(req.body),
@@ -1091,7 +1154,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Proxy: Tools - Pregnancy Weeks (GET All)
   app.get("/api/proxy/tools/pregnancy-weeks", async (req, res) => {
     try {
-      const response = await fetch(`${SAKHI_API_BASE}/api/tools/pregnancy-weeks`, {
+      const response = await fetch(`${WEBAPP_API_BASE}/api/tools/pregnancy-weeks`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
       });
@@ -1107,7 +1170,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/proxy/tools/pregnancy-week/:week", async (req, res) => {
     try {
       const { week } = req.params;
-      const response = await fetch(`${SAKHI_API_BASE}/api/tools/pregnancy-week/${week}`, {
+      const response = await fetch(`${WEBAPP_API_BASE}/api/tools/pregnancy-week/${week}`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
       });
@@ -1123,7 +1186,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/proxy/tools/safety-check", async (req, res) => {
     try {
       const query = (req.query as any).q || "";
-      const response = await fetch(`${SAKHI_API_BASE}/api/tools/safety-check?q=${encodeURIComponent(query)}`, {
+      const response = await fetch(`${WEBAPP_API_BASE}/api/tools/safety-check?q=${encodeURIComponent(query)}`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
       });
@@ -1138,7 +1201,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Proxy: Tools - Readiness Checklist
   app.get("/api/proxy/tools/readiness-checklist", async (req, res) => {
     try {
-      const response = await fetch(`${SAKHI_API_BASE}/api/tools/readiness-checklist`, {
+      const response = await fetch(`${WEBAPP_API_BASE}/api/tools/readiness-checklist`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
       });

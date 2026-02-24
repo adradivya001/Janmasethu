@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useEffect, useState, ReactNode, useRef } from 'react';
+import { useLocation } from 'wouter';
 import { JourneyData, JourneyStage, JOURNEY_STORAGE_KEY } from '../lib/journey';
 
 interface JourneyContextType {
@@ -7,9 +8,10 @@ interface JourneyContextType {
     clearJourney: () => void;
     showSelector: boolean;
     setShowSelector: (show: boolean) => void;
-    openSelector: (stage?: JourneyStage) => void; // New function
-    initialStage: JourneyStage | null; // New state
+    openSelector: (stage?: JourneyStage) => void;
+    initialStage: JourneyStage | null;
     isLoading: boolean;
+    dismissSelector: () => void;
 }
 
 const JourneyContext = createContext<JourneyContextType | undefined>(undefined);
@@ -19,6 +21,10 @@ export const JourneyProvider = ({ children }: { children: ReactNode }) => {
     const [showSelector, setShowSelector] = useState(false);
     const [initialStage, setInitialStage] = useState<JourneyStage | null>(null);
     const [isLoading, setIsLoading] = useState(true);
+    const [hasDismissed, setHasDismissed] = useState(false);
+    const [location] = useLocation();
+    const timerRef = useRef<NodeJS.Timeout>();
+    const prevLocation = useRef(location);
 
     useEffect(() => {
         // Load from local storage on mount
@@ -27,17 +33,41 @@ export const JourneyProvider = ({ children }: { children: ReactNode }) => {
             if (stored) {
                 setJourneyState(JSON.parse(stored));
             } else {
-                // No journey found, show selector
-                setShowSelector(true);
+                // No journey found, set timer to show selector after 2 minutes
+                timerRef.current = setTimeout(() => {
+                    setShowSelector(true);
+                }, 120000);
             }
         } catch (e) {
             console.error('Failed to load journey from local storage', e);
         } finally {
             setIsLoading(false);
         }
+
+        return () => {
+            if (timerRef.current) clearTimeout(timerRef.current);
+        };
     }, []);
 
+    // Effect to handle reminders on page navigation
+    useEffect(() => {
+        // Only trigger if location has effectively changed
+        if (prevLocation.current !== location) {
+            const allowedPaths = ['/', '/knowledge-hub', '/sakhi', '/tools'];
+            if (hasDismissed && !journey && allowedPaths.includes(location)) {
+                // If user dismissed it previously and hasn't selected a journey,
+                // remind them when they navigate to an allowed page.
+                setShowSelector(true);
+                setHasDismissed(false); // Reset dismissal flag so they can dismiss again
+            }
+            prevLocation.current = location;
+        }
+    }, [location, hasDismissed, journey]);
+
     const setJourney = (stage: JourneyStage, date?: string) => {
+        // Clear any pending timer if journey is set
+        if (timerRef.current) clearTimeout(timerRef.current);
+
         const newData: JourneyData = {
             stage,
             date,
@@ -81,6 +111,8 @@ export const JourneyProvider = ({ children }: { children: ReactNode }) => {
         localStorage.removeItem(JOURNEY_STORAGE_KEY);
         setShowSelector(false);
         setInitialStage(null);
+        // Note: We don't set hasDismissed here because "Clear" is an explicit action,
+        // so we probably shouldn't pester them immediately on next page.
     };
 
     const openSelector = (stage?: JourneyStage) => {
@@ -89,8 +121,25 @@ export const JourneyProvider = ({ children }: { children: ReactNode }) => {
         setShowSelector(true);
     };
 
+    const dismissSelector = () => {
+        setShowSelector(false);
+        if (!journey) {
+            setHasDismissed(true);
+        }
+    };
+
     return (
-        <JourneyContext.Provider value={{ journey, setJourney, clearJourney, showSelector, setShowSelector, openSelector, initialStage, isLoading }}>
+        <JourneyContext.Provider value={{
+            journey,
+            setJourney,
+            clearJourney,
+            showSelector,
+            setShowSelector,
+            openSelector,
+            initialStage,
+            isLoading,
+            dismissSelector
+        }}>
             {children}
         </JourneyContext.Provider>
     );

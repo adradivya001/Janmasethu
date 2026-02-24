@@ -76,7 +76,7 @@ const LeadSubmissionForm = ({ open, onClose, onSubmitted }: LeadSubmissionFormPr
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!formData.name || !formData.phone || !formData.age || !formData.gender || !formData.problemType || !formData.source) {
       toast({
         title: "Missing Information",
@@ -137,7 +137,7 @@ const LeadSubmissionForm = ({ open, onClose, onSubmitted }: LeadSubmissionFormPr
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-lg max-w-[95vw] max-h-[90vh] overflow-y-auto p-0 bg-gradient-to-br from-white via-purple-50/30 to-pink-50/30 rounded-2xl">
         <DialogHeader className="border-b border-purple-100 pb-4 px-6 pt-6">
-          <DialogTitle className="flex items-center gap-3 text-xl md:text-2xl font-serif">
+          <DialogTitle className="flex items-center gap-3 text-xl md:text-2xl">
             <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center shadow-lg">
               <User className="w-5 h-5 text-white" />
             </div>

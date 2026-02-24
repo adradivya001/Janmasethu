@@ -42,7 +42,7 @@ export class MemStorage implements IStorage {
     const chatMessage: ChatMessage = {
       id: randomUUID(),
       text: message.text,
-      isUser: message.isUser,
+      isUser: message.isUser || "false",
       lang: message.lang || null,
     };
     this.chatMessages.push(chatMessage);

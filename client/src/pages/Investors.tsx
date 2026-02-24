@@ -2,14 +2,14 @@
 import { useLanguage } from '../i18n/LanguageProvider';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { 
-  Download, 
-  Mail, 
-  Target, 
-  Users, 
-  TrendingUp, 
-  Globe, 
-  Shield, 
+import {
+  Download,
+  Mail,
+  Target,
+  Users,
+  TrendingUp,
+  Globe,
+  Shield,
   Heart,
   CheckCircle,
   ArrowRight,
@@ -24,7 +24,7 @@ const Investors = () => {
     <div className="container mx-auto px-4 py-8">
       {/* 1. Hero / Intro */}
       <section className="text-center mb-20">
-        <h1 className="text-4xl md:text-6xl font-bold text-foreground font-serif mb-6" data-testid="text-hero-title">
+        <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6" data-testid="text-hero-title">
           {t('investors_hero_title')} <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">{t('investors_hero_title_highlight')}</span>
         </h1>
         <p className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto mb-8 leading-relaxed" data-testid="text-hero-mission">
@@ -39,9 +39,9 @@ const Investors = () => {
 
         {/* Hero Background */}
         <div className="mt-16 relative">
-          <img 
-            src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=400" 
-            alt="Healthcare investment and business growth" 
+          <img
+            src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=400"
+            alt="Healthcare investment and business growth"
             className="w-full h-80 object-cover rounded-3xl"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-pink-600/20 rounded-3xl"></div>
@@ -57,7 +57,7 @@ const Investors = () => {
               <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mr-4">
                 <Target className="w-6 h-6 text-red-600" />
               </div>
-              <h2 className="text-3xl font-bold text-foreground font-serif">{t('investors_problem_title')}</h2>
+              <h2 className="text-3xl font-bold text-foreground">{t('investors_problem_title')}</h2>
             </div>
             <div className="space-y-4">
               <div className="flex items-start">
@@ -81,7 +81,7 @@ const Investors = () => {
               <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
                 <Lightbulb className="w-6 h-6 text-green-600" />
               </div>
-              <h2 className="text-3xl font-bold text-foreground font-serif">{t('investors_solution_title')}</h2>
+              <h2 className="text-3xl font-bold text-foreground">{t('investors_solution_title')}</h2>
             </div>
             <div className="space-y-4">
               <div className="flex items-start">
@@ -104,10 +104,10 @@ const Investors = () => {
       {/* 3. Traction & Metrics */}
       <section className="py-20 bg-gradient-to-br from-blue-50 to-purple-50 rounded-3xl mx-4">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-foreground font-serif mb-4">{t('investors_traction_title')}</h2>
+          <h2 className="text-4xl font-bold text-foreground mb-4">{t('investors_traction_title')}</h2>
           <p className="text-xl text-muted-foreground">{t('investors_traction_subtitle')}</p>
         </div>
-        
+
         <div className="grid md:grid-cols-3 gap-8 px-8">
           <Card className="text-center p-6 bg-white/70 backdrop-blur-sm">
             <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -138,7 +138,7 @@ const Investors = () => {
       {/* 4. Business Model */}
       <section className="py-20">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-foreground font-serif mb-4">{t('investors_model_title')}</h2>
+          <h2 className="text-4xl font-bold text-foreground mb-4">{t('investors_model_title')}</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">{t('investors_model_subtitle')}</p>
         </div>
 
@@ -181,7 +181,7 @@ const Investors = () => {
       {/* 5. Why Us (Moat & Team) */}
       <section className="py-20 bg-gradient-to-br from-purple-50 to-pink-50 rounded-3xl mx-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-foreground font-serif mb-4">{t('investors_why_title')}</h2>
+          <h2 className="text-4xl font-bold text-foreground mb-4">{t('investors_why_title')}</h2>
           <p className="text-xl text-muted-foreground">{t('investors_why_subtitle')}</p>
         </div>
 
@@ -202,7 +202,7 @@ const Investors = () => {
                   <p className="text-gray-600">{t('investors_moat_data_desc')}</p>
                 </div>
               </div>
-              
+
               <div className="flex items-start">
                 <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center mr-4 mt-1">
                   <Users className="w-4 h-4 text-purple-600" />
@@ -212,7 +212,7 @@ const Investors = () => {
                   <p className="text-gray-600">{t('investors_moat_clinician_desc')}</p>
                 </div>
               </div>
-              
+
               <div className="flex items-start">
                 <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center mr-4 mt-1">
                   <Globe className="w-4 h-4 text-purple-600" />
@@ -265,7 +265,7 @@ const Investors = () => {
           <p className="text-xl mb-10 opacity-90 max-w-2xl mx-auto">
             {t('investors_cta_subtitle')}
           </p>
-          
+
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
             <Button asChild className="bg-white text-purple-600 hover:bg-gray-100 px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 inline-flex items-center shadow-lg" data-testid="button-download-onepager">
               <a href="/one-pager.pdf" target="_blank" rel="noopener" download>
@@ -273,7 +273,7 @@ const Investors = () => {
                 {t('investors_cta_onepager')}
               </a>
             </Button>
-            
+
             <Button asChild variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-purple-600 bg-transparent backdrop-blur-sm px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 inline-flex items-center" data-testid="button-contact-investors">
               <a href="mailto:investors@janmasethu.com">
                 <Mail className="mr-2 w-5 h-5" />
@@ -281,7 +281,7 @@ const Investors = () => {
               </a>
             </Button>
           </div>
-          
+
           <div className="mt-8 flex items-center justify-center text-sm opacity-75">
             <span className="mr-2">{t('investors_cta_schedule')}</span>
             <ArrowRight className="w-4 h-4" />

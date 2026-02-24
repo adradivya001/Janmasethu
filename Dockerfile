@@ -1,29 +1,24 @@
-# Stage 1: Build
-FROM node:18-alpine AS builder
+# Use Node.js 20 Alpine for a lightweight base image
+FROM node:20-alpine
+
+# Set working directory
 WORKDIR /app
 
-# Install build dependencies
+# Copy package files first to leverage Docker cache for dependencies
 COPY package*.json ./
-RUN npm install
 
-# Copy source and build
+# Install dependencies (ci for clean install)
+RUN npm ci --legacy-peer-deps
+
+# Copy the rest of the application code
 COPY . .
+
+# Build the application
+# This runs "vite build" (frontend) and "esbuild server/index.ts" (backend)
 RUN npm run build
 
-# Stage 2: Runtime
-FROM node:18-alpine
-WORKDIR /app
-
-# Copy built assets and production node_modules
-COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package.json ./package.json
-COPY --from=builder /app/.env .env
-
-ENV NODE_ENV=production
-ENV PORT=5000
-
+# Expose the application port
 EXPOSE 5000
 
-# Start server
-CMD ["node", "dist/index.js"]
+# Start the application
+CMD ["npm", "start"]
